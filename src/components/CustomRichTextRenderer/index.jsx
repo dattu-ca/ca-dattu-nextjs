@@ -24,6 +24,7 @@ const options = {
 const CustomRichTexRenderer = ({document}) => {
     return <section>
         {documentToReactComponents(document, options)}
+        <pre>{JSON.stringify(document, null, 2)}</pre>
     </section>
 }
 
