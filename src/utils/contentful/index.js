@@ -19,6 +19,7 @@ const previewClient = contentful.createClient({
 
 const CONTENT_TYPE = {
     BLOG_PAGE: 'blogPage',
+    BODY_CONTENT: 'bodyContent'
     
 }
 

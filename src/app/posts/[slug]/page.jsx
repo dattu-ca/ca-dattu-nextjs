@@ -1,6 +1,17 @@
 import {getSingleBlogPage} from '~services/blogPage.services';
 import {CustomRichTexRenderer} from '~components/CustomRichTextRenderer';
 
+
+export async function generateMetadata({ params }){
+
+    const { slug } = params;
+    const data = await getSingleBlogPage(slug);
+    const {heading} = data.fields;
+    return {
+        title: heading
+    }
+}
+
 export default async function Page({params}) {
     const { slug } = params;
     const data = await getSingleBlogPage(slug);
