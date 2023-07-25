@@ -1,7 +1,7 @@
 import {getBlogPage} from "~/services/blogPage.services";
-import {iProps} from "./interfaces";
+import {IProps} from "./types";
 
-export async function generateMetadata(props: iProps) {
+export async function generateMetadata(props: IProps) {
     const {params} = props;
     const {slug} = params;
     const data = await getBlogPage(slug);

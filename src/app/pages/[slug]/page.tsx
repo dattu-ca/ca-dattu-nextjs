@@ -1,8 +1,8 @@
 import {PageComponent} from "~/components/Page";
-import {iProps} from "./interfaces";
+import {IProps} from "./types";
 
 
-export default async function Page(props: iProps) {
+export default async function Page(props: IProps) {
     const {params} = props;
     const {slug} = params;
     return <PageComponent slug={slug}/>
