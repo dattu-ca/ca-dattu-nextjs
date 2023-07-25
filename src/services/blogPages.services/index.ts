@@ -1,10 +1,12 @@
-import {client, CONTENT_TYPE, BLOG_PAGE_FIELDS} from '~utils/contentful'
-import {iItem, mapContentful} from "~/models/blogPage.class";
+import {client, CONTENTFUL_BLOG_PAGE_FIELDS} from '~utils/contentful'
+import {BlogPageSkeleton, mapContentful} from "~utils/contentful/schema/models/blogPage.contentful";
 
 export const getBlogPagesList = () =>
     client
-        .getEntries({
-            content_type: CONTENT_TYPE.BLOG_PAGE,
-            select: `${BLOG_PAGE_FIELDS.HEADING},${BLOG_PAGE_FIELDS.SLUG},${BLOG_PAGE_FIELDS.DATE_PUBLISHED}`
+        .getEntries<BlogPageSkeleton>({
+            content_type: 'blogPage',
+            select: [CONTENTFUL_BLOG_PAGE_FIELDS.HEADING as 'fields', CONTENTFUL_BLOG_PAGE_FIELDS.SLUG as 'fields', CONTENTFUL_BLOG_PAGE_FIELDS.DATE_PUBLISHED as 'fields'],
         })
-        .then(response => response.items.map(item => mapContentful(item as iItem)));
+        .then(response => response.items.map(item => {
+            return mapContentful(item);
+        }));
