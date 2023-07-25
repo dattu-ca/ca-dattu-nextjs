@@ -17,10 +17,4 @@ const previewClient = contentful.createClient({
     environment
 });
 
-const CONTENT_TYPE = {
-    BLOG_PAGE: 'blogPage',
-    BODY_CONTENT: 'bodyContent'
-    
-}
-
-export {client, previewClient, CONTENT_TYPE};
+export {client, previewClient};

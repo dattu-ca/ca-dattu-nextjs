@@ -1,22 +1,23 @@
 import Link from 'next/link'
 
-import {getBlogPagesList} from "../../services/blogPages.services";
+import {getBlogPagesList} from "~/services/blogPages.services";
+
+
+
 
 const NavbarComponent = async () => {
     const list = await getBlogPagesList();
-    if(!list){
-        return <p>Loading</p>;
-    }
     return <nav>
-        
         <ul>
             <li><Link href="/">Home</Link></li>
             {
-                list.items.map(item => {
-                    return <li key={item.fields.slug}>
+                (list || []).map(item => {
+                    return <li key={item.slug}>
                         <Link 
-                            href={`/posts/${item.fields.slug}`}
-                        >{item.fields.heading}</Link>
+                            href={`/pages/${item.slug}`}
+                        >
+                            {item.heading}
+                        </Link>
                     </li>
                 })
             }
