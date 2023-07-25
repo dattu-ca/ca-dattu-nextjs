@@ -1,5 +1,6 @@
-import './globals.css'
-import { Inter } from 'next/font/google'
+import './globals.css';
+import "tw-elements/dist/css/tw-elements.min.css";
+import { Inter } from 'next/font/google';
 import NavbarComponent from "../components/Navbar";
 
 const inter = Inter({ subsets: ['latin'] })
@@ -17,7 +18,7 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body className={['inter.className', 'dark'].join(' ')}>
+      <body className={['inter.className'].join(' ')}>
         <NavbarComponent />  
       {children}
       </body>
