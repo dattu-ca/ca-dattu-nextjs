@@ -3,10 +3,9 @@ import {CustomRichTexRenderer} from '~components/CustomRichTextRenderer';
 
 
 export async function generateMetadata({ params }){
-
     const { slug } = params;
     const data = await getSingleBlogPage(slug);
-    const {heading} = data.fields;
+    const {heading} = data;
     return {
         title: heading
     }
@@ -15,8 +14,7 @@ export async function generateMetadata({ params }){
 export default async function Page({params}) {
     const { slug } = params;
     const data = await getSingleBlogPage(slug);
-    
-    const {heading, body} = data.fields;
+    const {heading, body} = data;
     return <div>
         <h1>{heading}</h1>
         <CustomRichTexRenderer document={body} />
