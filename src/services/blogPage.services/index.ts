@@ -1,14 +1,13 @@
-import {client, CONTENT_TYPE} from '~utils/contentful'
+import {client, CONTENT_TYPE, BLOG_PAGE_FIELDS} from '~utils/contentful'
 import {iItem, mapContentful} from "~/models/blogPage.class";
-import {BLOG_PAGE_FIELDS} from "~/utils/contentful";
 
 
-export const getSingleBlogPage = (slug) =>
+export const getBlogPage = (slug) =>
     client
         .getEntries({
-            'fields.slug': slug,
             content_type: CONTENT_TYPE.BLOG_PAGE,
-            select: `${BLOG_PAGE_FIELDS.HEADING},${BLOG_PAGE_FIELDS.BODY}`
+            select: `${BLOG_PAGE_FIELDS.HEADING},${BLOG_PAGE_FIELDS.BODY}`,
+            [BLOG_PAGE_FIELDS.SLUG]: slug,
         })
         .then(response => {
             if (response.items.length === 1) {

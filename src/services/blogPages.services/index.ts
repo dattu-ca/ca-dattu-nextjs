@@ -1,5 +1,4 @@
-import {client, CONTENT_TYPE} from '~utils/contentful'
-import {BLOG_PAGE_FIELDS} from "~/utils/contentful";
+import {client, CONTENT_TYPE, BLOG_PAGE_FIELDS} from '~utils/contentful'
 import {iItem, mapContentful} from "~/models/blogPage.class";
 
 export const getBlogPagesList = () =>
