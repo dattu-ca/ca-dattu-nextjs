@@ -10,3 +10,4 @@ export const getBlogPagesList = () =>
         .then(response => response.items.map(item => {
             return mapContentful(item);
         }));
+
