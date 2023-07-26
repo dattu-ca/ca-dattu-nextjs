@@ -24,7 +24,8 @@
       "~/*": ["src/*"],
       "~utils/*": ["src/utils/*"],
       "~services/*": ["src/services/*"],
-      "~components/*": ["src/components/*"]
+      "~components/*": ["src/components/*"],
+      "~contentful/*": ["src/contentful/*"]
     }
   },
   "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts"],

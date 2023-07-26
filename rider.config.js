@@ -8,5 +8,6 @@ System.config({
         "~utils": ".src/utils/",
         "~services": ".src/services/",
         "~components": ".src/components/",
+        "~contentful": ".src/contentful/",
     }
 })

@@ -3,23 +3,128 @@
 @tailwind utilities;
 
 
-@layer base{
-  h1{
-    @apply text-6xl
-  }
-  h2{
-    @apply text-5xl
-  }
-  h3{
-    @apply text-4xl
-  }
-  h4{
-    @apply text-3xl
-  }
-  h5{
-    @apply text-2xl
-  }
-  h6{
-    @apply text-xl
-  }
+@layer base {
+    h1 {
+        @apply text-6xl;
+        @apply mb-8;
+        @apply min-h-[1px];
+    }
+
+    h2 {
+        @apply text-5xl;
+        @apply mb-7;
+        @apply min-h-[1px];
+    }
+
+    h3 {
+        @apply text-4xl;
+        @apply mb-6;
+        @apply min-h-[1px];
+    }
+
+    h4 {
+        @apply text-3xl;
+        @apply mb-5;
+        @apply min-h-[1px];
+    }
+
+    h5 {
+        @apply text-2xl;
+        @apply mb-4;
+        @apply min-h-[1px];
+    }
+
+    h6 {
+        @apply text-xl;
+        @apply mb-4;
+        @apply min-h-[1px];
+    }
+
+    p {
+        @apply mb-4;
+        @apply min-h-[1px];
+    }
+
+    li p {
+        @apply mb-0;
+    }
+
+    ul {
+        @apply pl-5;
+        list-style-type: square;
+    }
+
+    ol {
+        @apply pl-5;
+        @apply list-decimal;
+    }
+
+    ul ul,
+    ol ul {
+        @apply mt-2;
+        @apply list-disc;
+    }
+
+    ul ol,
+    ol ol {
+        @apply mt-2;
+        list-style-type: lower-alpha;
+    }
+
+    li {
+        @apply mb-2;
+    }
+
+    a {
+        @apply relative;
+        @apply text-blue-700;
+        @apply no-underline;
+        @apply transition-all;
+    }
+
+    a:after {
+        @apply bg-blue-800;
+        content: '';
+        position: absolute;
+        left: 0;
+        bottom: -2px;
+        width: 0;
+        height: 2px;
+        @apply transition-all;
+
+    }
+
+    a:hover {
+        @apply text-blue-800;
+    }
+
+    a:hover:after {
+        width: 100%;
+    }
+
+    code {
+        @apply bg-gray-800;
+        @apply border-2;
+        @apply border-yellow-400;
+        @apply text-white;
+        @apply p-1;
+        @apply m-1;
+        @apply mx-0;
+    }
+
+    blockquote {
+        @apply text-lg;
+        @apply font-light;
+        @apply tracking-wider;
+        @apply p-4;
+        @apply my-4;
+        @apply border-l-8;
+        @apply border-gray-300;
+        @apply bg-gray-50;
+        @apply rounded-md;
+        @apply mb-4;
+    }
+    blockquote p{
+        @apply mb-0;
+    }
 }
