@@ -1,4 +1,4 @@
-import {services} from "~/contentful/schema/models/blogPage.contentful";
+import {blogPageServices} from "~/contentful";
 
 
-export const getBlogPage = (slug: string) => services.getBlogPage(slug)
+export const getBlogPage = (slug: string) => blogPageServices.getBlogPage(slug)

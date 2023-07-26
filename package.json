@@ -7,7 +7,7 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
-    "codegen": "contentful-typescript-codegen --output src/contentful/schema/generated/contentful.d.ts"
+    "codegen": "contentful-typescript-codegen --output src/contentful/schema/generated/index.d.ts"
   },
   "devDependencies": {
     "@types/node": "20.4.0",
