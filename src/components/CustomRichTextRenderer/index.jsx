@@ -1,15 +1,14 @@
-import { documentToReactComponents } from '@contentful/rich-text-react-renderer';
-import { BLOCKS, MARKS } from '@contentful/rich-text-types';
+import {documentToReactComponents} from '@contentful/rich-text-react-renderer';
+import {BLOCKS, INLINES, MARKS} from '@contentful/rich-text-types';
 
 
-
-const Bold = ({ children }) => <span className="font-bold">{children}</span>;
-const Italic = ({ children }) => <span className="italic">{children}</span>;
-const Underline = ({ children }) => <span className="underline">{children}</span>;
-const Text = ({ children }) => <p>{children}</p>;
-const Ol = ({ children }) => <ol className="">{children}</ol>;
-const Ul = ({ children }) => <ul className="">{children}</ul>;
-const Li = ({ children }) => <li className="">{children}</li>;
+const Bold = ({children}) => <span className="font-bold">{children}</span>;
+const Italic = ({children}) => <span className="italic">{children}</span>;
+const Underline = ({children}) => <span className="underline">{children}</span>;
+    const Text = ({children}) => <p>{children}</p>;
+const Ol = ({children}) => <ol className="">{children}</ol>;
+const Ul = ({children}) => <ul className="">{children}</ul>;
+const Li = ({children}) => <li className="">{children}</li>;
 
 
 const options = {
@@ -28,8 +27,12 @@ const options = {
             const embeddedType = node.data.target.sys.contentType.sys.id;
             return documentToReactComponents(node.data.target.fields.body, options)
         },
+        [INLINES.EMBEDDED_ENTRY]: (node, children) => {
+            const embeddedType = node.data.target.sys.contentType.sys.id;
+            return documentToReactComponents(node.data.target.fields.body, options)            
+        },
     },
-    renderText: (text) => text.replace('!', '?'),
+    renderText: (text) => <span dangerouslySetInnerHTML={{ __html: text.replace(/\n/g, '<br/>')}} />
 };
 
 const CustomRichTexRenderer = ({document}) => {

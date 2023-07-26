@@ -8,6 +8,7 @@ export const getBlogPage = (slug: string) =>
             content_type:'blogPage',
             select: [CONTENTFUL_BLOG_PAGE_FIELDS.HEADING as 'fields', CONTENTFUL_BLOG_PAGE_FIELDS.BODY as 'fields'],
             [CONTENTFUL_BLOG_PAGE_FIELDS.SLUG]: slug,
+            include: 10,
         })
         .then((response) => {
             if (response.items.length === 1) {
