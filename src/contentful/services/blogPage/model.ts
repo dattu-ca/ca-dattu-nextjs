@@ -1,5 +1,5 @@
-import {IBlogPageFields} from "~/contentful/schema/generated";
 import {Entry} from "contentful";
+import {IBlogPageFields} from "../../schema/generated";
 import {IBlogPage} from "~/models";
 
 

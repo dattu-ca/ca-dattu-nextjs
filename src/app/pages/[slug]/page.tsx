@@ -1,6 +1,6 @@
 import {PageComponent} from "~/components/Page";
 
-import {getBlogPage} from "~services/blogPage.services";
+import {getBlogPage} from "~/services";
 
 
 interface IProps {

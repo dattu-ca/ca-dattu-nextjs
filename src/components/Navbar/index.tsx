@@ -1,6 +1,6 @@
 'use client';
 import Link from "next/link";
-import MenuItem from "~components/Navbar/menuItem";
+import MenuItem from "~/components/Navbar/menuItem";
 import MobileMenuComponent from "./mobileMenu";
 import {Bars3} from "~/assets/SVGs";
 import {IBlogNavbar} from "~/models";
@@ -12,7 +12,7 @@ interface IProps {
 
 const NavbarComponent = ({navbar}: IProps) => {
     const [open, setOpen] = useState(false);
-    return <nav className="border-b-[1px] border-neutral-200 py-4 bg-[rgba(0,0,0,0.1)]">
+    return <nav className="border-b-[1px] border-neutral-200 py-4 bg-[rgba(0,0,0,0.0)]">
         <div className="max-w-[100%] px-4 md:px-0 md:container my-0 mx-auto flex justify-between items-center">
             <div>
                 <Link href='/' className='after:hover:w-0'>
@@ -41,11 +41,16 @@ const NavbarComponent = ({navbar}: IProps) => {
                 </ul>
             </div>
             <div className='block md:hidden'>
-                <button onClick={() => setOpen(prev => !prev)}><Bars3/></button>
+                <button onClick={() => setOpen(prev => !prev)}
+                        aria-label={navbar.openMenuText || 'Open Menu'}
+                        role='button'>
+                    <Bars3/>
+                </button>
             </div>
         </div>
         <div className='block md:hidden'>
-            <MobileMenuComponent navLinks={navbar.navLinks} open={open} setClose={() => setOpen(prev => !prev)}/>
+            <MobileMenuComponent navLinks={navbar.navLinks} open={open} setClose={() => setOpen(false)}
+                                 closeMenuText={navbar.closeMenuText}/>
         </div>
     </nav>
 }

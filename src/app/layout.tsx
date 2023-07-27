@@ -1,7 +1,7 @@
 import {ReactElement} from "react";
 import "tw-elements/dist/css/tw-elements.min.css";
 import NavbarComponent from "~/components/Navbar";
-import {getBlogNavbar} from "~services/blogNavbar.services";
+import {getBlogNavbar} from "~/services";
 import './globals.css';
 
 export const metadata = {
@@ -9,6 +9,7 @@ export const metadata = {
         template: '%s | dattu.ca',
         default: 'dattu.ca',
     },
+    description: 'DATTU IS HERE'
 }
 
 interface IProps {

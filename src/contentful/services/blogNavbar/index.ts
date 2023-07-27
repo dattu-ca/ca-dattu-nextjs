@@ -1,11 +1,17 @@
-import {client, CONTENTFUL_BLOG_NAVBAR_FIELDS} from "~/contentful";
-import { content_type, BlogNavbarSkeleton, mapContentful } from './model'
+import {CONTENTFUL_BLOG_NAVBAR_FIELDS} from "../../constants";
+import {client} from "../../client";
+import {content_type, BlogNavbarSkeleton, mapContentful} from './model'
 
 const getBlogNavbar = (slug: string) =>
     client
         .getEntries<BlogNavbarSkeleton>({
             content_type,
-            select: [CONTENTFUL_BLOG_NAVBAR_FIELDS.LOGO as 'fields', CONTENTFUL_BLOG_NAVBAR_FIELDS.NAV_LINKS as 'fields'],
+            select: [
+                CONTENTFUL_BLOG_NAVBAR_FIELDS.LOGO as 'fields',
+                CONTENTFUL_BLOG_NAVBAR_FIELDS.NAV_LINKS as 'fields',
+                CONTENTFUL_BLOG_NAVBAR_FIELDS.OPEN_MENU_TEXT as 'fields',
+                CONTENTFUL_BLOG_NAVBAR_FIELDS.CLOSE_MENU_TEXT as 'fields',
+            ],
             [CONTENTFUL_BLOG_NAVBAR_FIELDS.SLUG]: slug,
             include: 3,
         })

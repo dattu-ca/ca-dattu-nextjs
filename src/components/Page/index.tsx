@@ -1,4 +1,4 @@
-import {getBlogPage} from "~/services/blogPage.services";
+import {getBlogPage} from "~/services";
 import {CustomRichTexRenderer} from "~/components/CustomRichTextRenderer";
 
 interface IProps {

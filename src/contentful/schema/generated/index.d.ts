@@ -15,6 +15,12 @@ export interface IBlogNavbarFields {
 
   /** Nav Links */
   navLinks: Record<string, any>;
+
+  /** Open Menu Text */
+  openMenuText?: string | undefined;
+
+  /** Close Menu Text */
+  closeMenuText?: string | undefined;
 }
 
 export interface IBlogNavbar extends Entry<IBlogNavbarFields> {
@@ -138,13 +144,55 @@ export interface IBodyImages extends Entry<IBodyImagesFields> {
   };
 }
 
+export interface ISiteConfigFields {
+  /** Entry Title */
+  entryTitle: string;
+
+  /** Slug */
+  slug: string;
+
+  /** Site Title Template */
+  siteTitleTemplate: string;
+
+  /** Site Title Default */
+  siteTitleDefault: string;
+
+  /** Site Description */
+  siteDescription: string;
+}
+
+/** This is the Site Content Config. */
+
+export interface ISiteConfig extends Entry<ISiteConfigFields> {
+  sys: {
+    id: string;
+    type: string;
+    createdAt: string;
+    updatedAt: string;
+    locale: string;
+    contentType: {
+      sys: {
+        id: "siteConfig";
+        linkType: "ContentType";
+        type: "Link";
+      };
+    };
+  };
+}
+
 export type CONTENT_TYPE =
   | "blogNavbar"
   | "blogPage"
   | "bodyContent"
-  | "bodyImages";
+  | "bodyImages"
+  | "siteConfig";
 
-export type IEntry = IBlogNavbar | IBlogPage | IBodyContent | IBodyImages;
+export type IEntry =
+  | IBlogNavbar
+  | IBlogPage
+  | IBodyContent
+  | IBodyImages
+  | ISiteConfig;
 
 export type LOCALE_CODE = "en-CA";
 

@@ -19,7 +19,8 @@ const MobileMenuItem = ({link, setClose}: IProps) => {
             return path === url;
         }
         return path.includes(url)
-    }, [link.url, path])
+    }, [link.url, path]);
+    const ariaCurrent = useMemo(() => isCurrentPage ? 'page' : undefined, [isCurrentPage])
 
 
     return <li key={link.url}
@@ -34,7 +35,8 @@ const MobileMenuItem = ({link, setClose}: IProps) => {
                     }
                 )}
             onClick={setClose}
-            href={link.url}>
+            href={link.url}
+            aria-current={ariaCurrent}>
             {link.label}
         </Link>
     </li>

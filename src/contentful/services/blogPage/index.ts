@@ -1,4 +1,5 @@
-import {client, CONTENTFUL_BLOG_PAGE_FIELDS} from "~/contentful";
+import {CONTENTFUL_BLOG_PAGE_FIELDS} from "../../constants";
+import {client} from "../../client";
 import { content_type, BlogPageSkeleton, mapContentful } from './model'
 
 const getBlogPage = (slug: string) =>

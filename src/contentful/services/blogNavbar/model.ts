@@ -1,6 +1,6 @@
-import {IBlogNavbarFields, IBodyImagesFields} from "~/contentful/schema/generated";
 import {Entry} from "contentful";
-import {IBlogNavbar, IBlogNavbarLink, IBodyImage} from "~/models";
+import {IBlogNavbar, IBlogNavbarLink} from "~/models";
+import {IBlogNavbarFields, IBodyImagesFields} from "../../schema/generated";
 
 
 export const content_type = 'blogNavbar';
@@ -20,7 +20,7 @@ export const mapContentful = (item: Entry<BlogNavbarSkeleton, undefined, string>
         result.navLinks = item.fields.navLinks as IBlogNavbarLink[];
     }
     if (item.fields.logo) {
-        const logo = item.fields.logo.fields as IBodyImagesFields;
+        const logo = item.fields.logo['fields'] as IBodyImagesFields;
         result.logo = {
             slug: logo.slug,
             desktopImage: {
@@ -32,6 +32,12 @@ export const mapContentful = (item: Entry<BlogNavbarSkeleton, undefined, string>
                 url: logo.mobileImage?.fields.file?.url as string
             }
         };
+    }
+    if (item.fields.openMenuText) {
+        result.openMenuText = item.fields.openMenuText as string;
+    }
+    if (item.fields.closeMenuText) {
+        result.closeMenuText = item.fields.closeMenuText as string;
     }
     return result;
 }
