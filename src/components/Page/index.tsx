@@ -1,12 +1,12 @@
-import {getBlogPage} from "~/services";
 import {CustomRichTexRenderer} from "~/components/CustomRichTextRenderer";
+import {IBlogPage} from "~/models";
 
 interface IProps {
-    slug: string;
+    data: IBlogPage;
 }
 
-export const PageComponent = async (props: IProps) => {
-    const data = await getBlogPage(props.slug);
+export const PageComponent = (props: IProps) => {
+    const {data} = props;
     const {heading, body} = data;
     return <div>
         <h1>{heading}</h1>
