@@ -1,7 +1,13 @@
-import {IBlogPageFields} from "~contentful/schema/generated";
 import {Entry} from "contentful";
-import {BlogPageClass} from "~/models/blogPage.class";
+import {IBlogPageFields} from "../../schema/generated";
+import {IBlogPage} from "~/models";
 
+export const CONTENTFUL_BLOG_PAGE_FIELDS = {
+    HEADING: 'fields.heading',
+    BODY: 'fields.body',
+    SLUG: 'fields.slug',
+    DATE_PUBLISHED: 'fields.datePublished'
+}
 
 export const content_type = 'blogPage';
 
@@ -12,7 +18,7 @@ export type BlogPageSkeleton = {
 
 
 export const mapContentful = (item: Entry<BlogPageSkeleton, undefined, string>) => {
-    const result = new BlogPageClass();
+    const result: IBlogPage = {};
     if (item.fields.slug) {
         result.slug = item.fields.slug as string;
     }
