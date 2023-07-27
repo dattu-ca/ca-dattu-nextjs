@@ -2,6 +2,12 @@ import {Entry} from "contentful";
 import {IBlogPageFields} from "../../schema/generated";
 import {IBlogPage} from "~/models";
 
+export const CONTENTFUL_BLOG_PAGE_FIELDS = {
+    HEADING: 'fields.heading',
+    BODY: 'fields.body',
+    SLUG: 'fields.slug',
+    DATE_PUBLISHED: 'fields.datePublished'
+}
 
 export const content_type = 'blogPage';
 

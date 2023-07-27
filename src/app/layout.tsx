@@ -1,15 +1,20 @@
 import {ReactElement} from "react";
 import "tw-elements/dist/css/tw-elements.min.css";
 import NavbarComponent from "~/components/Navbar";
-import {getBlogNavbar} from "~/services";
+import {getBlogNavbar, getSiteConfig} from "~/services";
 import './globals.css';
 
-export const metadata = {
-    title: {
-        template: '%s | dattu.ca',
-        default: 'dattu.ca',
-    },
-    description: 'DATTU IS HERE'
+
+export const generateMetadata = async () => {
+    const data = await getSiteConfig('main-site-config');
+    const {siteTitleDefault, siteTitleTemplate, siteDescription} = data;
+    return {
+        title: {
+            template: siteTitleTemplate,
+            default: siteTitleDefault,
+        },
+        description: siteDescription,
+    }
 }
 
 interface IProps {

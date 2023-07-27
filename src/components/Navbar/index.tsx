@@ -29,7 +29,10 @@ const NavbarComponent = ({navbar}: IProps) => {
                         />
                         <img src={navbar.logo?.desktopImage?.url}
                              alt={navbar.logo?.desktopImage?.alt}
-                             className='h-auto max-w-none w-[50px] sm:w-[100px] md:w-[150px] '/>
+                             className='h-auto max-w-none w-[50px] sm:w-[100px] md:w-[150px]'
+                             width={50}
+                             height={50}
+                        />
                     </picture>
                 </Link>
             </div>

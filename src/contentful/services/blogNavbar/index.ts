@@ -1,6 +1,5 @@
-import {CONTENTFUL_BLOG_NAVBAR_FIELDS} from "../../constants";
 import {client} from "../../client";
-import {content_type, BlogNavbarSkeleton, mapContentful} from './model'
+import {content_type, BlogNavbarSkeleton, mapContentful, CONTENTFUL_BLOG_NAVBAR_FIELDS} from './model'
 
 const getBlogNavbar = (slug: string) =>
     client
