@@ -3,10 +3,11 @@ import "tw-elements/dist/css/tw-elements.min.css";
 import NavbarComponent from "~/components/Navbar";
 import {getBlogNavbar, getSiteConfig} from "~/services";
 import './globals.css';
+import {CONTENTFUL_SLUGS} from "~/utils/constants";
 
 
 export const generateMetadata = async () => {
-    const data = await getSiteConfig('main-site-config');
+    const data = await getSiteConfig(CONTENTFUL_SLUGS.MAIN_SITE_CONFIG);
     const {siteTitleDefault, siteTitleTemplate, siteDescription} = data;
     return {
         title: {
@@ -22,7 +23,7 @@ interface IProps {
 }
 
 const RootLayout = async ({children}: IProps) => {
-    const navbar = await getBlogNavbar('header-navbar');
+    const navbar = await getBlogNavbar(CONTENTFUL_SLUGS.MAIN_NAV_BAR);
     return (
         <html lang="en">
         <body className={[].join(' ')}>
