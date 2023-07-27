@@ -19,9 +19,10 @@ export const generateMetadata = async (props: IProps) => {
     }
 }
 
-const Page = (props: IProps) => {
+const Page = async (props: IProps) => {
     const {params} = props;
     const {slug} = params;
-    return <PageComponent slug={slug}/>
+    const data = await getBlogPage(slug);
+    return <PageComponent data={data}/>
 }
 export default Page;
