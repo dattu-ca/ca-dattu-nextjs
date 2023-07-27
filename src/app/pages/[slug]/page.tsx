@@ -1,20 +1,27 @@
 import {PageComponent} from "~/components/Page";
-import {IProps} from "./types";
-import dynamic from "next/dynamic";
 
-// const DynamicComponent = dynamic(() => import("~/components/Page/testComponent"), {
-//     ssr: false,
-// });
+import {getBlogPage} from "~services/blogPage.services";
 
-export default async function Page(props: IProps) {
+
+interface IProps {
+    params: {
+        slug: string;
+    }
+}
+
+export const generateMetadata = async (props: IProps) => {
     const {params} = props;
     const {slug} = params;
-    return (
-        <>
-            <PageComponent slug={slug}/>
-            {/*<DynamicComponent/>*/}
-        </>
-    )
-   
+    const data = await getBlogPage(slug);
+    const {heading} = data;
+    return {
+        title: heading
+    }
 }
-export * from './metadata';
+
+const Page = (props: IProps) => {
+    const {params} = props;
+    const {slug} = params;
+    return <PageComponent slug={slug}/>
+}
+export default Page;

@@ -8,6 +8,10 @@ module.exports = {
   ],
   theme: {
     extend: {
+      colors:{
+        'site-green': 'rgb(19,149,135)',
+        'site-brown': 'rgb(152,109,66)'
+      },
       backgroundImage: {
         'gradient-radial': 'radial-gradient(var(--tw-gradient-stops))',
         'gradient-conic':

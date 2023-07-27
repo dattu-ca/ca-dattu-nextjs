@@ -1,7 +1,9 @@
-import {getBlogPage} from "~services/blogPage.services";
-import {CustomRichTexRenderer} from '~components/CustomRichTextRenderer';
-import {IProps} from "./types";
+import {getBlogPage} from "~/services/blogPage.services";
+import {CustomRichTexRenderer} from "~/components/CustomRichTextRenderer";
 
+interface IProps {
+    slug: string;
+}
 
 export const PageComponent = async (props: IProps) => {
     const data = await getBlogPage(props.slug);

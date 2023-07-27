@@ -6,41 +6,48 @@
 @layer base {
     h1 {
         @apply text-6xl;
+        @apply mt-0;
         @apply mb-8;
         @apply min-h-[1px];
     }
 
     h2 {
         @apply text-5xl;
+        @apply mt-0;
         @apply mb-7;
         @apply min-h-[1px];
     }
 
     h3 {
         @apply text-4xl;
+        @apply mt-0;
         @apply mb-6;
         @apply min-h-[1px];
     }
 
     h4 {
         @apply text-3xl;
+        @apply mt-0;
         @apply mb-5;
         @apply min-h-[1px];
     }
 
     h5 {
         @apply text-2xl;
+        @apply mt-0;
         @apply mb-4;
         @apply min-h-[1px];
     }
 
     h6 {
         @apply text-xl;
+        @apply mt-0;
         @apply mb-4;
         @apply min-h-[1px];
     }
 
     p {
+        @apply mt-0;
         @apply mb-4;
         @apply min-h-[1px];
     }
@@ -99,7 +106,7 @@
     }
 
     a:hover:after {
-        width: 100%;
+        @apply w-full;
     }
 
     code {

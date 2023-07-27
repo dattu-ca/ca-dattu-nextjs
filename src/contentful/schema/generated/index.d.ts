@@ -3,6 +3,37 @@
 import { Asset, Entry } from "contentful";
 import { Document } from "@contentful/rich-text-types";
 
+export interface IBlogNavbarFields {
+  /** Entry Title */
+  entryTitle: string;
+
+  /** Slug */
+  slug: string;
+
+  /** Logo */
+  logo?: IBodyImages | undefined;
+
+  /** Nav Links */
+  navLinks: Record<string, any>;
+}
+
+export interface IBlogNavbar extends Entry<IBlogNavbarFields> {
+  sys: {
+    id: string;
+    type: string;
+    createdAt: string;
+    updatedAt: string;
+    locale: string;
+    contentType: {
+      sys: {
+        id: "blogNavbar";
+        linkType: "ContentType";
+        type: "Link";
+      };
+    };
+  };
+}
+
 export interface IBlogPageFields {
   /** Pre Heading */
   preHeading?: string | undefined;
@@ -45,48 +76,6 @@ export interface IBlogPage extends Entry<IBlogPageFields> {
   };
 }
 
-export interface IBlogPostFields {
-  /** Pre Heading */
-  preHeading?: string | undefined;
-
-  /** Heading */
-  heading: string;
-
-  /** Slug */
-  slug: string;
-
-  /** Sub Heading */
-  subHeading?: string | undefined;
-
-  /** Date Published */
-  datePublished?: string | undefined;
-
-  /** Date Expires On */
-  dateExpiresOn?: string | undefined;
-
-  /** Body */
-  body?: Document | undefined;
-}
-
-/** The main content model for posts. */
-
-export interface IBlogPost extends Entry<IBlogPostFields> {
-  sys: {
-    id: string;
-    type: string;
-    createdAt: string;
-    updatedAt: string;
-    locale: string;
-    contentType: {
-      sys: {
-        id: "blogPost";
-        linkType: "ContentType";
-        type: "Link";
-      };
-    };
-  };
-}
-
 export interface IBodyContentFields {
   /** Entry Title */
   entryTitle: string;
@@ -112,9 +101,50 @@ export interface IBodyContent extends Entry<IBodyContentFields> {
   };
 }
 
-export type CONTENT_TYPE = "blogPage" | "blogPost" | "bodyContent";
+export interface IBodyImagesFields {
+  /** Entry Title */
+  entryTitle: string;
 
-export type IEntry = IBlogPage | IBlogPost | IBodyContent;
+  /** Slug */
+  slug: string;
+
+  /** Desktop Image */
+  desktopImage?: Asset | undefined;
+
+  /** Desktop Alt Text */
+  desktopAltText?: string | undefined;
+
+  /** Mobile Image */
+  mobileImage?: Asset | undefined;
+
+  /** Mobile Alt Text */
+  mobileAltText?: string | undefined;
+}
+
+export interface IBodyImages extends Entry<IBodyImagesFields> {
+  sys: {
+    id: string;
+    type: string;
+    createdAt: string;
+    updatedAt: string;
+    locale: string;
+    contentType: {
+      sys: {
+        id: "bodyImages";
+        linkType: "ContentType";
+        type: "Link";
+      };
+    };
+  };
+}
+
+export type CONTENT_TYPE =
+  | "blogNavbar"
+  | "blogPage"
+  | "bodyContent"
+  | "bodyImages";
+
+export type IEntry = IBlogNavbar | IBlogPage | IBodyContent | IBodyImages;
 
 export type LOCALE_CODE = "en-CA";
 
