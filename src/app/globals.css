@@ -92,10 +92,10 @@
     a:after {
         @apply bg-blue-800;
         content: '';
-        position: absolute;
-        left: 0;
+        @apply absolute;
+        @apply left-0;
         bottom: -2px;
-        width: 0;
+        @apply w-0;
         height: 2px;
         @apply transition-all;
 
