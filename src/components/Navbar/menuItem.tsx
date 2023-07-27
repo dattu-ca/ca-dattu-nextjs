@@ -5,6 +5,7 @@ import clsx from "clsx";
 import {usePathname} from "next/navigation";
 import {useMemo, useState} from "react";
 import MenuItemSub from "~/components/Navbar/menuItemSub";
+import {ClickAwayListener} from '~/providers/clickAwayListener';
 
 interface IProps {
     link: IBlogNavbarLink
@@ -54,7 +55,9 @@ const MenuItem = ({link}: IProps) => {
                         }></div>
                     </button>
                     <div className='pt-2 absolute'>
-                        <MenuItemSub links={link.links} open={open} setClose={() => setOpen(false)}/>
+                        <ClickAwayListener onClickAway={() => setOpen(false)}>
+                            <MenuItemSub links={link.links} open={open} setClose={() => setOpen(false)}/>
+                        </ClickAwayListener>
                     </div>
                 </>
                 : <Link
