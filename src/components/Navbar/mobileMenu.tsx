@@ -1,41 +1,40 @@
 'use client';
 import clsx from "clsx";
 import MobileMenuItem from "./mobileMenuItem";
-import {IBlogNavbarLink} from "~/models";
 import {XMark} from "~/assets/SVGs";
+import {useNavbarContext} from "./context";
 
-interface IProps {
-    navLinks: IBlogNavbarLink[],
-    open: boolean,
-    setClose: () => void,
-    closeMenuText?: string | undefined;
-}
 
-const MobileMenuComponent = ({navLinks, open, setClose, closeMenuText}: IProps = {
-    navLinks: [],
-    open: false,
-    setClose: () => ({}),
-    closeMenuText: 'Close Menu'
-}) => {
-    return <div className={clsx('fixed top-0 right-0 h-full bg-site-green/95 transition-all z-50', {
-        ['w-[90%] overflow-visible']: open,
-        ['w-0 overflow-hidden']: !open,
-    })}>
-        <div className='bg-site-green p-6 text-right flex justify-end align-center'>
-            <button
-                className='text-white'
-                onClick={setClose}
-                role='button'
-                aria-label={closeMenuText}>
-                <XMark/>
-            </button>
-        </div>
-        <ul className={'flex flex-col list-none p-0 transition-all absolute w-full'}>
+const MobileMenuComponent = () => {
+    const {siteConfig, navbar, closeMobileMenu, isMobileMenuOpen} = useNavbarContext();
+    const {navLinks} = navbar;
+    return (
+        <div className={clsx('fixed top-0 right-0 z-50 ' +
+            'h-full ' +
+            'bg-site-green/95 ' +
+            'transition-all',
             {
-                navLinks.map(link => <MobileMenuItem key={link.url} open={open} link={link} setClose={setClose}/>)
-            }
-        </ul>
-    </div>
+                ['w-[90%] overflow-visible']: isMobileMenuOpen,
+                ['w-0 overflow-hidden']: !isMobileMenuOpen,
+            })
+        }
+        >
+            <div className='bg-site-green p-6 text-right flex justify-end align-center'>
+                <button
+                    className='text-white'
+                    onClick={closeMobileMenu}
+                    role='button'
+                    aria-label={siteConfig.closeMenuText}>
+                    <XMark/>
+                </button>
+            </div>
+            <ul className={'flex flex-col list-none p-0 transition-all absolute w-full'}>
+                {
+                    navLinks.map(link => <MobileMenuItem key={link.url} link={link}/>)
+                }
+            </ul>
+        </div>
+    )
 }
 
 export default MobileMenuComponent;

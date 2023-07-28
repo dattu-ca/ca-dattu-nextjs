@@ -15,12 +15,6 @@ export interface IBlogNavbarFields {
 
   /** Nav Links */
   navLinks: Record<string, any>;
-
-  /** Open Menu Text */
-  openMenuText?: string | undefined;
-
-  /** Close Menu Text */
-  closeMenuText?: string | undefined;
 }
 
 export interface IBlogNavbar extends Entry<IBlogNavbarFields> {
@@ -41,14 +35,17 @@ export interface IBlogNavbar extends Entry<IBlogNavbarFields> {
 }
 
 export interface IBlogPageFields {
+  /** Entry Title */
+  entryTitle: string;
+
+  /** Slug */
+  slug: string;
+
   /** Pre Heading */
   preHeading?: string | undefined;
 
   /** Heading */
   heading: string;
-
-  /** Slug */
-  slug: string;
 
   /** Sub Heading */
   subHeading?: string | undefined;
@@ -159,6 +156,18 @@ export interface ISiteConfigFields {
 
   /** Site Description */
   siteDescription: string;
+
+  /** Open Menu Text */
+  openMenuText?: string | undefined;
+
+  /** Close Menu Text */
+  closeMenuText?: string | undefined;
+
+  /** Expand Sub Menu Text */
+  expandSubMenuText?: string | undefined;
+
+  /** Collapse Sub Menu Text */
+  collapseSubMenuText?: string | undefined;
 }
 
 /** This is the Site Content Config. */

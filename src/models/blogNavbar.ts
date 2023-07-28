@@ -9,7 +9,5 @@ export interface IBlogNavbarLink {
 export interface IBlogNavbar {
     slug?: string;
     logo?: IBodyImage;
-    navLinks: IBlogNavbarLink[],
-    openMenuText?: string;
-    closeMenuText?: string;
+    navLinks: IBlogNavbarLink[];
 }
