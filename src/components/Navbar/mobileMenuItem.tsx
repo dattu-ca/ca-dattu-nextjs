@@ -38,7 +38,7 @@ const MobileMenuItem = ({link}: IProps) => {
                                     )}
                                 onClick={() => toggleMobileSubMenu(link.id)}
                                 aria-label={
-                                    ((open ? siteConfig.collapseSubMenuText : siteConfig.expandSubMenuText) || '' as string).replace("%d", link.label)
+                                    ((mobileSubMenuOpenIds.includes(link.id) ? siteConfig.collapseSubMenuText : siteConfig.expandSubMenuText) || '' as string).replace("%d", link.label)
                                 }>
                                 <span>{link.label}</span>
                                 <div className={
