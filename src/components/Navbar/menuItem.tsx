@@ -48,7 +48,7 @@ const MenuItem = ({link}: IProps) => {
                         onClick={() => setOpen(prev => !prev)}
                         onFocus={() => setOpen(true)}
                     >
-                        <span>{link.label}{open.toString()}</span>
+                        <span>{link.label}</span>
                         <div className={
                             clsx('h-0 w-0 border-x-[6px] border-x-transparent border-t-[10px] border-[inherit] transition-all', {
                                 ['rotate-180']: open
