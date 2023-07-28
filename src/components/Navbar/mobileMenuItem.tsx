@@ -9,12 +9,14 @@ import {ClickAwayListener} from "~/providers/clickAwayListener";
 
 
 interface IProps {
-    link: IBlogNavbarLink,
-    setClose: () => void,
+    link: IBlogNavbarLink;
+    setClose: () => void;
+    expandSubMenuText?: string | undefined;
+    collapseSubMenuText?: string | undefined;
 }
 
-const MobileMenuItem = ({link, setClose}: IProps) => {
-    const [open, setOpen] = useState(true);
+const MobileMenuItem = ({link, setClose, expandSubMenuText, collapseSubMenuText}: IProps) => {
+    const [open, setOpen] = useState(false);
     const path = usePathname();
     const isCurrentPage = useMemo(() => {
         const url = link.url;
@@ -46,7 +48,8 @@ const MobileMenuItem = ({link, setClose}: IProps) => {
                                         ['bg-site-brown']: isCurrentPage && !open
                                     }
                                 )}
-                            onClick={() => setOpen(prev => !prev)}>
+                            onClick={() => setOpen(prev => !prev)}
+                        aria-label={open ? `${collapseSubMenuText} ${link.label}` : `${expandSubMenuText} ${link.label}`}>
                             <span>{link.label}</span>
                             <div className={
                                 clsx('absolute right-6 top-[50%] translate-y-[-50%] ' +

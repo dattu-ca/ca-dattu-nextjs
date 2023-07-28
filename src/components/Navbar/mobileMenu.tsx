@@ -9,14 +9,11 @@ interface IProps {
     open: boolean,
     setClose: () => void,
     closeMenuText?: string | undefined;
+    expandSubMenuText?: string | undefined;
+    collapseSubMenuText?: string | undefined;
 }
 
-const MobileMenuComponent = ({navLinks, open, setClose, closeMenuText}: IProps = {
-    navLinks: [],
-    open: false,
-    setClose: () => ({}),
-    closeMenuText: 'Close Menu'
-}) => {
+const MobileMenuComponent = ({navLinks, open, setClose, closeMenuText, expandSubMenuText, collapseSubMenuText}: IProps) => {
     return <div className={clsx('fixed top-0 right-0 h-full bg-site-green/95 transition-all z-50', {
         ['w-[90%] overflow-visible']: open,
         ['w-0 overflow-hidden']: !open,
@@ -32,7 +29,9 @@ const MobileMenuComponent = ({navLinks, open, setClose, closeMenuText}: IProps =
         </div>
         <ul className={'flex flex-col list-none p-0 transition-all absolute w-full'}>
             {
-                navLinks.map(link => <MobileMenuItem key={link.url} open={open} link={link} setClose={setClose}/>)
+                navLinks.map(link => <MobileMenuItem key={link.url} open={open} link={link} setClose={setClose}
+                                                     expandSubMenuText={expandSubMenuText}
+                                                     collapseSubMenuText={collapseSubMenuText}/>)
             }
         </ul>
     </div>

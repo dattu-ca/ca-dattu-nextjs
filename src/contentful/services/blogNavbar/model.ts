@@ -11,7 +11,9 @@ export const CONTENTFUL_BLOG_NAVBAR_FIELDS = {
     LOGO: 'fields.logo',
     NAV_LINKS: 'fields.navLinks',
     OPEN_MENU_TEXT: 'fields.openMenuText',
-    CLOSE_MENU_TEXT: 'fields.closeMenuText'
+    CLOSE_MENU_TEXT: 'fields.closeMenuText',
+    EXPAND_SUB_MENU_TEXT: 'fields.expandSubMenuText',
+    COLLAPSE_SUB_MENU_TEXT: 'fields.collapseSubMenuText',
 }
 
 
@@ -48,6 +50,13 @@ export const mapContentful = (item: Entry<BlogNavbarSkeleton, undefined, string>
     }
     if (item.fields.closeMenuText) {
         result.closeMenuText = item.fields.closeMenuText as string;
+    }
+    console.log("item.fields", item.fields)
+    if (item.fields.expandSubMenuText) {
+        result.expandSubMenuText = item.fields.expandSubMenuText as string;
+    }
+    if (item.fields.collapseSubMenuText) {
+        result.collapseSubMenuText = item.fields.collapseSubMenuText as string;
     }
     return result;
 }

@@ -11,7 +11,7 @@ interface IProps {
 }
 
 const NavbarComponent = ({navbar}: IProps) => {
-    const [open, setOpen] = useState(true);
+    const [open, setOpen] = useState(false);
     return <nav className="border-b-[1px] border-neutral-200 py-4 bg-[rgba(0,0,0,0.0)]">
         <div className="max-w-[100%] px-4 md:px-0 md:container my-0 mx-auto flex justify-between items-center">
             <div>
@@ -45,7 +45,7 @@ const NavbarComponent = ({navbar}: IProps) => {
             </div>
             <div className='block md:hidden'>
                 <button onClick={() => setOpen(prev => !prev)}
-                        aria-label={navbar.openMenuText || 'Open Menu'}
+                        aria-label={navbar.openMenuText}
                         role='button'>
                     <Bars3/>
                 </button>
@@ -55,7 +55,9 @@ const NavbarComponent = ({navbar}: IProps) => {
             <MobileMenuComponent navLinks={navbar.navLinks} 
                                  open={open} 
                                  setClose={() => setOpen(false)}
-                                 closeMenuText={navbar.closeMenuText}/>
+                                 closeMenuText={navbar.closeMenuText}
+                                 expandSubMenuText={navbar.expandSubMenuText}
+                                 collapseSubMenuText={navbar.collapseSubMenuText} />
         </div>
     </nav>
 }

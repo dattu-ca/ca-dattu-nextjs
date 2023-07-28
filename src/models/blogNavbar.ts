@@ -12,4 +12,6 @@ export interface IBlogNavbar {
     navLinks: IBlogNavbarLink[],
     openMenuText?: string;
     closeMenuText?: string;
+    expandSubMenuText?: string;
+    collapseSubMenuText?: string;
 }
