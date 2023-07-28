@@ -32,7 +32,7 @@ const MobileMenuComponent = ({navLinks, open, setClose, closeMenuText}: IProps =
         </div>
         <ul className={'flex flex-col list-none p-0 transition-all absolute w-full'}>
             {
-                navLinks.map(link => <MobileMenuItem link={link} key={link.url} setClose={setClose}/>)
+                navLinks.map(link => <MobileMenuItem key={link.url} open={open} link={link} setClose={setClose}/>)
             }
         </ul>
     </div>
