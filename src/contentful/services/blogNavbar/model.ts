@@ -1,6 +1,6 @@
 import {Entry} from "contentful";
 import {IBlogNavbar, IBlogNavbarLink} from "~/models";
-import { uniqueId } from 'lodash';
+import {uniqueId} from 'lodash';
 import {IBlogNavbarFields, IBodyImagesFields} from "../../schema/generated";
 
 
@@ -20,13 +20,11 @@ export type BlogNavbarSkeleton = {
 }
 
 
-const mapNavLinks = (source: IBlogNavbarLink[]) =>{
-    return source.map(item => ({
-        ...item,
-        id: uniqueId(),
-        links: item.links && Array.isArray(item.links) ? mapNavLinks(item.links as IBlogNavbarLink[]) : [],
-    }))
-}
+const mapNavLinks = (source: IBlogNavbarLink[]): IBlogNavbarLink[] => source.map(item => ({
+    ...item,
+    id: uniqueId(),
+    links: item.links && Array.isArray(item.links) ? mapNavLinks(item.links as IBlogNavbarLink[]) : [],
+}))
 
 
 export const mapContentful = (item: Entry<BlogNavbarSkeleton, undefined, string>) => {
