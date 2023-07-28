@@ -1,15 +1,16 @@
 'use client';
 import {IBlogNavbarLink} from "~/models";
 import clsx from "clsx";
-import MenuItemSubItem from "~/components/Navbar/menuItemSubItem";
+import MenuItemSubItem from "./menuItemSubItem";
+import {useNavbarContext} from "./context";
 
 interface IProps {
+    id: string;
     links: IBlogNavbarLink[];
-    open: boolean;
-    setClose: () => void;
 }
 
-const MenuItemSub = ({links, open, setClose}: IProps) => {
+const MenuItemSub = ({links, id}: IProps) => {
+    const {desktopSubMenuOpenId, closeDesktopSubMenu} = useNavbarContext();
     return (
         <ul
             className={
@@ -18,10 +19,10 @@ const MenuItemSub = ({links, open, setClose}: IProps) => {
                     'bg-white ' +
                     'drop-shadow-lg',
                     {
-                        'hidden': !open
+                        'hidden': desktopSubMenuOpenId !== id
                     })
             }
-            onClick={setClose}
+            onClick={closeDesktopSubMenu}
         >
             {links.map(link => <MenuItemSubItem key={link.url} link={link}/>)}
         </ul>

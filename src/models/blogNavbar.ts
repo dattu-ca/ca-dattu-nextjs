@@ -1,6 +1,7 @@
 import {IBodyImage} from "~/models/bodyImage";
 
 export interface IBlogNavbarLink {
+    id: string;
     label: string;
     url: string;
     links?: IBlogNavbarLink[];
