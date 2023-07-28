@@ -4,9 +4,9 @@ import clsx from "clsx";
 import MobileMenuItemSubItem from "~/components/Navbar/mobileMenuItemSubItem";
 
 interface IProps {
-    links: IBlogNavbarLink[],
-    open: boolean,
-    setClose: () => void,
+    links: IBlogNavbarLink[];
+    open: boolean;
+    setClose: () => void;
 }
 
 const MobileMenuItemSub = ({links, open, setClose}: IProps) => {

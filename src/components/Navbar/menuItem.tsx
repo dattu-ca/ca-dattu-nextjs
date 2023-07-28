@@ -8,7 +8,7 @@ import MenuItemSub from "~/components/Navbar/menuItemSub";
 import {ClickAwayListener} from '~/providers/clickAwayListener';
 
 interface IProps {
-    link: IBlogNavbarLink
+    link: IBlogNavbarLink;
 }
 
 const MenuItem = ({link}: IProps) => {

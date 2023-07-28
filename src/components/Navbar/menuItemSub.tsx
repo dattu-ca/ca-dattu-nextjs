@@ -1,13 +1,12 @@
 'use client';
 import {IBlogNavbarLink} from "~/models";
 import clsx from "clsx";
-import {useMemo} from "react";
 import MenuItemSubItem from "~/components/Navbar/menuItemSubItem";
 
 interface IProps {
-    links: IBlogNavbarLink[],
-    open: boolean,
-    setClose: () => void,
+    links: IBlogNavbarLink[];
+    open: boolean;
+    setClose: () => void;
 }
 
 const MenuItemSub = ({links, open, setClose}: IProps) => {

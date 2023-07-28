@@ -6,7 +6,7 @@ import {usePathname} from "next/navigation";
 import {useMemo} from "react";
 
 interface IProps {
-    link: IBlogNavbarLink
+    link: IBlogNavbarLink;
 }
 
 const MenuItemSubItem = ({link}: IProps) => {

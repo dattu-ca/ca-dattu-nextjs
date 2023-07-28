@@ -1,21 +1,20 @@
 'use client';
-import {useContext, useMemo, useState} from "react";
+import {useMemo, useState} from "react";
 import clsx from "clsx";
 import {usePathname} from "next/navigation";
 import Link from 'next/link';
 import {IBlogNavbarLink} from "~/models";
 import MobileMenuItemSub from "./mobileMenuItemSub";
 import {ClickAwayListener} from "~/providers/clickAwayListener";
-import {NavbarContext} from "./context";
+import {useNavbarContext} from "./context";
 
 
 interface IProps {
     link: IBlogNavbarLink;
-    setClose: () => void;
 }
 
-const MobileMenuItem = ({link, setClose}: IProps) => {
-    const navbarContext = useContext(NavbarContext);
+const MobileMenuItem = ({link}: IProps) => {
+    const { siteConfig, closeMobileMenu } = useNavbarContext();
     const [open, setOpen] = useState(false);
     const path = usePathname();
     const isCurrentPage = useMemo(() => {
@@ -49,7 +48,7 @@ const MobileMenuItem = ({link, setClose}: IProps) => {
                                     }
                                 )}
                             onClick={() => setOpen(prev => !prev)}
-                        aria-label={open ? `${navbarContext.siteConfig.collapseSubMenuText} ${link.label}` : `${navbarContext.siteConfig.expandSubMenuText} ${link.label}`}>
+                            aria-label={open ? `${siteConfig.collapseSubMenuText} ${link.label}` : `${siteConfig.expandSubMenuText} ${link.label}`}>
                             <span>{link.label}</span>
                             <div className={
                                 clsx('absolute right-6 top-[50%] translate-y-[-50%] ' +
@@ -69,8 +68,8 @@ const MobileMenuItem = ({link, setClose}: IProps) => {
                             <div className={clsx('w-[80%]')}>
                                 <MobileMenuItemSub open={open}
                                                    setClose={() => {
-                                                       setClose();
-                                                       setOpen(false)
+                                                       closeMobileMenu();
+                                                       setOpen(false);
                                                    }}
                                                    links={link.links}
                                 />
@@ -88,7 +87,7 @@ const MobileMenuItem = ({link, setClose}: IProps) => {
                                     ['bg-site-brown font-bold']: isCurrentPage
                                 }
                             )}
-                        onClick={setClose}
+                        onClick={closeMobileMenu}
                         href={link.url}
                         aria-current={ariaCurrent}>
                         {link.label}
