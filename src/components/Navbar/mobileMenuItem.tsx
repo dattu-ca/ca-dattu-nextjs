@@ -1,21 +1,21 @@
 'use client';
-import {useMemo, useState} from "react";
+import {useContext, useMemo, useState} from "react";
 import clsx from "clsx";
 import {usePathname} from "next/navigation";
 import Link from 'next/link';
 import {IBlogNavbarLink} from "~/models";
-import MobileMenuItemSub from "~/components/Navbar/mobileMenuItemSub";
+import MobileMenuItemSub from "./mobileMenuItemSub";
 import {ClickAwayListener} from "~/providers/clickAwayListener";
+import {NavbarContext} from "./context";
 
 
 interface IProps {
     link: IBlogNavbarLink;
     setClose: () => void;
-    expandSubMenuText?: string | undefined;
-    collapseSubMenuText?: string | undefined;
 }
 
-const MobileMenuItem = ({link, setClose, expandSubMenuText, collapseSubMenuText}: IProps) => {
+const MobileMenuItem = ({link, setClose}: IProps) => {
+    const navbarContext = useContext(NavbarContext);
     const [open, setOpen] = useState(false);
     const path = usePathname();
     const isCurrentPage = useMemo(() => {
@@ -49,7 +49,7 @@ const MobileMenuItem = ({link, setClose, expandSubMenuText, collapseSubMenuText}
                                     }
                                 )}
                             onClick={() => setOpen(prev => !prev)}
-                        aria-label={open ? `${collapseSubMenuText} ${link.label}` : `${expandSubMenuText} ${link.label}`}>
+                        aria-label={open ? `${navbarContext.siteConfig.collapseSubMenuText} ${link.label}` : `${navbarContext.siteConfig.expandSubMenuText} ${link.label}`}>
                             <span>{link.label}</span>
                             <div className={
                                 clsx('absolute right-6 top-[50%] translate-y-[-50%] ' +

@@ -1,4 +1,3 @@
-
 import {client} from "../../client";
 import {content_type, SiteConfigSkeleton, CONTENTFUL_SITE_CONFIG_FIELDS, mapContentful} from './model'
 
@@ -9,7 +8,11 @@ const getSiteConfig = (slug: string) =>
             select: [
                 CONTENTFUL_SITE_CONFIG_FIELDS.SITE_TITLE_TEMPLATE as 'fields',
                 CONTENTFUL_SITE_CONFIG_FIELDS.SITE_TITLE_DEFAULT as 'fields',
-                CONTENTFUL_SITE_CONFIG_FIELDS.SITE_DESCRIPTION as 'fields'
+                CONTENTFUL_SITE_CONFIG_FIELDS.SITE_DESCRIPTION as 'fields',
+                CONTENTFUL_SITE_CONFIG_FIELDS.OPEN_MENU_TEXT as 'fields',
+                CONTENTFUL_SITE_CONFIG_FIELDS.CLOSE_MENU_TEXT as 'fields',
+                CONTENTFUL_SITE_CONFIG_FIELDS.EXPAND_SUB_MENU_TEXT as 'fields',
+                CONTENTFUL_SITE_CONFIG_FIELDS.COLLAPSE_SUB_MENU_TEXT as 'fields',
             ],
             [CONTENTFUL_SITE_CONFIG_FIELDS.SLUG]: slug,
             include: 3,

@@ -8,10 +8,6 @@ const getBlogNavbar = (slug: string) =>
             select: [
                 CONTENTFUL_BLOG_NAVBAR_FIELDS.LOGO as 'fields',
                 CONTENTFUL_BLOG_NAVBAR_FIELDS.NAV_LINKS as 'fields',
-                CONTENTFUL_BLOG_NAVBAR_FIELDS.OPEN_MENU_TEXT as 'fields',
-                CONTENTFUL_BLOG_NAVBAR_FIELDS.CLOSE_MENU_TEXT as 'fields',
-                CONTENTFUL_BLOG_NAVBAR_FIELDS.EXPAND_SUB_MENU_TEXT as 'fields',
-                CONTENTFUL_BLOG_NAVBAR_FIELDS.COLLAPSE_SUB_MENU_TEXT as 'fields',
             ],
             [CONTENTFUL_BLOG_NAVBAR_FIELDS.SLUG]: slug,
             include: 3,
