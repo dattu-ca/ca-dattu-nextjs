@@ -4,7 +4,6 @@ import clsx from "clsx";
 import Link from 'next/link';
 import {IBlogNavbarLink} from "~/models";
 import MobileMenuItemSub from "./mobileMenuItemSub";
-import {ClickAwayListener} from "~/providers/clickAwayListener";
 import {useNavbarContext} from "./context";
 
 
@@ -13,9 +12,8 @@ interface IProps {
 }
 
 const MobileMenuItem = ({link}: IProps) => {
-    const {siteConfig, closeMobileMenu, isCurrentPage, getAriaCurrent} = useNavbarContext();
-    const [open, setOpen] = useState(false);
-
+    const {siteConfig, closeMobileMenu, isCurrentPage, getAriaCurrent, toggleMobileSubMenu, mobileSubMenuOpenIds} = useNavbarContext();
+    
 
     return (
         <li key={link.url}
@@ -23,7 +21,7 @@ const MobileMenuItem = ({link}: IProps) => {
             {
                 link.links && link.links.length > 0
                     ? (
-                        <ClickAwayListener onClickAway={() => setOpen(false)}>
+                        <>
                             <button
                                 className={
                                     clsx(
@@ -33,12 +31,12 @@ const MobileMenuItem = ({link}: IProps) => {
                                         'transition-all ' +
                                         'p-2 ',
                                         {
-                                            ['border-b-[1px] border-bg-white']: !open,
-                                            ['bg-site-green']: !isCurrentPage(link.url) || (isCurrentPage(link.url) && open),
-                                            ['bg-site-brown']: isCurrentPage(link.url) && !open
+                                            ['border-b-[1px] border-bg-white']: !mobileSubMenuOpenIds.includes(link.id),
+                                            ['bg-site-green']: !isCurrentPage(link.url) || (isCurrentPage(link.url) && mobileSubMenuOpenIds.includes(link.id)),
+                                            ['bg-site-brown']: isCurrentPage(link.url) && !mobileSubMenuOpenIds.includes(link.id)
                                         }
                                     )}
-                                onClick={() => setOpen(prev => !prev)}
+                                onClick={() => toggleMobileSubMenu(link.id)}
                                 aria-label={
                                     ((open ? siteConfig.collapseSubMenuText : siteConfig.expandSubMenuText) || '' as string).replace("%d", link.label)
                                 }>
@@ -49,7 +47,7 @@ const MobileMenuItem = ({link}: IProps) => {
                                         'border-x-[6px] border-x-transparent border-t-[10px] border-[inherit] ' +
                                         'transition-all',
                                         {
-                                            ['rotate-180']: open
+                                            ['rotate-180']: mobileSubMenuOpenIds.includes(link.id)
                                         })
                                 }/>
                             </button>
@@ -57,21 +55,17 @@ const MobileMenuItem = ({link}: IProps) => {
                                 'bg-gray-200 ' +
                                 'transition-all',
                                 {
-                                    ['border-b-[1px] border-bg-site-green']: open,
+                                    ['border-b-[1px] border-bg-site-green']: mobileSubMenuOpenIds.includes(link.id),
                                 })
                             }
                             >
                                 <div className={clsx('w-[80%]')}>
-                                    <MobileMenuItemSub open={open}
-                                                       setClose={() => {
-                                                           closeMobileMenu();
-                                                           setOpen(false);
-                                                       }}
+                                    <MobileMenuItemSub id={link.id}
                                                        links={link.links}
                                     />
                                 </div>
                             </div>
-                        </ClickAwayListener>
+                        </>
                     )
                     : (
                         <Link

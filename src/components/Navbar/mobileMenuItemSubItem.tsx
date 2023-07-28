@@ -9,16 +9,17 @@ interface IProps {
 }
 
 const MobileMenuItemSubItem = ({link}: IProps) => {
-    const {isCurrentPage, getAriaCurrent} = useNavbarContext();
+    const {isCurrentPage, getAriaCurrent, closeMobileMenu} = useNavbarContext();
 
     return (
         <li className={
             clsx(
                 'm-0 p-0 ' +
-                'border-b-[1px] last-of-type:border-b-0', {
-                ['border-site-brown']: isCurrentPage(link.url),
-                ['border-site-green']: !isCurrentPage(link.url),
-            })
+                'border-b-[1px] last-of-type:border-b-0',
+                {
+                    ['border-site-brown']: isCurrentPage(link.url),
+                    ['border-site-green']: !isCurrentPage(link.url),
+                })
         }>
             <Link
                 className={
@@ -31,7 +32,8 @@ const MobileMenuItemSubItem = ({link}: IProps) => {
                     })
                 }
                 href={link.url as string}
-                aria-current={getAriaCurrent(link.url)}>
+                aria-current={getAriaCurrent(link.url)}
+                onClick={closeMobileMenu}>
                 {link.label}
             </Link>
         </li>

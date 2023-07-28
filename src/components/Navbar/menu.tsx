@@ -1,6 +1,6 @@
 'use client';
 import Link from "next/link";
-import MenuItem from "~/components/Navbar/menuItem";
+import MenuItem from "./menuItem";
 import MobileMenuComponent from "./mobileMenu";
 import {Bars3} from "~/assets/SVGs";
 import {useNavbarContext} from './context';
