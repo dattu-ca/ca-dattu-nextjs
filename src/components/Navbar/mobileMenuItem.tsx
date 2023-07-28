@@ -1,7 +1,6 @@
 'use client';
-import {useMemo, useState} from "react";
+import {useState} from "react";
 import clsx from "clsx";
-import {usePathname} from "next/navigation";
 import Link from 'next/link';
 import {IBlogNavbarLink} from "~/models";
 import MobileMenuItemSub from "./mobileMenuItemSub";
