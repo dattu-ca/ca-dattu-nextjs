@@ -31,17 +31,17 @@ const MenuItem = ({link}: IProps) => {
                             className={clsx(
                                 'flex space-x-2 items-center relative ' +
                                 'transition-all after:transition-all ' +
-                                'text-site-green hover:text-site-brown ' +
+                                'hover:text-site-brown ' +
                                 'hover:border-site-brown ' +
-                                ' ' +
                                 'hover:after:bg-site-brown ' +
-                                'hover:after:w-full ' +
-                                'after:content-[\'\'] after:absolute after:left-0 after:h-[2px] after:w-0 after:bottom-0 ',
+                                'after:w-0 hover:after:w-full ' +
+                                'after:content-[\'\'] after:absolute ' +
+                                'after:h-[2px] after:left-0 after:bottom-0 ',
                                 {
                                     ['after:bg-site-brown']: !isCurrentPage(link.url) || (isCurrentPage(link.url) && desktopSubMenuOpenId === link.id),
                                     ['after:w-full hover:after:bg-site-brown']: isCurrentPage(link.url),
                                     ['after:bg-site-green'] : isCurrentPage(link.url) && desktopSubMenuOpenId !== link.id,
-                                    ['border-site-green after:bg-site-green']: desktopSubMenuOpenId !== link.id,
+                                    ['text-site-green border-site-green after:bg-site-green']: desktopSubMenuOpenId !== link.id,
                                     ['text-site-brown border-site-brown after:bg-site-brown after:w-full']: desktopSubMenuOpenId === link.id
                                 })
                             }
