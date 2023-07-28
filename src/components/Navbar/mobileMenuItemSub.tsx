@@ -13,8 +13,9 @@ const MobileMenuItemSub = ({links, open, setClose}: IProps) => {
     return (
         <ul className={
             clsx(
-                'list-none p-0 m-0', {
-                    'hidden': !open
+                'list-none p-0 m-0 transition-all', {
+                    'max-h-0 overflow-hidden': !open,
+                    'max-h-[1000px]': open
                 })
         }
             onClick={setClose}>

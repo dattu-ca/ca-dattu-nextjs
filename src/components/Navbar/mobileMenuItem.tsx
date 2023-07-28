@@ -39,18 +39,23 @@ const MobileMenuItem = ({link}: IProps) => {
                                         }
                                     )}
                                 onClick={() => setOpen(prev => !prev)}
-                                aria-label={open ? `${siteConfig.collapseSubMenuText} ${link.label}` : `${siteConfig.expandSubMenuText} ${link.label}`}>
+                                aria-label={
+                                    ((open ? siteConfig.collapseSubMenuText : siteConfig.expandSubMenuText) || '' as string).replace("%d", link.label)
+                                }>
                                 <span>{link.label}</span>
                                 <div className={
                                     clsx('absolute right-6 top-[50%] translate-y-[-50%] ' +
                                         'h-0 w-0 ' +
                                         'border-x-[6px] border-x-transparent border-t-[10px] border-[inherit] ' +
-                                        'transition-all', {
-                                        ['rotate-180']: open
-                                    })
+                                        'transition-all',
+                                        {
+                                            ['rotate-180']: open
+                                        })
                                 }/>
                             </button>
-                            <div className={clsx('flex items-center justify-center bg-gray-200',
+                            <div className={clsx('flex items-center justify-center ' +
+                                'bg-gray-200 ' +
+                                'transition-all',
                                 {
                                     ['border-b-[1px] border-bg-site-green']: open,
                                 })
