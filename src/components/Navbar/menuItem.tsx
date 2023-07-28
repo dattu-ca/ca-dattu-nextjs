@@ -13,6 +13,7 @@ interface IProps {
 
 const MenuItem = ({link}: IProps) => {
     const [open, setOpen] = useState(false);
+
     const path = usePathname();
     const isCurrentPage = useMemo(() => {
         const url = link.url;
@@ -47,12 +48,12 @@ const MenuItem = ({link}: IProps) => {
                         onClick={() => setOpen(prev => !prev)}
                         onFocus={() => setOpen(true)}
                     >
-                        <span>{link.label}</span>
+                        <span>{link.label}{open.toString()}</span>
                         <div className={
                             clsx('h-0 w-0 border-x-[6px] border-x-transparent border-t-[10px] border-[inherit] transition-all', {
                                 ['rotate-180']: open
                             })
-                        }></div>
+                        }/>
                     </button>
                     <div className='pt-2 absolute'>
                         <ClickAwayListener onClickAway={() => setOpen(false)}>
