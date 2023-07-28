@@ -27,7 +27,7 @@ const MenuItem = ({link}: IProps) => {
                                 'transition-all after:transition-all ' +
                                 'text-site-green hover:text-site-brown ' +
                                 'border-site-green hover:border-site-brown ' +
-                                'after:bg-site-green after:content-[\'\'] after:absolute after:left-0 after:h-[2px] after:w-0 after:bottom-[-4px] ' +
+                                'after:bg-site-green after:content-[\'\'] after:absolute after:left-0 after:h-[2px] after:w-0 after:bottom-0 ' +
                                 'hover:after:bg-site-brown hover:after:w-full',
                                 {
                                     ['after:bg-site-brown']: !isCurrentPage(link.url),
