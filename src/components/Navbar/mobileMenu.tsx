@@ -1,7 +1,6 @@
 'use client';
 import clsx from "clsx";
 import MobileMenuItem from "./mobileMenuItem";
-import {IBlogNavbarLink} from "~/models";
 import {XMark} from "~/assets/SVGs";
 import {useNavbarContext} from "./context";
 

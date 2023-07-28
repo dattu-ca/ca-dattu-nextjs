@@ -10,8 +10,6 @@ interface IProps {
 }
 
 const MenuItemSub = ({links, open, setClose}: IProps) => {
-
-
     return <ul
         className={
             clsx('list-none p-0 m-0 border-site-green border-t-[1px] bg-white drop-shadow-lg', {

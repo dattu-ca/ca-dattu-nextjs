@@ -13,7 +13,7 @@ interface INavbarContextProps {
 
 const NavbarContext = createContext<INavbarContextProps>({
     siteConfig: {},
-    navbar: {},
+    navbar: { navLinks : []},
     isMobileMenuOpen: false,
     openMobileMenu: () => ({}),
     closeMobileMenu: () => ({}),

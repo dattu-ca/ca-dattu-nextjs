@@ -49,8 +49,7 @@ const MenuComponent = () => {
             </div>
         </div>
         <div className='block md:hidden'>
-            <MobileMenuComponent navLinks={navbar.navLinks}
-                                 setClose={closeMobileMenu}/>
+            <MobileMenuComponent />
         </div>
     </nav>
 }
