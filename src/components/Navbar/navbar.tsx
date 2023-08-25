@@ -1,4 +1,5 @@
-'use client';
+'use client'
+import React from 'react';
 import clsx from "clsx";
 import Link from "next/link";
 import {MenuDesktop} from "./menuDesktop";
@@ -17,7 +18,7 @@ const Navbar = () => {
                 'shadow-2xl',
                 'fixed top-0 left-0'
             )}
-                 style={{ '--tw-bg-opacity': 0.95}}>
+                 style={{ '--tw-bg-opacity': 0.95}  as React.CSSProperties}>
                 <div className={clsx(
                     'flex justify-between items-center',
                 )}>
