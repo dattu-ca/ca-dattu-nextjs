@@ -58,6 +58,9 @@ export interface IBlogPageFields {
 
   /** Body */
   body?: Document | undefined;
+
+  /** Sidebar */
+  sidebar?: IBodySidebar | undefined;
 }
 
 /** The main content model for pages. */
@@ -141,6 +144,36 @@ export interface IBodyImages extends Entry<IBodyImagesFields> {
   };
 }
 
+export interface IBodySidebarFields {
+  /** Entry Title */
+  entryTitle: string;
+
+  /** Slug */
+  slug: string;
+
+  /** Navigation */
+  navigation?: IBlogNavbar | undefined;
+}
+
+/** This is the sidebar for a page or post. */
+
+export interface IBodySidebar extends Entry<IBodySidebarFields> {
+  sys: {
+    id: string;
+    type: string;
+    createdAt: string;
+    updatedAt: string;
+    locale: string;
+    contentType: {
+      sys: {
+        id: "bodySidebar";
+        linkType: "ContentType";
+        type: "Link";
+      };
+    };
+  };
+}
+
 export interface ISiteConfigFields {
   /** Entry Title */
   entryTitle: string;
@@ -163,11 +196,8 @@ export interface ISiteConfigFields {
   /** Close Menu Text */
   closeMenuText?: string | undefined;
 
-  /** Expand Sub Menu Text */
-  expandSubMenuText?: string | undefined;
-
-  /** Collapse Sub Menu Text */
-  collapseSubMenuText?: string | undefined;
+  /** Search Label */
+  searchLabel?: string | undefined;
 }
 
 /** This is the Site Content Config. */
@@ -194,6 +224,7 @@ export type CONTENT_TYPE =
   | "blogPage"
   | "bodyContent"
   | "bodyImages"
+  | "bodySidebar"
   | "siteConfig";
 
 export type IEntry =
@@ -201,6 +232,7 @@ export type IEntry =
   | IBlogPage
   | IBodyContent
   | IBodyImages
+  | IBodySidebar
   | ISiteConfig;
 
 export type LOCALE_CODE = "en-CA";

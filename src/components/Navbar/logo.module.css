@@ -1,0 +1,12 @@
+.flip {
+    width: 150px;
+    height: 150px;
+    text-align: center;
+    perspective: 600px;
+    transition: transform 1s;
+    transform: rotateY(0deg);
+}
+.flip:hover {
+    transform: rotateY(360deg);
+    transition: transform 1s;
+}
