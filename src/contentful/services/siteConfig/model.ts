@@ -13,8 +13,7 @@ export const CONTENTFUL_SITE_CONFIG_FIELDS = {
     SITE_DESCRIPTION: 'fields.siteDescription',
     OPEN_MENU_TEXT: 'fields.openMenuText',
     CLOSE_MENU_TEXT: 'fields.closeMenuText',
-    EXPAND_SUB_MENU_TEXT: 'fields.expandSubMenuText',
-    COLLAPSE_SUB_MENU_TEXT: 'fields.collapseSubMenuText',
+    SEARCH_LABEL: 'fields.searchLabel',
 }
 
 export type SiteConfigSkeleton = {
@@ -42,11 +41,8 @@ export const mapContentful = (item: Entry<SiteConfigSkeleton, undefined, string>
     if (item.fields.closeMenuText) {
         result.closeMenuText = item.fields.closeMenuText as string;
     }
-    if (item.fields.expandSubMenuText) {
-        result.expandSubMenuText = item.fields.expandSubMenuText as string;
-    }
-    if (item.fields.collapseSubMenuText) {
-        result.collapseSubMenuText = item.fields.collapseSubMenuText as string;
+    if (item.fields.searchLabel) {
+        result.searchLabel = item.fields.searchLabel as string;
     }
     return result;
 }

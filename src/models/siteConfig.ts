@@ -5,6 +5,5 @@ export interface ISiteConfig {
     siteDescription?: string;
     openMenuText?: string;
     closeMenuText?: string;
-    expandSubMenuText?: string;
-    collapseSubMenuText?: string;
+    searchLabel?: string;
 }

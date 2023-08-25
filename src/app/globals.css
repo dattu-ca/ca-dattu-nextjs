@@ -4,6 +4,9 @@
 
 
 @layer base {
+    body {
+        
+    }
     h1 {
         @apply text-6xl;
         @apply mt-0;
@@ -84,13 +87,13 @@
 
     a {
         @apply relative;
-        @apply text-blue-700;
+        @apply text-site-primary;
         @apply no-underline;
         @apply transition-all;
     }
 
     a:after {
-        @apply bg-blue-800;
+        @apply bg-site-primary;
         content: '';
         @apply absolute;
         @apply left-0;
@@ -98,11 +101,12 @@
         @apply w-0;
         height: 2px;
         @apply transition-all;
+        @apply duration-200;
 
     }
 
     a:hover {
-        @apply text-blue-800;
+        @apply text-site-primary;
     }
 
     a:hover:after {

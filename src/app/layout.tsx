@@ -1,9 +1,10 @@
 import {ReactElement} from "react";
-import "tw-elements/dist/css/tw-elements.min.css";
+import "tw-elements-react/dist/css/tw-elements-react.min.css";
 import NavbarComponent from "~/components/Navbar";
 import {getBlogNavbar, getSiteConfig} from "~/services";
 import './globals.css';
 import {CONTENTFUL_SLUGS} from "~/utils/constants";
+import clsx from "clsx";
 
 
 export const generateMetadata = async () => {
@@ -27,9 +28,15 @@ const RootLayout = async ({children}: IProps) => {
     const siteConfig = await getSiteConfig(CONTENTFUL_SLUGS.MAIN_SITE_CONFIG);
     return (
         <html lang="en">
-            <body className={[].join(' ')}>
+            <body className={clsx(
+                'bg-site-color-light text-site-tertiary'
+            )}>
                 <NavbarComponent navbar={navbar} siteConfig={siteConfig} data-superjson/>
-                <main>
+                <main className={
+                    clsx(
+                        'container my-auto mx-auto'
+                    )
+                }>
                     {children}
                 </main>
             </body>
