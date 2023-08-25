@@ -29,60 +29,54 @@ import * as WiIcons from 'react-icons/wi';
 import * as CgIcons from 'react-icons/cg';
 
 
-interface IProps {
-    icon: string;
-    className?: string;
-}
-
-const ReactIcon = ({icon, className}: IProps) => {
+const ReactIcon = ({icon, className}) => {
     if (!icon) {
         return null;
     }
     const match = /[A-Z0-9]/.exec(icon[0].toLowerCase() + icon.slice(1));
-
-    const libStr = icon.substring(0, match.index);
-    const libs = {
-        'Ai': AiIcons,
-        'Bs': BsIcons,
-        'Bi': BiIcons,
-        'Ci': CiIcons,
-        'Di': DiIcons,
-        'Fi': FiIcons,
-        'Fc': FcIcons,
-        'Fa': FaIcons,
-        'Gi': GiIcons,
-        'Go': GoIcons,
-        'Gr': GrIcons,
-        'Hi': HiIcons,
-        'Im': ImIcons,
-        'Lia': LiaIcons,
-        'Io': IoIcons,
-        'Lu': LuIcons,
-        'Md': MdIcons,
-        'Pi': PiIcons,
-        'Rx': RxIcons,
-        'Ri': RiIcons,
-        'Si': SiIcons,
-        'Sl': SlIcons,
-        'Tb': TbIcons,
-        'Tfi': TfiIcons,
-        'Ti': TiIcons,
-        'Vsc': VscIcons,
-        'Wi': WiIcons,
-        'Cg': CgIcons,
-    }
-    const lib = libs[libStr];
-    if (lib) {
-        const Icon = lib[icon];
-        if (Icon) {
-            return <Icon className={className}/>
+    if(match){
+        const libStr = icon.substring(0, match.index);
+        const libs = {
+            'Ai': AiIcons,
+            'Bs': BsIcons,
+            'Bi': BiIcons,
+            'Ci': CiIcons,
+            'Di': DiIcons,
+            'Fi': FiIcons,
+            'Fc': FcIcons,
+            'Fa': FaIcons,
+            'Gi': GiIcons,
+            'Go': GoIcons,
+            'Gr': GrIcons,
+            'Hi': HiIcons,
+            'Im': ImIcons,
+            'Lia': LiaIcons,
+            'Io': IoIcons,
+            'Lu': LuIcons,
+            'Md': MdIcons,
+            'Pi': PiIcons,
+            'Rx': RxIcons,
+            'Ri': RiIcons,
+            'Si': SiIcons,
+            'Sl': SlIcons,
+            'Tb': TbIcons,
+            'Tfi': TfiIcons,
+            'Ti': TiIcons,
+            'Vsc': VscIcons,
+            'Wi': WiIcons,
+            'Cg': CgIcons,
         }
-    } else {
-        console.warn(`Icon ${icon} not found`);
+        const lib = libs[libStr];
+        if (lib) {
+            const Icon = lib[icon];
+            if (Icon) {
+                return <Icon className={className}/>
+            }
+        } else {
+            console.warn(`Icon ${icon} not found`);
+        }
     }
     return null;
-
-
 }
 
 export {ReactIcon}
