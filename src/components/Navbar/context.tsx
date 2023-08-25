@@ -42,21 +42,24 @@ interface INavbarContextProviderProps {
 
 const NavbarContextProvider = ({children, siteConfig, navbar}: INavbarContextProviderProps) => {
     
-    const [isMobileMenuOpen, setIsMobileMenuOpen] = useState<boolean>(false);
+    const [isMobileMenuOpen, setIsMobileMenuOpen] = useState<boolean>(true);
 
 
     const path = usePathname();
 
-    const isCurrentPage = useCallback((url: string) => {
+    const isCurrentPage = useCallback((url: string, exact: boolean = false) => {
         if (!url) {
             return false;
         }
         if (url === '/') {
             return path === url;
         }
+        if(exact){
+          return path === url;  
+        }
         return path.includes(url)
     }, [path]);
-    const getAriaCurrent = useCallback((url: string) => isCurrentPage(url) ? 'page' : undefined, [isCurrentPage])
+    const getAriaCurrent = useCallback((url: string) => isCurrentPage(url, true) ? 'page' : undefined, [isCurrentPage])
 
 
     const props = useMemo<INavbarContextProps>(() => ({

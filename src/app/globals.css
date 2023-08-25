@@ -4,6 +4,9 @@
 
 
 @layer base {
+    body {
+        
+    }
     h1 {
         @apply text-6xl;
         @apply mt-0;

@@ -3,8 +3,8 @@ import {useNavbarContext} from "./context";
 import clsx from "clsx";
 import Link from "next/link";
 
-const DesktopMenu = () => {
-    const {navbar, getAriaCurrent, siteConfig, isCurrentPage} = useNavbarContext();
+const MenuDesktop = () => {
+    const {navbar, getAriaCurrent, isCurrentPage} = useNavbarContext();
     return <ul className={clsx(
         'm-0 p-0',
         'flex justify-end items-center ',
@@ -17,12 +17,16 @@ const DesktopMenu = () => {
                         'm-0 p-0'
                     )}>
                     <Link
+                        aria-current={getAriaCurrent(link.url)}
                         href={link.url}
                         className={clsx(
                             'text-site-primary',
                             'text-xl',
                             'ml-6',
-                            'hover:scale-150'
+                            'hover:scale-150',
+                            {
+                                ['after:w-full']: isCurrentPage(link.url)
+                            }
                         )}>
                         {link.label}
                         <span></span>
@@ -34,4 +38,4 @@ const DesktopMenu = () => {
     </ul>
 }
 
-export {DesktopMenu};
+export {MenuDesktop};

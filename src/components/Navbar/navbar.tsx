@@ -1,7 +1,8 @@
 'use client';
 import clsx from "clsx";
 import Link from "next/link";
-import {DesktopMenu} from "./desktopMenu";
+import {MenuDesktop} from "./menuDesktop";
+import {MenuMobile} from "./menuMobile";
 import {Logo} from "./logo";
 
 
@@ -29,8 +30,15 @@ const Navbar = () => {
                             <Logo/>
                         </Link>
                     </div>
-                    <div>
-                        <DesktopMenu/>
+                    <div className={clsx(
+                        'hidden md:block'
+                    )}>
+                        <MenuDesktop/>
+                    </div>
+                    <div className={clsx(
+                        'block md:hidden'
+                    )}>
+                        <MenuMobile/>
                     </div>
 
                 </div>
