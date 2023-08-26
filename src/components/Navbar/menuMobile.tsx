@@ -12,7 +12,7 @@ const MenuMobile = () => {
         getAriaCurrent,
         isCurrentPage,
         isMobileMenuOpen,
-        openMobileMenu,
+        toggleMobileMenu,
         closeMobileMenu,
         siteConfig,
     } = useNavbarContext();
@@ -22,33 +22,34 @@ const MenuMobile = () => {
         <div className={clsx(
             ' relative'
         )}>
-            <button onClick={openMobileMenu}
+            <button onClick={toggleMobileMenu}
                     aria-label={siteConfig.openMenuText}>
-                <ReactIcon icon='GiHamburgerMenu'
-                           className={clsx('h-6 w-6 text-site-primary')}
+                {
+                    isMobileMenuOpen
+                    ? (
+                            <ReactIcon icon='AiOutlineClose'
+                                       className={clsx('h-6 w-6 text-site-primary')}
 
-                />
+                            />
+                        )
+                        : (
+                            <ReactIcon icon='GiHamburgerMenu'
+                                       className={clsx('h-6 w-6 text-site-primary')}
+                            />
+                        )
+                    
+                }
             </button>
 
             <div className={clsx(
                 'transition-all ',
-                'fixed top-0 right-0 w-[90vw] h-[100vh] bg-site-color-dark shadow-2xl',
+                'fixed right-0 w-full h-[calc(100vh-62px)] bg-site-color-dark shadow-2xl',
+                'overflow-y-auto',
                 {
-                    ['right-0']: isMobileMenuOpen,
-                    ['right-[-100%]']: !isMobileMenuOpen
+                    ['top-[62px]']: isMobileMenuOpen,
+                    ['top-[100%]']: !isMobileMenuOpen
                 }
             )}>
-                <div className={clsx(
-                    'mt-4 mr-4 text-right'
-                )}>
-                    <button onClick={closeMobileMenu}
-                            aria-label={siteConfig.closeMenuText}>
-                        <ReactIcon icon='AiOutlineClose'
-                                   className={clsx('h-6 w-6 text-site-primary')}
-
-                        />
-                    </button>
-                </div>
                 <ul className={clsx(
                     'm-0 p-0',
                     'flex justify-start items-start flex-col',
@@ -58,7 +59,7 @@ const MenuMobile = () => {
                         navbar.navLinks.map(link => (
                             <li key={link.id}
                                 className={clsx(
-                                    'm-0 p-4',
+                                    'm-0 p-0',
                                     'w-full',
                                     'border-b-[1px] border-b-site-primary border-solid',
                                 )}>
@@ -67,15 +68,20 @@ const MenuMobile = () => {
                                     aria-current={getAriaCurrent(link.url)}
                                     href={link.url}
                                     className={clsx(
-                                        'inline-block',
+                                        'p-4',
+                                        'block',
                                         'text-site-primary',
                                         'bg-site-color-dark',
                                         'text-xl',
-
+                                        'border-l-[16px]',
+                                        
                                         {
-                                            ['after:w-full']: isCurrentPage(link.url)
+                                            ['border-l-site-primary']: isCurrentPage(link.url),
+                                            ['border-l-[transparent]']: !isCurrentPage(link.url)
                                         }
-                                    )}>
+                                    )}
+                                    tabIndex={ isMobileMenuOpen ? undefined : -1}
+                                >
                                     {link.label}
                                     <span></span>
                                     <span></span>

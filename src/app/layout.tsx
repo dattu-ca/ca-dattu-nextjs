@@ -28,18 +28,32 @@ const RootLayout = async ({children}: IProps) => {
     const siteConfig = await getSiteConfig(CONTENTFUL_SLUGS.MAIN_SITE_CONFIG);
     return (
         <html lang="en">
-            <body className={clsx(
-                'bg-site-color-light text-site-tertiary'
-            )}>
-                <NavbarComponent navbar={navbar} siteConfig={siteConfig} data-superjson/>
-                <main className={
-                    clsx(
-                        'container my-auto mx-auto'
-                    )
-                }>
-                    {children}
-                </main>
-            </body>
+        <body className={clsx(
+            'bg-site-color-light text-site-tertiary'
+        )}>
+        <header>
+            <div>
+                <a href="#mainContent"
+                   className={clsx(
+                       'transition-all',
+                       'fixed z-[999]',
+                       'top-0 left-[50%] translate-x-[-50%]',
+                       'translate-y-[-100%]',
+                       'focus:translate-y-1.5'
+                       
+                   )}>Skip to main Content</a>
+            </div>
+            <NavbarComponent navbar={navbar} siteConfig={siteConfig} data-superjson/>
+        </header>
+        <main id="mainContent"
+              className={
+                  clsx(
+                      'container my-auto mx-auto'
+                  )
+              }>
+            {children}
+        </main>
+        </body>
         </html>
     )
 }

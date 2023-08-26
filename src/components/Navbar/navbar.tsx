@@ -18,7 +18,7 @@ const Navbar = () => {
                 'shadow-2xl',
                 'fixed top-0 left-0'
             )}
-                 style={{ '--tw-bg-opacity': 0.95}  as React.CSSProperties}>
+                 style={{'--tw-bg-opacity': 0.95} as React.CSSProperties}>
                 <div className={clsx(
                     'flex justify-between items-center',
                 )}>
@@ -37,7 +37,7 @@ const Navbar = () => {
                         <MenuDesktop/>
                     </div>
                     <div className={clsx(
-                        'block md:hidden'
+                        'md:hidden block'
                     )}>
                         <MenuMobile/>
                     </div>
