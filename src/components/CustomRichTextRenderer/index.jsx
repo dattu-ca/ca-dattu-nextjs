@@ -38,6 +38,43 @@ const options = {
 const CustomRichTexRenderer = ({document}) => {
     return <section>
         {documentToReactComponents(document, options)}
+        {documentToReactComponents(document, options)}
+        {documentToReactComponents(document, options)}
+        {documentToReactComponents(document, options)}
+        {documentToReactComponents(document, options)}
+        {documentToReactComponents(document, options)}
+        {documentToReactComponents(document, options)}
+        {documentToReactComponents(document, options)}
+        {documentToReactComponents(document, options)}
+        {documentToReactComponents(document, options)}
+        {documentToReactComponents(document, options)}
+        {documentToReactComponents(document, options)}
+        {documentToReactComponents(document, options)}
+        {documentToReactComponents(document, options)}
+        {documentToReactComponents(document, options)}
+        {documentToReactComponents(document, options)}
+        {documentToReactComponents(document, options)}
+        {documentToReactComponents(document, options)}
+        {documentToReactComponents(document, options)}
+        {documentToReactComponents(document, options)}
+        {documentToReactComponents(document, options)}
+        {documentToReactComponents(document, options)}
+        {documentToReactComponents(document, options)}
+        {documentToReactComponents(document, options)}
+        {documentToReactComponents(document, options)}
+        {documentToReactComponents(document, options)}
+        {documentToReactComponents(document, options)}
+        {documentToReactComponents(document, options)}
+        {documentToReactComponents(document, options)}
+        {documentToReactComponents(document, options)}
+        {documentToReactComponents(document, options)}
+        {documentToReactComponents(document, options)}
+        {documentToReactComponents(document, options)}
+        {documentToReactComponents(document, options)}
+        {documentToReactComponents(document, options)}
+        {documentToReactComponents(document, options)}
+        {documentToReactComponents(document, options)}
+        {documentToReactComponents(document, options)}
     </section>
 }
 

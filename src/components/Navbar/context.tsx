@@ -42,7 +42,7 @@ interface INavbarContextProviderProps {
 
 const NavbarContextProvider = ({children, siteConfig, navbar}: INavbarContextProviderProps) => {
     
-    const [isMobileMenuOpen, setIsMobileMenuOpen] = useState<boolean>(true);
+    const [isMobileMenuOpen, setIsMobileMenuOpen] = useState<boolean>(false);
 
 
     const path = usePathname();
