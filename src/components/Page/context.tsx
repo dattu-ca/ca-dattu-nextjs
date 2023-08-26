@@ -16,7 +16,7 @@ interface IValue {
     }
 }
 
-const PageContext = createContext<IValue | null>(null)
+const PageContext = createContext<IValue | null>({} as IValue)
 
 
 export const PageContextProvider = ({children, data}: IProps) => {
