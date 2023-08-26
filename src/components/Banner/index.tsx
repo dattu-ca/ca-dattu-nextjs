@@ -46,11 +46,11 @@ export const BannerComponent = ({banners}: IProps) => {
                                 )}>
                                     <source srcSet={`${banner.desktopImage?.url}?fm=avif`}
                                             type="image/avif"
-                                            alt={banner.desktopImage?.alt}
                                             className={clsx(
                                                 'w-full',
                                                 'object-cover',
-                                                'object-center'
+                                                'object-center',
+                                                'aspect-[8/2]'
                                             )}
                                             width='100%'
                                     />
@@ -59,7 +59,8 @@ export const BannerComponent = ({banners}: IProps) => {
                                          className={clsx(
                                              'w-full',
                                              'object-cover',
-                                             'object-center'
+                                             'object-center',
+                                             'aspect-[8:2]'
                                          )}
                                          width='100%'
                                     />

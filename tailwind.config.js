@@ -25,6 +25,9 @@ module.exports = {
             },
         },
         extend: {
+            aspectRatio:{
+                '8/2': '8 / 2'
+            },
             colors: {
                 'site-primary-light': 'rgb(237, 188, 64)',
                 'site-primary': 'rgb(218, 165, 32)',
