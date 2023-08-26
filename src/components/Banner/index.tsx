@@ -60,7 +60,7 @@ export const BannerComponent = ({banners}: IProps) => {
                                              'w-full',
                                              'object-cover',
                                              'object-center',
-                                             'aspect-[8:2]'
+                                             'aspect-[8/2]'
                                          )}
                                          width='100%'
                                     />
