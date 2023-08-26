@@ -49,7 +49,8 @@ const MenuMobile = () => {
                     ['top-[62px]']: isMobileMenuOpen,
                     ['top-[100%]']: !isMobileMenuOpen
                 }
-            )}>
+            )}
+                 style={{'--tw-bg-opacity': 0.95} as React.CSSProperties}>
                 <ul className={clsx(
                     'm-0 p-0',
                     'flex justify-start items-start flex-col',

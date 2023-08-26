@@ -1,6 +1,9 @@
+'use client';
 import {CustomRichTexRenderer} from "~/components/CustomRichTextRenderer";
 import {IBlogPage} from "~/models";
 import clsx from "clsx";
+import {HeadingComponent} from "~/components/Page/heading";
+import {PageContextProvider} from "~/components/Page/context";
 
 interface IProps {
     data: IBlogPage;
@@ -8,11 +11,16 @@ interface IProps {
 
 export const PageComponent = (props: IProps) => {
     const {data} = props;
-    const {heading, body} = data;
-    return <div className={clsx(
-        'container mx-auto'
-    )}>
-        <h1>{heading}</h1>
-        <CustomRichTexRenderer document={body}/>
-    </div>;
+    const {body} = data;
+    return <PageContextProvider data={data}>
+        <div className={clsx()}>
+            <HeadingComponent/>
+            <div className={clsx(
+                'mt-4',
+                'container mx-auto'
+            )}>
+                <CustomRichTexRenderer document={body}/>
+            </div>
+        </div>
+    </PageContextProvider>;
 }

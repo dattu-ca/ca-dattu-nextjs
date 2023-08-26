@@ -40,17 +40,14 @@ const RootLayout = async ({children}: IProps) => {
                        'top-0 left-[50%] translate-x-[-50%]',
                        'translate-y-[-100%]',
                        'focus:translate-y-1.5'
-                       
                    )}>Skip to main Content</a>
             </div>
             <NavbarComponent navbar={navbar} siteConfig={siteConfig} data-superjson/>
         </header>
         <main id="mainContent"
-              className={
-                  clsx(
-                      'container my-auto mx-auto'
-                  )
-              }>
+              className={clsx(
+
+              )}>
             {children}
         </main>
         </body>

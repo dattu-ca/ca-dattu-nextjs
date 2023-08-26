@@ -5,7 +5,11 @@ const getBlogPage = (slug: string) =>
     client
         .getEntries<BlogPageSkeleton>({
             content_type,
-            select: [CONTENTFUL_BLOG_PAGE_FIELDS.HEADING as 'fields', CONTENTFUL_BLOG_PAGE_FIELDS.BODY as 'fields'],
+            select: [
+                CONTENTFUL_BLOG_PAGE_FIELDS.HEADING as 'fields', 
+                CONTENTFUL_BLOG_PAGE_FIELDS.BODY as 'fields',
+                CONTENTFUL_BLOG_PAGE_FIELDS.BANNERS as 'fields'
+            ],
             [CONTENTFUL_BLOG_PAGE_FIELDS.SLUG]: slug,
             include: 10,
         })
@@ -23,7 +27,11 @@ const getBlogPagesList = () =>
     client
         .getEntries<BlogPageSkeleton>({
             content_type,
-            select: [CONTENTFUL_BLOG_PAGE_FIELDS.HEADING as 'fields', CONTENTFUL_BLOG_PAGE_FIELDS.SLUG as 'fields', CONTENTFUL_BLOG_PAGE_FIELDS.DATE_PUBLISHED as 'fields'],
+            select: [
+                CONTENTFUL_BLOG_PAGE_FIELDS.HEADING as 'fields',
+                CONTENTFUL_BLOG_PAGE_FIELDS.SLUG as 'fields',
+                CONTENTFUL_BLOG_PAGE_FIELDS.DATE_PUBLISHED as 'fields'
+            ],
         })
         .then(response => response.items.map(item => {
             return mapContentful(item);

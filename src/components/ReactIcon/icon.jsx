@@ -29,12 +29,12 @@ import * as WiIcons from 'react-icons/wi';
 import * as CgIcons from 'react-icons/cg';
 
 
-const ReactIcon = ({icon, className}) => {
+const getIcon = (icon) => {
     if (!icon) {
         return null;
     }
     const match = /[A-Z0-9]/.exec(icon[0].toLowerCase() + icon.slice(1));
-    if(match){
+    if (match) {
         const libStr = icon.substring(0, match.index);
         const libs = {
             'Ai': AiIcons,
@@ -67,16 +67,9 @@ const ReactIcon = ({icon, className}) => {
             'Cg': CgIcons,
         }
         const lib = libs[libStr];
-        if (lib) {
-            const Icon = lib[icon];
-            if (Icon) {
-                return <Icon className={className}/>
-            }
-        } else {
-            console.warn(`Icon ${icon} not found`);
-        }
+        return lib[icon];
     }
     return null;
 }
 
-export {ReactIcon}
+export {getIcon}
