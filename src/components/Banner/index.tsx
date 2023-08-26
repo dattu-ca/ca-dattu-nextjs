@@ -2,15 +2,14 @@
 import {useState} from 'react';
 import clsx from "clsx";
 import {ReactIcon} from '../ReactIcon';
-import {usePageContext} from "~/components/Page/context";
+import {IBodyImage} from "~/models";
 
 
-export const BannerComponent = () => {
-    const {
-        ctxData: {
-            banners
-        }
-    } = usePageContext()
+interface IProps {
+    banners: IBodyImage[],
+}
+
+export const BannerComponent = ({banners}: IProps) => {
     const [visibleIndex, setVisibleIndex] = useState(0);
     const bannersLength = banners.length;
 
@@ -45,13 +44,25 @@ export const BannerComponent = () => {
                                     'object-cover',
                                     'object-center'
                                 )}>
+                                    <source srcSet={`${banner.desktopImage?.url}?fm=avif`}
+                                            type="image/avif"
+                                            className={clsx(
+                                                'w-full',
+                                                'object-cover',
+                                                'object-center',
+                                                'aspect-[8/2]'
+                                            )}
+                                            width='100%'
+                                    />
                                     <img src={banner.desktopImage?.url}
                                          alt={banner.desktopImage?.alt}
                                          className={clsx(
                                              'w-full',
                                              'object-cover',
-                                             'object-center'
+                                             'object-center',
+                                             'aspect-[8/2]'
                                          )}
+                                         width='100%'
                                     />
                                 </picture>
                             </div>
@@ -71,7 +82,8 @@ export const BannerComponent = () => {
                                     'opacity-25 group-hover:opacity-50 group-hover:hover:opacity-90 disabled:opacity-10 group-hover:disabled:opacity-10',
                                     'p-2 m-0',
                                     'bg-site-primary'
-                                )}>
+                                )}
+                                aria-label='Slide to the previous banner'>
                             <ReactIcon icon='BsFillCaretLeftFill' className='w-8 h-8 text-white'/>
                         </button>
                         <button onClick={onGoNextHandler}
@@ -81,7 +93,8 @@ export const BannerComponent = () => {
                                     'opacity-25 group-hover:opacity-50 group-hover:hover:opacity-90 disabled:opacity-10 group-hover:disabled:opacity-10',
                                     'p-2 m-0',
                                     'bg-site-primary'
-                                )}>
+                                )}
+                                aria-label='Slide to the next banner'>
                             <ReactIcon icon='BsFillCaretRightFill' className='w-8 h-8 text-white'/>
                         </button>
                     </div>

@@ -1,18 +1,19 @@
 'use client';
 import clsx from "clsx";
-import {BannerComponent} from "./banner";
 import {usePageContext} from "./context";
+import {BannerComponent} from "../Banner";
 
 export const HeadingComponent = () => {
     const {
         ctxData: {
-            heading
+            heading,
+            banners
         }
     } = usePageContext();
-    
-    
+
+
     return <div>
-        <BannerComponent/>
+        <BannerComponent banners={banners}/>
         <div className={clsx(
             'bg-gray-950',
             'w-full',
