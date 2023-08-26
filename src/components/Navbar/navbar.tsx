@@ -10,13 +10,13 @@ import {Logo} from "./logo";
 const Navbar = () => {
     return (
         <div className={clsx(
-            'mb-24'
+            'mb-[62px]'
         )}>
             <nav className={clsx(
                 'w-full bg-site-color-dark',
-                'py-4 px-4 mb-4',
+                'py-4 px-4',
                 'shadow-2xl',
-                'fixed top-0 left-0'
+                'fixed z-40 top-0 left-0'
             )}
                  style={{'--tw-bg-opacity': 0.95} as React.CSSProperties}>
                 <div className={clsx(

@@ -2,6 +2,9 @@ import {documentToReactComponents} from '@contentful/rich-text-react-renderer';
 import {BLOCKS, INLINES, MARKS} from '@contentful/rich-text-types';
 
 
+
+
+
 const Bold = ({children}) => <span className="font-bold">{children}</span>;
 const Italic = ({children}) => <span className="italic">{children}</span>;
 const Underline = ({children}) => <span className="underline">{children}</span>;
@@ -25,7 +28,16 @@ const options = {
         [BLOCKS.LIST_ITEM]: (node, children) => <Li>{children}</Li>,
         [BLOCKS.EMBEDDED_ENTRY]: (node, children) => {
             const embeddedType = node.data.target.sys.contentType.sys.id;
-            return documentToReactComponents(node.data.target.fields.body, options)
+            // console.log("embeddedType", embeddedType)
+            switch(embeddedType){
+                case 'bodyContent':{
+                    return documentToReactComponents(node.data.target.fields.body, options)
+                }
+                default:{
+                    return <p>[{embeddedType}] not implemented</p>
+                }
+            }
+            
         },
         [INLINES.EMBEDDED_ENTRY]: (node, children) => {
             const embeddedType = node.data.target.sys.contentType.sys.id;
@@ -37,6 +49,20 @@ const options = {
 
 const CustomRichTexRenderer = ({document}) => {
     return <section>
+        {documentToReactComponents(document, options)}
+        {documentToReactComponents(document, options)}
+        {documentToReactComponents(document, options)}
+        {documentToReactComponents(document, options)}
+        {documentToReactComponents(document, options)}
+        {documentToReactComponents(document, options)}
+        {documentToReactComponents(document, options)}
+        {documentToReactComponents(document, options)}
+        {documentToReactComponents(document, options)}
+        {documentToReactComponents(document, options)}
+        {documentToReactComponents(document, options)}
+        {documentToReactComponents(document, options)}
+        {documentToReactComponents(document, options)}
+        {documentToReactComponents(document, options)}
         {documentToReactComponents(document, options)}
         {documentToReactComponents(document, options)}
         {documentToReactComponents(document, options)}

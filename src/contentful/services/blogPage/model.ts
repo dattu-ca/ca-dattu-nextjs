@@ -1,11 +1,12 @@
 import {Entry} from "contentful";
 import {IBlogPageFields} from "../../schema/generated";
-import {IBlogPage} from "~/models";
+import {IBlogPage, IBodyImage} from "~/models";
 
 export const CONTENTFUL_BLOG_PAGE_FIELDS = {
     HEADING: 'fields.heading',
     BODY: 'fields.body',
     SLUG: 'fields.slug',
+    BANNERS: 'fields.banners',
     DATE_PUBLISHED: 'fields.datePublished'
 }
 
@@ -18,7 +19,7 @@ export type BlogPageSkeleton = {
 
 
 export const mapContentful = (item: Entry<BlogPageSkeleton, undefined, string>) => {
-    const result: IBlogPage = {};
+    const result: IBlogPage = {banners: []};
     if (item.fields.slug) {
         result.slug = item.fields.slug as string;
     }
@@ -30,6 +31,24 @@ export const mapContentful = (item: Entry<BlogPageSkeleton, undefined, string>) 
     }
     if (item.fields.datePublished) {
         result.datePublished = item.fields.datePublished as string;
+    }
+    if (item.fields.banners) {
+        result.banners = (item.fields.banners as any[]).map(item => {
+            const banner: IBodyImage = {
+                slug: item.fields.slug as string,
+                desktopImage: {
+                    url: item.fields.desktopImage.fields.file.url,
+                    alt: item.fields.desktopImage.fields.description
+                }
+            }
+            if (item.fields.mobileImage) {
+                banner.mobileImage = {
+                    url: item.fields.mobileImage.fields.file.url,
+                    alt: item.fields.mobileImage.fields.description,
+                }
+            }
+            return banner;
+        })
     }
     return result;
 }

@@ -50,17 +50,20 @@ export interface IBlogPageFields {
   /** Sub Heading */
   subHeading?: string | undefined;
 
-  /** Date Published */
-  datePublished?: string | undefined;
-
-  /** Date Expires On */
-  dateExpiresOn?: string | undefined;
+  /** Banners */
+  banners?: IBodyImages[] | undefined;
 
   /** Body */
   body?: Document | undefined;
 
   /** Sidebar */
   sidebar?: IBodySidebar | undefined;
+
+  /** Date Expires On */
+  dateExpiresOn?: string | undefined;
+
+  /** Date Published */
+  datePublished?: string | undefined;
 }
 
 /** The main content model for pages. */
