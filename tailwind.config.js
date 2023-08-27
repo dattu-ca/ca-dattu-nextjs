@@ -50,7 +50,9 @@ module.exports = {
     theme: {
         extend: {
             fontFamily: {
-                'black-ops': ['Black Ops One', 'sans-serif']
+                'black-ops': ['Black Ops One', 'sans-serif'],
+                'acme': ['Acme', 'sans-serif'],
+                'exo': ['Exo', 'sans-serif']
             },
             textShadow: {
                 sm: '-1px -1px 3px var(--tw-shadow-color-split), 0px 0px 6px var(--tw-shadow-color)',

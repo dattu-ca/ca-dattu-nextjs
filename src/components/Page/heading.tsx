@@ -28,12 +28,13 @@ export const HeadingComponent = () => {
                 'content-container'
             )}>
                 <h1 className={clsx(
+                    'inline-block',
                     'mt-0 mb-0',
                     'text-white',
                     'text-shadow-lg',
                     'bg-gray-950',
                     'p-4 rounded-md',
-                    'font-black-ops'
+                    'font-acme',
                 )}
                 style={{ '--tw-bg-opacity': 0.40} as React.CSSProperties}>{heading}</h1>
             </div>
