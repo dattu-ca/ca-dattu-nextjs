@@ -29,8 +29,7 @@ const getBlogPagesList = () =>
             content_type,
             select: [
                 CONTENTFUL_BLOG_PAGE_FIELDS.HEADING as 'fields',
-                CONTENTFUL_BLOG_PAGE_FIELDS.SLUG as 'fields',
-                CONTENTFUL_BLOG_PAGE_FIELDS.DATE_PUBLISHED as 'fields'
+                CONTENTFUL_BLOG_PAGE_FIELDS.SLUG as 'fields'
             ],
         })
         .then(response => response.items.map(item => {

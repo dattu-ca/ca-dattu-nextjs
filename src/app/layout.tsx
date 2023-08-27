@@ -28,6 +28,9 @@ const RootLayout = async ({children}: IProps) => {
     const siteConfig = await getSiteConfig(CONTENTFUL_SLUGS.MAIN_SITE_CONFIG);
     return (
         <html lang="en">
+        <head>
+            <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        </head>
         <body className={clsx(
             'bg-site-color-light text-site-tertiary'
         )}>

@@ -1,49 +1,58 @@
+@import url("https://fonts.googleapis.com/css2?family=Black+Ops+One&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Acme&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Exo&display=swap");
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
 
+:root{
+    --tw-shadow-color: rgb(218, 165, 32);
+    --tw-shadow-color-split: rgb(0, 0, 0);
+}
+
 @layer base {
     body {
-        
+        @apply font-exo;
     }
     h1 {
-        @apply text-6xl;
+        @apply text-5xl;
         @apply mt-0;
         @apply mb-8;
         @apply min-h-[1px];
     }
 
     h2 {
-        @apply text-5xl;
+        @apply text-4xl;
         @apply mt-0;
         @apply mb-7;
         @apply min-h-[1px];
     }
 
     h3 {
-        @apply text-4xl;
+        @apply text-3xl;
         @apply mt-0;
         @apply mb-6;
         @apply min-h-[1px];
     }
 
     h4 {
-        @apply text-3xl;
+        @apply text-2xl;
         @apply mt-0;
         @apply mb-5;
         @apply min-h-[1px];
     }
 
     h5 {
-        @apply text-2xl;
+        @apply text-xl;
         @apply mt-0;
         @apply mb-4;
         @apply min-h-[1px];
     }
 
     h6 {
-        @apply text-xl;
+        @apply text-lg;
         @apply mt-0;
         @apply mb-4;
         @apply min-h-[1px];

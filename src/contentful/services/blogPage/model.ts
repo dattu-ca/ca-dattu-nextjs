@@ -6,8 +6,7 @@ export const CONTENTFUL_BLOG_PAGE_FIELDS = {
     HEADING: 'fields.heading',
     BODY: 'fields.body',
     SLUG: 'fields.slug',
-    BANNERS: 'fields.banners',
-    DATE_PUBLISHED: 'fields.datePublished'
+    BANNERS: 'fields.banners'
 }
 
 export const content_type = 'blogPage';
@@ -28,9 +27,6 @@ export const mapContentful = (item: Entry<BlogPageSkeleton, undefined, string>) 
     }
     if (item.fields.body) {
         result.body = item.fields.body as object;
-    }
-    if (item.fields.datePublished) {
-        result.datePublished = item.fields.datePublished as string;
     }
     if (item.fields.banners) {
         result.banners = (item.fields.banners as any[]).map(item => {
