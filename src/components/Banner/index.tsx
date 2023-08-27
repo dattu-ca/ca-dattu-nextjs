@@ -71,7 +71,7 @@ export const BannerComponent = ({banners}: IProps) => {
                             }
                         </div>
                         {
-                            banners.length > 0
+                            banners.length > 1
                             && <div className={clsx(
                                 'absolute w-full top-[50%] translate-y-[-50%]',
                                 'flex justify-between px-2'
