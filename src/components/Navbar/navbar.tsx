@@ -37,7 +37,7 @@ const Navbar = () => {
                         <MenuDesktop/>
                     </div>
                     <div className={clsx(
-                        'md:hidden block'
+                        'xs:block sm:block md:hidden'
                     )}>
                         <MenuMobile/>
                     </div>

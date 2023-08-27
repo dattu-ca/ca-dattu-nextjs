@@ -17,7 +17,7 @@ export const PageComponent = (props: IProps) => {
             <HeadingComponent/>
             <div className={clsx(
                 'mt-4',
-                'container mx-auto'
+                'content-container',
             )}>
                 <CustomRichTexRenderer document={body}/>
             </div>

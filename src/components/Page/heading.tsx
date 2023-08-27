@@ -1,4 +1,5 @@
 'use client';
+import React from "react";
 import clsx from "clsx";
 import {usePageContext} from "./context";
 import {BannerComponent} from "../Banner";
@@ -12,21 +13,29 @@ export const HeadingComponent = () => {
     } = usePageContext();
 
 
-    return <div>
+    return <div className={clsx(
+        'relative'
+    )}>
         <BannerComponent banners={banners}/>
         <div className={clsx(
-            'bg-gray-950',
             'w-full',
-            'pb-8 pt-8',
+            'mt-4',
+            'md:pb-8',
+            'xs:static sm:static md:absolute',
+            'bottom-0'
         )}>
             <div className={clsx(
-                'container mx-auto'
+                'content-container'
             )}>
                 <h1 className={clsx(
-                    'mb-0',
-                    'text-site-primary',
-                    'drop-shadow-xl'
-                )}>{heading}</h1>
+                    'mt-0 mb-0',
+                    'text-white',
+                    'text-shadow-lg',
+                    'bg-gray-950',
+                    'p-4 rounded-md',
+                    'font-black-ops'
+                )}
+                style={{ '--tw-bg-opacity': 0.40} as React.CSSProperties}>{heading}</h1>
             </div>
         </div>
     </div>;
