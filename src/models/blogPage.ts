@@ -5,5 +5,4 @@ export interface IBlogPage {
     heading?: string;
     banners: IBodyImage[]
     body?: object;
-    datePublished?: string;
 }

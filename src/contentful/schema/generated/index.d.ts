@@ -58,12 +58,6 @@ export interface IBlogPageFields {
 
   /** Sidebar */
   sidebar?: IBodySidebar | undefined;
-
-  /** Date Expires On */
-  dateExpiresOn?: string | undefined;
-
-  /** Date Published */
-  datePublished?: string | undefined;
 }
 
 /** The main content model for pages. */
