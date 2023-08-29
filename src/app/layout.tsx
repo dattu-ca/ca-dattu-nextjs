@@ -1,10 +1,9 @@
 import {ReactElement} from "react";
-import "tw-elements-react/dist/css/tw-elements-react.min.css";
+import clsx from "clsx";
 import NavbarComponent from "~/components/Navbar";
 import {getBlogNavbar, getSiteConfig} from "~/services";
 import './globals.css';
 import {CONTENTFUL_SLUGS} from "~/utils/constants";
-import clsx from "clsx";
 
 
 export const generateMetadata = async () => {

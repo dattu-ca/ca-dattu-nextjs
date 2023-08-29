@@ -83,13 +83,16 @@ module.exports = {
         },
     },
     corePlugins: {
-        container: false
+        
     },
-    plugins: [MyClass],
+    plugins: [MyClass, require('daisyui')],
     variants: {
         extend: {
             display: ['group-hover'],
             visibility: ['group-hover'],
         }
-    }
+    },
+    daisyui: {
+        prefix: "daisy-"
+    },
 }

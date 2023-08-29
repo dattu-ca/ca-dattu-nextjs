@@ -30,13 +30,15 @@ export const HeadingComponent = () => {
                 <h1 className={clsx(
                     'inline-block',
                     'mt-0 mb-0',
-                    'text-white',
-                    'text-shadow-lg',
-                    'bg-gray-950',
-                    'p-4 rounded-md',
+                    'md:text-white',
+                    'md:text-shadow-lg',
+                    'md:bg-gray-950',
+                    'md:p-4 rounded-md',
                     'font-acme',
                 )}
-                style={{ '--tw-bg-opacity': 0.40} as React.CSSProperties}>{heading}</h1>
+                    style={{'--tw-bg-opacity': 0.40} as React.CSSProperties}>
+                    {heading}
+                </h1>
             </div>
         </div>
     </div>;
