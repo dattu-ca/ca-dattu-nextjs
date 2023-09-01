@@ -1,4 +1,6 @@
 import * as contentful from 'contentful';
+import {ApolloClient, InMemoryCache} from "@apollo/client";
+
 
 const space = process.env.CONTENTFUL_SPACE_ID as string;
 const environment = process.env.CONTENTFUL_ENVIRONMENT as string;
@@ -15,7 +17,13 @@ const client = contentful.createClient({
 const previewClient = contentful.createClient({
     space,
     accessToken: previewAccessToken,
-    environment
+    environment,
 });
 
-export {client, previewClient};
+const apolloClient = new ApolloClient({
+    uri: `https://graphql.contentful.com/content/v1/spaces/${space}/environments/${environment}?access_token=${accessToken}`,
+    cache: new InMemoryCache(),
+});
+
+
+export {client, previewClient, apolloClient};
