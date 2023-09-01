@@ -41,14 +41,8 @@ export interface IBlogPageFields {
   /** Slug */
   slug: string;
 
-  /** Pre Heading */
-  preHeading?: string | undefined;
-
   /** Heading */
   heading: string;
-
-  /** Sub Heading */
-  subHeading?: string | undefined;
 
   /** Banners */
   banners?: IBodyImages[] | undefined;
@@ -72,6 +66,51 @@ export interface IBlogPage extends Entry<IBlogPageFields> {
     contentType: {
       sys: {
         id: "blogPage";
+        linkType: "ContentType";
+        type: "Link";
+      };
+    };
+  };
+}
+
+export interface IBlogPostFields {
+  /** Entry Title */
+  entryTitle: string;
+
+  /** Slug */
+  slug: string;
+
+  /** Pre Heading */
+  preHeading?: string | undefined;
+
+  /** Heading */
+  heading: string;
+
+  /** Sub Heading */
+  subHeading?: string | undefined;
+
+  /** Banners */
+  banners?: IBodyImages[] | undefined;
+
+  /** Body */
+  body?: Document | undefined;
+
+  /** Sidebar */
+  sidebar?: IBodySidebar | undefined;
+}
+
+/** The main content model for posts. */
+
+export interface IBlogPost extends Entry<IBlogPostFields> {
+  sys: {
+    id: string;
+    type: string;
+    createdAt: string;
+    updatedAt: string;
+    locale: string;
+    contentType: {
+      sys: {
+        id: "blogPost";
         linkType: "ContentType";
         type: "Link";
       };
@@ -148,6 +187,12 @@ export interface IBodySidebarFields {
   /** Slug */
   slug: string;
 
+  /** Heading */
+  heading: string;
+
+  /** Description */
+  description?: Document | undefined;
+
   /** Navigation */
   navigation?: IBlogNavbar | undefined;
 }
@@ -219,6 +264,7 @@ export interface ISiteConfig extends Entry<ISiteConfigFields> {
 export type CONTENT_TYPE =
   | "blogNavbar"
   | "blogPage"
+  | "blogPost"
   | "bodyContent"
   | "bodyImages"
   | "bodySidebar"
@@ -227,6 +273,7 @@ export type CONTENT_TYPE =
 export type IEntry =
   | IBlogNavbar
   | IBlogPage
+  | IBlogPost
   | IBodyContent
   | IBodyImages
   | IBodySidebar

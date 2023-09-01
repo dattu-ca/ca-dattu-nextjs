@@ -6,7 +6,8 @@ export const CONTENTFUL_BLOG_PAGE_FIELDS = {
     HEADING: 'fields.heading',
     BODY: 'fields.body',
     SLUG: 'fields.slug',
-    BANNERS: 'fields.banners'
+    BANNERS: 'fields.banners',
+    SIDEBAR: 'fields.sidebar',
 }
 
 export const content_type = 'blogPage';
@@ -45,6 +46,9 @@ export const mapContentful = (item: Entry<BlogPageSkeleton, undefined, string>) 
             }
             return banner;
         })
+    }
+    if(item.fields.sidebar){
+        console.log(item.fields.sidebar)
     }
     return result;
 }
