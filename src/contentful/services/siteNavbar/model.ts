@@ -1,7 +1,7 @@
 import {Entry} from "contentful";
 import {ISiteNavbar, ILink} from "~/models";
 import {ISiteNavbarFields, IBodyImagesFields} from "../../schema/generated";
-import {mapContentful as mapContentful_bodyLinks} from '../bodyLinks/model';
+import {mapContentful as mapContentful_bodyLinks} from '../bodyLinks';
 
 
 export const content_type = 'siteNavbar';
