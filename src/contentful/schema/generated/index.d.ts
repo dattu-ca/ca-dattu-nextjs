@@ -89,14 +89,14 @@ export interface IBlogPostFields {
   /** Body */
   body?: Document | undefined;
 
+  /** Short Body */
+  shortBody?: Document | undefined;
+
   /** Sidebars */
   sidebars?: IBodySidebar[] | undefined;
 
   /** Categories */
   categories?: IMetaCategory[] | undefined;
-
-  /** Short Body */
-  shortBody?: Document | undefined;
 }
 
 /** The main content model for posts. */
