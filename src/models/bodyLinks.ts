@@ -1,11 +1,11 @@
-export interface IBlogNavbarLink {
+export interface ILink {
     id: string;
     icon?: string;
     label: string;
     url: string;
-    links?: IBlogNavbarLink[];
+    links?: ILink[];
 }
 
 export interface IBodyLinks {
-    links: IBlogNavbarLink[]
+    links: ILink[]
 }

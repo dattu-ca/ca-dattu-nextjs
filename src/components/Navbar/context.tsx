@@ -1,11 +1,10 @@
 import {createContext, ReactElement, useCallback, useContext, useEffect, useMemo, useState} from "react";
-import {IBlogNavbar, ISiteConfig} from "~/models";
+import {ISiteNavbar} from "~/models";
 import {usePathname} from "next/navigation";
 
 
 interface INavbarContextProps {
-    siteConfig: ISiteConfig;
-    navbar: IBlogNavbar;    
+    navbar: ISiteNavbar;    
     isMobileMenuOpen: boolean;
     openMobileMenu: () => void;
     closeMobileMenu: () => void;
@@ -36,11 +35,10 @@ const useNavbarContext = () => {
 
 interface INavbarContextProviderProps {
     children: ReactElement,
-    siteConfig: {},
     navbar: {}
 }
 
-const NavbarContextProvider = ({children, siteConfig, navbar}: INavbarContextProviderProps) => {
+const NavbarContextProvider = ({children, navbar}: INavbarContextProviderProps) => {
     
     const [isMobileMenuOpen, setIsMobileMenuOpen] = useState<boolean>(false);
 
@@ -63,7 +61,6 @@ const NavbarContextProvider = ({children, siteConfig, navbar}: INavbarContextPro
 
 
     const props = useMemo<INavbarContextProps>(() => ({
-        siteConfig: siteConfig,
         navbar: navbar,
         isMobileMenuOpen: isMobileMenuOpen,
         openMobileMenu: () => setIsMobileMenuOpen(true),
@@ -71,7 +68,7 @@ const NavbarContextProvider = ({children, siteConfig, navbar}: INavbarContextPro
         toggleMobileMenu: () => setIsMobileMenuOpen(prev => !prev),
         isCurrentPage: isCurrentPage,
         getAriaCurrent: getAriaCurrent,
-    } as INavbarContextProps), [siteConfig, navbar, isMobileMenuOpen, isCurrentPage, getAriaCurrent]);
+    } as INavbarContextProps), [navbar, isMobileMenuOpen, isCurrentPage, getAriaCurrent]);
 
 
     return <NavbarContext.Provider value={props}>

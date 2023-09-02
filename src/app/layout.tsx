@@ -1,11 +1,12 @@
 import {ReactElement} from "react";
 import clsx from "clsx";
 
-import {getSiteConfig} from "~/services";
+import {getSiteConfig, getSiteNavbar} from "~/services";
 import './globals.css';
 import {CONTENTFUL_SLUGS} from "~/utils/constants";
+import NavbarComponent from "~/components/Navbar";
 
-const {PRIMARY_SITE_CONFIG} = CONTENTFUL_SLUGS;
+const {PRIMARY_SITE_CONFIG, HEADER_SITE_NAVBAR} = CONTENTFUL_SLUGS;
 
 
 export const generateMetadata = async () => {
@@ -25,6 +26,7 @@ interface IProps {
 }
 
 const RootLayout = async ({children}: IProps) => {
+    const navbar = await getSiteNavbar(HEADER_SITE_NAVBAR);
     return (
         <html lang="en">
         <head>
@@ -44,7 +46,7 @@ const RootLayout = async ({children}: IProps) => {
                        'focus:translate-y-1.5'
                    )}>Skip to main Content</a>
             </div>
-
+            <NavbarComponent navbar={navbar} data-superjson/>
         </header>
         <main id="mainContent"
               className={clsx(
