@@ -31,7 +31,7 @@ const SidebarComponent = ({sidebar}: IProps) => {
         <div className={clsx(
             'p-4 pb-0'
         )}>
-            <h6>{heading}</h6>
+            <h5>{heading}</h5>
             <CustomRichTexRenderer document={description}/>
         </div>
         <div className={clsx(

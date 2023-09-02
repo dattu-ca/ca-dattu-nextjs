@@ -21,22 +21,23 @@ export type SiteNavbarSkeleton = {
 }
 
 
-export const mapContentful = (item: Entry<SiteNavbarSkeleton, undefined, string>) => {
-    const result: Partial<ISiteNavbar> = {};
-    if (item.fields.slug) {
-        result.slug = item.fields.slug as string;
+export const mapContentful = (raw: Entry<SiteNavbarSkeleton, undefined, string>) => {
+    const source = raw.fields;
+    const target: Partial<ISiteNavbar> = {};
+    if (source.slug) {
+        target.slug = source.slug as string;
     }
-    if (item.fields.links) {
-        result.links = mapContentful_bodyLinks(item.fields.links);
+    if (source.links) {
+        target.links = mapContentful_bodyLinks(source.links);
     }
-    if (item.fields.logo) {
-        result.logo = mapContentful_bodyImages(item.fields.logo);
+    if (source.logo) {
+        target.logo = mapContentful_bodyImages(source.logo);
     }
-    if (item.fields.openMenuText) {
-        result.openMenuText = item.fields.openMenuText as string;
+    if (source.openMenuText) {
+        target.openMenuText = source.openMenuText as string;
     }
-    if (item.fields.closeMenuText) {
-        result.closeMenuText = item.fields.closeMenuText as string;
+    if (source.closeMenuText) {
+        target.closeMenuText = source.closeMenuText as string;
     }
-    return result as ISiteNavbar;
+    return target as ISiteNavbar;
 }

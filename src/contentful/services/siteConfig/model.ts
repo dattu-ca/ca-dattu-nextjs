@@ -17,19 +17,20 @@ export type SiteConfigSkeleton = {
     fields: ISiteConfigFields
 }
 
-export const mapContentful = (item: Entry<SiteConfigSkeleton, undefined, string>) => {
+export const mapContentful = (raw: Entry<SiteConfigSkeleton, undefined, string>) => {
+    const source = raw.fields;
     const result: Partial<ISiteConfig> = {};
-    if (item.fields.slug) {
-        result.slug = item.fields.slug as string;
+    if (source.slug) {
+        result.slug = source.slug as string;
     }
-    if (item.fields.siteTitleTemplate) {
-        result.siteTitleTemplate = item.fields.siteTitleTemplate as string;
+    if (source.siteTitleTemplate) {
+        result.siteTitleTemplate = source.siteTitleTemplate as string;
     }
-    if (item.fields.siteTitleDefault) {
-        result.siteTitleDefault = item.fields.siteTitleDefault as string;
+    if (source.siteTitleDefault) {
+        result.siteTitleDefault = source.siteTitleDefault as string;
     }
-    if (item.fields.siteDescription) {
-        result.siteDescription = item.fields.siteDescription as string;
+    if (source.siteDescription) {
+        result.siteDescription = source.siteDescription as string;
     }
     return result as ISiteConfig;
 }

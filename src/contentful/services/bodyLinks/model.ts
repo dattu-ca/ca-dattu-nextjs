@@ -14,12 +14,13 @@ export const mapContentful = (raw: any) => {
     if (!raw) {
         return undefined;
     }
-    const item = raw as BodyLinksSkeleton;
-    const result: Partial<IBodyLinks> = {};
-    if (item.fields) {
-        if (item.fields.links && Array.isArray(item.fields.links)) {
-            result.links = mapLinks(item.fields.links)
+    const source = raw as BodyLinksSkeleton;
+    const target: Partial<IBodyLinks> = {};
+    if (source.fields) {
+        if (source.fields.links && Array.isArray(source.fields.links)) {
+            target.links = mapLinks(source.fields.links)
         }
     }
-    return result as IBodyLinks;
+    return target as IBodyLinks;
 }
+
