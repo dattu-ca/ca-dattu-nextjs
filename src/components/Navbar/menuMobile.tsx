@@ -56,7 +56,7 @@ const MenuMobile = () => {
                     'list-none '
                 )}>
                     {
-                        navbar.links.links.map(link => (
+                        (navbar.links?.links || []).map(link => (
                             <li key={link.id}
                                 className={clsx(
                                     'm-0 p-0',

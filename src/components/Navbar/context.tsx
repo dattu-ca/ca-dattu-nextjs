@@ -1,10 +1,10 @@
-import {createContext, ReactElement, useCallback, useContext, useEffect, useMemo, useState} from "react";
+import {createContext, ReactElement, useCallback, useContext, useMemo, useState} from "react";
 import {ISiteNavbar} from "~/models";
 import {usePathname} from "next/navigation";
 
 
 interface INavbarContextProps {
-    navbar: ISiteNavbar;    
+    navbar: Partial<ISiteNavbar>;
     isMobileMenuOpen: boolean;
     openMobileMenu: () => void;
     closeMobileMenu: () => void;
@@ -14,8 +14,7 @@ interface INavbarContextProps {
 }
 
 const NavbarContext = createContext<INavbarContextProps>({
-    siteConfig: {},
-    navbar: {navLinks: []},
+    navbar: {},
     desktopSubMenuOpenId: undefined,
     isMobileMenuOpen: false,
     openMobileMenu: () => ({}),
@@ -38,12 +37,12 @@ interface INavbarContextProviderProps {
     navbar: {}
 }
 
-const NavbarContextProvider = ({children, navbar}: INavbarContextProviderProps) => {
+const NavbarContextProvider = ({children, navbar:rawNavbar}: INavbarContextProviderProps) => {
+    const navbar = rawNavbar as ISiteNavbar;
+    
+    const path = usePathname();
     
     const [isMobileMenuOpen, setIsMobileMenuOpen] = useState<boolean>(false);
-
-
-    const path = usePathname();
 
     const isCurrentPage = useCallback((url: string, exact: boolean = false) => {
         if (!url) {
@@ -52,8 +51,8 @@ const NavbarContextProvider = ({children, navbar}: INavbarContextProviderProps) 
         if (url === '/') {
             return path === url;
         }
-        if(exact){
-          return path === url;  
+        if (exact) {
+            return path === url;
         }
         return path.includes(url)
     }, [path]);

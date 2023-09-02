@@ -1,7 +1,8 @@
 import {Entry} from "contentful";
-import {ISiteNavbar, ILink} from "~/models";
-import {ISiteNavbarFields, IBodyImagesFields} from "../../schema/generated";
+import {ISiteNavbar} from "~/models";
+import {ISiteNavbarFields} from "../../schema/generated";
 import {mapContentful as mapContentful_bodyLinks} from '../bodyLinks';
+import {mapContentful as mapContentful_bodyImages} from '../bodyImages';
 
 
 export const content_type = 'siteNavbar';
@@ -20,13 +21,7 @@ export type SiteNavbarSkeleton = {
 }
 
 
-export const mapLinks = (source: ILink[]): ILink[] => source.map(item => ({
-    ...item,
-    links: item.links && Array.isArray(item.links) ? mapLinks(item.links as ILink[]) : [],
-}))
-
-
-export const mapContentful = (item: Entry<SiteNavbarSkeleton, undefined, string>): ISiteNavbar => {
+export const mapContentful = (item: Entry<SiteNavbarSkeleton, undefined, string>) => {
     const result: Partial<ISiteNavbar> = {};
     if (item.fields.slug) {
         result.slug = item.fields.slug as string;
@@ -35,17 +30,7 @@ export const mapContentful = (item: Entry<SiteNavbarSkeleton, undefined, string>
         result.links = mapContentful_bodyLinks(item.fields.links);
     }
     if (item.fields.logo) {
-        const logo = item.fields.logo['fields'] as IBodyImagesFields;
-        result.logo = {
-            desktopImage: {
-                alt: logo.desktopAltText,
-                url: logo.desktopImage?.fields.file?.url as string
-            },
-            mobileImage: {
-                alt: logo.mobileAltText,
-                url: logo.mobileImage?.fields.file?.url as string
-            }
-        };
+        result.logo = mapContentful_bodyImages(item.fields.logo);
     }
     if (item.fields.openMenuText) {
         result.openMenuText = item.fields.openMenuText as string;

@@ -1,8 +1,8 @@
 import {ILink, IBodyLinks} from "~/models";
-import {Entry} from "contentful";
+import {IBodyLinksFields} from "~/contentful/schema/generated";
 
 export type BodyLinksSkeleton = {
-    fields: IBodyLinks;
+    fields: IBodyLinksFields;
 }
 
 const mapLinks = (source: ILink[]): ILink[] => source.map(item => ({
@@ -14,7 +14,7 @@ export const mapContentful = (raw: any) => {
     if (!raw) {
         return undefined;
     }
-    const item = raw as Entry<BodyLinksSkeleton, undefined, string>;
+    const item = raw as BodyLinksSkeleton;
     const result: Partial<IBodyLinks> = {};
     if (item.fields) {
         if (item.fields.links && Array.isArray(item.fields.links)) {

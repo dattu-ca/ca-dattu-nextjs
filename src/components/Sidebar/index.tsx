@@ -41,7 +41,7 @@ const SidebarComponent = ({sidebar}: IProps) => {
                 'list-none m-0 p-0',
                 'border-solid border-[1px] border-b-0 border-site-primary'
             )}>
-                {navigation?.navLinks?.map((link) => (
+                {navigation?.links?.map((link) => (
                     <li key={link.id}
                         className={clsx(
                             'p-0 m-0',

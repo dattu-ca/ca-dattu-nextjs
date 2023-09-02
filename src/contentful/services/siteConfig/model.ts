@@ -31,5 +31,5 @@ export const mapContentful = (item: Entry<SiteConfigSkeleton, undefined, string>
     if (item.fields.siteDescription) {
         result.siteDescription = item.fields.siteDescription as string;
     }
-    return result;
+    return result as ISiteConfig;
 }
