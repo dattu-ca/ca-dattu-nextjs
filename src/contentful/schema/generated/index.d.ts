@@ -50,8 +50,8 @@ export interface IBlogPageFields {
   /** Body */
   body?: Document | undefined;
 
-  /** Sidebar */
-  sidebar?: IBodySidebar | undefined;
+  /** Sidebars */
+  sidebars?: IBodySidebar[] | undefined;
 }
 
 /** The main content model for pages. */

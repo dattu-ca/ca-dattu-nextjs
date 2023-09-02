@@ -9,7 +9,7 @@ const getBlogPage = (slug: string) =>
                 CONTENTFUL_BLOG_PAGE_FIELDS.HEADING as 'fields', 
                 CONTENTFUL_BLOG_PAGE_FIELDS.BODY as 'fields',
                 CONTENTFUL_BLOG_PAGE_FIELDS.BANNERS as 'fields',
-                CONTENTFUL_BLOG_PAGE_FIELDS.SIDEBAR as 'fields'
+                CONTENTFUL_BLOG_PAGE_FIELDS.SIDEBARS as 'fields'
             ],
             [CONTENTFUL_BLOG_PAGE_FIELDS.SLUG]: slug,
             include: 10,

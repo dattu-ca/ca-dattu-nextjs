@@ -1,13 +1,16 @@
 import {Entry} from "contentful";
-import {IBlogPageFields} from "../../schema/generated";
-import {IBlogPage, IBodyImage} from "~/models";
+import {IBlogPageFields, IBodySidebarFields} from "../../schema/generated";
+import {BlogNavbarSkeleton} from "../blogNavbar/model";
+
+import {IBlogNavbar, IBlogPage, IBodyImage} from "~/models";
+
 
 export const CONTENTFUL_BLOG_PAGE_FIELDS = {
     HEADING: 'fields.heading',
     BODY: 'fields.body',
     SLUG: 'fields.slug',
     BANNERS: 'fields.banners',
-    SIDEBAR: 'fields.sidebar',
+    SIDEBARS: 'fields.sidebars',
 }
 
 export const content_type = 'blogPage';
@@ -15,6 +18,10 @@ export const content_type = 'blogPage';
 export type BlogPageSkeleton = {
     contentTypeId: 'blogPage'
     fields: IBlogPageFields
+}
+export type BodySidebarSkeleton = {
+    contentTypeId: 'bodySidebar'
+    fields: IBodySidebarFields
 }
 
 
@@ -47,8 +54,15 @@ export const mapContentful = (item: Entry<BlogPageSkeleton, undefined, string>) 
             return banner;
         })
     }
-    if(item.fields.sidebar){
-        console.log(item.fields.sidebar)
+    if (item.fields.sidebars) {
+        console.log('item.fields.sidebars', item.fields.sidebars)
+        const rawItems = item.fields.sidebars as BodySidebarSkeleton[];
+        result.sidebars = rawItems.map(raw => ({
+            slug: raw.fields.slug as string,
+            description: raw.fields.description as object,
+            heading: raw.fields.heading as string,
+            navigation: (raw.fields.navigation as Entry<BlogNavbarSkeleton>).fields as IBlogNavbar,
+        }));
     }
     return result;
 }

@@ -19,7 +19,7 @@ export type BlogNavbarSkeleton = {
 }
 
 
-const mapNavLinks = (source: IBlogNavbarLink[]): IBlogNavbarLink[] => source.map(item => ({
+export const mapNavLinks = (source: IBlogNavbarLink[]): IBlogNavbarLink[] => source.map(item => ({
     ...item,
     links: item.links && Array.isArray(item.links) ? mapNavLinks(item.links as IBlogNavbarLink[]) : [],
 }))

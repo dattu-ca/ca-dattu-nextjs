@@ -3,7 +3,7 @@ import {queryGetBlogPage} from "~/contentful/graphql/queries";
 import {IBlogPage} from "~/models";
 
 
-export const mapContentful = (item) => {
+export const mapContentful = (item:any) => {
     const result: IBlogPage = {banners: []};
 
 
