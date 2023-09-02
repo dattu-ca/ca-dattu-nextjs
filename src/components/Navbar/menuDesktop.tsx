@@ -11,7 +11,7 @@ const MenuDesktop = () => {
         'list-none '
     )}>
         {
-            navbar.navLinks.map(link => (
+            (navbar.links?.links || []).map(link => (
                 <li key={link.id}
                     className={clsx(
                         'm-0 p-0'

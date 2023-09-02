@@ -1,15 +1,16 @@
 import {client} from "../../client";
-import {content_type, BlogNavbarSkeleton, mapContentful, CONTENTFUL_BLOG_NAVBAR_FIELDS} from './model'
+import {content_type, SiteConfigSkeleton, CONTENTFUL_SITE_CONFIG_FIELDS, mapContentful} from './model'
 
-const getBlogNavbar = (slug: string) =>
+const getSiteConfig = (slug: string) =>
     client
-        .getEntries<BlogNavbarSkeleton>({
+        .getEntries<SiteConfigSkeleton>({
             content_type,
             select: [
-                CONTENTFUL_BLOG_NAVBAR_FIELDS.LOGO as 'fields',
-                CONTENTFUL_BLOG_NAVBAR_FIELDS.NAV_LINKS as 'fields',
+                CONTENTFUL_SITE_CONFIG_FIELDS.SITE_TITLE_TEMPLATE as 'fields',
+                CONTENTFUL_SITE_CONFIG_FIELDS.SITE_TITLE_DEFAULT as 'fields',
+                CONTENTFUL_SITE_CONFIG_FIELDS.SITE_DESCRIPTION as 'fields'
             ],
-            [CONTENTFUL_BLOG_NAVBAR_FIELDS.SLUG]: slug,
+            [CONTENTFUL_SITE_CONFIG_FIELDS.SLUG]: slug,
             include: 3,
         })
         .then((response) => {
@@ -22,6 +23,6 @@ const getBlogNavbar = (slug: string) =>
             throw new Error(`Cannot find content for [slug]=${slug}`)
         });
 
-export const blogNavbarServices = {
-    getBlogNavbar
+export const siteConfigServices = {
+    getSiteConfig
 }

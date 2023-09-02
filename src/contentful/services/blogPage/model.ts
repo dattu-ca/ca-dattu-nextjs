@@ -1,8 +1,8 @@
 import {Entry} from "contentful";
-import {IBlogPageFields, IBodySidebarFields} from "../../schema/generated";
-import {BlogNavbarSkeleton} from "../blogNavbar/model";
-
-import {IBlogNavbar, IBlogPage, IBodyImage} from "~/models";
+import {IBlogPageFields} from "../../schema/generated";
+import {mapContentfulList as mapContentfulList_bodyImages} from '../bodyImages';
+import { mapContentfulList as mapContentfulList_bodySidebar} from '../bodySidebar';
+import {IBlogPage} from "~/models";
 
 
 export const CONTENTFUL_BLOG_PAGE_FIELDS = {
@@ -19,50 +19,25 @@ export type BlogPageSkeleton = {
     contentTypeId: 'blogPage'
     fields: IBlogPageFields
 }
-export type BodySidebarSkeleton = {
-    contentTypeId: 'bodySidebar'
-    fields: IBodySidebarFields
-}
 
 
-export const mapContentful = (item: Entry<BlogPageSkeleton, undefined, string>) => {
-    const result: IBlogPage = {banners: []};
-    if (item.fields.slug) {
-        result.slug = item.fields.slug as string;
+export const mapContentful = (raw: Entry<BlogPageSkeleton, undefined, string>) => {
+    const source = raw.fields
+    const target: Partial<IBlogPage> = {};
+    if (source.slug) {
+        target.slug = source.slug as string;
     }
-    if (item.fields.heading) {
-        result.heading = item.fields.heading as string;
+    if (source.heading) {
+        target.heading = source.heading as string;
     }
-    if (item.fields.body) {
-        result.body = item.fields.body as object;
+    if (source.body) {
+        target.body = source.body as object;
     }
-    if (item.fields.banners) {
-        result.banners = (item.fields.banners as any[]).map(item => {
-            const banner: IBodyImage = {
-                slug: item.fields.slug as string,
-                desktopImage: {
-                    url: item.fields.desktopImage.fields.file.url,
-                    alt: item.fields.desktopImage.fields.description
-                }
-            }
-            if (item.fields.mobileImage) {
-                banner.mobileImage = {
-                    url: item.fields.mobileImage.fields.file.url,
-                    alt: item.fields.mobileImage.fields.description,
-                }
-            }
-            return banner;
-        })
+    if (source.banners) {
+        target.banners = mapContentfulList_bodyImages(source.banners);
     }
-    if (item.fields.sidebars) {
-        console.log('item.fields.sidebars', item.fields.sidebars)
-        const rawItems = item.fields.sidebars as BodySidebarSkeleton[];
-        result.sidebars = rawItems.map(raw => ({
-            slug: raw.fields.slug as string,
-            description: raw.fields.description as object,
-            heading: raw.fields.heading as string,
-            navigation: (raw.fields.navigation as Entry<BlogNavbarSkeleton>).fields as IBlogNavbar,
-        }));
+    if (source.sidebars) {
+        target.sidebars = mapContentfulList_bodySidebar(source.sidebars);
     }
-    return result;
+    return target as IBlogPage;
 }

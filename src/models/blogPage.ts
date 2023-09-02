@@ -6,6 +6,5 @@ export interface IBlogPage {
     heading?: string;
     banners: IBodyImage[]
     body?: object;
-    sidebar?: IBodySidebar;
     sidebars?: IBodySidebar[];
 }

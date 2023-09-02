@@ -1,9 +1,8 @@
-import {IBlogNavbar} from "./blogNavbar";
+import {IBodyLinks} from "./bodyLinks";
 
 export interface IBodySidebar {
-    slug: string;
     heading: string;
     description?: object;
-    navigation: IBlogNavbar;
+    navigation: IBodyLinks;
 }
 

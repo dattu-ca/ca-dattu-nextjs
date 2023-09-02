@@ -35,7 +35,7 @@ export const PageComponent = (props: IProps) => {
                         'w-full md:w-1/3'
                     )}>
                         {
-                            sidebars && sidebars.map(sidebar => <SidebarComponent key={sidebar.slug}
+                            sidebars && sidebars.map(sidebar => <SidebarComponent key={sidebar.heading}
                                                                                   sidebar={sidebar}/>)
                         }
                     </div>

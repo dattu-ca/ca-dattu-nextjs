@@ -14,7 +14,6 @@ const MenuMobile = () => {
         isMobileMenuOpen,
         toggleMobileMenu,
         closeMobileMenu,
-        siteConfig,
     } = useNavbarContext();
 
 
@@ -23,10 +22,10 @@ const MenuMobile = () => {
             ' relative'
         )}>
             <button onClick={toggleMobileMenu}
-                    aria-label={siteConfig.openMenuText}>
+                    aria-label={isMobileMenuOpen ? navbar.closeMenuText : navbar.openMenuText}>
                 {
                     isMobileMenuOpen
-                    ? (
+                        ? (
                             <ReactIcon icon='AiOutlineClose'
                                        className={clsx('h-6 w-6 text-site-primary')}
 
@@ -37,7 +36,7 @@ const MenuMobile = () => {
                                        className={clsx('h-6 w-6 text-site-primary')}
                             />
                         )
-                    
+
                 }
             </button>
 
@@ -57,7 +56,7 @@ const MenuMobile = () => {
                     'list-none '
                 )}>
                     {
-                        navbar.navLinks.map(link => (
+                        (navbar.links?.links || []).map(link => (
                             <li key={link.id}
                                 className={clsx(
                                     'm-0 p-0',
@@ -75,13 +74,13 @@ const MenuMobile = () => {
                                         'bg-site-color-dark',
                                         'text-xl',
                                         'border-l-[16px]',
-                                        
+
                                         {
                                             ['border-l-site-primary']: isCurrentPage(link.url),
                                             ['border-l-[transparent]']: !isCurrentPage(link.url)
                                         }
                                     )}
-                                    tabIndex={ isMobileMenuOpen ? undefined : -1}
+                                    tabIndex={isMobileMenuOpen ? undefined : -1}
                                 >
                                     {link.label}
                                     <span></span>

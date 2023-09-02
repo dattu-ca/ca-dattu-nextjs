@@ -1,15 +1,14 @@
 'use client';
-import {IBlogNavbar, ISiteConfig} from "~/models";
+import {ISiteNavbar} from "~/models";
 import {NavbarContextProvider} from './context';
 import {Navbar} from './navbar';
 
 interface IProps {
-    navbar: IBlogNavbar;
-    siteConfig: ISiteConfig;
+    navbar: ISiteNavbar;
 }
 
-const NavbarComponent = ({navbar, siteConfig}: IProps) => {
-    return <NavbarContextProvider siteConfig={siteConfig} navbar={navbar}>
+const NavbarComponent = ({navbar}: IProps) => {
+    return <NavbarContextProvider navbar={navbar}>
         <Navbar/>
     </NavbarContextProvider>
 }

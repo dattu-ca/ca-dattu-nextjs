@@ -45,16 +45,13 @@ const options = {
     renderText: (text) => <span dangerouslySetInnerHTML={{__html: text.replace(/\n/g, '<br/>')}}/>
 };
 
-const CustomRichTexRenderer = ({document}) => {
-    if(!document){
+const CustomRichTexRenderer = ({document} = {document: undefined}) => {
+    if (!document) {
         return null;
     }
     return <section>
         {documentToReactComponents(document, options)}
     </section>
-}
-CustomRichTexRenderer.defaultProps ={
-    document: undefined
 }
 
 CustomRichTexRenderer.propTypes = {
