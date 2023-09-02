@@ -80,23 +80,23 @@ export interface IBlogPostFields {
   /** Slug */
   slug: string;
 
-  /** Pre Heading */
-  preHeading?: string | undefined;
+  /** Publish Status */
+  publishStatus: "Draft" | "Published";
 
   /** Heading */
   heading: string;
 
-  /** Sub Heading */
-  subHeading?: string | undefined;
-
-  /** Banners */
-  banners?: IBodyImages[] | undefined;
-
   /** Body */
   body?: Document | undefined;
 
-  /** Sidebar */
-  sidebar?: IBodySidebar | undefined;
+  /** Sidebars */
+  sidebars?: IBodySidebar[] | undefined;
+
+  /** Categories */
+  categories?: IMetaCategory[] | undefined;
+
+  /** Short Body */
+  shortBody?: Document | undefined;
 }
 
 /** The main content model for posts. */
@@ -216,6 +216,37 @@ export interface IBodySidebar extends Entry<IBodySidebarFields> {
   };
 }
 
+export interface IMetaCategoryFields {
+  /** Entry Title */
+  entryTitle: string;
+
+  /** Slug */
+  slug: string;
+
+  /** Name */
+  name: string;
+
+  /** Heading */
+  heading?: string | undefined;
+}
+
+export interface IMetaCategory extends Entry<IMetaCategoryFields> {
+  sys: {
+    id: string;
+    type: string;
+    createdAt: string;
+    updatedAt: string;
+    locale: string;
+    contentType: {
+      sys: {
+        id: "metaCategory";
+        linkType: "ContentType";
+        type: "Link";
+      };
+    };
+  };
+}
+
 export interface ISiteConfigFields {
   /** Entry Title */
   entryTitle: string;
@@ -268,6 +299,7 @@ export type CONTENT_TYPE =
   | "bodyContent"
   | "bodyImages"
   | "bodySidebar"
+  | "metaCategory"
   | "siteConfig";
 
 export type IEntry =
@@ -277,6 +309,7 @@ export type IEntry =
   | IBodyContent
   | IBodyImages
   | IBodySidebar
+  | IMetaCategory
   | ISiteConfig;
 
 export type LOCALE_CODE = "en-CA";

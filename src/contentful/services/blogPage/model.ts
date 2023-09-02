@@ -55,7 +55,6 @@ export const mapContentful = (item: Entry<BlogPageSkeleton, undefined, string>) 
         })
     }
     if (item.fields.sidebars) {
-        console.log('item.fields.sidebars', item.fields.sidebars)
         const rawItems = item.fields.sidebars as BodySidebarSkeleton[];
         result.sidebars = rawItems.map(raw => ({
             slug: raw.fields.slug as string,
