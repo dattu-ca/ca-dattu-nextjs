@@ -10,7 +10,7 @@ import {Logo} from "./logo";
 const Navbar = () => {
     return (
         <div className={clsx(
-            'mb-[62px]'
+            'pb-[72px]'
         )}>
             <nav className={clsx(
                 'w-full bg-site-color-dark',
