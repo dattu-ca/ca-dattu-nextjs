@@ -53,9 +53,12 @@ const CustomRichTexRenderer = ({document}) => {
         {documentToReactComponents(document, options)}
     </section>
 }
+CustomRichTexRenderer.defaultProps ={
+    document: undefined
+}
 
 CustomRichTexRenderer.propTypes = {
-    document: PropTypes.object.isRequired
+    document: PropTypes.object
 }
 
 export {

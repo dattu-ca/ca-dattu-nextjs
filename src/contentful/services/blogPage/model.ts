@@ -1,6 +1,9 @@
 import {Entry} from "contentful";
 import {IBlogPageFields, IBodySidebarFields} from "../../schema/generated";
+import {BlogNavbarSkeleton} from "../blogNavbar/model";
+
 import {IBlogNavbar, IBlogPage, IBodyImage} from "~/models";
+
 
 export const CONTENTFUL_BLOG_PAGE_FIELDS = {
     HEADING: 'fields.heading',
@@ -15,6 +18,10 @@ export const content_type = 'blogPage';
 export type BlogPageSkeleton = {
     contentTypeId: 'blogPage'
     fields: IBlogPageFields
+}
+export type BodySidebarSkeleton = {
+    contentTypeId: 'bodySidebar'
+    fields: IBodySidebarFields
 }
 
 
@@ -48,12 +55,13 @@ export const mapContentful = (item: Entry<BlogPageSkeleton, undefined, string>) 
         })
     }
     if (item.fields.sidebars) {
-        const rawItems = item.fields.sidebars as Entry<IBodySidebarFields>[];
+        console.log('item.fields.sidebars', item.fields.sidebars)
+        const rawItems = item.fields.sidebars as BodySidebarSkeleton[];
         result.sidebars = rawItems.map(raw => ({
-            slug: raw.fields['slug'] as string,
-            description: raw.fields['description'] as object,
-            heading: raw.fields['heading'] as string,
-            navigation: raw.fields['navigation'].fields as IBlogNavbar,
+            slug: raw.fields.slug as string,
+            description: raw.fields.description as object,
+            heading: raw.fields.heading as string,
+            navigation: (raw.fields.navigation as Entry<BlogNavbarSkeleton>).fields as IBlogNavbar,
         }));
     }
     return result;
