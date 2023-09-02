@@ -5,7 +5,6 @@ interface IImage {
 
 
 export interface IBodyImage {
-    slug?: string;
     desktopImage?: IImage;
     mobileImage?: IImage;
 }

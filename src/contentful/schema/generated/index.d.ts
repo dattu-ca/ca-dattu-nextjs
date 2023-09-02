@@ -3,42 +3,6 @@
 import { Asset, Entry } from "contentful";
 import { Document } from "@contentful/rich-text-types";
 
-export interface IBlogNavbarFields {
-  /** Entry Title */
-  entryTitle: string;
-
-  /** Slug */
-  slug: string;
-
-  /** Logo */
-  logo?: IBodyImages | undefined;
-
-  /** Nav Links */
-  navLinks: Record<string, any>;
-
-  /** Links */
-  links?: IBodyLinks | undefined;
-}
-
-/** The various navigation bars that we see on the site.  Header navbar, footer navbar, etc. */
-
-export interface IBlogNavbar extends Entry<IBlogNavbarFields> {
-  sys: {
-    id: string;
-    type: string;
-    createdAt: string;
-    updatedAt: string;
-    locale: string;
-    contentType: {
-      sys: {
-        id: "blogNavbar";
-        linkType: "ContentType";
-        type: "Link";
-      };
-    };
-  };
-}
-
 export interface IBlogPageFields {
   /** Entry Title */
   entryTitle: string;
@@ -71,51 +35,6 @@ export interface IBlogPage extends Entry<IBlogPageFields> {
     contentType: {
       sys: {
         id: "blogPage";
-        linkType: "ContentType";
-        type: "Link";
-      };
-    };
-  };
-}
-
-export interface IBlogPostFields {
-  /** Entry Title */
-  entryTitle: string;
-
-  /** Slug */
-  slug: string;
-
-  /** Publish Status */
-  publishStatus: "Draft" | "Published";
-
-  /** Heading */
-  heading: string;
-
-  /** Body */
-  body?: Document | undefined;
-
-  /** Short Body */
-  shortBody?: Document | undefined;
-
-  /** Sidebars */
-  sidebars?: IBodySidebar[] | undefined;
-
-  /** Categories */
-  categories?: IMetaCategory[] | undefined;
-}
-
-/** The main content model for posts. */
-
-export interface IBlogPost extends Entry<IBlogPostFields> {
-  sys: {
-    id: string;
-    type: string;
-    createdAt: string;
-    updatedAt: string;
-    locale: string;
-    contentType: {
-      sys: {
-        id: "blogPost";
         linkType: "ContentType";
         type: "Link";
       };
@@ -224,7 +143,7 @@ export interface IBodySidebarFields {
   description?: Document | undefined;
 
   /** Navigation */
-  navigation?: IBlogNavbar | undefined;
+  navigation?: IBodyLinks | undefined;
 }
 
 /** This is the sidebar for a page or post. */
@@ -261,15 +180,6 @@ export interface ISiteConfigFields {
 
   /** Site Description */
   siteDescription: string;
-
-  /** Open Menu Text */
-  openMenuText?: string | undefined;
-
-  /** Close Menu Text */
-  closeMenuText?: string | undefined;
-
-  /** Search Label */
-  searchLabel?: string | undefined;
 }
 
 /** This is the Site Content Config. */
@@ -291,25 +201,97 @@ export interface ISiteConfig extends Entry<ISiteConfigFields> {
   };
 }
 
+export interface ISiteNavbarFields {
+  /** Entry Title */
+  entryTitle: string;
+
+  /** Slug */
+  slug: string;
+
+  /** Logo */
+  logo?: IBodyImages | undefined;
+
+  /** Links */
+  links?: IBodyLinks | undefined;
+
+  /** Open Menu Text */
+  openMenuText?: string | undefined;
+
+  /** Close Menu Text */
+  closeMenuText?: string | undefined;
+}
+
+/** The various navigation bars that we see on the site.  Header navbar, footer navbar, etc. */
+
+export interface ISiteNavbar extends Entry<ISiteNavbarFields> {
+  sys: {
+    id: string;
+    type: string;
+    createdAt: string;
+    updatedAt: string;
+    locale: string;
+    contentType: {
+      sys: {
+        id: "siteNavbar";
+        linkType: "ContentType";
+        type: "Link";
+      };
+    };
+  };
+}
+
+export interface ISiteSearchFields {
+  /** Entry Title */
+  entryTitle: string;
+
+  /** Slug */
+  slug: string;
+
+  /** Search Label */
+  searchLabel?: string | undefined;
+
+  /** Search Button Text */
+  searchButtonText?: string | undefined;
+}
+
+/** The search configs and all */
+
+export interface ISiteSearch extends Entry<ISiteSearchFields> {
+  sys: {
+    id: string;
+    type: string;
+    createdAt: string;
+    updatedAt: string;
+    locale: string;
+    contentType: {
+      sys: {
+        id: "siteSearch";
+        linkType: "ContentType";
+        type: "Link";
+      };
+    };
+  };
+}
+
 export type CONTENT_TYPE =
-  | "blogNavbar"
   | "blogPage"
-  | "blogPost"
   | "bodyContent"
   | "bodyImages"
   | "bodyLinks"
   | "bodySidebar"
-  | "siteConfig";
+  | "siteConfig"
+  | "siteNavbar"
+  | "siteSearch";
 
 export type IEntry =
-  | IBlogNavbar
   | IBlogPage
-  | IBlogPost
   | IBodyContent
   | IBodyImages
   | IBodyLinks
   | IBodySidebar
-  | ISiteConfig;
+  | ISiteConfig
+  | ISiteNavbar
+  | ISiteSearch;
 
 export type LOCALE_CODE = "en-CA";
 

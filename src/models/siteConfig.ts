@@ -1,5 +1,5 @@
 export interface ISiteConfig {
-    slug?: string;
+    slug: string;
     siteTitleTemplate?: string;
     siteTitleDefault?: string;
     siteDescription?: string;

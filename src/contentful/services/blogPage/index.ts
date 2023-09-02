@@ -24,20 +24,7 @@ const getBlogPage = (slug: string) =>
             throw new Error(`Cannot find content for [slug]=${slug}`)
         });
 
-const getBlogPagesList = () =>
-    client
-        .getEntries<BlogPageSkeleton>({
-            content_type,
-            select: [
-                CONTENTFUL_BLOG_PAGE_FIELDS.HEADING as 'fields',
-                CONTENTFUL_BLOG_PAGE_FIELDS.SLUG as 'fields'
-            ],
-        })
-        .then(response => response.items.map(item => {
-            return mapContentful(item);
-        }));
 
 export const blogPageServices = {
-    getBlogPage,
-    getBlogPagesList
+    getBlogPage
 }

@@ -1,13 +1,15 @@
 import {ReactElement} from "react";
 import clsx from "clsx";
-import NavbarComponent from "~/components/Navbar";
-import {getBlogNavbar, getSiteConfig} from "~/services";
+
+import {getSiteConfig} from "~/services";
 import './globals.css';
 import {CONTENTFUL_SLUGS} from "~/utils/constants";
 
+const {PRIMARY_SITE_CONFIG} = CONTENTFUL_SLUGS;
+
 
 export const generateMetadata = async () => {
-    const data = await getSiteConfig(CONTENTFUL_SLUGS.MAIN_SITE_CONFIG);
+    const data = await getSiteConfig(PRIMARY_SITE_CONFIG);
     const {siteTitleDefault, siteTitleTemplate, siteDescription} = data;
     return {
         title: {
@@ -23,12 +25,10 @@ interface IProps {
 }
 
 const RootLayout = async ({children}: IProps) => {
-    const navbar = await getBlogNavbar(CONTENTFUL_SLUGS.MAIN_NAV_BAR);
-    const siteConfig = await getSiteConfig(CONTENTFUL_SLUGS.MAIN_SITE_CONFIG);
     return (
         <html lang="en">
         <head>
-            <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+            <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
         </head>
         <body className={clsx(
             'bg-site-color-light text-site-tertiary'
@@ -44,7 +44,7 @@ const RootLayout = async ({children}: IProps) => {
                        'focus:translate-y-1.5'
                    )}>Skip to main Content</a>
             </div>
-            <NavbarComponent navbar={navbar} siteConfig={siteConfig} data-superjson/>
+
         </header>
         <main id="mainContent"
               className={clsx(
