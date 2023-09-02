@@ -15,7 +15,12 @@ export interface IBlogNavbarFields {
 
   /** Nav Links */
   navLinks: Record<string, any>;
+
+  /** Links */
+  links?: IBodyLinks | undefined;
 }
+
+/** The various navigation bars that we see on the site.  Header navbar, footer navbar, etc. */
 
 export interface IBlogNavbar extends Entry<IBlogNavbarFields> {
   sys: {
@@ -126,6 +131,8 @@ export interface IBodyContentFields {
   body?: Document | undefined;
 }
 
+/** This is the rich text content model. */
+
 export interface IBodyContent extends Entry<IBodyContentFields> {
   sys: {
     id: string;
@@ -147,9 +154,6 @@ export interface IBodyImagesFields {
   /** Entry Title */
   entryTitle: string;
 
-  /** Slug */
-  slug: string;
-
   /** Desktop Image */
   desktopImage?: Asset | undefined;
 
@@ -162,6 +166,8 @@ export interface IBodyImagesFields {
   /** Mobile Alt Text */
   mobileAltText?: string | undefined;
 }
+
+/** This will host all the images, contain the desktop image version, mobile image version, alt text, etc. */
 
 export interface IBodyImages extends Entry<IBodyImagesFields> {
   sys: {
@@ -180,12 +186,36 @@ export interface IBodyImages extends Entry<IBodyImagesFields> {
   };
 }
 
-export interface IBodySidebarFields {
+export interface IBodyLinksFields {
   /** Entry Title */
   entryTitle: string;
 
-  /** Slug */
-  slug: string;
+  /** Links */
+  links?: Record<string, any> | undefined;
+}
+
+/** The navigation links for pages, posts, etc. */
+
+export interface IBodyLinks extends Entry<IBodyLinksFields> {
+  sys: {
+    id: string;
+    type: string;
+    createdAt: string;
+    updatedAt: string;
+    locale: string;
+    contentType: {
+      sys: {
+        id: "bodyLinks";
+        linkType: "ContentType";
+        type: "Link";
+      };
+    };
+  };
+}
+
+export interface IBodySidebarFields {
+  /** Entry Title */
+  entryTitle: string;
 
   /** Heading */
   heading: string;
@@ -209,37 +239,6 @@ export interface IBodySidebar extends Entry<IBodySidebarFields> {
     contentType: {
       sys: {
         id: "bodySidebar";
-        linkType: "ContentType";
-        type: "Link";
-      };
-    };
-  };
-}
-
-export interface IMetaCategoryFields {
-  /** Entry Title */
-  entryTitle: string;
-
-  /** Slug */
-  slug: string;
-
-  /** Name */
-  name: string;
-
-  /** Heading */
-  heading?: string | undefined;
-}
-
-export interface IMetaCategory extends Entry<IMetaCategoryFields> {
-  sys: {
-    id: string;
-    type: string;
-    createdAt: string;
-    updatedAt: string;
-    locale: string;
-    contentType: {
-      sys: {
-        id: "metaCategory";
         linkType: "ContentType";
         type: "Link";
       };
@@ -298,8 +297,8 @@ export type CONTENT_TYPE =
   | "blogPost"
   | "bodyContent"
   | "bodyImages"
+  | "bodyLinks"
   | "bodySidebar"
-  | "metaCategory"
   | "siteConfig";
 
 export type IEntry =
@@ -308,8 +307,8 @@ export type IEntry =
   | IBlogPost
   | IBodyContent
   | IBodyImages
+  | IBodyLinks
   | IBodySidebar
-  | IMetaCategory
   | ISiteConfig;
 
 export type LOCALE_CODE = "en-CA";
