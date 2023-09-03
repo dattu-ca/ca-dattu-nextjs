@@ -61,28 +61,33 @@ const PaginationContextProvider = ({
 
             if (!links.find(link => link.pageNumber === 2)) {
                 const link = links.shift();
-                links.unshift({
-                    pageNumber: link.pageNumber,
-                    label: 0,
-                    showDots: true
-                });
+                if (link) {
+                    links.unshift({
+                        pageNumber: link.pageNumber,
+                        label: 0,
+                        showDots: true
+                    });
+                }
+
             }
             if (!links.find(link => link.pageNumber === totalPages - 1)) {
                 const link = links.pop();
-                links.push({
-                    pageNumber: link.pageNumber,
-                    label: 0,
-                    showDots: true
-                })
+                if (link) {
+                    links.push({
+                        pageNumber: link.pageNumber,
+                        label: 0,
+                        showDots: true
+                    })
+                }
             }
-            if (links.at(0).pageNumber !== 1) {
+            if (links[0].pageNumber !== 1) {
                 links.unshift({
                     pageNumber: 1,
                     label: 1,
                     showDots: false,
                 })
             }
-            if (links.at(-1).pageNumber !== totalPages) {
+            if (links[links.length - 1].pageNumber !== totalPages) {
                 links.push({
                     pageNumber: totalPages,
                     label: totalPages,

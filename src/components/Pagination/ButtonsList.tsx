@@ -43,8 +43,7 @@ const PaginationButtonsList = () => {
 
             <li className={'p-0 m-0'}>
                 <PaginationButton pageNumber={Math.min(totalPages, current + 1)}
-                                  aria='Go to next page'
-                                  current={current}>
+                                  aria='Go to next page'>
                     Next <ReactIcon icon='BsChevronRight' className='w-[auto] h-full'/>
                 </PaginationButton>
             </li>

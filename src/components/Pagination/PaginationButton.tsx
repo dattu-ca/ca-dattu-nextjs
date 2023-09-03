@@ -1,8 +1,8 @@
 'use client';
+import React, {ChangeEvent, useCallback} from "react";
 import clsx from 'clsx';
 import Link from 'next/link';
 import {useRouter} from "next/navigation";
-import React, {useCallback} from "react";
 import {usePaginationContext} from "./context";
 
 interface IButtonLinkProps {
@@ -16,14 +16,12 @@ const PaginationDots = () => {
     const {totalPages, getLinkUrl} = usePaginationContext();
     const router = useRouter();
 
-    const onChangeDdl = useCallback((e) => {
+    const onChangeDdl = useCallback((e: ChangeEvent<HTMLSelectElement>) => {
         const newCurrent = Number(e.target.value);
-        console.log('newCurrent', newCurrent)
         if (newCurrent > 0) {
-            console.log("GO TO PAGE", newCurrent)
             router.push(getLinkUrl(newCurrent));
         }
-    }, [getLinkUrl])
+    }, [getLinkUrl, router])
 
     return <select defaultValue={0}
                    onChange={onChangeDdl}
