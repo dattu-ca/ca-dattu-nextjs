@@ -42,6 +42,48 @@ export interface IBlogPage extends Entry<IBlogPageFields> {
   };
 }
 
+export interface IBlogPostFields {
+  /** Entry Title */
+  entryTitle: string;
+
+  /** Slug */
+  slug: string;
+
+  /** Heading */
+  heading: string;
+
+  /** Banners */
+  banners?: IBodyImages[] | undefined;
+
+  /** Body */
+  body?: Document | undefined;
+
+  /** Short Body */
+  shortBody?: Document | undefined;
+
+  /** Sidebars */
+  sidebars?: IBodySidebar[] | undefined;
+}
+
+/** The main content model for posts. */
+
+export interface IBlogPost extends Entry<IBlogPostFields> {
+  sys: {
+    id: string;
+    type: string;
+    createdAt: string;
+    updatedAt: string;
+    locale: string;
+    contentType: {
+      sys: {
+        id: "blogPost";
+        linkType: "ContentType";
+        type: "Link";
+      };
+    };
+  };
+}
+
 export interface IBodyContentFields {
   /** Entry Title */
   entryTitle: string;
@@ -275,6 +317,7 @@ export interface ISiteSearch extends Entry<ISiteSearchFields> {
 
 export type CONTENT_TYPE =
   | "blogPage"
+  | "blogPost"
   | "bodyContent"
   | "bodyImages"
   | "bodyLinks"
@@ -285,6 +328,7 @@ export type CONTENT_TYPE =
 
 export type IEntry =
   | IBlogPage
+  | IBlogPost
   | IBodyContent
   | IBodyImages
   | IBodyLinks
