@@ -4,6 +4,6 @@ export const CONTENTFUL_SLUGS = Object.freeze({
 });
 
 export const SITE_CONSTANTS = Object.freeze({
-    DEFAULT_MAX_POSTS_PER_PAGE:  2, //process.env.NEXT_PUBLIC_DEFAULT_MAX_POSTS_PER_PAGE as number,
-    DEFAULT_PAGINATION_MAX_LINKS: 10, //process.env.NEXT_PUBLIC_DEFAULT_PAGINATION_MAX_LINKS as number,
+    DEFAULT_MAX_POSTS_PER_PAGE:  1, //Math.max(1, process.env.NEXT_PUBLIC_DEFAULT_MAX_POSTS_PER_PAGE as number),
+    DEFAULT_PAGINATION_MAX_LINKS: 3, // Math.max(5, process.env.NEXT_PUBLIC_DEFAULT_PAGINATION_MAX_LINKS as number),
 })

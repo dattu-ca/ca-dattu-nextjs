@@ -1,7 +1,7 @@
 'use client';
+import React from "react";
 import clsx from 'clsx';
 import {ReactIcon} from '~/components/ReactIcon';
-import React from "react";
 import {PaginationButton} from "./PaginationButton";
 import {usePaginationContext} from "./context";
 
@@ -14,36 +14,30 @@ const PaginationButtonsList = () => {
 
     return <nav>
         <ul className={clsx(
-            'list-none ',
-            'flex items-center justify-center flex-wrap gap-2'
+            'list-none m-0 p-0',
+            'flex items-center justify-center flex-wrap',
+            'border border-solid border-2 border-gray-400',
+            'rounded-2xl',
         )}>
-            <li>
+            <li className={'p-0 m-0'}>
                 <PaginationButton pageNumber={Math.max(1, current - 1)}
                                   aria='Go to previous page'>
-                    <div className={clsx(
-                        'flex gap-1 items-center'
-                    )}>
-                        <ReactIcon icon='BsChevronLeft' className='w-[auto] h-full'/> Previous
-                    </div>
+                    <ReactIcon icon='BsChevronLeft' className='w-[auto] h-full'/> Previous
                 </PaginationButton>
             </li>
             {
-                links.map(link => <li key={link.pageNumber}>
+                links.map(link => <li key={link.pageNumber} className={'p-0 m-0'}>
                     <PaginationButton pageNumber={link.pageNumber}
                                       showDots={link.showDots}>
                         {link.label}
                     </PaginationButton>
                 </li>)
             }
-            <li>
+            <li className={'p-0 m-0'}>
                 <PaginationButton pageNumber={Math.min(totalPages, current + 1)}
                                   aria='Go to next page'
                                   current={current}>
-                    <div className={clsx(
-                        'flex gap-1 items-center'
-                    )}>
-                        Next <ReactIcon icon='BsChevronRight' className='w-[auto] h-full'/>
-                    </div>
+                    Next <ReactIcon icon='BsChevronRight' className='w-[auto] h-full'/>
                 </PaginationButton>
             </li>
         </ul>
