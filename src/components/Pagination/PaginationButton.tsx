@@ -18,7 +18,9 @@ const PaginationDots = () => {
 
     const onChangeDdl = useCallback((e) => {
         const newCurrent = Number(e.target.value);
+        console.log('newCurrent', newCurrent)
         if (newCurrent > 0) {
+            console.log("GO TO PAGE", newCurrent)
             router.push(getLinkUrl(newCurrent));
         }
     }, [getLinkUrl])
@@ -37,7 +39,8 @@ const PaginationDots = () => {
                    aria-label='Select page number'>
         <option value={0}>...</option>
         {
-            (Array.from({length: Number(totalPages)}, (_, i) => i + 1)).map(p => <option key={p}>{p}</option>)
+            (Array.from({length: Number(totalPages)}, (_, i) => i + 1)).map(p => <option key={p} value={p}>Go to
+                page {p}</option>)
         }
     </select>
 }
@@ -52,9 +55,9 @@ const PaginationButton = ({children, pageNumber, aria, showDots}: IButtonLinkPro
         'flex items-center justify-center gap-1',
         'transition-all duration-200',
         {
-            ['text-gray-400 hover:text-gray-400 ' ] : isCurrent,
-            ['text-black hover:text-black hover:bg-gray-300 '+
-            'hover:after:w-0'] : !isCurrent
+            ['text-gray-400 hover:text-gray-400 ']: isCurrent,
+            ['text-black hover:text-black hover:bg-gray-300 ' +
+            'hover:after:w-0']: !isCurrent
         }
     );
 

@@ -2,7 +2,7 @@
 import React from "react";
 import clsx from 'clsx';
 import {ReactIcon} from '~/components/ReactIcon';
-import {PaginationButton} from "./PaginationButton";
+import {PaginationButton, PaginationDots} from "./PaginationButton";
 import {usePaginationContext} from "./context";
 
 
@@ -26,13 +26,21 @@ const PaginationButtonsList = () => {
                 </PaginationButton>
             </li>
             {
-                links.map(link => <li key={link.pageNumber} className={'p-0 m-0'}>
+                links.map(link => <li key={link.pageNumber} className={'p-0 m-0 hidden md:block'}>
                     <PaginationButton pageNumber={link.pageNumber}
                                       showDots={link.showDots}>
                         {link.label}
                     </PaginationButton>
                 </li>)
             }
+            {
+                links.length > 0 && (
+                    <li className={'p-0 m-0 md:hidden'}>
+                        <PaginationDots/>
+                    </li>
+                )
+            }
+
             <li className={'p-0 m-0'}>
                 <PaginationButton pageNumber={Math.min(totalPages, current + 1)}
                                   aria='Go to next page'

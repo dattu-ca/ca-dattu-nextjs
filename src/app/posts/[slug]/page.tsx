@@ -1,4 +1,5 @@
-import { redirect } from 'next/navigation'
+import {redirect} from 'next/navigation';
+import {RedirectType} from "next/dist/client/components/redirect";
 import {getBlogPosts} from "~/services";
 import {PaginationComponent} from "~/components/Pagination";
 import {SITE_CONSTANTS} from "~/utils/constants";
@@ -14,7 +15,7 @@ const Page = async (props: IProps) => {
     const {params} = props;
     const {slug} = params;
     if(+slug === 1){
-        redirect('/');
+        redirect('/', RedirectType.replace);
         return null;
     }
     
@@ -23,7 +24,7 @@ const Page = async (props: IProps) => {
 
     const {items, total} = await getBlogPosts(skip, limit);
     if(items.length === 0){
-        redirect('/');
+        redirect('/', RedirectType.replace);
         return null;
     }
 
