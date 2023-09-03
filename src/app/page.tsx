@@ -10,7 +10,7 @@ const Page = async () => {
     // const {items, total} = await getBlogPosts(skip, limit);
     
     return <div>
-        <h1>HOME PAGE</h1>
+        <h1>HOME PAGE NO DATA LOADING</h1>
         {/*<PaginationComponent skip={skip}*/}
         {/*                     limit={limit}*/}
         {/*                     total={total}*/}
