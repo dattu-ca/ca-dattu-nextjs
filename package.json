@@ -10,7 +10,6 @@
     "codegen": "contentful-typescript-codegen --output src/contentful/schema/generated/index.d.ts"
   },
   "devDependencies": {
-    "@netlify/plugin-nextjs": "^4.29.5-appdir.0",
     "@types/lodash": "^4.14.197",
     "@types/node": "20.5.9",
     "@types/react": "18.2.21",
