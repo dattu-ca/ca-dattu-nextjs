@@ -1,17 +1,25 @@
 import React from 'react';
-import {useNavbarContext} from "./context";
 import clsx from "clsx";
 import Link from "next/link";
+import {useNavbarContext} from "./context";
 
 const MenuDesktop = () => {
-    const {navbar, getAriaCurrent, isCurrentPage} = useNavbarContext();
+    const {
+        ctxData: {
+            links
+        },
+        ctxFunctions: {
+            getAriaCurrent,
+            isCurrentPage
+        }
+    } = useNavbarContext();
     return <ul className={clsx(
         'm-0 p-0',
         'flex justify-end items-center ',
         'list-none '
     )}>
         {
-            (navbar.links?.links || []).map(link => (
+            links.map(link => (
                 <li key={link.id}
                     className={clsx(
                         'm-0 p-0'

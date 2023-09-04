@@ -1,27 +1,43 @@
 import {createContext, ReactElement, useCallback, useContext, useMemo, useState} from "react";
-import {ISiteNavbar} from "~/models";
+import {IBodyImage, ILink, ISiteNavbar} from "~/models";
 import {usePathname} from "next/navigation";
 
 
 interface INavbarContextProps {
-    navbar: Partial<ISiteNavbar>;
-    isMobileMenuOpen: boolean;
-    openMobileMenu: () => void;
-    closeMobileMenu: () => void;
-    toggleMobileMenu: () => void;
-    isCurrentPage: (value: string) => boolean;
-    getAriaCurrent: (value: string) => 'page' | undefined;
+    ctxData: {
+        logo: IBodyImage;
+        openMenuText: string;
+        closeMenuText: string;
+        links: ILink[];
+
+        isMobileMenuOpen: boolean;
+    },
+    ctxFunctions: {
+        openMobileMenu: () => void;
+        closeMobileMenu: () => void;
+        toggleMobileMenu: () => void;
+        isCurrentPage: (value: string) => boolean;
+        getAriaCurrent: (value: string) => 'page' | undefined;
+    }
 }
 
 const NavbarContext = createContext<INavbarContextProps>({
-    navbar: {},
-    desktopSubMenuOpenId: undefined,
-    isMobileMenuOpen: false,
-    openMobileMenu: () => ({}),
-    closeMobileMenu: () => ({}),
-    toggleMobileMenu: () => ({}),
-    isCurrentPage: () => false,
-    getAriaCurrent: () => undefined,
+    ctxData: {
+        logo: {},
+        openMenuText: 'Open Menu',
+        closeMenuText: 'CLose Menu',
+        links: [],
+        isMobileMenuOpen: false,
+    },
+    ctxFunctions: {
+        openMobileMenu: () => ({}),
+        closeMobileMenu: () => ({}),
+        toggleMobileMenu: () => ({}),
+        isCurrentPage: () => false,
+        getAriaCurrent: () => undefined,
+    },
+
+
 } as INavbarContextProps)
 
 const useNavbarContext = () => {
@@ -37,11 +53,11 @@ interface INavbarContextProviderProps {
     navbar: {}
 }
 
-const NavbarContextProvider = ({children, navbar:rawNavbar}: INavbarContextProviderProps) => {
+const NavbarContextProvider = ({children, navbar: rawNavbar}: INavbarContextProviderProps) => {
     const navbar = rawNavbar as ISiteNavbar;
-    
+
     const path = usePathname();
-    
+
     const [isMobileMenuOpen, setIsMobileMenuOpen] = useState<boolean>(false);
 
     const isCurrentPage = useCallback((url: string, exact: boolean = false) => {
@@ -60,13 +76,20 @@ const NavbarContextProvider = ({children, navbar:rawNavbar}: INavbarContextProvi
 
 
     const props = useMemo<INavbarContextProps>(() => ({
-        navbar: navbar,
-        isMobileMenuOpen: isMobileMenuOpen,
-        openMobileMenu: () => setIsMobileMenuOpen(true),
-        closeMobileMenu: () => setIsMobileMenuOpen(false),
-        toggleMobileMenu: () => setIsMobileMenuOpen(prev => !prev),
-        isCurrentPage: isCurrentPage,
-        getAriaCurrent: getAriaCurrent,
+        ctxData: {
+            logo: navbar.logo,
+            openMenuText: navbar.openMenuText,
+            closeMenuText: navbar.closeMenuText,
+            links: navbar.links.links || [],
+            isMobileMenuOpen: isMobileMenuOpen,
+        },
+        ctxFunctions: {
+            openMobileMenu: () => setIsMobileMenuOpen(true),
+            closeMobileMenu: () => setIsMobileMenuOpen(false),
+            toggleMobileMenu: () => setIsMobileMenuOpen(prev => !prev),
+            isCurrentPage: isCurrentPage,
+            getAriaCurrent: getAriaCurrent,
+        },
     } as INavbarContextProps), [navbar, isMobileMenuOpen, isCurrentPage, getAriaCurrent]);
 
 

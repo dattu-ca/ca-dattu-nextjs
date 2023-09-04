@@ -1,9 +1,9 @@
 'use client';
-import React, {ChangeEvent, useCallback} from "react";
+import React from "react";
 import clsx from 'clsx';
 import Link from 'next/link';
-import {useRouter} from "next/navigation";
 import {usePaginationContext} from "./context";
+import {PaginationDots} from "./PaginationDots";
 
 interface IButtonLinkProps {
     children: React.ReactNode,
@@ -12,40 +12,9 @@ interface IButtonLinkProps {
     showDots?: boolean;
 }
 
-const PaginationDots = () => {
-    const {totalPages, getLinkUrl} = usePaginationContext();
-    const router = useRouter();
-
-    const onChangeDdl = useCallback((e: ChangeEvent<HTMLSelectElement>) => {
-        const newCurrent = Number(e.target.value);
-        if (newCurrent > 0) {
-            router.push(getLinkUrl(newCurrent));
-        }
-    }, [getLinkUrl, router])
-
-    return <select defaultValue={0}
-                   onChange={onChangeDdl}
-                   className={clsx(
-                       'transition-all duration-200',
-                       'appearance-none relative',
-                       'py-4 px-4',
-                       'w-[10px] box-content',
-                       'h-full bg-transparent',
-                       'text-center text-black',
-                       'hover:cursor-pointer hover:bg-gray-300 ',
-                   )}
-                   aria-label='Select page number'>
-        <option value={0}>...</option>
-        {
-            (Array.from({length: Number(totalPages)}, (_, i) => i + 1)).map(p => <option key={p} value={p}>Go to
-                page {p}</option>)
-        }
-    </select>
-}
-
 
 const PaginationButton = ({children, pageNumber, aria, showDots}: IButtonLinkProps) => {
-    const {current, getLinkUrl} = usePaginationContext();
+    const {ctxData: {current}, ctxFunctions: {getLinkUrl}} = usePaginationContext();
     const isCurrent = current === pageNumber;
 
     const btnClasses = clsx(
@@ -78,6 +47,5 @@ const PaginationButton = ({children, pageNumber, aria, showDots}: IButtonLinkPro
 }
 
 export {
-    PaginationDots,
     PaginationButton
 }

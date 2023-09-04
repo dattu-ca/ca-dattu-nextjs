@@ -1,19 +1,25 @@
 import React from 'react';
+import clsx from "clsx";
+import Link from "next/link";
 import {ClickAwayListener} from '@mui/base/ClickAwayListener';
 
 import {useNavbarContext} from "./context";
-import clsx from "clsx";
-import Link from "next/link";
 import {ReactIcon} from "~/components/ReactIcon";
 
 const MenuMobile = () => {
     const {
-        navbar,
-        getAriaCurrent,
-        isCurrentPage,
-        isMobileMenuOpen,
-        toggleMobileMenu,
-        closeMobileMenu,
+        ctxData: {
+            openMenuText,
+            closeMenuText,
+            links,
+            isMobileMenuOpen,
+        },
+        ctxFunctions: {
+            getAriaCurrent,
+            isCurrentPage,
+            toggleMobileMenu,
+            closeMobileMenu,
+        }
     } = useNavbarContext();
 
 
@@ -22,7 +28,7 @@ const MenuMobile = () => {
             ' relative'
         )}>
             <button onClick={toggleMobileMenu}
-                    aria-label={isMobileMenuOpen ? navbar.closeMenuText : navbar.openMenuText}>
+                    aria-label={isMobileMenuOpen ? closeMenuText : openMenuText}>
                 {
                     isMobileMenuOpen
                         ? (
@@ -56,7 +62,7 @@ const MenuMobile = () => {
                     'list-none '
                 )}>
                     {
-                        (navbar.links?.links || []).map(link => (
+                        links.map(link => (
                             <li key={link.id}
                                 className={clsx(
                                     'm-0 p-0',
