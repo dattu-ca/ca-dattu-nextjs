@@ -11,6 +11,7 @@
     "codegen": "contentful-typescript-codegen --output src/contentful/schema/generated/index.d.ts"
   },
   "devDependencies": {
+    "@netlify/plugin-nextjs": "^4.29.5-appdir.0",
     "@types/lodash": "^4.14.197",
     "@types/node": "20.5.9",
     "@types/react": "18.2.21",
@@ -19,7 +20,7 @@
     "contentful-typescript-codegen": "^3.4.0",
     "dotenv": "^16.3.1",
     "eslint": "8.48.0",
-    "eslint-config-next": "13.4.19",
+    "eslint-config-next": "13.4.9",
     "typescript": "5.2.2"
   },
   "dependencies": {
@@ -34,7 +35,7 @@
     "daisyui": "^3.6.4",
     "graphql": "^16.8.0",
     "lodash": "^4.17.21",
-    "next": "13.4.19",
+    "next": "13.4.9",
     "next-compose-plugins": "^2.2.1",
     "next-images": "^1.8.5",
     "next-superjson-plugin": "^0.5.9",
