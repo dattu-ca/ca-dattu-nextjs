@@ -111,6 +111,33 @@ export interface IBodyContent extends Entry<IBodyContentFields> {
   };
 }
 
+export interface IBodyFormFields {
+  /** Entry Title */
+  entryTitle: string;
+
+  /** Form JSON */
+  formJson?: Record<string, any> | undefined;
+}
+
+/** This is a form.  For now, it will be a simple JSON file. */
+
+export interface IBodyForm extends Entry<IBodyFormFields> {
+  sys: {
+    id: string;
+    type: string;
+    createdAt: string;
+    updatedAt: string;
+    locale: string;
+    contentType: {
+      sys: {
+        id: "bodyForm";
+        linkType: "ContentType";
+        type: "Link";
+      };
+    };
+  };
+}
+
 export interface IBodyImagesFields {
   /** Entry Title */
   entryTitle: string;
@@ -319,6 +346,7 @@ export type CONTENT_TYPE =
   | "blogPage"
   | "blogPost"
   | "bodyContent"
+  | "bodyForm"
   | "bodyImages"
   | "bodyLinks"
   | "bodySidebar"
@@ -330,6 +358,7 @@ export type IEntry =
   | IBlogPage
   | IBlogPost
   | IBodyContent
+  | IBodyForm
   | IBodyImages
   | IBodyLinks
   | IBodySidebar
