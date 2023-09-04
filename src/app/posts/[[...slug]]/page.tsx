@@ -16,7 +16,7 @@ const Page = async (props: IProps) => {
     const {slug: paramSlug} = params;
     const slug = paramSlug ? +paramSlug : 1;
 
-    const limit = 1;//SITE_CONSTANTS.DEFAULT_MAX_POSTS_PER_PAGE;
+    const limit = SITE_CONSTANTS.DEFAULT_MAX_POSTS_PER_PAGE;
     const skip = (+slug - 1) * limit;
 
     const {items, total} = await getBlogPosts(skip, limit);
