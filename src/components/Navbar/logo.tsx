@@ -1,13 +1,11 @@
 'use client';
-import {useNavbarContext} from './context';
 import clsx from "clsx";
+import {useNavbarContext} from './context';
 import classes from './logo.module.css';
 
 
-
-
 const Logo = () => {
-    const {logo} = useNavbarContext();
+    const {ctxData: {logo}} = useNavbarContext();
 
     return (
         <picture className={clsx(

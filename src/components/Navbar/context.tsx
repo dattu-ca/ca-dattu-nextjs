@@ -4,32 +4,40 @@ import {usePathname} from "next/navigation";
 
 
 interface INavbarContextProps {
-    logo: IBodyImage;
-    openMenuText: string;
-    closeMenuText: string;
-    links: ILink[];
-    
-    isMobileMenuOpen: boolean;
-    
-    openMobileMenu: () => void;
-    closeMobileMenu: () => void;
-    toggleMobileMenu: () => void;
-    isCurrentPage: (value: string) => boolean;
-    getAriaCurrent: (value: string) => 'page' | undefined;
+    ctxData: {
+        logo: IBodyImage;
+        openMenuText: string;
+        closeMenuText: string;
+        links: ILink[];
+
+        isMobileMenuOpen: boolean;
+    },
+    ctxFunctions: {
+        openMobileMenu: () => void;
+        closeMobileMenu: () => void;
+        toggleMobileMenu: () => void;
+        isCurrentPage: (value: string) => boolean;
+        getAriaCurrent: (value: string) => 'page' | undefined;
+    }
 }
 
 const NavbarContext = createContext<INavbarContextProps>({
-    logo: {},
-    openMenuText: 'Open Menu',
-    closeMenuText: 'CLose Menu',
-    links: [],
-    
-    isMobileMenuOpen: false,
-    openMobileMenu: () => ({}),
-    closeMobileMenu: () => ({}),
-    toggleMobileMenu: () => ({}),
-    isCurrentPage: () => false,
-    getAriaCurrent: () => undefined,
+    ctxData: {
+        logo: {},
+        openMenuText: 'Open Menu',
+        closeMenuText: 'CLose Menu',
+        links: [],
+        isMobileMenuOpen: false,
+    },
+    ctxFunctions: {
+        openMobileMenu: () => ({}),
+        closeMobileMenu: () => ({}),
+        toggleMobileMenu: () => ({}),
+        isCurrentPage: () => false,
+        getAriaCurrent: () => undefined,
+    },
+
+
 } as INavbarContextProps)
 
 const useNavbarContext = () => {
@@ -68,16 +76,20 @@ const NavbarContextProvider = ({children, navbar: rawNavbar}: INavbarContextProv
 
 
     const props = useMemo<INavbarContextProps>(() => ({
-        logo: navbar.logo,
-        openMenuText: navbar.openMenuText,
-        closeMenuText: navbar.closeMenuText,
-        links: navbar.links.links || [],
-        isMobileMenuOpen: isMobileMenuOpen,
-        openMobileMenu: () => setIsMobileMenuOpen(true),
-        closeMobileMenu: () => setIsMobileMenuOpen(false),
-        toggleMobileMenu: () => setIsMobileMenuOpen(prev => !prev),
-        isCurrentPage: isCurrentPage,
-        getAriaCurrent: getAriaCurrent,
+        ctxData: {
+            logo: navbar.logo,
+            openMenuText: navbar.openMenuText,
+            closeMenuText: navbar.closeMenuText,
+            links: navbar.links.links || [],
+            isMobileMenuOpen: isMobileMenuOpen,
+        },
+        ctxFunctions: {
+            openMobileMenu: () => setIsMobileMenuOpen(true),
+            closeMobileMenu: () => setIsMobileMenuOpen(false),
+            toggleMobileMenu: () => setIsMobileMenuOpen(prev => !prev),
+            isCurrentPage: isCurrentPage,
+            getAriaCurrent: getAriaCurrent,
+        },
     } as INavbarContextProps), [navbar, isMobileMenuOpen, isCurrentPage, getAriaCurrent]);
 
 
