@@ -7,14 +7,14 @@ import {usePaginationContext} from "./context";
 
 const PaginationDots = () => {
     const {ctxData: {totalPages}, ctxFunctions: {getLinkUrl}} = usePaginationContext();
-    const router = useRouter();
+    const {push: routerPush} = useRouter();
 
     const onChangeDdl = useCallback((e: ChangeEvent<HTMLSelectElement>) => {
         const newCurrent = Number(e.target.value);
         if (newCurrent > 0) {
-            router.push(getLinkUrl(newCurrent));
+            routerPush(getLinkUrl(newCurrent));
         }
-    }, [getLinkUrl, router])
+    }, [getLinkUrl, routerPush])
 
     return <select defaultValue={0}
                    onChange={onChangeDdl}
@@ -27,7 +27,8 @@ const PaginationDots = () => {
                        'text-center text-black',
                        'hover:cursor-pointer hover:bg-gray-300 ',
                    )}
-                   aria-label='Select page number'>
+                   aria-label='Select page number'
+                   data-testid='pagination-dots'>
         <option value={0}>...</option>
         {
             (Array.from({length: Number(totalPages)}, (_, i) => i + 1)).map(p => <option key={p} value={p}>Go to

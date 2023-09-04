@@ -7,8 +7,9 @@ const createJestConfig = nextJest({
 
 // Add any custom config to be passed to Jest
 const customJestConfig = {
-  setupFilesAfterEnv: ['<rootDir>/jest.setup.js'],
+  setupFilesAfterEnv: ['<rootDir>/testSetup/jest.setup.js'],
   testEnvironment: 'jest-environment-jsdom',
+  setupFiles: ['<rootDir>/testSetup/tests.env.js'],
 }
 
 // createJestConfig is exported this way to ensure that next/jest can load the Next.js config which is async
