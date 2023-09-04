@@ -48,7 +48,7 @@ const PaginationContextProvider = ({
     const maxNumberOfLinks = propMaxNumberOfLinks || MAX_NUMBER_OF_LINKS;
     const totalPages = Math.ceil((total / limit));
 
-    const listOfLinks = useMemo(() => getPaginationLinks(maxNumberOfLinks, totalPages, current), [maxNumberOfLinks, totalPages, current]);
+    const listOfLinks = useMemo(() => getPaginationLinks(totalPages, current, maxNumberOfLinks), [totalPages, current, maxNumberOfLinks]);
 
     const getLinkUrl = useCallback((pageNumber: number) => {
         return `${linkPrefix}/${pageNumber}`
