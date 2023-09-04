@@ -2,12 +2,13 @@
 import React from "react";
 import clsx from 'clsx';
 import {ReactIcon} from '~/components/ReactIcon';
-import {PaginationButton, PaginationDots} from "./PaginationButton";
+import {PaginationButton} from "./PaginationButton";
+import {PaginationDots} from './PaginationDots';
 import {usePaginationContext} from "./context";
 
 
 const PaginationButtonsList = () => {
-    const {totalPages, listOfLinks: links, current} = usePaginationContext();
+    const {ctxData: {totalPages, listOfLinks: links, current}} = usePaginationContext();
     if (totalPages === 1) {
         return null;
     }

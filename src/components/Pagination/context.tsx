@@ -7,16 +7,17 @@ import {getPaginationLinks} from "./utils";
 const MAX_NUMBER_OF_LINKS = SITE_CONSTANTS.DEFAULT_PAGINATION_MAX_LINKS;
 
 interface IPaginationContextProps {
-    total: number;
-    skip: number;
-    limit: number;
-    current: number;
-    totalPages: number;
-    listOfLinks: any[];
-    getLinkUrl: (pageNumber: number) => string;
+    ctxData: {
+        current: number;
+        totalPages: number;
+        listOfLinks: any[];
+    },
+    ctxFunctions: {
+        getLinkUrl: (pageNumber: number) => string;
+    }
 }
 
-const PaginationContext = createContext<IPaginationContextProps>({} as IPaginationContextProps)
+const PaginationContext = createContext<IPaginationContextProps>({ctxData: {}, ctxFunctions: {}} as IPaginationContextProps)
 
 const usePaginationContext = () => {
     const context = useContext(PaginationContext);
@@ -28,7 +29,7 @@ const usePaginationContext = () => {
 
 interface IPaginationContextProviderProps {
     children: ReactElement,
-    total: number;
+    totalItems: number;
     skip: number;
     limit: number;
     current: number;
@@ -38,15 +39,14 @@ interface IPaginationContextProviderProps {
 
 const PaginationContextProvider = ({
                                        children,
-                                       total,
-                                       skip,
+                                       totalItems,
                                        limit,
                                        current,
                                        maxNumberOfLinks: propMaxNumberOfLinks,
                                        linkPrefix,
                                    }: IPaginationContextProviderProps) => {
     const maxNumberOfLinks = propMaxNumberOfLinks || MAX_NUMBER_OF_LINKS;
-    const totalPages = Math.ceil((total / limit));
+    const totalPages = Math.ceil((totalItems / limit));
 
     const listOfLinks = useMemo(() => getPaginationLinks(totalPages, current, maxNumberOfLinks), [totalPages, current, maxNumberOfLinks]);
 
@@ -56,14 +56,15 @@ const PaginationContextProvider = ({
 
 
     const props = useMemo<IPaginationContextProps>(() => ({
-        total,
-        skip,
-        limit,
-        current,
-        totalPages,
-        listOfLinks,
-        getLinkUrl
-    } as IPaginationContextProps), [total, skip, limit, current, totalPages, listOfLinks, getLinkUrl]);
+        ctxData: {
+            current,
+            totalPages,
+            listOfLinks,
+        },
+        ctxFunctions: {
+            getLinkUrl
+        }
+    } as IPaginationContextProps), [current, totalPages, listOfLinks, getLinkUrl]);
 
     return <PaginationContext.Provider value={props}>
         {children}

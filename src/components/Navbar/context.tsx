@@ -10,6 +10,7 @@ interface INavbarContextProps {
     links: ILink[];
     
     isMobileMenuOpen: boolean;
+    
     openMobileMenu: () => void;
     closeMobileMenu: () => void;
     toggleMobileMenu: () => void;

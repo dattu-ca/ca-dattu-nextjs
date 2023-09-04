@@ -18,7 +18,7 @@ const PaginationComponent = ({total, skip, limit, current, linkPrefix}: IProps) 
         return null;
     }
 
-    return <PaginationContextProvider total={total}
+    return <PaginationContextProvider totalItems={total}
                                       skip={skip}
                                       limit={limit}
                                       current={current}
