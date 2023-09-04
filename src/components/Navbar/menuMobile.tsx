@@ -8,7 +8,9 @@ import {ReactIcon} from "~/components/ReactIcon";
 
 const MenuMobile = () => {
     const {
-        navbar,
+        openMenuText,
+        closeMenuText,
+        links,
         getAriaCurrent,
         isCurrentPage,
         isMobileMenuOpen,
@@ -22,7 +24,7 @@ const MenuMobile = () => {
             ' relative'
         )}>
             <button onClick={toggleMobileMenu}
-                    aria-label={isMobileMenuOpen ? navbar.closeMenuText : navbar.openMenuText}>
+                    aria-label={isMobileMenuOpen ? closeMenuText : openMenuText}>
                 {
                     isMobileMenuOpen
                         ? (
@@ -56,7 +58,7 @@ const MenuMobile = () => {
                     'list-none '
                 )}>
                     {
-                        (navbar.links?.links || []).map(link => (
+                        links.map(link => (
                             <li key={link.id}
                                 className={clsx(
                                     'm-0 p-0',

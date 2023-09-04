@@ -1,10 +1,14 @@
 import {createContext, ReactElement, useCallback, useContext, useMemo, useState} from "react";
-import {ISiteNavbar} from "~/models";
+import {IBodyImage, ILink, ISiteNavbar} from "~/models";
 import {usePathname} from "next/navigation";
 
 
 interface INavbarContextProps {
-    navbar: Partial<ISiteNavbar>;
+    logo: IBodyImage;
+    openMenuText: string;
+    closeMenuText: string;
+    links: ILink[];
+    
     isMobileMenuOpen: boolean;
     openMobileMenu: () => void;
     closeMobileMenu: () => void;
@@ -14,8 +18,11 @@ interface INavbarContextProps {
 }
 
 const NavbarContext = createContext<INavbarContextProps>({
-    navbar: {},
-    desktopSubMenuOpenId: undefined,
+    logo: {},
+    openMenuText: 'Open Menu',
+    closeMenuText: 'CLose Menu',
+    links: [],
+    
     isMobileMenuOpen: false,
     openMobileMenu: () => ({}),
     closeMobileMenu: () => ({}),
@@ -37,11 +44,11 @@ interface INavbarContextProviderProps {
     navbar: {}
 }
 
-const NavbarContextProvider = ({children, navbar:rawNavbar}: INavbarContextProviderProps) => {
+const NavbarContextProvider = ({children, navbar: rawNavbar}: INavbarContextProviderProps) => {
     const navbar = rawNavbar as ISiteNavbar;
-    
+
     const path = usePathname();
-    
+
     const [isMobileMenuOpen, setIsMobileMenuOpen] = useState<boolean>(false);
 
     const isCurrentPage = useCallback((url: string, exact: boolean = false) => {
@@ -60,7 +67,10 @@ const NavbarContextProvider = ({children, navbar:rawNavbar}: INavbarContextProvi
 
 
     const props = useMemo<INavbarContextProps>(() => ({
-        navbar: navbar,
+        logo: navbar.logo,
+        openMenuText: navbar.openMenuText,
+        closeMenuText: navbar.closeMenuText,
+        links: navbar.links.links || [],
         isMobileMenuOpen: isMobileMenuOpen,
         openMobileMenu: () => setIsMobileMenuOpen(true),
         closeMobileMenu: () => setIsMobileMenuOpen(false),
