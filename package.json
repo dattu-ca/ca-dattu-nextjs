@@ -20,7 +20,7 @@
     "contentful-typescript-codegen": "^3.4.0",
     "dotenv": "^16.3.1",
     "eslint": "8.48.0",
-    "eslint-config-next": "13.4.10",
+    "eslint-config-next": "13.4.9",
     "typescript": "5.2.2"
   },
   "dependencies": {
@@ -35,7 +35,7 @@
     "daisyui": "^3.6.4",
     "graphql": "^16.8.0",
     "lodash": "^4.17.21",
-    "next": "13.4.10",
+    "next": "13.4.9",
     "next-compose-plugins": "^2.2.1",
     "next-images": "^1.8.5",
     "next-superjson-plugin": "^0.5.9",
