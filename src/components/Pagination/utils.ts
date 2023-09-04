@@ -1,10 +1,10 @@
 interface ILink {
-    showDots: boolean,
-    pageNumber: number,
-    label: number
+    showDots: boolean;
+    pageNumber: number;
+    label: number | string;
 }
 
-export const getPaginationLinks = (totalPages: number, current: number, maxNumberOfLinks: number = 9): ILink[] => {
+export const getPaginationLinks = (totalPages: number, currentPage: number, maxNumberOfLinks: number = 9): ILink[] => {
     const rawPageNumbers = Array.from({length: totalPages}, (_, i) => i + 1);
     if (rawPageNumbers.length <= maxNumberOfLinks) {
         return rawPageNumbers.map(num => ({
@@ -16,7 +16,7 @@ export const getPaginationLinks = (totalPages: number, current: number, maxNumbe
 
 
     const numberOfLinksOnEachSides = Math.floor((maxNumberOfLinks / 2));
-    const end = Math.min(totalPages, current + numberOfLinksOnEachSides) + (current <= numberOfLinksOnEachSides + 1 ? numberOfLinksOnEachSides - current + 1 : 0);
+    const end = Math.min(totalPages, currentPage + numberOfLinksOnEachSides) + (currentPage <= numberOfLinksOnEachSides + 1 ? numberOfLinksOnEachSides - currentPage + 1 : 0);
     const start = Math.max(1, end - maxNumberOfLinks + 1);
 
     const shorterRawPageNumbers = rawPageNumbers.filter(num => num > start && num < end);
@@ -33,7 +33,7 @@ export const getPaginationLinks = (totalPages: number, current: number, maxNumbe
         if (link) {
             links.unshift({
                 pageNumber: link.pageNumber,
-                label: 0,
+                label: '...',
                 showDots: true
             });
         }
@@ -43,7 +43,7 @@ export const getPaginationLinks = (totalPages: number, current: number, maxNumbe
         if (link) {
             links.push({
                 pageNumber: link.pageNumber,
-                label: 0,
+                label: '...',
                 showDots: true
             })
         }

@@ -8,10 +8,14 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
+    "test": "jest --watch",
     "codegen": "contentful-typescript-codegen --output src/contentful/schema/generated/index.d.ts"
   },
   "devDependencies": {
     "@netlify/plugin-nextjs": "^4.29.5-appdir.0",
+    "@testing-library/jest-dom": "^6.1.2",
+    "@testing-library/react": "^14.0.0",
+    "@testing-library/user-event": "^14.4.3",
     "@types/lodash": "^4.14.197",
     "@types/node": "20.5.9",
     "@types/react": "18.2.21",
@@ -21,6 +25,8 @@
     "dotenv": "^16.3.1",
     "eslint": "8.48.0",
     "eslint-config-next": "13.4.9",
+    "jest": "^29.6.4",
+    "jest-environment-jsdom": "^29.6.4",
     "typescript": "5.2.2"
   },
   "dependencies": {
