@@ -23,8 +23,7 @@ export const getPaginationLinks = (totalPages: number, currentPage: number, maxN
     // If the current page is such that we don't have the exact length of links on one side, then we take more from the other side.
     const end = Math.min(totalPages, currentPage + numberOfLinksOnEachSides) + (currentPage <= numberOfLinksOnEachSides + 1 ? numberOfLinksOnEachSides - currentPage + 1 : 0);
     const start = Math.max(1, end - maxNumberOfLinks + 1);
-
-    // The length should be at most 7; it excludes the number 1 and the last page number.
+    
     const shorterRawPageNumbers = rawPageNumbers.filter(num => num > start && num < end);
 
     const links: ILink[] = shorterRawPageNumbers.map(num => ({
