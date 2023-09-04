@@ -29,7 +29,7 @@ describe('<PaginationButtonsList />', () => {
             expect(getByText(/^1$/i)).toBeInTheDocument();
             [2, 3, 4, 5, 6, 7, 10].forEach(i => expect(getByRole('link', {name: new RegExp(i.toString(), 'i')})).toBeInTheDocument())
 
-            // TODO: Fix it in 185969023
+            // TODO 185969023: Fix this
             // 1 for desktop view and 1 for mobile view
             expect(getAllByTestId('pagination-dots').length).toEqual(2);
         });
@@ -64,7 +64,7 @@ describe('<PaginationButtonsList />', () => {
             expect(getByText(/^2$/i)).toBeInTheDocument();
             [3, 4, 5, 6, 7, 10].forEach(i => expect(getByRole('link', {name: new RegExp(i.toString(), 'i')})).toBeInTheDocument())
 
-            // TODO: Fix it in 185969023
+            // TODO 185969023: Fix this
             // 1 for desktop view and 1 for mobile view
             expect(getAllByTestId('pagination-dots').length).toEqual(2);
         });

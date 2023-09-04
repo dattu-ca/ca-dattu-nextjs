@@ -29,6 +29,7 @@ import * as WiIcons from 'react-icons/wi';
 import * as CgIcons from 'react-icons/cg';
 
 
+// TODO 185915196: Refactor this
 const getIcon = (icon) => {
     if (!icon) {
         return null;
