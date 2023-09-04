@@ -13,18 +13,15 @@ interface IProps {
 
 const Page = async (props: IProps) => {
     const {params} = props;
-    const {slug} = params;
-    if(+slug === 1){
-        redirect('/', RedirectType.replace);
-        return null;
-    }
-    
+    const {slug: paramSlug} = params;
+    const slug = paramSlug ? +paramSlug : 1;
+
     const limit = SITE_CONSTANTS.DEFAULT_MAX_POSTS_PER_PAGE;
     const skip = (+slug - 1) * limit;
 
     const {items, total} = await getBlogPosts(skip, limit);
-    if(items.length === 0){
-        redirect('/', RedirectType.replace);
+    if (items.length === 0) {
+        redirect('/posts', RedirectType.replace);
         return null;
     }
 

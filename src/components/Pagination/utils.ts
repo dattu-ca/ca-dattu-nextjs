@@ -4,7 +4,7 @@ interface ILink {
     label: number
 }
 
-export const getPaginationLinks = (maxNumberOfLinks, totalPages, current): ILink[] => {
+export const getPaginationLinks = (totalPages: number, current: number, maxNumberOfLinks: number = 9): ILink[] => {
     const rawPageNumbers = Array.from({length: totalPages}, (_, i) => i + 1);
     if (rawPageNumbers.length <= maxNumberOfLinks) {
         return rawPageNumbers.map(num => ({
@@ -13,7 +13,7 @@ export const getPaginationLinks = (maxNumberOfLinks, totalPages, current): ILink
             showDots: false,
         })) as ILink[];
     }
-    
+
 
     const numberOfLinksOnEachSides = Math.floor((maxNumberOfLinks / 2));
     const end = Math.min(totalPages, current + numberOfLinksOnEachSides) + (current <= numberOfLinksOnEachSides + 1 ? numberOfLinksOnEachSides - current + 1 : 0);
