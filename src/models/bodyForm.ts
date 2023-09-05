@@ -1,4 +1,4 @@
-interface IBodyForm {
+export interface IBodyForm {
     fieldType: string;
     inputType?: string;
     label?: string;
@@ -7,5 +7,3 @@ interface IBodyForm {
         maxLength?: number;
     }
 }
-
-export {IBodyForm}
