@@ -3,7 +3,6 @@ import {IBodyForm, TBodyFormField} from "~/models/bodyForm";
 import {FieldTypeText} from "./FieldTypeText";
 import {FieldTypeTextArea} from "./FieldTypeTextArea";
 import {useCallback} from "react";
-import {FieldTypeRecaptcha} from "./FieldTypeRecaptcha";
 
 interface IProps {
     formJson: IBodyForm
@@ -18,8 +17,6 @@ const FormComponent = ({formJson}: IProps) => {
                 </div>
             case 'textarea':
                 return <FieldTypeTextArea field={field}/>
-            case 'recaptcha':
-                return <FieldTypeRecaptcha field={field}/>
             default:
                 return <pre>{JSON.stringify(field, null, 2)}</pre>
         }

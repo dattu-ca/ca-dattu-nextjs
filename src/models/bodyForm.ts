@@ -18,11 +18,7 @@ export interface IBodyFormFieldTextArea extends IBodyFormField {
     defaultValue?: string;
 }
 
-export interface IBodyFormFieldRecaptcha extends IBodyFormField {
-    defaultValue?: boolean;
-}
-
-export type TBodyFormField = IBodyFormField | IBodyFormFieldText | IBodyFormFieldTextArea | IBodyFormFieldRecaptcha;
+export type TBodyFormField = IBodyFormField | IBodyFormFieldText | IBodyFormFieldTextArea;
 
 export interface IBodyForm {
     legend?: string;
