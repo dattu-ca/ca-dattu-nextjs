@@ -1,8 +1,10 @@
 'use client';
+import {useCallback} from "react";
+import SlideButton from 'react-slide-button';
 import {IBodyForm, TBodyFormField} from "~/models/bodyForm";
 import {FieldTypeText} from "./FieldTypeText";
 import {FieldTypeTextArea} from "./FieldTypeTextArea";
-import {useCallback} from "react";
+import clsx from "clsx";
 
 interface IProps {
     formJson: IBodyForm
@@ -23,7 +25,7 @@ const FormComponent = ({formJson}: IProps) => {
     }, []);
 
     return <div>
-        <form>
+        <form className={clsx('w-full max-w-sm')}>
             <fieldset>
                 {
                     formJson.legend && <legend>{formJson.legend}</legend>
@@ -32,6 +34,15 @@ const FormComponent = ({formJson}: IProps) => {
                     formJson.fields.map(field => <div key={field.id} className="mb-4">{getField(field)}</div>)
                 }
             </fieldset>
+            <SlideButton
+                classList={clsx('bg-site-tertiary !text-white')}
+                mainText="Slide to Submit"
+                overlayText="Submitting..."
+                onSlideDone={function () {
+                    console.log("Done!");
+                }}
+            />
+            
         </form>
     </div>
 }

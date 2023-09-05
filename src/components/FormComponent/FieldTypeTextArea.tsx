@@ -6,7 +6,7 @@ interface IProps {
 
 const FieldTypeTextArea = ({field: propField}: IProps) => {
     const field = propField as IBodyFormFieldTextArea;
-    return <div className="daisyui-form-control w-full max-w-xs">
+    return <div className="daisyui-form-control w-full">
         <textarea id={`txt${field.id}`}
                   name={field.id}
                   placeholder={field.label}
