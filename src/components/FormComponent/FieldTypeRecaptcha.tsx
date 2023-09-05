@@ -18,13 +18,14 @@ const FieldTypeRecaptcha = ({field: propField}: IProps) => {
     async function handleCaptchaSubmission(token: string | null) {
         console.log("token", token)
         // Server function to verify captcha
-        // await verifyCaptcha(token)
-        //     .then(() => setIsVerified(true))
-        //     .catch(() => setIsVerified(false))
+        await verifyCaptcha(token)
+            .then(() => setIsVerified(true))
+            .catch(() => setIsVerified(false))
     }
 
     return (
         <>
+            <pre>{JSON.stringify(CONSTANTS, null, 2)}</pre>
             <ReCAPTCHA
                 sitekey={CONSTANTS.GOOGLE_RECAPTCHA_SITE_KEY}
                 ref={recaptchaRef}
