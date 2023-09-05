@@ -3,6 +3,7 @@ import {documentToReactComponents} from '@contentful/rich-text-react-renderer';
 import {BLOCKS, INLINES, MARKS} from '@contentful/rich-text-types';
 import {mapContentful as mapBodyImages} from "~/contentful/services/bodyImages";
 import {BannerComponent} from "../Banner";
+import {FormComponent} from "../FormComponent";
 
 
 const Bold = ({children}) => <span className="font-bold">{children}</span>;
@@ -34,7 +35,11 @@ const options = {
                 }
                 case 'bodyImages': {
                     const bodyImage = mapBodyImages(node.data.target);
-                    return <BannerComponent banners={[bodyImage]} />
+                    return <BannerComponent banners={[bodyImage]}/>
+                }
+                case 'bodyForm': {
+                    const formJson = node.data.target.fields.formJson;
+                    return <FormComponent formJson={formJson}/>
                 }
                 default: {
                     return <p>[{embeddedType}] not implemented</p>
