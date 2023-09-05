@@ -1,6 +1,8 @@
 import PropTypes from 'prop-types';
 import {documentToReactComponents} from '@contentful/rich-text-react-renderer';
 import {BLOCKS, INLINES, MARKS} from '@contentful/rich-text-types';
+import {mapContentful as mapBodyImages} from "~/contentful/services/bodyImages";
+import {BannerComponent} from "../Banner";
 
 
 const Bold = ({children}) => <span className="font-bold">{children}</span>;
@@ -26,10 +28,13 @@ const options = {
         [BLOCKS.LIST_ITEM]: (node, children) => <Li>{children}</Li>,
         [BLOCKS.EMBEDDED_ENTRY]: (node, children) => {
             const embeddedType = node.data.target.sys.contentType.sys.id;
-            // console.log("embeddedType", embeddedType)
             switch (embeddedType) {
                 case 'bodyContent': {
                     return documentToReactComponents(node.data.target.fields.body, options)
+                }
+                case 'bodyImages': {
+                    const bodyImage = mapBodyImages(node.data.target);
+                    return <BannerComponent banners={[bodyImage]} />
                 }
                 default: {
                     return <p>[{embeddedType}] not implemented</p>
