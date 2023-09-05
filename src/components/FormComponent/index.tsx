@@ -1,5 +1,6 @@
 'use client';
 import {useCallback} from "react";
+// eslint-disable-next-line @typescript-eslint/ban-ts-comment
 import SlideButton from 'react-slide-button';
 import {IBodyForm, TBodyFormField} from "~/models/bodyForm";
 import {FieldTypeText} from "./FieldTypeText";
