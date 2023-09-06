@@ -15,7 +15,7 @@ const sanitize = (strings: TemplateStringsArray, ...values: Array<string | numbe
                 case "'":
                     return '&#39;';
                 default:
-                    return char;
+                    return char; 
             }
         })
     );

@@ -1,12 +1,17 @@
 'use client';
 import {Fragment, useCallback} from "react";
-import {IBodyForm, IBodyFormFieldText, IBodyFormFieldTextArea, TBodyFormField} from "~/models/bodyForm";
+import {IBodyForm, IBodyFormField, IBodyFormFieldText, IBodyFormFieldTextArea, TBodyFormField} from "~/models/bodyForm";
 import {FieldTypeText} from "./FieldTypeText";
 import {FieldTypeTextArea} from "./FieldTypeTextArea";
 import clsx from "clsx";
 import {FormikProps, Form, Field, Formik} from 'formik';
 import {ReactIcon} from "~/components/ReactIcon";
+import ReCAPTCHA from "react-google-recaptcha";
 
+
+
+const SITE_KEY = '6LfnVgUoAAAAABYNGcaOt3pTO_vhE5UuW9kXMhe7';
+const SECRET_KEY = '6LfnVgUoAAAAAI1art43-fewyBw6W3pC7D6Bk9_x';
 
 interface IProps {
     formJson: IBodyForm
@@ -30,6 +35,10 @@ const isEmailValid = (val: string) => {
 
 const FormComponent = ({formJson}: IProps) => {
 
+    function onChange(value) {
+        console.log("Captcha value:", value);
+    }
+
     const doValidation = useCallback((id: string, value: string) => {
         let error = [];
         const field = formJson.fields.find(f => f.id === id);
@@ -47,7 +56,7 @@ const FormComponent = ({formJson}: IProps) => {
         return error.length > 0 ? error : undefined;
     }, [formJson.fields]);
 
-    const getField = useCallback((field: TBodyFormField, {}) => {
+    const getField = useCallback((field: TBodyFormField) => {
         switch (field.fieldType) {
             case 'text':
                 const text = field as IBodyFormFieldText;
@@ -55,14 +64,14 @@ const FormComponent = ({formJson}: IProps) => {
                               type={text.inputType}
                               name={text.id}
                               placeholder={text.label}
-                              validate={(value:string) => doValidation(field.id, value)}
+                              validate={(value: string) => doValidation(field.id, value)}
                 />;
             case 'textarea':
                 const textarea = field as IBodyFormFieldTextArea;
                 return <Field as={FieldTypeTextArea}
                               name={textarea.id}
                               placeholder={textarea.label}
-                              validate={(value:string) => doValidation(field.id, value)}
+                              validate={(value: string) => doValidation(field.id, value)}
                 />;
             default:
                 return <pre>{JSON.stringify(field, null, 2)}</pre>
@@ -78,9 +87,8 @@ const FormComponent = ({formJson}: IProps) => {
                     actions.setSubmitting(false);
                 }}>
             {
-                ({values, errors, touched, validateField, submitCount}: FormikProps<any>) => {
-
-
+                ({values, errors, touched, submitCount}: FormikProps<any>) => {
+                    const getShowErrorFlag = (id: string) => errors[id] && (touched[id] || submitCount > 0);
                     return (
                         <Form
                             className={clsx('w-full text-gray-500 border border-2 border-gray-300 rounded-lg p-4 bg-white')}
@@ -92,12 +100,13 @@ const FormComponent = ({formJson}: IProps) => {
                                 }
                                 {
                                     formJson.fields.map(f => <div key={f.id} className='mb-4'>
-                                        <div>{getField(f, validateField)}</div>
+                                        <div>{getField(f)}</div>
                                         <div className='text-sm flex justify-between gap-2 mt-2'>
                                             <div>
                                                 {
-                                                    errors[f.id] && (touched[f.id] || submitCount > 0) &&
-                                                    (errors[f.id] as string[]).map(error => <div className='flex gap-2' key={`${f.id}_${error}`}>
+                                                    getShowErrorFlag(f.id) &&
+                                                    (errors[f.id] as string[]).map(error => <div className='flex gap-2'
+                                                                                                 key={`${f.id}_${error}`}>
                                                         <ReactIcon icon={'FiAlertCircle'}
                                                                    className={'text-red-500 w-6 h-6'}/>
                                                         <p className={'text-red-500'}>{error}</p>
@@ -127,6 +136,10 @@ const FormComponent = ({formJson}: IProps) => {
                                     </div>)
                                 }
                             </fieldset>
+                            <ReCAPTCHA
+                                sitekey={SITE_KEY}
+                                onChange={onChange}
+                            />
                             <button type="submit"
                                     className='daisyui-btn daisyui-btn-primary bg-site-primary hover:bg-site-tertiary text-white w-full'>
                                 Submit
