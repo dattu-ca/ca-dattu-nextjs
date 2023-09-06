@@ -35,8 +35,8 @@ const isEmailValid = (val: string) => {
 
 const FormComponent = ({formJson}: IProps) => {
 
-    function onChange(value) {
-        console.log("Captcha value:", value);
+    function onChange(token: string | null) {
+        console.log("Captcha value:", token);
     }
 
     const doValidation = useCallback((id: string, value: string) => {
