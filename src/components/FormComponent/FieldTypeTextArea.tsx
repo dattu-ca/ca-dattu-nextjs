@@ -1,17 +1,8 @@
-import {IBodyFormFieldTextArea, TBodyFormField} from "~/models/bodyForm";
+import {FieldInputProps} from "formik";
 
-interface IProps {
-    field: TBodyFormField
-}
 
-const FieldTypeTextArea = ({field: propField}: IProps) => {
-    const field = propField as IBodyFormFieldTextArea;
-    return <div className="daisyui-form-control w-full">
-        <textarea id={`txt${field.id}`}
-                  name={field.id}
-                  placeholder={field.label}
-                  className="daisyui-textarea daisyui-textarea-bordered h-24"></textarea>
-    </div>
+const FieldTypeTextArea = (props: FieldInputProps<string>) => {
+    return <textarea className="daisyui-textarea daisyui-textarea-bordered w-full h-48" {...props}></textarea>;
 }
 
 export {

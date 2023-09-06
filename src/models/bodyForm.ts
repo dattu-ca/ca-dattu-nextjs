@@ -1,20 +1,21 @@
+export interface IBodyFormFieldValidations{
+    isRequired: boolean;
+    maxLength?: number;
+}
+
 export interface IBodyFormField {
     id: string;
     fieldType: string;
-    validations: {
-        isRequired: boolean;
-        maxLength?: number;
-    }
+    label?: string;
+    validations: Partial<IBodyFormFieldValidations>
 }
 
 export interface IBodyFormFieldText extends IBodyFormField {
     inputType?: string;
-    label?: string;
     defaultValue?: string;
 }
 
 export interface IBodyFormFieldTextArea extends IBodyFormField {
-    label?: string;
     defaultValue?: string;
 }
 
