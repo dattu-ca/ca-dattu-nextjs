@@ -7,8 +7,7 @@ import {ReactIcon} from "~/components/ReactIcon";
 import {doFormSubmission} from '~/services'
 import {useForm} from "~/components/FormComponent/useForm";
 import ReCAPTCHA from "react-google-recaptcha";
-import {verifyCaptcha} from "~/services/google.recaptcha";
-import {GOOGLE_RECAPTCHA} from "~/utils/constants.client";
+import {CONSTANTS_GOOGLE_RECAPTCHA} from "~/utils/constants.client";
 
 
 
@@ -25,14 +24,11 @@ const FormComponent = ({formId, formJson}: IProps) => {
         getField
     } = useForm(formJson);
 
-    const recaptchaRef = useRef<ReCAPTCHA | null>(null)
-    const [isVerified, setIsVerified] = useState<boolean>(false)
-
+    const recaptchaRef = useRef<ReCAPTCHA>()
+    const [recaptchaToken, setRecaptchaToken] = useState<string>();
+    
     async function handleCaptchaSubmission(token: string | null) {
-        // Server function to verify captcha
-        await verifyCaptcha(token)
-            .then(() => setIsVerified(true))
-            .catch(() => setIsVerified(false))
+        setRecaptchaToken(token);
     }
 
 
@@ -41,13 +37,16 @@ const FormComponent = ({formId, formJson}: IProps) => {
                 validateOnBlur={true}
                 validateOnChange={true}
                 onSubmit={async (values, actions) => {
-                    if (!isSubmitting) {
+                    if (!isSubmitting && recaptchaToken) {
                         setIsSubmitting(true);
                         actions.setSubmitting(false);
                         try {
-                            const result = await doFormSubmission(formId, formJson, values);
-                            console.log(result);
-                            actions.resetForm();
+                            const result = await doFormSubmission(recaptchaToken, formId, formJson, values);
+                            if(result) {
+                                actions.resetForm();
+                                recaptchaRef.current?.reset();
+                                setRecaptchaToken(undefined);
+                            }
                         } catch (e) {
                         } finally {
                             setIsSubmitting(false);
@@ -110,14 +109,13 @@ const FormComponent = ({formId, formJson}: IProps) => {
                                     </div>)
                                 }
                             </fieldset>
-                            <ReCAPTCHA
-                                sitekey={GOOGLE_RECAPTCHA.SITE_KEY}
-                                ref={recaptchaRef}
-                                onChange={handleCaptchaSubmission}
-                                onLoad={(e) => console.log("HAS LOADED", e)}
-                                
-                            />
-                            <p>isVerified {isVerified.toString()}</p>
+                            <div className={clsx('mb-4')}>
+                                <ReCAPTCHA
+                                    sitekey={CONSTANTS_GOOGLE_RECAPTCHA.SITE_KEY}
+                                    ref={recaptchaRef}
+                                    onChange={handleCaptchaSubmission}
+                                />
+                            </div>
                             <button type="submit"
                                     disabled={isSubmitting}
                                     className={clsx(

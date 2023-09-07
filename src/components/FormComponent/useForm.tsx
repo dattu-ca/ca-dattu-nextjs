@@ -6,7 +6,7 @@ import {FieldTypeText} from "~/components/FormComponent/FieldTypeText";
 import {FieldTypeTextArea} from "~/components/FormComponent/FieldTypeTextArea";
 
 export const useForm = (formJson: IBodyForm) => {
-    const validate = useCallback((id: string, value: string) => doValidation(formJson, id, value), [formJson.fields]);
+    const validate = useCallback((id: string, value: string) => doValidation(formJson, id, value), [formJson]);
 
     const getField = useCallback((field: TBodyFormField) => {
         switch (field.fieldType) {
