@@ -1,4 +1,5 @@
 /** @type {import('next').NextConfig} */
+const  {createCollections} =  require('./next.startup');
 const nextConfig = {
     reactStrictMode: true,
     experimental: {
@@ -8,4 +9,7 @@ const nextConfig = {
     },
 };
 
-module.exports = nextConfig;
+module.exports = async () => {
+    await createCollections();
+    return nextConfig
+}

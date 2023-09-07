@@ -38,8 +38,9 @@ const options = {
                     return <BannerComponent banners={[bodyImage]}/>
                 }
                 case 'bodyForm': {
+                    const formId = node.data.target.fields.formId;
                     const formJson = node.data.target.fields.formJson;
-                    return <FormComponent formJson={formJson}/>
+                    return <FormComponent formId={formId} formJson={formJson}/>
                 }
                 default: {
                     return <p>[{embeddedType}] not implemented</p>

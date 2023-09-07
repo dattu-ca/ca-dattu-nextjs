@@ -1,90 +1,45 @@
 'use client';
-import {Fragment, useCallback} from "react";
-import {IBodyForm, IBodyFormField, IBodyFormFieldText, IBodyFormFieldTextArea, TBodyFormField} from "~/models/bodyForm";
-import {FieldTypeText} from "./FieldTypeText";
-import {FieldTypeTextArea} from "./FieldTypeTextArea";
+import {Fragment, useState} from "react";
+import {IBodyForm, TBodyFormField} from "~/models/bodyForm";
 import clsx from "clsx";
-import {FormikProps, Form, Field, Formik} from 'formik';
+import {FormikProps, Form, Formik} from 'formik';
 import {ReactIcon} from "~/components/ReactIcon";
-import ReCAPTCHA from "react-google-recaptcha";
+import {doFormSubmission} from '~/services'
+import {useForm} from "~/components/FormComponent/useForm";
+import {initial} from "lodash";
 
-
-
-const SITE_KEY = '6LfnVgUoAAAAABYNGcaOt3pTO_vhE5UuW9kXMhe7';
-const SECRET_KEY = '6LfnVgUoAAAAAI1art43-fewyBw6W3pC7D6Bk9_x';
 
 interface IProps {
+    formId: string;
     formJson: IBodyForm
 }
 
-const getInitialValue = (fields: TBodyFormField[]) => {
-    return fields.reduce((prev, curr) => {
-        return {
-            ...prev,
-            [curr.id]: '',
-        }
-    }, {});
-}
+const FormComponent = ({formId, formJson}: IProps) => {
+    const [isSubmitting, setIsSubmitting] = useState(false);
 
+    const {
+        initialValue,
+        getField
+    } = useForm(formJson)
 
-const isEmailValid = (val: string) => {
-    const reg = /^([A-Za-z0-9_\-\.])+\@([A-Za-z0-9_\-\.])+\.([A-Za-z]{2,4})$/;
-    return reg.test(val);
-}
-
-
-const FormComponent = ({formJson}: IProps) => {
-
-    function onChange(token: string | null) {
-        console.log("Captcha value:", token);
-    }
-
-    const doValidation = useCallback((id: string, value: string) => {
-        let error = [];
-        const field = formJson.fields.find(f => f.id === id);
-        if (field) {
-            const validations = field.validations || {};
-            if (validations.isRequired === true && !value) {
-                error.push('Is Required');
-            } else if ("inputType" in field && field.inputType === 'email' && !isEmailValid(value)) {
-                error.push('Invalid email format');
-            } else if (validations.maxLength && Number.isInteger(+(validations.maxLength)) && value.length > validations.maxLength) {
-                error.push(`Exceeded allowed maxlength of ${validations.maxLength}`);
-            }
-        }
-
-        return error.length > 0 ? error : undefined;
-    }, [formJson.fields]);
-
-    const getField = useCallback((field: TBodyFormField) => {
-        switch (field.fieldType) {
-            case 'text':
-                const text = field as IBodyFormFieldText;
-                return <Field as={FieldTypeText}
-                              type={text.inputType}
-                              name={text.id}
-                              placeholder={text.label}
-                              validate={(value: string) => doValidation(field.id, value)}
-                />;
-            case 'textarea':
-                const textarea = field as IBodyFormFieldTextArea;
-                return <Field as={FieldTypeTextArea}
-                              name={textarea.id}
-                              placeholder={textarea.label}
-                              validate={(value: string) => doValidation(field.id, value)}
-                />;
-            default:
-                return <pre>{JSON.stringify(field, null, 2)}</pre>
-        }
-    }, [doValidation]);
 
     return <div>
-        <Formik initialValues={getInitialValue(formJson.fields)}
+        <Formik initialValues={initialValue}
                 validateOnBlur={true}
                 validateOnChange={true}
-                onSubmit={(values, actions) => {
-                    console.log(JSON.stringify(values, null, 2));
-                    actions.setSubmitting(false);
+                onSubmit={async (values, actions) => {
+                    if (!isSubmitting) {
+                        setIsSubmitting(true);
+                        actions.setSubmitting(false);
+                        try {
+                            const result = await doFormSubmission(formId, formJson, values);
+                            console.log(result);
+                            actions.resetForm();
+                        } catch (e) {
+                        } finally {
+                            setIsSubmitting(false);
+                        }
+                    }
                 }}>
             {
                 ({values, errors, touched, submitCount}: FormikProps<any>) => {
@@ -96,21 +51,27 @@ const FormComponent = ({formJson}: IProps) => {
                             <fieldset>
                                 {
                                     formJson.legend &&
-                                    <legend className='mb-4 font-bold text-gray-700 text-lg'>{formJson.legend}</legend>
+                                    <legend className={clsx(
+                                        'mb-4 font-bold text-gray-700 text-lg'
+                                    )}>{formJson.legend}</legend>
                                 }
                                 {
                                     formJson.fields.map(f => <div key={f.id} className='mb-4'>
                                         <div>{getField(f)}</div>
-                                        <div className='text-sm flex justify-between gap-2 mt-2'>
-                                            <div>
+                                        <div className={clsx(
+                                            'flex justify-between gap-2 ',
+                                            'text-sm mt-2'
+                                        )}>
+                                            <div className={clsx('text-red-500')}>
                                                 {
                                                     getShowErrorFlag(f.id) &&
-                                                    (errors[f.id] as string[]).map(error => <div className='flex gap-2'
-                                                                                                 key={`${f.id}_${error}`}>
+                                                    (errors[f.id] as string[]).map(error => <p
+                                                        className='flex items-center gap-2'
+                                                        key={`${f.id}_${error}`}>
                                                         <ReactIcon icon={'FiAlertCircle'}
-                                                                   className={'text-red-500 w-6 h-6'}/>
-                                                        <p className={'text-red-500'}>{error}</p>
-                                                    </div>)
+                                                                   className={' w-6 h-6'}/>
+                                                        <span>{error}</span>
+                                                    </p>)
                                                 }
                                             </div>
                                             <div>
@@ -118,7 +79,7 @@ const FormComponent = ({formJson}: IProps) => {
                                                     <p>
                                                             <span className={clsx(
                                                                 {
-                                                                    ['text-red-500']: (errors[f.id] as string[])?.find(error => error.includes('maxLength'))
+                                                                    ['text-red-500']: (errors[f.id] as string[])?.find(error => error.toLowerCase().includes('max length'))
                                                                 }
                                                             )}>{values[f.id].length}</span>
                                                         {
@@ -136,12 +97,13 @@ const FormComponent = ({formJson}: IProps) => {
                                     </div>)
                                 }
                             </fieldset>
-                            <ReCAPTCHA
-                                sitekey={SITE_KEY}
-                                onChange={onChange}
-                            />
                             <button type="submit"
-                                    className='daisyui-btn daisyui-btn-primary bg-site-primary hover:bg-site-tertiary text-white w-full'>
+                                    disabled={isSubmitting}
+                                    className={clsx(
+                                        'w-full',
+                                        'daisyui-btn daisyui-btn-primary',
+                                        ' bg-site-primary hover:bg-site-tertiary text-white '
+                                    )}>
                                 Submit
                             </button>
                         </Form>

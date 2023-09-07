@@ -115,6 +115,9 @@ export interface IBodyFormFields {
   /** Entry Title */
   entryTitle: string;
 
+  /** Form Id */
+  formId: string;
+
   /** Form JSON */
   formJson?: Record<string, any> | undefined;
 }
