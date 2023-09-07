@@ -2,7 +2,7 @@ import {redirect} from 'next/navigation';
 import {RedirectType} from "next/dist/client/components/redirect";
 import {getBlogPosts} from "~/services";
 import {PaginationComponent} from "~/components/Pagination";
-import {SITE_CONSTANTS} from "~/utils/constants";
+import {CONTENT_CONFIG} from "~/utils/constants.server";
 
 
 interface IProps {
@@ -16,7 +16,7 @@ const Page = async (props: IProps) => {
     const {slug: paramSlug} = params;
     const slug = paramSlug ? +paramSlug : 1;
 
-    const limit = SITE_CONSTANTS.DEFAULT_MAX_POSTS_PER_PAGE;
+    const limit = CONTENT_CONFIG.DEFAULT_MAX_POSTS_PER_PAGE;
     const skip = (+slug - 1) * limit;
 
     const {items, total} = await getBlogPosts(skip, limit);

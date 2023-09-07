@@ -1,6 +1,6 @@
 'use client';
 import {createContext, ReactElement, useCallback, useContext, useMemo} from "react";
-import {SITE_CONSTANTS} from "~/utils/constants";
+import {SITE_CONSTANTS} from "~/utils/constants.client";
 import {getPaginationLinks} from "./utils";
 
 

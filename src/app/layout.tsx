@@ -3,7 +3,7 @@ import clsx from "clsx";
 
 import {getSiteConfig, getSiteNavbar} from "~/services";
 import './globals.css';
-import {CONTENTFUL_SLUGS} from "~/utils/constants";
+import {CONTENTFUL_SLUGS} from "~/utils/constants.server";
 import NavbarComponent from "~/components/Navbar";
 
 const {PRIMARY_SITE_CONFIG, HEADER_SITE_NAVBAR} = CONTENTFUL_SLUGS;
@@ -31,7 +31,7 @@ const RootLayout = async ({children}: IProps) => {
         <html lang="en">
         <head>
             <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-            <meta name="robots" content="noindex,nofollow" />
+            <meta name="robots" content="noindex,nofollow"/>
         </head>
         <body className={clsx(
             'bg-site-color-light text-site-tertiary'

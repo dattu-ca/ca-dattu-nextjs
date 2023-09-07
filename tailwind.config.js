@@ -93,6 +93,6 @@ module.exports = {
         }
     },
     daisyui: {
-        prefix: "daisy-"
+        prefix: "daisyui-"
     },
 }
