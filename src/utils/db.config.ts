@@ -1,5 +1,5 @@
 import faunadb from 'faunadb';
-import {SERVER_CONFIG} from "~/utils/constants.server";
+import {SERVER_CONFIG} from "~/utils/config.server";
 
 const faunaClient = new faunadb.Client({
     secret: SERVER_CONFIG.FAUNA_DB.SECRET

@@ -1,6 +1,6 @@
 'use client';
 import {createContext, ReactElement, useCallback, useContext, useMemo} from "react";
-import {CLIENT_CONFIG} from "~/utils/constants.client";
+import {CLIENT_CONFIG} from "~/utils/config.client";
 import {getPaginationLinks} from "./utils";
 
 

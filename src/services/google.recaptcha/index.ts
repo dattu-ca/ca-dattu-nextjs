@@ -1,7 +1,7 @@
 'use server';
 
 import axios from "axios"
-import {SERVER_CONFIG} from "~/utils/constants.server";
+import {SERVER_CONFIG} from "~/utils/config.server";
 
 export async function verifyCaptcha(token: string | null) {
     const res = await axios.post(

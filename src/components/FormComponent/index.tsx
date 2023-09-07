@@ -7,7 +7,7 @@ import {ReactIcon} from "~/components/ReactIcon";
 import {doFormSubmission} from '~/services'
 import {useForm} from "~/components/FormComponent/useForm";
 import ReCAPTCHA from "react-google-recaptcha";
-import {CLIENT_CONFIG, GOOGLE_RECAPTCHA} from "~/utils/constants.client";
+import {CLIENT_CONFIG} from "~/utils/config.client";
 
 
 

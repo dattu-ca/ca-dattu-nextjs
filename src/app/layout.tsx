@@ -3,7 +3,7 @@ import clsx from "clsx";
 
 import {getSiteConfig, getSiteNavbar} from "~/services";
 import './globals.css';
-import {SERVER_CONFIG} from "~/utils/constants.server";
+import {SERVER_CONFIG} from "~/utils/config.server";
 import NavbarComponent from "~/components/Navbar";
 
 const {PRIMARY_SITE_CONFIG, HEADER_SITE_NAVBAR} = SERVER_CONFIG.CONTENTFUL_SLUGS;
