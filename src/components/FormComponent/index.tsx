@@ -24,11 +24,13 @@ const FormComponent = ({formId, formJson}: IProps) => {
         getField
     } = useForm(formJson);
 
-    const recaptchaRef = useRef<ReCAPTCHA>()
-    const [recaptchaToken, setRecaptchaToken] = useState<string | undefined>();
+    const recaptchaRef = useRef<ReCAPTCHA | null>(null)
+    const [recaptchaToken, setRecaptchaToken] = useState<string>();
     
-    async function handleCaptchaSubmission(token: string | undefined) {
-        setRecaptchaToken(token);
+    async function handleCaptchaSubmission(token: string | null) {
+        if(token){
+            setRecaptchaToken(token);
+        }
     }
 
 
@@ -45,7 +47,7 @@ const FormComponent = ({formId, formJson}: IProps) => {
                             if(result) {
                                 actions.resetForm();
                                 recaptchaRef.current?.reset();
-                                setRecaptchaToken(undefined);
+                                setRecaptchaToken('');
                             }
                         } catch (e) {
                         } finally {
