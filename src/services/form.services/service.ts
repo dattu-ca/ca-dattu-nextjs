@@ -1,5 +1,5 @@
 'use server';
-import {faunaClient, q, DB_COLLECTIONS} from '~/utils/db.config';
+import {faunaClient, q, DB_COLLECTIONS, ICreateResult} from '~/utils/db.config';
 
 import {IBodyForm} from "~/models/bodyForm";
 import {CONSTANTS} from "~/utils/constants";
@@ -9,7 +9,7 @@ export const doFormSubmission = async (formId: string, formJson: IBodyForm, valu
 
     try {
         const result = await faunaClient
-            .query(
+            .query<ICreateResult>(
                 q.Create(DB_COLLECTIONS.FORM_VALUES_COLLECTION, {
                     data: {
                         environment: CONSTANTS.ENVIRONMENT,
@@ -19,13 +19,12 @@ export const doFormSubmission = async (formId: string, formJson: IBodyForm, valu
                     }
                 })
             );
-        console.log(result);
         return {
-            id: result.ref['@ref']?.id,
+            id: result['ref']['@ref']?.id,
             message: 'Successfully submitted the form.'
         }
     } catch (error) {
-        console.error('Error: ', error.message)
+        console.error('Error: ', error)
         throw new Error('Error submitting the form.');
     }
 

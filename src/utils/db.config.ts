@@ -10,6 +10,17 @@ const DB_COLLECTIONS = {
     FORM_VALUES_COLLECTION: q.Collection('formValuesCollection')
 }
 
+export interface ICreateResult {
+    ref: {
+        '@ref': {
+            id: number
+        }
+    },
+    ts: number,
+    data: object
+
+}
+
 
 export {faunaClient, q, DB_COLLECTIONS};
 

@@ -4,7 +4,7 @@ export const CONTENTFUL_SLUGS = Object.freeze({
 });
 
 export const FAUNA_DB = Object.freeze({
-    SECRET: process.env.FAUNA_DB_SECRET
+    SECRET: process.env.FAUNA_DB_SECRET as string
 })
 
 
@@ -14,7 +14,7 @@ export const SITE_CONSTANTS = Object.freeze({
 });
 
 export const CONSTANTS = Object.freeze({
-    ENVIRONMENT: process.env.ENVIRONMENT
+    ENVIRONMENT: process.env.ENVIRONMENT as string
 })
 
 module.exports = {
