@@ -23,9 +23,11 @@ export const GOOGLE_RECAPTCHA = Object.freeze({
 
 
 module.exports = {
-    CONTENTFUL_SLUGS,
-    FAUNA_DB,
-    CONTENT_CONFIG,
-    SERVER_CONSTANTS,
-    GOOGLE_RECAPTCHA,
+    SERVER_CONFIG: {
+        CONTENTFUL_SLUGS,
+        FAUNA_DB,
+        CONTENT_CONFIG,
+        SERVER_CONSTANTS,
+        GOOGLE_RECAPTCHA,
+    }
 }

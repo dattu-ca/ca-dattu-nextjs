@@ -1,10 +1,10 @@
 'use client';
 import {createContext, ReactElement, useCallback, useContext, useMemo} from "react";
-import {SITE_CONSTANTS} from "~/utils/constants.client";
+import {CLIENT_CONFIG} from "~/utils/constants.client";
 import {getPaginationLinks} from "./utils";
 
 
-const MAX_NUMBER_OF_LINKS = SITE_CONSTANTS.DEFAULT_PAGINATION_MAX_LINKS;
+const MAX_NUMBER_OF_LINKS = CLIENT_CONFIG.SITE_CONSTANTS.DEFAULT_PAGINATION_MAX_LINKS;
 
 interface IPaginationContextProps {
     ctxData: {
