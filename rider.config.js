@@ -5,5 +5,6 @@ let System = System || {
 System.config({
     "paths": {
         "~/*": ".src/",
+        "~/contentful": ".src/contentful",
     }
 })

@@ -3,8 +3,10 @@ import clsx from "clsx";
 
 import {getSiteConfig, getSiteNavbar} from "~/services";
 import './globals.css';
+import 'react-toastify/dist/ReactToastify.css';
 import {SERVER_CONFIG} from "~/utils/config.server";
 import NavbarComponent from "~/components/Navbar";
+import {ToastContainer} from "react-toastify";
 
 const {PRIMARY_SITE_CONFIG, HEADER_SITE_NAVBAR} = SERVER_CONFIG.CONTENTFUL_SLUGS;
 
@@ -54,6 +56,7 @@ const RootLayout = async ({children}: IProps) => {
 
               )}>
             {children}
+            <ToastContainer />
         </main>
         </body>
         </html>

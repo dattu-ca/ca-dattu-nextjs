@@ -22,6 +22,10 @@ export interface IBodyFormFieldTextArea extends IBodyFormField {
 export type TBodyFormField = IBodyFormField | IBodyFormFieldText | IBodyFormFieldTextArea;
 
 export interface IBodyForm {
+    formId: string;
     legend?: string;
-    fields: TBodyFormField[]
+    fields: TBodyFormField[];
+    sendEmail: boolean;
+    successMessage: string;
+    failureMessage: string;
 }
