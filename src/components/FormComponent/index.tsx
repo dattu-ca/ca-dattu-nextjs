@@ -25,9 +25,9 @@ const FormComponent = ({formId, formJson}: IProps) => {
     } = useForm(formJson);
 
     const recaptchaRef = useRef<ReCAPTCHA>()
-    const [recaptchaToken, setRecaptchaToken] = useState<string>();
+    const [recaptchaToken, setRecaptchaToken] = useState<string | undefined>();
     
-    async function handleCaptchaSubmission(token: string | null) {
+    async function handleCaptchaSubmission(token: string | undefined) {
         setRecaptchaToken(token);
     }
 
@@ -41,7 +41,7 @@ const FormComponent = ({formId, formJson}: IProps) => {
                         setIsSubmitting(true);
                         actions.setSubmitting(false);
                         try {
-                            const result = await doFormSubmission(recaptchaToken, formId, formJson, values);
+                            const result = await doFormSubmission(recaptchaToken as string, formId, formJson, values);
                             if(result) {
                                 actions.resetForm();
                                 recaptchaRef.current?.reset();
