@@ -1,8 +1,8 @@
 import faunadb from 'faunadb';
-import {FAUNA_DB} from "~/utils/constants.server";
+import {SERVER_CONFIG} from "~/utils/config.server";
 
 const faunaClient = new faunadb.Client({
-    secret: FAUNA_DB.SECRET
+    secret: SERVER_CONFIG.FAUNA_DB.SECRET
 });
 const q = faunadb.query;
 

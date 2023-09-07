@@ -1,11 +1,11 @@
 'use server';
 
 import axios from "axios"
-import {GOOGLE_RECAPTCHA} from "~/utils/constants.server";
+import {SERVER_CONFIG} from "~/utils/config.server";
 
 export async function verifyCaptcha(token: string | null) {
     const res = await axios.post(
-        `https://www.google.com/recaptcha/api/siteverify?secret=${GOOGLE_RECAPTCHA.SECRET_KEY}&response=${token}`
+        `https://www.google.com/recaptcha/api/siteverify?secret=${SERVER_CONFIG.GOOGLE_RECAPTCHA.SECRET_KEY}&response=${token}`
     )
     if (res.data.success) {
         return "success!"

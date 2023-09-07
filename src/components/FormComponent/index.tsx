@@ -7,7 +7,7 @@ import {ReactIcon} from "~/components/ReactIcon";
 import {doFormSubmission} from '~/services'
 import {useForm} from "~/components/FormComponent/useForm";
 import ReCAPTCHA from "react-google-recaptcha";
-import {CONSTANTS_GOOGLE_RECAPTCHA} from "~/utils/constants.client";
+import {CLIENT_CONFIG} from "~/utils/config.client";
 
 
 
@@ -41,7 +41,7 @@ const FormComponent = ({formId, formJson}: IProps) => {
                 onSubmit={async (values, actions) => {
                     if (!isSubmitting && recaptchaToken) {
                         setIsSubmitting(true);
-                        actions.setSubmitting(false);
+                        actions.setSubmitting(true);
                         try {
                             const result = await doFormSubmission(recaptchaToken as string, formId, formJson, values);
                             if(result) {
@@ -52,6 +52,7 @@ const FormComponent = ({formId, formJson}: IProps) => {
                         } catch (e) {
                         } finally {
                             setIsSubmitting(false);
+                            actions.setSubmitting(false);
                         }
                     }
                 }}>
@@ -113,10 +114,21 @@ const FormComponent = ({formId, formJson}: IProps) => {
                             </fieldset>
                             <div className={clsx('mb-4')}>
                                 <ReCAPTCHA
-                                    sitekey={CONSTANTS_GOOGLE_RECAPTCHA.SITE_KEY}
+                                    sitekey={CLIENT_CONFIG.GOOGLE_RECAPTCHA.SITE_KEY}
                                     ref={recaptchaRef}
                                     onChange={handleCaptchaSubmission}
                                 />
+                                {
+                                    submitCount > 0 && !recaptchaToken
+                                    && (
+                                        <p
+                                            className='flex items-center gap-2 text-red-500'>
+                                            <ReactIcon icon={'FiAlertCircle'}
+                                                       className={' w-6 h-6'}/>
+                                            <span>Recaptcha required!</span>
+                                        </p>
+                                    )
+                                }
                             </div>
                             <button type="submit"
                                     disabled={isSubmitting}

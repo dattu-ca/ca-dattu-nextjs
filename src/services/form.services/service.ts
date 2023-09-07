@@ -2,7 +2,7 @@
 import {faunaClient, q, DB_COLLECTIONS, ICreateResult} from '~/utils/db.config';
 
 import {IBodyForm} from "~/models/bodyForm";
-import {SERVER_CONSTANTS} from "~/utils/constants.server";
+import {SERVER_CONFIG} from "~/utils/config.server";
 import {verifyCaptcha} from "../google.recaptcha";
 
 
@@ -16,7 +16,7 @@ export const doFormSubmission = async (recaptchaToken: string, formId: string, f
             .query<ICreateResult>(
                 q.Create(DB_COLLECTIONS.FORM_VALUES_COLLECTION, {
                     data: {
-                        environment: SERVER_CONSTANTS.ENVIRONMENT,
+                        environment: SERVER_CONFIG.SERVER_CONSTANTS.ENVIRONMENT,
                         formId,
                         formJson,
                         values
