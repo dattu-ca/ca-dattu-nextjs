@@ -28,7 +28,7 @@ export const useForm = (formJson: IBodyForm) => {
             default:
                 return <pre>{JSON.stringify(field, null, 2)}</pre>
         }
-    }, [doValidation]);
+    }, [validate]);
 
 
 
