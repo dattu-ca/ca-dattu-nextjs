@@ -1,4 +1,4 @@
-export interface IBodyFormFieldValidations{
+export interface IBodyFormFieldValidations {
     isRequired: boolean;
     maxLength?: number;
 }
@@ -21,11 +21,16 @@ export interface IBodyFormFieldTextArea extends IBodyFormField {
 
 export type TBodyFormField = IBodyFormField | IBodyFormFieldText | IBodyFormFieldTextArea;
 
-export interface IBodyForm {
-    formId: string;
+export interface IBodyFormJson {
     legend?: string;
     fields: TBodyFormField[];
+}
+
+export interface IBodyForm {
+    formId: string;
+    formJson: IBodyFormJson;
     sendEmail: boolean;
     successMessage: string;
     failureMessage: string;
+
 }

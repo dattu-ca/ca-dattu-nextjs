@@ -1,6 +1,6 @@
 'use client';
 import {Fragment, useState, useRef} from "react";
-import {IBodyForm} from "~/models/bodyForm";
+import {IBodyFormJson} from "~/models/bodyForm";
 import clsx from "clsx";
 import {FormikProps, Form, Formik} from 'formik';
 import {ReactIcon} from "~/components/ReactIcon";
@@ -13,7 +13,7 @@ import {CLIENT_CONFIG} from "~/utils/config.client";
 
 interface IProps {
     formId: string;
-    formJson: IBodyForm
+    formJson: IBodyFormJson
 }
 
 const FormComponent = ({formId, formJson}: IProps) => {
