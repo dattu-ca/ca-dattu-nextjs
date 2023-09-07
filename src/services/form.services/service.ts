@@ -2,7 +2,7 @@
 import {faunaClient, q, DB_COLLECTIONS, ICreateResult} from '~/utils/db.config';
 
 import {IBodyForm} from "~/models/bodyForm";
-import {CONSTANTS} from "~/utils/constants";
+import {SERVER_CONSTANTS} from "~/utils/constants.server";
 
 
 export const doFormSubmission = async (formId: string, formJson: IBodyForm, values: Record<string, any>) => {
@@ -12,7 +12,7 @@ export const doFormSubmission = async (formId: string, formJson: IBodyForm, valu
             .query<ICreateResult>(
                 q.Create(DB_COLLECTIONS.FORM_VALUES_COLLECTION, {
                     data: {
-                        environment: CONSTANTS.ENVIRONMENT,
+                        environment: SERVER_CONSTANTS.ENVIRONMENT,
                         formId,
                         formJson,
                         values

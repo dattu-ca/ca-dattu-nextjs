@@ -1,12 +1,15 @@
 'use client';
-import {Fragment, useState} from "react";
-import {IBodyForm, TBodyFormField} from "~/models/bodyForm";
+import {Fragment, useState, useRef} from "react";
+import {IBodyForm} from "~/models/bodyForm";
 import clsx from "clsx";
 import {FormikProps, Form, Formik} from 'formik';
 import {ReactIcon} from "~/components/ReactIcon";
 import {doFormSubmission} from '~/services'
 import {useForm} from "~/components/FormComponent/useForm";
-import {initial} from "lodash";
+import ReCAPTCHA from "react-google-recaptcha";
+import {verifyCaptcha} from "~/services/google.recaptcha";
+import {GOOGLE_RECAPTCHA} from "~/utils/constants.client";
+
 
 
 interface IProps {
@@ -20,7 +23,17 @@ const FormComponent = ({formId, formJson}: IProps) => {
     const {
         initialValue,
         getField
-    } = useForm(formJson)
+    } = useForm(formJson);
+
+    const recaptchaRef = useRef<ReCAPTCHA | null>(null)
+    const [isVerified, setIsVerified] = useState<boolean>(false)
+
+    async function handleCaptchaSubmission(token: string | null) {
+        // Server function to verify captcha
+        await verifyCaptcha(token)
+            .then(() => setIsVerified(true))
+            .catch(() => setIsVerified(false))
+    }
 
 
     return <div>
@@ -97,6 +110,14 @@ const FormComponent = ({formId, formJson}: IProps) => {
                                     </div>)
                                 }
                             </fieldset>
+                            <ReCAPTCHA
+                                sitekey={GOOGLE_RECAPTCHA.SITE_KEY}
+                                ref={recaptchaRef}
+                                onChange={handleCaptchaSubmission}
+                                onLoad={(e) => console.log("HAS LOADED", e)}
+                                
+                            />
+                            <p>isVerified {isVerified.toString()}</p>
                             <button type="submit"
                                     disabled={isSubmitting}
                                     className={clsx(
