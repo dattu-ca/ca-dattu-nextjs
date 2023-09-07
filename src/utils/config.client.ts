@@ -1,5 +1,5 @@
 export const SITE_CONSTANTS = Object.freeze({
-    DEFAULT_PAGINATION_MAX_LINKS: Math.max(5, process.env.NEXT_PUBLIC_DEFAULT_PAGINATION_MAX_LINKS as unknown as number),
+    DEFAULT_PAGINATION_MAX_LINKS: Math.max(9, process.env.NEXT_PUBLIC_DEFAULT_PAGINATION_MAX_LINKS as unknown as number),
 });
 
 export const GOOGLE_RECAPTCHA = Object.freeze({
