@@ -1,7 +1,7 @@
 import {Entry} from "contentful";
 import {IBlogPageFields} from "../../schema/generated";
-import {mapContentfulList as mapContentfulList_bodyImages} from '../bodyImages';
-import { mapContentfulList as mapContentfulList_bodySidebar} from '../bodySidebar';
+import {mapContentfulList as mapBodyImagesContentfulList} from '../bodyImages';
+import { mapContentfulList as mapBodySidebarContentfulList} from '../bodySidebar';
 import {IBlogPage} from "~/models";
 
 
@@ -34,10 +34,10 @@ export const mapContentful = (raw: Entry<BlogPageSkeleton, undefined, string>) =
         target.body = source.body as object;
     }
     if (source.banners) {
-        target.banners = mapContentfulList_bodyImages(source.banners);
+        target.banners = mapBodyImagesContentfulList(source.banners);
     }
     if (source.sidebars) {
-        target.sidebars = mapContentfulList_bodySidebar(source.sidebars);
+        target.sidebars = mapBodySidebarContentfulList(source.sidebars);
     }
     return target as IBlogPage;
 }
