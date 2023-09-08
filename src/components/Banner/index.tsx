@@ -3,6 +3,7 @@ import {useState} from 'react';
 import clsx from "clsx";
 import {ReactIcon} from '../ReactIcon';
 import {IBodyImage} from "~/models";
+import Image from 'next/image';
 
 
 interface IProps {
@@ -40,32 +41,16 @@ export const BannerComponent = ({banners}: IProps) => {
                                     )}
                                          style={{'transform': `translateX(-${visibleIndex * 100}%)`}}
                                     >
-                                        <picture className={clsx(
-                                            'w-full',
-                                            'object-cover',
-                                            'object-center'
-                                        )}>
-                                            <source srcSet={`${banner.desktopImage?.url}?fm=avif`}
-                                                    type="image/avif"
-                                                    className={clsx(
-                                                        'w-full',
-                                                        'object-cover',
-                                                        'object-center',
-                                                        'aspect-[8/2]'
-                                                    )}
-                                                    width='100%'
-                                            />
-                                            <img src={banner.desktopImage?.url}
-                                                 alt={banner.desktopImage?.alt}
-                                                 className={clsx(
-                                                     'w-full',
-                                                     'object-cover',
-                                                     'object-center',
-                                                     'aspect-[8/2]'
-                                                 )}
-                                                 width='100%'
-                                            />
-                                        </picture>
+                                        <Image
+                                            src={`https:${banner.desktopImage?.url}?fm=avif`}
+                                            className={clsx(
+                                                'w-full object-cover object-center aspect-[8/2]'
+                                            )}
+                                            alt={banner.desktopImage?.alt as string}
+                                            width={400}
+                                            height={400}
+                                            sizes="100vw"
+                                        />
                                     </div>
                                 ))
                             }

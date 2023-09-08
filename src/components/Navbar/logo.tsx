@@ -2,34 +2,25 @@
 import clsx from "clsx";
 import {useNavbarContext} from './context';
 import classes from './logo.module.css';
+import Image from "next/image";
 
 
 const Logo = () => {
     const {ctxData: {logo}} = useNavbarContext();
 
     return (
-        <picture className={clsx(
-            'transition-all',
-            'block w-auto h-[30px]',
-            classes.flip
-        )}>
-            <source
-                media="(max-width: 768px)"
-                srcSet={`${logo?.mobileImage?.url} 768w`}
-                sizes="768px"
-                className='w-auto h-[40px]'
-            />
-            <source
-                srcSet={`${logo?.desktopImage?.url} 1280w`}
-                sizes="1280px"
-            />
-            <img src={logo?.desktopImage?.url}
-                 alt={logo?.desktopImage?.alt}
-                 className='h-[40px] max-w-none w-auto'
-                 width={40}
-                 height={40}
-            />
-        </picture>
+        <Image
+            src={`https:${logo?.desktopImage?.url}?fm=avif`}
+            className={clsx(
+                    'transition-all',
+                    'block w-auto h-[30px]',
+                    classes.flip
+                )}
+            alt={logo.desktopImage?.alt as string}
+            width={40}
+            height={40}
+            sizes="100vw"
+        />
     )
 }
 
