@@ -1,6 +1,6 @@
 'use client';
 import {Fragment, useState, useRef} from "react";
-import {IBodyFormJson} from "~/models/bodyForm";
+import {IBodyForm, IBodyFormJson} from "~/models/bodyForm";
 import clsx from "clsx";
 import {FormikProps, Form, Formik} from 'formik';
 import {ReactIcon} from "~/components/ReactIcon";
@@ -8,15 +8,15 @@ import {doFormSubmission} from '~/services'
 import {useForm} from "~/components/FormComponent/useForm";
 import ReCAPTCHA from "react-google-recaptcha";
 import {CLIENT_CONFIG} from "~/utils/config.client";
-
+import {toast} from "react-toastify";
 
 
 interface IProps {
-    formId: string;
-    formJson: IBodyFormJson
+    form: IBodyForm;
 }
 
-const FormComponent = ({formId, formJson}: IProps) => {
+const FormComponent = ({form}: IProps) => {
+    const {formId, formJson} = form;
     const [isSubmitting, setIsSubmitting] = useState(false);
 
     const {
@@ -26,9 +26,9 @@ const FormComponent = ({formId, formJson}: IProps) => {
 
     const recaptchaRef = useRef<ReCAPTCHA | null>(null)
     const [recaptchaToken, setRecaptchaToken] = useState<string>();
-    
+
     async function handleCaptchaSubmission(token: string | null) {
-        if(token){
+        if (token) {
             setRecaptchaToken(token);
         }
     }
@@ -44,12 +44,18 @@ const FormComponent = ({formId, formJson}: IProps) => {
                         actions.setSubmitting(true);
                         try {
                             const result = await doFormSubmission(recaptchaToken as string, formId, formJson, values);
-                            if(result) {
+                            if (result) {
                                 actions.resetForm();
                                 recaptchaRef.current?.reset();
                                 setRecaptchaToken('');
+                                toast(form.successMessage, {
+                                    type: 'success'
+                                });
                             }
                         } catch (e) {
+                            toast(form.failureMessage, {
+                                type: 'error'
+                            })
                         } finally {
                             setIsSubmitting(false);
                             actions.setSubmitting(false);

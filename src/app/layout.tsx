@@ -56,8 +56,8 @@ const RootLayout = async ({children}: IProps) => {
 
               )}>
             {children}
-            <ToastContainer />
         </main>
+        <ToastContainer />
         </body>
         </html>
     )

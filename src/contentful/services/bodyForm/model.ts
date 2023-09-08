@@ -1,4 +1,4 @@
-import {IBodyForm} from "~/models";
+import {IBodyForm, IBodyFormJson} from "~/models";
 import {IBodyFormFields} from "~/contentful/schema/generated";
 
 
@@ -12,8 +12,13 @@ export const mapContentful = (raw: any) => {
         return undefined;
     }
     const source = (raw as BodyFormSkeleton).fields;
-    console.log('source', source)
-    const target: Partial<IBodyForm> = {};
+    const target: IBodyForm = {
+        formId: source.formId,
+        failureMessage: source.failureMessage,
+        successMessage: source.successMessage,
+        sendEmail: source.sendEmail,
+        formJson: source.formJson as IBodyFormJson
+    };
     
     return target as IBodyForm;
 

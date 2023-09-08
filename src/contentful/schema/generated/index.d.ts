@@ -125,10 +125,10 @@ export interface IBodyFormFields {
   sendEmail: boolean;
 
   /** Success Message */
-  successMessage?: string | undefined;
+  successMessage: string;
 
   /** Failure Message */
-  failureMessage?: string | undefined;
+  failureMessage: string;
 }
 
 /** This is a form.  For now, it will be a simple JSON file. */
