@@ -87,7 +87,7 @@ const FormComponent = ({form}: IProps) => {
                                                 {
                                                     getShowErrorFlag(f.id) &&
                                                     (errors[f.id] as string[]).map(error => <p
-                                                        className='flex items-center gap-2'
+                                                        className='flex items-center gap-2 mb-0'
                                                         key={`${f.id}_${error}`}>
                                                         <ReactIcon icon={'FiAlertCircle'}
                                                                    className={' w-6 h-6'}/>
@@ -97,7 +97,7 @@ const FormComponent = ({form}: IProps) => {
                                             </div>
                                             <div>
                                                 {
-                                                    <p>
+                                                    <p className={clsx('mb-0')}>
                                                             <span className={clsx(
                                                                 {
                                                                     ['text-red-500']: (errors[f.id] as string[])?.find(error => error.toLowerCase().includes('max length'))
@@ -114,7 +114,6 @@ const FormComponent = ({form}: IProps) => {
                                                 }
                                             </div>
                                         </div>
-
                                     </div>)
                                 }
                             </fieldset>

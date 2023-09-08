@@ -15,27 +15,26 @@ const Ol = ({children}) => <ol className="">{children}</ol>;
 const Ul = ({children}) => <ul className="">{children}</ul>;
 const Li = ({children}) => <li className="">{children}</li>;
 
-    
-    const renderEmbeddedEntry = (node, children) => {
-        const embeddedType = node.data.target.sys.contentType.sys.id;
-        switch (embeddedType) {
-            case 'bodyContent': {
-                return documentToReactComponents(node.data.target.fields.body, options)
-            }
-            case 'bodyImages': {
-                const bodyImage = mapBodyImages(node.data.target);
-                return <BannerComponent banners={[bodyImage]}/>
-            }
-            case 'bodyForm': {
-                const form = mapBodyForm(node.data.target);
-                return <FormComponent form={form}/>
-            }
-            default: {
-                return <p>[{embeddedType}] not implemented</p>
-            }
+const renderEmbeddedEntry = (node, children) => {
+    const embeddedType = node.data.target.sys.contentType.sys.id;
+    switch (embeddedType) {
+        case 'bodyContent': {
+            return documentToReactComponents(node.data.target.fields.body, options)
         }
-
+        case 'bodyImages': {
+            const bodyImage = mapBodyImages(node.data.target);
+            return <BannerComponent banners={[bodyImage]}/>
+        }
+        case 'bodyForm': {
+            const form = mapBodyForm(node.data.target);
+            return <FormComponent form={form}/>
+        }
+        default: {
+            return <p>[{embeddedType}] not implemented</p>
+        }
     }
+
+}
 
 const options = {
     renderMark: {

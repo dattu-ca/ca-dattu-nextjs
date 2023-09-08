@@ -1,5 +1,5 @@
 /** @type {import('next').NextConfig} */
-const  {createCollections} =  require('./next.startup');
+const {createCollections} = require('./next.startup');
 const nextConfig = {
     reactStrictMode: true,
     experimental: {
@@ -7,6 +7,16 @@ const nextConfig = {
         serverActions: true,
         swcPlugins: [["next-superjson-plugin", {}]],
     },
+    // images: {
+    //     remotePatterns: [
+    //         {
+    //             protocol: 'https',
+    //             hostname: 'images.ctfassets.net',
+    //             port: '',
+    //             pathname: `/${process.env.CONTENTFUL_SPACE_ID}/**`,
+    //         }
+    //     ]
+    // }
 };
 
 module.exports = async () => {
