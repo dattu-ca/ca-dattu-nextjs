@@ -2,6 +2,7 @@ import PropTypes from 'prop-types';
 import {documentToReactComponents} from '@contentful/rich-text-react-renderer';
 import {BLOCKS, INLINES, MARKS} from '@contentful/rich-text-types';
 import {mapContentful as mapBodyImages} from "~/contentful/services/bodyImages";
+import {mapContentful as mapBodyForm} from "~/contentful/services/bodyForm";
 import {BannerComponent} from "../Banner";
 import {FormComponent} from "../FormComponent";
 
@@ -14,6 +15,27 @@ const Ol = ({children}) => <ol className="">{children}</ol>;
 const Ul = ({children}) => <ul className="">{children}</ul>;
 const Li = ({children}) => <li className="">{children}</li>;
 
+    
+    const renderEmbeddedEntry = (node, children) => {
+        const embeddedType = node.data.target.sys.contentType.sys.id;
+        switch (embeddedType) {
+            case 'bodyContent': {
+                return documentToReactComponents(node.data.target.fields.body, options)
+            }
+            case 'bodyImages': {
+                const bodyImage = mapBodyImages(node.data.target);
+                return <BannerComponent banners={[bodyImage]}/>
+            }
+            case 'bodyForm': {
+                const form = mapBodyForm(node.data.target);
+                return <FormComponent form={form}/>
+            }
+            default: {
+                return <p>[{embeddedType}] not implemented</p>
+            }
+        }
+
+    }
 
 const options = {
     renderMark: {
@@ -27,31 +49,8 @@ const options = {
         [BLOCKS.OL_LIST]: (node, children) => <Ol>{children}</Ol>,
         [BLOCKS.UL_LIST]: (node, children) => <Ul>{children}</Ul>,
         [BLOCKS.LIST_ITEM]: (node, children) => <Li>{children}</Li>,
-        [BLOCKS.EMBEDDED_ENTRY]: (node, children) => {
-            const embeddedType = node.data.target.sys.contentType.sys.id;
-            switch (embeddedType) {
-                case 'bodyContent': {
-                    return documentToReactComponents(node.data.target.fields.body, options)
-                }
-                case 'bodyImages': {
-                    const bodyImage = mapBodyImages(node.data.target);
-                    return <BannerComponent banners={[bodyImage]}/>
-                }
-                case 'bodyForm': {
-                    const formId = node.data.target.fields.formId;
-                    const formJson = node.data.target.fields.formJson;
-                    return <FormComponent formId={formId} formJson={formJson}/>
-                }
-                default: {
-                    return <p>[{embeddedType}] not implemented</p>
-                }
-            }
-
-        },
-        [INLINES.EMBEDDED_ENTRY]: (node, children) => {
-            const embeddedType = node.data.target.sys.contentType.sys.id;
-            return documentToReactComponents(node.data.target.fields.body, options)
-        },
+        [BLOCKS.EMBEDDED_ENTRY]: renderEmbeddedEntry,
+        [INLINES.EMBEDDED_ENTRY]: renderEmbeddedEntry,
     },
     renderText: (text) => <span dangerouslySetInnerHTML={{__html: text.replace(/\n/g, '<br/>')}}/>
 };

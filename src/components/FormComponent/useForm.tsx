@@ -1,11 +1,11 @@
 import {useCallback, useMemo} from "react";
 import {doValidation} from "~/services";
-import {IBodyForm, IBodyFormFieldText, IBodyFormFieldTextArea, TBodyFormField} from "~/models/bodyForm";
+import {IBodyFormJson, IBodyFormFieldText, IBodyFormFieldTextArea, TBodyFormField} from "~/models/bodyForm";
 import {Field} from "formik";
 import {FieldTypeText} from "~/components/FormComponent/FieldTypeText";
 import {FieldTypeTextArea} from "~/components/FormComponent/FieldTypeTextArea";
 
-export const useForm = (formJson: IBodyForm) => {
+export const useForm = (formJson: IBodyFormJson) => {
     const validate = useCallback((id: string, value: string) => doValidation(formJson, id, value), [formJson]);
 
     const getField = useCallback((field: TBodyFormField) => {

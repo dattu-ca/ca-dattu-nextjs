@@ -1,4 +1,4 @@
-import {IBodyForm} from "~/models/bodyForm";
+import {IBodyFormJson} from "~/models/bodyForm";
 
 const isEmailValid = (val: string) => {
     const reg = /^([A-Za-z0-9_\-\.])+\@([A-Za-z0-9_\-\.])+\.([A-Za-z]{2,4})$/;
@@ -6,7 +6,7 @@ const isEmailValid = (val: string) => {
 }
 
 
-export const doValidation = (formJson: IBodyForm ,id: string, value: string) => {
+export const doValidation = (formJson: IBodyFormJson ,id: string, value: string) => {
     let error = [];
     const field = formJson.fields.find(f => f.id === id);
     if (field) {

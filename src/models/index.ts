@@ -1,5 +1,6 @@
 export * from './blogPage';
 export * from './blogPost';
+export * from './bodyForm';
 export * from './bodyImage';
 export * from './bodyLinks';
 export * from './bodySidebar';

@@ -1,12 +1,12 @@
 'use server';
 import {faunaClient, q, DB_COLLECTIONS, ICreateResult} from '~/utils/db.config';
 
-import {IBodyForm} from "~/models/bodyForm";
+import {IBodyFormJson} from "~/models/bodyForm";
 import {SERVER_CONFIG} from "~/utils/config.server";
 import {verifyCaptcha} from "../google.recaptcha";
 
 
-export const doFormSubmission = async (recaptchaToken: string, formId: string, formJson: IBodyForm, values: Record<string, any>) => {
+export const doFormSubmission = async (recaptchaToken: string, formId: string, formJson: IBodyFormJson, values: Record<string, any>) => {
 
     try {
         

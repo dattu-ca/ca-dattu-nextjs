@@ -120,6 +120,15 @@ export interface IBodyFormFields {
 
   /** Form JSON */
   formJson?: Record<string, any> | undefined;
+
+  /** Send email? */
+  sendEmail: boolean;
+
+  /** Success Message */
+  successMessage: string;
+
+  /** Failure Message */
+  failureMessage: string;
 }
 
 /** This is a form.  For now, it will be a simple JSON file. */
