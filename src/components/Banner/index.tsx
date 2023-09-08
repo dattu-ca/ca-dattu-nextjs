@@ -3,6 +3,7 @@ import {useState} from 'react';
 import clsx from "clsx";
 import {ReactIcon} from '../ReactIcon';
 import {IBodyImage} from "~/models";
+import { RenderedImage } from './renderedImage'
 import Image from 'next/image';
 
 
@@ -41,16 +42,7 @@ export const BannerComponent = ({banners}: IProps) => {
                                     )}
                                          style={{'transform': `translateX(-${visibleIndex * 100}%)`}}
                                     >
-                                        <Image
-                                            src={`https:${banner.desktopImage?.url}?fm=avif`}
-                                            className={clsx(
-                                                'w-full object-cover object-center aspect-[8/2]'
-                                            )}
-                                            alt={banner.desktopImage?.alt as string}
-                                            width={400}
-                                            height={400}
-                                            sizes="100vw"
-                                        />
+                                        <RenderedImage banner={banner} />
                                     </div>
                                 ))
                             }
@@ -59,7 +51,8 @@ export const BannerComponent = ({banners}: IProps) => {
                             banners.length > 1
                             && <div className={clsx(
                                 'absolute w-full top-[50%] translate-y-[-50%]',
-                                'flex justify-between px-2'
+                                'flex justify-between px-2',
+                                'z-40'
                             )}>
                                 <button onClick={onGoPrevHandler}
                                         disabled={visibleIndex === 0}
