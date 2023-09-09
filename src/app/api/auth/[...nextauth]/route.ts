@@ -1,6 +1,6 @@
 import NextAuth from 'next-auth';
-import { options } from './options'
-const handler = NextAuth(options);
+import { nextAuthOptions } from '~/services';
+const handler = NextAuth(nextAuthOptions);
 
 export {
     handler as GET,

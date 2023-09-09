@@ -1,6 +1,7 @@
 import {createContext, ReactElement, useCallback, useContext, useMemo, useState} from "react";
 import {IBodyImage, ILink, ISiteNavbar} from "~/models";
 import {usePathname} from "next/navigation";
+import {Session} from "next-auth";
 
 
 interface INavbarContextProps {
@@ -9,8 +10,8 @@ interface INavbarContextProps {
         openMenuText: string;
         closeMenuText: string;
         links: ILink[];
-
         isMobileMenuOpen: boolean;
+        session: Session | null;
     },
     ctxFunctions: {
         openMobileMenu: () => void;
@@ -28,6 +29,7 @@ const NavbarContext = createContext<INavbarContextProps>({
         closeMenuText: 'CLose Menu',
         links: [],
         isMobileMenuOpen: false,
+        session: null,
     },
     ctxFunctions: {
         openMobileMenu: () => ({}),
@@ -49,16 +51,17 @@ const useNavbarContext = () => {
 };
 
 interface INavbarContextProviderProps {
-    children: ReactElement,
-    navbar: {}
+    children: ReactElement;
+    navbar: {};
+    session: Session | null;
 }
 
-const NavbarContextProvider = ({children, navbar: rawNavbar}: INavbarContextProviderProps) => {
+const NavbarContextProvider = ({children, navbar: rawNavbar, session}: INavbarContextProviderProps) => {
     const navbar = rawNavbar as ISiteNavbar;
 
     const path = usePathname();
 
-    const [isMobileMenuOpen, setIsMobileMenuOpen] = useState<boolean>(false);
+    const [isMobileMenuOpen, setIsMobileMenuOpen] = useState<boolean>(true);
 
     const isCurrentPage = useCallback((url: string, exact: boolean = false) => {
         if (!url) {
@@ -82,6 +85,7 @@ const NavbarContextProvider = ({children, navbar: rawNavbar}: INavbarContextProv
             closeMenuText: navbar.closeMenuText,
             links: navbar.links.links || [],
             isMobileMenuOpen: isMobileMenuOpen,
+            session
         },
         ctxFunctions: {
             openMobileMenu: () => setIsMobileMenuOpen(true),

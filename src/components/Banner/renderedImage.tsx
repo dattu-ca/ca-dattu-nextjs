@@ -10,7 +10,7 @@ const RenderedImage = ({banner}: IProps) => {
     const srcSet = useMemo(() => {
         const srcSet = [];
         if(banner){
-            if (banner.mobileImage) {
+            if (banner.mobileImage?.url) {
                 srcSet.push(`${banner.mobileImage?.url}?fm=avif&w=640&q=75 640w`)
             } else{
                 srcSet.push(`${banner.desktopImage?.url}?fm=avif&w=640&q=75 640w`)

@@ -25,6 +25,7 @@
       }
     ],
     "paths": {
+      "~/contentful": ["src/contentful/*"],
       "~/*": ["src/*"]
     }
   },

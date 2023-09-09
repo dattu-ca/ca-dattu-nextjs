@@ -1,7 +1,7 @@
 import React from 'react';
 import clsx from "clsx";
 import Link from "next/link";
-import {useNavbarContext} from "./context";
+import {useNavbarContext} from "../context";
 
 const MenuDesktop = () => {
     const {
@@ -15,7 +15,7 @@ const MenuDesktop = () => {
     } = useNavbarContext();
     return <ul className={clsx(
         'm-0 p-0',
-        'flex justify-end items-center ',
+        'flex justify-end items-center gap-4',
         'list-none '
     )}>
         {
@@ -30,7 +30,6 @@ const MenuDesktop = () => {
                         className={clsx(
                             'text-site-primary',
                             'text-xl',
-                            'ml-6',
                             'hover:scale-150',
                             {
                                 ['after:w-full']: isCurrentPage(link.url)
