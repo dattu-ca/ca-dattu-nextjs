@@ -1,7 +1,16 @@
-import type {NextAuthOptions} from "next-auth";
+import type {NextAuthOptions, Session} from "next-auth";
 import GitHubProvider from 'next-auth/providers/github';
 import GoogleProvider from "next-auth/providers/google";
 import CredentialsProvider from 'next-auth/providers/credentials';
+import {JWT} from "next-auth/jwt";
+
+
+interface ISession extends Session{
+    provider: string;
+}
+interface IToken extends JWT{
+    provider: string;
+}
 
 export const nextAuthOptions: NextAuthOptions = {
     providers: [
@@ -27,11 +36,11 @@ export const nextAuthOptions: NextAuthOptions = {
                     placeholder: ''
                 },
             },
-            authorize: async (credentials) => {
-                // This is where you need to retrieve the user data
-                // to verify with credentials
-                // Docs: https://next-auth.js.org/configuration/providers/credentials
+            authorize: async (param) => {
                 const user = {id: '42', name: 'dattu', password: 'nextauth'};
+
+                const credentials = param as Record<string, string>;
+                
                 if (credentials?.username === user.name && credentials?.password === user.password) {
                     return user;
                 } else {
@@ -41,23 +50,22 @@ export const nextAuthOptions: NextAuthOptions = {
         })
     ],
     callbacks: {
-        signIn: async ({ user, account, profile, email, credentials }) => {
+        signIn: async ({user, account, profile, email, credentials}) => {
             console.log(' ------- signIn START -------')
             console.log(user, account, profile, email, credentials)
             console.log(' ------- signIn END -------')
-            //110936461031997432633
-            //116270128896816715755
-          return true;  
+            return true;
         },
         jwt: async (params) => {
-            const { account} = params;
-            if(account){
-                params.token.provider = account.provider;
+            const {token, account} = params;
+            if (account) {
+                (token as IToken).provider = account.provider;
             }
-            return params.token;
+            return token;
         },
         session: async ({session, token, user}) => {
-            session.provider = token.provider;
+            
+            (session as ISession).provider = (token as IToken).provider;
             return session
         }
 

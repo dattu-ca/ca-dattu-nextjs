@@ -36,9 +36,14 @@ const NavbarMobile = () => {
                             <Logo/>
                         </Link>
                     </div>
-                    <div >
-                        <MenuMobile/>
-                    </div>
+                    {
+                        session && (
+                            <div>
+                                <MenuMobile/>
+                            </div>
+                        )
+                    }
+
 
                 </div>
             </nav>
