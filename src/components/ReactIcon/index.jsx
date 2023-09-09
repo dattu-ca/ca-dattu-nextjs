@@ -57,7 +57,7 @@ const DynamicIcon = (icon, className) => dynamic(async () => {
                 }
                 break;
             case 'Fa' :
-                const {[icon]: Fa} = await import('react-icons/Fa6');
+                const {[icon]: Fa} = await import('react-icons/fa6');
                 if (Fa) {
                     return {default: Fa}
                 }
