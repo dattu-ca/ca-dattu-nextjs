@@ -1,5 +1,5 @@
 import {IBodyImage} from "~/models";
-import {IBodyImagesFields} from "~/contentful/schema/generated";
+import {IBodyImagesFields} from "../../schema/generated";
 
 export type BodyImagesSkeleton = {
     fields: IBodyImagesFields;

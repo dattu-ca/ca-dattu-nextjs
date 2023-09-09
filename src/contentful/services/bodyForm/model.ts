@@ -1,5 +1,5 @@
 import {IBodyForm, IBodyFormJson} from "~/models";
-import {IBodyFormFields} from "~/contentful/schema/generated";
+import {IBodyFormFields} from "../../schema/generated";
 
 
 

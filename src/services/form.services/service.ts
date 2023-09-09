@@ -1,35 +1,31 @@
 'use server';
-import {faunaClient, q, DB_COLLECTIONS, ICreateResult} from '~/utils/db.config';
-
-import {IBodyFormJson} from "~/models/bodyForm";
-import {SERVER_CONFIG} from "~/utils/config.server";
+import {IBodyFormJson} from "~/models";
 import {verifyCaptcha} from "../google.recaptcha";
+import {formsDbServices} from "~/services.db";
 
 
-export const doFormSubmission = async (recaptchaToken: string, formId: string, formJson: IBodyFormJson, values: Record<string, any>) => {
+const saveForm = async (recaptchaToken: string,
+                        formId: string,
+                        formJson: IBodyFormJson,
+                        formValues: Record<string, any>
+) => {
 
     try {
-        
-        await verifyCaptcha(recaptchaToken);        
-        
-        const result = await faunaClient
-            .query<ICreateResult>(
-                q.Create(DB_COLLECTIONS.FORM_VALUES_COLLECTION, {
-                    data: {
-                        environment: SERVER_CONFIG.SERVER_CONSTANTS.ENVIRONMENT,
-                        formId,
-                        formJson,
-                        values
-                    }
-                })
-            );
-        return {
-            id: result['ref']['@ref']?.id,
-            message: 'Successfully submitted the form.'
-        }
-    } catch (error) {
-        console.error('Error: ', error)
-        throw new Error('Error submitting the form.');
-    }
 
+        await verifyCaptcha(recaptchaToken);
+        return await formsDbServices.save({
+            data: {
+                formId,
+                formJson,
+                formValues
+            }
+        });
+    } catch (e) {
+        console.error(e);
+        throw new Error('Error while submitting the form.')
+    }
+}
+
+export const formsServices = {
+    saveForm
 }

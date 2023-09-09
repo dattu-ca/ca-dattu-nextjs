@@ -1,6 +1,7 @@
 import {Entry} from "contentful";
-import {ISiteConfigFields} from "~/contentful/schema/generated";
 import {ISiteConfig} from "~/models";
+import {ISiteConfigFields} from "../../schema/generated";
+
 
 
 export const content_type = 'siteConfig';

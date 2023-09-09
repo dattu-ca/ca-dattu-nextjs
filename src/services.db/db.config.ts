@@ -1,13 +1,12 @@
 import faunadb from 'faunadb';
 import {SERVER_CONFIG} from "~/utils/config.server";
 
-const faunaClient = new faunadb.Client({
+const client = new faunadb.Client({
     secret: SERVER_CONFIG.FAUNA_DB.SECRET
 });
-const q = faunadb.query;
 
-const DB_COLLECTIONS = {
-    FORM_VALUES_COLLECTION: q.Collection('formValuesCollection')
+const COLLECTIONS = {
+    FORM_VALUES: 'formValuesCollection'
 }
 
 export interface ICreateResult {
@@ -22,5 +21,5 @@ export interface ICreateResult {
 }
 
 
-export {faunaClient, q, DB_COLLECTIONS};
+export {client, COLLECTIONS};
 
