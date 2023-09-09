@@ -21,14 +21,15 @@ export interface IBodyFormFieldTextArea extends IBodyFormField {
 
 export type TBodyFormField = IBodyFormField | IBodyFormFieldText | IBodyFormFieldTextArea;
 
-export interface IBodyFormJson {
+
+export interface IBodyFormModel {
     legend?: string;
     fields: TBodyFormField[];
 }
 
 export interface IBodyForm {
     formId: string;
-    formJson: IBodyFormJson;
+    formModel: IBodyFormModel[]
     recaptchaEnabled: boolean;
     submitFormEnabled: boolean;
     sendEmailEnabled: boolean;

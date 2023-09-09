@@ -118,8 +118,8 @@ export interface IBodyFormFields {
   /** Form Id */
   formId: string;
 
-  /** Form JSON */
-  formJson?: Record<string, any> | undefined;
+  /** Form Model */
+  formModel: Record<string, any>;
 
   /** Submit Form Enabled? */
   submitFormEnabled: boolean;

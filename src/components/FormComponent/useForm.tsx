@@ -1,13 +1,16 @@
 import {useCallback, useMemo} from "react";
 import {formsServices} from "~/services";
-import {IBodyFormJson, IBodyFormFieldText, IBodyFormFieldTextArea, TBodyFormField} from "~/models/bodyForm";
+import {IBodyForm, IBodyFormFieldText, IBodyFormFieldTextArea, TBodyFormField} from "~/models/bodyForm";
 import {Field} from "formik";
 import {FieldTypeText} from "~/components/FormComponent/FieldTypeText";
 import {FieldTypeTextArea} from "~/components/FormComponent/FieldTypeTextArea";
 
-export const useForm = (formJson: IBodyFormJson) => {
+
+export const useForm = (form: IBodyForm) => {
+    const flatFormFields = formsServices.flattenFields(form);
+    
     const validate = useCallback((id: string, value: string) =>
-        formsServices.doValidation(formJson, id, value), [formJson]);
+        formsServices.doValidation(form, id, value), [form]);
 
     const getField = useCallback((field: TBodyFormField) => {
         switch (field.fieldType) {
@@ -33,13 +36,13 @@ export const useForm = (formJson: IBodyFormJson) => {
 
 
     const initialValue = useMemo(() => {
-        return formJson.fields.reduce((prev, curr) => {
+        return flatFormFields.reduce((prev, curr) => {
             return {
                 ...prev,
                 [curr.id]: '',
             }
         }, {});
-    }, [formJson])
+    }, [flatFormFields])
 
 
     return {

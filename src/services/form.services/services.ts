@@ -1,18 +1,19 @@
 'use server';
-import {IBodyFormJson} from "~/models";
+import {IBodyForm} from "~/models";
 import {googleRecaptchaServices} from "../google.recaptcha";
 import {formsDbServices} from "~/services.db";
 import {sanitize} from "~/utils/utils";
 import {sendMailServices} from "~/services";
 import {bodyFormServices} from "~/contentful/services";
+import { flattenFields } from "./flattenFields";
 
-
-const createMessage = (formJson: IBodyFormJson, formValues: Record<string, any>) => {
+const createMessage = (form: IBodyForm, formValues: Record<string, any>) => {
+    const fields = flattenFields(form);
     const message = [];
     const html = []
-    for (const fieldJson of formJson.fields) {
-        message.push(`${fieldJson.label}\n${formValues[fieldJson.id]}`)
-        html.push(`<strong style="font-size: 16px">${fieldJson.label}</strong><br/><div>${String(formValues[fieldJson.id]).replace(/\n/g, '<br/>')}</div>`)
+    for (const field of fields) {
+        message.push(`${field.label}\n${formValues[field.id]}`)
+        html.push(`<strong style="font-size: 16px">${field.label}</strong><br/><div>${String(formValues[field.id]).replace(/\n/g, '<br/>')}</div>`)
     }
     return {
         message: message.join('\n\n'),
@@ -31,7 +32,7 @@ const saveForm = async ({recaptchaToken, formId, formValues}: IProps) => {
     try {
         const form = await bodyFormServices.fetchByFormId(formId);
 
-        const {formJson} = form;
+        const {formModel} = form;
 
         for (const k of Object.keys(formValues)) {
             formValues[k] = sanitize`${formValues[k]}`
@@ -42,12 +43,12 @@ const saveForm = async ({recaptchaToken, formId, formValues}: IProps) => {
         const result = await formsDbServices.save({
             data: {
                 formId,
-                formJson,
+                formModel,
                 formValues
             }
         });
         if (result && form.sendEmailEnabled) {
-            const {message, html} = createMessage(formJson, formValues)
+            const {message, html} = createMessage(form, formValues)
             await sendMailServices.send({
                 subject: `[${process.env.DEFAULT_SITE_NAME as string}] New form has been submitted: [FormId: ${formId}]`,
                 message,

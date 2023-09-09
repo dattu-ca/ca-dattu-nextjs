@@ -8,7 +8,7 @@ import {IBodyForm} from "~/models";
 
 const CONTENTFUL_BLOG_PAGE_FIELDS = {
     FORM_ID: 'fields.formId',
-    FORM_JSON: 'fields.formJson',
+    FORM_MODEL: 'fields.formModel',
     SUBMIT_FORM_ENABLED: 'fields.submitFormEnabled',
     RECAPTCHA_ENABLED: 'fields.recaptchaEnabled',
     SEND_EMAIL_ENABLED: 'fields.sendEmailEnabled',
@@ -28,7 +28,7 @@ const fetchByFormId = (formId: string) =>
             content_type,
             select: [
                 CONTENTFUL_BLOG_PAGE_FIELDS.FORM_ID as 'fields',
-                CONTENTFUL_BLOG_PAGE_FIELDS.FORM_JSON as 'fields',
+                CONTENTFUL_BLOG_PAGE_FIELDS.FORM_MODEL as 'fields',
                 CONTENTFUL_BLOG_PAGE_FIELDS.SUBMIT_FORM_ENABLED as 'fields',
                 CONTENTFUL_BLOG_PAGE_FIELDS.RECAPTCHA_ENABLED as 'fields',
                 CONTENTFUL_BLOG_PAGE_FIELDS.SEND_EMAIL_ENABLED as 'fields',
