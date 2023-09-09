@@ -25,7 +25,6 @@ const saveForm = async (recaptchaToken: string,
         throw new Error('Error while submitting the form.')
     }
 }
-
-export const formsServices = {
+export {
     saveForm
 }

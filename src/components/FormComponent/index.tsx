@@ -1,10 +1,10 @@
 'use client';
 import {Fragment, useState, useRef} from "react";
-import {IBodyForm, IBodyFormJson} from "~/models/bodyForm";
+import {IBodyForm} from "~/models/bodyForm";
 import clsx from "clsx";
 import {FormikProps, Form, Formik} from 'formik';
 import {ReactIcon} from "~/components/ReactIcon";
-import {doFormSubmission} from '~/services'
+import {formsServices} from '~/services'
 import {useForm} from "~/components/FormComponent/useForm";
 import ReCAPTCHA from "react-google-recaptcha";
 import {CLIENT_CONFIG} from "~/utils/config.client";
@@ -43,7 +43,8 @@ const FormComponent = ({form}: IProps) => {
                         setIsSubmitting(true);
                         actions.setSubmitting(true);
                         try {
-                            const result = await doFormSubmission(recaptchaToken as string, formId, formJson, values);
+                            const result = await formsServices.saveForm(recaptchaToken as string, formId, formJson, values);
+                            console.log("result", result)
                             if (result) {
                                 actions.resetForm();
                                 recaptchaRef.current?.reset();

@@ -1,2 +1,7 @@
-export { doValidation } from './validation';
-export { formsServices } from './service';
+import { doValidation } from './validation';
+import { saveForm } from './service';
+
+export const formsServices = {
+    saveForm,
+    doValidation,
+}

@@ -1,25 +1,26 @@
-import faunadb from 'faunadb';
+import faunadb, { Expr } from 'faunadb';
 import {SERVER_CONFIG} from "~/utils/config.server";
 
 const client = new faunadb.Client({
     secret: SERVER_CONFIG.FAUNA_DB.SECRET
 });
 
+const q = faunadb.query;
+
 const COLLECTIONS = {
     FORM_VALUES: 'formValuesCollection'
 }
 
-export interface ICreateResult {
+export interface ICreateResult<T = object> {
     ref: {
         '@ref': {
-            id: number
+            id: number;
         }
-    },
-    ts: number,
-    data: object
-
+    };
+    ts: number;
+    data: T;
 }
 
 
-export {client, COLLECTIONS};
+export {client, q, COLLECTIONS};
 

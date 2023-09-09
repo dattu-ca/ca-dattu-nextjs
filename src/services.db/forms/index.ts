@@ -1,8 +1,6 @@
-import faunadb from "faunadb";
+'use server';
 import {SERVER_CONFIG} from "~/utils/config.server";
-import { client, COLLECTIONS } from '../db.config'
-
-const q = faunadb.query;
+import {client, q, COLLECTIONS, ICreateResult} from '../db.config'
 
 
 interface IProps {
@@ -12,20 +10,20 @@ interface IProps {
 const save = async ({data}: IProps) => {
     try {
         const result = await client
-            .query(
+            .query<ICreateResult>(
                 q.Create(COLLECTIONS.FORM_VALUES, {
                     data: {
                         environment: SERVER_CONFIG.SERVER_CONSTANTS.ENVIRONMENT,
-                        data
+                        createdData: Date.now(),
+                        ...data,
                     }
                 })
             );
-        
-        console.log('result', result)
-        
+
         return {
             id: result['ref']['@ref']?.id,
-            message: 'Successfully submitted the form.'
+            data: result.data,
+            message: 'Successfully saved the form.',
         }
     } catch (error) {
         console.error('Error: ', error)
@@ -33,6 +31,6 @@ const save = async ({data}: IProps) => {
     }
 }
 
-export const formsDbServices = {
+export {
     save
 }
