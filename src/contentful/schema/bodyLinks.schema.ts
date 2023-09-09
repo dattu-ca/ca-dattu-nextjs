@@ -1,5 +1,5 @@
 import {ILink, IBodyLinks} from "~/models";
-import {IBodyLinksFields} from "~/contentful/schema/generated";
+import {IBodyLinksFields} from "./generated";
 
 export type BodyLinksSkeleton = {
     fields: IBodyLinksFields;

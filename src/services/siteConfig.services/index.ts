@@ -1,5 +1,5 @@
-'use server';
-import {siteConfigServices} from "~/contentful";
+import { fetchBySlug } from './services';
 
-
-export const getSiteConfig = (slug: string) => siteConfigServices.getSiteConfig(slug)
+export const siteConfigServices = {
+    fetchBySlug
+};

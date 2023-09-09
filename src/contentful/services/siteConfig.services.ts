@@ -1,7 +1,19 @@
-import {client} from "../../client";
-import {content_type, SiteConfigSkeleton, CONTENTFUL_SITE_CONFIG_FIELDS, mapContentful} from './model'
+import {client} from "../client";
+import {SiteConfigSkeleton, mapContentful} from '../schema/siteConfig.schema'
 
-const getSiteConfig = (slug: string) =>
+
+
+const content_type = 'siteConfig';
+
+const CONTENTFUL_SITE_CONFIG_FIELDS = {
+    SLUG: 'fields.slug',
+    SITE_TITLE_TEMPLATE: 'fields.siteTitleTemplate',
+    SITE_TITLE_DEFAULT: 'fields.siteTitleDefault',
+    SITE_DESCRIPTION: 'fields.siteDescription',
+}
+
+
+const fetchBySlug = (slug: string) =>
     client
         .getEntries<SiteConfigSkeleton>({
             content_type,
@@ -23,6 +35,6 @@ const getSiteConfig = (slug: string) =>
             throw new Error(`Cannot find content for [slug]=${slug}`)
         });
 
-export const siteConfigServices = {
-    getSiteConfig
+export  {
+    fetchBySlug
 }

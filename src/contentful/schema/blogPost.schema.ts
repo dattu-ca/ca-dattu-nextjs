@@ -1,20 +1,9 @@
-import {Entry} from "contentful";
-import {IBlogPostFields} from "../../schema/generated";
-import {mapContentfulList as mapBodyImagesContentfulList} from '../bodyImages';
-import { mapContentfulList as mapBodySidebarContentfulList} from '../bodySidebar';
 import {IBlogPost} from "~/models";
+import {IBlogPostFields} from "./generated";
+import {mapContentfulList as mapBodyImagesContentfulList} from './bodyImages.schema';
+import { mapContentfulList as mapBodySidebarContentfulList} from './bodySidebar.schema';
 
 
-export const CONTENTFUL_BLOG_POST_FIELDS = {
-    HEADING: 'fields.heading',
-    BODY: 'fields.body',
-    SHORT_BODY: 'fields.shortBody',
-    SLUG: 'fields.slug',
-    BANNERS: 'fields.banners',
-    SIDEBARS: 'fields.sidebars',
-}
-
-export const content_type = 'blogPost';
 
 export type BlogPostSkeleton = {
     contentTypeId: 'blogPost'
@@ -22,8 +11,8 @@ export type BlogPostSkeleton = {
 }
 
 
-export const mapContentful = (raw: Entry<BlogPostSkeleton, undefined, string>) => {
-    const source = raw.fields
+export const mapContentful = (raw: any) => {
+    const source = (raw as BlogPostSkeleton).fields
     const target: Partial<IBlogPost> = {};
     if (source.slug) {
         target.slug = source.slug as string;

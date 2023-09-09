@@ -1,4 +1,4 @@
-import {IBodyFormJson} from "~/models/bodyForm";
+import {IBodyFormJson} from "~/models";
 
 const isEmailValid = (val: string) => {
     const reg = /^([A-Za-z0-9_\-\.])+\@([A-Za-z0-9_\-\.])+\.([A-Za-z]{2,4})$/;

@@ -1,9 +1,8 @@
 import {IBodyForm, IBodyFormJson} from "~/models";
-import {IBodyFormFields} from "~/contentful/schema/generated";
-
-
+import {IBodyFormFields} from "./generated";
 
 export type BodyFormSkeleton = {
+    contentTypeId: 'bodyForm'
     fields: IBodyFormFields;
 }
 
@@ -16,8 +15,11 @@ export const mapContentful = (raw: any) => {
         formId: source.formId,
         failureMessage: source.failureMessage,
         successMessage: source.successMessage,
-        sendEmail: source.sendEmail,
-        formJson: source.formJson as IBodyFormJson
+        recaptchaEnabled: source.recaptchaEnabled,
+        submitFormEnabled: source.submitFormEnabled,
+        sendEmailEnabled: source.sendEmailEnabled,
+        formJson: source.formJson as IBodyFormJson,
+        fromEmailKey: source.fromEmailKey,
     };
     
     return target as IBodyForm;

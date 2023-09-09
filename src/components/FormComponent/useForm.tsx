@@ -1,12 +1,13 @@
 import {useCallback, useMemo} from "react";
-import {doValidation} from "~/services";
+import {formsServices} from "~/services";
 import {IBodyFormJson, IBodyFormFieldText, IBodyFormFieldTextArea, TBodyFormField} from "~/models/bodyForm";
 import {Field} from "formik";
 import {FieldTypeText} from "~/components/FormComponent/FieldTypeText";
 import {FieldTypeTextArea} from "~/components/FormComponent/FieldTypeTextArea";
 
 export const useForm = (formJson: IBodyFormJson) => {
-    const validate = useCallback((id: string, value: string) => doValidation(formJson, id, value), [formJson]);
+    const validate = useCallback((id: string, value: string) =>
+        formsServices.doValidation(formJson, id, value), [formJson]);
 
     const getField = useCallback((field: TBodyFormField) => {
         switch (field.fieldType) {
@@ -29,7 +30,6 @@ export const useForm = (formJson: IBodyFormJson) => {
                 return <pre>{JSON.stringify(field, null, 2)}</pre>
         }
     }, [validate]);
-
 
 
     const initialValue = useMemo(() => {

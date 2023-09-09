@@ -1,5 +1,5 @@
-'use server';
-import {blogPageServices} from "~/contentful";
+import { fetchBySlug } from './services';
 
-
-export const getBlogPage = (slug: string) => blogPageServices.getBlogPage(slug)
+export const blogPageServices = {
+    fetchBySlug
+};

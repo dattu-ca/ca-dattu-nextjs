@@ -1,7 +1,18 @@
-import {client} from "../../client";
-import {content_type, SiteNavbarSkeleton, mapContentful, CONTENTFUL_SITE_NAVBAR_FIELDS} from './model'
+import {client} from "../client";
+import {SiteNavbarSkeleton, mapContentful} from '../schema/siteNavbar.schema';
 
-const getSiteNavbar = (slug: string) =>
+
+const content_type = 'siteNavbar';
+
+const CONTENTFUL_SITE_NAVBAR_FIELDS = {
+    SLUG: 'fields.slug',
+    LOGO: 'fields.logo',
+    LINKS: 'fields.links',
+    OPEN_MENU_TEXT: 'fields.openMenuText',
+    CLOSE_MENU_TEXT: 'fields.closeMenuText'
+}
+
+const fetchBySlug = (slug: string) =>
     client
         .getEntries<SiteNavbarSkeleton>({
             content_type,
@@ -24,6 +35,6 @@ const getSiteNavbar = (slug: string) =>
             throw new Error(`Cannot find content for [slug]=${slug}`)
         });
 
-export const siteNavbarServices = {
-    getSiteNavbar
+export {
+    fetchBySlug
 }

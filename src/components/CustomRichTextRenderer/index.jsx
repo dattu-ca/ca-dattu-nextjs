@@ -1,8 +1,7 @@
 import PropTypes from 'prop-types';
 import {documentToReactComponents} from '@contentful/rich-text-react-renderer';
 import {BLOCKS, INLINES, MARKS} from '@contentful/rich-text-types';
-import {mapContentful as mapBodyImages} from "~/contentful/services/bodyImages";
-import {mapContentful as mapBodyForm} from "~/contentful/services/bodyForm";
+import {bodyImagesSchema, bodyFormSchema} from "~/contentful/schema";
 import {BannerComponent} from "../Banner";
 import {FormComponent} from "../FormComponent";
 
@@ -22,11 +21,11 @@ const renderEmbeddedEntry = (node, children) => {
             return documentToReactComponents(node.data.target.fields.body, options)
         }
         case 'bodyImages': {
-            const bodyImage = mapBodyImages(node.data.target);
+            const bodyImage = bodyImagesSchema.mapContentful(node.data.target);
             return <BannerComponent banners={[bodyImage]}/>
         }
         case 'bodyForm': {
-            const form = mapBodyForm(node.data.target);
+            const form = bodyFormSchema.mapContentful(node.data.target);
             return <FormComponent form={form}/>
         }
         default: {
