@@ -17,7 +17,7 @@ const NavbarMobile = () => {
         <div className={clsx(
             {
                 ['pb-[72px]']: !session,
-                ['pb-[128px]']: session,
+                ['pb-[72px]']: session,
             }
         )}>
             {
