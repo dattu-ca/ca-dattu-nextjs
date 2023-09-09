@@ -8,8 +8,11 @@ import clsx from "clsx";
 
 const DynamicIcon = (icon, className) => dynamic(async () => {
     const match = /[A-Z0-9]/.exec(icon[0].toLowerCase() + icon.slice(1));
+    const libStr = match ? icon.substring(0, match.index) : null;
+    const Xyz = () => <pre>{JSON.stringify({match, icon, className, libStr}, null, 2)}</pre>
+    return Xyz;
     if (match) {
-        const libStr = icon.substring(0, match.index);
+        
         switch (libStr) {
             case 'Ai' :
                 const {[icon]: Ai} = await import('react-icons/ai');
