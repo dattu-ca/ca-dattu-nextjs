@@ -1,8 +1,10 @@
-import {IBodyForm, IBodyFormJson} from "~/models";
+'use server';
+import {IBodyFormJson} from "~/models";
 import {googleRecaptchaServices} from "../google.recaptcha";
 import {formsDbServices} from "~/services.db";
 import {sanitize} from "~/utils/utils";
 import {sendMailServices} from "~/services";
+import {bodyFormServices} from "~/contentful/services";
 
 
 const createMessage = (formJson: IBodyFormJson, formValues: Record<string, any>) => {
@@ -20,17 +22,16 @@ const createMessage = (formJson: IBodyFormJson, formValues: Record<string, any>)
 
 interface IProps {
     recaptchaToken: string;
-    form: IBodyForm;
+    formId: string;
     formValues: Record<string, any>;
 }
 
 
-
-const saveForm = async ({recaptchaToken, form, formValues}: IProps) => {
+const saveForm = async ({recaptchaToken, formId, formValues}: IProps) => {
     try {
-        
+        const form = await bodyFormServices.fetchByFormId(formId);
 
-        const {formJson, formId} = form;
+        const {formJson} = form;
 
         for (const k of Object.keys(formValues)) {
             formValues[k] = sanitize`${formValues[k]}`

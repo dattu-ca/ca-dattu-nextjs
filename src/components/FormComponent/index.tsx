@@ -51,7 +51,7 @@ const FormComponent = ({form}: IProps) => {
                             if(form.submitFormEnabled) {
                                 await formsServices.saveForm({
                                     recaptchaToken,
-                                    form,
+                                    formId: form.formId,
                                     formValues: values,
                                 });
                                 actions.resetForm();
