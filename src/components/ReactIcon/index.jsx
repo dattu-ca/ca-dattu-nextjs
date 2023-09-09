@@ -1,6 +1,9 @@
 import React, {Suspense} from 'react';
 import dynamic from 'next/dynamic'
 import {AiOutlineLoading3Quarters} from 'react-icons/ai';
+import { FiActivity} from 'react-icons/fi';
+import { GrAchievement} from 'react-icons/gr';
+import { RxActivityLog } from 'react-icons/rx'
 import clsx from "clsx";
 
 const DynamicIcon = (icon, className) => dynamic(async () => {
@@ -180,14 +183,12 @@ const DynamicIcon = (icon, className) => dynamic(async () => {
             default:
                 break;
         }
-
-
     }
     return {
         default: AiOutlineLoading3Quarters
     }
 }, {
-    loading: () => <AiOutlineLoading3Quarters className={clsx(
+    loading: () => <FiActivity className={clsx(
         className,
         'animate-spin'
     )}/>,
@@ -198,11 +199,11 @@ const ReactIcon = ({icon, className}) => {
     const Icon = DynamicIcon(icon, className);
     console.log("Icon", Icon);
     if (Icon) {
-        return <Suspense fallback={<AiOutlineLoading3Quarters className={clsx(className, 'ReactIcon-Suspense')}/>}>
+        return <Suspense fallback={<GrAchievement className={clsx(className, 'ReactIcon-Suspense')}/>}>
             <Icon className={className}/>
         </Suspense>
     }
-    return <AiOutlineLoading3Quarters className={clsx(className, 'Final-Return')}/>;
+    return <RxActivityLog className={clsx(className, 'Final-Return')}/>;
 }
 
 export {ReactIcon}
