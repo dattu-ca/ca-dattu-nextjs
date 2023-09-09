@@ -17,7 +17,7 @@ interface IProps {
 }
 
 const FormComponent = ({form}: IProps) => {
-    const {formId, formJson} = form;
+    const {formJson, formId} = form;
     const [isSubmitting, setIsSubmitting] = useState(false);
 
     const {
@@ -26,7 +26,7 @@ const FormComponent = ({form}: IProps) => {
     } = useForm(formJson);
 
     const recaptchaRef = useRef<ReCAPTCHA | null>(null)
-    const [recaptchaToken, setRecaptchaToken] = useState<string>();
+    const [recaptchaToken, setRecaptchaToken] = useState<string>(form.recaptchaEnabled ? '' : 'NOT_ENABLED');
 
     async function handleCaptchaSubmission(token: string | null) {
         if (token) {
@@ -48,20 +48,20 @@ const FormComponent = ({form}: IProps) => {
                             for (const k of Object.keys(values)) {
                                 values[k] = sanitize`${values[k]}`;
                             }
-                            const result = await formsServices.saveForm(recaptchaToken as string, formId, formJson, values);
-                            if (result) {
+                            if(form.submitFormEnabled) {
+                                await formsServices.saveForm({
+                                    recaptchaToken,
+                                    form,
+                                    formValues: values,
+                                });
                                 actions.resetForm();
                                 recaptchaRef.current?.reset();
-                                setRecaptchaToken('');
+                                setRecaptchaToken(form.recaptchaEnabled ? '' : 'NOT_ENABLED');
                                 toast(form.successMessage, {
                                     type: 'success'
                                 });
-                            }
-                            else {
-                                toast(form.failureMessage, {
-                                    type: 'error'
-                                });
-                            }
+                            }    
+                            
                         } catch (e) {
                             toast(form.failureMessage, {
                                 type: 'error'
@@ -128,11 +128,14 @@ const FormComponent = ({form}: IProps) => {
                                 }
                             </fieldset>
                             <div className={clsx('mb-4')}>
-                                <ReCAPTCHA
-                                    sitekey={CLIENT_CONFIG.GOOGLE_RECAPTCHA.SITE_KEY}
-                                    ref={recaptchaRef}
-                                    onChange={handleCaptchaSubmission}
-                                />
+                                {
+                                    form.recaptchaEnabled
+                                    && <ReCAPTCHA
+                                        sitekey={CLIENT_CONFIG.GOOGLE_RECAPTCHA.SITE_KEY}
+                                        ref={recaptchaRef}
+                                        onChange={handleCaptchaSubmission}
+                                    />
+                                }
                                 {
                                     submitCount > 0 && !recaptchaToken
                                     && (

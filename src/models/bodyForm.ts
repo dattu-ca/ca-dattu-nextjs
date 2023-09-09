@@ -29,8 +29,10 @@ export interface IBodyFormJson {
 export interface IBodyForm {
     formId: string;
     formJson: IBodyFormJson;
-    sendEmail: boolean;
+    recaptchaEnabled: boolean;
+    submitFormEnabled: boolean;
+    sendEmailEnabled: boolean;
     successMessage: string;
     failureMessage: string;
-
+    fromEmailKey?: string;
 }

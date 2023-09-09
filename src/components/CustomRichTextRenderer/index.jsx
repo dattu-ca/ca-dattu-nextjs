@@ -1,8 +1,8 @@
 import PropTypes from 'prop-types';
 import {documentToReactComponents} from '@contentful/rich-text-react-renderer';
 import {BLOCKS, INLINES, MARKS} from '@contentful/rich-text-types';
-import {mapContentful as mapBodyImages} from "~/contentful/services/bodyImages";
-import {mapContentful as mapBodyForm} from "~/contentful/services/bodyForm";
+import {mapContentful as mapBodyImages} from "~/contentful/services/bodyImages/model";
+import {mapContentful as mapBodyForm} from "~/contentful/services/bodyForm/model";
 import {BannerComponent} from "../Banner";
 import {FormComponent} from "../FormComponent";
 

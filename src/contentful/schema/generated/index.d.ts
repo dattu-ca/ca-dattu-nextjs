@@ -121,14 +121,23 @@ export interface IBodyFormFields {
   /** Form JSON */
   formJson?: Record<string, any> | undefined;
 
-  /** Send email? */
-  sendEmail: boolean;
+  /** Submit Form Enabled? */
+  submitFormEnabled: boolean;
+
+  /** Recaptcha Enabled? */
+  recaptchaEnabled: boolean;
+
+  /** Send Email Enabled? */
+  sendEmailEnabled: boolean;
 
   /** Success Message */
   successMessage: string;
 
   /** Failure Message */
   failureMessage: string;
+
+  /** From Email Key */
+  fromEmailKey?: string | undefined;
 }
 
 /** This is a form.  For now, it will be a simple JSON file. */
