@@ -17,13 +17,13 @@ interface IProps {
 }
 
 const FormComponent = ({form}: IProps) => {
-    const {formJson, formId} = form;
+    const {formModel, formId} = form;
     const [isSubmitting, setIsSubmitting] = useState(false);
 
     const {
         initialValue,
         getField
-    } = useForm(formJson);
+    } = useForm(form);
 
     const recaptchaRef = useRef<ReCAPTCHA | null>(null)
     const [recaptchaToken, setRecaptchaToken] = useState<string>(form.recaptchaEnabled ? '' : 'NOT_ENABLED');
@@ -81,54 +81,57 @@ const FormComponent = ({form}: IProps) => {
                         <Form
                             className={clsx('w-full text-gray-500 border border-2 border-gray-300 rounded-lg p-4 bg-white')}
                             noValidate={true}>
-                            <fieldset>
-                                {
-                                    formJson.legend &&
-                                    <legend className={clsx(
-                                        'mb-4 font-bold text-gray-700 text-lg'
-                                    )}>{formJson.legend}</legend>
-                                }
-                                {
-                                    formJson.fields.map(f => <div key={f.id} className='mb-4'>
-                                        <div>{getField(f)}</div>
-                                        <div className={clsx(
-                                            'flex justify-between gap-2 ',
-                                            'text-sm mt-2'
-                                        )}>
-                                            <div className={clsx('text-red-500')}>
-                                                {
-                                                    getShowErrorFlag(f.id) &&
-                                                    (errors[f.id] as string[]).map(error => <p
-                                                        className='flex items-center gap-2 mb-0'
-                                                        key={`${f.id}_${error}`}>
-                                                        <ReactIcon icon={'FiAlertCircle'}
-                                                                   className={' w-6 h-6'}/>
-                                                        <span>{error}</span>
-                                                    </p>)
-                                                }
-                                            </div>
-                                            <div>
-                                                {
-                                                    <p className={clsx('mb-0')}>
+                            {
+                                formModel.map((model, index) => <fieldset key={index}>
+                                    {
+                                        model.legend &&
+                                        <legend className={clsx(
+                                            'mb-4 font-bold text-gray-700 text-lg'
+                                        )}>{model.legend}</legend>
+                                    }
+                                    {
+                                        model.fields.map(f => <div key={f.id} className='mb-4'>
+                                            <div>{getField(f)}</div>
+                                            <div className={clsx(
+                                                'flex justify-between gap-2 ',
+                                                'text-sm mt-2'
+                                            )}>
+                                                <div className={clsx('text-red-500')}>
+                                                    {
+                                                        getShowErrorFlag(f.id) &&
+                                                        (errors[f.id] as string[]).map(error => <p
+                                                            className='flex items-center gap-2 mb-0'
+                                                            key={`${f.id}_${error}`}>
+                                                            <ReactIcon icon={'FiAlertCircle'}
+                                                                       className={' w-6 h-6'}/>
+                                                            <span>{error}</span>
+                                                        </p>)
+                                                    }
+                                                </div>
+                                                <div>
+                                                    {
+                                                        <p className={clsx('mb-0')}>
                                                             <span className={clsx(
                                                                 {
                                                                     ['text-red-500']: (errors[f.id] as string[])?.find(error => error.toLowerCase().includes('max length'))
                                                                 }
                                                             )}>{values[f.id].length}</span>
-                                                        {
-                                                            f.validations.maxLength
-                                                            && <Fragment>
-                                                                <span>/</span>
-                                                                <span>{f.validations.maxLength}</span>
-                                                            </Fragment>
-                                                        }
-                                                    </p>
-                                                }
+                                                            {
+                                                                f.validations.maxLength
+                                                                && <Fragment>
+                                                                    <span>/</span>
+                                                                    <span>{f.validations.maxLength}</span>
+                                                                </Fragment>
+                                                            }
+                                                        </p>
+                                                    }
+                                                </div>
                                             </div>
-                                        </div>
-                                    </div>)
-                                }
-                            </fieldset>
+                                        </div>)
+                                    }
+                                </fieldset>)
+                            }
+                            
                             <div className={clsx('mb-4')}>
                                 {
                                     form.recaptchaEnabled

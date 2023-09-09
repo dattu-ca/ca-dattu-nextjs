@@ -1,4 +1,4 @@
-import {IBodyForm, IBodyFormJson} from "~/models";
+import {IBodyForm, IBodyFormModel} from "~/models";
 import {IBodyFormFields} from "./generated";
 
 export type BodyFormSkeleton = {
@@ -18,7 +18,7 @@ export const mapContentful = (raw: any) => {
         recaptchaEnabled: source.recaptchaEnabled,
         submitFormEnabled: source.submitFormEnabled,
         sendEmailEnabled: source.sendEmailEnabled,
-        formJson: source.formJson as IBodyFormJson,
+        formModel: source.formModel as IBodyFormModel[],
         fromEmailKey: source.fromEmailKey,
     };
     
