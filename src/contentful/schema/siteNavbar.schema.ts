@@ -1,4 +1,3 @@
-import {Entry} from "contentful";
 import {ISiteNavbar} from "~/models";
 import {ISiteNavbarFields} from "./generated";
 import {mapContentful as mapContentful_bodyLinks} from './bodyLinks.schema';
@@ -11,8 +10,8 @@ export type SiteNavbarSkeleton = {
 }
 
 
-export const mapContentful = (raw: Entry<SiteNavbarSkeleton, undefined, string>) => {
-    const source = raw.fields;
+export const mapContentful = (raw: any) => {
+    const source = (raw as SiteNavbarSkeleton).fields;
     const target: Partial<ISiteNavbar> = {};
     if (source.slug) {
         target.slug = source.slug as string;

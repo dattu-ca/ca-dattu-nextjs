@@ -1,13 +1,12 @@
 import {IBodyForm, IBodyFormJson} from "~/models";
 import {IBodyFormFields} from "./generated";
-import {Entry} from "contentful";
 
 export type BodyFormSkeleton = {
     contentTypeId: 'bodyForm'
     fields: IBodyFormFields;
 }
 
-export const mapContentful = (raw: Entry<BodyFormSkeleton, undefined, string>) => {
+export const mapContentful = (raw: any) => {
     if (!raw) {
         return undefined;
     }

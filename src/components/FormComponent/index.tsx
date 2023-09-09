@@ -39,19 +39,21 @@ const FormComponent = ({form}: IProps) => {
         <Formik initialValues={initialValue}
                 validateOnBlur={true}
                 validateOnChange={true}
-                onSubmit={async (values, actions) => {
+                onSubmit={async (values: Record<string, any>, actions) => {
                     if (!isSubmitting && recaptchaToken) {
                         setIsSubmitting(true);
                         actions.setSubmitting(true);
                         try {
 
                             for (const k of Object.keys(values)) {
-                                values[k] = sanitize`${values[k]}`;
+                                if(typeof values[k] === 'string') {
+                                    values[k] = sanitize`${values[k] as string}`;
+                                }
                             }
                             if(form.submitFormEnabled) {
                                 await formsServices.saveForm({
                                     recaptchaToken,
-                                    formId: form.formId,
+                                    formId,
                                     formValues: values,
                                 });
                                 actions.resetForm();

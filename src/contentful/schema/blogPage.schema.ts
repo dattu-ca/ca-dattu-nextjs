@@ -1,4 +1,3 @@
-import {Entry} from "contentful";
 import {IBlogPageFields} from "./generated";
 import {mapContentfulList as mapBodyImagesContentfulList} from './bodyImages.schema';
 import { mapContentfulList as mapBodySidebarContentfulList} from './bodySidebar.schema';
@@ -11,8 +10,8 @@ export type BlogPageSkeleton = {
 }
 
 
-export const mapContentful = (raw: Entry<BlogPageSkeleton, undefined, string>) => {
-    const source = raw.fields
+export const mapContentful = (raw: any) => {
+    const source = (raw as BlogPageSkeleton).fields
     const target: Partial<IBlogPage> = {};
     if (source.slug) {
         target.slug = source.slug as string;

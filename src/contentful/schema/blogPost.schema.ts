@@ -1,4 +1,3 @@
-import {Entry} from "contentful";
 import {IBlogPost} from "~/models";
 import {IBlogPostFields} from "./generated";
 import {mapContentfulList as mapBodyImagesContentfulList} from './bodyImages.schema';
@@ -12,8 +11,8 @@ export type BlogPostSkeleton = {
 }
 
 
-export const mapContentful = (raw: Entry<BlogPostSkeleton, undefined, string>) => {
-    const source = raw.fields
+export const mapContentful = (raw: any) => {
+    const source = (raw as BlogPostSkeleton).fields
     const target: Partial<IBlogPost> = {};
     if (source.slug) {
         target.slug = source.slug as string;
