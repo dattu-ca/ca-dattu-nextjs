@@ -9,6 +9,7 @@ import {useForm} from "~/components/FormComponent/useForm";
 import ReCAPTCHA from "react-google-recaptcha";
 import {CLIENT_CONFIG} from "~/utils/config.client";
 import {toast} from "react-toastify";
+import {sanitize} from "~/utils/utils";
 
 
 interface IProps {
@@ -43,14 +44,22 @@ const FormComponent = ({form}: IProps) => {
                         setIsSubmitting(true);
                         actions.setSubmitting(true);
                         try {
+
+                            for (const k of Object.keys(values)) {
+                                values[k] = sanitize`${values[k]}`;
+                            }
                             const result = await formsServices.saveForm(recaptchaToken as string, formId, formJson, values);
-                            console.log("result", result)
                             if (result) {
                                 actions.resetForm();
                                 recaptchaRef.current?.reset();
                                 setRecaptchaToken('');
                                 toast(form.successMessage, {
                                     type: 'success'
+                                });
+                            }
+                            else {
+                                toast(form.failureMessage, {
+                                    type: 'error'
                                 });
                             }
                         } catch (e) {

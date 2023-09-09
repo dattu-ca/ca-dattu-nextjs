@@ -1,6 +1,6 @@
 import {redirect} from 'next/navigation';
 import {RedirectType} from "next/dist/client/components/redirect";
-import {getBlogPosts} from "~/services";
+import {blogPostServices} from "~/services";
 import {PaginationComponent} from "~/components/Pagination";
 import {SERVER_CONFIG} from "~/utils/config.server";
 
@@ -19,7 +19,7 @@ const Page = async (props: IProps) => {
     const limit = SERVER_CONFIG.CONTENT_CONFIG.DEFAULT_MAX_POSTS_PER_PAGE;
     const skip = (+slug - 1) * limit;
 
-    const {items, total} = await getBlogPosts(skip, limit);
+    const {items, total} = await blogPostServices.fetchListPaginated(skip, limit);
     if (items.length === 0) {
         redirect('/posts', RedirectType.replace);
         return null;

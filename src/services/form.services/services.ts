@@ -1,7 +1,8 @@
 'use server';
 import {IBodyFormJson} from "~/models";
-import {verifyCaptcha} from "../google.recaptcha";
+import {googleRecaptchaServices} from "../google.recaptcha";
 import {formsDbServices} from "~/services.db";
+import {sanitize} from "~/utils/utils";
 
 
 const saveForm = async (recaptchaToken: string,
@@ -12,7 +13,11 @@ const saveForm = async (recaptchaToken: string,
 
     try {
 
-        await verifyCaptcha(recaptchaToken);
+        for (const k of Object.keys(formValues)){
+            formValues[k] = sanitize`${formValues[k]}`
+        }
+
+        await googleRecaptchaServices.verifyCaptcha(recaptchaToken);
         return await formsDbServices.save({
             data: {
                 formId,

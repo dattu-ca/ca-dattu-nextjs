@@ -5,7 +5,7 @@ import 'react-toastify/dist/ReactToastify.css';
 import {ToastContainer} from "react-toastify";
 
 
-import {getSiteConfig, getSiteNavbar} from "~/services";
+import {siteConfigServices, siteNavbarServices} from "~/services";
 import {SERVER_CONFIG} from "~/utils/config.server";
 import NavbarComponent from "~/components/Navbar";
 import {AuthProvider} from "./context/AuthProvider";
@@ -14,7 +14,7 @@ const {PRIMARY_SITE_CONFIG, HEADER_SITE_NAVBAR} = SERVER_CONFIG.CONTENTFUL_SLUGS
 
 
 export const generateMetadata = async () => {
-    const data = await getSiteConfig(PRIMARY_SITE_CONFIG);
+    const data = await siteConfigServices.fetchBySlug(PRIMARY_SITE_CONFIG);
     const {siteTitleDefault, siteTitleTemplate, siteDescription} = data;
     return {
         title: {
@@ -30,7 +30,7 @@ interface IProps {
 }
 
 const RootLayout = async ({children}: IProps) => {
-    const navbar = await getSiteNavbar(HEADER_SITE_NAVBAR);
+    const navbar = await siteNavbarServices.fetchBySlug(HEADER_SITE_NAVBAR);
     return (
         <html lang="en">
         <head>
