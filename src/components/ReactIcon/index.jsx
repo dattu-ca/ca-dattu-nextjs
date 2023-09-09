@@ -58,6 +58,7 @@ const DynamicIcon = (icon, className) => dynamic(async () => {
                 break;
             case 'Fa' :
                 const {[icon]: Fa} = await import('react-icons/fa6');
+                console.log('FA', Fa);
                 if (Fa) {
                     return {default: Fa}
                 }
@@ -195,6 +196,7 @@ const DynamicIcon = (icon, className) => dynamic(async () => {
 
 const ReactIcon = ({icon, className}) => {
     const Icon = DynamicIcon(icon, className);
+    console.log("Icon", Icon);
     if (Icon) {
         return <Suspense fallback={<AiOutlineLoading3Quarters className={clsx(className, 'ReactIcon-Suspense')}/>}>
             <Icon className={className}/>
