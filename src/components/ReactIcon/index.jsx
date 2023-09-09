@@ -196,11 +196,11 @@ const DynamicIcon = (icon, className) => dynamic(async () => {
 const ReactIcon = ({icon, className}) => {
     const Icon = DynamicIcon(icon, className);
     if (Icon) {
-        return <Suspense fallback={<AiOutlineLoading3Quarters className={className}/>}>
+        return <Suspense fallback={<AiOutlineLoading3Quarters className={clsx(className, 'ReactIcon-Suspense')}/>}>
             <Icon className={className}/>
         </Suspense>
     }
-    return <AiOutlineLoading3Quarters className={className}/>;
+    return <AiOutlineLoading3Quarters className={clsx(className, 'Final-Return')}/>;
 }
 
 export {ReactIcon}
