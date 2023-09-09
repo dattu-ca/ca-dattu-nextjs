@@ -203,7 +203,7 @@ import clsx from "clsx";
 
 const DynamicIcon = dynamic(async () => {
     const i ='AiFillAlert'
-    const {AiFillAlert: Icon} = await import('react-icons/ai', {ssr: false});
+    const {[i]: Icon} = await import('react-icons/ai', {ssr: false});
     return {default: Icon};
 })
 
