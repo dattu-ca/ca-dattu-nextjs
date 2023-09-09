@@ -6,10 +6,6 @@ import {GrAchievement} from 'react-icons/gr';
 import {RxActivityLog} from 'react-icons/rx'
 import clsx from "clsx";
 
-const DynamicIcon = dynamic(async () => {
-    const {AiFillAlert} = await import('react-icons/ai', {ssr: false});
-    return {default: AiFillAlert};
-})
 
 // const DynamicIcon2 = (icon, className) => dynamic(async () => {
 //     const match = /[A-Z0-9]/.exec(icon[0].toLowerCase() + icon.slice(1));
@@ -205,7 +201,15 @@ const DynamicIcon = dynamic(async () => {
 
 
 const ReactIcon = ({icon, className}) => {
+
+    const DynamicIcon = dynamic(async () => {
+        const i ='AiFillAlert'
+        const {[i]: Icon} = await import('react-icons/ai', {ssr: false});
+        return {default: Icon};
+    })
+    
     const Icon = DynamicIcon(icon, className);
+    
     
     if (Icon) {
         return <Suspense fallback={<p>...Sus Main</p>}>
