@@ -200,16 +200,15 @@ import clsx from "clsx";
 // })
 
 
-const ReactIcon = ({icon, className}) => {
 
-    const DynamicIcon = dynamic(async () => {
-        const i ='AiFillAlert'
-        const {[i]: Icon} = await import('react-icons/ai', {ssr: false});
-        return {default: Icon};
-    })
-    
+const DynamicIcon = dynamic(async () => {
+    const i ='AiFillAlert'
+    const {[i]: Icon} = await import('react-icons/ai', {ssr: false});
+    return {default: Icon};
+})
+
+const ReactIcon = ({icon, className}) => {
     const Icon = DynamicIcon(icon, className);
-    
     
     if (Icon) {
         return <Suspense fallback={<p>...Sus Main</p>}>
