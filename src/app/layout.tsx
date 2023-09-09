@@ -5,7 +5,7 @@ import 'react-toastify/dist/ReactToastify.css';
 import {ToastContainer} from "react-toastify";
 
 
-import {siteConfigServices, siteNavbarServices} from "~/services";
+import {getAuthSession, siteConfigServices, siteNavbarServices} from "~/services";
 import {SERVER_CONFIG} from "~/utils/config.server";
 import NavbarComponent from "~/components/Navbar";
 import {AuthProvider} from "./context/AuthProvider";
@@ -31,6 +31,7 @@ interface IProps {
 
 const RootLayout = async ({children}: IProps) => {
     const navbar = await siteNavbarServices.fetchBySlug(HEADER_SITE_NAVBAR);
+    const session = await getAuthSession();
     return (
         <html lang="en">
         <head>
@@ -52,7 +53,7 @@ const RootLayout = async ({children}: IProps) => {
                            'focus:translate-y-1.5'
                        )}>Skip to main Content</a>
                 </div>
-                <NavbarComponent navbar={navbar} data-superjson/>
+                <NavbarComponent navbar={navbar} session={session} data-superjson/>
             </header>
             <main id="mainContent"
                   className={clsx(

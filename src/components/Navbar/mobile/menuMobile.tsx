@@ -2,9 +2,8 @@ import React from 'react';
 import clsx from "clsx";
 import Link from "next/link";
 import {ClickAwayListener} from '@mui/base/ClickAwayListener';
-
-import {useNavbarContext} from "./context";
 import {ReactIcon} from "~/components/ReactIcon";
+import {useNavbarContext} from "../context";
 
 const MenuMobile = () => {
     const {
