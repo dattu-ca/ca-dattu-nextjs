@@ -15,28 +15,8 @@ const NavbarMobile = () => {
     } = useNavbarContext();
     return (
         <div className={clsx(
-            {
-                ['pb-[72px]']: !session,
-                ['pb-[72px]']: session,
-            }
+            'pb-[72px]'
         )}>
-            {
-                session
-                && (
-                    <nav className={clsx(
-                        'w-full bg-site-color-dark',
-                        'py-4 px-4',
-                        'shadow-2xl',
-                        'fixed z-40 top-0 left-0'
-                    )}>
-                        <div className={clsx(
-                            'flex justify-end items-center',
-                        )}>
-                            MOBILE
-                        </div>
-                    </nav>
-                )
-            }
             <nav className={clsx(
                 'w-full bg-site-color-dark',
                 'py-4 px-4',
