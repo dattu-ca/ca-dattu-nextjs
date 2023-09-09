@@ -30,7 +30,7 @@ const saveForm = async ({recaptchaToken, form, formValues}: IProps) => {
     try {
         
 
-        const {formJson} = form;
+        const {formJson, formId} = form;
 
         for (const k of Object.keys(formValues)) {
             formValues[k] = sanitize`${formValues[k]}`

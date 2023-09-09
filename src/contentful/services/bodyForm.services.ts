@@ -2,6 +2,26 @@
 // import {content_type, BodyFormSkeleton, mapContentful, CONTENTFUL_BLOG_PAGE_FIELDS} from './model'
 // import {IBodyForm} from "~/models";
 //
+//
+//
+//
+//
+// const CONTENTFUL_BLOG_PAGE_FIELDS = {
+//     FORM_ID: 'fields.formId',
+//     FORM_JSON: 'fields.formJson',
+//     SUBMIT_FORM_ENABLED: 'fields.submitFormEnabled',
+//     RECAPTCHA_ENABLED: 'fields.recaptchaEnabled',
+//     SEND_EMAIL_ENABLED: 'fields.sendEmailEnabled',
+//     SUCCESS_MESSAGE: 'fields.successMessage',
+//     FAILURE_MESSAGE: 'fields.failureMessage',
+//     FROM_EMAIL_KEY: 'fields.fromEmailKey',
+// }
+//
+//
+// const content_type = 'bodyForm';
+//
+//
+//
 // const getBodyForm = (formId: string) =>
 //     client
 //         .getEntries<BodyFormSkeleton>({

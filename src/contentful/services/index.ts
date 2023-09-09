@@ -1,13 +1,13 @@
-import {blogPageServices} from './blogPage';
-import {blogPostServices} from './blogPost';
-import {siteConfigServices} from './siteConfig';
-import {siteNavbarServices} from './siteNavbar';
-import {bodyFormServices} from './bodyForm';
+import * as blogPageServices from './blogPage.services';
+import * as blogPostServices from './blogPost.services';
+import * as bodyFormServices from './bodyForm.services';
+import * as siteConfigServices from './siteConfig.services';
+import * as siteNavbarServices from './siteNavbar.services';
 
 export {
     blogPageServices,
     blogPostServices,
+    bodyFormServices,
     siteConfigServices,
     siteNavbarServices,
-    bodyFormServices
 }

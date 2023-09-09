@@ -1,17 +1,6 @@
 import {Entry} from "contentful";
 import {ISiteConfig} from "~/models";
-import {ISiteConfigFields} from "../../schema/generated";
-
-
-
-export const content_type = 'siteConfig';
-
-export const CONTENTFUL_SITE_CONFIG_FIELDS = {
-    SLUG: 'fields.slug',
-    SITE_TITLE_TEMPLATE: 'fields.siteTitleTemplate',
-    SITE_TITLE_DEFAULT: 'fields.siteTitleDefault',
-    SITE_DESCRIPTION: 'fields.siteDescription',
-}
+import {ISiteConfigFields} from "./generated";
 
 export type SiteConfigSkeleton = {
     contentTypeId: 'siteConfig'

@@ -1,7 +1,20 @@
-import {client} from "../../client";
-import {content_type, BlogPostSkeleton, mapContentful, CONTENTFUL_BLOG_POST_FIELDS} from './model'
+import {client} from "../client";
+import {BlogPostSkeleton, mapContentful} from '../schema/blogPost.schema'
 
-const getBlogPost = (slug: string) =>
+
+const CONTENTFUL_BLOG_POST_FIELDS = {
+    HEADING: 'fields.heading',
+    BODY: 'fields.body',
+    SHORT_BODY: 'fields.shortBody',
+    SLUG: 'fields.slug',
+    BANNERS: 'fields.banners',
+    SIDEBARS: 'fields.sidebars',
+}
+
+const content_type = 'blogPost';
+
+
+const fetchBySlug = (slug: string) =>
     client
         .getEntries<BlogPostSkeleton>({
             content_type,
@@ -25,7 +38,7 @@ const getBlogPost = (slug: string) =>
         });
 
 
-const getBlogPosts = (skip : number = 0, limit: number = 10) => {
+const fetchListPaginated = (skip: number = 0, limit: number = 10) => {
     return client
         .getEntries<BlogPostSkeleton>({
             content_type,
@@ -44,7 +57,7 @@ const getBlogPosts = (skip : number = 0, limit: number = 10) => {
 }
 
 
-export const blogPostServices = {
-    getBlogPost,
-    getBlogPosts
+export {
+    fetchBySlug,
+    fetchListPaginated
 }
