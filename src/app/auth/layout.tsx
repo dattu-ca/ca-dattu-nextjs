@@ -10,7 +10,7 @@ interface IProps {
 const RootLayout = async ({children}: IProps) => {
     const session = await getAuthSession()
     if (session) {
-        redirect('/dashboard', RedirectType.replace);
+        redirect('/admin/dashboard', RedirectType.replace);
     }
     return (
         <div>
