@@ -4,7 +4,7 @@ import Link from "next/link";
 import {ClickAwayListener} from '@mui/base/ClickAwayListener';
 import {ReactIcon} from "~/components/ReactIcon";
 import {useNavbarContext} from "../context";
-import {MenuLoggedInMobile} from "./menuLoggedInDesktop";
+import {MenuLoggedInMobile} from "./menuLoggedInMobile";
 
 const MenuMobile = () => {
     const {
@@ -13,6 +13,7 @@ const MenuMobile = () => {
             closeMenuText,
             links,
             isMobileMenuOpen,
+            session,
         },
         ctxFunctions: {
             getAriaCurrent,
@@ -21,14 +22,12 @@ const MenuMobile = () => {
             closeMobileMenu,
         }
     } = useNavbarContext();
-    
 
 
     return <ClickAwayListener onClickAway={closeMobileMenu}>
         <div className={clsx(
             ' relative'
         )}>
-            <button>H</button>
             <button onClick={toggleMobileMenu}
                     aria-label={isMobileMenuOpen ? closeMenuText : openMenuText}>
                 {
@@ -102,10 +101,13 @@ const MenuMobile = () => {
                             ))
                         }
                     </ul>
-
-                    <div>
-                        <MenuLoggedInMobile />
-                    </div>
+                    {
+                        session && (
+                            <div>
+                                <MenuLoggedInMobile/>
+                            </div>
+                        )
+                    }
                 </div>
             </div>
 
