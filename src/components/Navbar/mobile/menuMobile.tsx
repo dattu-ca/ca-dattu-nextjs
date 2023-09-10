@@ -28,6 +28,7 @@ const MenuMobile = () => {
         <div className={clsx(
             ' relative'
         )}>
+            <button>H</button>
             <button onClick={toggleMobileMenu}
                     aria-label={isMobileMenuOpen ? closeMenuText : openMenuText}>
                 {
