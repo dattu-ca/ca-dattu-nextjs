@@ -8,7 +8,7 @@ import {useNavbarContext} from "../context";
 const MenuLoggedInMobile = () => {
     const {
         ctxData: {
-            session,
+            authLinks,
         },
         ctxFunctions:{
             isCurrentPage,
@@ -16,20 +16,7 @@ const MenuLoggedInMobile = () => {
         }
     } = useNavbarContext();
     
-    const links = [
-        {
-            url: '/dashboard',
-            label: 'Dashboard'
-        },
-        {
-            url: '/profile',
-            label: 'Profile'
-        },
-        {
-            url: '/api/auth/signout',
-            label: 'Signout'
-        }
-    ];
+    
     
     
     return (
@@ -40,7 +27,7 @@ const MenuLoggedInMobile = () => {
             'bg-site-color-dark'
         )}>
             {
-                links.map(link => (
+                authLinks.map(link => (
                     <li key={link.label}>
                         <Link aria-current={getAriaCurrent(link.url)}      
                               href={link.url}

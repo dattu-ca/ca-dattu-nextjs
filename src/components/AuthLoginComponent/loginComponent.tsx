@@ -32,34 +32,34 @@ const LoginComponent = ({providers}: IProps) => {
         return 'GiStarGate';
 
     }
-    return <div>
+    return <div className={clsx('mt-8')}>
         <div className={clsx(
             'mx-auto',
             'w-[500px]',
             'bg-white',
-            'py-8 px-4'
+            'py-8 px-4',            
         )}>
-            <h1>Login</h1>
+            <h1 className={clsx('text-center')}>Login</h1>
             {Object.values(providers).filter(provider => provider.name !== 'Credentials').map((provider) => (
                 <div key={provider.name}
                      className={clsx(
-                         'mb-2'
+                         'mb-8',
+                         'text-center'
                      )}>
                     <button onClick={() => signIn(provider.id)}>
 
                         <div className={clsx(
-                            'flex gap-2 align-center items-center'
+                            'flex gap-4 align-center items-center'
                         )}>
                             <div>
-                                <ReactIcon icon={getIcon(provider as IProvider)} className={'w-6 h-6'}/>
+                                <ReactIcon icon={getIcon(provider as IProvider)} className={'w-12 h-12'}/>
                             </div>
-                            <div>Sign in with {provider.name}</div>
+                            <div className={clsx('text-2xl')}>Sign in with {provider.name}</div>
                         </div>
                     </button>
                 </div>
             ))}
-            <pre>{JSON.stringify(providers, null, 2)}</pre>
-
+            <pre className={clsx('text-left')}>{JSON.stringify(providers, null, 2)}</pre>
         </div>
     </div>
 }
