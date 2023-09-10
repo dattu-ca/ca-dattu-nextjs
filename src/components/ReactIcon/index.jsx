@@ -12,7 +12,7 @@ const ReactIcon = ({icon, className}) => {
             const i = icon;
             switch (libStr) {
                 case 'Ai' :
-                    return import('react-icons/ai').then(mod => {
+                    return import('react-icons/ai', { ssr : false}).then(mod => {
                         const Icon = mod[i];
                         Icon.displayName = Icon;
                         return function ReactIcon() {
@@ -20,7 +20,7 @@ const ReactIcon = ({icon, className}) => {
                         }
                     });
                 case 'Bs' :
-                    return import('react-icons/bs').then(mod => {
+                    return import('react-icons/bs', { ssr : false}).then(mod => {
                         const Icon = mod[i];
                         Icon.displayName = Icon;
                         return function ReactIcon() {
@@ -28,7 +28,7 @@ const ReactIcon = ({icon, className}) => {
                         }
                     });
                 case 'Bi' :
-                    return import('react-icons/bi').then(mod => {
+                    return import('react-icons/bi', { ssr : false}).then(mod => {
                         const Icon = mod[i];
                         Icon.displayName = Icon;
                         return function ReactIcon() {
@@ -36,7 +36,7 @@ const ReactIcon = ({icon, className}) => {
                         }
                     });
                 case 'Cg' :
-                    return import('react-icons/cg').then(mod => {
+                    return import('react-icons/cg', { ssr : false}).then(mod => {
                         const Icon = mod[i];
                         Icon.displayName = Icon;
                         return function ReactIcon() {
@@ -44,7 +44,7 @@ const ReactIcon = ({icon, className}) => {
                         }
                     });
                 case 'Ci' :
-                    return import('react-icons/ci').then(mod => {
+                    return import('react-icons/ci', { ssr : false}).then(mod => {
                         const Icon = mod[i];
                         Icon.displayName = Icon;
                         return function ReactIcon() {
@@ -52,7 +52,7 @@ const ReactIcon = ({icon, className}) => {
                         }
                     });
                 case 'Di' :
-                    return import('react-icons/di').then(mod => {
+                    return import('react-icons/di', { ssr : false}).then(mod => {
                         const Icon = mod[i];
                         Icon.displayName = Icon;
                         return function ReactIcon() {
@@ -60,7 +60,7 @@ const ReactIcon = ({icon, className}) => {
                         }
                     });
                 case 'Fi' :
-                    return import('react-icons/fi').then(mod => {
+                    return import('react-icons/fi', { ssr : false}).then(mod => {
                         const Icon = mod[i];
                         Icon.displayName = Icon;
                         return function ReactIcon() {
@@ -68,7 +68,7 @@ const ReactIcon = ({icon, className}) => {
                         }
                     });
                 case 'Fc' :
-                    return import('react-icons/fc').then(mod => {
+                    return import('react-icons/fc', { ssr : false}).then(mod => {
                         const Icon = mod[i];
                         Icon.displayName = Icon;
                         return function ReactIcon() {
@@ -76,14 +76,14 @@ const ReactIcon = ({icon, className}) => {
                         }
                     });
                 case 'Fa' :
-                    return import('react-icons/fa6').then(mod => {
+                    return import('react-icons/fa6', { ssr : false}).then(mod => {
                         const Icon = mod[i];
                         return function ReactIcon() {
                             return <Icon className={className}/>
                         }
                     });
                 case 'Gi' :
-                    return import('react-icons/gi').then(mod => {
+                    return import('react-icons/gi', { ssr : false}).then(mod => {
                         const Icon = mod[i];
                         Icon.displayName = Icon;
                         return function ReactIcon() {
@@ -91,14 +91,14 @@ const ReactIcon = ({icon, className}) => {
                         }
                     });
                 case 'Go' :
-                    return import('react-icons/go').then(mod => {
+                    return import('react-icons/go', { ssr : false}).then(mod => {
                         const Icon = mod[i];
                         return function ReactIcon() {
                             return <Icon className={className}/>
                         }
                     });
                 case 'Gr' :
-                    return import('react-icons/gr').then(mod => {
+                    return import('react-icons/gr', { ssr : false}).then(mod => {
                         const Icon = mod[i];
                         Icon.displayName = Icon;
                         return function ReactIcon() {
@@ -106,7 +106,7 @@ const ReactIcon = ({icon, className}) => {
                         }
                     });
                 case 'Hi' :
-                    return import('react-icons/hi2').then(mod => {
+                    return import('react-icons/hi2', { ssr : false}).then(mod => {
                         const Icon = mod[i];
                         Icon.displayName = Icon;
                         return function ReactIcon() {
@@ -114,7 +114,7 @@ const ReactIcon = ({icon, className}) => {
                         }
                     });
                 case 'Im' :
-                    return import('react-icons/im').then(mod => {
+                    return import('react-icons/im', { ssr : false}).then(mod => {
                         const Icon = mod[i];
                         Icon.displayName = Icon;
                         return function ReactIcon() {
@@ -122,7 +122,7 @@ const ReactIcon = ({icon, className}) => {
                         }
                     });
                 case 'Lia' :
-                    return import('react-icons/lia').then(mod => {
+                    return import('react-icons/lia', { ssr : false}).then(mod => {
                         const Icon = mod[i];
                         Icon.displayName = Icon;
                         return function ReactIcon() {
@@ -130,7 +130,7 @@ const ReactIcon = ({icon, className}) => {
                         }
                     });
                 case 'Io' :
-                    return import('react-icons/io5').then(mod => {
+                    return import('react-icons/io5', { ssr : false}).then(mod => {
                         const Icon = mod[i];
                         Icon.displayName = Icon;
                         return function ReactIcon() {
@@ -138,7 +138,7 @@ const ReactIcon = ({icon, className}) => {
                         }
                     });
                 case 'Lu' :
-                    return import('react-icons/lu').then(mod => {
+                    return import('react-icons/lu', { ssr : false}).then(mod => {
                         const Icon = mod[i];
                         Icon.displayName = Icon;
                         return function ReactIcon() {
@@ -146,7 +146,7 @@ const ReactIcon = ({icon, className}) => {
                         }
                     });
                 case 'Md' :
-                    return import('react-icons/md').then(mod => {
+                    return import('react-icons/md', { ssr : false}).then(mod => {
                         const Icon = mod[i];
                         Icon.displayName = Icon;
                         return function ReactIcon() {
@@ -154,7 +154,7 @@ const ReactIcon = ({icon, className}) => {
                         }
                     });
                 case 'Pi' :
-                    return import('react-icons/pi').then(mod => {
+                    return import('react-icons/pi', { ssr : false}).then(mod => {
                         const Icon = mod[i];
                         Icon.displayName = Icon;
                         return function ReactIcon() {
@@ -162,7 +162,7 @@ const ReactIcon = ({icon, className}) => {
                         }
                     });
                 case 'Ri' :
-                    return import('react-icons/ri').then(mod => {
+                    return import('react-icons/ri', { ssr : false}).then(mod => {
                         const Icon = mod[i];
                         Icon.displayName = Icon;
                         return function ReactIcon() {
@@ -170,7 +170,7 @@ const ReactIcon = ({icon, className}) => {
                         }
                     });
                 case 'Rx' :
-                    return import('react-icons/rx').then(mod => {
+                    return import('react-icons/rx', { ssr : false}).then(mod => {
                         const Icon = mod[i];
                         Icon.displayName = Icon;
                         return function ReactIcon() {
@@ -178,7 +178,7 @@ const ReactIcon = ({icon, className}) => {
                         }
                     });
                 case 'Si' :
-                    return import('react-icons/si').then(mod => {
+                    return import('react-icons/si', { ssr : false}).then(mod => {
                         const Icon = mod[i];
                         Icon.displayName = Icon;
                         return function ReactIcon() {
@@ -186,7 +186,7 @@ const ReactIcon = ({icon, className}) => {
                         }
                     });
                 case 'Sl' :
-                    return import('react-icons/sl').then(mod => {
+                    return import('react-icons/sl', { ssr : false}).then(mod => {
                         const Icon = mod[i];
                         Icon.displayName = Icon;
                         return function ReactIcon() {
@@ -194,7 +194,7 @@ const ReactIcon = ({icon, className}) => {
                         }
                     });
                 case 'Tb' :
-                    return import('react-icons/tb').then(mod => {
+                    return import('react-icons/tb', { ssr : false}).then(mod => {
                         const Icon = mod[i];
                         Icon.displayName = Icon;
                         return function ReactIcon() {
@@ -202,7 +202,7 @@ const ReactIcon = ({icon, className}) => {
                         }
                     });
                 case 'Tfi' :
-                    return import('react-icons/tfi').then(mod => {
+                    return import('react-icons/tfi', { ssr : false}).then(mod => {
                         const Icon = mod[i];
                         Icon.displayName = Icon;
                         return function ReactIcon() {
@@ -210,7 +210,7 @@ const ReactIcon = ({icon, className}) => {
                         }
                     });
                 case 'Ti' :
-                    return import('react-icons/ti').then(mod => {
+                    return import('react-icons/ti', { ssr : false}).then(mod => {
                         const Icon = mod[i];
                         Icon.displayName = Icon;
                         return function ReactIcon() {
@@ -218,7 +218,7 @@ const ReactIcon = ({icon, className}) => {
                         }
                     });
                 case 'Vsc' :
-                    return import('react-icons/vsc').then(mod => {
+                    return import('react-icons/vsc', { ssr : false}).then(mod => {
                         const Icon = mod[i];
                         Icon.displayName = Icon;
                         return function ReactIcon() {
@@ -226,7 +226,7 @@ const ReactIcon = ({icon, className}) => {
                         }
                     });
                 case 'Wi' :
-                    return import('react-icons/wi').then(mod => {
+                    return import('react-icons/wi', { ssr : false}).then(mod => {
                         const Icon = mod[i];
                         Icon.displayName = Icon;
                         return function ReactIcon() {
@@ -234,7 +234,7 @@ const ReactIcon = ({icon, className}) => {
                         }
                     });
                 default:
-                    return import('react-icons/ai').then(mod => {
+                    return import('react-icons/ai', { ssr : false}).then(mod => {
                         const Icon = mod.AiOutlineLoading3Quarters;
                         return function ReactIcon() {
                             return <Icon className={className}/>
