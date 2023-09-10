@@ -4,12 +4,9 @@ export {default} from 'next-auth/middleware';
 
 export const config = {
     matcher: [
+        '/dashboard',
         '/dashboard/:path*',
+        '/profile',
         '/profile/:path*'
     ]
-}
-
-export const middleware = (request: NextRequest) => {
-    
-    return NextResponse.next();
 }
