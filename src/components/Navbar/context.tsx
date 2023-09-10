@@ -94,7 +94,7 @@ const NavbarContextProvider = ({children, navbar: rawNavbar, session}: INavbarCo
             isCurrentPage: isCurrentPage,
             getAriaCurrent: getAriaCurrent,
         },
-    } as INavbarContextProps), [navbar, isMobileMenuOpen, isCurrentPage, getAriaCurrent]);
+    } as INavbarContextProps), [session, navbar, isMobileMenuOpen, isCurrentPage, getAriaCurrent]);
 
 
     return <NavbarContext.Provider value={props}>

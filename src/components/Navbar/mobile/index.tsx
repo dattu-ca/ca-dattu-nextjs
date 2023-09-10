@@ -4,15 +4,9 @@ import clsx from "clsx";
 import Link from "next/link";
 import {MenuMobile} from "./menuMobile";
 import {Logo} from "../logo";
-import {useNavbarContext} from "../context";
 
 
 const NavbarMobile = () => {
-    const {
-        ctxData: {
-            session,
-        },
-    } = useNavbarContext();
     return (
         <div className={clsx(
             'pb-[72px]'
@@ -36,15 +30,9 @@ const NavbarMobile = () => {
                             <Logo/>
                         </Link>
                     </div>
-                    {
-                        session && (
-                            <div>
-                                <MenuMobile/>
-                            </div>
-                        )
-                    }
-
-
+                    <div>
+                        <MenuMobile/>
+                    </div>
                 </div>
             </nav>
 
