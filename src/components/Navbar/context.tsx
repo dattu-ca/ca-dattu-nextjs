@@ -61,7 +61,7 @@ const NavbarContextProvider = ({children, navbar: rawNavbar, session}: INavbarCo
 
     const path = usePathname();
 
-    const [isMobileMenuOpen, setIsMobileMenuOpen] = useState<boolean>(true);
+    const [isMobileMenuOpen, setIsMobileMenuOpen] = useState<boolean>(false);
 
     const isCurrentPage = useCallback((url: string, exact: boolean = false) => {
         if (!url) {
