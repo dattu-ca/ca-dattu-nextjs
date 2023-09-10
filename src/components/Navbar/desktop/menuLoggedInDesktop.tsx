@@ -8,30 +8,15 @@ import {useNavbarContext} from "../context";
 const MenuLoggedInDesktop = () => {
     const {
         ctxData: {
-            session,
+            authLinks,
         },
-        ctxFunctions:{
+        ctxFunctions: {
             isCurrentPage,
             getAriaCurrent,
         }
     } = useNavbarContext();
-    
-    const links = [
-        {
-            url: '/dashboard',
-            label: 'Dashboard'
-        },
-        {
-            url: '/profile',
-            label: 'Profile'
-        },
-        {
-            url: '/api/auth/signout',
-            label: 'Signout'
-        }
-    ];
-    
-    
+
+
     return (
         <ul className={clsx(
             'm-0 p-0',
@@ -39,9 +24,9 @@ const MenuLoggedInDesktop = () => {
             'list-none '
         )}>
             {
-                links.map(link => (
+                authLinks.map(link => (
                     <li key={link.label}>
-                        <Link aria-current={getAriaCurrent(link.url)}      
+                        <Link aria-current={getAriaCurrent(link.url)}
                               href={link.url}
                               className={clsx(
                                   'text-site-primary',

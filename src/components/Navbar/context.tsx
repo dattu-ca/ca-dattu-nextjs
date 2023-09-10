@@ -4,12 +4,28 @@ import {usePathname} from "next/navigation";
 import {Session} from "next-auth";
 
 
+const AUTH_LINKS = [
+    {
+        url: '/admin/dashboard',
+        label: 'Dashboard'
+    },
+    {
+        url: '/admin/profile',
+        label: 'Profile'
+    },
+    {
+        url: '/api/auth/signout',
+        label: 'Signout'
+    }
+];
+
 interface INavbarContextProps {
     ctxData: {
         logo: IBodyImage;
         openMenuText: string;
         closeMenuText: string;
         links: ILink[];
+        authLinks: ILink[];
         isMobileMenuOpen: boolean;
         session: Session | null;
     },
@@ -28,6 +44,7 @@ const NavbarContext = createContext<INavbarContextProps>({
         openMenuText: 'Open Menu',
         closeMenuText: 'CLose Menu',
         links: [],
+        authLinks: [],
         isMobileMenuOpen: false,
         session: null,
     },
@@ -84,6 +101,7 @@ const NavbarContextProvider = ({children, navbar: rawNavbar, session}: INavbarCo
             openMenuText: navbar.openMenuText,
             closeMenuText: navbar.closeMenuText,
             links: navbar.links.links || [],
+            authLinks: AUTH_LINKS,
             isMobileMenuOpen: isMobileMenuOpen,
             session
         },

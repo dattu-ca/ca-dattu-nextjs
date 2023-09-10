@@ -28,7 +28,7 @@ const NavbarDesktop = () => {
                         'w-full bg-site-color-dark',
                         'py-4 px-4',
                         'shadow-2xl',
-                        'fixed z-40 top-0 left-0'
+                        'fixed z-[100] top-0 left-0'
                     )}>
                         <div className={clsx(
                             'flex justify-end items-center',
@@ -42,7 +42,7 @@ const NavbarDesktop = () => {
                 'w-full bg-site-color-dark',
                 'py-4 px-4',
                 'shadow-2xl',
-                'fixed z-40 left-0',
+                'fixed z-[100] left-0',
                 {
                     ['top-0 ']: !session,
                     ['top-[64px]']: session,
