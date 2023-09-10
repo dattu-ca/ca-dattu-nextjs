@@ -11,7 +11,7 @@ const ReactIcon = ({icon, className}) => {
 
 
     
-    const DynamicIcon = dynamic(function ReactIcon() {
+    const DynamicIcon = dynamic(() => {
         const match = /[A-Z0-9]/.exec(icon[0].toLowerCase() + icon.slice(1));
         const libStr = match ? icon.substring(0, match.index) : null;
         if (libStr) {
@@ -68,7 +68,7 @@ const ReactIcon = ({icon, className}) => {
                 case 'Fa' :
                     return import('react-icons/fa6').then(mod => {
                         const Icon = mod[i];
-                        return function Fa6Icon() { return  <Icon className={className}/> }
+                        return function ReactIcon() { return  <Icon className={className}/> }
                     });
                 // case 'Gi' :
                 //     return import('react-icons/gi').then(mod => {
@@ -186,7 +186,7 @@ const ReactIcon = ({icon, className}) => {
                 default:
                     return import('react-icons/ai').then(mod => {
                         const Icon = mod.AiOutlineLoading3Quarters;                        
-                        return function AiOutlineLoading3Quarters() { return  <Icon className={className}/> }
+                        return function ReactIcon() { return  <Icon className={className}/> }
                     });
             }
         }
