@@ -186,7 +186,7 @@ const ReactIcon = ({icon, className}) => {
                 default:
                     return import('react-icons/ai').then(mod => {
                         const Icon = mod.AiOutlineLoading3Quarters;                        
-                        return () => <Icon className={className}/>
+                        return function AiOutlineLoading3Quarters() { return  <Icon className={className}/> }
                     });
             }
         }
