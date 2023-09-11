@@ -41,6 +41,9 @@ export const nextAuthOptions: NextAuthOptions = {
             (session as ISession).provider = (token as IToken).provider;
             return session
         }
+    },
+    pages:{
+        signIn: '/auth/login'
     }
 }
 

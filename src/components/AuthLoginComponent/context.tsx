@@ -8,23 +8,26 @@ interface IProps {
     providers: Record<"google"
             | "github",
             IProvider>
-        | null
+        | null,
+    error?: string | undefined
 }
 
 interface IValue {
     ctxData: {
-        providers: IProvider[]
+        providers: IProvider[],
+        error?: string | undefined
     }
 }
 
 const AuthLoginContext = createContext<IValue | null>({ctxData: {}} as IValue)
 
-export const AuthLoginContextProvider = ({children, providers, form}: IProps) => {
+export const AuthLoginContextProvider = ({children, providers, error}: IProps) => {
     const value = useMemo(() => ({
         ctxData: {
-            providers: Object.values(providers)
+            providers: Object.values(providers),
+            error
         }
-    } as IValue), [providers, form]);
+    } as IValue), [providers, error]);
 
     return <AuthLoginContext.Provider value={value}>
         {children}

@@ -30,8 +30,7 @@ const ProviderButton = ({provider}: IProps) => {
                 className={clsx(
                     'w-full',
                     'py-2 px-0 box-content',
-                    
-                    'daisyui-btn daisyui-btn-outline w-full',
+                    'daisyui-btn daisyui-btn-outline w-[calc(100%-100px)] min-w-[300px]',
                 )}>
             <div className={clsx(
                 'flex gap-4 align-center items-center',

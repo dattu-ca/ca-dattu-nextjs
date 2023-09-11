@@ -10,9 +10,9 @@ const WrapperComponent = () => {
     return <div className={clsx('mt-8 mr-4 ml-4')}>
         <div className={clsx(
             'mx-auto',
-            'w-full md:w-[400px]',
+            'w-full md:w-[400px] lg:w-[600px]',
             'bg-white',
-            'py-8 px-4',
+            'py-48 px-4',
             'shadow-xl'
         )}>
             <h1 className={clsx('text-center', 'font-acme',)}>Login</h1>
