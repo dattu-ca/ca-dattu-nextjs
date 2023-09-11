@@ -14,9 +14,10 @@ import {sanitize} from "~/utils/utils";
 
 interface IProps {
     form: IBodyForm;
+    onSubmit: (values: Record<string, any>) => Promise<boolean> | null
 }
 
-const FormComponent = ({form}: IProps) => {
+const FormComponent = ({form, onSubmit}: IProps) => {
     const {formModel, formId} = form;
     const [isSubmitting, setIsSubmitting] = useState(false);
 
@@ -44,26 +45,30 @@ const FormComponent = ({form}: IProps) => {
                         setIsSubmitting(true);
                         actions.setSubmitting(true);
                         try {
-
                             for (const k of Object.keys(values)) {
-                                if(typeof values[k] === 'string') {
+                                if (typeof values[k] === 'string') {
                                     values[k] = sanitize`${values[k] as string}`;
                                 }
                             }
-                            if(form.submitFormEnabled) {
-                                await formsServices.saveForm({
-                                    recaptchaToken,
-                                    formId,
-                                    formValues: values,
-                                });
+                            if (form.submitFormEnabled) {
+                                if(onSubmit) {
+                                    await onSubmit(values);
+                                }
+                                else {
+                                    await formsServices.saveForm({
+                                        recaptchaToken,
+                                        formId,
+                                        formValues: values,
+                                    });
+                                }
                                 actions.resetForm();
                                 recaptchaRef.current?.reset();
                                 setRecaptchaToken(form.recaptchaEnabled ? '' : 'NOT_ENABLED');
                                 toast(form.successMessage, {
                                     type: 'success'
                                 });
-                            }    
-                            
+                            }
+
                         } catch (e) {
                             toast(form.failureMessage, {
                                 type: 'error'
@@ -131,7 +136,7 @@ const FormComponent = ({form}: IProps) => {
                                     }
                                 </fieldset>)
                             }
-                            
+
                             <div className={clsx('mb-4')}>
                                 {
                                     form.recaptchaEnabled

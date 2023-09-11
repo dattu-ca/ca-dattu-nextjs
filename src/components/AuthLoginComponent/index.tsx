@@ -1,12 +1,18 @@
-import {getProviders} from "next-auth/react";
-import {LoginComponent} from "./loginComponent";
+import {WrapperComponent} from "./wrapperComponent";
+import {AuthLoginContextProvider} from "./context";
+import {IProvider} from "./types";
 
-const AuthLoginComponent = async () => {
-    const providers = await getProviders();
-    
-    return <div>
-        <LoginComponent providers={providers}/>
-    </div>
+interface IProps {
+    providers: Record<"google"
+            | "github",
+            IProvider>
+        | null
+}
+
+const AuthLoginComponent = async ({providers}: IProps) => {
+    return <AuthLoginContextProvider providers={providers}>
+        <WrapperComponent />
+    </AuthLoginContextProvider>
 }
 
 export {

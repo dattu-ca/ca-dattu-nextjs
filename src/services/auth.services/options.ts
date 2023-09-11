@@ -1,7 +1,6 @@
 import type {NextAuthOptions, Session} from "next-auth";
 import GitHubProvider from 'next-auth/providers/github';
 import GoogleProvider from "next-auth/providers/google";
-import CredentialsProvider from 'next-auth/providers/credentials';
 import {JWT} from "next-auth/jwt";
 
 
@@ -21,32 +20,6 @@ export const nextAuthOptions: NextAuthOptions = {
         GitHubProvider({
             clientId: process.env.GITHUB_ID as string,
             clientSecret: process.env.GITHUB_SECRET as string
-        }),
-        CredentialsProvider({
-            name: 'Credentials',
-            credentials: {
-                username: {
-                    label: 'Username:',
-                    type: 'text',
-                    placeholder: 'Your username'
-                },
-                password: {
-                    label: 'Password:',
-                    type: 'password',
-                    placeholder: ''
-                },
-            },
-            authorize: async (param) => {
-                const user = {id: '42', name: 'dattu', password: 'nextauth'};
-
-                const credentials = param as Record<string, string>;
-                
-                if (credentials?.username === user.name && credentials?.password === user.password) {
-                    return user;
-                } else {
-                    return null;
-                }
-            }
         })
     ],
     callbacks: {
