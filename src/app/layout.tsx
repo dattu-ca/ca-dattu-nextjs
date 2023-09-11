@@ -8,7 +8,6 @@ import {ToastContainer} from "react-toastify";
 import {getAuthSession, siteConfigServices, siteNavbarServices} from "~/services";
 import {SERVER_CONFIG} from "~/utils/config.server";
 import NavbarComponent from "~/components/Navbar";
-import {AuthProvider} from "./context/AuthProvider";
 
 const {PRIMARY_SITE_CONFIG, HEADER_SITE_NAVBAR} = SERVER_CONFIG.CONTENTFUL_SLUGS;
 
@@ -41,7 +40,6 @@ const RootLayout = async ({children}: IProps) => {
         <body className={clsx(
             'bg-site-color-light text-site-tertiary'
         )}>
-        <AuthProvider>
             <header>
                 <div>
                     <a href="#mainContent"
@@ -62,7 +60,6 @@ const RootLayout = async ({children}: IProps) => {
                 {children}
             </main>
             <ToastContainer/>
-        </AuthProvider>
         </body>
         </html>
     )
