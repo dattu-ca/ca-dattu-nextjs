@@ -12,7 +12,7 @@ const save = async ({data}: IProps) => {
     try {
         const result = await client
             .query<ICreateResult>(
-                q.Create(COLLECTIONS.FORM_VALUES, {
+                q.Create(COLLECTIONS.FORM_SUBMISSION, {
                     data: {
                         environment: SERVER_CONFIG.SERVER_CONSTANTS.ENVIRONMENT,
                         createdData: Date.now(),

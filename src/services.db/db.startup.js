@@ -12,15 +12,18 @@ const q = faunadb.query;
 
 
 const setupDatabase = async () => {
-    for (const dbName of DB_COLLECTIONS) {
+    for (const collectionName of DB_COLLECTIONS) {
         const isCollection = await client.query(
-            q.IsCollection(q.Collection(dbName))
+            q.IsCollection(q.Collection(collectionName))
         );
         if (!isCollection) {
             await client.query(
-                q.CreateCollection({name: dbName})
+                q.CreateCollection({name: collectionName})
             )
-            console.log('Created collection', dbName)
+            console.log('Created collection', collectionName)
+        }
+        if (collectionName === COLLECTIONS.FORM_SUBMISSION) {
+            
         }
     }
 }

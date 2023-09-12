@@ -1,13 +1,7 @@
 import faunadb from 'faunadb';
 import {SERVER_CONFIG} from "~/utils/config.server";
+import { COLLECTIONS } from './collectionNames'
 
-
-const COLLECTIONS = {
-    FORM_VALUES: 'formValuesCollection',
-    AUTH_PROFILE: 'authProfileCollection',
-    AUTH_PROVIDER: 'authProviderCollection',
-    DATTU_TESTING: 'dattuTesting',
-}
 
 const client = new faunadb.Client({
     secret: SERVER_CONFIG.FAUNA_DB.SECRET

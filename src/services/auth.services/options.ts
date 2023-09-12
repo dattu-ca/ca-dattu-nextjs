@@ -14,8 +14,6 @@ interface IToken extends JWT {
     provider: string;
 }
 
-console.log("nextAuthOptions")
-
 export const nextAuthOptions: NextAuthOptions = {
     providers: [
         GoogleProvider({

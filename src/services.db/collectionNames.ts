@@ -1,5 +1,5 @@
 const COLLECTIONS = {
-    FORM_VALUES: 'formValuesCollection',
+    FORM_SUBMISSION: 'formSubmissionCollection',
     AUTH_PROFILE: 'authProfileCollection',
     AUTH_PROVIDER: 'authProviderCollection',
     DATTU_TESTING: 'dattuTesting',
