@@ -21,13 +21,20 @@ const GOOGLE_RECAPTCHA = Object.freeze({
     SECRET_KEY: process.env.GOOGLE_RECAPTCHA_SECRET_KEY as string
 })
 
+const NEXT_AUTH_ALLOWED_IDS = Object.freeze({
+    GOOGLE: (process.env.NEXT_AUTH_ALLOWED_GOOGLE_ACCOUNT_IDS as string || '').split(',').map(f => f.trim()),
+    GITHUB: (process.env.NEXT_AUTH_ALLOWED_GITHUB_ACCOUNT_IDS as string || '').split(',').map(f => f.trim())
+})
+
 const SERVER_CONFIG = Object.freeze({
     CONTENTFUL_SLUGS,
     FAUNA_DB,
     CONTENT_CONFIG,
     SERVER_CONSTANTS,
     GOOGLE_RECAPTCHA,
+    NEXT_AUTH_ALLOWED_IDS,
 })
+console.log("SERVER_CONFIG", SERVER_CONFIG)
 
 export {
     SERVER_CONFIG

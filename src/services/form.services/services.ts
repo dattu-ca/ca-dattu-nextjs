@@ -5,7 +5,7 @@ import {formsDbServices} from "~/services.db";
 import {sanitize} from "~/utils/utils";
 import {sendMailServices} from "~/services";
 import {bodyFormServices} from "~/contentful/services";
-import { flattenFields } from "./flattenFields";
+import {flattenFields} from "~/utils/form.utils";
 
 const createMessage = (form: IBodyForm, formValues: Record<string, any>) => {
     const fields = flattenFields(form);

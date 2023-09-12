@@ -11,6 +11,8 @@ const getAuthSession = async ()  => {
     }
 }
 
+console.log("getAuthSession")
+
 export {
     getAuthSession
 }

@@ -3,6 +3,7 @@ import {SERVER_CONFIG} from "~/utils/config.server";
 import {client, q, COLLECTIONS, ICreateResult} from '../db.config'
 
 
+
 interface IProps {
     data: any
 }

@@ -18,6 +18,14 @@ const MenuDesktop = () => {
         'flex justify-end items-center gap-4',
         'list-none '
     )}>
+        <li className={clsx(
+                'm-0 p-0'
+            )}>
+            <Link
+                href={'/auth/login'}>
+                Login
+            </Link>
+        </li>
         {
             links.map(link => (
                 <li key={link.id}

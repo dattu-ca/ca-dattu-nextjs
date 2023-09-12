@@ -6,7 +6,7 @@ import ReCAPTCHA from "react-google-recaptcha";
 import {toast} from "react-toastify";
 import {IBodyForm} from "~/models/bodyForm";
 import {ReactIcon} from "~/components/ReactIcon";
-import {formsServices} from '~/services'
+// import {formsServices} from '~/services'
 import {useForm} from "~/components/FormComponent/useForm";
 import {CLIENT_CONFIG} from "~/utils/config.client";
 import {sanitize} from "~/utils/utils";
@@ -14,8 +14,9 @@ import {sanitize} from "~/utils/utils";
 
 interface IProps {
     form: IBodyForm;
-    onSubmit: (values: Record<string, any>) => Promise<boolean> | null
+    onSubmit?: (values: Record<string, any>) => Promise<boolean> | null
 }
+
 
 const FormComponent = ({form, onSubmit}: IProps) => {
     const {formModel, formId} = form;
@@ -55,11 +56,11 @@ const FormComponent = ({form, onSubmit}: IProps) => {
                                     await onSubmit(values);
                                 }
                                 else {
-                                    await formsServices.saveForm({
-                                        recaptchaToken,
-                                        formId,
-                                        formValues: values,
-                                    });
+                                    // await formsServices.saveForm({
+                                    //     recaptchaToken,
+                                    //     formId,
+                                    //     formValues: values,
+                                    // });
                                 }
                                 actions.resetForm();
                                 recaptchaRef.current?.reset();

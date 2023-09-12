@@ -1,5 +1,5 @@
 /** @type {import('next').NextConfig} */
-const {createCollections} = require('./next.startup');
+const {setupDatabase} = require('./src/services.db/db.startup');
 const nextConfig = {
     reactStrictMode: true,
     experimental: {
@@ -20,6 +20,6 @@ const nextConfig = {
 };
 
 module.exports = async () => {
-    await createCollections();
+    await setupDatabase();
     return nextConfig
 }
