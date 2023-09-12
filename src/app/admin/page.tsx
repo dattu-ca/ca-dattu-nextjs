@@ -1,4 +1,4 @@
-import {getAuthSession} from "~/services";
+import {getAuthSession} from "~/auth.services";
 import {redirect} from "next/navigation";
 import {RedirectType} from "next/dist/client/components/redirect";
 

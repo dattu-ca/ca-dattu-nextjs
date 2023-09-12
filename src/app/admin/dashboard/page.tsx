@@ -1,4 +1,4 @@
-import {getAuthSession} from '~/services';
+import {getAuthSession} from '~/auth.services';
 
 const Page = async () => {
     const session = await getAuthSession()
