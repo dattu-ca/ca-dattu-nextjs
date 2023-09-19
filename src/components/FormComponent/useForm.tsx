@@ -1,5 +1,5 @@
 import {useCallback, useMemo} from "react";
-import {formsServices} from "~/services";
+import {flattenFields, doValidation} from "~/utils/form.utils";
 import {IBodyForm, IBodyFormFieldText, IBodyFormFieldTextArea, TBodyFormField} from "~/models/bodyForm";
 import {Field} from "formik";
 import {FieldTypeText} from "~/components/FormComponent/FieldTypeText";
@@ -7,10 +7,10 @@ import {FieldTypeTextArea} from "~/components/FormComponent/FieldTypeTextArea";
 
 
 export const useForm = (form: IBodyForm) => {
-    const flatFormFields = formsServices.flattenFields(form);
-    
+    const flatFormFields = flattenFields(form);
+
     const validate = useCallback((id: string, value: string) =>
-        formsServices.doValidation(form, id, value), [form]);
+        doValidation(form, id, value), [form]);
 
     const getField = useCallback((field: TBodyFormField) => {
         switch (field.fieldType) {

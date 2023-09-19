@@ -1,14 +1,21 @@
-import {IBodyForm} from "~/models";
-import { flattenFields} from './flattenFields';
+import {IBodyForm, TBodyFormField} from "~/models";
+
+export const flattenFields = (form: IBodyForm) => {
+    let ret: TBodyFormField[] = [];
+    for (const model of form.formModel) {
+        ret = [...ret, ...model.fields];
+    }
+    return ret;
+}
 
 const isEmailValid = (val: string) => {
     const reg = /^([A-Za-z0-9_\-\.])+\@([A-Za-z0-9_\-\.])+\.([A-Za-z]{2,4})$/;
     return reg.test(val);
 }
 
-export const doValidation = (form: IBodyForm ,id: string, value: string) => {
+export const doValidation = (form: IBodyForm, id: string, value: string) => {
     const flatFormFields = flattenFields(form);
-    
+
     const error = [];
     const field = flatFormFields.find(f => f.id === id);
     if (field) {

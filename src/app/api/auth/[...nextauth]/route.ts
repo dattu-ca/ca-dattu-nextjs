@@ -1,6 +1,7 @@
 import NextAuth from 'next-auth';
-import { nextAuthOptions } from '~/services';
+import { nextAuthOptions } from '~/auth.services';
 const handler = NextAuth(nextAuthOptions);
+
 
 export {
     handler as GET,

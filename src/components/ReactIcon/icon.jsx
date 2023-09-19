@@ -4,7 +4,7 @@ import {AiOutlineLoading3Quarters} from 'react-icons/ai';
 import clsx from "clsx";
 
 
-const ReactIcon = ({icon, className}) => {
+const ReactIconJs = ({icon, className}) => {
     
     const DynamicIcon = dynamic(() => {
         const match = /[A-Z0-9]/.exec(icon[0].toLowerCase() + icon.slice(1));
@@ -82,4 +82,4 @@ const ReactIcon = ({icon, className}) => {
     </Suspense>
 }
 
-export {ReactIcon}
+export {ReactIconJs}

@@ -5,7 +5,7 @@ import {formsDbServices} from "~/services.db";
 import {sanitize} from "~/utils/utils";
 import {sendMailServices} from "~/services";
 import {bodyFormServices} from "~/contentful/services";
-import { flattenFields } from "./flattenFields";
+import {flattenFields} from "~/utils/form.utils";
 
 const createMessage = (form: IBodyForm, formValues: Record<string, any>) => {
     const fields = flattenFields(form);
@@ -41,11 +41,9 @@ const saveForm = async ({recaptchaToken, formId, formValues}: IProps) => {
             await googleRecaptchaServices.verifyCaptcha(recaptchaToken);
         }
         const result = await formsDbServices.save({
-            data: {
-                formId,
-                formModel,
-                formValues
-            }
+            formId,
+            formModel,
+            formValues
         });
         if (result && form.sendEmailEnabled) {
             const {message, html} = createMessage(form, formValues)

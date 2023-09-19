@@ -4,8 +4,8 @@ import './globals.css';
 import 'react-toastify/dist/ReactToastify.css';
 import {ToastContainer} from "react-toastify";
 
-
-import {getAuthSession, siteConfigServices, siteNavbarServices} from "~/services";
+import {getAuthSession} from "~/auth.services";
+import {siteConfigServices, siteNavbarServices} from "~/services";
 import {SERVER_CONFIG} from "~/utils/config.server";
 import NavbarComponent from "~/components/Navbar";
 
