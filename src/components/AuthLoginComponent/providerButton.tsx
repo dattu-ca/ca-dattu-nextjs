@@ -11,7 +11,8 @@ interface IProps {
 }
 
 const ProviderButton = ({provider}: IProps) => {
-    const {ctxData: {clickedProvider}, ctxFns: {setClickedProvider}} = useAuthLoginContext()
+    const {ctxData: {clickedProvider}, ctxFns: {setClickedProvider}} = useAuthLoginContext();
+    
     if (!provider) {
         return null;
     }
