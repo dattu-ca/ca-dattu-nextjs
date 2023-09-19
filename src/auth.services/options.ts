@@ -63,7 +63,7 @@ export const nextAuthOptions: NextAuthOptions = {
                 console.error('Error in the signin callback', err);
             }
 
-            return false;
+            return true;
         },
         jwt: async (params) => {
             const {token, account} = params;
