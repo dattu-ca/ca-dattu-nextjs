@@ -32,20 +32,19 @@ export const HeadingComponent = () => {
             <div className={clsx(
                 'content-container'
             )}>
-                <h1 className={clsx(
-                    'inline-block',
-                    'mt-0 mb-0',
-                    'font-acme',
-                    {
-                        [[
-                            'md:text-white',
-                            'md:text-shadow-lg',
-                            'md:bg-gray-950',
-                            'md:p-4 rounded-md',
-                        ].join(' ')]   : banners
-                }
-
-
+                <h1
+                    className={clsx(
+                        'inline-block',
+                        'mt-0 mb-0',
+                        'font-acme',
+                        {
+                            [[
+                                'md:text-white',
+                                'md:text-shadow-lg',
+                                'md:bg-gray-950',
+                                'md:p-4 rounded-md',
+                            ].join(' ')]: banners
+                        }
                     )}
                     style={{'--tw-bg-opacity': 0.40} as React.CSSProperties}>
                     {heading}
