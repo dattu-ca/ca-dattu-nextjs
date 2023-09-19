@@ -11,7 +11,7 @@ interface IProps {
 }
 
 const ProviderButton = ({provider}: IProps) => {
-    const {ctxData: {hasClickedProvider}, ctxFns: {setHasClickedProvider}} = useAuthLoginContext()
+    const {ctxData: {clickedProvider}, ctxFns: {setClickedProvider}} = useAuthLoginContext()
     if (!provider) {
         return null;
     }
@@ -27,8 +27,8 @@ const ProviderButton = ({provider}: IProps) => {
     }
 
     const onClickHandler = () => {
-        if (!hasClickedProvider) {
-            setHasClickedProvider(provider.id);
+        if (!clickedProvider) {
+            setClickedProvider(provider.id);
             signIn(provider.id).then(r => console.log(r));
         }
     }
@@ -41,8 +41,8 @@ const ProviderButton = ({provider}: IProps) => {
                     'drop-shadow',
                     'hover:bg-site-tertiary-dark hover:text-white',
                     {
-                        ['daisyui-btn-outline daisyui-btn-neutral']: (!hasClickedProvider) || (hasClickedProvider && hasClickedProvider !== provider.id),
-                        ['animate-pulse bg-site-tertiary-dark text-white']: hasClickedProvider === provider.id
+                        ['daisyui-btn-outline daisyui-btn-neutral']: (!clickedProvider) || (clickedProvider && clickedProvider !== provider.id),
+                        ['animate-pulse bg-site-tertiary-dark text-white']: clickedProvider === provider.id
                     }
                 )}>
             <div className={clsx(
@@ -51,7 +51,7 @@ const ProviderButton = ({provider}: IProps) => {
                 <div>
                     <ReactIcon icon={getIcon(provider as IProvider)} className={
                         clsx('w-6 h-6', {
-                            ['animate-spin']: hasClickedProvider === provider.id
+                            ['animate-spin']: clickedProvider === provider.id
                         })
                     }/>
                 </div>

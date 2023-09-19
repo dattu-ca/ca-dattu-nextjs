@@ -1,6 +1,5 @@
 import clsx from "clsx";
 import Link from "next/link";
-import {Logo} from "~/components/Navbar/logo";
 import React from "react";
 
 const AuthErrorComponent = () => {

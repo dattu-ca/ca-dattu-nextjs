@@ -15,17 +15,17 @@ interface IValue {
     ctxData: {
         providers: IProvider[],
         error?: string | undefined,
-        clickedProvider: string | undefined,
+        clickedProvider: string,
     },
     ctxFns: {
-        setHasClickedProvider:  (value: (((prevState: (string | undefined)) => (string | undefined)) | string | undefined)) => void
+        setClickedProvider:  (value: (((prevState: string) => string) | string)) => void
     }
 }
 
 const AuthLoginContext = createContext<IValue | null>({ctxData: {}} as IValue)
 
 export const AuthLoginContextProvider = ({children, providers, error}: IProps) => {
-    const [hasClickedProvider, setHasClickedProvider] = useState<string | undefined>();
+    const [clickedProvider, setClickedProvider] = useState<string>('');
     const value = useMemo(() => {
         const providersList: IProvider[] = [];
         // const providersList: IProvider[] = Object.values(providers).filter(p => !p);
@@ -36,13 +36,13 @@ export const AuthLoginContextProvider = ({children, providers, error}: IProps) =
             ctxData: {
                 providers: providersList,
                 error,
-                hasClickedProvider
+                clickedProvider
             },
             ctxFns: {
-                setHasClickedProvider
+                setClickedProvider
             }
         } as IValue
-    }, [providers, error, hasClickedProvider, setHasClickedProvider]);
+    }, [providers, error, clickedProvider, setClickedProvider]);
 
     return <AuthLoginContext.Provider value={value}>
         {children}
