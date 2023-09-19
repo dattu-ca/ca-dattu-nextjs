@@ -11,8 +11,6 @@ const Page = async () => {
 
     return <div>
         <AuthLogoutComponent/>
-
-
     </div>
 }
 
