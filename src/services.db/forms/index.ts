@@ -1,7 +1,5 @@
 'use server';
 import { FormSubmissionsModel } from './shcema'
-import {SERVER_CONFIG} from "~/utils/config.server";
-import mongoose from "mongoose";
 
 interface IFormModel {
     legend?: string;

@@ -10,6 +10,6 @@ const connectToDb = async () => {
 }
 let isConnected = false
 if (!isConnected) {
-    await connectToDb();
+    connectToDb();
     isConnected = true;
 }
