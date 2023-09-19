@@ -1,4 +1,3 @@
-import '../db.config';
 import mongoose from "mongoose";
 import {COLLECTIONS} from "../collectionNames";
 
