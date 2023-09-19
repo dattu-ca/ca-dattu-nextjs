@@ -55,8 +55,8 @@ export const nextAuthOptions: NextAuthOptions = {
                         givenName: p.given_name,
                         familyName: p.family_name,
                     };
-                    const result = await authDbServices.signIn({authProvider, authProfile});
-                    console.log("RESULT", result)
+                    // const result = await authDbServices.signIn({authProvider, authProfile});
+                    // console.log("RESULT", result)
 
                 }
             } catch (err) {

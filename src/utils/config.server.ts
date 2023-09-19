@@ -3,8 +3,10 @@ const CONTENTFUL_SLUGS = Object.freeze({
     HEADER_SITE_NAVBAR: process.env.CONTENTFUL_SLUGS_HEADER_SITE_NAVBAR as string,
 });
 
-const FAUNA_DB = Object.freeze({
-    SECRET: process.env.FAUNA_DB_SECRET as string
+const MONGO_DB = Object.freeze({
+    USERNAME: process.env.MONGODB_USERNAME as string,
+    PASSWORD: process.env.MONGODB_PASSWORD as string,
+    DATABASE: process.env.MONGODB_DATABASE as string,
 })
 
 
@@ -28,13 +30,12 @@ const NEXT_AUTH_ALLOWED_IDS = Object.freeze({
 
 const SERVER_CONFIG = Object.freeze({
     CONTENTFUL_SLUGS,
-    FAUNA_DB,
+    MONGO_DB,
     CONTENT_CONFIG,
     SERVER_CONSTANTS,
     GOOGLE_RECAPTCHA,
     NEXT_AUTH_ALLOWED_IDS,
 })
-console.log("SERVER_CONFIG", SERVER_CONFIG)
 
 export {
     SERVER_CONFIG

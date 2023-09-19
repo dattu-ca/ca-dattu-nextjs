@@ -1,12 +1,12 @@
 const COLLECTIONS = {
-    FORM_SUBMISSION: 'formSubmissionCollection',
-    AUTH_PROFILE: 'authProfileCollection',
-    AUTH_PROVIDER: 'authProviderCollection',
+    FORM_SUBMISSION: 'formSubmission',
+    AUTH_PROFILE: 'authProfile',
+    AUTH_PROVIDER: 'authProvider',
+    AUTH_PERMISSIONS: 'authPermissions',
+    AUTH_PERMISSION_TYPE: 'authPermissionsType',
     DATTU_TESTING: 'dattuTesting',
 }
 
-
-
-module.exports = {
+export {
     COLLECTIONS
 }

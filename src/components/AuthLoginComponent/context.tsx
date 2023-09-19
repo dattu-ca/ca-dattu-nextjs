@@ -1,7 +1,6 @@
 'use client';
 import {createContext, ReactNode, useContext, useMemo} from 'react';
 import {IProvider} from "./types";
-import {IBodyForm} from "~/models";
 
 interface IProps {
     children: ReactNode,
@@ -22,12 +21,19 @@ interface IValue {
 const AuthLoginContext = createContext<IValue | null>({ctxData: {}} as IValue)
 
 export const AuthLoginContextProvider = ({children, providers, error}: IProps) => {
-    const value = useMemo(() => ({
-        ctxData: {
-            providers: Object.values(providers),
-            error
+    const value = useMemo(() => {
+        const providersList: IProvider[] = [];
+        // const providersList: IProvider[] = Object.values(providers).filter(p => !p);
+        if(providers?.google){
+            providersList.push(providers.google)
         }
-    } as IValue), [providers, error]);
+        return {
+            ctxData: {
+                providers: providersList,
+                error
+            }
+        } as IValue
+    }, [providers, error]);
 
     return <AuthLoginContext.Provider value={value}>
         {children}

@@ -1,5 +1,4 @@
 /** @type {import('next').NextConfig} */
-const {setupDatabase} = require('./src/services.db/db.startup');
 const nextConfig = {
     reactStrictMode: true,
     experimental: {
@@ -19,7 +18,4 @@ const nextConfig = {
     // }
 };
 
-module.exports = async () => {
-    await setupDatabase();
-    return nextConfig
-}
+module.exports = nextConfig

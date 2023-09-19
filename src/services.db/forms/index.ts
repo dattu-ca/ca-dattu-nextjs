@@ -1,35 +1,36 @@
 'use server';
+import { FormSubmissionsModel } from './shcema'
 import {SERVER_CONFIG} from "~/utils/config.server";
-import {client, q, COLLECTIONS, ICreateResult} from '../db.config'
+import mongoose from "mongoose";
 
-
-
-interface IProps {
-    data: any
+interface IFormModel {
+    legend?: string;
+    fields: object[]
 }
 
-const save = async ({data}: IProps) => {
-    try {
-        const result = await client
-            .query<ICreateResult>(
-                q.Create(COLLECTIONS.FORM_SUBMISSION, {
-                    data: {
-                        environment: SERVER_CONFIG.SERVER_CONSTANTS.ENVIRONMENT,
-                        createdData: Date.now(),
-                        ...data,
-                    }
-                })
-            );
+interface IProps {
+    formId: string,
+    formModel: IFormModel[],
+    formValues: Record<string, any>
+}
 
-        return {
-            id: result['ref']['@ref']?.id,
-            data: result.data,
-            message: 'Successfully saved the form.',
-        }
-    } catch (error) {
-        console.error('Error: ', error)
-        throw new Error('Error saving the form.');
+
+const save = async ({formId, formModel, formValues}: IProps) => {
+    try {
+        const formSubmission = new FormSubmissionsModel({
+            formId: formId,
+            formModel: formModel,
+            formValues: formValues
+        });
+        const result = await formSubmission.save();
+        console.log("result", result);
+        return result;
+
+
+    } catch (e) {
+        console.error(e);
     }
+
 }
 
 export {

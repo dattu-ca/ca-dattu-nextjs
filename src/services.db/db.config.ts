@@ -1,24 +1,15 @@
-import faunadb from 'faunadb';
 import {SERVER_CONFIG} from "~/utils/config.server";
-import { COLLECTIONS } from './collectionNames'
+import mongoose from "mongoose";
 
+const mongoDB = String.raw`mongodb+srv://${SERVER_CONFIG.MONGO_DB.USERNAME}:${SERVER_CONFIG.MONGO_DB.PASSWORD}@${SERVER_CONFIG.MONGO_DB.DATABASE}.mongodb.net/?retryWrites=true&w=majority`
 
-const client = new faunadb.Client({
-    secret: SERVER_CONFIG.FAUNA_DB.SECRET
-});
-
-const q = faunadb.query;
-
-export interface ICreateResult<T = object> {
-    ref: {
-        '@ref': {
-            id: number;
-        }
-    };
-    ts: number;
-    data: T;
+const connectToDb = async () => {
+    await mongoose.connect(mongoDB, {})
+        .then(() => console.log('MongoDB Connected!'))
+        .catch(e => console.error('Not connected', e));
 }
-
-
-export {client, q, COLLECTIONS};
-
+let isConnected = false
+if (!isConnected) {
+    await connectToDb();
+    isConnected = true;
+}

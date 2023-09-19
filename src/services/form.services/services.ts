@@ -41,11 +41,9 @@ const saveForm = async ({recaptchaToken, formId, formValues}: IProps) => {
             await googleRecaptchaServices.verifyCaptcha(recaptchaToken);
         }
         const result = await formsDbServices.save({
-            data: {
-                formId,
-                formModel,
-                formValues
-            }
+            formId,
+            formModel,
+            formValues
         });
         if (result && form.sendEmailEnabled) {
             const {message, html} = createMessage(form, formValues)
