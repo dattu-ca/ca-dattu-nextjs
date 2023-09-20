@@ -8,7 +8,7 @@ interface IAuthProviderProps {
 
 interface IAuthProfileProps {
     name: string;
-    giveName: string;
+    givenName: string;
     familyName: string;
     email: string;
 }
