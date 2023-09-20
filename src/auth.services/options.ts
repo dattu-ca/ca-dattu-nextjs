@@ -5,13 +5,14 @@ import {JWT} from "next-auth/jwt";
 import {SERVER_CONFIG} from "~/utils/config.server";
 import {authDbServices} from "~/services.db";
 
-
 interface ISession extends Session {
     provider: string;
+    authProfileId: string;
 }
 
 interface IToken extends JWT {
     provider: string;
+    authProfileId: string;
 }
 
 export const nextAuthOptions: NextAuthOptions = {
@@ -28,52 +29,51 @@ export const nextAuthOptions: NextAuthOptions = {
     callbacks: {
         signIn: async ({user, account, profile, email, credentials}) => {
             try {
-                // console.log(' ------- signIn START -------')
-                // console.log(user, account, profile, email, credentials)
-                // console.log(' ------- signIn END -------')
                 if (!account?.provider || !account?.providerAccountId) {
                     return false;
                 }
 
-
-                const provider = account?.provider;
-
-                let authProfile = {};
+                const authProfile = {
+                    name: '',
+                    givenName: '',
+                    familyName: '',
+                    email: '',
+                }
                 const authProvider = {
-                    provider,
+                    provider: account?.provider?.toLowerCase(),
                     providerAccountId: account?.providerAccountId,
 
                 };
 
-                if (provider?.toLowerCase() === 'google') {
+                if (authProvider.provider === 'google') {
                     if (!SERVER_CONFIG.NEXT_AUTH_ALLOWED_IDS.GOOGLE.includes(account?.providerAccountId as string)) {
                         return false;
                     }
                     const p = profile as GoogleProfile;
-                    authProfile = {
-                        name: p.name,
-                        givenName: p.given_name,
-                        familyName: p.family_name,
-                    };
-                    // const result = await authDbServices.signIn({authProvider, authProfile});
-                    // console.log("RESULT", result)
-
+                    authProfile.name = p.name;
+                    authProfile.givenName = p.given_name;
+                    authProfile.familyName = p.family_name;
+                    authProfile.email = p.email;
                 }
+                const result = await authDbServices.signIn(authProvider, authProfile);
+                return Boolean(result);
             } catch (err) {
                 console.error('Error in the signin callback', err);
             }
 
-            return true;
+            return false;
         },
         jwt: async (params) => {
             const {token, account} = params;
             if (account) {
                 (token as IToken).provider = account.provider;
+                (token as IToken).authProfileId = await authDbServices.fetchAuthProfileIdFromProviderData(account.provider, account.providerAccountId);
             }
             return token;
         },
         session: async ({session, token, user}) => {
             (session as ISession).provider = (token as IToken).provider;
+            (session as ISession).authProfileId = (token as IToken).authProfileId;
             return session
         },
     },

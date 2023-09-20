@@ -39,7 +39,7 @@ const AuthLogoutComponent = () => {
                     }
                 )}
             >
-                Yes, get me out of here!!!!
+                Yes, get me out of here!!!! {hasClicked.toString()}
             </button>
         </div>
     </div>
