@@ -31,7 +31,7 @@ export const nextAuthOptions: NextAuthOptions = {
                     return false;
                 }
 
-                const authProfile = {
+                const userProfile = {
                     name: '',
                     givenName: '',
                     familyName: '',
@@ -48,12 +48,12 @@ export const nextAuthOptions: NextAuthOptions = {
                         return false;
                     }
                     const p = profile as GoogleProfile;
-                    authProfile.name = p.name;
-                    authProfile.givenName = p.given_name;
-                    authProfile.familyName = p.family_name;
-                    authProfile.email = p.email;
+                    userProfile.name = p.name;
+                    userProfile.givenName = p.given_name;
+                    userProfile.familyName = p.family_name;
+                    userProfile.email = p.email;
                 }
-                const result = await authDbServices.signIn(authProvider, authProfile);
+                const result = await authDbServices.signIn({ authProvider, userProfile });
                 return Boolean(result);
             } catch (err) {
                 console.error('Error in the signin callback', err);
@@ -71,7 +71,7 @@ export const nextAuthOptions: NextAuthOptions = {
         session: async ({session, token, user}) => {
             delete session.user;
             (session as ISession).authProfileId = (token as IToken).authProfileId;
-            return session
+            return session;
         },
     },
     pages: {

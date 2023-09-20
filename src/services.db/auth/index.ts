@@ -1,38 +1,50 @@
 'use server';
 import {AuthProfileModel, AuthProviderModel} from './schema';
+import {insertInto as insertIntoUserProfile} from "~/services.db/user";
 
-interface IAuthProviderProps {
+interface IAuthProvider {
     provider: string | undefined;
     providerAccountId: string | undefined;
 }
 
-interface IAuthProfileProps {
-    name: string;
-    givenName: string;
-    familyName: string;
-    email: string;
+interface IUserProfile {
+    name: string | undefined;
+    givenName: string | undefined;
+    familyName: string | undefined;
+    email: string | undefined;
+}
+
+interface IProps {
+    authProvider: IAuthProvider,
+    userProfile: IUserProfile
+}
+
+const fetchAuthProviderByProviderAndProviderAccountId = async (authProvider: IAuthProvider) => {
+    return await AuthProviderModel.findOne({
+        provider: authProvider.provider,
+        providerAccountId: authProvider.providerAccountId
+    });
 }
 
 
-
-const signIn = async (authProviderProp: IAuthProviderProps, authProfileProp: IAuthProfileProps) => {
+const signIn = async ({authProvider, userProfile}: IProps) => {
     try {
-        const found = await AuthProviderModel.findOne({
-            provider: authProviderProp.provider,
-            providerAccountId: authProviderProp.providerAccountId
-        });
+        const found = await fetchAuthProviderByProviderAndProviderAccountId(authProvider);
         if (!found) {
-            const authProfile = new AuthProfileModel();
-            const savedProfile = await authProfile.save();
-            const authProvider = new AuthProviderModel({
-                provider: authProviderProp.provider,
-                providerAccountId: authProviderProp.providerAccountId,
-                authProfile: savedProfile.id
-            })
-            const savedProvider = await authProvider.save();
-            return savedProvider.id
-        }
-        else{
+            const newAuthProfile = new AuthProfileModel();
+            const savedAuthProfile = await newAuthProfile.save();
+
+            await insertIntoUserProfile({userProfile, authProfileId: savedAuthProfile.id})
+
+            const newAuthProvider = new AuthProviderModel({
+                provider: authProvider.provider,
+                providerAccountId: authProvider.providerAccountId,
+                authProfile: savedAuthProfile.id
+            });
+            const savedAuthProvider = await newAuthProvider.save();
+
+            return savedAuthProvider?.id
+        } else {
             return found.id
         }
     } catch (e) {
@@ -41,12 +53,12 @@ const signIn = async (authProviderProp: IAuthProviderProps, authProfileProp: IAu
     return false;
 }
 
-const fetchAuthProfileIdFromProviderData = async (provider : string, providerAccountId: string) =>{
+const fetchAuthProfileIdFromProviderData = async (provider: string, providerAccountId: string) => {
     const found = await AuthProviderModel.findOne({
         provider: provider,
         providerAccountId: providerAccountId
     });
-    if(found){
+    if (found) {
         return found.id;
     }
     return null;
