@@ -6,12 +6,10 @@ import {SERVER_CONFIG} from "~/utils/config.server";
 import {authDbServices} from "~/services.db";
 
 interface ISession extends Session {
-    provider: string;
     authProfileId: string;
 }
 
 interface IToken extends JWT {
-    provider: string;
     authProfileId: string;
 }
 
@@ -66,13 +64,12 @@ export const nextAuthOptions: NextAuthOptions = {
         jwt: async (params) => {
             const {token, account} = params;
             if (account) {
-                (token as IToken).provider = account.provider;
                 (token as IToken).authProfileId = await authDbServices.fetchAuthProfileIdFromProviderData(account.provider, account.providerAccountId);
             }
             return token;
         },
         session: async ({session, token, user}) => {
-            (session as ISession).provider = (token as IToken).provider;
+            delete session.user;
             (session as ISession).authProfileId = (token as IToken).authProfileId;
             return session
         },

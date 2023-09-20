@@ -4,7 +4,7 @@ import clsx from "clsx";
 import {useState} from "react";
 
 const AuthLogoutComponent = () => {
-    const [hasClicked, setHasClicked ]= useState<Boolean>(false);
+    const [hasClicked, setHasClicked ]= useState<boolean>(false);
 
     const onClickHandler = () => {
         setHasClicked(true);
@@ -26,6 +26,7 @@ const AuthLogoutComponent = () => {
         )}>
             <h1 className={clsx('font-acme',)}>Are you sure?</h1>
             <button
+                disabled={hasClicked}
                 onClick={onClickHandler}
                 className={clsx(
                     'text-lg',
@@ -39,7 +40,7 @@ const AuthLogoutComponent = () => {
                     }
                 )}
             >
-                Yes, get me out of here!!!! {hasClicked.toString()}
+                Yes, get me out of here!!!!
             </button>
         </div>
     </div>
