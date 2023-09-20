@@ -1,5 +1,5 @@
 'use server';
-import { FormSubmissionsModel } from './shcema'
+import { FormSubmissionsModel } from './schema'
 
 interface IFormModel {
     legend?: string;
@@ -13,7 +13,7 @@ interface IProps {
 }
 
 
-const save = async ({formId, formModel, formValues}: IProps) => {
+const insertInto = async ({formId, formModel, formValues}: IProps) => {
     try {
         const formSubmission = new FormSubmissionsModel({
             formId: formId,
@@ -32,5 +32,5 @@ const save = async ({formId, formModel, formValues}: IProps) => {
 }
 
 export {
-    save
+    insertInto
 }

@@ -1,8 +1,17 @@
 import './db.config';
-import {save as saveForms} from './forms';
+import {insertInto as saveForms} from './forms';
+import { signIn, fetchAuthProfileIdFromProviderData } from "./auth";
+
 
 export const formsDbServices = {
     save: saveForms
 }
 
-export const authDbServices = {}
+export const authDbServices = {
+    signIn,
+    fetchAuthProfileIdFromProviderData
+}
+
+export const userDbServices = {
+    
+}

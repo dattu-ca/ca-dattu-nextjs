@@ -22,7 +22,11 @@ const renderEmbeddedEntry = (node, children) => {
         }
         case 'bodyImages': {
             const bodyImage = bodyImagesSchema.mapContentful(node.data.target);
-            return <BannerComponent banners={[bodyImage]}/>
+            console.log('boy', bodyImage)
+            if(bodyImage){
+                return <BannerComponent banners={[bodyImage]}/>    
+            }
+            return null;            
         }
         case 'bodyForm': {
             const form = bodyFormSchema.mapContentful(node.data.target);

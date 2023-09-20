@@ -1,5 +1,5 @@
 'use client';
-import {createContext, ReactNode, useContext, useMemo} from 'react';
+import {createContext, ReactNode, useContext, useMemo, useState} from 'react';
 import {IProvider} from "./types";
 
 interface IProps {
@@ -14,26 +14,35 @@ interface IProps {
 interface IValue {
     ctxData: {
         providers: IProvider[],
-        error?: string | undefined
+        error?: string | undefined,
+        clickedProvider: string,
+    },
+    ctxFns: {
+        setClickedProvider:  (value: (((prevState: string) => string) | string)) => void
     }
 }
 
 const AuthLoginContext = createContext<IValue | null>({ctxData: {}} as IValue)
 
 export const AuthLoginContextProvider = ({children, providers, error}: IProps) => {
+    const [clickedProvider, setClickedProvider] = useState<string>('');
     const value = useMemo(() => {
         const providersList: IProvider[] = [];
         // const providersList: IProvider[] = Object.values(providers).filter(p => !p);
-        if(providers?.google){
+        if (providers?.google) {
             providersList.push(providers.google)
         }
         return {
             ctxData: {
                 providers: providersList,
-                error
+                error,
+                clickedProvider
+            },
+            ctxFns: {
+                setClickedProvider
             }
         } as IValue
-    }, [providers, error]);
+    }, [providers, error, clickedProvider, setClickedProvider]);
 
     return <AuthLoginContext.Provider value={value}>
         {children}

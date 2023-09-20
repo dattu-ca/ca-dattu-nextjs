@@ -1,6 +1,16 @@
+import {getAuthSession} from "~/auth.services";
+import {redirect} from "next/navigation";
+import {RedirectType} from "next/dist/client/components/redirect";
+import {AuthErrorComponent} from "~/components/AuthErrorComponent";
+
 const Page = async () => {
+    const session = await getAuthSession();
+    if(session){
+        return redirect('/admin/dashboard', RedirectType.replace);
+    }
+
     return <div>
-        <h1>Access Denied</h1>
+        <AuthErrorComponent/>
     </div>
 }
 

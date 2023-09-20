@@ -4,7 +4,7 @@ const COLLECTIONS = {
     AUTH_PROVIDER: 'authProvider',
     AUTH_PERMISSIONS: 'authPermissions',
     AUTH_PERMISSION_TYPE: 'authPermissionsType',
-    DATTU_TESTING: 'dattuTesting',
+    USER_PROFILE: 'userProfile',
 }
 
 export {
