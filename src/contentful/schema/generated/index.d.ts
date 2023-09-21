@@ -95,6 +95,39 @@ export interface IBlogPost extends Entry<IBlogPostFields> {
   };
 }
 
+export interface IBodyAuthorFields {
+  /** Entry Title */
+  entryTitle: string;
+
+  /** Slug */
+  slug: string;
+
+  /** Name */
+  name: string;
+
+  /** Short Bio */
+  shortBio?: Document | undefined;
+}
+
+/** The author content */
+
+export interface IBodyAuthor extends Entry<IBodyAuthorFields> {
+  sys: {
+    id: string;
+    type: string;
+    createdAt: string;
+    updatedAt: string;
+    locale: string;
+    contentType: {
+      sys: {
+        id: "bodyAuthor";
+        linkType: "ContentType";
+        type: "Link";
+      };
+    };
+  };
+}
+
 export interface IBodyContentFields {
   /** Entry Title */
   entryTitle: string;
@@ -128,6 +161,9 @@ export interface IBodyFormFields {
 
   /** Form Id */
   formId: string;
+
+  /** Max Width */
+  maxWidth?: number | undefined;
 
   /** Form Model */
   formModel: Record<string, any>;
@@ -377,6 +413,7 @@ export interface ISiteSearch extends Entry<ISiteSearchFields> {
 export type CONTENT_TYPE =
   | "blogPage"
   | "blogPost"
+  | "bodyAuthor"
   | "bodyContent"
   | "bodyForm"
   | "bodyImages"
@@ -389,6 +426,7 @@ export type CONTENT_TYPE =
 export type IEntry =
   | IBlogPage
   | IBlogPost
+  | IBodyAuthor
   | IBodyContent
   | IBodyForm
   | IBodyImages

@@ -33,7 +33,7 @@ export const PageComponent = (props: IProps) => {
                 )}>
                     <div className={clsx(                        
                         'w-full',
-                        'bg-white p-8',
+                        'bg-white p-4 md:p-8',
                         'shadow-sm',
                         {
                             ['md:w-2/3']: hasSidebar,

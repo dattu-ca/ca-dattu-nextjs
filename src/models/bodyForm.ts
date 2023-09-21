@@ -29,7 +29,8 @@ export interface IBodyFormModel {
 
 export interface IBodyForm {
     formId: string;
-    formModel: IBodyFormModel[]
+    maxWidth?: number;
+    formModel: IBodyFormModel[];
     recaptchaEnabled: boolean;
     submitFormEnabled: boolean;
     sendEmailEnabled: boolean;

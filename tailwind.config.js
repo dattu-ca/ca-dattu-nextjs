@@ -27,7 +27,7 @@ const MyClass = plugin(function ({addUtilities, matchUtilities, theme, addCompon
                 maxWidth: '640px',
             },
             '@screen md': {
-                maxWidth: '7680px',
+                maxWidth: '760px',
             },
             '@screen lg': {
                 maxWidth: '1024px',

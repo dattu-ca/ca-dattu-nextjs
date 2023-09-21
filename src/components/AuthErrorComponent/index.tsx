@@ -21,7 +21,7 @@ const AuthErrorComponent = () => {
                       'daisyui-btn  w-[calc(100%-100px)] min-w-[300px]',
                       'drop-shadow',
                       'daisyui-btn-outline daisyui-btn-neutral',
-                      'hover:bg-site-tertiary-dark hover:text-white',
+                      'hover:bg-site-secondary-dark hover:text-white',
                       'hover:after:w-0'
                   )}>
                 Go back to login

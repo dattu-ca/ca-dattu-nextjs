@@ -29,14 +29,10 @@ const SidebarComponent = ({sidebar}: IProps) => {
         'bg-white',
     )}>
         <div className={clsx(
-            'p-4 pb-0'
+            ' p-4 md:p-8 pb-0'
         )}>
             <h5>{heading}</h5>
             <CustomRichTexRenderer document={description}/>
-        </div>
-        <div className={clsx(
-            'p-4'
-        )}>
             <ul className={clsx(
                 'list-none m-0 p-0',
             )}>
@@ -44,7 +40,7 @@ const SidebarComponent = ({sidebar}: IProps) => {
                     <li key={link.id}
                         className={clsx(
                             'w-full block',
-                            'px-4 py-2',
+                            'px-0 py-2',
                             'border-b-[1px] border-[inherit]',
                         )}>
                         <Link className={clsx()}

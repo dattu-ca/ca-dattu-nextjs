@@ -34,9 +34,9 @@ const AuthLogoutComponent = () => {
                     'daisyui-btn  w-[calc(100%-100px)] min-w-[300px]',
                     'drop-shadow',
                     'daisyui-btn-outline daisyui-btn-neutral',
-                    'hover:bg-site-tertiary-dark hover:text-white',
+                    'hover:bg-site-secondary-dark hover:text-white',
                     {
-                        ['animate-pulse bg-site-tertiary-dark text-white']: hasClicked
+                        ['animate-pulse bg-site-secondary-dark text-white']: hasClicked
                     }
                 )}
             >

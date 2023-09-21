@@ -118,7 +118,7 @@ body{
 
     a {
         @apply relative;
-        @apply text-site-tertiary;
+        @apply text-site-secondary;
         @apply no-underline;
         @apply transition-all;
     }
