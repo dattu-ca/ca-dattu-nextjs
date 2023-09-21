@@ -1,5 +1,5 @@
 import {ISiteConfig} from "~/models";
-import {ISiteConfigFields} from "./generated";
+import {ISiteConfigFields} from "./generated/index";
 
 export type SiteConfigSkeleton = {
     contentTypeId: 'siteConfig'

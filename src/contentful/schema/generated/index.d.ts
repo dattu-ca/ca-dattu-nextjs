@@ -63,6 +63,17 @@ export interface IBlogPostFields {
 
   /** Sidebars */
   sidebars?: IBodySidebar[] | undefined;
+
+  /** Format */
+  format: "Standard" | "Aside" | "Image" | "Video" | "Quote" | "Link";
+
+  /** Layout Type */
+  layoutType:
+    | "Default"
+    | "Right Sidebar"
+    | "Left Sidebar"
+    | "No Sidebar"
+    | "Full Width";
 }
 
 /** The main content model for posts. */

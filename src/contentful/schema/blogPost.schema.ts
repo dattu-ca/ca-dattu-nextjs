@@ -1,5 +1,5 @@
 import {IBlogPost} from "~/models";
-import {IBlogPostFields} from "./generated";
+import {IBlogPostFields} from "./generated/index";
 import {mapContentfulList as mapBodyImagesContentfulList} from './bodyImages.schema';
 import { mapContentfulList as mapBodySidebarContentfulList} from './bodySidebar.schema';
 

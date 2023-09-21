@@ -9,7 +9,7 @@
     "start": "next start",
     "lint": "next lint",
     "test": "jest --watch",
-    "codegen": "contentful-typescript-codegen --output src/contentful/schema/generated/index.d.ts"
+    "contentful-codegen": "contentful-typescript-codegen --output src/contentful/schema/generated/index.d.ts"
   },
   "devDependencies": {
     "@netlify/plugin-nextjs": "^4.29.5-appdir.0",

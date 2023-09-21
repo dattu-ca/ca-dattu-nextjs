@@ -9,6 +9,8 @@ const CONTENTFUL_BLOG_POST_FIELDS = {
     SLUG: 'fields.slug',
     BANNERS: 'fields.banners',
     SIDEBARS: 'fields.sidebars',
+    FORMAT: 'fields.format',
+    LAYOUT_TYPE: 'fields.layoutType',
 }
 
 const content_type = 'blogPost';
@@ -45,7 +47,7 @@ const fetchListPaginated = (skip: number = 0, limit: number = 10) => {
             select: [
                 CONTENTFUL_BLOG_POST_FIELDS.SLUG as 'fields',
                 CONTENTFUL_BLOG_POST_FIELDS.HEADING as 'fields',
-                // CONTENTFUL_BLOG_POST_FIELDS.SHORT_BODY as 'fields'
+                CONTENTFUL_BLOG_POST_FIELDS.SHORT_BODY as 'fields'
             ],
             skip: skip,
             limit: limit,

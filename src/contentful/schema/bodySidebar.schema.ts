@@ -1,5 +1,5 @@
 import {IBodySidebar} from "~/models";
-import {IBodySidebarFields} from "./generated/";
+import {IBodySidebarFields} from "./generated/index";
 import {mapContentful as mapContentful_bodyLinks} from "./bodyLinks.schema";
 
 export type BodySidebarSkeleton = {

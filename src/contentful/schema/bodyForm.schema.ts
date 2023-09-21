@@ -1,5 +1,5 @@
 import {IBodyForm, IBodyFormModel} from "~/models";
-import {IBodyFormFields} from "./generated";
+import {IBodyFormFields} from "./generated/index";
 
 export type BodyFormSkeleton = {
     contentTypeId: 'bodyForm'
