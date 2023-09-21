@@ -8,6 +8,7 @@ import {getAuthSession} from "~/auth.services";
 import {siteConfigServices, siteNavbarServices} from "~/services";
 import {SERVER_CONFIG} from "~/utils/config.server";
 import NavbarComponent from "~/components/Navbar";
+import dbConnect from "~/services.db/dbConnect";
 
 const {PRIMARY_SITE_CONFIG, HEADER_SITE_NAVBAR} = SERVER_CONFIG.CONTENTFUL_SLUGS;
 
@@ -29,6 +30,7 @@ interface IProps {
 }
 
 const RootLayout = async ({children}: IProps) => {
+    await dbConnect();
     const navbar = await siteNavbarServices.fetchBySlug(HEADER_SITE_NAVBAR);
     const session = await getAuthSession();
     return (

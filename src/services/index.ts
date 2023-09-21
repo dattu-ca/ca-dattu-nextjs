@@ -1,6 +1,6 @@
-export * from './blogPage.services';
-export * from './blogPost.services';
-export * from './siteConfig.services';
-export * from './siteNavbar.services';
-export * from './form.services';
-export * from './sendMail.services';
+export { blogPageServices } from './blogPage.services';
+export { blogPostServices } from './blogPost.services';
+export { siteConfigServices } from './siteConfig.services';
+export { siteNavbarServices } from './siteNavbar.services';
+export { formsServices } from './form.services';
+export { sendMailServices } from './sendMail.services';
