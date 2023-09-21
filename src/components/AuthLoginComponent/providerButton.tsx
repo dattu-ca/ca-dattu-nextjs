@@ -30,7 +30,7 @@ const ProviderButton = ({provider}: IProps) => {
     const onClickHandler = () => {
         if (!clickedProvider) {
             setClickedProvider(provider.id);
-            signIn(provider.id).then(r => console.log(r));
+            signIn(provider.id).then(r => r);
         }
     }
 
