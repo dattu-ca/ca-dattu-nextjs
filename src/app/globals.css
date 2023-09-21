@@ -26,6 +26,7 @@ body{
         @apply mt-0;
         @apply mb-8;
         @apply min-h-[1px];
+        @apply font-acme;
     }
 
     h2 {
@@ -34,6 +35,7 @@ body{
         @apply mt-0;
         @apply mb-7;
         @apply min-h-[1px];
+        @apply font-acme;
     }
 
     h3 {
@@ -42,6 +44,7 @@ body{
         @apply mt-0;
         @apply mb-6;
         @apply min-h-[1px];
+        @apply font-acme;
     }
 
     h4 {

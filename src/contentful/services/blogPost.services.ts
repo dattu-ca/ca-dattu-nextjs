@@ -8,7 +8,6 @@ const CONTENTFUL_BLOG_POST_FIELDS = {
     SHORT_BODY: 'fields.shortBody',
     SLUG: 'fields.slug',
     BANNERS: 'fields.banners',
-    SIDEBARS: 'fields.sidebars',
     FORMAT: 'fields.format',
     LAYOUT_TYPE: 'fields.layoutType',
 }
@@ -24,7 +23,6 @@ const fetchBySlug = (slug: string) =>
                 CONTENTFUL_BLOG_POST_FIELDS.HEADING as 'fields',
                 CONTENTFUL_BLOG_POST_FIELDS.BODY as 'fields',
                 CONTENTFUL_BLOG_POST_FIELDS.BANNERS as 'fields',
-                CONTENTFUL_BLOG_POST_FIELDS.SIDEBARS as 'fields'
             ],
             [CONTENTFUL_BLOG_POST_FIELDS.SLUG]: slug,
             include: 10,

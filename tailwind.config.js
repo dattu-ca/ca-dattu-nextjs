@@ -22,19 +22,8 @@ const MyClass = plugin(function ({addUtilities, matchUtilities, theme, addCompon
             paddingLeft: '2em',
             paddingRight: '2em',
             margin: '0 auto',
-            maxWidth: '100%',
-            '@screen sm': {
-                maxWidth: '640px',
-            },
-            '@screen md': {
-                maxWidth: '760px',
-            },
-            '@screen lg': {
-                maxWidth: '1024px',
-            },
-            '@screen xl': {
-                maxWidth: '1280px',
-            },
+            maxWidth: '680px',
+            boxSizing: 'content-box'
         }
     })
 })

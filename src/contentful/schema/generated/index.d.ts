@@ -18,9 +18,6 @@ export interface IBlogPageFields {
 
   /** Body */
   body?: Document | undefined;
-
-  /** Sidebars */
-  sidebars?: IBodySidebar[] | undefined;
 }
 
 /** The main content model for pages. */
@@ -60,9 +57,6 @@ export interface IBlogPostFields {
 
   /** Short Body */
   shortBody?: Document | undefined;
-
-  /** Sidebars */
-  sidebars?: IBodySidebar[] | undefined;
 
   /** Format */
   format: "Standard" | "Aside" | "Image" | "Video" | "Quote" | "Link";
@@ -269,39 +263,6 @@ export interface IBodyLinks extends Entry<IBodyLinksFields> {
   };
 }
 
-export interface IBodySidebarFields {
-  /** Entry Title */
-  entryTitle: string;
-
-  /** Heading */
-  heading: string;
-
-  /** Description */
-  description?: Document | undefined;
-
-  /** Navigation */
-  navigation?: IBodyLinks | undefined;
-}
-
-/** This is the sidebar for a page or post. */
-
-export interface IBodySidebar extends Entry<IBodySidebarFields> {
-  sys: {
-    id: string;
-    type: string;
-    createdAt: string;
-    updatedAt: string;
-    locale: string;
-    contentType: {
-      sys: {
-        id: "bodySidebar";
-        linkType: "ContentType";
-        type: "Link";
-      };
-    };
-  };
-}
-
 export interface ISiteConfigFields {
   /** Entry Title */
   entryTitle: string;
@@ -418,7 +379,6 @@ export type CONTENT_TYPE =
   | "bodyForm"
   | "bodyImages"
   | "bodyLinks"
-  | "bodySidebar"
   | "siteConfig"
   | "siteNavbar"
   | "siteSearch";
@@ -431,7 +391,6 @@ export type IEntry =
   | IBodyForm
   | IBodyImages
   | IBodyLinks
-  | IBodySidebar
   | ISiteConfig
   | ISiteNavbar
   | ISiteSearch;
