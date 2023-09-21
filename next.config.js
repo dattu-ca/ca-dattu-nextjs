@@ -6,6 +6,7 @@ const nextConfig = {
         serverActions: true,
         swcPlugins: [["next-superjson-plugin", {}]],
     },
+    productionBrowserSourceMaps: true,
     // images: {
     //     remotePatterns: [
     //         {

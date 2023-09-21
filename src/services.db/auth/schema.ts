@@ -4,13 +4,6 @@ import {COLLECTIONS} from "../collectionNames";
 const Schema = mongoose.Schema;
 
 const authProfileSchema = new Schema({
-    environment: {
-        type: String,
-        default: process.env.ENVIRONMENT,
-        required: true,
-        trim: true,
-        lowerCase: true,
-    },
     dateCreated: {
         type: Schema.Types.Date,
         default: Date.now(),
@@ -19,13 +12,6 @@ const authProfileSchema = new Schema({
 })
 
 const authProviderSchema = new Schema({
-    environment: {
-        type: String,
-        default: process.env.ENVIRONMENT,
-        required: true,
-        trim: true,
-        lowerCase: true,
-    },
     dateCreated: {
         type: Schema.Types.Date,
         default: Date.now(),
