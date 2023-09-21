@@ -1,12 +1,12 @@
 'use client';
-import {Fragment} from 'react';
+import React, {Fragment} from 'react';
 import clsx from "clsx";
 import {CustomRichTexRenderer} from "~/components/CustomRichTextRenderer";
 import {IBlogPage} from "~/models";
 
-import {HeadingComponent} from "~/components/Page/heading";
 import {PageContextProvider} from "~/components/Page/context";
 import {SidebarComponent} from "~/components/Sidebar";
+import {BannerComponent} from "~/components/Banner";
 
 interface IProps {
     data: IBlogPage;
@@ -14,27 +14,40 @@ interface IProps {
 
 export const PageComponent = (props: IProps) => {
     const {data} = props;
-    const {body, sidebars} = data;
+    const {body,banners, sidebars, heading} = data;
     const hasSidebar = sidebars && Array.isArray(sidebars) && sidebars?.length > 0;
     return <PageContextProvider data={data}>
         <div className={clsx(
             'pb-4'
         )}>
-            <HeadingComponent/>
+            {
+                banners && <BannerComponent banners={banners}/>
+            }
             <div className={clsx(
-                'mt-4',
                 'overflow-y-auto',
                 'content-container',
             )}>
                 <div className={clsx(
-                    'flex flex-col md:flex-row gap-6'
+                    'flex flex-col md:flex-row gap-6 items-start',
+                    'mt-8',
                 )}>
-                    <div className={clsx(
+                    <div className={clsx(                        
                         'w-full',
+                        'bg-white p-8',
+                        'shadow-sm',
                         {
                             ['md:w-2/3']: hasSidebar,
                         }
                     )}>
+                        <h1
+                            className={clsx(
+                                'inline-block',
+                                'mt-0 mb-4',
+                                'font-acme',
+                            )}
+                            style={{'--tw-bg-opacity': 0.40} as React.CSSProperties}>
+                            {heading}
+                        </h1>
                         <CustomRichTexRenderer document={body}/>
                     </div>
                     {

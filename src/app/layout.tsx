@@ -40,7 +40,7 @@ const RootLayout = async ({children}: IProps) => {
             <meta name="robots" content="noindex,nofollow"/>
         </head>
         <body className={clsx(
-            'bg-site-color-light text-site-tertiary'
+            'bg-site-color-light text-gray-700'
         )}>
             <header>
                 <div>

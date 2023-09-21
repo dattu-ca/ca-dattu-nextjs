@@ -72,6 +72,19 @@ body{
         @apply mb-4;
         @apply min-h-[1px];
     }
+    p:last-child{
+        @apply mb-0;
+        @apply min-h-0;
+    }
+    p:empty{
+        @apply mb-0;
+        @apply min-h-0;
+    }
+    p:has(> span:empty){
+        @apply mb-0;
+        @apply min-h-0;
+    }
+    
 
     li p {
         @apply mb-0;
@@ -105,7 +118,7 @@ body{
 
     a {
         @apply relative;
-        @apply text-site-primary;
+        @apply text-site-tertiary;
         @apply no-underline;
         @apply transition-all;
     }

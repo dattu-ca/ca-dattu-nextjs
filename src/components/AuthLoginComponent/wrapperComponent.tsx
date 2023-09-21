@@ -13,7 +13,7 @@ const WrapperComponent = () => {
             'w-full md:w-[400px] lg:w-[600px]',
             'bg-white',
             'py-48 px-4',
-            'shadow-xl'
+            'shadow-sm'
         )}>
             <h1 className={clsx('text-center', 'font-acme',)}>Login</h1>
             {

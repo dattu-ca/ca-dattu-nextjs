@@ -21,7 +21,7 @@ const AuthLogoutComponent = () => {
             'w-full md:w-[400px] lg:w-[600px]',
             'bg-white',
             'py-48 px-4',
-            'shadow-xl',
+            'shadow-sm',
             'text-center'
         )}>
             <h1 className={clsx('font-acme',)}>Are you sure?</h1>
