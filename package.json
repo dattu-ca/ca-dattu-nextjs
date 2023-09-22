@@ -61,6 +61,7 @@
     "react-dom": "18.2.0",
     "react-google-recaptcha": "^3.1.0",
     "react-icons": "^4.10.1",
+    "react-responsive": "^9.0.2",
     "react-slide-button": "^2.0.0",
     "react-swipeable": "^7.0.1",
     "react-toastify": "^9.1.3",

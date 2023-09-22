@@ -21,7 +21,7 @@ const MyClass = plugin(function ({addUtilities, matchUtilities, theme, addCompon
     })
 })
 
-module.exports = {
+export default {
     mode: 'jit',
     darkMode: 'class',
     content: [

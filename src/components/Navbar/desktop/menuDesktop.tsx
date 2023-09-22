@@ -48,7 +48,7 @@ const MenuDesktop = () => {
                     )}
                     onMouseOver={() => openSubMenu(link.id)}
                 >
-                    <ClickAwayListener onClickAway={() => closeSubMenu(link.id)}>
+                    <ClickAwayListener onClickAway={() => ({})}>
                         <div>
                             <div className={clsx(
                                 'flex gap-2 items-center'

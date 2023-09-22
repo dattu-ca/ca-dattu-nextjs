@@ -2,10 +2,11 @@ import React from 'react';
 import clsx from "clsx";
 import Link from "next/link";
 import {ClickAwayListener} from '@mui/base/ClickAwayListener';
-import {AiOutlineClose} from 'react-icons/ai';
+import {AiOutlineClose, AiOutlineDown} from 'react-icons/ai';
 import {GiHamburgerMenu} from 'react-icons/gi'
 import {useNavbarContext} from "../context";
 import {MenuLoggedInMobile} from "./menuLoggedInMobile";
+import {MenuMobileSubmenu} from "./menuMobileSubmenu";
 
 const MenuMobile = () => {
     const {
@@ -15,15 +16,16 @@ const MenuMobile = () => {
             links,
             isMobileMenuOpen,
             session,
+            subMenuOpenId,
         },
         ctxFunctions: {
             getAriaCurrent,
             isCurrentPage,
             toggleMobileMenu,
             closeMobileMenu,
+            toggleSubMenu,
         }
     } = useNavbarContext();
-
 
     return <ClickAwayListener onClickAway={closeMobileMenu}>
         <div className={clsx(
@@ -70,19 +72,21 @@ const MenuMobile = () => {
                                         'w-full',
                                         'border-b-[1px] border-b-site-primary border-solid',
                                     )}>
-                                    <div>
+                                    <div className={clsx(
+                                        'flex w-full',
+                                        'block',
+                                        'bg-site-color-dark',
+                                    )}>
                                         <Link
                                             onClick={closeMobileMenu}
                                             aria-current={getAriaCurrent(link.url)}
                                             href={link.url}
                                             className={clsx(
-                                                'p-4',
-                                                'block',
                                                 'text-site-primary',
-                                                'bg-site-color-dark',
                                                 'text-xl',
+                                                'p-4',
+                                                'grow',
                                                 'border-l-[16px]',
-
                                                 {
                                                     ['border-l-site-primary']: isCurrentPage(link.url),
                                                     ['border-l-[transparent]']: !isCurrentPage(link.url)
@@ -92,7 +96,30 @@ const MenuMobile = () => {
                                         >
                                             {link.label}
                                         </Link>
+                                        {
+                                            Array.isArray(link?.links) && link.links.length > 0 &&
+                                            <button
+                                                className={clsx(
+                                                    'p-4',
+                                                    'bg-gray-700'
+                                                )}
+                                                onClick={() => toggleSubMenu(link.id)}
+                                                aria-label={subMenuOpenId === link.id ? `Close sub menu for ${link.label}` : `Open sub menu for ${link.label}`}>
+                                                <AiOutlineDown className={clsx(
+                                                    'transition',
+                                                    'w-4 h-4 text-site-primary ',
+                                                    {
+                                                        ['rotate-180']: subMenuOpenId === link.id
+                                                    }
+                                                )}
+                                                />
+                                            </button>
+                                        }
                                     </div>
+                                    {
+                                        Array.isArray(link?.links) && link.links.length > 0
+                                        && <MenuMobileSubmenu links={link.links} id={link.id}/>
+                                    }
                                 </li>
                             ))
                         }
