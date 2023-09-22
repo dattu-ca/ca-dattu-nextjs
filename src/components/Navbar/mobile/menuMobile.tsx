@@ -2,7 +2,8 @@ import React from 'react';
 import clsx from "clsx";
 import Link from "next/link";
 import {ClickAwayListener} from '@mui/base/ClickAwayListener';
-import {ReactIcon} from "~/components/ReactIcon";
+import {AiOutlineClose} from 'react-icons/ai';
+import {GiHamburgerMenu} from 'react-icons/gi'
 import {useNavbarContext} from "../context";
 import {MenuLoggedInMobile} from "./menuLoggedInMobile";
 
@@ -33,15 +34,10 @@ const MenuMobile = () => {
                 {
                     isMobileMenuOpen
                         ? (
-                            <ReactIcon icon='AiOutlineClose'
-                                       className={clsx('h-6 w-6 text-site-primary')}
-
-                            />
+                            <AiOutlineClose className={clsx('h-6 w-6 text-site-primary')}/>
                         )
                         : (
-                            <ReactIcon icon='GiHamburgerMenu'
-                                       className={clsx('h-6 w-6 text-site-primary')}
-                            />
+                            <GiHamburgerMenu className={clsx('h-6 w-6 text-site-primary')}/>
                         )
 
                 }
@@ -74,29 +70,29 @@ const MenuMobile = () => {
                                         'w-full',
                                         'border-b-[1px] border-b-site-primary border-solid',
                                     )}>
-                                    <Link
-                                        onClick={closeMobileMenu}
-                                        aria-current={getAriaCurrent(link.url)}
-                                        href={link.url}
-                                        className={clsx(
-                                            'p-4',
-                                            'block',
-                                            'text-site-primary',
-                                            'bg-site-color-dark',
-                                            'text-xl',
-                                            'border-l-[16px]',
+                                    <div>
+                                        <Link
+                                            onClick={closeMobileMenu}
+                                            aria-current={getAriaCurrent(link.url)}
+                                            href={link.url}
+                                            className={clsx(
+                                                'p-4',
+                                                'block',
+                                                'text-site-primary',
+                                                'bg-site-color-dark',
+                                                'text-xl',
+                                                'border-l-[16px]',
 
-                                            {
-                                                ['border-l-site-primary']: isCurrentPage(link.url),
-                                                ['border-l-[transparent]']: !isCurrentPage(link.url)
-                                            }
-                                        )}
-                                        tabIndex={isMobileMenuOpen ? undefined : -1}
-                                    >
-                                        {link.label}
-                                        <span></span>
-                                        <span></span>
-                                    </Link>
+                                                {
+                                                    ['border-l-site-primary']: isCurrentPage(link.url),
+                                                    ['border-l-[transparent]']: !isCurrentPage(link.url)
+                                                }
+                                            )}
+                                            tabIndex={isMobileMenuOpen ? undefined : -1}
+                                        >
+                                            {link.label}
+                                        </Link>
+                                    </div>
                                 </li>
                             ))
                         }

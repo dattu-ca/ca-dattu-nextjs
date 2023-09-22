@@ -24,7 +24,7 @@ const AuthLogoutComponent = () => {
             'shadow-sm',
             'text-center'
         )}>
-            <h1 className={clsx('font-acme',)}>Are you sure?</h1>
+            <h1>Are you sure?</h1>
             <button
                 disabled={hasClicked}
                 onClick={onClickHandler}

@@ -18,7 +18,7 @@ const NavbarDesktop = () => {
         <div className={clsx(
             {
                 ['pb-[72px]']: !session,
-                ['pb-[136px]']: session,
+                ['pb-[104px]']: session,
             }
         )}>
             {
@@ -26,7 +26,7 @@ const NavbarDesktop = () => {
                 && (
                     <nav className={clsx(
                         'w-full bg-site-color-dark',
-                        'py-4 px-4',
+                        'py-1 px-4',
                         'shadow-2xl',
                         'fixed z-[100] top-0 left-0'
                     )}>
@@ -45,7 +45,7 @@ const NavbarDesktop = () => {
                 'fixed z-[100] left-0',
                 {
                     ['top-0 ']: !session,
-                    ['top-[64px]']: session,
+                    ['top-[32px]']: session,
                 }
             )}
                  style={{'--tw-bg-opacity': 0.95} as React.CSSProperties}>

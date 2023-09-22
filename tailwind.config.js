@@ -17,14 +17,7 @@ const MyClass = plugin(function ({addUtilities, matchUtilities, theme, addCompon
         {values: theme('textShadow')}
     );
     addComponents({
-        '.content-container':{
-            width: '100%',
-            paddingLeft: '2em',
-            paddingRight: '2em',
-            margin: '0 auto',
-            maxWidth: '680px',
-            boxSizing: 'content-box'
-        }
+        
     })
 })
 
@@ -55,12 +48,12 @@ module.exports = {
                 'site-primary-light': 'rgb(237, 188, 64)',
                 'site-primary': 'rgb(218, 165, 32)',
                 'site-primary-dark': 'rgb(185, 138, 21)',
-                'site-secondary-light': 'rgb(68, 147, 255)',
-                'site-secondary': 'rgb(0, 123, 255)',
-                'site-secondary-dark': 'rgb(0, 96, 199)',
-                'site-tertiary-light': 'rgb(37, 177, 164)',
-                'site-tertiary': 'rgb(19,149,135)',
-                'site-tertiary-dark': 'rgb(0, 119, 107)',
+                'site-secondary-light': 'rgb(37, 177, 164)',
+                'site-secondary': 'rgb(19,149,135)',
+                'site-secondary-dark': 'rgb(0, 119, 107)',
+                // 'site-tertiary-light': 'rgb(68, 147, 255)',
+                // 'site-tertiary': 'rgb(0, 123, 255)',
+                // 'site-tertiary-dark': 'rgb(0, 96, 199)',
                 'site-color-dark': 'rgb(24, 25, 27)',
                 'site-color-light': 'rgb(231, 230, 228)',
             },
@@ -71,9 +64,7 @@ module.exports = {
             },
         },
     },
-    corePlugins: {
-        
-    },
+    corePlugins: {},
     plugins: [MyClass, require('daisyui')],
     variants: {
         extend: {

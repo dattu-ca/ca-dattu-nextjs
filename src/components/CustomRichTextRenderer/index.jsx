@@ -1,3 +1,4 @@
+'use client';
 import {Fragment} from "react";
 import PropTypes from 'prop-types';
 import Link from 'next/link';
@@ -58,7 +59,7 @@ const options = {
         [BLOCKS.UL_LIST]: (node, children) => <Ul>{children}</Ul>,
         [BLOCKS.LIST_ITEM]: (node, children) => <Li>{children}</Li>,
         [INLINES.HYPERLINK]: ({data}, children) => {
-            const isCurrentSite = data.uri.startsWith(location.origin) || data.uri.startsWith("/");
+            const isCurrentSite =  data.uri.startsWith("/");
             return <Link href={data.uri} passHref={!isCurrentSite}
                          target={isCurrentSite ? '_self' : '_blank'}>{children}</Link>
         },

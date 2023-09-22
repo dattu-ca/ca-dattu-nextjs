@@ -24,9 +24,10 @@ export const PageComponent = (props: IProps) => {
             <div className={clsx(
                 'overflow-y-auto',
                 'mt-8',
+                'container',
             )}>
                 <div className={clsx(
-                    'content-container',
+                    
                     'bg-white p-4 md:p-8',
                     'shadow-sm',
                 )}>

@@ -15,7 +15,7 @@ const WrapperComponent = () => {
             'py-48 px-4',
             'shadow-sm'
         )}>
-            <h1 className={clsx('text-center', 'font-acme',)}>Login</h1>
+            <h1>Login</h1>
             {
                 providers
                     .map((provider: IProvider) => (

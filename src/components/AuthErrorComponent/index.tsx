@@ -13,7 +13,7 @@ const AuthErrorComponent = () => {
             'shadow-xl',
             'text-center'
         )}>
-            <h1 className={clsx('font-acme',)}>Access Denied</h1>
+            <h1>Access Denied</h1>
             <Link href='/auth/login'
                   className={clsx(
                       'text-lg',

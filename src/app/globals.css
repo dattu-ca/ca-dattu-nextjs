@@ -172,4 +172,11 @@ body{
     blockquote p{
         @apply mb-0;
     }
+    .container{
+        width: 100%;
+        padding-left: 2em;
+        padding-right: 2em;
+        margin: 0 auto;
+        max-width: calc(680px + 4em + 4em) !important;
+    }
 }
