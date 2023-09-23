@@ -1,5 +1,4 @@
 import {IBodyImage} from "./bodyImage";
-import {IBodySidebar} from "./bodySidebar";
 
 interface IBlogPostCommon {
     slug?: string;
@@ -13,5 +12,4 @@ export interface IBlogPostSmall extends IBlogPostCommon {
 export interface IBlogPost extends IBlogPostCommon {
     banners: IBodyImage[]
     body?: object;
-    sidebars?: IBodySidebar[];
 }

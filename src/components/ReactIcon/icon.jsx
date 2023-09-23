@@ -4,16 +4,16 @@ import {AiOutlineLoading3Quarters} from 'react-icons/ai';
 import clsx from "clsx";
 
 
-const ReactIconJs = ({icon, className}) => {
+const ReactIconJs = ({icon, className, ...props}) => {
     
-    const DynamicIcon = dynamic(() => {
+    const DynamicIcon = dynamic(async () => {
         const match = /[A-Z0-9]/.exec(icon[0].toLowerCase() + icon.slice(1));
         const libStr = match ? icon.substring(0, match.index) : null;
         if (libStr) {
             const i = icon;
             switch (libStr) {
                 case 'Ai' :
-                    return import('react-icons/ai').then(mod => mod[i]);
+                    return  import('react-icons/ai').then(mod => mod[i]);
                 case 'Bs' :
                     return import('react-icons/bs').then(mod => mod[i]);
                 case 'Bi' :
@@ -73,12 +73,13 @@ const ReactIconJs = ({icon, className}) => {
             }
         }
     }, {
+        ssr: true,
         loading: () => <AiOutlineLoading3Quarters className={clsx(className, 'animate-spin')} />
     })
 
     
     return <Suspense>
-        <DynamicIcon className={className} />
+        <DynamicIcon {...props} className={className} />
     </Suspense>
 }
 

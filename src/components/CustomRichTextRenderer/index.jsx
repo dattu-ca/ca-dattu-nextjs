@@ -1,4 +1,7 @@
+'use client';
+import {Fragment} from "react";
 import PropTypes from 'prop-types';
+import Link from 'next/link';
 import {documentToReactComponents} from '@contentful/rich-text-react-renderer';
 import {BLOCKS, INLINES, MARKS} from '@contentful/rich-text-types';
 import {bodyImagesSchema, bodyFormSchema} from "~/contentful/schema";
@@ -22,11 +25,10 @@ const renderEmbeddedEntry = (node, children) => {
         }
         case 'bodyImages': {
             const bodyImage = bodyImagesSchema.mapContentful(node.data.target);
-            console.log('boy', bodyImage)
-            if(bodyImage){
-                return <BannerComponent banners={[bodyImage]}/>    
+            if (bodyImage) {
+                return <BannerComponent banners={[bodyImage]}/>
             }
-            return null;            
+            return null;
         }
         case 'bodyForm': {
             const form = bodyFormSchema.mapContentful(node.data.target);
@@ -47,10 +49,20 @@ const options = {
         [MARKS.CODE]: (text) => <code>{text}</code>,
     },
     renderNode: {
-        [BLOCKS.PARAGRAPH]: (node, children) => <Text>{children}</Text>,
+        [BLOCKS.PARAGRAPH]: (node, children) => {
+            if (node && Array.isArray(node.content) && node.content.length === 1 && node.content[0].value?.trim() === "") {
+                return null;
+            }
+            return <Text>{children}</Text>;
+        },
         [BLOCKS.OL_LIST]: (node, children) => <Ol>{children}</Ol>,
         [BLOCKS.UL_LIST]: (node, children) => <Ul>{children}</Ul>,
         [BLOCKS.LIST_ITEM]: (node, children) => <Li>{children}</Li>,
+        [INLINES.HYPERLINK]: ({data}, children) => {
+            const isCurrentSite =  data.uri.startsWith("/");
+            return <Link href={data.uri} passHref={!isCurrentSite}
+                         target={isCurrentSite ? '_self' : '_blank'}>{children}</Link>
+        },
         [BLOCKS.EMBEDDED_ENTRY]: renderEmbeddedEntry,
         [INLINES.EMBEDDED_ENTRY]: renderEmbeddedEntry,
     },
@@ -61,9 +73,9 @@ const CustomRichTexRenderer = ({document} = {document: undefined}) => {
     if (!document) {
         return null;
     }
-    return <section>
+    return <Fragment>
         {documentToReactComponents(document, options)}
-    </section>
+    </Fragment>
 }
 
 CustomRichTexRenderer.propTypes = {

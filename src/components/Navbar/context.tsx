@@ -28,6 +28,7 @@ interface INavbarContextProps {
         authLinks: ILink[];
         isMobileMenuOpen: boolean;
         session: Session | null;
+        subMenuOpenId: string | null;
     },
     ctxFunctions: {
         openMobileMenu: () => void;
@@ -35,6 +36,9 @@ interface INavbarContextProps {
         toggleMobileMenu: () => void;
         isCurrentPage: (value: string) => boolean;
         getAriaCurrent: (value: string) => 'page' | undefined;
+        openSubMenu: (id: string) => void,
+        closeSubMenu: (id: string | null) => void,
+        toggleSubMenu: (id: string) => void,
     }
 }
 
@@ -47,6 +51,7 @@ const NavbarContext = createContext<INavbarContextProps>({
         authLinks: [],
         isMobileMenuOpen: false,
         session: null,
+        subMenuOpenId: null,
     },
     ctxFunctions: {
         openMobileMenu: () => ({}),
@@ -54,6 +59,9 @@ const NavbarContext = createContext<INavbarContextProps>({
         toggleMobileMenu: () => ({}),
         isCurrentPage: () => false,
         getAriaCurrent: () => undefined,
+        openSubMenu: () => ({}),
+        closeSubMenu: () => ({}),
+        toggleSubMenu: () => ({}),
     },
 
 
@@ -79,6 +87,12 @@ const NavbarContextProvider = ({children, navbar: rawNavbar, session}: INavbarCo
     const path = usePathname();
 
     const [isMobileMenuOpen, setIsMobileMenuOpen] = useState<boolean>(false);
+    const [subMenuOpenId, setSubMenuOpenId] = useState<string | null>(null);
+
+    const closeMobileMenuHandler = useCallback(() => {
+        setIsMobileMenuOpen(false);
+        setSubMenuOpenId(null);
+    }, []);
 
     const isCurrentPage = useCallback((url: string, exact: boolean = false) => {
         if (!url) {
@@ -92,8 +106,29 @@ const NavbarContextProvider = ({children, navbar: rawNavbar, session}: INavbarCo
         }
         return path.includes(url)
     }, [path]);
-    const getAriaCurrent = useCallback((url: string) => isCurrentPage(url, true) ? 'page' : undefined, [isCurrentPage])
+    const getAriaCurrent = useCallback((url: string) => isCurrentPage(url, true) ? 'page' : undefined, [isCurrentPage]);
 
+    const openSubMenuHandler = useCallback((id: string) => {
+        setSubMenuOpenId(id);
+    }, [])
+
+    const closeSubMenuHandler = useCallback((id: string | null) => {
+        setSubMenuOpenId(prev => {
+            if (!id || prev === id) {
+                return null;
+            }
+            return prev;
+        });
+    }, [])
+
+    const toggleSubMenuHandler = useCallback((id: string) => {
+        setSubMenuOpenId(prev => {
+            if (prev === id) {
+                return null;
+            }
+            return id;
+        });
+    }, [])
 
     const props = useMemo<INavbarContextProps>(() => ({
         ctxData: {
@@ -103,16 +138,20 @@ const NavbarContextProvider = ({children, navbar: rawNavbar, session}: INavbarCo
             links: navbar.links.links || [],
             authLinks: AUTH_LINKS,
             isMobileMenuOpen: isMobileMenuOpen,
-            session
+            session,
+            subMenuOpenId,
         },
         ctxFunctions: {
             openMobileMenu: () => setIsMobileMenuOpen(true),
-            closeMobileMenu: () => setIsMobileMenuOpen(false),
+            closeMobileMenu: closeMobileMenuHandler,
             toggleMobileMenu: () => setIsMobileMenuOpen(prev => !prev),
             isCurrentPage: isCurrentPage,
             getAriaCurrent: getAriaCurrent,
+            openSubMenu: openSubMenuHandler,
+            closeSubMenu: closeSubMenuHandler,
+            toggleSubMenu: toggleSubMenuHandler,
         },
-    } as INavbarContextProps), [session, navbar, isMobileMenuOpen, isCurrentPage, getAriaCurrent]);
+    } as INavbarContextProps), [session, navbar, isMobileMenuOpen, isCurrentPage, closeMobileMenuHandler, getAriaCurrent, subMenuOpenId, openSubMenuHandler, closeSubMenuHandler, toggleSubMenuHandler]);
 
 
     return <NavbarContext.Provider value={props}>

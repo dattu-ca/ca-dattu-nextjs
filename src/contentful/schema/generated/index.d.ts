@@ -18,9 +18,6 @@ export interface IBlogPageFields {
 
   /** Body */
   body?: Document | undefined;
-
-  /** Sidebars */
-  sidebars?: IBodySidebar[] | undefined;
 }
 
 /** The main content model for pages. */
@@ -61,8 +58,16 @@ export interface IBlogPostFields {
   /** Short Body */
   shortBody?: Document | undefined;
 
-  /** Sidebars */
-  sidebars?: IBodySidebar[] | undefined;
+  /** Format */
+  format: "Standard" | "Aside" | "Image" | "Video" | "Quote" | "Link";
+
+  /** Layout Type */
+  layoutType:
+    | "Default"
+    | "Right Sidebar"
+    | "Left Sidebar"
+    | "No Sidebar"
+    | "Full Width";
 }
 
 /** The main content model for posts. */
@@ -77,6 +82,39 @@ export interface IBlogPost extends Entry<IBlogPostFields> {
     contentType: {
       sys: {
         id: "blogPost";
+        linkType: "ContentType";
+        type: "Link";
+      };
+    };
+  };
+}
+
+export interface IBodyAuthorFields {
+  /** Entry Title */
+  entryTitle: string;
+
+  /** Slug */
+  slug: string;
+
+  /** Name */
+  name: string;
+
+  /** Short Bio */
+  shortBio?: Document | undefined;
+}
+
+/** The author content */
+
+export interface IBodyAuthor extends Entry<IBodyAuthorFields> {
+  sys: {
+    id: string;
+    type: string;
+    createdAt: string;
+    updatedAt: string;
+    locale: string;
+    contentType: {
+      sys: {
+        id: "bodyAuthor";
         linkType: "ContentType";
         type: "Link";
       };
@@ -117,6 +155,9 @@ export interface IBodyFormFields {
 
   /** Form Id */
   formId: string;
+
+  /** Max Width */
+  maxWidth?: number | undefined;
 
   /** Form Model */
   formModel: Record<string, any>;
@@ -215,39 +256,6 @@ export interface IBodyLinks extends Entry<IBodyLinksFields> {
     contentType: {
       sys: {
         id: "bodyLinks";
-        linkType: "ContentType";
-        type: "Link";
-      };
-    };
-  };
-}
-
-export interface IBodySidebarFields {
-  /** Entry Title */
-  entryTitle: string;
-
-  /** Heading */
-  heading: string;
-
-  /** Description */
-  description?: Document | undefined;
-
-  /** Navigation */
-  navigation?: IBodyLinks | undefined;
-}
-
-/** This is the sidebar for a page or post. */
-
-export interface IBodySidebar extends Entry<IBodySidebarFields> {
-  sys: {
-    id: string;
-    type: string;
-    createdAt: string;
-    updatedAt: string;
-    locale: string;
-    contentType: {
-      sys: {
-        id: "bodySidebar";
         linkType: "ContentType";
         type: "Link";
       };
@@ -366,11 +374,11 @@ export interface ISiteSearch extends Entry<ISiteSearchFields> {
 export type CONTENT_TYPE =
   | "blogPage"
   | "blogPost"
+  | "bodyAuthor"
   | "bodyContent"
   | "bodyForm"
   | "bodyImages"
   | "bodyLinks"
-  | "bodySidebar"
   | "siteConfig"
   | "siteNavbar"
   | "siteSearch";
@@ -378,11 +386,11 @@ export type CONTENT_TYPE =
 export type IEntry =
   | IBlogPage
   | IBlogPost
+  | IBodyAuthor
   | IBodyContent
   | IBodyForm
   | IBodyImages
   | IBodyLinks
-  | IBodySidebar
   | ISiteConfig
   | ISiteNavbar
   | ISiteSearch;

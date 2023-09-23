@@ -7,7 +7,6 @@ const CONTENTFUL_FIELDS = {
     BODY: 'fields.body',
     SLUG: 'fields.slug',
     BANNERS: 'fields.banners',
-    SIDEBARS: 'fields.sidebars',
 }
 
 const content_type = 'blogPage';
@@ -21,7 +20,6 @@ const fetchBySlug = (slug: string) =>
                 CONTENTFUL_FIELDS.HEADING as 'fields',
                 CONTENTFUL_FIELDS.BODY as 'fields',
                 CONTENTFUL_FIELDS.BANNERS as 'fields',
-                CONTENTFUL_FIELDS.SIDEBARS as 'fields'
             ],
             [CONTENTFUL_FIELDS.SLUG]: slug,
             include: 10,

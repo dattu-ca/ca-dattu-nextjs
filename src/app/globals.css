@@ -26,6 +26,7 @@ body{
         @apply mt-0;
         @apply mb-8;
         @apply min-h-[1px];
+        @apply font-acme;
     }
 
     h2 {
@@ -34,6 +35,7 @@ body{
         @apply mt-0;
         @apply mb-7;
         @apply min-h-[1px];
+        @apply font-acme;
     }
 
     h3 {
@@ -42,6 +44,7 @@ body{
         @apply mt-0;
         @apply mb-6;
         @apply min-h-[1px];
+        @apply font-acme;
     }
 
     h4 {
@@ -72,6 +75,19 @@ body{
         @apply mb-4;
         @apply min-h-[1px];
     }
+    p:last-child{
+        @apply mb-0;
+        @apply min-h-0;
+    }
+    p:empty{
+        @apply mb-0;
+        @apply min-h-0;
+    }
+    p:has(> span:empty){
+        @apply mb-0;
+        @apply min-h-0;
+    }
+    
 
     li p {
         @apply mb-0;
@@ -105,7 +121,7 @@ body{
 
     a {
         @apply relative;
-        @apply text-site-primary;
+        @apply text-site-secondary;
         @apply no-underline;
         @apply transition-all;
     }
@@ -155,5 +171,12 @@ body{
     }
     blockquote p{
         @apply mb-0;
+    }
+    .container{
+        width: 100%;
+        padding-left: 2em;
+        padding-right: 2em;
+        margin: 0 auto;
+        max-width: calc(680px + 4em + 4em) !important;
     }
 }

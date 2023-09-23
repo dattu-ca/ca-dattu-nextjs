@@ -30,7 +30,7 @@ const ProviderButton = ({provider}: IProps) => {
     const onClickHandler = () => {
         if (!clickedProvider) {
             setClickedProvider(provider.id);
-            signIn(provider.id).then(r => console.log(r));
+            signIn(provider.id).then(r => r);
         }
     }
 
@@ -40,10 +40,10 @@ const ProviderButton = ({provider}: IProps) => {
                     'py-2 px-0 box-content',
                     'daisyui-btn  w-[calc(100%-100px)] min-w-[300px]',
                     'drop-shadow',
-                    'hover:bg-site-tertiary-dark hover:text-white',
+                    'hover:bg-site-secondary-dark hover:text-white',
                     {
                         ['daisyui-btn-outline daisyui-btn-neutral']: (!clickedProvider) || (clickedProvider && clickedProvider !== provider.id),
-                        ['animate-pulse bg-site-tertiary-dark text-white']: clickedProvider === provider.id
+                        ['animate-pulse bg-site-secondary-dark text-white']: clickedProvider === provider.id
                     }
                 )}>
             <div className={clsx(

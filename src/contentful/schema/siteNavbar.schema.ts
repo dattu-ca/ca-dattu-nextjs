@@ -1,5 +1,5 @@
 import {ISiteNavbar} from "~/models";
-import {ISiteNavbarFields} from "./generated";
+import {ISiteNavbarFields} from "./generated/index";
 import {mapContentful as mapContentful_bodyLinks} from './bodyLinks.schema';
 import {mapContentful as mapContentful_bodyImages} from './bodyImages.schema';
 

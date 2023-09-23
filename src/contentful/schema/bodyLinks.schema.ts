@@ -1,5 +1,5 @@
 import {ILink, IBodyLinks} from "~/models";
-import {IBodyLinksFields} from "./generated";
+import {IBodyLinksFields} from "./generated/index";
 
 export type BodyLinksSkeleton = {
     fields: IBodyLinksFields;

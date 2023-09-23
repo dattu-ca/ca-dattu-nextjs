@@ -21,10 +21,10 @@ const AuthLogoutComponent = () => {
             'w-full md:w-[400px] lg:w-[600px]',
             'bg-white',
             'py-48 px-4',
-            'shadow-xl',
+            'shadow-sm',
             'text-center'
         )}>
-            <h1 className={clsx('font-acme',)}>Are you sure?</h1>
+            <h1>Are you sure?</h1>
             <button
                 disabled={hasClicked}
                 onClick={onClickHandler}
@@ -34,9 +34,9 @@ const AuthLogoutComponent = () => {
                     'daisyui-btn  w-[calc(100%-100px)] min-w-[300px]',
                     'drop-shadow',
                     'daisyui-btn-outline daisyui-btn-neutral',
-                    'hover:bg-site-tertiary-dark hover:text-white',
+                    'hover:bg-site-secondary-dark hover:text-white',
                     {
-                        ['animate-pulse bg-site-tertiary-dark text-white']: hasClicked
+                        ['animate-pulse bg-site-secondary-dark text-white']: hasClicked
                     }
                 )}
             >

@@ -28,7 +28,7 @@ export const AuthLoginContextProvider = ({children, providers, error}: IProps) =
     const [clickedProvider, setClickedProvider] = useState<string>('');
     const value = useMemo(() => {
         const providersList: IProvider[] = [];
-        // const providersList: IProvider[] = Object.values(providers).filter(p => !p);
+        
         if (providers?.google) {
             providersList.push(providers.google)
         }

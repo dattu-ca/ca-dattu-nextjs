@@ -75,7 +75,6 @@ const FormikComponent = ({form, onSubmit}: IProps) => {
                     const getShowErrorFlag = (id: string) => errors[id] && (touched[id] || submitCount > 0);
                     return (
                         <Form
-                            className={clsx('w-full text-gray-500 border border-2 border-gray-300 rounded-lg p-4 bg-white')}
                             noValidate={true}>
                             {
                                 formModel.map((model, index) => <fieldset key={index}>
@@ -153,8 +152,8 @@ const FormikComponent = ({form, onSubmit}: IProps) => {
                                     disabled={isSubmitting}
                                     className={clsx(
                                         'w-full',
-                                        'daisyui-btn daisyui-btn-primary',
-                                        ' bg-site-primary hover:bg-site-tertiary text-white '
+                                        'daisyui-btn',
+                                        'bg-site-secondary hover:bg-site-primary text-white '
                                     )}>
                                 Submit
                             </button>
