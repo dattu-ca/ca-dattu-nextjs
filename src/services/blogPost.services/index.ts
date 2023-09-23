@@ -1,5 +1,6 @@
-import {fetchListPaginated} from './services';
+import {fetchListPaginated, fetchBySlug} from './services';
 
 export const blogPostServices = {
-    fetchListPaginated
+    fetchListPaginated,
+    fetchBySlug
 };

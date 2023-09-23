@@ -1,5 +1,5 @@
 import {client} from "../client";
-import {BlogPostSkeleton, mapContentful} from '../schema/blogPost.schema'
+import {BlogPostSkeleton, mapContentful, mapContentfulList} from '../schema/blogPost.schema'
 
 
 const CONTENTFUL_BLOG_POST_FIELDS = {
@@ -52,7 +52,11 @@ const fetchListPaginated = (skip: number = 0, limit: number = 10) => {
             include: 10,
         })
         .then((response) => {
-            return response;
+            const items =  mapContentfulList(response.items);
+            return {
+                items,
+                total: response.total,
+            }
         })
 }
 
