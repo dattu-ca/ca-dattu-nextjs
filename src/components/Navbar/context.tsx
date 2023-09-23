@@ -91,7 +91,7 @@ const NavbarContextProvider = ({children, navbar: rawNavbar, session}: INavbarCo
 
     const closeMobileMenuHandler = useCallback(() => {
         setIsMobileMenuOpen(false);
-        //setSubMenuOpenId(null);
+        setSubMenuOpenId(null);
     }, []);
 
     const isCurrentPage = useCallback((url: string, exact: boolean = false) => {
@@ -122,7 +122,6 @@ const NavbarContextProvider = ({children, navbar: rawNavbar, session}: INavbarCo
     }, [])
 
     const toggleSubMenuHandler = useCallback((id: string) => {
-        console.log('toggle', id)
         setSubMenuOpenId(prev => {
             if (prev === id) {
                 return null;

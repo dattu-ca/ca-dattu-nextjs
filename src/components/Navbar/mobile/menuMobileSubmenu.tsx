@@ -10,7 +10,7 @@ interface IProps {
 }
 
 const MenuMobileSubmenu = ({id, links}: IProps) => {
-    const {ctxData: {subMenuOpenId}, ctxFunctions: {isCurrentPage, getAriaCurrent}} = useNavbarContext();
+    const {ctxData: {subMenuOpenId}, ctxFunctions: {isCurrentPage, getAriaCurrent, closeMobileMenu}} = useNavbarContext();
     const isOpen = id === subMenuOpenId
 
     return <div className={clsx('bg-black')}>
@@ -33,6 +33,7 @@ const MenuMobileSubmenu = ({id, links}: IProps) => {
                         <Link href={link.url}
                               tabIndex={isOpen ? undefined : -1}
                               aria-current={getAriaCurrent(link.url)}
+                              onClick={() => closeMobileMenu()}
                               className={clsx(
                                   'text-site-primary',
                                   'text-xl',
