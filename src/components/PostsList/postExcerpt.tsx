@@ -15,7 +15,9 @@ const PostExcerpt = ({post}: IProps) => {
     )}>
         <h2>{post.heading}</h2>
         <CustomRichTexRenderer document={post.shortBody}/>
-        <p><Link href={`/post/${post.slug}`}>View more</Link></p>
+        <p><Link className={clsx(
+            'btn-contained-secondary'
+        )} href={`/post/${post.slug}`}>View more</Link></p>
     </div>
 }
 

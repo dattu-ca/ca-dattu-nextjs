@@ -36,14 +36,12 @@ const ProviderButton = ({provider}: IProps) => {
 
     return (
         <button onClick={onClickHandler}
+                disabled={Boolean(clickedProvider)}
                 className={clsx(
-                    'py-2 px-0 box-content',
-                    'daisyui-btn  w-[calc(100%-100px)] min-w-[300px]',
-                    'drop-shadow',
-                    'hover:bg-site-secondary-dark hover:text-white',
+                    'text-xl',
+                    'btn-contained-secondary',
                     {
-                        ['daisyui-btn-outline daisyui-btn-neutral']: (!clickedProvider) || (clickedProvider && clickedProvider !== provider.id),
-                        ['animate-pulse bg-site-secondary-dark text-white']: clickedProvider === provider.id
+                        ['animate-pulse']: clickedProvider === provider.id
                     }
                 )}>
             <div className={clsx(
@@ -57,7 +55,7 @@ const ProviderButton = ({provider}: IProps) => {
                     }/>
                 </div>
                 <div>
-                    <span className={clsx('text-lg')}>Sign in with {provider.name}</span>
+                    <span>Sign in with {provider.name}</span>
                 </div>
             </div>
         </button>

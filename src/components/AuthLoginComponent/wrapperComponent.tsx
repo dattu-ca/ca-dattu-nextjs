@@ -13,7 +13,8 @@ const WrapperComponent = () => {
             'w-full md:w-[400px] lg:w-[600px]',
             'bg-white',
             'py-48 px-4',
-            'shadow-sm'
+            'shadow-sm',
+            'text-center'
         )}>
             <h1>Login</h1>
             {

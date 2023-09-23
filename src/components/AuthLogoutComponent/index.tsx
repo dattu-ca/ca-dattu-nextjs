@@ -4,7 +4,7 @@ import clsx from "clsx";
 import {useState} from "react";
 
 const AuthLogoutComponent = () => {
-    const [hasClicked, setHasClicked ]= useState<boolean>(false);
+    const [hasClicked, setHasClicked] = useState<boolean>(false);
 
     const onClickHandler = () => {
         setHasClicked(true);
@@ -30,13 +30,9 @@ const AuthLogoutComponent = () => {
                 onClick={onClickHandler}
                 className={clsx(
                     'text-lg',
-                    'py-2 px-0 box-content',
-                    'daisyui-btn  w-[calc(100%-100px)] min-w-[300px]',
-                    'drop-shadow',
-                    'daisyui-btn-outline daisyui-btn-neutral',
-                    'hover:bg-site-secondary-dark hover:text-white',
+                    'btn-contained-secondary',
                     {
-                        ['animate-pulse bg-site-secondary-dark text-white']: hasClicked
+                        ['animate-pulse']: hasClicked
                     }
                 )}
             >

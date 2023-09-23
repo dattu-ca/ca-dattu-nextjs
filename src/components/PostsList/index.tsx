@@ -18,7 +18,7 @@ const PostsListComponent = ({
                             }: IProps) => {
 
     return <div className={clsx(
-        'mt-8'
+        'mt-8',
     )}>
         <div>
             {
@@ -32,7 +32,9 @@ const PostsListComponent = ({
             }
         </div>
         <div className={clsx(
-            'container'
+            'container',
+            'mt-8',
+            'pb-4'
         )}>
             <PaginationComponent skip={skip}
                                  limit={limit}
