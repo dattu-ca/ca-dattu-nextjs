@@ -1,5 +1,6 @@
-import {client} from "../client";
+import {client, TOrderType} from "../client";
 import {BlogPostSkeleton, mapContentful, mapContentfulList} from '../schema/blogPost.schema'
+
 
 
 const CONTENTFUL_BLOG_POST_FIELDS = {
@@ -12,7 +13,7 @@ const CONTENTFUL_BLOG_POST_FIELDS = {
     FORMAT: 'fields.format',
     LAYOUT_TYPE: 'fields.layoutType',
     AUTHORS: 'fields.authors',
-    
+
 }
 
 const content_type = 'blogPost';
@@ -52,13 +53,13 @@ const fetchListPaginated = (skip: number = 0, limit: number = 10) => {
                 CONTENTFUL_BLOG_POST_FIELDS.PUBLISHED_DATE as 'fields',
                 CONTENTFUL_BLOG_POST_FIELDS.AUTHORS as 'fields',
             ],
-            order: `-${CONTENTFUL_BLOG_POST_FIELDS.PUBLISHED_DATE}`,
+            order: `-${CONTENTFUL_BLOG_POST_FIELDS.PUBLISHED_DATE}` as unknown as TOrderType,
             skip: skip,
             limit: limit,
             include: 10,
         })
         .then((response) => {
-            const items =  mapContentfulList(response.items);
+            const items = mapContentfulList(response.items);
             return {
                 items,
                 total: response.total,

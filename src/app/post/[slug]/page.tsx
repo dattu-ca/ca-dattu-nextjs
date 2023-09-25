@@ -12,7 +12,7 @@ interface IProps {
 export const generateMetadata = async (props: IProps) => {
     const {params} = props;
     const {slug} = params;
-    const data = await blogPostServices.fetchBySlug(slug);
+    const data = await blogPostServices.fetchBySlug(slug as string);
     const {heading} = data;
     return {
         title: heading
@@ -22,7 +22,7 @@ export const generateMetadata = async (props: IProps) => {
 const Page = async (props: IProps) => {
     const {params} = props;
     const {slug} = params;
-    const data = await blogPostServices.fetchBySlug(slug);
+    const data = await blogPostServices.fetchBySlug(slug as string);
     return <PostComponent data={data}/>
 }
 export default Page;

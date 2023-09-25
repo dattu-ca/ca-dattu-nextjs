@@ -1,4 +1,5 @@
 import {createClient} from 'contentful';
+import {EntrySys, OrderFilterPaths} from "contentful";
 import {ApolloClient, InMemoryCache} from "@apollo/client";
 
 
@@ -24,6 +25,8 @@ const apolloClient = new ApolloClient({
     uri: `https://graphql.contentful.com/content/v1/spaces/${space}/environments/${environment}?access_token=${accessToken}`,
     cache: new InMemoryCache(),
 });
+
+export type TOrderType = (OrderFilterPaths<EntrySys, "sys"> | "sys.contentType.sys.id" | "-sys.contentType.sys.id")[];
 
 
 export {client, previewClient, apolloClient};
