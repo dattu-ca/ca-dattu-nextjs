@@ -10,19 +10,14 @@ const AuthErrorComponent = () => {
             'w-full md:w-[400px] lg:w-[600px]',
             'bg-white',
             'py-48 px-4',
-            'shadow-xl',
+            'shadow-sm',
             'text-center'
         )}>
             <h1>Access Denied</h1>
             <Link href='/auth/login'
                   className={clsx(
                       'text-lg',
-                      'py-2 px-0 box-content',
-                      'daisyui-btn  w-[calc(100%-100px)] min-w-[300px]',
-                      'drop-shadow',
-                      'daisyui-btn-outline daisyui-btn-neutral',
-                      'hover:bg-site-secondary-dark hover:text-white',
-                      'hover:after:w-0'
+                      'btn-text-primary',
                   )}>
                 Go back to login
             </Link>

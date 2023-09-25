@@ -7,12 +7,13 @@
 @tailwind utilities;
 
 
-:root{
+:root {
     --tw-shadow-color: rgb(218, 165, 32);
     --tw-shadow-color-split: rgb(0, 0, 0);
 }
+
 html,
-body{
+body {
     min-height: 100vh;
 }
 
@@ -20,6 +21,7 @@ body{
     body {
         @apply font-exo;
     }
+
     h1 {
         @apply text-3xl;
         @apply md:text-5xl;
@@ -75,19 +77,22 @@ body{
         @apply mb-4;
         @apply min-h-[1px];
     }
-    p:last-child{
+
+    p:last-child {
         @apply mb-0;
         @apply min-h-0;
     }
-    p:empty{
+
+    p:empty {
         @apply mb-0;
         @apply min-h-0;
     }
-    p:has(> span:empty){
+
+    p:has(> span:empty) {
         @apply mb-0;
         @apply min-h-0;
     }
-    
+
 
     li p {
         @apply mb-0;
@@ -169,14 +174,77 @@ body{
         @apply rounded-md;
         @apply mb-4;
     }
-    blockquote p{
+
+    blockquote p {
         @apply mb-0;
     }
-    .container{
+
+    .container {
         width: 100%;
         padding-left: 2em;
         padding-right: 2em;
         margin: 0 auto;
         max-width: calc(680px + 4em + 4em) !important;
+    }
+
+    .btn-contained-primary {
+        @apply px-4 py-2;
+        @apply transition-all;
+        @apply daisyui-btn;
+        @apply bg-site-primary;
+        @apply hover:bg-site-primary-dark;
+        @apply text-white;
+        @apply hover:text-white;
+        @apply after:w-0;
+        @apply hover:after:w-0;
+        @apply ring;
+        @apply ring-site-primary-light;
+        @apply hover:ring-site-primary;
+        @apply shadow-md;
+        @apply active:shadow-sm;
+        @apply disabled:ring-gray-300;
+    }
+
+    .btn-contained-secondary {
+        @apply btn-contained-primary;
+        @apply bg-site-secondary;
+        @apply hover:bg-site-secondary-dark;
+        @apply ring-site-secondary-light;
+        @apply hover:ring-site-secondary;
+        @apply disabled:ring-gray-300;
+    }
+
+    .btn-outlined-primary {
+        @apply px-4 py-2;
+        @apply daisyui-btn;
+        @apply daisyui-btn-outline;
+        @apply text-site-primary;
+        @apply hover:bg-site-primary-dark;
+        @apply hover:border-site-primary;
+        @apply after:w-0;
+        @apply hover:after:w-0;
+    }
+
+    .btn-outlined-secondary {
+        @apply btn-outlined-primary;
+        @apply text-site-secondary;
+        @apply hover:bg-site-secondary-dark;
+        @apply hover:border-site-secondary;
+    }
+
+    .btn-text-primary {
+        @apply px-4 py-2;
+        @apply daisyui-btn;
+        @apply daisyui-btn-link;
+        @apply text-site-primary;
+        @apply hover:text-site-primary-dark;
+        @apply after:w-0;
+        @apply hover:after:w-0;
+    }
+
+    .btn-text-secondary {
+        @apply btn-text-primary;
+        @apply text-site-secondary;
+        @apply hover:text-site-secondary-dark;
     }
 }

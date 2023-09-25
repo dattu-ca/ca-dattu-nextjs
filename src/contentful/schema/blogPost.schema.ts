@@ -1,7 +1,7 @@
 import {IBlogPost} from "~/models";
 import {IBlogPostFields} from "./generated/index";
 import {mapContentfulList as mapBodyImagesContentfulList} from './bodyImages.schema';
-
+import {mapContentfulList as mapBodyAuthorContentfulList} from './bodyAuthor.schema';
 
 
 export type BlogPostSkeleton = {
@@ -9,6 +9,12 @@ export type BlogPostSkeleton = {
     fields: IBlogPostFields
 }
 
+
+export const mapContentfulList = (raw: any[]) => {
+    const target: IBlogPost[] = raw.map(source => mapContentful(source));
+
+    return target;
+}
 
 export const mapContentful = (raw: any) => {
     const source = (raw as BlogPostSkeleton).fields
@@ -22,8 +28,17 @@ export const mapContentful = (raw: any) => {
     if (source.body) {
         target.body = source.body as object;
     }
+    if (source.shortBody) {
+        target.shortBody = source.shortBody as object;
+    }
     if (source.banners) {
         target.banners = mapBodyImagesContentfulList(source.banners);
+    }
+    if (source.publishedDate) {
+        target.publishedDate = new Date(source.publishedDate);
+    }
+    if (source.authors) {
+        target.authors = mapBodyAuthorContentfulList(source.authors);
     }
     return target as IBlogPost;
 }

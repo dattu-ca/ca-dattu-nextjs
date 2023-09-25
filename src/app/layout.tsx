@@ -10,6 +10,8 @@ import {SERVER_CONFIG} from "~/utils/config.server";
 import NavbarComponent from "~/components/Navbar";
 import dbConnect from "~/services.db/dbConnect";
 
+import './dayjs.config';
+
 const {PRIMARY_SITE_CONFIG, HEADER_SITE_NAVBAR} = SERVER_CONFIG.CONTENTFUL_SLUGS;
 
 

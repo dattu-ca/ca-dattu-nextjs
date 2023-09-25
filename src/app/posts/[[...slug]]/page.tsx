@@ -1,8 +1,8 @@
 import {redirect} from 'next/navigation';
 import {RedirectType} from "next/dist/client/components/redirect";
 import {blogPostServices} from "~/services";
-import {PaginationComponent} from "~/components/Pagination";
 import {SERVER_CONFIG} from "~/utils/config.server";
+import {PostsListComponent} from "~/components/PostsList";
 
 
 interface IProps {
@@ -25,16 +25,6 @@ const Page = async (props: IProps) => {
         return null;
     }
 
-    return <div>
-        <h1>POSTS LIST PAGE NUMBER: {slug}</h1>
-        <PaginationComponent skip={skip}
-                             limit={limit}
-                             total={total}
-                             current={+slug}
-                             linkPrefix='/posts'/>
-
-
-        <pre>{JSON.stringify(items, null, 2)}</pre>
-    </div>
+    return <PostsListComponent posts={items} total={total} current={+slug} limit={limit} skip={skip}/>
 }
 export default Page;

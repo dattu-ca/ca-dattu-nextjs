@@ -1,15 +1,12 @@
 import {IBodyImage} from "./bodyImage";
+import {IBodyAuthor} from "./bodyAuthor";
 
-interface IBlogPostCommon {
+export interface IBlogPost {
     slug?: string;
     heading?: string;
-}
-
-export interface IBlogPostSmall extends IBlogPostCommon {
-    shortBody?: object
-}
-
-export interface IBlogPost extends IBlogPostCommon {
     banners: IBodyImage[]
     body?: object;
+    shortBody?: object;
+    publishedDate: Date;
+    authors: IBodyAuthor[]
 }

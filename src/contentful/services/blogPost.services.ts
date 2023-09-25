@@ -1,8 +1,10 @@
-import {client} from "../client";
-import {BlogPostSkeleton, mapContentful} from '../schema/blogPost.schema'
+import {client, TOrderType} from "../client";
+import {BlogPostSkeleton, mapContentful, mapContentfulList} from '../schema/blogPost.schema'
+
 
 
 const CONTENTFUL_BLOG_POST_FIELDS = {
+    PUBLISHED_DATE: 'fields.publishedDate',
     HEADING: 'fields.heading',
     BODY: 'fields.body',
     SHORT_BODY: 'fields.shortBody',
@@ -10,6 +12,8 @@ const CONTENTFUL_BLOG_POST_FIELDS = {
     BANNERS: 'fields.banners',
     FORMAT: 'fields.format',
     LAYOUT_TYPE: 'fields.layoutType',
+    AUTHORS: 'fields.authors',
+
 }
 
 const content_type = 'blogPost';
@@ -45,14 +49,21 @@ const fetchListPaginated = (skip: number = 0, limit: number = 10) => {
             select: [
                 CONTENTFUL_BLOG_POST_FIELDS.SLUG as 'fields',
                 CONTENTFUL_BLOG_POST_FIELDS.HEADING as 'fields',
-                CONTENTFUL_BLOG_POST_FIELDS.SHORT_BODY as 'fields'
+                CONTENTFUL_BLOG_POST_FIELDS.SHORT_BODY as 'fields',
+                CONTENTFUL_BLOG_POST_FIELDS.PUBLISHED_DATE as 'fields',
+                CONTENTFUL_BLOG_POST_FIELDS.AUTHORS as 'fields',
             ],
+            order: `-${CONTENTFUL_BLOG_POST_FIELDS.PUBLISHED_DATE}` as unknown as TOrderType,
             skip: skip,
             limit: limit,
             include: 10,
         })
         .then((response) => {
-            return response;
+            const items = mapContentfulList(response.items);
+            return {
+                items,
+                total: response.total,
+            }
         })
 }
 

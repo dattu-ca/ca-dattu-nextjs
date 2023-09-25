@@ -104,6 +104,12 @@ const NavbarContextProvider = ({children, navbar: rawNavbar, session}: INavbarCo
         if (exact) {
             return path === url;
         }
+        /**
+         * Special exception for when the user is viewing a POST page, the `blog` link will be underlined.
+         */
+        if(url.includes('/posts') && path.includes('/post/')){
+            return true;
+        }
         return path.includes(url)
     }, [path]);
     const getAriaCurrent = useCallback((url: string) => isCurrentPage(url, true) ? 'page' : undefined, [isCurrentPage]);

@@ -152,8 +152,7 @@ const FormikComponent = ({form, onSubmit}: IProps) => {
                                     disabled={isSubmitting}
                                     className={clsx(
                                         'w-full',
-                                        'daisyui-btn',
-                                        'bg-site-secondary hover:bg-site-primary text-white '
+                                        'btn-contained-secondary'
                                     )}>
                                 Submit
                             </button>

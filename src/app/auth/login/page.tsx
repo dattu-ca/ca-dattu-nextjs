@@ -13,14 +13,11 @@ interface IProps {
 
 const Page = async ({searchParams}: IProps) => {
     const session = await getAuthSession();
-    if(session){
+    if (session) {
         return redirect('/admin/dashboard', RedirectType.replace);
     }
     const providers = await getProviders();
-    return <div>
-        <AuthLoginComponent providers={providers} 
-                            error={searchParams.error}/>
-    </div>
+    return <AuthLoginComponent providers={providers} error={searchParams.error}/>
 }
 
 export default Page;

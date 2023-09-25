@@ -13,8 +13,8 @@ interface IProps {
 
 const AuthLoginComponent = async ({error, providers}: IProps) => {
     return <AuthLoginContextProvider providers={providers} error={error}>
-        <ErrorComponent />
-        <WrapperComponent />
+        <ErrorComponent/>
+        <WrapperComponent/>
     </AuthLoginContextProvider>
 }
 
