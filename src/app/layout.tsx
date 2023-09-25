@@ -2,7 +2,10 @@ import {ReactElement} from "react";
 import clsx from "clsx";
 import './globals.css';
 import 'react-toastify/dist/ReactToastify.css';
-import {ToastContainer} from "react-toastify";
+import {ToastContainer} from "react-toastify";import * as dayjs from 'dayjs'
+import * as isLeapYear from 'dayjs/plugin/isLeapYear';
+import 'dayjs/locale/en-ca';
+
 
 import {getAuthSession} from "~/auth.services";
 import {siteConfigServices, siteNavbarServices} from "~/services";
@@ -12,6 +15,8 @@ import dbConnect from "~/services.db/dbConnect";
 
 const {PRIMARY_SITE_CONFIG, HEADER_SITE_NAVBAR} = SERVER_CONFIG.CONTENTFUL_SLUGS;
 
+dayjs.extend(isLeapYear) // use plugin
+dayjs.locale('en-ca') // use locale
 
 export const generateMetadata = async () => {
     const data = await siteConfigServices.fetchBySlug(PRIMARY_SITE_CONFIG);

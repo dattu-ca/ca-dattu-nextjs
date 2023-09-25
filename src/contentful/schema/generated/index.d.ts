@@ -46,6 +46,12 @@ export interface IBlogPostFields {
   /** Slug */
   slug: string;
 
+  /** Published Date */
+  publishedDate: string;
+
+  /** Authors */
+  authors: IBodyAuthor[];
+
   /** Heading */
   heading: string;
 
