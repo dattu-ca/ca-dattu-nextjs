@@ -8,7 +8,7 @@ interface IProps {
 }
 
 
-const AuthorSmall = ({authors, suffix}: IProps) => {
+const AuthorsNameList = ({authors, suffix}: IProps) => {
     return authors && authors.length > 0 &&
         (
             <div className={clsx(
@@ -69,5 +69,5 @@ const AuthorSmall = ({authors, suffix}: IProps) => {
 }
 
 export {
-    AuthorSmall
+    AuthorsNameList
 }
