@@ -1,14 +1,15 @@
 "use client";
 import {useState} from 'react';
 import clsx from "clsx";
-import {IBodyImage} from "~/models";
-import { RenderedImage } from './renderedImage'
+import {IBodyImage, IBodyYoutube} from "~/models";
+import {RenderedImage} from './renderedImage'
 // import Image from 'next/image';
 import {BsFillCaretLeftFill, BsFillCaretRightFill} from "react-icons/bs";
+import {RenderedYoutube} from "~/components/Banner/renderedYoutube";
 
 
 interface IProps {
-    banners: IBodyImage[],
+    banners: (IBodyImage | IBodyYoutube)[],
 }
 
 export const BannerComponent = ({banners}: IProps) => {
@@ -42,7 +43,14 @@ export const BannerComponent = ({banners}: IProps) => {
                                     )}
                                          style={{'transform': `translateX(-${visibleIndex * 100}%)`}}
                                     >
-                                        <RenderedImage banner={banner} />
+                                        {
+                                            banner.contentType === 'BodyImage'
+                                            && <RenderedImage banner={banner as IBodyImage}/>
+                                        }
+                                        {
+                                            banner.contentType === 'BodyYoutube'
+                                            && <RenderedYoutube data={banner as IBodyYoutube}/>
+                                        }
                                     </div>
                                 ))
                             }
@@ -50,9 +58,9 @@ export const BannerComponent = ({banners}: IProps) => {
                         {
                             banners.length > 1
                             && <div className={clsx(
-                                'absolute w-full top-[50%] translate-y-[-50%]',
-                                'flex justify-between px-2',
-                                'z-40'
+                                // 'absolute w-full top-[50%] translate-y-[-50%]',
+                                // 'flex justify-between px-2',
+                                // 'z-40'
                             )}>
                                 <button onClick={onGoPrevHandler}
                                         disabled={visibleIndex === 0}
@@ -60,7 +68,8 @@ export const BannerComponent = ({banners}: IProps) => {
                                             'transition-all',
                                             'opacity-25 group-hover:opacity-50 group-hover:hover:opacity-90 disabled:opacity-10 group-hover:disabled:opacity-10',
                                             'p-2 m-0',
-                                            'bg-site-primary'
+                                            'bg-site-primary',
+                                            'absolute top-[50%] translate-y-[-50%] left-0'
                                         )}
                                         aria-label='Slide to the previous banner'>
                                     <BsFillCaretLeftFill className='w-8 h-8 text-white'/>
@@ -71,7 +80,8 @@ export const BannerComponent = ({banners}: IProps) => {
                                             'transition-all',
                                             'opacity-25 group-hover:opacity-50 group-hover:hover:opacity-90 disabled:opacity-10 group-hover:disabled:opacity-10',
                                             'p-2 m-0',
-                                            'bg-site-primary'
+                                            'bg-site-primary',
+                                            'absolute top-[50%] translate-y-[-50%] right-0'
                                         )}
                                         aria-label='Slide to the next banner'>
                                     <BsFillCaretRightFill className='w-8 h-8 text-white'/>

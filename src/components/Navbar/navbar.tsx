@@ -17,8 +17,8 @@ const Navbar = () => {
     
     return (
         <Fragment>
-            <div className={clsx('hidden md:block')}>{isDesktop && <NavbarDesktop/>}</div>
-            <div className={clsx('block md:hidden')}>{!isDesktop && <NavbarMobile/>}</div>
+            <div className={clsx('hidden sm:block')}>{isDesktop && <NavbarDesktop/>}</div>
+            <div className={clsx('block sm:hidden')}>{!isDesktop && <NavbarMobile/>}</div>
         </Fragment>
     )
 };
