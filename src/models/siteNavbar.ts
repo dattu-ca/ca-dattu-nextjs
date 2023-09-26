@@ -1,7 +1,8 @@
 import {BodyImage} from "./bodyImage";
 import {BodyLinks} from "./bodyLinks";
 
-export interface ISiteNavbar {
+export interface SiteNavbar {
+    sysId?: string | undefined;
     contentType: 'SiteNavbar';
     slug: string;
     logo: BodyImage;

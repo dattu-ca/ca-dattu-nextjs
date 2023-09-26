@@ -1,4 +1,4 @@
-import {ISiteNavbar} from "~/models";
+import {SiteNavbar} from "~/models";
 import {ISiteNavbarFields} from "./generated/index";
 import {mapContentful as mapContentful_bodyLinks} from './bodyLinks.schema';
 import {mapContentful as mapContentful_bodyImages} from './bodyImages.schema';
@@ -12,7 +12,7 @@ export type SiteNavbarSkeleton = {
 
 export const mapContentful = (raw: any) => {
     const source = (raw as SiteNavbarSkeleton).fields;
-    const target: Partial<ISiteNavbar> = {
+    const target: Partial<SiteNavbar> = {
         contentType: 'SiteNavbar'
     };
     if (source.slug) {
@@ -30,5 +30,5 @@ export const mapContentful = (raw: any) => {
     if (source.closeMenuText) {
         target.closeMenuText = source.closeMenuText as string;
     }
-    return target as ISiteNavbar;
+    return target as SiteNavbar;
 }

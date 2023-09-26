@@ -6,6 +6,7 @@ export interface IImage {
 
 
 export interface BodyImage {
+    sysId?: string | undefined;
     contentType: 'BodyImage';
     maxWidth: number | 'auto';
     maxHeight: number | 'auto';

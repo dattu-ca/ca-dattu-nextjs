@@ -1,5 +1,5 @@
 import {createContext, ReactElement, useCallback, useContext, useMemo, useState} from "react";
-import {BodyImage, ILink, ISiteNavbar} from "~/models";
+import {BodyImage, ILink, SiteNavbar} from "~/models";
 import {usePathname} from "next/navigation";
 import {Session} from "next-auth";
 
@@ -87,7 +87,7 @@ interface INavbarContextProviderProps {
 }
 
 const NavbarContextProvider = ({children, navbar: rawNavbar, session}: INavbarContextProviderProps) => {
-    const navbar = rawNavbar as ISiteNavbar;
+    const navbar = rawNavbar as SiteNavbar;
 
     const path = usePathname();
 

@@ -8,6 +8,7 @@ export interface ILink {
 }
 
 export interface BodyLinks {
+    sysId?: string | undefined;
     contentType: 'BodyLinks';
     links: ILink[]
 }

@@ -2,6 +2,7 @@ import {BodyImage} from "./bodyImage";
 import {BodyYoutube} from "./bodyYoutube";
 
 export interface BlogPage {
+    sysId?: string | undefined;
     contentType: 'BlogPage';
     slug?: string;
     heading?: string;

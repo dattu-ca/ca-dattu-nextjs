@@ -3,6 +3,7 @@ import {BlogAuthor} from "./blogAuthor";
 import {BodyYoutube} from "~/models/bodyYoutube";
 
 export interface BlogPost {
+    sysId?: string | undefined;
     contentType: 'BlogPost';
     slug?: string;
     heading?: string;
