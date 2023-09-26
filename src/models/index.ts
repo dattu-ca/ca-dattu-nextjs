@@ -4,5 +4,6 @@ export * from './bodyAuthor';
 export * from './bodyForm';
 export * from './bodyImage';
 export * from './bodyLinks';
+export * from './bodyYoutube';
 export * from './siteConfig';
 export * from './siteNavbar';

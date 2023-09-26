@@ -15,7 +15,9 @@ export const mapContentful = (raw: any) => {
         return undefined;
     }
     const source = raw as BodyLinksSkeleton;
-    const target: Partial<IBodyLinks> = {};
+    const target: Partial<IBodyLinks> = {
+        contentType: 'BodyLinks'
+    };
     if (source.fields) {
         if (source.fields.links && Array.isArray(source.fields.links)) {
             target.links = mapLinks(source.fields.links)

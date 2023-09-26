@@ -1,4 +1,5 @@
 export interface ILink {
+    contentType: 'Link';
     id: string;
     icon?: string;
     label: string;
@@ -7,5 +8,6 @@ export interface ILink {
 }
 
 export interface IBodyLinks {
+    contentType: 'BodyLinks';
     links: ILink[]
 }

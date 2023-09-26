@@ -12,6 +12,7 @@ export const mapContentful = (raw: any) => {
     }
     const source = (raw as BodyFormSkeleton).fields;
     const target: IBodyForm = {
+        contentType: 'BodyForm',
         formId: source.formId,
         maxWidth: source.maxWidth,
         failureMessage: source.failureMessage,

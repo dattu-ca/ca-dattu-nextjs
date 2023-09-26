@@ -26,8 +26,8 @@ const RenderedImage = ({banner}: IProps) => {
 
     return <img alt={banner?.desktopImage?.alt} 
                 loading="lazy" 
-                width="400"
-                height="400"
+                width="250"
+                height="250"
                 decoding="async" 
                 data-nimg="1" 
                 className="w-full object-cover object-center aspect-[8/2]"                

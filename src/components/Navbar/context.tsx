@@ -44,7 +44,9 @@ interface INavbarContextProps {
 
 const NavbarContext = createContext<INavbarContextProps>({
     ctxData: {
-        logo: {},
+        logo: {
+            contentType: "BodyImage"
+        },
         openMenuText: 'Open Menu',
         closeMenuText: 'CLose Menu',
         links: [],

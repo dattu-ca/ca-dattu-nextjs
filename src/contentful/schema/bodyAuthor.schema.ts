@@ -9,7 +9,9 @@ export type BodyAuthorSkeleton = {
 
 export const mapContentful = (raw: any) => {
     const source = (raw as BodyAuthorSkeleton).fields;
-    const result: Partial<IBodyAuthor> = {};
+    const result: Partial<IBodyAuthor> = {
+        contentType: 'BodyAuthor'
+    };
     if (source.slug) {
         result.slug = source.slug as string;
     }
