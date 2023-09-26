@@ -39,7 +39,7 @@ const AuthorSmall = ({authors, suffix}: IProps) => {
                                                         'w-6 rounded-full',
                                                     )}>
                                                     <img src={author.avatar.desktopImage?.url}
-                                                         alt={author.avatar.desktopImage?.alt}/>
+                                                         alt={author.name}/>
                                                 </div>
                                             </div>
                                         </Link>
