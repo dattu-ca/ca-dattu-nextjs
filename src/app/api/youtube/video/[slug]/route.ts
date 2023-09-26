@@ -14,9 +14,7 @@ export async function GET(req: NextRequest, {params}: { params: { slug: string }
 
 
         return NextResponse.json(
-            {
-                data: response?.data,
-            },
+            response?.data,
             {
                 status: 200
             }
