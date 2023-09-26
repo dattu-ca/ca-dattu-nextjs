@@ -1,5 +1,5 @@
-// import {ReactIconJs} from './icon';
-import { BiAlarm } from 'react-icons/bi'
+import {ReactIconJs} from './icon';
+// import { BiAlarm } from 'react-icons/bi'
 
 interface IProps {
     icon: string;
@@ -7,8 +7,8 @@ interface IProps {
     [x:string]: any;
 }
 
-// const ReactIcon = ({icon, className}: IProps) => <ReactIconJs icon={icon} className={className}/>
-const ReactIcon = ({icon, className}: IProps) => <BiAlarm className={className}/>
+const ReactIcon = ({icon, className}: IProps) => <ReactIconJs icon={icon} className={className}/>
+// const ReactIcon = ({icon, className}: IProps) => <BiAlarm className={className}/>
 
 
 export {ReactIcon}
