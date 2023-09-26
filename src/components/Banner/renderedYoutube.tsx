@@ -1,5 +1,5 @@
 import {IBodyYoutube} from "~/models";
-import {YoutubeVideoComponent} from "../YoutubeVideoComponent";
+import {YoutubeIframe} from "../YoutubeVideoComponent/iframeComponent";
 import clsx from "clsx";
 
 interface IProps {
@@ -7,13 +7,12 @@ interface IProps {
 }
 const RenderedYoutube = ({data}: IProps) => {
     return <div className={clsx(
-        'max-h-[250px]',
         'overflow-y-auto',
         'aspect-[8/2]',
         'flex items-center justify-center',
         'h-full',
     )}>
-        <YoutubeVideoComponent data={data} />
+        <YoutubeIframe data={data} />
     </div>
 }
 

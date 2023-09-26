@@ -83,7 +83,7 @@ body {
         @apply min-h-0;
     }
 
-    p:empty {
+    p:last-child:empty {
         @apply mb-0;
         @apply min-h-0;
     }

@@ -45,7 +45,10 @@ interface INavbarContextProps {
 const NavbarContext = createContext<INavbarContextProps>({
     ctxData: {
         logo: {
-            contentType: "BodyImage"
+            contentType: "BodyImage",
+            align: 'center',
+            maxHeight: 'auto',
+            maxWidth: 'auto'
         },
         openMenuText: 'Open Menu',
         closeMenuText: 'CLose Menu',
@@ -109,7 +112,7 @@ const NavbarContextProvider = ({children, navbar: rawNavbar, session}: INavbarCo
         /**
          * Special exception for when the user is viewing a POST page, the `blog` link will be underlined.
          */
-        if(url.includes('/posts') && path.includes('/post/')){
+        if (url.includes('/posts') && path.includes('/post/')) {
             return true;
         }
         return path.includes(url)
