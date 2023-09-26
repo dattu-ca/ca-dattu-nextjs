@@ -4,7 +4,7 @@ import clsx from "clsx";
 import {IBodyImage} from "~/models";
 import { RenderedImage } from './renderedImage'
 // import Image from 'next/image';
-import {BsFillCaretLeftFill} from "react-icons/bs";
+import {BsFillCaretLeftFill, BsFillCaretRightFill} from "react-icons/bs";
 
 
 interface IProps {
@@ -74,7 +74,7 @@ export const BannerComponent = ({banners}: IProps) => {
                                             'bg-site-primary'
                                         )}
                                         aria-label='Slide to the next banner'>
-                                    <ReactIcon icon='BsFillCaretRightFill' className='w-8 h-8 text-white'/>
+                                    <BsFillCaretRightFill className='w-8 h-8 text-white'/>
                                 </button>
                             </div>
                         }

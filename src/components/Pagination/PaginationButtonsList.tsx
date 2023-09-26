@@ -4,7 +4,7 @@ import clsx from 'clsx';
 import {PaginationButton} from "./PaginationButton";
 import {PaginationDots} from './PaginationDots';
 import {usePaginationContext} from "./context";
-import {BsChevronLeft} from "react-icons/bs";
+import {BsChevronLeft, BsChevronRight} from "react-icons/bs";
 
 
 const PaginationButtonsList = () => {
@@ -45,7 +45,7 @@ const PaginationButtonsList = () => {
             <li className={'p-0 m-0'}>
                 <PaginationButton pageNumber={Math.min(totalPages, current + 1)}
                                   aria='Go to next page'>
-                    Next <ReactIcon icon='BsChevronRight' className='w-[auto] h-full'/>
+                    Next <BsChevronRight className='w-[auto] h-full'/>
                 </PaginationButton>
             </li>
         </ul>

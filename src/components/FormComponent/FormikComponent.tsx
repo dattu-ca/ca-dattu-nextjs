@@ -140,8 +140,7 @@ const FormikComponent = ({form, onSubmit}: IProps) => {
                                     && (
                                         <p
                                             className='flex items-center gap-2 text-red-500'>
-                                            <ReactIcon icon={'FiAlertCircle'}
-                                                       className={' w-6 h-6'}/>
+                                            <FiAlertCircle className={' w-6 h-6'}/>
                                             <span>Recaptcha required!</span>
                                         </p>
                                     )
