@@ -5,7 +5,7 @@ import {mapBanners} from "./utils";
 
 export type BlogAuthorSkeleton = {
     contentTypeId: 'blogAuthor'
-    fields: IBlogAuthorFields
+    fields: IBlogAuthorFields,
 }
 
 export const mapContentful = (raw: any) => {
@@ -13,6 +13,7 @@ export const mapContentful = (raw: any) => {
     const target: Partial<IBlogAuthor> = {
         contentType: 'BlogAuthor'
     };
+    
     if (source.slug) {
         target.slug = source.slug as string;
     }
