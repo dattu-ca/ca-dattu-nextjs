@@ -6,34 +6,39 @@ import {mapBanners} from "./utils";
 export type BlogAuthorSkeleton = {
     contentTypeId: 'blogAuthor'
     fields: IBlogAuthorFields,
+    sys: {
+        id: string;
+    }
 }
 
 export const mapContentful = (raw: any) => {
-    const source = (raw as BlogAuthorSkeleton).fields;
+    const source = raw as BlogAuthorSkeleton;
+    const fields = source.fields;
     const target: Partial<BlogAuthor> = {
-        contentType: 'BlogAuthor'
+        contentType: 'BlogAuthor',
+        sysId: source.sys.id,
     };
-    
-    if (source.slug) {
-        target.slug = source.slug as string;
+
+    if (fields.slug) {
+        target.slug = fields.slug as string;
     }
-    if (source.name) {
-        target.name = source.name as string;
+    if (fields.name) {
+        target.name = fields.name as string;
     }
-    if (source.shortBio) {
-        target.shortBio = source.shortBio as object;
+    if (fields.shortBio) {
+        target.shortBio = fields.shortBio as object;
     }
-    if (source.bio) {
-        target.bio = source.bio as object;
+    if (fields.bio) {
+        target.bio = fields.bio as object;
     }
-    if (source.banners) {
-        target.banners = mapBanners(source.banners);
+    if (fields.banners) {
+        target.banners = mapBanners(fields.banners);
     }
-    if (source.avatar) {
-        target.avatar = mapBodyImageContentful(source.avatar);
+    if (fields.avatar) {
+        target.avatar = mapBodyImageContentful(fields.avatar);
     }
-    if (source.avatarInitials) {
-        target.avatarInitials = source.avatarInitials as string;
+    if (fields.avatarInitials) {
+        target.avatarInitials = fields.avatarInitials as string;
     }
     return target as BlogAuthor;
 }

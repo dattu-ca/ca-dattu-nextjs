@@ -3,6 +3,9 @@ import {IBodyLinksFields} from "./generated/index";
 
 export type BodyLinksSkeleton = {
     fields: IBodyLinksFields;
+    sys: {
+        id: string;
+    };
 }
 
 const mapLinks = (source: ILink[]): ILink[] => source.map(item => ({
@@ -15,12 +18,14 @@ export const mapContentful = (raw: any) => {
         return undefined;
     }
     const source = raw as BodyLinksSkeleton;
+    const fields = source.fields;
     const target: Partial<BodyLinks> = {
-        contentType: 'BodyLinks'
+        sysId: source.sys.id,
+        contentType: 'BodyLinks',
     };
-    if (source.fields) {
-        if (source.fields.links && Array.isArray(source.fields.links)) {
-            target.links = mapLinks(source.fields.links)
+    if (fields) {
+        if (fields.links && Array.isArray(fields.links)) {
+            target.links = mapLinks(fields.links)
         }
     }
     return target as BodyLinks;

@@ -5,26 +5,31 @@ import {mapBanners} from "./utils";
 
 export type BlogPageSkeleton = {
     contentTypeId: 'blogPage'
-    fields: IBlogPageFields
+    fields: IBlogPageFields,
+    sys: {
+        id: string;
+    }
 }
 
 
 export const mapContentful = (raw: any) => {
-    const source = (raw as BlogPageSkeleton).fields
+    const source = raw as BlogPageSkeleton;
+    const fields = source.fields
     const target: Partial<BlogPage> = {
-        contentType: 'BlogPage'
+        contentType: 'BlogPage',
+        sysId: source.sys.id
     };
-    if (source.slug) {
-        target.slug = source.slug as string;
+    if (fields.slug) {
+        target.slug = fields.slug as string;
     }
-    if (source.heading) {
-        target.heading = source.heading as string;
+    if (fields.heading) {
+        target.heading = fields.heading as string;
     }
-    if (source.body) {
-        target.body = source.body as object;
+    if (fields.body) {
+        target.body = fields.body as object;
     }
-    if (source.banners) {
-        target.banners = mapBanners(source.banners);
+    if (fields.banners) {
+        target.banners = mapBanners(fields.banners);
     }
     return target as BlogPage;
 }

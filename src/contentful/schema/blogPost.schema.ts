@@ -5,42 +5,42 @@ import {mapBanners} from "./utils";
 
 
 export type BlogPostSkeleton = {
-    contentTypeId: 'blogPost'
-    fields: IBlogPostFields
-}
-
-
-export const mapContentfulList = (raw: any[]) => {
-    const target: BlogPost[] = raw.map(source => mapContentful(source));
-
-    return target;
+    contentTypeId: 'blogPost';
+    fields: IBlogPostFields;
+    sys: {
+        id: string;
+    }
 }
 
 export const mapContentful = (raw: any) => {
-    const source = (raw as BlogPostSkeleton).fields
+    const source = raw as BlogPostSkeleton;
+    const fields = source.fields
     const target: Partial<BlogPost> = {
-        contentType: 'BlogPost'
+        sysId: source.sys.id,
+        contentType: 'BlogPost',
     };
-    if (source.slug) {
-        target.slug = source.slug as string;
+    if (fields.slug) {
+        target.slug = fields.slug as string;
     }
-    if (source.heading) {
-        target.heading = source.heading as string;
+    if (fields.heading) {
+        target.heading = fields.heading as string;
     }
-    if (source.body) {
-        target.body = source.body as object;
+    if (fields.body) {
+        target.body = fields.body as object;
     }
-    if (source.shortBody) {
-        target.shortBody = source.shortBody as object;
+    if (fields.shortBody) {
+        target.shortBody = fields.shortBody as object;
     }
-    if (source.banners) {
-        target.banners = mapBanners(source.banners);
+    if (fields.banners) {
+        target.banners = mapBanners(fields.banners);
     }
-    if (source.publishedDate) {
-        target.publishedDate = new Date(source.publishedDate);
+    if (fields.publishedDate) {
+        target.publishedDate = new Date(fields.publishedDate);
     }
-    if (source.authors) {
-        target.authors = mapBodyAuthorContentfulList(source.authors);
+    if (fields.authors) {
+        target.authors = mapBodyAuthorContentfulList(fields.authors);
     }
     return target as BlogPost;
 }
+
+export const mapContentfulList = (raw: any[]) => (raw || []).map(source => mapContentful(source));

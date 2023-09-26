@@ -31,6 +31,7 @@ export interface BodyFormModel {
 }
 
 export interface BodyForm {
+    sysId?: string | undefined;
     contentType: 'BodyForm';
     formId: string;
     maxWidth?: number;

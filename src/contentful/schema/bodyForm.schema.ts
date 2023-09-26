@@ -4,24 +4,29 @@ import {IBodyFormFields} from "./generated/index";
 export type BodyFormSkeleton = {
     contentTypeId: 'bodyForm'
     fields: IBodyFormFields;
+    sys:{
+        id: string;
+    }
 }
 
 export const mapContentful = (raw: any) => {
     if (!raw) {
         return undefined;
     }
-    const source = (raw as BodyFormSkeleton).fields;
+    const source = raw as BodyFormSkeleton;
+    const fields = source.fields;
     const target: BodyForm = {
         contentType: 'BodyForm',
-        formId: source.formId,
-        maxWidth: source.maxWidth,
-        failureMessage: source.failureMessage,
-        successMessage: source.successMessage,
-        recaptchaEnabled: source.recaptchaEnabled,
-        submitFormEnabled: source.submitFormEnabled,
-        sendEmailEnabled: source.sendEmailEnabled,
-        formModel: source.formModel as BodyFormModel[],
-        fromEmailKey: source.fromEmailKey,
+        sysId: source.sys.id,
+        formId: fields.formId,
+        maxWidth: fields.maxWidth,
+        failureMessage: fields.failureMessage,
+        successMessage: fields.successMessage,
+        recaptchaEnabled: fields.recaptchaEnabled,
+        submitFormEnabled: fields.submitFormEnabled,
+        sendEmailEnabled: fields.sendEmailEnabled,
+        formModel: fields.formModel as BodyFormModel[],
+        fromEmailKey: fields.fromEmailKey,
     };
     
     return target as BodyForm;
