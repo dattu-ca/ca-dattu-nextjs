@@ -5,10 +5,10 @@ import clsx from "clsx";
 import ReCAPTCHA from "react-google-recaptcha";
 import {toast} from "react-toastify";
 import {IBodyForm} from "~/models/bodyForm";
-import {ReactIcon} from "~/components/ReactIcon";
 import {useForm} from "~/components/FormComponent/useForm";
 import {CLIENT_CONFIG} from "~/utils/config.client";
 import {sanitize} from "~/utils/utils";
+import {FiAlertCircle} from "react-icons/fi";
 
 
 interface IProps {
@@ -18,7 +18,7 @@ interface IProps {
 
 
 const FormikComponent = ({form, onSubmit}: IProps) => {
-    const {formModel, formId} = form;
+    const {formModel} = form;
     const [isSubmitting, setIsSubmitting] = useState(false);
 
     const {
@@ -97,8 +97,7 @@ const FormikComponent = ({form, onSubmit}: IProps) => {
                                                         (errors[f.id] as string[]).map(error => <p
                                                             className='flex items-center gap-2 mb-0'
                                                             key={`${f.id}_${error}`}>
-                                                            <ReactIcon icon={'FiAlertCircle'}
-                                                                       className={' w-6 h-6'}/>
+                                                            <FiAlertCircle className={' w-6 h-6'}/> 
                                                             <span>{error}</span>
                                                         </p>)
                                                     }

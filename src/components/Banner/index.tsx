@@ -1,10 +1,10 @@
 "use client";
 import {useState} from 'react';
 import clsx from "clsx";
-import {ReactIcon} from '../ReactIcon';
 import {IBodyImage} from "~/models";
 import { RenderedImage } from './renderedImage'
-import Image from 'next/image';
+// import Image from 'next/image';
+import {BsFillCaretLeftFill} from "react-icons/bs";
 
 
 interface IProps {
@@ -63,7 +63,7 @@ export const BannerComponent = ({banners}: IProps) => {
                                             'bg-site-primary'
                                         )}
                                         aria-label='Slide to the previous banner'>
-                                    <ReactIcon icon='BsFillCaretLeftFill' className='w-8 h-8 text-white'/>
+                                    <BsFillCaretLeftFill className='w-8 h-8 text-white'/>
                                 </button>
                                 <button onClick={onGoNextHandler}
                                         disabled={visibleIndex === bannersLength - 1}
