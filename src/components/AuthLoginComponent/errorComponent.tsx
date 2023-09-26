@@ -2,11 +2,11 @@
 import clsx from "clsx";
 
 import {useAuthLoginContext} from "./context";
-import {ReactIcon} from "~/components/ReactIcon";
+import {FiAlertCircle} from "react-icons/fi";
 
 const ErrorComponent = () => {
     const {ctxData: {error}} = useAuthLoginContext();
-    if(!error){
+    if (!error) {
         return null;
     }
     return <div className={clsx('m-0 mb-4')}>
@@ -21,15 +21,14 @@ const ErrorComponent = () => {
                 'flex justify-center items-center gap-4'
             )}>
                 <div>
-                    <ReactIcon icon={'FiAlertCircle'}
-                               className={' w-6 h-6'}/>
+                    <FiAlertCircle className={' w-6 h-6'}/>
                 </div>
                 <div>
                     <p className={'p-0 m-0'}>There was an error when trying to login. Please try again.</p>
                 </div>
             </div>
-            
-            
+
+
         </div>
     </div>
 }

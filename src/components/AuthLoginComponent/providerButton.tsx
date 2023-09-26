@@ -2,9 +2,9 @@
 import clsx from "clsx";
 import {signIn} from "next-auth/react";
 
-import {ReactIcon} from '~/components/ReactIcon';
 import {IProvider} from "./types";
 import {useAuthLoginContext} from "./context";
+import {FaGoogle} from "react-icons/fa6";
 
 interface IProps {
     provider: IProvider
@@ -12,7 +12,7 @@ interface IProps {
 
 const ProviderButton = ({provider}: IProps) => {
     const {ctxData: {clickedProvider}, ctxFns: {setClickedProvider}} = useAuthLoginContext();
-    
+
     if (!provider) {
         return null;
     }
@@ -48,11 +48,14 @@ const ProviderButton = ({provider}: IProps) => {
                 'flex gap-4 align-center items-center',
             )}>
                 <div>
-                    <ReactIcon icon={getIcon(provider as IProvider)} className={
-                        clsx('w-6 h-6', {
-                            ['animate-spin']: clickedProvider === provider.id
-                        })
-                    }/>
+                    {
+                        getIcon(provider as IProvider) === 'FaGoogle'
+                        && <FaGoogle className={
+                            clsx('w-6 h-6', {
+                                ['animate-spin']: clickedProvider === provider.id
+                            })
+                        }/>
+                    }
                 </div>
                 <div>
                     <span>Sign in with {provider.name}</span>

@@ -1,10 +1,10 @@
 'use client';
 import React from "react";
 import clsx from 'clsx';
-import {ReactIcon} from '~/components/ReactIcon';
 import {PaginationButton} from "./PaginationButton";
 import {PaginationDots} from './PaginationDots';
 import {usePaginationContext} from "./context";
+import {BsChevronLeft, BsChevronRight} from "react-icons/bs";
 
 
 const PaginationButtonsList = () => {
@@ -23,7 +23,7 @@ const PaginationButtonsList = () => {
             <li className={'p-0 m-0'}>
                 <PaginationButton pageNumber={Math.max(1, current - 1)}
                                   aria='Go to previous page'>
-                    <ReactIcon icon='BsChevronLeft' className='w-[auto] h-full'/> Previous
+                    <BsChevronLeft  className='w-[auto] h-full'/> Previous
                 </PaginationButton>
             </li>
             {
@@ -45,7 +45,7 @@ const PaginationButtonsList = () => {
             <li className={'p-0 m-0'}>
                 <PaginationButton pageNumber={Math.min(totalPages, current + 1)}
                                   aria='Go to next page'>
-                    Next <ReactIcon icon='BsChevronRight' className='w-[auto] h-full'/>
+                    Next <BsChevronRight className='w-[auto] h-full'/>
                 </PaginationButton>
             </li>
         </ul>
