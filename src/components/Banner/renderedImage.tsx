@@ -1,8 +1,8 @@
-import {IBodyImage} from "~/models";
+import {BodyImage} from "~/models";
 import {ImageComponent} from "../ImageComponent/imageComponent";
 
 interface IProps {
-    banner: IBodyImage
+    banner: BodyImage
 }
 
 const RenderedImage = ({banner}: IProps) => {

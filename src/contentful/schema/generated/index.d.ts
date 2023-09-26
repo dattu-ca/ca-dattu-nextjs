@@ -3,6 +3,51 @@
 import { Asset, Entry } from "contentful";
 import { Document } from "@contentful/rich-text-types";
 
+export interface IBlogAuthorFields {
+  /** Entry Title */
+  entryTitle: string;
+
+  /** Slug */
+  slug: string;
+
+  /** Name */
+  name: string;
+
+  /** Banners */
+  banners?: (IBodyImages | IBodyYouTube)[] | undefined;
+
+  /** Avatar */
+  avatar?: IBodyImages | undefined;
+
+  /** Avatar Initials */
+  avatarInitials: string;
+
+  /** Short Bio */
+  shortBio?: Document | undefined;
+
+  /** Bio */
+  bio?: Document | undefined;
+}
+
+/** The author content */
+
+export interface IBlogAuthor extends Entry<IBlogAuthorFields> {
+  sys: {
+    id: string;
+    type: string;
+    createdAt: string;
+    updatedAt: string;
+    locale: string;
+    contentType: {
+      sys: {
+        id: "blogAuthor";
+        linkType: "ContentType";
+        type: "Link";
+      };
+    };
+  };
+}
+
 export interface IBlogPageFields {
   /** Entry Title */
   entryTitle: string;
@@ -50,7 +95,7 @@ export interface IBlogPostFields {
   publishedDate: string;
 
   /** Authors */
-  authors?: IBodyAuthor[] | undefined;
+  authors?: IBlogAuthor[] | undefined;
 
   /** Heading */
   heading: string;
@@ -91,45 +136,6 @@ export interface IBlogPost extends Entry<IBlogPostFields> {
     contentType: {
       sys: {
         id: "blogPost";
-        linkType: "ContentType";
-        type: "Link";
-      };
-    };
-  };
-}
-
-export interface IBodyAuthorFields {
-  /** Entry Title */
-  entryTitle: string;
-
-  /** Slug */
-  slug: string;
-
-  /** Name */
-  name: string;
-
-  /** Avatar */
-  avatar?: IBodyImages | undefined;
-
-  /** Avatar Initials */
-  avatarInitials: string;
-
-  /** Short Bio */
-  shortBio?: Document | undefined;
-}
-
-/** The author content */
-
-export interface IBodyAuthor extends Entry<IBodyAuthorFields> {
-  sys: {
-    id: string;
-    type: string;
-    createdAt: string;
-    updatedAt: string;
-    locale: string;
-    contentType: {
-      sys: {
-        id: "bodyAuthor";
         linkType: "ContentType";
         type: "Link";
       };
@@ -226,7 +232,7 @@ export interface IBodyImagesFields {
   maxHeight?: number | undefined;
 
   /** Align */
-  align: "Left" | "Right" | "Center";
+  align: "Center" | "Left" | "Right";
 
   /** Desktop Image */
   desktopImage?: Asset | undefined;
@@ -432,9 +438,9 @@ export interface ISiteSearch extends Entry<ISiteSearchFields> {
 }
 
 export type CONTENT_TYPE =
+  | "blogAuthor"
   | "blogPage"
   | "blogPost"
-  | "bodyAuthor"
   | "bodyContent"
   | "bodyForm"
   | "bodyImages"
@@ -445,9 +451,9 @@ export type CONTENT_TYPE =
   | "siteSearch";
 
 export type IEntry =
+  | IBlogAuthor
   | IBlogPage
   | IBlogPost
-  | IBodyAuthor
   | IBodyContent
   | IBodyForm
   | IBodyImages

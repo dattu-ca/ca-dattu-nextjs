@@ -1,5 +1,5 @@
 import clsx from "clsx";
-import {IBlogPost} from "~/models";
+import {BlogPost} from "~/models";
 import {PaginationComponent} from "~/components/Pagination";
 import {PostExcerpt} from "./postExcerpt";
 
@@ -9,7 +9,7 @@ interface IProps {
     limit: number;
     total: number;
     current: number;
-    posts: IBlogPost[];
+    posts: BlogPost[];
 
 }
 

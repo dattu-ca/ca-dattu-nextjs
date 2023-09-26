@@ -1,14 +1,14 @@
 import Link from "next/link";
 import clsx from "clsx";
-import {IBodyAuthor} from "~/models";
+import {BlogAuthor} from "~/models";
 
 interface IProps {
-    authors: IBodyAuthor[],
+    authors: BlogAuthor[],
     suffix: string;
 }
 
 
-const AuthorSmall = ({authors, suffix}: IProps) => {
+const AuthorsNameList = ({authors, suffix}: IProps) => {
     return authors && authors.length > 0 &&
         (
             <div className={clsx(
@@ -69,5 +69,5 @@ const AuthorSmall = ({authors, suffix}: IProps) => {
 }
 
 export {
-    AuthorSmall
+    AuthorsNameList
 }

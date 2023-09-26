@@ -4,7 +4,7 @@ import {FormikProps, Form, Formik} from 'formik';
 import clsx from "clsx";
 import ReCAPTCHA from "react-google-recaptcha";
 import {toast} from "react-toastify";
-import {IBodyForm} from "~/models/bodyForm";
+import {BodyForm} from "~/models/bodyForm";
 import {useForm} from "~/components/FormComponent/useForm";
 import {CLIENT_CONFIG} from "~/utils/config.client";
 import {sanitize} from "~/utils/utils";
@@ -12,7 +12,7 @@ import {FiAlertCircle} from "react-icons/fi";
 
 
 interface IProps {
-    form: IBodyForm;
+    form: BodyForm;
     onSubmit: (recaptchaToken: string, values: Record<string, any>) => Promise<any>
 }
 

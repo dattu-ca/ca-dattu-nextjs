@@ -1,27 +1,32 @@
-import {ISiteConfig} from "~/models";
+import {SiteConfig} from "~/models";
 import {ISiteConfigFields} from "./generated/index";
 
 export type SiteConfigSkeleton = {
-    contentTypeId: 'siteConfig'
-    fields: ISiteConfigFields
+    contentTypeId: 'siteConfig';
+    fields: ISiteConfigFields;
+    sys: {
+        id: string;
+    };
 }
 
 export const mapContentful = (raw: any) => {
-    const source = (raw as SiteConfigSkeleton).fields;
-    const result: Partial<ISiteConfig> = {
+    const source = raw as SiteConfigSkeleton;
+    const fields = source.fields;
+    const result: Partial<SiteConfig> = {
+        sysId: source.sys.id,
         contentType: 'SiteConfig'
     };
-    if (source.slug) {
-        result.slug = source.slug as string;
+    if (fields.slug) {
+        result.slug = fields.slug as string;
     }
-    if (source.siteTitleTemplate) {
-        result.siteTitleTemplate = source.siteTitleTemplate as string;
+    if (fields.siteTitleTemplate) {
+        result.siteTitleTemplate = fields.siteTitleTemplate as string;
     }
-    if (source.siteTitleDefault) {
-        result.siteTitleDefault = source.siteTitleDefault as string;
+    if (fields.siteTitleDefault) {
+        result.siteTitleDefault = fields.siteTitleDefault as string;
     }
-    if (source.siteDescription) {
-        result.siteDescription = source.siteDescription as string;
+    if (fields.siteDescription) {
+        result.siteDescription = fields.siteDescription as string;
     }
-    return result as ISiteConfig;
+    return result as SiteConfig;
 }

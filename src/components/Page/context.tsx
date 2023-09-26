@@ -1,17 +1,17 @@
 'use client';
 import {createContext, ReactNode, useContext} from 'react';
-import {IBlogPage, IBodyImage} from "~/models";
+import {BlogPage, BodyImage} from "~/models";
 
 
 interface IProps {
     children: ReactNode,
-    data: IBlogPage;
+    data: BlogPage;
 }
 
 interface IValue {
     ctxData: {
         heading: string,
-        banners: IBodyImage[],
+        banners: BodyImage[],
         body: object
     }
 }

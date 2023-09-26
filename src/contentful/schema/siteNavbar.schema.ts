@@ -1,4 +1,4 @@
-import {ISiteNavbar} from "~/models";
+import {SiteNavbar} from "~/models";
 import {ISiteNavbarFields} from "./generated/index";
 import {mapContentful as mapContentful_bodyLinks} from './bodyLinks.schema';
 import {mapContentful as mapContentful_bodyImages} from './bodyImages.schema';
@@ -7,28 +7,33 @@ import {mapContentful as mapContentful_bodyImages} from './bodyImages.schema';
 export type SiteNavbarSkeleton = {
     contentTypeId: 'siteNavbar';
     fields: ISiteNavbarFields;
+    sys: {
+        id: string;
+    };
 }
 
 
 export const mapContentful = (raw: any) => {
-    const source = (raw as SiteNavbarSkeleton).fields;
-    const target: Partial<ISiteNavbar> = {
+    const source = raw as SiteNavbarSkeleton;
+    const fields = source.fields;
+    const target: Partial<SiteNavbar> = {
+        sysId: source.sys.id,
         contentType: 'SiteNavbar'
     };
-    if (source.slug) {
-        target.slug = source.slug as string;
+    if (fields.slug) {
+        target.slug = fields.slug as string;
     }
-    if (source.links) {
-        target.links = mapContentful_bodyLinks(source.links);
+    if (fields.links) {
+        target.links = mapContentful_bodyLinks(fields.links);
     }
-    if (source.logo) {
-        target.logo = mapContentful_bodyImages(source.logo);
+    if (fields.logo) {
+        target.logo = mapContentful_bodyImages(fields.logo);
     }
-    if (source.openMenuText) {
-        target.openMenuText = source.openMenuText as string;
+    if (fields.openMenuText) {
+        target.openMenuText = fields.openMenuText as string;
     }
-    if (source.closeMenuText) {
-        target.closeMenuText = source.closeMenuText as string;
+    if (fields.closeMenuText) {
+        target.closeMenuText = fields.closeMenuText as string;
     }
-    return target as ISiteNavbar;
+    return target as SiteNavbar;
 }

@@ -1,7 +1,7 @@
 "use client";
 import {useState} from 'react';
 import clsx from "clsx";
-import {IBodyImage, IBodyYoutube} from "~/models";
+import {BodyImage, BodyYoutube} from "~/models";
 import {RenderedImage} from './renderedImage'
 // import Image from 'next/image';
 import {BsFillCaretLeftFill, BsFillCaretRightFill} from "react-icons/bs";
@@ -10,7 +10,7 @@ import {useSwipeable} from "react-swipeable";
 
 
 interface IProps {
-    banners: (IBodyImage | IBodyYoutube)[],
+    banners: (BodyImage | BodyYoutube)[],
 }
 
 export const BannerComponent = ({banners}: IProps) => {
@@ -59,11 +59,11 @@ export const BannerComponent = ({banners}: IProps) => {
                                     >
                                         {
                                             banner.contentType === 'BodyImage'
-                                            && <RenderedImage banner={banner as IBodyImage}/>
+                                            && <RenderedImage banner={banner as BodyImage}/>
                                         }
                                         {
                                             banner.contentType === 'BodyYoutube'
-                                            && <RenderedYoutube data={banner as IBodyYoutube}/>
+                                            && <RenderedYoutube data={banner as BodyYoutube}/>
                                         }
                                     </div>
                                 ))

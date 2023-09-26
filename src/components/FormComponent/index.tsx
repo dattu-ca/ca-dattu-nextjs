@@ -1,11 +1,11 @@
-import {IBodyForm} from "~/models/bodyForm";
+import {BodyForm} from "~/models/bodyForm";
 import {formsServices} from "~/services";
 import {FormikComponent} from "~/components/FormComponent/FormikComponent";
 import clsx from "clsx";
 
 
 interface IProps {
-    form: IBodyForm;
+    form: BodyForm;
     onSubmit?: (values: Record<string, any>) => Promise<boolean>
 }
 

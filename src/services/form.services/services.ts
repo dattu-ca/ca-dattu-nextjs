@@ -1,5 +1,5 @@
 'use server';
-import {IBodyForm} from "~/models";
+import {BodyForm} from "~/models";
 import {googleRecaptchaServices} from "../google.recaptcha";
 import {formsDbServices} from "~/services.db";
 import {sanitize} from "~/utils/utils";
@@ -7,7 +7,7 @@ import {sendMailServices} from "~/services";
 import {bodyFormServices} from "~/contentful/services";
 import {flattenFields} from "~/utils/form.utils";
 
-const createMessage = (form: IBodyForm, formValues: Record<string, any>) => {
+const createMessage = (form: BodyForm, formValues: Record<string, any>) => {
     const fields = flattenFields(form);
     const message = [];
     const html = []

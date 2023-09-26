@@ -1,24 +1,29 @@
-import {IBodyYoutube} from "~/models";
+import {BodyYoutube} from "~/models";
 import {IBodyYouTubeFields} from "./generated/index";
 
 export type BodyYoutubeSkeleton = {
-    contentTypeId: 'bodyYoutube'
-    fields: IBodyYouTubeFields
+    contentTypeId: 'bodyYoutube';
+    fields: IBodyYouTubeFields;
+    sys: {
+        id: string;
+    };
 }
 
 export const mapContentful = (raw: any) => {
-    const source = (raw as BodyYoutubeSkeleton).fields;
-    const result: Partial<IBodyYoutube> = {
+    const source = raw as BodyYoutubeSkeleton;
+    const fields = source.fields;
+    const result: Partial<BodyYoutube> = {
+        sysId: source.sys.id,
         contentType: 'BodyYoutube'
     };
-    if (source.name) {
-        result.name = source.name as string;
+    if (fields.name) {
+        result.name = fields.name as string;
     }
-    if (source.videoId) {
-        result.videoId = source.videoId as string;
+    if (fields.videoId) {
+        result.videoId = fields.videoId as string;
     }
-    if (source.description) {
-        result.description = source.description as object;
+    if (fields.description) {
+        result.description = fields.description as object;
     }
-    return result as IBodyYoutube;
+    return result as BodyYoutube;
 }

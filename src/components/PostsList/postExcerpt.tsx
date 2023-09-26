@@ -1,12 +1,12 @@
-import {CustomRichTexRenderer} from '~/components/CustomRichTextRenderer'
+import {CustomRichTexRenderer} from '../CustomRichTextRenderer'
 import clsx from "clsx";
 import Link from "next/link";
 import dayjs from "dayjs";
-import {IBlogPost} from "~/models";
-import {AuthorSmall} from "~/components/Author/AuthorSmall";
+import {BlogPost} from "~/models";
+import {AuthorsNameList} from "../Author/AuthorsNameList";
 
 interface IProps {
-    post: IBlogPost
+    post: BlogPost
 }
 
 const PostExcerpt = ({post}: IProps) => {
@@ -21,7 +21,7 @@ const PostExcerpt = ({post}: IProps) => {
             'items-center',
             'mb-4'
         )}>
-            <AuthorSmall authors={post.authors} suffix=":" />
+            <AuthorsNameList authors={post.authors} suffix=":" />
             <span aria-label='Published on'>{dayjs(post.publishedDate).format('MMM DD, YYYY')}</span>
         </div>
         <h2>

@@ -1,58 +1,46 @@
-import {IBlogPost, IBodyImage, IBodyYoutube} from "~/models";
+import {BlogPost} from "~/models";
 import {IBlogPostFields} from "./generated/index";
-import {
-    mapContentful as mapBodyImagesContentful,
-} from './bodyImages.schema';
-import {mapContentfulList as mapBodyAuthorContentfulList} from './bodyAuthor.schema';
-import {mapContentful as mapBodyYoutubeContentful} from "~/contentful/schema/bodyYoutube.schema";
+import {mapContentfulList as mapBodyAuthorContentfulList} from './blogAuthor.schema';
+import {mapBanners} from "./utils";
 
 
 export type BlogPostSkeleton = {
-    contentTypeId: 'blogPost'
-    fields: IBlogPostFields
-}
-
-
-export const mapContentfulList = (raw: any[]) => {
-    const target: IBlogPost[] = raw.map(source => mapContentful(source));
-
-    return target;
+    contentTypeId: 'blogPost';
+    fields: IBlogPostFields;
+    sys: {
+        id: string;
+    }
 }
 
 export const mapContentful = (raw: any) => {
-    const source = (raw as BlogPostSkeleton).fields
-    const target: Partial<IBlogPost> = {
-        contentType: 'BlogPost'
+    const source = raw as BlogPostSkeleton;
+    const fields = source.fields
+    const target: Partial<BlogPost> = {
+        sysId: source.sys.id,
+        contentType: 'BlogPost',
     };
-    if (source.slug) {
-        target.slug = source.slug as string;
+    if (fields.slug) {
+        target.slug = fields.slug as string;
     }
-    if (source.heading) {
-        target.heading = source.heading as string;
+    if (fields.heading) {
+        target.heading = fields.heading as string;
     }
-    if (source.body) {
-        target.body = source.body as object;
+    if (fields.body) {
+        target.body = fields.body as object;
     }
-    if (source.shortBody) {
-        target.shortBody = source.shortBody as object;
+    if (fields.shortBody) {
+        target.shortBody = fields.shortBody as object;
     }
-    if (source.banners) {
-        const result = source.banners.map(banner => {
-            const contentType = banner.sys.contentType.sys.id;
-            if (contentType === 'bodyImages') {
-                return mapBodyImagesContentful(banner)
-            } else if (contentType === 'bodyYouTube') {
-                return mapBodyYoutubeContentful(banner);
-            }
-            return undefined;
-        });
-        target.banners = result.filter(item => Boolean(item)) as (IBodyYoutube | IBodyImage)[];
+    if (fields.banners) {
+        target.banners = mapBanners(fields.banners);
     }
-    if (source.publishedDate) {
-        target.publishedDate = new Date(source.publishedDate);
+    if (fields.publishedDate) {
+        target.publishedDate = new Date(fields.publishedDate);
     }
-    if (source.authors) {
-        target.authors = mapBodyAuthorContentfulList(source.authors);
+    if (fields.authors) {
+        target.authors = mapBodyAuthorContentfulList(fields.authors);
     }
-    return target as IBlogPost;
+    return target as BlogPost;
 }
+
+export const mapContentfulList = (raw: any[]) => (raw || []).map(source => mapContentful(source));

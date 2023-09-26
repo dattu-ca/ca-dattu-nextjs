@@ -1,7 +1,7 @@
-import {IBodyForm, TBodyFormField} from "~/models";
+import {BodyForm, BodyFormFieldType} from "~/models";
 
-export const flattenFields = (form: IBodyForm) => {
-    let ret: TBodyFormField[] = [];
+export const flattenFields = (form: BodyForm) => {
+    let ret: BodyFormFieldType[] = [];
     for (const model of form.formModel) {
         ret = [...ret, ...model.fields];
     }
@@ -13,7 +13,7 @@ const isEmailValid = (val: string) => {
     return reg.test(val);
 }
 
-export const doValidation = (form: IBodyForm, id: string, value: string) => {
+export const doValidation = (form: BodyForm, id: string, value: string) => {
     const flatFormFields = flattenFields(form);
 
     const error = [];

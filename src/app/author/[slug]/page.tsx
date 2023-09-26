@@ -1,6 +1,6 @@
-import {PageComponent} from "~/components/Page";
+import {AuthorComponent} from "~/components/Author";
 
-import {blogPageServices} from "~/services";
+import {blogAuthorServices} from "~/services";
 
 
 interface IProps {
@@ -12,16 +12,17 @@ interface IProps {
 export const generateMetadata = async (props: IProps) => {
     const {params} = props;
     const {slug} = params;
-    
+    const data = await blogAuthorServices.fetchBySlug(slug as string);
+    const {name} = data;
     return {
-        title: slug
+        title: `Author: ${name}`
     }
 }
 
 const Page = async (props: IProps) => {
     const {params} = props;
-    return <div>
-        <pre>{JSON.stringify(params, null, 2)}</pre>
-    </div>
+    const {slug} = params;
+    const data = await blogAuthorServices.fetchBySlug(slug as string);
+    return <AuthorComponent author={data} />
 }
 export default Page;

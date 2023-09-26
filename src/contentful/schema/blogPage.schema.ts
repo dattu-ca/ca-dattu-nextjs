@@ -1,40 +1,35 @@
 import {IBlogPageFields} from "./generated/index";
-import {mapContentful as mapBodyImagesContentful} from './bodyImages.schema';
-import {mapContentful as mapBodyYoutubeContentful} from './bodyYoutube.schema';
-import {IBlogPage, IBodyImage, IBodyYoutube} from "~/models";
+import {BlogPage} from "~/models";
+import {mapBanners} from "./utils";
 
 
 export type BlogPageSkeleton = {
     contentTypeId: 'blogPage'
-    fields: IBlogPageFields
+    fields: IBlogPageFields,
+    sys: {
+        id: string;
+    }
 }
 
 
 export const mapContentful = (raw: any) => {
-    const source = (raw as BlogPageSkeleton).fields
-    const target: Partial<IBlogPage> = {
-        contentType: 'BlogPage'
+    const source = raw as BlogPageSkeleton;
+    const fields = source.fields
+    const target: Partial<BlogPage> = {
+        contentType: 'BlogPage',
+        sysId: source.sys.id
     };
-    if (source.slug) {
-        target.slug = source.slug as string;
+    if (fields.slug) {
+        target.slug = fields.slug as string;
     }
-    if (source.heading) {
-        target.heading = source.heading as string;
+    if (fields.heading) {
+        target.heading = fields.heading as string;
     }
-    if (source.body) {
-        target.body = source.body as object;
+    if (fields.body) {
+        target.body = fields.body as object;
     }
-    if (source.banners) {
-        const result = source.banners.map(banner => {
-            const contentType = banner.sys.contentType.sys.id;
-            if (contentType === 'bodyImages') {
-                return mapBodyImagesContentful(banner)
-            } else if (contentType === 'bodyYouTube') {
-                return mapBodyYoutubeContentful(banner);
-            }
-            return undefined;
-        });
-        target.banners = result.filter(item => Boolean(item)) as (IBodyYoutube | IBodyImage)[];
+    if (fields.banners) {
+        target.banners = mapBanners(fields.banners);
     }
-    return target as IBlogPage;
+    return target as BlogPage;
 }

@@ -1,19 +1,17 @@
 'use client';
 import React from 'react';
 import clsx from "clsx";
-import {CustomRichTexRenderer} from "~/components/CustomRichTextRenderer";
-import {IBlogPage} from "~/models";
-
-import {PageContextProvider} from "~/components/Page/context";
-import {BannerComponent} from "~/components/Banner";
+import {BlogPage} from "~/models";
+import {CustomRichTexRenderer} from "../CustomRichTextRenderer";
+import {PageContextProvider} from "./context";
+import {BannerComponent} from "../Banner";
 
 interface IProps {
-    data: IBlogPage;
+    data: BlogPage;
 }
 
-export const PageComponent = (props: IProps) => {
-    const {data} = props;
-    const {body,banners, heading} = data;
+export const PageComponent = ({data}: IProps) => {
+    const {body, banners, heading} = data;
     return <PageContextProvider data={data}>
         <div className={clsx(
             'pb-4'
@@ -27,7 +25,6 @@ export const PageComponent = (props: IProps) => {
                 'container',
             )}>
                 <div className={clsx(
-                    
                     'bg-white p-4 md:p-8',
                     'shadow-sm',
                 )}>

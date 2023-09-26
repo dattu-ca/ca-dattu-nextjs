@@ -1,14 +1,15 @@
-import {IBodyImage} from "./bodyImage";
-import {IBodyAuthor} from "./bodyAuthor";
-import {IBodyYoutube} from "~/models/bodyYoutube";
+import {BodyImage} from "./bodyImage";
+import {BlogAuthor} from "./blogAuthor";
+import {BodyYoutube} from "~/models/bodyYoutube";
 
-export interface IBlogPost {
+export interface BlogPost {
+    sysId?: string | undefined;
     contentType: 'BlogPost';
     slug?: string;
     heading?: string;
-    banners: (IBodyImage | IBodyYoutube)[];
+    banners: (BodyImage | BodyYoutube)[];
     body?: object;
     shortBody?: object;
     publishedDate: Date;
-    authors: IBodyAuthor[]
+    authors: BlogAuthor[]
 }

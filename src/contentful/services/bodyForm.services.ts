@@ -1,6 +1,6 @@
 import {client} from "../client";
 import {BodyFormSkeleton, mapContentful} from '../schema/bodyForm.schema'
-import {IBodyForm} from "~/models";
+import {BodyForm} from "~/models";
 
 
 
@@ -42,7 +42,7 @@ const fetchByFormId = (formId: string) =>
         .then((response) => {
             if (response.items.length === 1) {
                 const item = response.items[0];
-                return mapContentful(item) as IBodyForm;
+                return mapContentful(item) as BodyForm;
             } else if (response.items.length > 1) {
                 throw new Error(`Found multiple content for [formId]=${formId}`)
             }
