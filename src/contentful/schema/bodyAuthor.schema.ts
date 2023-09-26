@@ -22,6 +22,9 @@ export const mapContentful = (raw: any) => {
     if (source.avatar) {
         result.avatar = mapBodyImageContentful(source.avatar);
     }
+    if (source.avatarInitials) {
+        result.avatarInitials = source.avatarInitials as string;
+    }
     return result as IBodyAuthor;
 }
 

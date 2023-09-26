@@ -108,6 +108,9 @@ export interface IBodyAuthorFields {
   /** Avatar */
   avatar?: IBodyImages | undefined;
 
+  /** Avatar Initials */
+  avatarInitials: string;
+
   /** Short Bio */
   shortBio?: Document | undefined;
 }
