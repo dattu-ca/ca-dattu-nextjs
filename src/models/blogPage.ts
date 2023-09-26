@@ -1,6 +1,7 @@
 import {IBodyImage} from "./bodyImage";
 
 export interface IBlogPage {
+    contentType: 'BlogPage';
     slug?: string;
     heading?: string;
     banners: IBodyImage[]

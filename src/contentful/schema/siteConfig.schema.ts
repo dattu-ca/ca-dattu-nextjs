@@ -8,7 +8,9 @@ export type SiteConfigSkeleton = {
 
 export const mapContentful = (raw: any) => {
     const source = (raw as SiteConfigSkeleton).fields;
-    const result: Partial<ISiteConfig> = {};
+    const result: Partial<ISiteConfig> = {
+        contentType: 'SiteConfig'
+    };
     if (source.slug) {
         result.slug = source.slug as string;
     }

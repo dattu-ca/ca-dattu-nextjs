@@ -10,12 +10,16 @@ export const mapContentful = (raw: any) => {
         return undefined;
     }
     const source = (raw as BodyImagesSkeleton).fields;
-    const target: Partial<IBodyImage> = {};
+    const target: Partial<IBodyImage> = {
+        contentType: 'BodyImage'
+    };
     target.desktopImage = {
+        contentType: 'Image',
         url: source.desktopImage?.fields?.file?.url as string,
         alt: (source.desktopAltText || source.desktopImage?.fields.title || source.desktopImage?.fields.description) as string
     }
     target.mobileImage = {
+        contentType: 'Image',
         url: source.mobileImage?.fields?.file?.url as string,
         alt: (source.mobileAltText || target.desktopImage.alt) as string
     }

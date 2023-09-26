@@ -18,7 +18,9 @@ export const mapContentfulList = (raw: any[]) => {
 
 export const mapContentful = (raw: any) => {
     const source = (raw as BlogPostSkeleton).fields
-    const target: Partial<IBlogPost> = {};
+    const target: Partial<IBlogPost> = {
+        contentType: 'BlogPost'
+    };
     if (source.slug) {
         target.slug = source.slug as string;
     }

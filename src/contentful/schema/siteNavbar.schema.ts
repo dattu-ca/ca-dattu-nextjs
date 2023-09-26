@@ -12,7 +12,9 @@ export type SiteNavbarSkeleton = {
 
 export const mapContentful = (raw: any) => {
     const source = (raw as SiteNavbarSkeleton).fields;
-    const target: Partial<ISiteNavbar> = {};
+    const target: Partial<ISiteNavbar> = {
+        contentType: 'SiteNavbar'
+    };
     if (source.slug) {
         target.slug = source.slug as string;
     }

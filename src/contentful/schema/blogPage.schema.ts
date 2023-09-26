@@ -11,7 +11,9 @@ export type BlogPageSkeleton = {
 
 export const mapContentful = (raw: any) => {
     const source = (raw as BlogPageSkeleton).fields
-    const target: Partial<IBlogPage> = {};
+    const target: Partial<IBlogPage> = {
+        contentType: 'BlogPage'
+    };
     if (source.slug) {
         target.slug = source.slug as string;
     }
