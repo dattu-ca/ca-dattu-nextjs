@@ -1,10 +1,7 @@
-import {IBlogPost, IBodyImage, IBodyYoutube} from "~/models";
+import {IBlogPost} from "~/models";
 import {IBlogPostFields} from "./generated/index";
-import {
-    mapContentful as mapBodyImagesContentful,
-} from './bodyImages.schema';
-import {mapContentfulList as mapBodyAuthorContentfulList} from './bodyAuthor.schema';
-import {mapContentful as mapBodyYoutubeContentful} from "~/contentful/schema/bodyYoutube.schema";
+import {mapContentfulList as mapBodyAuthorContentfulList} from './blogAuthor.schema';
+import {mapBanners} from "./utils";
 
 
 export type BlogPostSkeleton = {
@@ -37,16 +34,7 @@ export const mapContentful = (raw: any) => {
         target.shortBody = source.shortBody as object;
     }
     if (source.banners) {
-        const result = source.banners.map(banner => {
-            const contentType = banner.sys.contentType.sys.id;
-            if (contentType === 'bodyImages') {
-                return mapBodyImagesContentful(banner)
-            } else if (contentType === 'bodyYouTube') {
-                return mapBodyYoutubeContentful(banner);
-            }
-            return undefined;
-        });
-        target.banners = result.filter(item => Boolean(item)) as (IBodyYoutube | IBodyImage)[];
+        target.banners = mapBanners(source.banners);
     }
     if (source.publishedDate) {
         target.publishedDate = new Date(source.publishedDate);

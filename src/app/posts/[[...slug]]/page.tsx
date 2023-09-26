@@ -11,6 +11,23 @@ interface IProps {
     }
 }
 
+
+export const generateMetadata = async (props: IProps) => {
+    const {params} = props;
+    const {slug: paramSlug} = params;
+    const slug = paramSlug ? +paramSlug : 1;
+
+    const limit = SERVER_CONFIG.CONTENT_CONFIG.DEFAULT_MAX_POSTS_PER_PAGE;
+    const skip = (+slug - 1) * limit;
+    const {total} = await blogPostServices.fetchListPaginated(skip, limit);
+    
+    const totalPages = Math.ceil(total/limit)
+    
+    return {
+        title: `Page ${slug} of ${totalPages}`
+    }
+}
+
 const Page = async (props: IProps) => {
     const {params} = props;
     const {slug: paramSlug} = params;

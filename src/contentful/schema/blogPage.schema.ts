@@ -1,7 +1,6 @@
 import {IBlogPageFields} from "./generated/index";
-import {mapContentful as mapBodyImagesContentful} from './bodyImages.schema';
-import {mapContentful as mapBodyYoutubeContentful} from './bodyYoutube.schema';
-import {IBlogPage, IBodyImage, IBodyYoutube} from "~/models";
+import {IBlogPage} from "~/models";
+import {mapBanners} from "./utils";
 
 
 export type BlogPageSkeleton = {
@@ -25,16 +24,7 @@ export const mapContentful = (raw: any) => {
         target.body = source.body as object;
     }
     if (source.banners) {
-        const result = source.banners.map(banner => {
-            const contentType = banner.sys.contentType.sys.id;
-            if (contentType === 'bodyImages') {
-                return mapBodyImagesContentful(banner)
-            } else if (contentType === 'bodyYouTube') {
-                return mapBodyYoutubeContentful(banner);
-            }
-            return undefined;
-        });
-        target.banners = result.filter(item => Boolean(item)) as (IBodyYoutube | IBodyImage)[];
+        target.banners = mapBanners(source.banners);
     }
     return target as IBlogPage;
 }

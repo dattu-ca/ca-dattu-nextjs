@@ -1,9 +1,9 @@
 import Link from "next/link";
 import clsx from "clsx";
-import {IBodyAuthor} from "~/models";
+import {IBlogAuthor} from "~/models";
 
 interface IProps {
-    authors: IBodyAuthor[],
+    authors: IBlogAuthor[],
     suffix: string;
 }
 

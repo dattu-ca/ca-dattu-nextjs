@@ -1,5 +1,5 @@
 import {IBodyImage} from "./bodyImage";
-import {IBodyAuthor} from "./bodyAuthor";
+import {IBlogAuthor} from "./blogAuthor";
 import {IBodyYoutube} from "~/models/bodyYoutube";
 
 export interface IBlogPost {
@@ -10,5 +10,5 @@ export interface IBlogPost {
     body?: object;
     shortBody?: object;
     publishedDate: Date;
-    authors: IBodyAuthor[]
+    authors: IBlogAuthor[]
 }

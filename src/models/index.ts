@@ -1,6 +1,6 @@
 export * from './blogPage';
 export * from './blogPost';
-export * from './bodyAuthor';
+export * from './blogAuthor';
 export * from './bodyForm';
 export * from './bodyImage';
 export * from './bodyLinks';

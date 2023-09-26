@@ -1,3 +1,4 @@
+export { blogAuthorServices } from './blogAuthor.services';
 export { blogPageServices } from './blogPage.services';
 export { blogPostServices } from './blogPost.services';
 export { siteConfigServices } from './siteConfig.services';
