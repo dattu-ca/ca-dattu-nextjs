@@ -6,6 +6,7 @@ import {RenderedImage} from './renderedImage'
 // import Image from 'next/image';
 import {BsFillCaretLeftFill, BsFillCaretRightFill} from "react-icons/bs";
 import {RenderedYoutube} from "~/components/Banner/renderedYoutube";
+import {useSwipeable} from "react-swipeable";
 
 
 interface IProps {
@@ -23,6 +24,17 @@ export const BannerComponent = ({banners}: IProps) => {
         setVisibleIndex(prev => Math.min(prev + 1, bannersLength - 1))
     }
 
+
+    const swipeHandlers = useSwipeable({
+        onSwiped: (eventData) => {
+            if (eventData.dir === 'Left') {
+                onGoNextHandler();
+            } else if (eventData.dir === 'Right') {
+                onGoPrevHandler();
+            }
+        },
+    });
+
     return <div className={clsx(
         'group'
     )}>
@@ -32,9 +44,11 @@ export const BannerComponent = ({banners}: IProps) => {
                     <div className={clsx(
                         'relative'
                     )}>
-                        <div className={clsx(
-                            ' flex col-auto overflow-hidden'
-                        )}>
+                        <div {...swipeHandlers}
+                             className={clsx(
+                                 'flex col-auto overflow-hidden',
+                                 'bg-gray-900'
+                             )}>
                             {
                                 banners.map((banner, index) => (
                                     <div key={index} className={clsx(
@@ -57,11 +71,7 @@ export const BannerComponent = ({banners}: IProps) => {
                         </div>
                         {
                             banners.length > 1
-                            && <div className={clsx(
-                                // 'absolute w-full top-[50%] translate-y-[-50%]',
-                                // 'flex justify-between px-2',
-                                // 'z-40'
-                            )}>
+                            && <div className={clsx()}>
                                 <button onClick={onGoPrevHandler}
                                         disabled={visibleIndex === 0}
                                         className={clsx(
@@ -92,7 +102,7 @@ export const BannerComponent = ({banners}: IProps) => {
                 )
                 : (
                     <div className={clsx(
-                        'aspect-[8/2] bg-site-primary-dark'
+                        'aspect-[8/2] bg-gray-900'
                     )}/>
                 )
         }
