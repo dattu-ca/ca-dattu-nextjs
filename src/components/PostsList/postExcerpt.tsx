@@ -16,8 +16,9 @@ const PostExcerpt = ({post}: IProps) => {
         'shadow-sm'
     )}>
         <div className={clsx(
-            'text-sm text-gray-400',
+            'text-gray-400',
             'flex gap-2',
+            'items-center',
             'mb-4'
         )}>
             <AuthorSmall authors={post.authors} suffix=":" />

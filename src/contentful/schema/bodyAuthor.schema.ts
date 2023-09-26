@@ -1,4 +1,5 @@
-import {IBlogPost, IBodyAuthor} from "~/models";
+import {IBodyAuthor} from "~/models";
+import { mapContentful as mapBodyImageContentful} from './bodyImages.schema';
 import {IBodyAuthorFields} from "./generated/index";
 
 export type BodyAuthorSkeleton = {
@@ -18,11 +19,16 @@ export const mapContentful = (raw: any) => {
     if (source.shortBio) {
         result.shortBio = source.shortBio as object;
     }
+    if (source.avatar) {
+        result.avatar = mapBodyImageContentful(source.avatar);
+    }
     return result as IBodyAuthor;
 }
 
 
 export const mapContentfulList = (raw: any[]) => {
-    const target: IBodyAuthor[] = raw.map(source => mapContentful(source));
-    return target;
+    if (raw) {
+        return raw.map(source => mapContentful(source)) as IBodyAuthor[];
+    }
+    return [] as IBodyAuthor[];
 }
