@@ -44,7 +44,7 @@ const AuthorSmall = ({authors, suffix}: IProps) => {
                                                 author.avatar 
                                                     ? <img src={author.avatar.desktopImage?.url}
                                                            alt={author.name}/>
-                                                    : <span class="text-xs">{author.avatarInitials}</span>
+                                                    : <span className="text-xs">{author.avatarInitials}</span>
                                             }
                                             
                                         </div>
