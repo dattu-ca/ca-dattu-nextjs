@@ -1,4 +1,4 @@
-import {ISiteConfig} from "~/models";
+import {SiteConfig} from "~/models";
 import {ISiteConfigFields} from "./generated/index";
 
 export type SiteConfigSkeleton = {
@@ -8,7 +8,7 @@ export type SiteConfigSkeleton = {
 
 export const mapContentful = (raw: any) => {
     const source = (raw as SiteConfigSkeleton).fields;
-    const result: Partial<ISiteConfig> = {
+    const result: Partial<SiteConfig> = {
         contentType: 'SiteConfig'
     };
     if (source.slug) {
@@ -23,5 +23,5 @@ export const mapContentful = (raw: any) => {
     if (source.siteDescription) {
         result.siteDescription = source.siteDescription as string;
     }
-    return result as ISiteConfig;
+    return result as SiteConfig;
 }

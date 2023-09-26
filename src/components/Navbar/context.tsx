@@ -1,5 +1,5 @@
 import {createContext, ReactElement, useCallback, useContext, useMemo, useState} from "react";
-import {IBodyImage, ILink, ISiteNavbar} from "~/models";
+import {BodyImage, ILink, ISiteNavbar} from "~/models";
 import {usePathname} from "next/navigation";
 import {Session} from "next-auth";
 
@@ -21,7 +21,7 @@ const AUTH_LINKS = [
 
 interface INavbarContextProps {
     ctxData: {
-        logo: IBodyImage;
+        logo: BodyImage;
         openMenuText: string;
         closeMenuText: string;
         links: ILink[];

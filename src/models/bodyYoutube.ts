@@ -1,4 +1,4 @@
-export interface IBodyYoutube {
+export interface BodyYoutube {
     contentType: 'BodyYoutube';
     youTubeUrl: string;
     videoId: string;

@@ -2,11 +2,11 @@ import {CustomRichTexRenderer} from '~/components/CustomRichTextRenderer'
 import clsx from "clsx";
 import Link from "next/link";
 import dayjs from "dayjs";
-import {IBlogPost} from "~/models";
+import {BlogPost} from "~/models";
 import {AuthorSmall} from "~/components/Author/AuthorSmall";
 
 interface IProps {
-    post: IBlogPost
+    post: BlogPost
 }
 
 const PostExcerpt = ({post}: IProps) => {

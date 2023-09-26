@@ -1,14 +1,14 @@
-import {IBodyImage} from "./bodyImage";
-import {IBodyYoutube} from "./bodyYoutube";
+import {BodyImage} from "./bodyImage";
+import {BodyYoutube} from "./bodyYoutube";
 
-export interface IBlogAuthor {
+export interface BlogAuthor {
     sysId?: string | undefined;
     contentType: 'BlogAuthor';
     slug: string;
     name: string;
     shortBio?: object | undefined;
     bio?: object | undefined;
-    banners: (IBodyImage | IBodyYoutube)[];
+    banners: (BodyImage | BodyYoutube)[];
     avatarInitials: string;
-    avatar: IBodyImage | undefined;
+    avatar: BodyImage | undefined;
 }

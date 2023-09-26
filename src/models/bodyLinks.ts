@@ -7,7 +7,7 @@ export interface ILink {
     links?: ILink[];
 }
 
-export interface IBodyLinks {
+export interface BodyLinks {
     contentType: 'BodyLinks';
     links: ILink[]
 }

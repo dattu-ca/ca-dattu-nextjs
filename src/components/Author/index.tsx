@@ -1,11 +1,11 @@
-import {IBlogAuthor} from "~/models";
+import {BlogAuthor} from "~/models";
 import clsx from "clsx";
 import React from "react";
 import {CustomRichTexRenderer} from "../CustomRichTextRenderer";
 import {BannerComponent} from "../Banner";
 
 interface IProps {
-    author: IBlogAuthor
+    author: BlogAuthor
 }
 
 const AuthorComponent = ({author}: IProps) => {

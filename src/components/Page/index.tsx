@@ -1,13 +1,13 @@
 'use client';
 import React from 'react';
 import clsx from "clsx";
-import {IBlogPage} from "~/models";
+import {BlogPage} from "~/models";
 import {CustomRichTexRenderer} from "../CustomRichTextRenderer";
 import {PageContextProvider} from "./context";
 import {BannerComponent} from "../Banner";
 
 interface IProps {
-    data: IBlogPage;
+    data: BlogPage;
 }
 
 export const PageComponent = ({data}: IProps) => {

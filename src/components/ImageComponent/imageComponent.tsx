@@ -1,8 +1,8 @@
-import {IBodyImage} from "~/models";
+import {BodyImage} from "~/models";
 import {useMemo} from "react";
 
 interface IProps {
-    image: IBodyImage
+    image: BodyImage
 }
 
 const ImageComponent = ({image}: IProps) => {

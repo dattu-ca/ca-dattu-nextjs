@@ -5,7 +5,7 @@ export interface IImage {
 }
 
 
-export interface IBodyImage {
+export interface BodyImage {
     contentType: 'BodyImage';
     maxWidth: number | 'auto';
     maxHeight: number | 'auto';

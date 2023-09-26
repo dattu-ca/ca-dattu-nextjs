@@ -1,21 +1,21 @@
 import {useCallback, useMemo} from "react";
 import {flattenFields, doValidation} from "~/utils/form.utils";
-import {IBodyForm, IBodyFormFieldText, IBodyFormFieldTextArea, TBodyFormField} from "~/models/bodyForm";
+import {BodyForm, BodyFormFieldText, BodyFormFieldTextArea, BodyFormFieldType} from "~/models/bodyForm";
 import {Field} from "formik";
 import {FieldTypeText} from "~/components/FormComponent/FieldTypeText";
 import {FieldTypeTextArea} from "~/components/FormComponent/FieldTypeTextArea";
 
 
-export const useForm = (form: IBodyForm) => {
+export const useForm = (form: BodyForm) => {
     const flatFormFields = flattenFields(form);
 
     const validate = useCallback((id: string, value: string) =>
         doValidation(form, id, value), [form]);
 
-    const getField = useCallback((field: TBodyFormField) => {
+    const getField = useCallback((field: BodyFormFieldType) => {
         switch (field.fieldType) {
             case 'text':
-                const text = field as IBodyFormFieldText;
+                const text = field as BodyFormFieldText;
                 return <Field as={FieldTypeText}
                               type={text.inputType}
                               name={text.id}
@@ -23,7 +23,7 @@ export const useForm = (form: IBodyForm) => {
                               validate={(value: string) => validate(field.id, value)}
                 />;
             case 'textarea':
-                const textarea = field as IBodyFormFieldTextArea;
+                const textarea = field as BodyFormFieldTextArea;
                 return <Field as={FieldTypeTextArea}
                               name={textarea.id}
                               placeholder={textarea.label}

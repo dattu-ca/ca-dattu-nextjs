@@ -1,9 +1,9 @@
-import {IBodyImage} from "~/models";
+import {BodyImage} from "~/models";
 import {ImageComponent} from "./imageComponent";
 import clsx from "clsx";
 
 interface IProps {
-    image: IBodyImage
+    image: BodyImage
 }
 
 const ImageComponentWrapper = ({image}: IProps) => {

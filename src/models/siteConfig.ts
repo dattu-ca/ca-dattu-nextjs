@@ -1,4 +1,4 @@
-export interface ISiteConfig {
+export interface SiteConfig {
     contentType: 'SiteConfig';
     slug: string;
     siteTitleTemplate?: string;

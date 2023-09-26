@@ -1,4 +1,4 @@
-import {IBodyImage} from "~/models";
+import {BodyImage} from "~/models";
 import {IBodyImagesFields} from "./generated/index";
 
 export type BodyImagesSkeleton = {
@@ -10,7 +10,7 @@ export const mapContentful = (raw: any) => {
         return undefined;
     }
     const source = (raw as BodyImagesSkeleton).fields;
-    const target: Partial<IBodyImage> = {
+    const target: Partial<BodyImage> = {
         contentType: 'BodyImage',
         maxWidth: source.maxWidth ?? 'auto',
         maxHeight: source.maxWidth ?? 'auto',
@@ -26,14 +26,14 @@ export const mapContentful = (raw: any) => {
         url: source.mobileImage?.fields?.file?.url as string,
         alt: (source.mobileAltText || target.desktopImage.alt) as string
     }
-    return target as IBodyImage;
+    return target as BodyImage;
 
 }
 
 export const mapContentfulList = (raw: any) => {
     if (!raw || !Array.isArray(raw)) {
-        return [] as IBodyImage[]
+        return [] as BodyImage[]
     }
     const source = raw as any[];
-    return source.map(item => mapContentful(item)).filter(item => item) as IBodyImage[];
+    return source.map(item => mapContentful(item)).filter(item => item) as BodyImage[];
 }

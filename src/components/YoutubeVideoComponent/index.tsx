@@ -1,9 +1,9 @@
 import clsx from "clsx";
-import {IBodyYoutube} from "~/models";
+import {BodyYoutube} from "~/models";
 import {YoutubeIframe} from "./iframeComponent";
 
 interface IProps {
-    data: IBodyYoutube;
+    data: BodyYoutube;
 }
 
 const YoutubeVideoComponent = ({data}: IProps) => {

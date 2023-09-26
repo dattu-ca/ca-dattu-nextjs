@@ -3,13 +3,13 @@ import React from 'react';
 import clsx from "clsx";
 import { useRouter } from 'next/navigation'
 import {CustomRichTexRenderer} from "~/components/CustomRichTextRenderer";
-import {IBlogPost} from "~/models";
+import {BlogPost} from "~/models";
 
 import {PostContextProvider} from "./context";
 import {BannerComponent} from "~/components/Banner";
 
 interface IProps {
-    data: IBlogPost;
+    data: BlogPost;
 }
 
 export const PostComponent = (props: IProps) => {

@@ -1,5 +1,5 @@
 import {IBlogPageFields} from "./generated/index";
-import {IBlogPage} from "~/models";
+import {BlogPage} from "~/models";
 import {mapBanners} from "./utils";
 
 
@@ -11,7 +11,7 @@ export type BlogPageSkeleton = {
 
 export const mapContentful = (raw: any) => {
     const source = (raw as BlogPageSkeleton).fields
-    const target: Partial<IBlogPage> = {
+    const target: Partial<BlogPage> = {
         contentType: 'BlogPage'
     };
     if (source.slug) {
@@ -26,5 +26,5 @@ export const mapContentful = (raw: any) => {
     if (source.banners) {
         target.banners = mapBanners(source.banners);
     }
-    return target as IBlogPage;
+    return target as BlogPage;
 }

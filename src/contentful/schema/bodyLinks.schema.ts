@@ -1,4 +1,4 @@
-import {ILink, IBodyLinks} from "~/models";
+import {ILink, BodyLinks} from "~/models";
 import {IBodyLinksFields} from "./generated/index";
 
 export type BodyLinksSkeleton = {
@@ -15,7 +15,7 @@ export const mapContentful = (raw: any) => {
         return undefined;
     }
     const source = raw as BodyLinksSkeleton;
-    const target: Partial<IBodyLinks> = {
+    const target: Partial<BodyLinks> = {
         contentType: 'BodyLinks'
     };
     if (source.fields) {
@@ -23,6 +23,6 @@ export const mapContentful = (raw: any) => {
             target.links = mapLinks(source.fields.links)
         }
     }
-    return target as IBodyLinks;
+    return target as BodyLinks;
 }
 

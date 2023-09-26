@@ -1,4 +1,4 @@
-import {IBlogAuthor} from "~/models";
+import {BlogAuthor} from "~/models";
 import {mapContentful as mapBodyImageContentful} from './bodyImages.schema';
 import {IBlogAuthorFields} from "./generated/index";
 import {mapBanners} from "./utils";
@@ -10,7 +10,7 @@ export type BlogAuthorSkeleton = {
 
 export const mapContentful = (raw: any) => {
     const source = (raw as BlogAuthorSkeleton).fields;
-    const target: Partial<IBlogAuthor> = {
+    const target: Partial<BlogAuthor> = {
         contentType: 'BlogAuthor'
     };
     
@@ -35,7 +35,7 @@ export const mapContentful = (raw: any) => {
     if (source.avatarInitials) {
         target.avatarInitials = source.avatarInitials as string;
     }
-    return target as IBlogAuthor;
+    return target as BlogAuthor;
 }
 
 

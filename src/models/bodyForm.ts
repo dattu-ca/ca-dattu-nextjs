@@ -1,40 +1,40 @@
-export interface IBodyFormFieldValidations {
+export interface BodyFormFieldValidations {
     isRequired: boolean;
     maxLength?: number;
 }
 
-export interface IBodyFormField {
+export interface BodyFormField {
     contentType: 'BodyFormField' | 'BodyFormFieldText' | 'BodyFormFieldTextArea';
     id: string;
     fieldType: string;
     label?: string;
-    validations: Partial<IBodyFormFieldValidations>
+    validations: Partial<BodyFormFieldValidations>
 }
 
-export interface IBodyFormFieldText extends IBodyFormField {
+export interface BodyFormFieldText extends BodyFormField {
     contentType: 'BodyFormFieldText';
     inputType?: string;
     defaultValue?: string;
 }
 
-export interface IBodyFormFieldTextArea extends IBodyFormField {
+export interface BodyFormFieldTextArea extends BodyFormField {
     contentType: 'BodyFormFieldTextArea';
     defaultValue?: string;
 }
 
-export type TBodyFormField = IBodyFormField | IBodyFormFieldText | IBodyFormFieldTextArea;
+export type BodyFormFieldType = BodyFormField | BodyFormFieldText | BodyFormFieldTextArea;
 
-export interface IBodyFormModel {
+export interface BodyFormModel {
     contentType: 'BodyFormModel';
     legend?: string;
-    fields: TBodyFormField[];
+    fields: BodyFormFieldType[];
 }
 
-export interface IBodyForm {
+export interface BodyForm {
     contentType: 'BodyForm';
     formId: string;
     maxWidth?: number;
-    formModel: IBodyFormModel[];
+    formModel: BodyFormModel[];
     recaptchaEnabled: boolean;
     submitFormEnabled: boolean;
     sendEmailEnabled: boolean;

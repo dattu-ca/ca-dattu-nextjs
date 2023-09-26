@@ -1,11 +1,11 @@
-import {IBodyImage} from "./bodyImage";
-import {IBodyLinks} from "./bodyLinks";
+import {BodyImage} from "./bodyImage";
+import {BodyLinks} from "./bodyLinks";
 
 export interface ISiteNavbar {
     contentType: 'SiteNavbar';
     slug: string;
-    logo: IBodyImage;
-    links: IBodyLinks;
+    logo: BodyImage;
+    links: BodyLinks;
     openMenuText: string;
     closeMenuText: string;
 }

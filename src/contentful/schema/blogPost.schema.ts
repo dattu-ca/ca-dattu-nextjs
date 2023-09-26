@@ -1,4 +1,4 @@
-import {IBlogPost} from "~/models";
+import {BlogPost} from "~/models";
 import {IBlogPostFields} from "./generated/index";
 import {mapContentfulList as mapBodyAuthorContentfulList} from './blogAuthor.schema';
 import {mapBanners} from "./utils";
@@ -11,14 +11,14 @@ export type BlogPostSkeleton = {
 
 
 export const mapContentfulList = (raw: any[]) => {
-    const target: IBlogPost[] = raw.map(source => mapContentful(source));
+    const target: BlogPost[] = raw.map(source => mapContentful(source));
 
     return target;
 }
 
 export const mapContentful = (raw: any) => {
     const source = (raw as BlogPostSkeleton).fields
-    const target: Partial<IBlogPost> = {
+    const target: Partial<BlogPost> = {
         contentType: 'BlogPost'
     };
     if (source.slug) {
@@ -42,5 +42,5 @@ export const mapContentful = (raw: any) => {
     if (source.authors) {
         target.authors = mapBodyAuthorContentfulList(source.authors);
     }
-    return target as IBlogPost;
+    return target as BlogPost;
 }
