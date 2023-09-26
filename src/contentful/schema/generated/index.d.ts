@@ -50,7 +50,7 @@ export interface IBlogPostFields {
   publishedDate: string;
 
   /** Authors */
-  authors: IBodyAuthor[];
+  authors?: IBodyAuthor[] | undefined;
 
   /** Heading */
   heading: string;
@@ -104,6 +104,12 @@ export interface IBodyAuthorFields {
 
   /** Name */
   name: string;
+
+  /** Avatar */
+  avatar?: IBodyImages | undefined;
+
+  /** Avatar Initials */
+  avatarInitials: string;
 
   /** Short Bio */
   shortBio?: Document | undefined;
@@ -269,6 +275,42 @@ export interface IBodyLinks extends Entry<IBodyLinksFields> {
   };
 }
 
+export interface IBodyYouTubeFields {
+  /** Entry Title */
+  entryTitle: string;
+
+  /** YouTube URL */
+  youTubeUrl: string;
+
+  /** Video ID */
+  videoId: string;
+
+  /** Name */
+  name?: string | undefined;
+
+  /** Description */
+  description?: Document | undefined;
+}
+
+/** The YouTube Video data model */
+
+export interface IBodyYouTube extends Entry<IBodyYouTubeFields> {
+  sys: {
+    id: string;
+    type: string;
+    createdAt: string;
+    updatedAt: string;
+    locale: string;
+    contentType: {
+      sys: {
+        id: "bodyYouTube";
+        linkType: "ContentType";
+        type: "Link";
+      };
+    };
+  };
+}
+
 export interface ISiteConfigFields {
   /** Entry Title */
   entryTitle: string;
@@ -385,6 +427,7 @@ export type CONTENT_TYPE =
   | "bodyForm"
   | "bodyImages"
   | "bodyLinks"
+  | "bodyYouTube"
   | "siteConfig"
   | "siteNavbar"
   | "siteSearch";
@@ -397,6 +440,7 @@ export type IEntry =
   | IBodyForm
   | IBodyImages
   | IBodyLinks
+  | IBodyYouTube
   | ISiteConfig
   | ISiteNavbar
   | ISiteSearch;
