@@ -3,6 +3,7 @@ import * as blogPostSchema from './blogPost.schema';
 import * as bodyFormSchema from './bodyForm.schema';
 import * as bodyImagesSchema from './bodyImages.schema';
 import * as bodyLinksSchema from './bodyLinks.schema';
+import * as bodyYoutubeSchema from './bodyYoutube.schema';
 import * as siteConfigSchema from './siteConfig.schema';
 import * as siteNavbarSchema from './siteNavbar.schema';
 
@@ -12,6 +13,7 @@ export {
     bodyFormSchema,
     bodyImagesSchema,
     bodyLinksSchema,
+    bodyYoutubeSchema,
     siteConfigSchema,
     siteNavbarSchema
 }

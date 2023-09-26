@@ -14,7 +14,7 @@ export interface IBlogPageFields {
   heading: string;
 
   /** Banners */
-  banners?: IBodyImages[] | undefined;
+  banners?: (IBodyImages | IBodyYouTube)[] | undefined;
 
   /** Body */
   body?: Document | undefined;
@@ -56,10 +56,13 @@ export interface IBlogPostFields {
   heading: string;
 
   /** Banners */
-  banners?: IBodyImages[] | undefined;
+  banners?: (IBodyImages | IBodyYouTube)[] | undefined;
 
   /** Body */
   body?: Document | undefined;
+
+  /** Featured Banner */
+  featuredBanner?: IBodyImages | IBodyYouTube | undefined;
 
   /** Short Body */
   shortBody?: Document | undefined;
@@ -215,6 +218,15 @@ export interface IBodyForm extends Entry<IBodyFormFields> {
 export interface IBodyImagesFields {
   /** Entry Title */
   entryTitle: string;
+
+  /** Max Width */
+  maxWidth?: number | undefined;
+
+  /** Max Height */
+  maxHeight?: number | undefined;
+
+  /** Align */
+  align: "Left" | "Right" | "Center";
 
   /** Desktop Image */
   desktopImage?: Asset | undefined;

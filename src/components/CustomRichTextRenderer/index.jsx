@@ -4,9 +4,10 @@ import PropTypes from 'prop-types';
 import Link from 'next/link';
 import {documentToReactComponents} from '@contentful/rich-text-react-renderer';
 import {BLOCKS, INLINES, MARKS} from '@contentful/rich-text-types';
-import {bodyImagesSchema, bodyFormSchema} from "~/contentful/schema";
-import {BannerComponent} from "../Banner";
+import {bodyImagesSchema, bodyFormSchema, bodyYoutubeSchema} from "~/contentful/schema";
 import {FormComponent} from "../FormComponent";
+import {YoutubeVideoComponent} from "../YoutubeVideoComponent";
+import {ImageComponentWrapper} from "../ImageComponent";
 
 
 const Bold = ({children}) => <span className="font-bold">{children}</span>;
@@ -26,13 +27,20 @@ const renderEmbeddedEntry = (node, children) => {
         case 'bodyImages': {
             const bodyImage = bodyImagesSchema.mapContentful(node.data.target);
             if (bodyImage) {
-                return <BannerComponent banners={[bodyImage]}/>
+                return <ImageComponentWrapper image={bodyImage}/>
             }
             return null;
         }
         case 'bodyForm': {
             const form = bodyFormSchema.mapContentful(node.data.target);
             return <FormComponent form={form}/>
+        }
+        case 'bodyYouTube': {
+            const bodyYoutube = bodyYoutubeSchema.mapContentful(node.data.target);
+            if (bodyYoutube) {
+                return <YoutubeVideoComponent data={bodyYoutube}/>
+            }
+            return null;
         }
         default: {
             return <p>[{embeddedType}] not implemented</p>
@@ -51,7 +59,7 @@ const options = {
     renderNode: {
         [BLOCKS.PARAGRAPH]: (node, children) => {
             if (node && Array.isArray(node.content) && node.content.length === 1 && node.content[0].value?.trim() === "") {
-                return null;
+                return <p></p>;
             }
             return <Text>{children}</Text>;
         },
@@ -59,7 +67,7 @@ const options = {
         [BLOCKS.UL_LIST]: (node, children) => <Ul>{children}</Ul>,
         [BLOCKS.LIST_ITEM]: (node, children) => <Li>{children}</Li>,
         [INLINES.HYPERLINK]: ({data}, children) => {
-            const isCurrentSite =  data.uri.startsWith("/");
+            const isCurrentSite = data.uri.startsWith("/");
             return <Link href={data.uri} passHref={!isCurrentSite}
                          target={isCurrentSite ? '_self' : '_blank'}>{children}</Link>
         },

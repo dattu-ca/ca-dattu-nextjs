@@ -11,7 +11,10 @@ export const mapContentful = (raw: any) => {
     }
     const source = (raw as BodyImagesSkeleton).fields;
     const target: Partial<IBodyImage> = {
-        contentType: 'BodyImage'
+        contentType: 'BodyImage',
+        maxWidth: source.maxWidth ?? 'auto',
+        maxHeight: source.maxWidth ?? 'auto',
+        align: source.align.toLowerCase() as ('left' | 'right' | 'center'),
     };
     target.desktopImage = {
         contentType: 'Image',
