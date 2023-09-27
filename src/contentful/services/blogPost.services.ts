@@ -105,8 +105,40 @@ const fetchListPaginatedByAuthor = (authorId: string, skip: number = 0, limit: n
 }
 
 
+const fetchListPaginatedByCategories = (categoryIds: string[], skip: number = 0, limit: number = 10) => {
+    return client
+        .getEntries<BlogPostSkeleton>({
+            content_type,
+            select: [
+                CONTENTFUL_BLOG_POST_FIELDS.SLUG as 'fields',
+                CONTENTFUL_BLOG_POST_FIELDS.HEADING as 'fields',
+                CONTENTFUL_BLOG_POST_FIELDS.SHORT_BODY as 'fields',
+                CONTENTFUL_BLOG_POST_FIELDS.PUBLISHED_DATE as 'fields',
+                CONTENTFUL_BLOG_POST_FIELDS.AUTHORS as 'fields',
+                CONTENTFUL_BLOG_POST_FIELDS.FEATURED_BANNER as 'fields',
+                CONTENTFUL_BLOG_POST_FIELDS.CATEGORIES as 'fields',
+            ],
+            // @ts-ignore
+            'fields.categories.sys.id[in]': categoryIds.join(","),
+            // @ts-ignore
+            order: `-${CONTENTFUL_BLOG_POST_FIELDS.PUBLISHED_DATE}`,
+            skip: skip,
+            limit: limit,
+            include: 10,
+        })
+        .then((response) => {
+            const items = mapContentfulList(response.items);
+            return {
+                items,
+                total: response.total,
+            }
+        })
+}
+
+
 export {
     fetchBySlug,
     fetchListPaginated,
-    fetchListPaginatedByAuthor
+    fetchListPaginatedByAuthor,
+    fetchListPaginatedByCategories
 }
