@@ -21,13 +21,15 @@ const Page = async (props: IProps) => {
     const {items, total} = await blogPostServices.fetchListPaginatedByAuthor(author.sysId as string, skip, limit);
 
 
-    return <PostsListComponent posts={items}
-                               total={total}
-                               current={currentPage}
-                               limit={limit}
-                               skip={skip}
-                               linkPrefix={`/author/${slug}/page/`}
-                               linkFirstPage={`/author/${slug}`}
-    />
+    return <div>
+        <PostsListComponent posts={items}
+                            total={total}
+                            current={currentPage}
+                            limit={limit}
+                            skip={skip}
+                            linkPrefix={`/author/${slug}/page/`}
+                            linkFirstPage={`/author/${slug}`}
+        />
+    </div>
 }
 export default Page;

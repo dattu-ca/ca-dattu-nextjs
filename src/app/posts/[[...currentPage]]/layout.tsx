@@ -35,6 +35,7 @@ const Layout = async ({children, params: {slug}}: IProps) => {
         <div className={clsx(
             'pb-4 md:pb-8',
             'wrapper-with-sidebar',
+            'pb-4 md:pb-8',
         )}>
             <div className={clsx(
                 'container',

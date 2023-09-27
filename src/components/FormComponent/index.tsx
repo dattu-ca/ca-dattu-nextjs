@@ -1,7 +1,8 @@
+import clsx from "clsx";
 import {BodyForm} from "~/models/bodyForm";
 import {formsServices} from "~/services";
-import {FormikComponent} from "~/components/FormComponent/FormikComponent";
-import clsx from "clsx";
+import {FormikComponent} from "../FormComponent/FormikComponent";
+
 
 
 interface IProps {
@@ -27,6 +28,7 @@ const FormComponent = ({form, onSubmit}: IProps) => {
 
     return <div
         className={clsx(
+            'mx-auto my-8',
             'daisyui-card bg-gray-200 shadow-xl'
         )}
         style={{maxWidth: `${form.maxWidth ? form.maxWidth + 'px' : 'auto'}`}}>

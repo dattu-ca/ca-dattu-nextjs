@@ -1,6 +1,6 @@
 import React, {ReactElement} from "react";
 import clsx from "clsx";
-import {blogPageServices} from "~/services";
+import {blogPostServices} from "~/services";
 import {BannerComponent} from "~/components/Banner";
 
 
@@ -13,7 +13,7 @@ interface IProps {
 export const generateMetadata = async (props: IProps) => {
     const {params} = props;
     const {slug} = params;
-    const data = await blogPageServices.fetchBySlug(Array.isArray(slug) ? slug.join('/') : slug);
+    const data = await blogPostServices.fetchBySlug(slug as string);
     const {heading} = data;
     return {
         title: heading
@@ -22,11 +22,11 @@ export const generateMetadata = async (props: IProps) => {
 
 
 const Layout = async ({children, params: {slug}}: IProps) => {
-    const data = await blogPageServices.fetchBySlug(Array.isArray(slug) ? slug.join('/') : slug);
+    const data = await blogPostServices.fetchBySlug(slug as string);
     const {banners} = data;
-
+    
     return <div>
-        <BannerComponent banners={banners}/>
+        <BannerComponent banners={banners} />
         <div className={clsx(
             'mt-4 md:mt-8',
             'wrapper-with-sidebar',
@@ -35,6 +35,7 @@ const Layout = async ({children, params: {slug}}: IProps) => {
             <div className={clsx(
                 'container',
             )}>
+
                 {children}
             </div>
         </div>

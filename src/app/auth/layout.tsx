@@ -11,6 +11,7 @@ const Layout = async ({children}: IProps) => {
         <ErrorBannerComponent />
         <div className={clsx(
             'mt-4 md:mt-8',
+            'pb-4 md:pb-8',
             'wrapper-full-width'
         )}>
             {children}

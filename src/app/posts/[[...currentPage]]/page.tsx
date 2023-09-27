@@ -26,7 +26,12 @@ const Page = async (props: IProps) => {
         return null;
     }
 
-    return <PostsListComponent posts={items} total={total} current={currentPage} limit={limit} skip={skip}
-                               linkPrefix={'/posts'} linkFirstPage={'/posts'}/>
+    return <PostsListComponent posts={items}
+                               total={total}
+                               current={currentPage}
+                               limit={limit}
+                               skip={skip}
+                               linkPrefix={'/posts'}
+                               linkFirstPage={'/posts'}/>
 }
 export default Page;
