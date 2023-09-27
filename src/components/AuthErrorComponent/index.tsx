@@ -4,24 +4,20 @@ import React from "react";
 
 const AuthErrorComponent = () => {
 
-    return <div className={clsx('mt-8 mr-4 ml-4')}>
-        <div className={clsx(
-            'mx-auto',
-            'w-full md:w-[400px] lg:w-[600px]',
-            'bg-white',
-            'py-48 px-4',
-            'shadow-sm',
-            'text-center'
-        )}>
-            <h1>Access Denied</h1>
-            <Link href='/auth/login'
-                  className={clsx(
-                      'text-lg',
-                      'btn-text-primary',
-                  )}>
-                Go back to login
-            </Link>
-        </div>
+    return <div className={clsx(
+        'bg-white p-4 md:p-8',
+        'py-16 md:py-32',
+        'text-center',
+        'shadow-md'
+    )}>
+        <h1>Access Denied</h1>
+        <Link href='/auth/login'
+              className={clsx(
+                  'text-lg',
+                  'btn-text-primary',
+              )}>
+            Go back to login
+        </Link>
     </div>
 }
 

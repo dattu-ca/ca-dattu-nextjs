@@ -22,7 +22,7 @@ export const generateMetadata = async (props: IProps) => {
     }
 }
 
-const RootLayout = async ({children, params: {slug}}: IProps) => {
+const Layout = async ({children, params: {slug}}: IProps) => {
     const author = await blogAuthorServices.fetchBySlug(slug as string);
     const {banners} = author;
     return <div>
@@ -56,4 +56,4 @@ const RootLayout = async ({children, params: {slug}}: IProps) => {
         </div>
     </div>
 }
-export default RootLayout;
+export default Layout;

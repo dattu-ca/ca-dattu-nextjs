@@ -17,6 +17,7 @@ const AuthorsNameList = ({authors, suffix}: IProps) => {
             )}>
                 <div className={clsx(
                     'flex gap-3',
+                    'flex-wrap',
                     'items-center'
                 )}>
                     {

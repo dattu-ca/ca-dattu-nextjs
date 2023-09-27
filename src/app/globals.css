@@ -233,6 +233,7 @@ body {
         @apply shadow-md;
         @apply active:shadow-sm;
         @apply disabled:ring-gray-300;
+        @apply h-full;
     }
 
     .btn-contained-secondary {
@@ -253,6 +254,7 @@ body {
         @apply hover:border-site-primary;
         @apply after:w-0;
         @apply hover:after:w-0;
+        @apply h-full;
     }
 
     .btn-outlined-secondary {
@@ -270,6 +272,7 @@ body {
         @apply hover:text-site-primary-dark;
         @apply after:w-0;
         @apply hover:after:w-0;
+        @apply h-full;
     }
 
     .btn-text-secondary {
