@@ -27,30 +27,23 @@ const AuthorsNameList = ({authors, suffix}: IProps) => {
                                      'flex gap-2',
                                      'items-center'
                                  )}>
-                                <Link href={`/author/${author.slug}`}
-                                      className={clsx(
-                                          'group',
-                                          'hover:after:w-0'
-                                      )}>
-                                    <div className={clsx('daisyui-avatar daisyui-placeholder')}>
-                                        <div
-                                            className={clsx(
-                                                'w-8 rounded-full',
-                                                {
-                                                    ['bg-neutral-focus text-neutral-content']: !author.avatar,
-                                                    ['ring ring-site-secondary-light']: author.avatar
-                                                }
-                                            )}>
+                                <div className={clsx('daisyui-avatar daisyui-placeholder')}>
+                                    <div
+                                        className={clsx(
+                                            'w-8 rounded-full',
                                             {
-                                                author.avatar 
-                                                    ? <img src={author.avatar.desktopImage?.url}
-                                                           alt={author.name}/>
-                                                    : <span className="text-xs">{author.avatarInitials}</span>
+                                                ['bg-neutral-focus text-neutral-content']: !author.avatar,
+                                                ['ring ring-site-secondary-light']: author.avatar
                                             }
-                                            
-                                        </div>
+                                        )}>
+                                        {
+                                            author.avatar
+                                                ? <img src={author.avatar.desktopImage?.url}
+                                                       alt={author.name}/>
+                                                : <span className="text-xs">{author.avatarInitials}</span>
+                                        }
                                     </div>
-                                </Link>
+                                </div>
                                 <span>
                                     <Link href={`/author/${author.slug}`}>{author.name}</Link>
                                     {

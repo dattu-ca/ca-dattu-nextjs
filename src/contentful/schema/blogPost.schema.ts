@@ -1,6 +1,7 @@
 import {BlogPost} from "~/models";
 import {IBlogPostFields} from "./generated/index";
 import {mapContentfulList as mapBodyAuthorContentfulList} from './blogAuthor.schema';
+import {mapContentfulList as mapMetaCategoryContentfulList} from './metaCategory.schema';
 import {mapBanners, mapFeaturedBanner} from "./utils";
 
 
@@ -34,7 +35,7 @@ export const mapContentful = (raw: any) => {
     if (fields.banners) {
         target.banners = mapBanners(fields.banners);
     }
-    if(fields.featuredBanner){
+    if (fields.featuredBanner) {
         target.featuredBanner = mapFeaturedBanner(fields.featuredBanner);
     }
     if (fields.publishedDate) {
@@ -42,6 +43,9 @@ export const mapContentful = (raw: any) => {
     }
     if (fields.authors) {
         target.authors = mapBodyAuthorContentfulList(fields.authors);
+    }
+    if(fields.categories){
+        target.categories = mapMetaCategoryContentfulList(fields.categories);
     }
     return target as BlogPost;
 }

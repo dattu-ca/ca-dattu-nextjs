@@ -37,11 +37,11 @@ const Layout = async ({children}: IProps) => {
             'wrapper-with-sidebar',
             'pb-4 md:pb-8',
         )}>
-            <div className={clsx(
+            <section className={clsx(
                 'container',
             )}>
                 {children}
-            </div>
+            </section>
         </div>
     </div>
 }

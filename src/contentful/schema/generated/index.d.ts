@@ -122,6 +122,9 @@ export interface IBlogPostFields {
     | "Left Sidebar"
     | "No Sidebar"
     | "Full Width";
+
+  /** Categories */
+  categories?: IMetaCategory[] | undefined;
 }
 
 /** The main content model for posts. */
@@ -329,6 +332,42 @@ export interface IBodyYouTube extends Entry<IBodyYouTubeFields> {
   };
 }
 
+export interface IMetaCategoryFields {
+  /** Entry Title */
+  entryTitle: string;
+
+  /** Slug */
+  slug: string;
+
+  /** Name */
+  name: string;
+
+  /** Description */
+  description?: Document | undefined;
+
+  /** Parent Meta Category */
+  parentMetaCategory?: IMetaCategory | undefined;
+}
+
+/** The Category of a Blog Post */
+
+export interface IMetaCategory extends Entry<IMetaCategoryFields> {
+  sys: {
+    id: string;
+    type: string;
+    createdAt: string;
+    updatedAt: string;
+    locale: string;
+    contentType: {
+      sys: {
+        id: "metaCategory";
+        linkType: "ContentType";
+        type: "Link";
+      };
+    };
+  };
+}
+
 export interface ISiteConfigFields {
   /** Entry Title */
   entryTitle: string;
@@ -446,6 +485,7 @@ export type CONTENT_TYPE =
   | "bodyImages"
   | "bodyLinks"
   | "bodyYouTube"
+  | "metaCategory"
   | "siteConfig"
   | "siteNavbar"
   | "siteSearch";
@@ -459,6 +499,7 @@ export type IEntry =
   | IBodyImages
   | IBodyLinks
   | IBodyYouTube
+  | IMetaCategory
   | ISiteConfig
   | ISiteNavbar
   | ISiteSearch;

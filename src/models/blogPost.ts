@@ -12,5 +12,6 @@ export interface BlogPost {
     body?: object | undefined;
     shortBody?: object | undefined;
     publishedDate: Date;
-    authors: BlogAuthor[]
+    authors: BlogAuthor[],
+    categories?: MetaCategory[];
 }

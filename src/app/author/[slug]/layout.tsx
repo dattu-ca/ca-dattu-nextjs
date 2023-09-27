@@ -42,16 +42,16 @@ const Layout = async ({children, params: {slug}}: IProps) => {
             'pb-4 md:pb-8',
             'wrapper-with-sidebar',
         )}>
-            <div className={clsx(
+            <section className={clsx(
                 'container',
             )}>
                 
                 {children}
-            </div>
+            </section>
             <div className={clsx(
                 'sidebar'
             )}>
-                <AuthorShortBioComponent author={author}/>
+                <AuthorShortBioComponent author={author} showNameAsALink={false}/>
             </div>
         </div>
     </div>
