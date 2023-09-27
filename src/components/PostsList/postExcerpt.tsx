@@ -26,13 +26,13 @@ const PostExcerpt = ({post}: IProps) => {
                 'flex gap-2',
                 'flex-wrap',
                 'items-center',
-                'mb-4',
+                'mb-4 md:mb-8',
             )}>
                 <AuthorsNameList authors={post.authors} suffix=":"/>
                 <span aria-label='Published on'>{dayjs(post.publishedDate).format('MMM DD, YYYY')}</span>
             </div>
             {
-                post.series && <SeriesBanner series={post.series} />
+                post.series && <div className={clsx('mb-4 md:mb-8')}><SeriesBanner series={post.series}/></div>
             }
             <h2>
                 <Link href={`/post/${post.slug}`}>

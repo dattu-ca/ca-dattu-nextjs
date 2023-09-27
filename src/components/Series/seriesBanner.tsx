@@ -8,7 +8,7 @@ interface IProps {
 }
 
 const SeriesBanner = ({series}: IProps) => {
-    return <div className={clsx('mb-4 md:mb-8')}>
+    return <div>
         <h5 className={clsx('mb-0')}>
             <Link href={`/series/${series.slug}`}
                   className={clsx(
