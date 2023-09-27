@@ -15,6 +15,10 @@ interface IProps {
 
 export const BannerComponent = ({banners}: IProps) => {
     const [visibleIndex, setVisibleIndex] = useState(0);
+    if (!banners) {
+        return null;
+    }
+
     const bannersLength = banners.length;
 
     const onGoPrevHandler = () => {

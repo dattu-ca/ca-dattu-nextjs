@@ -4,34 +4,20 @@ import clsx from "clsx";
 import {BlogPage} from "~/models";
 import {CustomRichTexRenderer} from "../CustomRichTextRenderer";
 import {PageContextProvider} from "./context";
-import {BannerComponent} from "../Banner";
 
 interface IProps {
     data: BlogPage;
 }
 
 export const PageComponent = ({data}: IProps) => {
-    const {body, banners, heading} = data;
+    const {body, heading} = data;
     return <PageContextProvider data={data}>
         <div className={clsx(
-            'pb-4'
+            'bg-white p-4 md:p-8',
+            'shadow-md'
         )}>
-            {
-                banners && <BannerComponent banners={banners}/>
-            }
-            <div className={clsx(
-                'overflow-y-auto',
-                'mt-8',
-                'container',
-            )}>
-                <div className={clsx(
-                    'bg-white p-4 md:p-8',
-                    'shadow-sm',
-                )}>
-                    <h1>{heading}</h1>
-                    <CustomRichTexRenderer document={body}/>
-                </div>
-            </div>
+            <h1>{heading}</h1>
+            <CustomRichTexRenderer document={body}/>
         </div>
     </PageContextProvider>;
 }

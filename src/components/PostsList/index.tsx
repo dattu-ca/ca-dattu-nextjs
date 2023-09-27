@@ -25,7 +25,7 @@ const PostsListComponent = ({
             {
                 posts.map(post => (
                     <div key={post.slug} className={clsx(
-                        'mb-4',
+                        'mb-4 md:mb-8',
                         'last-of-type:mb-0'
                     )}>
                         <PostExcerpt post={post} />

@@ -9,20 +9,12 @@ interface IProps {
     }
 }
 
-export const generateMetadata = async (props: IProps) => {
-    const {params} = props;
-    const {slug} = params;
-    const data = await blogPageServices.fetchBySlug(Array.isArray(slug) ? slug.join('/') : slug);
-    const {heading} = data;
-    return {
-        title: heading
-    }
-}
-
 const Page = async (props: IProps) => {
     const {params} = props;
     const {slug} = params;
     const data = await blogPageServices.fetchBySlug(Array.isArray(slug) ? slug.join('/') : slug);
-    return <PageComponent data={data}/>
+    return <div>
+        <PageComponent data={data}/>
+    </div>
 }
 export default Page;
