@@ -27,7 +27,7 @@ export const generateMetadata = async (props: IProps) => {
     }
 }
 
-const Layout = async ({children, params: {slug}}: IProps) => {
+const Layout = async ({children}: IProps) => {
 
     return <div className={clsx(
         'mt-4 md:mt-8',
@@ -40,7 +40,6 @@ const Layout = async ({children, params: {slug}}: IProps) => {
             <div className={clsx(
                 'container',
             )}>
-
                 {children}
             </div>
         </div>

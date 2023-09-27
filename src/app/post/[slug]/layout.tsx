@@ -5,6 +5,7 @@ import {BannerComponent} from "~/components/Banner";
 
 
 interface IProps {
+    children: ReactElement;
     params: {
         slug: string | string[];
     }
