@@ -9,6 +9,7 @@ const CONTENTFUL_BLOG_POST_FIELDS = {
     SHORT_BODY: 'fields.shortBody',
     SLUG: 'fields.slug',
     BANNERS: 'fields.banners',
+    FEATURED_BANNER: 'fields.featuredBanner',
     FORMAT: 'fields.format',
     LAYOUT_TYPE: 'fields.layoutType',
     AUTHORS: 'fields.authors',
@@ -51,6 +52,7 @@ const fetchListPaginated = (skip: number = 0, limit: number = 10) => {
                 CONTENTFUL_BLOG_POST_FIELDS.SHORT_BODY as 'fields',
                 CONTENTFUL_BLOG_POST_FIELDS.PUBLISHED_DATE as 'fields',
                 CONTENTFUL_BLOG_POST_FIELDS.AUTHORS as 'fields',
+                CONTENTFUL_BLOG_POST_FIELDS.FEATURED_BANNER as 'fields',
             ],
             // @ts-ignore
             order: `-${CONTENTFUL_BLOG_POST_FIELDS.PUBLISHED_DATE}`,
@@ -78,6 +80,7 @@ const fetchListPaginatedByAuthor = (authorId: string, skip: number = 0, limit: n
                 CONTENTFUL_BLOG_POST_FIELDS.SHORT_BODY as 'fields',
                 CONTENTFUL_BLOG_POST_FIELDS.PUBLISHED_DATE as 'fields',
                 CONTENTFUL_BLOG_POST_FIELDS.AUTHORS as 'fields',
+                CONTENTFUL_BLOG_POST_FIELDS.FEATURED_BANNER as 'fields',
             ],
             // @ts-ignore
             'fields.authors.sys.id': authorId,
