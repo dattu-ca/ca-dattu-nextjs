@@ -3,10 +3,10 @@ import {UserProfileModel} from './schema'
 
 
 interface IUserProfile {
-    name: string | undefined;
-    givenName: string | undefined;
-    familyName: string | undefined;
-    email: string | undefined;
+    name?: string | undefined;
+    givenName?: string | undefined;
+    familyName?: string | undefined;
+    email?: string | undefined;
 }
 
 interface IProps {

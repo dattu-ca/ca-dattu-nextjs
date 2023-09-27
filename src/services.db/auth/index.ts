@@ -3,15 +3,15 @@ import {AuthProfileModel, AuthProviderModel} from './schema';
 import {insertInto as insertIntoUserProfile} from "~/services.db/user";
 
 interface IAuthProvider {
-    provider: string | undefined;
-    providerAccountId: string | undefined;
+    provider?: string | undefined;
+    providerAccountId?: string | undefined;
 }
 
 interface IUserProfile {
-    name: string | undefined;
-    givenName: string | undefined;
-    familyName: string | undefined;
-    email: string | undefined;
+    name?: string | undefined;
+    givenName?: string | undefined;
+    familyName?: string | undefined;
+    email?: string | undefined;
 }
 
 interface IProps {

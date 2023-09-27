@@ -36,7 +36,7 @@ interface IPaginationContextProviderProps {
     skip: number;
     limit: number;
     current: number;
-    maxNumberOfLinks?: number;
+    maxNumberOfLinks?: number | undefined;
     linkPrefix: string;
     linkFirstPage: string;
 }

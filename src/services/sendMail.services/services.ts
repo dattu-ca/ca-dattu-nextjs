@@ -11,7 +11,7 @@ interface IProps {
     html: string;
     to: string;
     replyTo: string;
-    from?: string;
+    from?: string | undefined;
 }
 
 const send = async (props: IProps) => {

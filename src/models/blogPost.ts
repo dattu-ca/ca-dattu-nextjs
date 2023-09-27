@@ -5,11 +5,12 @@ import {BodyYoutube} from "~/models/bodyYoutube";
 export interface BlogPost {
     sysId?: string | undefined;
     contentType: 'BlogPost';
-    slug?: string;
-    heading?: string;
+    slug?: string | undefined;
+    heading?: string | undefined;
     banners: (BodyImage | BodyYoutube)[];
-    body?: object;
-    shortBody?: object;
+    featuredBanner?: BodyImage | BodyYoutube | undefined;
+    body?: object | undefined;
+    shortBody?: object | undefined;
     publishedDate: Date;
     authors: BlogAuthor[]
 }
