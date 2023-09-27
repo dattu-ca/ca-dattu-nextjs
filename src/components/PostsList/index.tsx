@@ -25,7 +25,8 @@ const PostsListComponent = ({
             {
                 posts.map(post => (
                     <div key={post.slug} className={clsx(
-                        'mb-4'
+                        'mb-4',
+                        'last-of-type:mb-0'
                     )}>
                         <PostExcerpt post={post} />
                     </div>
@@ -33,7 +34,9 @@ const PostsListComponent = ({
             }
         </div>
         <div className={clsx(
-            'mt-8'
+            'mt-4',
+            'md:mt-8',
+            'empty:mt-0'
         )}>
             <PaginationComponent skip={skip}
                                  limit={limit}

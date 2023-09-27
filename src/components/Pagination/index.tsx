@@ -25,11 +25,7 @@ const PaginationComponent = ({total, skip, limit, current, linkPrefix, linkFirst
                                       current={current}
                                       linkPrefix={linkPrefix}
                                       linkFirstPage={linkFirstPage}>
-        <div className={clsx(
-            'content-container',
-        )}>
-            <PaginationButtonsList/>
-        </div>
+        <PaginationButtonsList/>
     </PaginationContextProvider>
 };
 
