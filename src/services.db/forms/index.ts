@@ -20,11 +20,7 @@ const insertInto = async ({formId, formModel, formValues}: IProps) => {
             formModel: formModel,
             formValues: formValues
         });
-        const result = await formSubmission.save();
-        console.log("result", result);
-        return result;
-
-
+        return await formSubmission.save();
     } catch (e) {
         console.error(e);
     }

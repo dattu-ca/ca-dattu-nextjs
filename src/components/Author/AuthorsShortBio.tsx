@@ -34,7 +34,7 @@ const AuthorsShortBioComponent = ({authors, showNameAsALink}: IProps) => {
                                 className={clsx(
                                     'border-b-2',
                                     'p-4 md:p-8',
-                                    'first-of-type:pt-0 first-of-type:md:pt-0'
+                                    'first-of-type:pt-0 first-of-type:md:pt-0 last-of-type:border-b-0'
                                 )}>
                         <div className={clsx(
                             'flex flex-nowrap',
