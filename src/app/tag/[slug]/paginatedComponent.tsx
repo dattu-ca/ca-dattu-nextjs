@@ -1,6 +1,6 @@
 import {metaTagServices, blogPostServices} from "~/services";
 import {SERVER_CONFIG} from "~/utils/config.server";
-import {MetaCategory} from "~/models";
+import {MetaTag} from "~/models";
 import {PostsListComponent} from "~/components/PostsList";
 
 
@@ -11,15 +11,15 @@ interface IProps {
 
 const PaginatedComponent = async (props: IProps) => {
     const {slug, currentPage} = props;
-    const tag = await metaTagServices.fetchBySlug(slug as string) as MetaCategory;
+    const tag = await metaTagServices.fetchBySlug(slug as string) as MetaTag;
 
 
-    const limit = 2;//SERVER_CONFIG.CONTENT_CONFIG.DEFAULT_MAX_POSTS_PER_PAGE;
+    const limit = SERVER_CONFIG.CONTENT_CONFIG.DEFAULT_MAX_POSTS_PER_PAGE;
     const skip = (+currentPage - 1) * limit;
     const {
         items,
         total
-    } = await blogPostServices.fetchListPaginatedByTag(tag.sysId, skip, limit);
+    } = await blogPostServices.fetchListPaginatedByTag(tag.sysId as string, skip, limit);
 
 
     return <PostsListComponent posts={items}

@@ -2,7 +2,7 @@ import {MetaTag} from "~/models";
 import {IMetaTagFields} from "./generated/index";
 
 export type MetaTagSkeleton = {
-    contentTypeId: 'metaCategory';
+    contentTypeId: 'metaTag';
     fields: IMetaTagFields;
     sys: {
         id: string;
