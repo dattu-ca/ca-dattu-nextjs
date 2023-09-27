@@ -1,4 +1,4 @@
-import {client, TOrderType} from "../client";
+import {client} from "../client";
 import {BlogPostSkeleton, mapContentful, mapContentfulList} from '../schema/blogPost.schema'
 
 
@@ -52,7 +52,8 @@ const fetchListPaginated = (skip: number = 0, limit: number = 10) => {
                 CONTENTFUL_BLOG_POST_FIELDS.PUBLISHED_DATE as 'fields',
                 CONTENTFUL_BLOG_POST_FIELDS.AUTHORS as 'fields',
             ],
-            order: `-${CONTENTFUL_BLOG_POST_FIELDS.PUBLISHED_DATE}` as unknown as TOrderType,
+            // @ts-ignore
+            order: `-${CONTENTFUL_BLOG_POST_FIELDS.PUBLISHED_DATE}`,
             skip: skip,
             limit: limit,
             include: 10,
@@ -78,8 +79,10 @@ const fetchListPaginatedByAuthor = (authorId: string, skip: number = 0, limit: n
                 CONTENTFUL_BLOG_POST_FIELDS.PUBLISHED_DATE as 'fields',
                 CONTENTFUL_BLOG_POST_FIELDS.AUTHORS as 'fields',
             ],
+            // @ts-ignore
             'fields.authors.sys.id': authorId,
-            order: `-${CONTENTFUL_BLOG_POST_FIELDS.PUBLISHED_DATE}` as unknown as TOrderType,
+            // @ts-ignore
+            order: `-${CONTENTFUL_BLOG_POST_FIELDS.PUBLISHED_DATE}`,
             skip: skip,
             limit: limit,
             include: 10,
