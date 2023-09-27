@@ -7,6 +7,7 @@ import {BlogPost} from "~/models";
 
 import {PostContextProvider} from "./context";
 import dayjs from "dayjs";
+import {SeriesBanner} from "~/components/Series/seriesBanner";
 
 interface IProps {
     data: BlogPost;
@@ -31,10 +32,13 @@ export const PostComponent = (props: IProps) => {
             </p>
             <div className={clsx(
                 'text-gray-400',
-                'mb-4',
+                'mb-4 md:mb-8',
             )}>
                 <span aria-label='Published on'>{dayjs(data.publishedDate).format('MMM DD, YYYY')}</span>
             </div>
+            {
+                data.series && <div className={clsx('mb-4 md:mb-8')}><SeriesBanner series={data.series}/></div>
+            }
             <h1>{heading}</h1>
             <CustomRichTexRenderer document={body}/>
         </div>

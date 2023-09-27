@@ -3,6 +3,7 @@ import {BlogAuthor} from "./blogAuthor";
 import {BodyYoutube} from "./bodyYoutube";
 import {MetaCategory} from "./metaCategory";
 import {MetaTag} from "./metaTag";
+import {MetaSeries} from "./metaSeries";
 
 export interface BlogPost {
     sysId?: string | undefined;
@@ -17,4 +18,5 @@ export interface BlogPost {
     authors: BlogAuthor[],
     categories?: MetaCategory[];
     tags: MetaTag[];
+    series: MetaSeries;
 }

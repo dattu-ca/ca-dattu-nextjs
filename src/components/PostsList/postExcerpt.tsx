@@ -6,6 +6,7 @@ import {BlogPost, MetaCategory} from "~/models";
 import {AuthorsNameList} from "../Author/AuthorsNameList";
 import {FeaturedBanner} from "~/components/FeaturedBanner";
 import {CategoriesNamesList} from "~/components/Category/CategoriesNameList";
+import {SeriesBanner} from "~/components/Series/seriesBanner";
 
 interface IProps {
     post: BlogPost
@@ -25,11 +26,14 @@ const PostExcerpt = ({post}: IProps) => {
                 'flex gap-2',
                 'flex-wrap',
                 'items-center',
-                'mb-4',
+                'mb-4 md:mb-8',
             )}>
                 <AuthorsNameList authors={post.authors} suffix=":"/>
                 <span aria-label='Published on'>{dayjs(post.publishedDate).format('MMM DD, YYYY')}</span>
             </div>
+            {
+                post.series && <div className={clsx('mb-4 md:mb-8')}><SeriesBanner series={post.series}/></div>
+            }
             <h2>
                 <Link href={`/post/${post.slug}`}>
                     {post.heading}
