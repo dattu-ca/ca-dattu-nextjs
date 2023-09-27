@@ -3,6 +3,7 @@ import {IBlogPostFields} from "./generated/index";
 import {mapContentfulList as mapBodyAuthorContentfulList} from './blogAuthor.schema';
 import {mapContentfulList as mapMetaCategoryContentfulList} from './metaCategory.schema';
 import {mapContentfulList as mapMetaTagContentfulList} from './metaTag.schema';
+import {mapContentful as mapMetaSeriesContentful} from './metaSeries.schema';
 import {mapBanners, mapFeaturedBanner} from "./utils";
 
 
@@ -50,6 +51,9 @@ export const mapContentful = (raw: any) => {
     }
     if(fields.tags){
         target.tags = mapMetaTagContentfulList(fields.tags);
+    }
+    if(fields.series){
+        target.series = mapMetaSeriesContentful(fields.series);
     }
     return target as BlogPost;
 }
