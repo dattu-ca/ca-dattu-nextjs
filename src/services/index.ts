@@ -7,3 +7,4 @@ export {formsServices} from './form.services';
 export {sendMailServices} from './sendMail.services';
 export {metaCategoryServices} from './metaCategory.services';
 export {metaTagServices} from './metaTag.services';
+export {metaSeriesServices} from './metaSeries.services';
