@@ -12,22 +12,6 @@ interface IProps {
 }
 
 
-export const generateMetadata = async (props: IProps) => {
-    const {params} = props;
-    const {currentPage: paramCurrentPage} = params;
-    const currentPage = paramCurrentPage ? +paramCurrentPage : 1;
-
-    const limit = SERVER_CONFIG.CONTENT_CONFIG.DEFAULT_MAX_POSTS_PER_PAGE;
-    const skip = (+currentPage - 1) * limit;
-    const {total} = await blogPostServices.fetchListPaginated(skip, limit);
-    
-    const totalPages = Math.ceil(total/limit)
-    
-    return {
-        title: `Page ${currentPage} of ${totalPages}`
-    }
-}
-
 const Page = async (props: IProps) => {
     const {params} = props;
     const {currentPage: paramCurrentPage} = params;
@@ -36,12 +20,18 @@ const Page = async (props: IProps) => {
     const limit = SERVER_CONFIG.CONTENT_CONFIG.DEFAULT_MAX_POSTS_PER_PAGE;
     const skip = (+currentPage - 1) * limit;
     const {items, total} = await blogPostServices.fetchListPaginated(skip, limit);
-    
+
     if (items.length === 0) {
         redirect('/posts', RedirectType.replace);
         return null;
     }
 
-    return <PostsListComponent posts={items} total={total} current={currentPage} limit={limit} skip={skip} linkPrefix={'/posts'} linkFirstPage={'/posts'}/>
+    return <PostsListComponent posts={items}
+                               total={total}
+                               current={currentPage}
+                               limit={limit}
+                               skip={skip}
+                               linkPrefix={'/posts'}
+                               linkFirstPage={'/posts'}/>
 }
 export default Page;

@@ -13,6 +13,8 @@ const Page = async (props: IProps) => {
     const {params} = props;
     const {slug} = params;
     const data = await blogAuthorServices.fetchBySlug(slug as string);
-    return <AuthorComponent author={data}/>
+    return <div>
+        <AuthorComponent author={data}/>
+    </div>
 }
 export default Page;

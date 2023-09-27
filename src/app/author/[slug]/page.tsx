@@ -16,18 +16,20 @@ const Page = async (props: IProps) => {
     const author = await blogAuthorServices.fetchBySlug(slug as string) as BlogAuthor;
 
     const currentPage = 1;
-    const limit = 1;//SERVER_CONFIG.CONTENT_CONFIG.DEFAULT_MAX_POSTS_PER_PAGE;
+    const limit = SERVER_CONFIG.CONTENT_CONFIG.DEFAULT_MAX_POSTS_PER_PAGE;
     const skip = (+currentPage - 1) * limit;
     const {items, total} = await blogPostServices.fetchListPaginatedByAuthor(author.sysId as string, skip, limit);
 
 
-    return <PostsListComponent posts={items}
-                               total={total}
-                               current={currentPage}
-                               limit={limit}
-                               skip={skip}
-                               linkPrefix={`/author/${slug}/page/`}
-                               linkFirstPage={`/author/${slug}`}
-    />
+    return <div>
+        <PostsListComponent posts={items}
+                            total={total}
+                            current={currentPage}
+                            limit={limit}
+                            skip={skip}
+                            linkPrefix={`/author/${slug}/page/`}
+                            linkFirstPage={`/author/${slug}`}
+        />
+    </div>
 }
 export default Page;

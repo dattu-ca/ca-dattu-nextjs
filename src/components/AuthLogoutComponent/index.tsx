@@ -15,30 +15,26 @@ const AuthLogoutComponent = () => {
         });
     }
 
-    return <div className={clsx('mt-8 mr-4 ml-4')}>
-        <div className={clsx(
-            'mx-auto',
-            'w-full md:w-[400px] lg:w-[600px]',
-            'bg-white',
-            'py-48 px-4',
-            'shadow-sm',
-            'text-center'
-        )}>
-            <h1>Are you sure?</h1>
-            <button
-                disabled={hasClicked}
-                onClick={onClickHandler}
-                className={clsx(
-                    'text-lg',
-                    'btn-contained-secondary',
-                    {
-                        ['animate-pulse']: hasClicked
-                    }
-                )}
-            >
-                Yes, get me out of here!!!!
-            </button>
-        </div>
+    return <div className={clsx(
+        'bg-white p-4 md:p-8',
+        'py-16 md:py-32',
+        'text-center',
+        'shadow-md'
+    )}>
+        <h1>Are you sure?</h1>
+        <button
+            disabled={hasClicked}
+            onClick={onClickHandler}
+            className={clsx(
+                'text-lg',
+                'btn-contained-secondary',
+                {
+                    ['animate-pulse']: hasClicked
+                }
+            )}
+        >
+            Yes, get me out of here!!!!
+        </button>
     </div>
 }
 

@@ -1,10 +1,10 @@
 'use client';
 import clsx from "clsx";
 import {signIn} from "next-auth/react";
+import {FaGoogle} from "react-icons/fa6";
 
 import {IProvider} from "./types";
 import {useAuthLoginContext} from "./context";
-import {FaGoogle} from "react-icons/fa6";
 
 interface IProps {
     provider: IProvider

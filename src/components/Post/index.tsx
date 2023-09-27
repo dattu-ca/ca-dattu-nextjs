@@ -24,25 +24,12 @@ export const PostComponent = (props: IProps) => {
     
     return <PostContextProvider data={data}>
         <div className={clsx(
-            'pb-4'
+            'bg-white p-4 md:p-8',
+            'shadow-md'
         )}>
-            {
-                banners && <BannerComponent banners={banners}/>
-            }
-            <div className={clsx(
-                'overflow-y-auto',
-                'mt-8',
-                'container',
-            )}>
-                <div className={clsx(
-                    'bg-white p-4 md:p-8',
-                    'shadow-sm',
-                )}>
-                    <p><button className={'btn-text-secondary p-0'} onClick={onGoBackHandler}>Go back</button></p>
-                    <h1>{heading}</h1>
-                    <CustomRichTexRenderer document={body}/>
-                </div>
-            </div>
+            <p><button className={'btn-text-secondary p-0'} onClick={onGoBackHandler}>Go back</button></p>
+            <h1>{heading}</h1>
+            <CustomRichTexRenderer document={body}/>
         </div>
     </PostContextProvider>;
 }

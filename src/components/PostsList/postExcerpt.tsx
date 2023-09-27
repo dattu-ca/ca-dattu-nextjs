@@ -12,12 +12,14 @@ interface IProps {
 const PostExcerpt = ({post}: IProps) => {
     return <div className={clsx(
         'bg-white p-4 p-8',
+        'shadow-md'
     )}>
         <div className={clsx(
             'text-gray-400',
             'flex gap-2',
+            'flex-wrap',
             'items-center',
-            'mb-4'
+            'mb-4',
         )}>
             <AuthorsNameList authors={post.authors} suffix=":"/>
             <span aria-label='Published on'>{dayjs(post.publishedDate).format('MMM DD, YYYY')}</span>

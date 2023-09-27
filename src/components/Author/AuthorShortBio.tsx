@@ -12,6 +12,7 @@ const AuthorShortBioComponent = ({author}: IProps) => {
     const {name, shortBio} = author;
     return <div className={clsx(
         'bg-white p-4 md:p-8',
+        'shadow-md'
     )}>
         <div className={clsx('mb-4')}>
             <AuthorAvatar author={author} className={clsx('w-8 h-8')}/>
