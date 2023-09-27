@@ -3,6 +3,7 @@ import clsx from "clsx";
 import {blogPostServices} from "~/services";
 import {BannerComponent} from "~/components/Banner";
 import {PostSidebarComponent} from "~/components/PostSidebar";
+import {BlogPost} from "~/models";
 
 
 interface IProps {
@@ -24,11 +25,12 @@ export const generateMetadata = async (props: IProps) => {
 
 
 const Layout = async ({children, params: {slug}}: IProps) => {
-    const post = await blogPostServices.fetchBySlug(slug as string);
+    const post = await blogPostServices.fetchBySlug(slug as string) as BlogPost;
+    const seriesPosts = post.series ? await blogPostServices.fetchListBySeries(post.series.sysId as string) as BlogPost[] : undefined;
     const {banners} = post;
-    
+
     return <div>
-        <BannerComponent banners={banners} />
+        <BannerComponent banners={banners}/>
         <div className={clsx(
             'mt-4 md:mt-8',
             'wrapper-with-sidebar',
@@ -43,7 +45,10 @@ const Layout = async ({children, params: {slug}}: IProps) => {
             <section className={clsx(
                 'sidebar'
             )}>
-                <PostSidebarComponent post={post} />
+                <PostSidebarComponent 
+                    post={post}
+                    seriesPosts={seriesPosts}
+                />
             </section>
         </div>
     </div>

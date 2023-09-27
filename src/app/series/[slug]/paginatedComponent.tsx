@@ -12,8 +12,7 @@ interface IProps {
 const PaginatedComponent = async (props: IProps) => {
     const {slug, currentPage} = props;
     const tag = await metaSeriesServices.fetchBySlug(slug as string) as MetaSeries;
-
-
+    
     const limit = SERVER_CONFIG.CONTENT_CONFIG.DEFAULT_MAX_POSTS_PER_PAGE;
     const skip = (+currentPage - 1) * limit;
     const {

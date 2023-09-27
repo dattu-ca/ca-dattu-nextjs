@@ -169,7 +169,7 @@ const fetchListPaginatedByTag = (tagId: string, skip: number = 0, limit: number 
             }
         })
 
-const fetchListPaginatedBySeries = (tagId: string, skip: number = 0, limit: number = 10) =>
+const fetchListPaginatedBySeries = (seriesId: string, skip: number = 0, limit: number = 10) =>
     client
         .getEntries<BlogPostSkeleton>({
             content_type,
@@ -184,7 +184,7 @@ const fetchListPaginatedBySeries = (tagId: string, skip: number = 0, limit: numb
                 CONTENTFUL_BLOG_POST_FIELDS.SERIES as 'fields',
             ],
             // @ts-ignore
-            'fields.series.sys.id': tagId,
+            'fields.series.sys.id': seriesId,
             // @ts-ignore
             order: `-${CONTENTFUL_BLOG_POST_FIELDS.PUBLISHED_DATE}`,
             skip: skip,
@@ -199,11 +199,36 @@ const fetchListPaginatedBySeries = (tagId: string, skip: number = 0, limit: numb
             }
         })
 
+const fetchListBySeries = (seriesId: string) =>
+    client
+        .getEntries<BlogPostSkeleton>({
+            content_type,
+            select: [
+                CONTENTFUL_BLOG_POST_FIELDS.SLUG as 'fields',
+                CONTENTFUL_BLOG_POST_FIELDS.HEADING as 'fields',
+                CONTENTFUL_BLOG_POST_FIELDS.SHORT_BODY as 'fields',
+                CONTENTFUL_BLOG_POST_FIELDS.PUBLISHED_DATE as 'fields',
+                CONTENTFUL_BLOG_POST_FIELDS.AUTHORS as 'fields',
+                CONTENTFUL_BLOG_POST_FIELDS.FEATURED_BANNER as 'fields',
+                CONTENTFUL_BLOG_POST_FIELDS.CATEGORIES as 'fields',
+                CONTENTFUL_BLOG_POST_FIELDS.SERIES as 'fields',
+            ],
+            // @ts-ignore
+            'fields.series.sys.id': seriesId,
+            // @ts-ignore
+            order: `-${CONTENTFUL_BLOG_POST_FIELDS.PUBLISHED_DATE}`,
+            include: 10,
+        })
+        .then((response) => {
+            return mapContentfulList(response.items);
+        })
+
 export {
     fetchBySlug,
     fetchListPaginated,
     fetchListPaginatedByAuthor,
     fetchListPaginatedByCategories,
     fetchListPaginatedByTag,
+    fetchListBySeries,
     fetchListPaginatedBySeries,
 }

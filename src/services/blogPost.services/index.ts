@@ -3,6 +3,7 @@ import {
     fetchListPaginatedByAuthor,
     fetchListPaginatedByCategories,
     fetchListPaginatedBySeries,
+    fetchListBySeries,
     fetchListPaginatedByTag,
     fetchBySlug
 } from './services';
@@ -13,5 +14,6 @@ export const blogPostServices = {
     fetchListPaginatedByTag,
     fetchListPaginatedByCategories,
     fetchListPaginatedBySeries,
+    fetchListBySeries,
     fetchBySlug
 };
