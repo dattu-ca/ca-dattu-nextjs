@@ -2,9 +2,10 @@ import {CustomRichTexRenderer} from '../CustomRichTextRenderer'
 import clsx from "clsx";
 import Link from "next/link";
 import dayjs from "dayjs";
-import {BlogPost} from "~/models";
+import {BlogPost, MetaCategory} from "~/models";
 import {AuthorsNameList} from "../Author/AuthorsNameList";
 import {FeaturedBanner} from "~/components/FeaturedBanner";
+import {CategoriesNamesList} from "~/components/Category/CategoriesNameList";
 
 interface IProps {
     post: BlogPost
@@ -35,6 +36,9 @@ const PostExcerpt = ({post}: IProps) => {
                 </Link>
             </h2>
             <CustomRichTexRenderer document={post.shortBody}/>
+            {
+                post.categories && <CategoriesNamesList categories={post.categories as MetaCategory[]}/>
+            }
             <p className={clsx(
                 'text-right'
             )}>

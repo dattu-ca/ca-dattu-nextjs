@@ -3,6 +3,7 @@ import clsx from "clsx";
 import Link from "next/link";
 import {MetaCategory, CreateCategoryBreadCrumbs} from "~/models";
 import {CustomRichTexRenderer} from "../CustomRichTextRenderer";
+import {AiTwotoneFolderOpen} from "react-icons/ai";
 
 
 interface IProps {
@@ -28,9 +29,20 @@ const CategoryDescription = ({category}: IProps) => {
                             breadcrumbs.map((breadcrumb, index) => (
                                 <li key={breadcrumb.slug}>
                                     {
-                                        index === breadcrumbs.length
-                                            ? <span>{breadcrumb.name}</span>
-                                            : <Link href={`/category/${breadcrumb.slug}`}>{breadcrumb.name}</Link>
+                                        index === breadcrumbs.length - 1
+                                            ? (
+                                                <span/>
+                                            )
+                                            : (
+                                                <Link href={`/category/${breadcrumb.slug}`}
+                                                      className={clsx(
+                                                          'flex flex-wrap gap-2',
+                                                          'items-center',
+                                                      )}>
+                                                    <AiTwotoneFolderOpen className={'w-4 h-4'}/>
+                                                    <span>{breadcrumb.name}</span>
+                                                </Link>
+                                            )
                                     }
                                 </li>
                             ))
@@ -42,7 +54,10 @@ const CategoryDescription = ({category}: IProps) => {
 
         <h4 className={clsx(
             'mb-4',
+            'flex flex-wrap gap-2',
+            'items-center'
         )}>
+            <AiTwotoneFolderOpen className={'w-8 h-8'}/>
             <span>{name}</span>
         </h4>
 
