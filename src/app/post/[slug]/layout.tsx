@@ -2,6 +2,7 @@ import React, {ReactElement} from "react";
 import clsx from "clsx";
 import {blogPostServices} from "~/services";
 import {BannerComponent} from "~/components/Banner";
+import {PostSidebarComponent} from "~/components/PostSidebar";
 
 
 interface IProps {
@@ -23,8 +24,8 @@ export const generateMetadata = async (props: IProps) => {
 
 
 const Layout = async ({children, params: {slug}}: IProps) => {
-    const data = await blogPostServices.fetchBySlug(slug as string);
-    const {banners} = data;
+    const post = await blogPostServices.fetchBySlug(slug as string);
+    const {banners} = post;
     
     return <div>
         <BannerComponent banners={banners} />
@@ -33,12 +34,17 @@ const Layout = async ({children, params: {slug}}: IProps) => {
             'wrapper-with-sidebar',
             'pb-4 md:pb-8',
         )}>
-            <div className={clsx(
+            <section className={clsx(
                 'container',
             )}>
 
                 {children}
-            </div>
+            </section>
+            <section className={clsx(
+                'sidebar'
+            )}>
+                <PostSidebarComponent post={post} />
+            </section>
         </div>
     </div>
 }
