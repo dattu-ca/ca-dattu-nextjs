@@ -3,6 +3,7 @@ import clsx from "clsx";
 import {metaCategoryServices} from "~/services";
 import {MetaCategory} from "~/models";
 import {CategoryDescription} from "~/components/Category/CategoryDescription";
+import {AiTwotoneFolderOpen} from "react-icons/ai";
 
 
 interface IProps {
@@ -30,8 +31,15 @@ const Layout = async ({children, params: {slug}}: IProps) => {
             'mt-4 md:mt-8',
             'wrapper-full-width',
         )}>
-            <div>
-                <h1>{category.name}</h1>
+            <div className={clsx(
+                'flex flex-wrap gap-2',
+                'items-center',
+                'mb-4 md:mb-8'
+            )}>
+                <AiTwotoneFolderOpen className={'w-12 h-12'}/>
+                <h1 className={clsx(
+                    'mb-0 pb-0'
+                )}>{category.name}</h1>
             </div>
         </div>
         <div className={clsx(

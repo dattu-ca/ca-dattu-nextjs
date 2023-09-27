@@ -58,6 +58,7 @@ const fetchListPaginated = (skip: number = 0, limit: number = 10) => {
                 CONTENTFUL_BLOG_POST_FIELDS.PUBLISHED_DATE as 'fields',
                 CONTENTFUL_BLOG_POST_FIELDS.AUTHORS as 'fields',
                 CONTENTFUL_BLOG_POST_FIELDS.FEATURED_BANNER as 'fields',
+                CONTENTFUL_BLOG_POST_FIELDS.CATEGORIES as 'fields',
             ],
             // @ts-ignore
             order: `-${CONTENTFUL_BLOG_POST_FIELDS.PUBLISHED_DATE}`,
@@ -86,6 +87,7 @@ const fetchListPaginatedByAuthor = (authorId: string, skip: number = 0, limit: n
                 CONTENTFUL_BLOG_POST_FIELDS.PUBLISHED_DATE as 'fields',
                 CONTENTFUL_BLOG_POST_FIELDS.AUTHORS as 'fields',
                 CONTENTFUL_BLOG_POST_FIELDS.FEATURED_BANNER as 'fields',
+                CONTENTFUL_BLOG_POST_FIELDS.CATEGORIES as 'fields',
             ],
             // @ts-ignore
             'fields.authors.sys.id': authorId,
@@ -116,6 +118,7 @@ const fetchListPaginatedByCategories = (categoryIds: string[], skip: number = 0,
                 CONTENTFUL_BLOG_POST_FIELDS.PUBLISHED_DATE as 'fields',
                 CONTENTFUL_BLOG_POST_FIELDS.AUTHORS as 'fields',
                 CONTENTFUL_BLOG_POST_FIELDS.FEATURED_BANNER as 'fields',
+                CONTENTFUL_BLOG_POST_FIELDS.CATEGORIES as 'fields',
             ],
             // @ts-ignore
             'fields.categories.sys.id[in]': categoryIds.join(","),
@@ -146,6 +149,7 @@ const fetchListPaginatedByTag = (tagId: string, skip: number = 0, limit: number 
                 CONTENTFUL_BLOG_POST_FIELDS.PUBLISHED_DATE as 'fields',
                 CONTENTFUL_BLOG_POST_FIELDS.AUTHORS as 'fields',
                 CONTENTFUL_BLOG_POST_FIELDS.FEATURED_BANNER as 'fields',
+                CONTENTFUL_BLOG_POST_FIELDS.CATEGORIES as 'fields',
             ],
             // @ts-ignore
             'fields.tags.sys.id': tagId,
