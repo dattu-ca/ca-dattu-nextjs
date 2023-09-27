@@ -28,7 +28,7 @@ const AuthorsShortBioComponent = ({authors, showNameAsALink}: IProps) => {
         </div>
         <div>
             {
-                authors.map((author) => {
+                authors?.map((author) => {
                     const {name, shortBio, slug} = author;
                     return <div key={slug}
                                 className={clsx(

@@ -21,7 +21,7 @@ const AuthorsNameList = ({authors, suffix}: IProps) => {
                     'items-center'
                 )}>
                     {
-                        authors.map((author, index) => (
+                        authors?.map((author, index) => (
                             <div key={author.slug}
                                  className={clsx(
                                      'flex gap-2',

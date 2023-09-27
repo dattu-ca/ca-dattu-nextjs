@@ -1,7 +1,4 @@
-import {blogAuthorServices, blogPostServices} from "~/services";
-import {SERVER_CONFIG} from "~/utils/config.server";
-import {PostsListComponent} from "~/components/PostsList";
-import {BlogAuthor} from "~/models";
+import {PaginatedComponent} from "../../paginatedComponent";
 
 
 interface IProps {
@@ -14,20 +11,11 @@ interface IProps {
 const Page = async (props: IProps) => {
     const {params} = props;
     const {slug, currentPage: paramCurrentPage} = params;
-    const author = await blogAuthorServices.fetchBySlug(slug as string) as BlogAuthor;
-
     const currentPage = paramCurrentPage ? +paramCurrentPage : 1;
-    const limit = SERVER_CONFIG.CONTENT_CONFIG.DEFAULT_MAX_POSTS_PER_PAGE;
-    const skip = (+currentPage - 1) * limit;
-    const {items, total} = await blogPostServices.fetchListPaginatedByAuthor(author.sysId as string, skip, limit);
 
 
-    return <PostsListComponent posts={items} total={total} 
-                               current={currentPage} 
-                               limit={limit} 
-                               skip={skip}
-                               linkPrefix={`/author/${slug}/page/`}
-                               linkFirstPage={`/author/${slug}`}
-    />
+    return <div>
+        <PaginatedComponent slug={slug} currentPage={currentPage}/>
+    </div>
 }
 export default Page;

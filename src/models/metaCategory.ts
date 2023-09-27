@@ -5,6 +5,7 @@ export interface MetaCategory {
     name: string;
     description?: object | undefined;
     parent?: MetaCategory | undefined;
+    children?: MetaCategory[] | undefined;
 }
 
 
