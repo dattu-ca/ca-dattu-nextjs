@@ -1,6 +1,7 @@
 import {BodyImage} from "./bodyImage";
 import {BlogAuthor} from "./blogAuthor";
-import {BodyYoutube} from "~/models/bodyYoutube";
+import {BodyYoutube} from "./bodyYoutube";
+import {MetaCategory} from "./metaCategory";
 
 export interface BlogPost {
     sysId?: string | undefined;
