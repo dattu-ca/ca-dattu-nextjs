@@ -23,11 +23,17 @@ const AuthorNavigation = ({slug}: IProps) => {
     ];
 
     const isCurrentPage = useCallback((url: string) => {
-        if (!url) {
-            return false;
+        if (url.endsWith('/about')) {
+            return path === url;
         }
-        return path === url;
-    }, [path]);
+        if (url.endsWith(slug) && path.includes('/page/')) {
+            return true;
+        }
+        if (url.endsWith(slug)) {
+            return path === url;
+        }
+        return false;
+    }, [path, slug]);
 
     const getAriaCurrent = useCallback((url: string) =>
         isCurrentPage(url) ? 'page' : undefined, [isCurrentPage]);

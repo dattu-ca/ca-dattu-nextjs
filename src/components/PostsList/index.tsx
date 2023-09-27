@@ -10,15 +10,16 @@ interface IProps {
     total: number;
     current: number;
     posts: BlogPost[];
-
+    linkPrefix: string;
+    linkFirstPage: string;
 }
 
 const PostsListComponent = ({
-                                skip, limit, total, current, posts
+                                skip, limit, total, current, posts, linkPrefix, linkFirstPage
                             }: IProps) => {
 
     return <div className={clsx(
-        'mt-8',
+        'w-full'
     )}>
         <div>
             {
@@ -32,15 +33,15 @@ const PostsListComponent = ({
             }
         </div>
         <div className={clsx(
-            'container',
-            'mt-8',
-            'pb-4'
+            'mt-8'
         )}>
             <PaginationComponent skip={skip}
                                  limit={limit}
                                  total={total}
                                  current={current}
-                                 linkPrefix='/posts'/>
+                                 linkPrefix={linkPrefix}
+                                 linkFirstPage={linkFirstPage}
+            />
         </div>
     </div>
 }

@@ -11,9 +11,7 @@ interface IProps {
 
 const PostExcerpt = ({post}: IProps) => {
     return <div className={clsx(
-        'container',
         'bg-white p-4 p-8',
-        'shadow-sm'
     )}>
         <div className={clsx(
             'text-gray-400',

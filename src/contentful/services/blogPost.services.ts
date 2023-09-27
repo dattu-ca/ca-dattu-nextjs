@@ -2,7 +2,6 @@ import {client, TOrderType} from "../client";
 import {BlogPostSkeleton, mapContentful, mapContentfulList} from '../schema/blogPost.schema'
 
 
-
 const CONTENTFUL_BLOG_POST_FIELDS = {
     PUBLISHED_DATE: 'fields.publishedDate',
     HEADING: 'fields.heading',
@@ -68,7 +67,35 @@ const fetchListPaginated = (skip: number = 0, limit: number = 10) => {
 }
 
 
+const fetchListPaginatedByAuthor = (authorId: string, skip: number = 0, limit: number = 10) => {
+    return client
+        .getEntries<BlogPostSkeleton>({
+            content_type,
+            select: [
+                CONTENTFUL_BLOG_POST_FIELDS.SLUG as 'fields',
+                CONTENTFUL_BLOG_POST_FIELDS.HEADING as 'fields',
+                CONTENTFUL_BLOG_POST_FIELDS.SHORT_BODY as 'fields',
+                CONTENTFUL_BLOG_POST_FIELDS.PUBLISHED_DATE as 'fields',
+                CONTENTFUL_BLOG_POST_FIELDS.AUTHORS as 'fields',
+            ],
+            'fields.authors.sys.id': authorId,
+            order: `-${CONTENTFUL_BLOG_POST_FIELDS.PUBLISHED_DATE}` as unknown as TOrderType,
+            skip: skip,
+            limit: limit,
+            include: 10,
+        })
+        .then((response) => {
+            const items = mapContentfulList(response.items);
+            return {
+                items,
+                total: response.total,
+            }
+        })
+}
+
+
 export {
     fetchBySlug,
-    fetchListPaginated
+    fetchListPaginated,
+    fetchListPaginatedByAuthor
 }

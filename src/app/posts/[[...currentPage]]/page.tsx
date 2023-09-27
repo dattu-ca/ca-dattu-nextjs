@@ -7,41 +7,41 @@ import {PostsListComponent} from "~/components/PostsList";
 
 interface IProps {
     params: {
-        slug: number;
+        currentPage: number;
     }
 }
 
 
 export const generateMetadata = async (props: IProps) => {
     const {params} = props;
-    const {slug: paramSlug} = params;
-    const slug = paramSlug ? +paramSlug : 1;
+    const {currentPage: paramCurrentPage} = params;
+    const currentPage = paramCurrentPage ? +paramCurrentPage : 1;
 
     const limit = SERVER_CONFIG.CONTENT_CONFIG.DEFAULT_MAX_POSTS_PER_PAGE;
-    const skip = (+slug - 1) * limit;
+    const skip = (+currentPage - 1) * limit;
     const {total} = await blogPostServices.fetchListPaginated(skip, limit);
     
     const totalPages = Math.ceil(total/limit)
     
     return {
-        title: `Page ${slug} of ${totalPages}`
+        title: `Page ${currentPage} of ${totalPages}`
     }
 }
 
 const Page = async (props: IProps) => {
     const {params} = props;
-    const {slug: paramSlug} = params;
-    const slug = paramSlug ? +paramSlug : 1;
+    const {currentPage: paramCurrentPage} = params;
+    const currentPage = paramCurrentPage ? +paramCurrentPage : 1;
 
     const limit = SERVER_CONFIG.CONTENT_CONFIG.DEFAULT_MAX_POSTS_PER_PAGE;
-    const skip = (+slug - 1) * limit;
-
+    const skip = (+currentPage - 1) * limit;
     const {items, total} = await blogPostServices.fetchListPaginated(skip, limit);
+    
     if (items.length === 0) {
         redirect('/posts', RedirectType.replace);
         return null;
     }
 
-    return <PostsListComponent posts={items} total={total} current={+slug} limit={limit} skip={skip}/>
+    return <PostsListComponent posts={items} total={total} current={currentPage} limit={limit} skip={skip} linkPrefix={'/posts'} linkFirstPage={'/posts'}/>
 }
 export default Page;

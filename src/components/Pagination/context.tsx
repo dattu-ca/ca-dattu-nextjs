@@ -17,7 +17,10 @@ interface IPaginationContextProps {
     }
 }
 
-const PaginationContext = createContext<IPaginationContextProps>({ctxData: {}, ctxFunctions: {}} as IPaginationContextProps)
+const PaginationContext = createContext<IPaginationContextProps>({
+    ctxData: {},
+    ctxFunctions: {}
+} as IPaginationContextProps)
 
 const usePaginationContext = () => {
     const context = useContext(PaginationContext);
@@ -35,6 +38,7 @@ interface IPaginationContextProviderProps {
     current: number;
     maxNumberOfLinks?: number;
     linkPrefix: string;
+    linkFirstPage: string;
 }
 
 const PaginationContextProvider = ({
@@ -44,6 +48,7 @@ const PaginationContextProvider = ({
                                        current,
                                        maxNumberOfLinks: propMaxNumberOfLinks,
                                        linkPrefix,
+                                       linkFirstPage
                                    }: IPaginationContextProviderProps) => {
     const maxNumberOfLinks = propMaxNumberOfLinks || MAX_NUMBER_OF_LINKS;
     const totalPages = Math.ceil((totalItems / limit));
@@ -51,8 +56,11 @@ const PaginationContextProvider = ({
     const listOfLinks = useMemo(() => getPaginationLinks(totalPages, current, maxNumberOfLinks), [totalPages, current, maxNumberOfLinks]);
 
     const getLinkUrl = useCallback((pageNumber: number) => {
+        if (linkFirstPage && pageNumber === 1) {
+            return linkFirstPage
+        }
         return `${linkPrefix}/${pageNumber}`
-    }, [linkPrefix]);
+    }, [linkPrefix, linkFirstPage]);
 
 
     const props = useMemo<IPaginationContextProps>(() => ({
