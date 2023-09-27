@@ -26,7 +26,8 @@ body {
         @apply text-3xl;
         @apply md:text-5xl;
         @apply mt-0;
-        @apply mb-8;
+        @apply mb-4;
+        @apply md:mb-8;
         @apply min-h-[1px];
         @apply font-acme;
     }
@@ -35,7 +36,8 @@ body {
         @apply text-2xl;
         @apply md:text-4xl;
         @apply mt-0;
-        @apply mb-7;
+        @apply mb-3;
+        @apply md:mb-7;
         @apply min-h-[1px];
         @apply font-acme;
     }
@@ -44,7 +46,8 @@ body {
         @apply text-xl;
         @apply md:text-3xl;
         @apply mt-0;
-        @apply mb-6;
+        @apply mb-2;
+        @apply md:mb-6;
         @apply min-h-[1px];
         @apply font-acme;
     }
@@ -53,7 +56,8 @@ body {
         @apply text-lg;
         @apply md:text-2xl;
         @apply mt-0;
-        @apply mb-5;
+        @apply mb-1;
+        @apply md:mb-5;
         @apply min-h-[1px];
     }
 
@@ -61,14 +65,16 @@ body {
         @apply text-lg;
         @apply md:text-xl;
         @apply mt-0;
-        @apply mb-4;
+        @apply mb-0;
+        @apply md:mb-4;
         @apply min-h-[1px];
     }
 
     h6 {
         @apply text-lg;
         @apply mt-0;
-        @apply mb-4;
+        @apply mb-0;
+        @apply md:mb-4;
         @apply min-h-[1px];
     }
 
@@ -178,13 +184,37 @@ body {
     blockquote p {
         @apply mb-0;
     }
+    
+    .wrapper-full-width{
+        @apply px-4;
+        @apply md:px-8;
+        @apply mx-auto;
+        @apply w-full;
+        @apply md:w-11/12;
+    }
 
+    .wrapper-with-sidebar{
+        @apply px-4;
+        @apply md:px-8;
+        @apply mx-auto;
+        @apply w-full;
+        @apply md:w-11/12;
+        @apply flex;
+        @apply justify-center;
+        @apply gap-4;
+        @apply md:gap-8;
+        @apply flex-wrap;
+        @apply md:flex-nowrap;
+    }
     .container {
-        width: 100%;
-        padding-left: 2em;
-        padding-right: 2em;
-        margin: 0 auto;
-        max-width: calc(680px + 4em + 4em) !important;
+        @apply !max-w-full;
+        @apply !w-full;
+        @apply md:!w-3/5;
+        
+    }
+    .sidebar{
+        @apply w-full;
+        @apply md:w-2/5;
     }
 
     .btn-contained-primary {

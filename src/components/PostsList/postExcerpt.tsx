@@ -21,7 +21,7 @@ const PostExcerpt = ({post}: IProps) => {
             'items-center',
             'mb-4'
         )}>
-            <AuthorsNameList authors={post.authors} suffix=":" />
+            <AuthorsNameList authors={post.authors} suffix=":"/>
             <span aria-label='Published on'>{dayjs(post.publishedDate).format('MMM DD, YYYY')}</span>
         </div>
         <h2>
@@ -37,7 +37,6 @@ const PostExcerpt = ({post}: IProps) => {
 
             )} href={`/post/${post.slug}`}>...View more</Link>
         </p>
-        <pre>{JSON.stringify(post, null, 2)}</pre>
     </div>
 }
 

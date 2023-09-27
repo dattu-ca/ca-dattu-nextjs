@@ -1,5 +1,5 @@
 "use client";
-import {useState} from 'react';
+import {Fragment, useState} from 'react';
 import clsx from "clsx";
 import {BodyImage, BodyYoutube} from "~/models";
 import {RenderedImage} from './renderedImage'
@@ -71,7 +71,7 @@ export const BannerComponent = ({banners}: IProps) => {
                         </div>
                         {
                             banners.length > 1
-                            && <div className={clsx()}>
+                            && <Fragment>
                                 <button onClick={onGoPrevHandler}
                                         disabled={visibleIndex === 0}
                                         className={clsx(
@@ -96,7 +96,7 @@ export const BannerComponent = ({banners}: IProps) => {
                                         aria-label='Slide to the next banner'>
                                     <BsFillCaretRightFill className='w-8 h-8 text-white'/>
                                 </button>
-                            </div>
+                            </Fragment>
                         }
                     </div>
                 )
