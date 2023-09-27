@@ -10,5 +10,5 @@ export interface BlogAuthor {
     bio?: object | undefined;
     banners: (BodyImage | BodyYoutube)[];
     avatarInitials: string;
-    avatar: BodyImage | undefined;
+    avatar?: BodyImage | undefined;
 }

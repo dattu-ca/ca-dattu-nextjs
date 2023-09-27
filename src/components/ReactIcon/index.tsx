@@ -3,7 +3,7 @@ import {ReactIconJs} from './icon';
 
 interface IProps {
     icon: string;
-    className?: string;
+    className?: string | undefined;
     [x:string]: any;
 }
 

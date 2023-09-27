@@ -8,8 +8,8 @@ import {PaginationDots} from "./PaginationDots";
 interface IButtonLinkProps {
     children: React.ReactNode,
     pageNumber: number,
-    aria?: string;
-    showDots?: boolean;
+    aria?: string | undefined;
+    showDots?: boolean | undefined;
 }
 
 

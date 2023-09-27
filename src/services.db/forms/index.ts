@@ -2,7 +2,7 @@
 import { FormSubmissionsModel } from './schema'
 
 interface IFormModel {
-    legend?: string;
+    legend?: string | undefined;
     fields: object[]
 }
 

@@ -1,7 +1,7 @@
 export interface IImage {
     contentType: 'Image';
     url: string;
-    alt?: string;
+    alt?: string | undefined;
 }
 
 
