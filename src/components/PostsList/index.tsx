@@ -10,21 +10,23 @@ interface IProps {
     total: number;
     current: number;
     posts: BlogPost[];
-
+    linkPrefix: string;
+    linkFirstPage: string;
 }
 
 const PostsListComponent = ({
-                                skip, limit, total, current, posts
+                                skip, limit, total, current, posts, linkPrefix, linkFirstPage
                             }: IProps) => {
 
     return <div className={clsx(
-        'mt-8',
+        'w-full'
     )}>
         <div>
             {
                 posts.map(post => (
                     <div key={post.slug} className={clsx(
-                        'mb-4'
+                        'mb-4',
+                        'last-of-type:mb-0'
                     )}>
                         <PostExcerpt post={post} />
                     </div>
@@ -32,15 +34,17 @@ const PostsListComponent = ({
             }
         </div>
         <div className={clsx(
-            'container',
-            'mt-8',
-            'pb-4'
+            'mt-4',
+            'md:mt-8',
+            'empty:mt-0'
         )}>
             <PaginationComponent skip={skip}
                                  limit={limit}
                                  total={total}
                                  current={current}
-                                 linkPrefix='/posts'/>
+                                 linkPrefix={linkPrefix}
+                                 linkFirstPage={linkFirstPage}
+            />
         </div>
     </div>
 }

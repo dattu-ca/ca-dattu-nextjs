@@ -26,7 +26,5 @@ const apolloClient = new ApolloClient({
     cache: new InMemoryCache(),
 });
 
-export type TOrderType = (OrderFilterPaths<EntrySys, "sys"> | "sys.contentType.sys.id" | "-sys.contentType.sys.id")[];
-
 
 export {client, previewClient, apolloClient};

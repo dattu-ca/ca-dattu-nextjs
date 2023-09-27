@@ -10,9 +10,10 @@ interface IProps {
     limit: number;
     current: number;
     linkPrefix: string;
+    linkFirstPage: string;
 }
 
-const PaginationComponent = ({total, skip, limit, current, linkPrefix}: IProps) => {
+const PaginationComponent = ({total, skip, limit, current, linkPrefix, linkFirstPage}: IProps) => {
     const totalPages = Math.ceil((total / limit));
     if (totalPages === 1) {
         return null;
@@ -22,12 +23,9 @@ const PaginationComponent = ({total, skip, limit, current, linkPrefix}: IProps) 
                                       skip={skip}
                                       limit={limit}
                                       current={current}
-                                      linkPrefix={linkPrefix}>
-        <div className={clsx(
-            'content-container',
-        )}>
-            <PaginationButtonsList/>
-        </div>
+                                      linkPrefix={linkPrefix}
+                                      linkFirstPage={linkFirstPage}>
+        <PaginationButtonsList/>
     </PaginationContextProvider>
 };
 

@@ -1,6 +1,5 @@
-import {client, TOrderType} from "../client";
+import {client} from "../client";
 import {BlogPostSkeleton, mapContentful, mapContentfulList} from '../schema/blogPost.schema'
-
 
 
 const CONTENTFUL_BLOG_POST_FIELDS = {
@@ -53,7 +52,37 @@ const fetchListPaginated = (skip: number = 0, limit: number = 10) => {
                 CONTENTFUL_BLOG_POST_FIELDS.PUBLISHED_DATE as 'fields',
                 CONTENTFUL_BLOG_POST_FIELDS.AUTHORS as 'fields',
             ],
-            order: `-${CONTENTFUL_BLOG_POST_FIELDS.PUBLISHED_DATE}` as unknown as TOrderType,
+            // @ts-ignore
+            order: `-${CONTENTFUL_BLOG_POST_FIELDS.PUBLISHED_DATE}`,
+            skip: skip,
+            limit: limit,
+            include: 10,
+        })
+        .then((response) => {
+            const items = mapContentfulList(response.items);
+            return {
+                items,
+                total: response.total,
+            }
+        })
+}
+
+
+const fetchListPaginatedByAuthor = (authorId: string, skip: number = 0, limit: number = 10) => {
+    return client
+        .getEntries<BlogPostSkeleton>({
+            content_type,
+            select: [
+                CONTENTFUL_BLOG_POST_FIELDS.SLUG as 'fields',
+                CONTENTFUL_BLOG_POST_FIELDS.HEADING as 'fields',
+                CONTENTFUL_BLOG_POST_FIELDS.SHORT_BODY as 'fields',
+                CONTENTFUL_BLOG_POST_FIELDS.PUBLISHED_DATE as 'fields',
+                CONTENTFUL_BLOG_POST_FIELDS.AUTHORS as 'fields',
+            ],
+            // @ts-ignore
+            'fields.authors.sys.id': authorId,
+            // @ts-ignore
+            order: `-${CONTENTFUL_BLOG_POST_FIELDS.PUBLISHED_DATE}`,
             skip: skip,
             limit: limit,
             include: 10,
@@ -70,5 +99,6 @@ const fetchListPaginated = (skip: number = 0, limit: number = 10) => {
 
 export {
     fetchBySlug,
-    fetchListPaginated
+    fetchListPaginated,
+    fetchListPaginatedByAuthor
 }
