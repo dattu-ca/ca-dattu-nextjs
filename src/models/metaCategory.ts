@@ -17,7 +17,7 @@ const getParent = (category: MetaCategory) => {
     return ret;
 }
 
-export const CreateBreadCrumbs = (category: MetaCategory) => {
+export const CreateCategoryBreadCrumbs = (category: MetaCategory) => {
     const arr = getParent(category);
     arr.forEach(item => {
         delete item.parent;

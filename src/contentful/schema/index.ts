@@ -6,6 +6,8 @@ import * as bodyLinksSchema from './bodyLinks.schema';
 import * as bodyYoutubeSchema from './bodyYoutube.schema';
 import * as siteConfigSchema from './siteConfig.schema';
 import * as siteNavbarSchema from './siteNavbar.schema';
+import * as metaCategorySchema from './metaCategory.schema';
+import * as metaTagSchema from './metaTag.schema';
 
 export {
     blogPageSchema,
@@ -15,5 +17,7 @@ export {
     bodyLinksSchema,
     bodyYoutubeSchema,
     siteConfigSchema,
-    siteNavbarSchema
+    siteNavbarSchema,
+    metaCategorySchema,
+    metaTagSchema
 }
