@@ -2,6 +2,7 @@ import {BlogPost} from "~/models";
 import {IBlogPostFields} from "./generated/index";
 import {mapContentfulList as mapBodyAuthorContentfulList} from './blogAuthor.schema';
 import {mapContentfulList as mapMetaCategoryContentfulList} from './metaCategory.schema';
+import {mapContentfulList as mapMetaTagContentfulList} from './metaTag.schema';
 import {mapBanners, mapFeaturedBanner} from "./utils";
 
 
@@ -46,6 +47,9 @@ export const mapContentful = (raw: any) => {
     }
     if(fields.categories){
         target.categories = mapMetaCategoryContentfulList(fields.categories);
+    }
+    if(fields.tags){
+        target.tags = mapMetaTagContentfulList(fields.tags);
     }
     return target as BlogPost;
 }

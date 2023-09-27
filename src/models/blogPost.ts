@@ -2,6 +2,7 @@ import {BodyImage} from "./bodyImage";
 import {BlogAuthor} from "./blogAuthor";
 import {BodyYoutube} from "./bodyYoutube";
 import {MetaCategory} from "./metaCategory";
+import {MetaTag} from "./metaTag";
 
 export interface BlogPost {
     sysId?: string | undefined;
@@ -15,4 +16,5 @@ export interface BlogPost {
     publishedDate: Date;
     authors: BlogAuthor[],
     categories?: MetaCategory[];
+    tags: MetaTag[];
 }

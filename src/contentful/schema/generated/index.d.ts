@@ -125,6 +125,9 @@ export interface IBlogPostFields {
 
   /** Categories */
   categories?: IMetaCategory[] | undefined;
+
+  /** Tags */
+  tags?: IMetaTag[] | undefined;
 }
 
 /** The main content model for posts. */
@@ -368,6 +371,39 @@ export interface IMetaCategory extends Entry<IMetaCategoryFields> {
   };
 }
 
+export interface IMetaTagFields {
+  /** Entry Title */
+  entryTitle: string;
+
+  /** Slug */
+  slug: string;
+
+  /** Name */
+  name: string;
+
+  /** Description */
+  description?: Document | undefined;
+}
+
+/** The Tag of a Blog Post */
+
+export interface IMetaTag extends Entry<IMetaTagFields> {
+  sys: {
+    id: string;
+    type: string;
+    createdAt: string;
+    updatedAt: string;
+    locale: string;
+    contentType: {
+      sys: {
+        id: "metaTag";
+        linkType: "ContentType";
+        type: "Link";
+      };
+    };
+  };
+}
+
 export interface ISiteConfigFields {
   /** Entry Title */
   entryTitle: string;
@@ -486,6 +522,7 @@ export type CONTENT_TYPE =
   | "bodyLinks"
   | "bodyYouTube"
   | "metaCategory"
+  | "metaTag"
   | "siteConfig"
   | "siteNavbar"
   | "siteSearch";
@@ -500,6 +537,7 @@ export type IEntry =
   | IBodyLinks
   | IBodyYouTube
   | IMetaCategory
+  | IMetaTag
   | ISiteConfig
   | ISiteNavbar
   | ISiteSearch;

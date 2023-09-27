@@ -1,7 +1,7 @@
 import React from "react";
 import clsx from "clsx";
 import Link from "next/link";
-import {MetaCategory, CreateBreadCrumbs} from "~/models";
+import {MetaCategory, CreateCategoryBreadCrumbs} from "~/models";
 import {CustomRichTexRenderer} from "../CustomRichTextRenderer";
 
 
@@ -11,7 +11,7 @@ interface IProps {
 
 const CategoryDescription = ({category}: IProps) => {
     const {name, description} = category;
-    const breadcrumbs = CreateBreadCrumbs(category);
+    const breadcrumbs = CreateCategoryBreadCrumbs(category);
     return <section className={clsx(
         'bg-white p-4 md:p-8',
         'shadow-md'

@@ -14,6 +14,7 @@ const CONTENTFUL_BLOG_POST_FIELDS = {
     LAYOUT_TYPE: 'fields.layoutType',
     AUTHORS: 'fields.authors',
     CATEGORIES: 'fields.categories',
+    TAGS: 'fields.tags',
 }
 
 const content_type = 'blogPost';
@@ -28,6 +29,7 @@ const fetchBySlug = (slug: string) =>
                 CONTENTFUL_BLOG_POST_FIELDS.BODY as 'fields',
                 CONTENTFUL_BLOG_POST_FIELDS.BANNERS as 'fields',
                 CONTENTFUL_BLOG_POST_FIELDS.CATEGORIES as 'fields',
+                CONTENTFUL_BLOG_POST_FIELDS.TAGS as 'fields',
                 CONTENTFUL_BLOG_POST_FIELDS.PUBLISHED_DATE as 'fields',
                 CONTENTFUL_BLOG_POST_FIELDS.AUTHORS as 'fields',
             ],
@@ -56,7 +58,6 @@ const fetchListPaginated = (skip: number = 0, limit: number = 10) => {
                 CONTENTFUL_BLOG_POST_FIELDS.PUBLISHED_DATE as 'fields',
                 CONTENTFUL_BLOG_POST_FIELDS.AUTHORS as 'fields',
                 CONTENTFUL_BLOG_POST_FIELDS.FEATURED_BANNER as 'fields',
-                CONTENTFUL_BLOG_POST_FIELDS.CATEGORIES as 'fields',
             ],
             // @ts-ignore
             order: `-${CONTENTFUL_BLOG_POST_FIELDS.PUBLISHED_DATE}`,
@@ -85,7 +86,6 @@ const fetchListPaginatedByAuthor = (authorId: string, skip: number = 0, limit: n
                 CONTENTFUL_BLOG_POST_FIELDS.PUBLISHED_DATE as 'fields',
                 CONTENTFUL_BLOG_POST_FIELDS.AUTHORS as 'fields',
                 CONTENTFUL_BLOG_POST_FIELDS.FEATURED_BANNER as 'fields',
-                CONTENTFUL_BLOG_POST_FIELDS.CATEGORIES as 'fields',
             ],
             // @ts-ignore
             'fields.authors.sys.id': authorId,
@@ -116,7 +116,6 @@ const fetchListPaginatedByCategories = (categoryIds: string[], skip: number = 0,
                 CONTENTFUL_BLOG_POST_FIELDS.PUBLISHED_DATE as 'fields',
                 CONTENTFUL_BLOG_POST_FIELDS.AUTHORS as 'fields',
                 CONTENTFUL_BLOG_POST_FIELDS.FEATURED_BANNER as 'fields',
-                CONTENTFUL_BLOG_POST_FIELDS.CATEGORIES as 'fields',
             ],
             // @ts-ignore
             'fields.categories.sys.id[in]': categoryIds.join(","),
@@ -136,9 +135,39 @@ const fetchListPaginatedByCategories = (categoryIds: string[], skip: number = 0,
 }
 
 
+const fetchListPaginatedByTag = (tagId: string, skip: number = 0, limit: number = 10) => {
+    return client
+        .getEntries<BlogPostSkeleton>({
+            content_type,
+            select: [
+                CONTENTFUL_BLOG_POST_FIELDS.SLUG as 'fields',
+                CONTENTFUL_BLOG_POST_FIELDS.HEADING as 'fields',
+                CONTENTFUL_BLOG_POST_FIELDS.SHORT_BODY as 'fields',
+                CONTENTFUL_BLOG_POST_FIELDS.PUBLISHED_DATE as 'fields',
+                CONTENTFUL_BLOG_POST_FIELDS.AUTHORS as 'fields',
+                CONTENTFUL_BLOG_POST_FIELDS.FEATURED_BANNER as 'fields',
+            ],
+            // @ts-ignore
+            'fields.tags.sys.id': tagId,
+            // @ts-ignore
+            order: `-${CONTENTFUL_BLOG_POST_FIELDS.PUBLISHED_DATE}`,
+            skip: skip,
+            limit: limit,
+            include: 10,
+        })
+        .then((response) => {
+            const items = mapContentfulList(response.items);
+            return {
+                items,
+                total: response.total,
+            }
+        })
+}
+
 export {
     fetchBySlug,
     fetchListPaginated,
     fetchListPaginatedByAuthor,
-    fetchListPaginatedByCategories
+    fetchListPaginatedByCategories,
+    fetchListPaginatedByTag,
 }

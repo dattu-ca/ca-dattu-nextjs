@@ -6,5 +6,6 @@ export * from './bodyImage';
 export * from './bodyLinks';
 export * from './bodyYoutube';
 export * from './metaCategory';
+export * from './metaTag';
 export * from './siteConfig';
 export * from './siteNavbar';
