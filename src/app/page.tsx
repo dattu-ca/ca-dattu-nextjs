@@ -2,8 +2,8 @@ import clsx from "clsx";
 import {HomeComponent} from "~/components/HomeComponent";
 import {blogHomeServices} from "~/services";
 import {SERVER_CONFIG} from "~/utils/config.server";
-import {FeaturedPost} from "~/components/HomeComponent/FeaturedPost";
-import {SpotlightPosts} from "~/components/HomeComponent/SpotlightPosts";
+import {SpotlightPosts} from "~/components/PostsList/SpotlightPosts";
+import {PostExcerpt} from "~/components/PostsList/postExcerpt";
 
 
 const Page = async () => {
@@ -25,10 +25,10 @@ const Page = async () => {
             'pb-4 md:pb-8',
         )}>
             <section className={clsx('container')}>
-                {data.featuredPost && <FeaturedPost post={data.featuredPost}/>}
+                {data.featuredPost && <PostExcerpt post={data.featuredPost}/>}
             </section>
             <section className={clsx('sidebar')}>
-                {data.spotlightPosts && <SpotlightPosts posts={data.spotlightPosts}/>}
+                {data.spotlightPosts && <div className={clsx('bg-white shadow-md')}><SpotlightPosts posts={data.spotlightPosts}/></div>}
             </section>
         </div>
 

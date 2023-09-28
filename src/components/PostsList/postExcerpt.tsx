@@ -18,7 +18,7 @@ const PostExcerpt = ({post}: IProps) => {
             post.featuredBanner && <FeaturedBanner featuredBanner={post.featuredBanner}/>
         }
         <div className={clsx(
-            'bg-white p-4 p-8',
+            'bg-white p-4 md:p-8',
             'shadow-md'
         )}>
             <div className={clsx(
