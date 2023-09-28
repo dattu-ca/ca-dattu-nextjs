@@ -14,20 +14,15 @@ const PaginationButtonsList = () => {
     }
 
     return <nav>
-        <ul className={clsx(
-            'list-none m-0 p-0',
-            'flex items-center justify-center flex-wrap',
-            'border border-solid border-2 border-gray-400',
-            'rounded-2xl',
-        )}>
-            <li className={'p-0 m-0'}>
+        <ul className={clsx()}>
+            <li className={clsx()}>
                 <PaginationButton pageNumber={Math.max(1, current - 1)}
                                   aria='Go to previous page'>
-                    <BsChevronLeft  className='w-[auto] h-full'/> Previous
+                    <BsChevronLeft  className={clsx()}/> Previous
                 </PaginationButton>
             </li>
             {
-                links.map(link => <li key={link.pageNumber} className={'p-0 m-0 hidden md:block'}>
+                links.map(link => <li key={link.pageNumber} className={clsx()}>
                     <PaginationButton pageNumber={link.pageNumber}
                                       showDots={link.showDots}>
                         {link.label}
@@ -36,16 +31,16 @@ const PaginationButtonsList = () => {
             }
             {
                 links.length > 0 && (
-                    <li className={'p-0 m-0 md:hidden'}>
+                    <li className={clsx()}>
                         <PaginationDots/>
                     </li>
                 )
             }
 
-            <li className={'p-0 m-0'}>
+            <li className={clsx()}>
                 <PaginationButton pageNumber={Math.min(totalPages, current + 1)}
                                   aria='Go to next page'>
-                    Next <BsChevronRight className='w-[auto] h-full'/>
+                    Next <BsChevronRight className={clsx()}/>
                 </PaginationButton>
             </li>
         </ul>

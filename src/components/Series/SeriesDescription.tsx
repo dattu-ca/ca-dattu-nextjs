@@ -11,16 +11,9 @@ interface IProps {
 
 const SeriesDescription = ({series}: IProps) => {
     const {name, description} = series;
-    return <section className={clsx(
-        'bg-white p-4 md:p-8',
-        'shadow-md'
-    )}>
-        <h4 className={clsx(
-            'mb-4',
-            'flex flex-wrap gap-2',
-            'items-center'
-        )}>
-            <IoIosAlbums className={'w-8 h-8'}/>
+    return <section className={clsx()}>
+        <h4 className={clsx()}>
+            <IoIosAlbums className={clsx()}/>
             <span>{name}</span>
         </h4>
 

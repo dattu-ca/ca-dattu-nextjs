@@ -7,10 +7,7 @@ interface IProps {
 }
 
 const SidebarTags = ({tags}: IProps) => {
-    return <div className={clsx(
-        'bg-white p-4 md:p-8',
-        'shadow-md'
-    )}>
+    return <div className={clsx()}>
         <h4>Tags</h4>
         <TagsNamesList tags={tags}/>
     </div>

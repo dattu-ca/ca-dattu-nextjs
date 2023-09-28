@@ -17,22 +17,13 @@ const PostExcerpt = ({post}: IProps) => {
         {
             post.featuredBanner && <FeaturedBanner featuredBanner={post.featuredBanner}/>
         }
-        <div className={clsx(
-            'bg-white p-4 md:p-8',
-            'shadow-md'
-        )}>
-            <div className={clsx(
-                'text-gray-400',
-                'flex gap-2',
-                'flex-wrap',
-                'items-center',
-                'mb-4 md:mb-8',
-            )}>
+        <div className={clsx()}>
+            <div className={clsx()}>
                 <AuthorsNameList authors={post.authors} suffix=":"/>
                 <span aria-label='Published on'>{dayjs(post.publishedDate).format('MMM DD, YYYY')}</span>
             </div>
             {
-                post.series && <div className={clsx('mb-4 md:mb-8')}><SeriesBanner series={post.series}/></div>
+                post.series && <div className={clsx()}><SeriesBanner series={post.series}/></div>
             }
             <h2>
                 <Link href={`/post/${post.slug}`}>
@@ -43,9 +34,7 @@ const PostExcerpt = ({post}: IProps) => {
             {
                 post.categories && <CategoriesNamesList categories={post.categories as MetaCategory[]}/>
             }
-            <p className={clsx(
-                'text-right'
-            )}>
+            <p className={clsx()}>
                 <Link className={clsx()} href={`/post/${post.slug}`}>...View more</Link>
             </p>
         </div>

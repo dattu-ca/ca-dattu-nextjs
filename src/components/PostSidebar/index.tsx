@@ -15,10 +15,7 @@ const PostSidebarComponent = ({post, seriesPosts}: IProps) => {
         {
             post.categories
             && (
-                <section className={clsx(
-                    'mb-4 md:mb-8',
-                    'last:mb-0 last:md:mb-0',
-                )}>
+                <section className={clsx()}>
                     <SidebarCategories categories={post.categories as MetaCategory[]}/>
                 </section>
             )
@@ -26,10 +23,7 @@ const PostSidebarComponent = ({post, seriesPosts}: IProps) => {
         {
             post.authors
             && (
-                <section className={clsx(
-                    'mb-4 md:mb-8',
-                    'last:mb-0 last:md:mb-0',
-                )}>
+                <section className={clsx()}>
                     <AuthorsShortBioComponent authors={post.authors} showNameAsALink={true}/>
                 </section>
             )
@@ -37,10 +31,7 @@ const PostSidebarComponent = ({post, seriesPosts}: IProps) => {
         {
             post.tags
             && (
-                <section className={clsx(
-                    'mb-4 md:mb-8',
-                    'last:mb-0 last:md:mb-0',
-                )}>
+                <section className={clsx()}>
                     <SidebarTags tags={post.tags as MetaTag[]}/>
                 </section>
             )
@@ -48,10 +39,7 @@ const PostSidebarComponent = ({post, seriesPosts}: IProps) => {
         {
             seriesPosts
             && (
-                <section className={clsx(
-                    'mb-4 md:mb-8',
-                    'last:mb-0 last:md:mb-0',
-                )}>
+                <section className={clsx()}>
                     <SidebarSeries posts={seriesPosts}/>
                 </section>
             )

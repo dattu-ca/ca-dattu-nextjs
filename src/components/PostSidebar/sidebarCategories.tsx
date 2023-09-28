@@ -7,10 +7,7 @@ interface IProps {
 }
 
 const SidebarCategories = ({categories}: IProps) => {
-    return <div className={clsx(
-        'bg-white p-4 md:p-8',
-        'shadow-md'
-    )}>
+    return <div className={clsx()}>
         <h4>Categories</h4>
         <CategoriesNamesList categories={categories}/>
     </div>

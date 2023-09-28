@@ -16,18 +16,12 @@ export const PostComponent = (props: IProps) => {
     const {body, heading} = data;
 
     return <PostContextProvider data={data}>
-        <div className={clsx(
-            'bg-white p-4 md:p-8',
-            'shadow-md'
-        )}>
-            <div className={clsx(
-                'text-gray-400',
-                'mb-4 md:mb-8',
-            )}>
+        <div className={clsx()}>
+            <div className={clsx()}>
                 <span aria-label='Published on'>{dayjs(data.publishedDate).format('MMM DD, YYYY')}</span>
             </div>
             {
-                data.series && (<div className={clsx('mb-4 md:mb-8')}><SeriesBanner series={data.series}/></div>)
+                data.series && (<div className={clsx()}><SeriesBanner series={data.series}/></div>)
             }
             <h1>{heading}</h1>
             <CustomRichTexRenderer document={body}/>

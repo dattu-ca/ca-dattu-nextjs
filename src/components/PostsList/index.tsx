@@ -18,26 +18,17 @@ const PostsListComponent = ({
                                 skip, limit, total, current, posts, linkPrefix, linkFirstPage
                             }: IProps) => {
 
-    return <div className={clsx(
-        'w-full'
-    )}>
+    return <div className={clsx()}>
         <div>
             {
                 posts.map(post => (
-                    <div key={post.slug} className={clsx(
-                        'mb-4 md:mb-8',
-                        'last-of-type:mb-0'
-                    )}>
+                    <div key={post.slug} className={clsx()}>
                         <PostExcerpt post={post} />
                     </div>
                 ))
             }
         </div>
-        <div className={clsx(
-            'mt-4',
-            'md:mt-8',
-            'empty:mt-0'
-        )}>
+        <div className={clsx()}>
             <PaginationComponent skip={skip}
                                  limit={limit}
                                  total={total}

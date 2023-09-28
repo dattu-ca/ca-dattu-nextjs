@@ -49,7 +49,7 @@ const MenuMobile = () => {
                     {
                         links.map(link => (
                             <li key={link.id}
-                                className=className={clsx()}>
+                                className={clsx()}>
                                 <div className={clsx()}>
                                     <Link
                                         onClick={closeMobileMenu}

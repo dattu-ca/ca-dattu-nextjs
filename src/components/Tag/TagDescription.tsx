@@ -10,13 +10,8 @@ interface IProps {
 
 const TagDescription = ({tag}: IProps) => {
     const {name, description} = tag;
-    return <section className={clsx(
-        'bg-white p-4 md:p-8',
-        'shadow-md'
-    )}>
-        <h4 className={clsx(
-            'mb-4',
-        )}>
+    return <section className={clsx()}>
+        <h4 className={clsx()}>
             <span>{name}</span>
         </h4>
 

@@ -24,7 +24,7 @@ const MenuDesktop = () => {
         }
     } = useNavbarContext();
     return <ul
-        className=className={clsx()}
+        className={clsx()}
         onMouseOut={() => closeSubMenu(null)}
     >
         <li className={clsx()}>
@@ -39,29 +39,27 @@ const MenuDesktop = () => {
                     className={clsx()}
                     onMouseOver={() => openSubMenu(link.id)}
                 >
-                    <ClickAwayListener onClickAway={() => ({})}>
-                        <div>
-                            <div className={clsx()}>
-                                <Link
-                                    aria-current={getAriaCurrent(link.url)}
-                                    href={link.url}
-                                    className={clsx()}>
-                                    {link.label}
-                                </Link>
-                                {
-                                    Array.isArray(link?.links) && link.links.length > 0 &&
-                                    <button onClick={() => toggleSubMenu(link.id)}
-                                            aria-label={subMenuOpenId === link.id ? `Close sub menu for ${link.label}` : `Open sub menu for ${link.label}`}>
-                                        <AiOutlineDown className={clsx()}/>
-                                    </button>
-                                }
-                            </div>
+                    <div>
+                        <div className={clsx()}>
+                            <Link
+                                aria-current={getAriaCurrent(link.url)}
+                                href={link.url}
+                                className={clsx()}>
+                                {link.label}
+                            </Link>
                             {
-                                Array.isArray(link?.links) && link.links.length > 0
-                                && <MenuDesktopSubmenu id={link.id} links={link.links as ILink[]}/>
+                                Array.isArray(link?.links) && link.links.length > 0 &&
+                                <button onClick={() => toggleSubMenu(link.id)}
+                                        aria-label={subMenuOpenId === link.id ? `Close sub menu for ${link.label}` : `Open sub menu for ${link.label}`}>
+                                    <AiOutlineDown className={clsx()}/>
+                                </button>
                             }
                         </div>
-                    </ClickAwayListener>
+                        {
+                            Array.isArray(link?.links) && link.links.length > 0
+                            && <MenuDesktopSubmenu id={link.id} links={link.links as ILink[]}/>
+                        }
+                    </div>
                 </li>
             ))
         }

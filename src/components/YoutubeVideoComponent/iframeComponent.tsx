@@ -10,10 +10,7 @@ const YoutubeIframe = ({data}: IProps) => {
                    title={data.name}
                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
                    allowFullScreen
-                   className={clsx(
-                       'h-full w-full',
-                   )}
-    >
+                   className={clsx()}>
     </iframe>
 }
 

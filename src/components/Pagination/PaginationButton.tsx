@@ -17,16 +17,7 @@ const PaginationButton = ({children, pageNumber, aria, showDots}: IButtonLinkPro
     const {ctxData: {current}, ctxFunctions: {getLinkUrl}} = usePaginationContext();
     const isCurrent = current === pageNumber;
 
-    const btnClasses = clsx(
-        'py-4 px-4',
-        'flex items-center justify-center gap-1',
-        'transition-all duration-200',
-        {
-            ['text-gray-400 hover:text-gray-400 ']: isCurrent,
-            ['text-black hover:text-black hover:bg-gray-300 ' +
-            'hover:after:w-0']: !isCurrent
-        }
-    );
+    const btnClasses = clsx();
 
     if (showDots) {
         return <PaginationDots/>

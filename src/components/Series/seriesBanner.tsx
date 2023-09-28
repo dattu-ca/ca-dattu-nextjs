@@ -9,14 +9,10 @@ interface IProps {
 
 const SeriesBanner = ({series}: IProps) => {
     return <div>
-        <h5 className={clsx('mb-0')}>
+        <h5 className={clsx()}>
             <Link href={`/series/${series.slug}`}
-                  className={clsx(
-                      'after:w-full after:bg-site-secondary',
-                      'hover:after:bg-site-primary',
-                      'flex flex-nowrap items-start justify-start gap-1'
-                  )}>
-                <IoIosAlbums className={clsx('w-6 h-6')}/>
+                  className={clsx()}>
+                <IoIosAlbums className={clsx()}/>
                 <span>{series.name}</span>
             </Link>
         </h5>

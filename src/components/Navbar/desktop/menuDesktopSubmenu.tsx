@@ -23,17 +23,17 @@ const MenuDesktopSubmenu = ({id, links}: IProps) => {
 
     const isOpen = id === subMenuOpenId
 
-    return <div className=className={clsx()}>
-        <ul className=className={clsx()}>
+    return <div className={clsx()}>
+        <ul className={clsx()}>
             {
                 links.map(link => (
                     <li key={link.id}
-                        className=className={clsx()}
+                        className={clsx()}
                     >
                         <Link href={link.url}
                               tabIndex={isOpen ? undefined : -1}
                               aria-current={getAriaCurrent(link.url)}
-                              className=className={clsx()}
+                              className={clsx()}
                               onClick={() => closeSubMenu(id)}
                         >{link.label}</Link>
                     </li>

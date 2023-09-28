@@ -24,7 +24,7 @@ const MenuLoggedInDesktop = () => {
                     <li key={link.label}>
                         <Link aria-current={getAriaCurrent(link.url)}
                               href={link.url}
-                              className=className={clsx()}>
+                              className={clsx()}>
                             {link.label}
                         </Link>
                     </li>
