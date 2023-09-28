@@ -1,16 +1,14 @@
 "use client";
 import {Fragment, useState} from 'react';
 import clsx from "clsx";
-import {BodyImage, BodyYoutube} from "~/models";
-import {RenderedImage} from './renderedImage'
-// import Image from 'next/image';
-
-import {RenderedYoutube} from "~/components/banner/renderedYoutube";
 import {useSwipeable} from "react-swipeable";
+import {BodyImage, BodyYoutube} from "~/models";
+import {RenderedImage} from './renderedImage';
+import {RenderedYoutube} from "./renderedYoutube";
 
 
 interface IProps {
-    banners: (BodyImage | BodyYoutube)[],
+    banners: (BodyImage | BodyYoutube)[];
 }
 
 export const BannerComponent = ({banners}: IProps) => {

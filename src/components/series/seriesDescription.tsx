@@ -1,4 +1,3 @@
-import React from "react";
 import clsx from "clsx";
 import {MetaSeries} from "~/models";
 import {CustomRichTexRenderer} from "../customRichTextRenderer";

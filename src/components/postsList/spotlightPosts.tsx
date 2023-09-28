@@ -1,7 +1,7 @@
-import {BlogPost} from "~/models";
-import clsx from "clsx";
-import {CustomRichTexRenderer} from '../customRichTextRenderer'
 import Link from "next/link";
+import clsx from "clsx";
+import {BlogPost} from "~/models";
+import {CustomRichTexRenderer} from '../customRichTextRenderer';
 
 interface IProps {
     posts: BlogPost[]

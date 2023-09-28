@@ -1,5 +1,4 @@
-'use client'
-import React from 'react';
+'use client';
 import clsx from "clsx";
 import Link from "next/link";
 import {useNavbarContext} from "../context";

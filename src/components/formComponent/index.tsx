@@ -1,5 +1,5 @@
 import clsx from "clsx";
-import {BodyForm} from "~/models/bodyForm";
+import {BodyForm} from "~/models";
 import {formsServices} from "~/services";
 import {FormikComponent} from "../formComponent/formikComponent";
 

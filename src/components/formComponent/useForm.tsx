@@ -1,9 +1,9 @@
 import {useCallback, useMemo} from "react";
-import {flattenFields, doValidation} from "~/utils/form.utils";
-import {BodyForm, BodyFormFieldText, BodyFormFieldTextArea, BodyFormFieldType} from "~/models/bodyForm";
 import {Field} from "formik";
-import {FieldTypeText} from "~/components/formComponent/fieldTypeText";
-import {FieldTypeTextArea} from "~/components/formComponent/fieldTypeTextArea";
+import {flattenFields, doValidation} from "~/utils/form.utils";
+import {BodyForm, BodyFormFieldText, BodyFormFieldTextArea, BodyFormFieldType} from "~/models";
+import {FieldTypeText} from "./fieldTypeText";
+import {FieldTypeTextArea} from "./fieldTypeTextArea";
 
 
 export const useForm = (form: BodyForm) => {

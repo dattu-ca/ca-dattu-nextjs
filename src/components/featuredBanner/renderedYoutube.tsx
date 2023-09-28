@@ -1,6 +1,6 @@
+import clsx from "clsx";
 import {BodyYoutube} from "~/models";
 import {YoutubeIframe} from "../youtubeVideoComponent/iframeComponent";
-import clsx from "clsx";
 
 interface IProps {
     data: BodyYoutube

@@ -1,12 +1,13 @@
-import {CustomRichTexRenderer} from '../customRichTextRenderer'
+
 import clsx from "clsx";
 import Link from "next/link";
 import dayjs from "dayjs";
 import {BlogPost, MetaCategory} from "~/models";
 import {AuthorsNameList} from "../author/authorsNameList";
-import {FeaturedBanner} from "~/components/featuredBanner";
-import {CategoriesNamesList} from "~/components/category/categoriesNameList";
-import {SeriesBanner} from "~/components/series/seriesBanner";
+import {CustomRichTexRenderer} from '../customRichTextRenderer'
+import {FeaturedBanner} from "../featuredBanner";
+import {CategoriesNamesList} from "../category/categoriesNameList";
+import {SeriesBanner} from "../series/seriesBanner";
 
 interface IProps {
     post: BlogPost

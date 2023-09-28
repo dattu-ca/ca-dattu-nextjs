@@ -1,11 +1,9 @@
-import React from 'react';
 import clsx from "clsx";
-import {CustomRichTexRenderer} from "~/components/customRichTextRenderer";
-import {BlogPost} from "~/models";
-
-import {PostContextProvider} from "./context";
 import dayjs from "dayjs";
-import {SeriesBanner} from "~/components/series/seriesBanner";
+import {BlogPost} from "~/models";
+import {SeriesBanner} from "../series/seriesBanner";
+import {CustomRichTexRenderer} from "../customRichTextRenderer";
+import {PostContextProvider} from "./context";
 
 interface IProps {
     data: BlogPost;

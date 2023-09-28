@@ -1,8 +1,7 @@
 'use client';
-import clsx from 'clsx';
 import React from "react";
-import {PaginationButtonsList} from "./paginationButtonsList";
 import {PaginationContextProvider} from "./context";
+import {PaginationButtonsList} from "./paginationButtonsList";
 
 interface IProps {
     total: number;

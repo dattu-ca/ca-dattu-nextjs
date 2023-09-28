@@ -1,5 +1,5 @@
-import {FieldInputProps} from "formik";
 import clsx from "clsx";
+import {FieldInputProps} from "formik";
 
 
 const FieldTypeTextArea = (props: FieldInputProps<string>) => {

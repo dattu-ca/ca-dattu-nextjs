@@ -1,6 +1,6 @@
+import clsx from "clsx";
 import Link from "next/link";
 import {MetaCategory} from "~/models";
-import clsx from "clsx";
 
 
 interface IProps {

@@ -1,8 +1,8 @@
 'use client';
+import {Session} from "next-auth";
 import {SiteNavbar} from "~/models";
 import {NavbarContextProvider} from './context';
 import {Navbar} from './navbar';
-import {Session} from "next-auth";
 
 interface IProps {
     navbar: SiteNavbar;

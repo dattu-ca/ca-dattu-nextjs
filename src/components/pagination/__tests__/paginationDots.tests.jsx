@@ -1,7 +1,7 @@
 import {fireEvent, render, screen, waitFor} from '@testing-library/react';
+import {useRouter} from "next/navigation";
 import {PaginationDots} from '../paginationDots';
 import {PaginationContextProvider} from '../context';
-import {useRouter} from "next/navigation";
 
 const mockPush = jest.fn();
 beforeEach(() => {

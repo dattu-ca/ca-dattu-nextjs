@@ -1,7 +1,7 @@
-import {BlogPost} from "~/models";
 import clsx from "clsx";
-import {SeriesBanner} from "~/components/series/seriesBanner";
-import {SpotlightPosts} from "~/components/postsList/spotlightPosts";
+import {BlogPost} from "~/models";
+import {SeriesBanner} from "../series/seriesBanner";
+import {SpotlightPosts} from "../postsList/spotlightPosts";
 
 interface IProps {
     posts: BlogPost[];

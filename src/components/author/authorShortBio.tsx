@@ -1,9 +1,8 @@
-import {BlogAuthor} from "~/models";
-import clsx from "clsx";
-import React from "react";
-import {CustomRichTexRenderer} from "../customRichTextRenderer";
-import {AuthorAvatar} from "~/components/author/avatar";
 import Link from "next/link";
+import clsx from "clsx";
+import {BlogAuthor} from "~/models";
+import {CustomRichTexRenderer} from "../customRichTextRenderer";
+import {AuthorAvatar} from "./avatar";
 
 interface IProps {
     author: BlogAuthor,

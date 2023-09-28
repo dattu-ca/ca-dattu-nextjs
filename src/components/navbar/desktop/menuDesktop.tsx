@@ -1,12 +1,9 @@
 'use client';
-import React, {Fragment} from 'react';
 import clsx from "clsx";
-import {ClickAwayListener} from '@mui/base/ClickAwayListener';
 import Link from "next/link";
-import {useNavbarContext} from "../context";
-import {AiOutlineDown} from 'react-icons/ai';
-import {MenuDesktopSubmenu} from "~/components/navbar/desktop/menuDesktopSubmenu";
 import {ILink} from "~/models";
+import {useNavbarContext} from "../context";
+import {MenuDesktopSubmenu} from "./menuDesktopSubmenu";
 
 
 const MenuDesktop = () => {
@@ -51,7 +48,7 @@ const MenuDesktop = () => {
                                 Array.isArray(link?.links) && link.links.length > 0 &&
                                 <button onClick={() => toggleSubMenu(link.id)}
                                         aria-label={subMenuOpenId === link.id ? `Close sub menu for ${link.label}` : `Open sub menu for ${link.label}`}>
-                                    <AiOutlineDown className={clsx()}/>
+                                    <span>^</span>
                                 </button>
                             }
                         </div>

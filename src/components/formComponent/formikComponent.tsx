@@ -1,13 +1,13 @@
 'use client';
 import {Fragment, useState, useRef} from "react";
-import {FormikProps, Form, Formik} from 'formik';
 import clsx from "clsx";
+import {FormikProps, Form, Formik} from 'formik';
 import ReCAPTCHA from "react-google-recaptcha";
 import {toast} from "react-toastify";
-import {BodyForm} from "~/models/bodyForm";
-import {useForm} from "~/components/formComponent/useForm";
 import {CLIENT_CONFIG} from "~/utils/config.client";
 import {sanitize} from "~/utils/utils";
+import {BodyForm} from "~/models";
+import {useForm} from "./useForm";
 
 
 interface IProps {

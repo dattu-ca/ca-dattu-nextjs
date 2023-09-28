@@ -1,8 +1,8 @@
-import React from 'react';
 import clsx from "clsx";
 import Link from "next/link";
-import {useNavbarContext} from "../context";
 import {ILink} from "~/models";
+import {useNavbarContext} from "../context";
+
 
 interface IProps {
     id: string;

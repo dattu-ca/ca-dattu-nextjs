@@ -1,9 +1,9 @@
 'use client'
 import React, {Fragment, useEffect, useState} from 'react';
+import clsx from "clsx";
 import {useBreakpoint} from "~/hooks/useBreakpoint";
 import {NavbarDesktop} from "./desktop";
 import {NavbarMobile} from "./mobile";
-import clsx from "clsx";
 
 
 const Navbar = () => {

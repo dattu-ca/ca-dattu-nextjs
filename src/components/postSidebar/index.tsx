@@ -1,6 +1,6 @@
 import clsx from "clsx";
 import {BlogPost, MetaCategory, MetaTag} from "~/models";
-import {AuthorsShortBioComponent} from "~/components/author/authorsShortBio";
+import {AuthorsShortBioComponent} from "../author/authorsShortBio";
 import {SidebarCategories} from "./sidebarCategories";
 import {SidebarTags} from "./sidebarTags";
 import {SidebarSeries} from "./sidebarSeries";

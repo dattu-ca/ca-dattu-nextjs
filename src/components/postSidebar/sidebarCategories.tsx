@@ -1,6 +1,6 @@
-import {MetaCategory} from "~/models";
-import {CategoriesNamesList} from "~/components/category/categoriesNameList";
 import clsx from "clsx";
+import {MetaCategory} from "~/models";
+import {CategoriesNamesList} from "../category/categoriesNameList";
 
 interface IProps {
     categories: MetaCategory[];

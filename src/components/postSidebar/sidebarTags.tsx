@@ -1,6 +1,6 @@
-import { MetaTag} from "~/models";
 import clsx from "clsx";
-import {TagsNamesList} from "~/components/tag/tagsNameList";
+import {MetaTag} from "~/models";
+import {TagsNamesList} from "../tag/tagsNameList";
 
 interface IProps {
     tags: MetaTag[];

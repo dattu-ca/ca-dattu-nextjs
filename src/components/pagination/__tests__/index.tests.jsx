@@ -1,6 +1,4 @@
 import {render, screen} from '@testing-library/react'
-
-
 import {PaginationComponent} from '../';
 
 const originalMockData = Object.freeze({

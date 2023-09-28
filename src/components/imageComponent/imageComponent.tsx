@@ -1,6 +1,6 @@
-import {BodyImage} from "~/models";
 import {useMemo} from "react";
 import clsx from "clsx";
+import {BodyImage} from "~/models";
 
 interface IProps {
     image: BodyImage

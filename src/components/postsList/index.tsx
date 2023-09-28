@@ -1,6 +1,6 @@
 import clsx from "clsx";
 import {BlogPost} from "~/models";
-import {PaginationComponent} from "~/components/pagination";
+import {PaginationComponent} from "../pagination";
 import {PostExcerpt} from "./postExcerpt";
 
 

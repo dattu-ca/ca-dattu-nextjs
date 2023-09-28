@@ -1,5 +1,5 @@
 'use client';
-import React, {ChangeEvent, useCallback} from "react";
+import {ChangeEvent, useCallback} from "react";
 import clsx from 'clsx';
 import {useRouter} from "next/navigation";
 import {usePaginationContext} from "./context";

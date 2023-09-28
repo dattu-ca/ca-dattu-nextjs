@@ -1,6 +1,6 @@
+import clsx from "clsx";
 import {BodyImage} from "~/models";
 import {ImageComponent} from "./imageComponent";
-import clsx from "clsx";
 
 interface IProps {
     image: BodyImage

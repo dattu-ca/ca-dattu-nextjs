@@ -1,7 +1,7 @@
 'use client';
-import {signOut} from "next-auth/react";
-import clsx from "clsx";
 import {useState} from "react";
+import clsx from "clsx";
+import {signOut} from "next-auth/react";
 
 const AuthLogoutComponent = () => {
     const [hasClicked, setHasClicked] = useState<boolean>(false);

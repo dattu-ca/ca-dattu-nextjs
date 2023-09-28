@@ -1,5 +1,5 @@
-import {BodyYoutube} from "~/models";
 import clsx from "clsx";
+import {BodyYoutube} from "~/models";
 
 interface IProps {
     data: BodyYoutube;

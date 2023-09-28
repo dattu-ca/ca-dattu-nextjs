@@ -1,4 +1,3 @@
-"use client";
 import clsx from "clsx";
 import {BodyImage, BodyYoutube} from "~/models";
 import {RenderedImage} from './renderedImage'

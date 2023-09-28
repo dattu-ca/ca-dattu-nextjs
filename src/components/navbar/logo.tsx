@@ -1,8 +1,8 @@
 'use client';
+import {useMemo} from "react";
 import clsx from "clsx";
 import {useNavbarContext} from './context';
 import classes from './logo.module.css';
-import {useMemo} from "react";
 
 
 const Logo = () => {

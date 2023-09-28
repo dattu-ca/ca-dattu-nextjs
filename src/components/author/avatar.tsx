@@ -1,6 +1,5 @@
-import {BlogAuthor} from "~/models";
 import clsx from "clsx";
-import React from "react";
+import {BlogAuthor} from "~/models";
 
 interface IProps {
     author: BlogAuthor;

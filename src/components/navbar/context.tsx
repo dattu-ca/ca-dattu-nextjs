@@ -1,7 +1,7 @@
 import {createContext, ReactElement, useCallback, useContext, useMemo, useState} from "react";
-import {BodyImage, ILink, SiteNavbar} from "~/models";
 import {usePathname} from "next/navigation";
 import {Session} from "next-auth";
+import {BodyImage, ILink, SiteNavbar} from "~/models";
 
 
 const AUTH_LINKS = [
