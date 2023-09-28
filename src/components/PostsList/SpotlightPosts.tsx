@@ -27,29 +27,13 @@ const SpotlightPosts = ({posts}: IProps) => {
                     <div className={clsx(
                         'p-4 md:p-8'
                     )}>
-                        <div className={clsx(
-                            'flex gap-2',
-                            'flex-nowrap'
-                        )}>
-                            <div>
-                                <h6 className={clsx(
-                                    {
-                                        ['mb-0'] : !post.shortBody
-                                    }
-                                )}>{post.heading}</h6>
-                                <div className={clsx('text-black')}>
-                                    <CustomRichTexRenderer document={post.shortBody}/>
-                                </div>
-                            </div>
+                        <h6 className={clsx(
                             {
-                                post.featuredBanner && (
-                                    <div className={clsx(
-                                        'w-1/3'
-                                    )}>
-                                        <BannerComponent banners={[post.featuredBanner]}/>
-                                    </div>
-                                )
+                                ['mb-0'] : !post.shortBody
                             }
+                        )}>{post.heading}</h6>
+                        <div className={clsx('text-black')}>
+                            <CustomRichTexRenderer document={post.shortBody}/>
                         </div>
                     </div>
                 </Link>
