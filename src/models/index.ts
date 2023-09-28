@@ -1,3 +1,4 @@
+export * from './blogHome';
 export * from './blogPage';
 export * from './blogPost';
 export * from './blogAuthor';

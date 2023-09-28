@@ -1,3 +1,4 @@
+import * as blogHomeServices from './blogHome.services';
 import * as blogAuthorServices from './blogAuthor.services';
 import * as blogPageServices from './blogPage.services';
 import * as blogPostServices from './blogPost.services';
@@ -10,6 +11,7 @@ import * as siteNavbarServices from './siteNavbar.services';
 
 
 export {
+    blogHomeServices,
     blogAuthorServices,
     blogPageServices,
     blogPostServices,

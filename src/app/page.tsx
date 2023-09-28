@@ -1,13 +1,37 @@
-
+import clsx from "clsx";
 import {HomeComponent} from "~/components/HomeComponent";
-import {FaCentos} from "react-icons/fa6";
+import {blogHomeServices} from "~/services";
+import {SERVER_CONFIG} from "~/utils/config.server";
+import {FeaturedPost} from "~/components/HomeComponent/FeaturedPost";
+import {SpotlightPosts} from "~/components/HomeComponent/SpotlightPosts";
+
 
 const Page = async () => {
 
+    const data = await blogHomeServices.fetchBySlug(SERVER_CONFIG.CONTENTFUL_SLUGS.HOME_PAGE);
     return <div>
-        <h1>HOME PAGE</h1>
-        <FaCentos  className={'w-[100px] h-[100px]'}/>
-        <HomeComponent/>
+        <div className={clsx(
+            'mt-4 md:mt-8',
+            'wrapper-full-width',
+        )}>
+            <section>
+                <HomeComponent data={data}/>
+            </section>
+
+        </div>
+        <div className={clsx(
+            'mt-4 md:mt-8',
+            'wrapper-with-sidebar',
+            'pb-4 md:pb-8',
+        )}>
+            <section className={clsx('container')}>
+                {data.featuredPost && <FeaturedPost post={data.featuredPost}/>}
+            </section>
+            <section className={clsx('sidebar')}>
+                {data.spotlightPosts && <SpotlightPosts posts={data.spotlightPosts}/>}
+            </section>
+        </div>
+
     </div>
 }
 

@@ -216,7 +216,7 @@ const fetchListBySeries = (seriesId: string) =>
             // @ts-ignore
             'fields.series.sys.id': seriesId,
             // @ts-ignore
-            order: `-${CONTENTFUL_BLOG_POST_FIELDS.PUBLISHED_DATE}`,
+            order: `${CONTENTFUL_BLOG_POST_FIELDS.PUBLISHED_DATE}`,
             include: 10,
         })
         .then((response) => {
