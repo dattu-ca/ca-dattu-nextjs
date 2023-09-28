@@ -1,4 +1,4 @@
-import {PageComponent} from "~/components/Page";
+import {PageComponent} from "~/components/page";
 
 import {blogPageServices} from "~/services";
 

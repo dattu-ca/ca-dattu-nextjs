@@ -1,9 +1,9 @@
 import clsx from "clsx";
-import {HomeComponent} from "~/components/HomeComponent";
+import {HomeComponent} from "~/components/homeComponent";
 import {blogHomeServices} from "~/services";
 import {SERVER_CONFIG} from "~/utils/config.server";
-import {SpotlightPosts} from "~/components/PostsList/SpotlightPosts";
-import {PostExcerpt} from "~/components/PostsList/postExcerpt";
+import {SpotlightPosts} from "~/components/postsList/spotlightPosts";
+import {PostExcerpt} from "~/components/postsList/postExcerpt";
 
 
 const Page = async () => {

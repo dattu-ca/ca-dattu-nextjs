@@ -1,4 +1,4 @@
-import {PostComponent} from "~/components/Post";
+import {PostComponent} from "~/components/post";
 
 import {blogPostServices} from "~/services";
 

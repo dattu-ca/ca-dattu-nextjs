@@ -1,4 +1,4 @@
-import {PostsListComponent} from "~/components/PostsList";
+import {PostsListComponent} from "~/components/postsList";
 import {blogAuthorServices, blogPostServices} from "~/services";
 import {BlogAuthor} from "~/models";
 import {SERVER_CONFIG} from "~/utils/config.server";

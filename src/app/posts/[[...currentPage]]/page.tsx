@@ -2,7 +2,7 @@ import {redirect} from 'next/navigation';
 import {RedirectType} from "next/dist/client/components/redirect";
 import {blogPostServices} from "~/services";
 import {SERVER_CONFIG} from "~/utils/config.server";
-import {PostsListComponent} from "~/components/PostsList";
+import {PostsListComponent} from "~/components/postsList";
 
 
 interface IProps {

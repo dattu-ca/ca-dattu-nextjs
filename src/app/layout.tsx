@@ -7,7 +7,7 @@ import {ToastContainer} from "react-toastify";
 import {getAuthSession} from "~/auth.services";
 import {siteConfigServices, siteNavbarServices} from "~/services";
 import {SERVER_CONFIG} from "~/utils/config.server";
-import NavbarComponent from "~/components/Navbar";
+import NavbarComponent from "~/components/navbar";
 import dbConnect from "~/services.db/dbConnect";
 
 import './dayjs.config';

@@ -1,7 +1,7 @@
 import {metaSeriesServices, blogPostServices} from "~/services";
 import {SERVER_CONFIG} from "~/utils/config.server";
 import {MetaSeries} from "~/models";
-import {PostsListComponent} from "~/components/PostsList";
+import {PostsListComponent} from "~/components/postsList";
 
 
 interface IProps {

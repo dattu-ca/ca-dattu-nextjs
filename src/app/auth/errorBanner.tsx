@@ -9,7 +9,7 @@ const ErrorBannerComponent = () => {
     if (!error) {
         return null;
     }
-    return <div className={}>
+    return <div className={clsx()}>
         <div className={clsx()}>
             <div>
                 

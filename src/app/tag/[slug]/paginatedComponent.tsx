@@ -1,7 +1,7 @@
 import {metaTagServices, blogPostServices} from "~/services";
 import {SERVER_CONFIG} from "~/utils/config.server";
 import {MetaTag} from "~/models";
-import {PostsListComponent} from "~/components/PostsList";
+import {PostsListComponent} from "~/components/postsList";
 
 
 interface IProps {

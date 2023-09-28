@@ -1,8 +1,8 @@
 import React, {ReactElement} from "react";
 import clsx from "clsx";
 import {blogPostServices} from "~/services";
-import {BannerComponent} from "~/components/Banner";
-import {PostSidebarComponent} from "~/components/PostSidebar";
+import {BannerComponent} from "~/components/banner";
+import {PostSidebarComponent} from "~/components/postSidebar";
 import {BlogPost} from "~/models";
 
 

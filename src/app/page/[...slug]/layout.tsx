@@ -1,7 +1,7 @@
 import React, {ReactElement} from "react";
 import clsx from "clsx";
 import {blogPageServices} from "~/services";
-import {BannerComponent} from "~/components/Banner";
+import {BannerComponent} from "~/components/banner";
 
 
 interface IProps {

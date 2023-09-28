@@ -1,7 +1,7 @@
 import {metaCategoryServices, blogPostServices} from "~/services";
 import {SERVER_CONFIG} from "~/utils/config.server";
 import {MetaCategory} from "~/models";
-import {PostsListComponent} from "~/components/PostsList";
+import {PostsListComponent} from "~/components/postsList";
 
 
 interface IProps {

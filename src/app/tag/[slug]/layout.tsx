@@ -2,7 +2,7 @@ import React, {ReactElement} from "react";
 import clsx from "clsx";
 import {metaTagServices} from "~/services";
 import {MetaTag} from "~/models";
-import {TagDescription} from "~/components/Tag/TagDescription";
+import {TagDescription} from "~/components/tag/tagDescription";
 
 
 interface IProps {

@@ -1,8 +1,8 @@
 import React, {ReactElement} from "react";
 import clsx from "clsx";
 import {blogAuthorServices} from "~/services";
-import {AuthorShortBioComponent} from "~/components/Author/AuthorShortBio";
-import {BannerComponent} from "~/components/Banner";
+import {AuthorShortBioComponent} from "~/components/author/authorShortBio";
+import {BannerComponent} from "~/components/banner";
 import {AuthorNavigation} from "./navigation";
 
 interface IProps {

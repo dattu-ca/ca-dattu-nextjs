@@ -2,7 +2,7 @@ import React, {ReactElement} from "react";
 import clsx from "clsx";
 import {metaCategoryServices} from "~/services";
 import {MetaCategory} from "~/models";
-import {CategoryDescription} from "~/components/Category/CategoryDescription";
+import {CategoryDescription} from "~/components/category/categoryDescription";
 
 
 

@@ -1,4 +1,4 @@
-import {AuthorComponent} from "~/components/Author";
+import {AuthorComponent} from "~/components/author";
 
 import {blogAuthorServices} from "~/services";
 

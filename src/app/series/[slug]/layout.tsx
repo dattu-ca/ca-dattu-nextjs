@@ -2,7 +2,7 @@ import React, {ReactElement} from "react";
 import clsx from "clsx";
 import {metaSeriesServices} from "~/services";
 import {MetaSeries} from "~/models";
-import {SeriesDescription} from "~/components/Series/SeriesDescription";
+import {SeriesDescription} from "~/components/series/seriesDescription";
 
 
 interface IProps {
