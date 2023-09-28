@@ -1,7 +1,6 @@
 import mongoose from "mongoose";
 import {COLLECTIONS} from "../collectionNames";
 
-
 const Schema = mongoose.Schema;
 
 
