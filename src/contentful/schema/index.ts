@@ -1,3 +1,4 @@
+import * as blogHomeSchema from './blogHome.schema';
 import * as blogPageSchema from './blogPage.schema';
 import * as blogPostSchema from './blogPost.schema';
 import * as bodyFormSchema from './bodyForm.schema';
@@ -11,6 +12,7 @@ import * as metaTagSchema from './metaTag.schema';
 import * as metaSeriesSchema from './metaSeries.schema';
 
 export {
+    blogHomeSchema,
     blogPageSchema,
     blogPostSchema,
     bodyFormSchema,

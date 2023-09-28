@@ -48,6 +48,42 @@ export interface IBlogAuthor extends Entry<IBlogAuthorFields> {
   };
 }
 
+export interface IBlogHomeFields {
+  /** Entry Title */
+  entryTitle: string;
+
+  /** Slug */
+  slug: string;
+
+  /** Body */
+  body?: Document | undefined;
+
+  /** Featured Post */
+  featuredPost?: IBlogPost | undefined;
+
+  /** Spotlight Posts */
+  spotlightPosts?: IBlogPost[] | undefined;
+}
+
+/** The HOME page Content Model */
+
+export interface IBlogHome extends Entry<IBlogHomeFields> {
+  sys: {
+    id: string;
+    type: string;
+    createdAt: string;
+    updatedAt: string;
+    locale: string;
+    contentType: {
+      sys: {
+        id: "blogHome";
+        linkType: "ContentType";
+        type: "Link";
+      };
+    };
+  };
+}
+
 export interface IBlogPageFields {
   /** Entry Title */
   entryTitle: string;
@@ -550,6 +586,7 @@ export interface ISiteSearch extends Entry<ISiteSearchFields> {
 
 export type CONTENT_TYPE =
   | "blogAuthor"
+  | "blogHome"
   | "blogPage"
   | "blogPost"
   | "bodyContent"
@@ -566,6 +603,7 @@ export type CONTENT_TYPE =
 
 export type IEntry =
   | IBlogAuthor
+  | IBlogHome
   | IBlogPage
   | IBlogPost
   | IBodyContent
