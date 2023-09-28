@@ -9,10 +9,7 @@ interface IProps {
 const HomeComponent = ({data}: IProps) => {
     const {body} = data;
 
-    return <div className={clsx(
-        'bg-white p-4 md:p-8',
-        'shadow-md'
-    )}>
+    return <div className={clsx()}>
         <CustomRichTexRenderer document={body}/>
     </div>
 }

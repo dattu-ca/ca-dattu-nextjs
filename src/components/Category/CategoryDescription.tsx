@@ -13,18 +13,12 @@ interface IProps {
 const CategoryDescription = ({category}: IProps) => {
     const {name, description} = category;
     const breadcrumbs = CreateCategoryBreadCrumbs(category);
-    return <section className={clsx(
-        'bg-white p-4 md:p-8',
-        'shadow-md'
-    )}>
+    return <section className={clsx()}>
         {
             breadcrumbs.length > 1
             && (
-                <div className="text-sm daisyui-breadcrumbs">
-                    <ul className={clsx(
-                        'p-0 m-0',
-                        'flex-wrap'
-                    )}>
+                <div className={clsx()}>
+                    <ul className={clsx()}>
                         {
                             breadcrumbs.map((breadcrumb, index) => (
                                 <li key={breadcrumb.slug}>
@@ -35,11 +29,8 @@ const CategoryDescription = ({category}: IProps) => {
                                             )
                                             : (
                                                 <Link href={`/category/${breadcrumb.slug}`}
-                                                      className={clsx(
-                                                          'flex flex-wrap gap-2',
-                                                          'items-center',
-                                                      )}>
-                                                    <AiTwotoneFolderOpen className={'w-4 h-4'}/>
+                                                      className={clsx()}>
+                                                    <AiTwotoneFolderOpen className={clsx()}/>
                                                     <span>{breadcrumb.name}</span>
                                                 </Link>
                                             )
@@ -52,12 +43,8 @@ const CategoryDescription = ({category}: IProps) => {
             )
         }
 
-        <h4 className={clsx(
-            'mb-4',
-            'flex flex-wrap gap-2',
-            'items-center'
-        )}>
-            <AiTwotoneFolderOpen className={'w-8 h-8'}/>
+        <h4 className={clsx()}>
+            <AiTwotoneFolderOpen className={clsx()}/>
             <span>{name}</span>
         </h4>
 

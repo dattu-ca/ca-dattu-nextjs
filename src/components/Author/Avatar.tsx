@@ -9,22 +9,13 @@ interface IProps {
 
 const AuthorAvatar = ({author, className}: IProps) => {
     const {name, avatar, avatarInitials} = author;
-    return <div className={clsx(
-        'daisyui-avatar daisyui-placeholder',
-    )}>
-        <div className={clsx(
-            'rounded-full',
-            className,
-            {
-                ['bg-neutral-focus text-neutral-content']: !avatar,
-                ['ring ring-site-secondary-light']: avatar
-            }
-        )}>
+    return <div className={clsx()}>
+        <div className={clsx(className)}>
             {
                 avatar
                     ? <img src={avatar.desktopImage?.url}
                            alt={name}/>
-                    : <span className="text-xs">{avatarInitials}</span>
+                    : <span className={clsx()}>{avatarInitials}</span>
             }
         </div>
     </div>

@@ -20,25 +20,13 @@ const MenuLoggedInMobile = () => {
     
     
     return (
-        <ul className={clsx(
-            'm-0 p-2 px-4',
-            'flex justify-between items-center gap-4',
-            'list-none ',
-            'bg-site-color-dark'
-        )}>
+        <ul className={clsx()}>
             {
                 authLinks.map(link => (
                     <li key={link.label}>
                         <Link aria-current={getAriaCurrent(link.url)}      
                               href={link.url}
-                              className={clsx(
-                                  'text-site-primary',
-                                  'text-sm',
-                                  'hover:scale-150',
-                                  {
-                                      ['after:w-full']: isCurrentPage(link.url)
-                                  }
-                              )}>
+                              className={clsx()}>
                             {link.label}
                         </Link>
                     </li>

@@ -39,20 +39,13 @@ const AuthorNavigation = ({slug}: IProps) => {
         isCurrentPage(url) ? 'page' : undefined, [isCurrentPage]);
 
 
-    return <div className="daisyui-tabs">
+    return <div className={clsx()}>
         {
             links.map(link => (
                 <Link key={link.url}
                       href={link.url}
                       aria-current={getAriaCurrent(link.url)}
-                      className={clsx(
-                          'daisyui-tab daisyui-tab-lg daisyui-tab-lifted',
-                          'hover:after:!w-0 after:!w-0',
-                          'focus:after:!w-0',
-                          {
-                              ['daisyui-tab-active']: isCurrentPage(link.url)
-                          }
-                      )}>
+                      className={clsx()}>
                     {link.label}
                 </Link>
             ))

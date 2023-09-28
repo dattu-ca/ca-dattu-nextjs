@@ -12,20 +12,10 @@ interface IProps {
 
 const AuthorShortBioComponent = ({author, showNameAsALink}: IProps) => {
     const {name, shortBio} = author;
-    return <section className={clsx(
-        'bg-white p-4 md:p-8',
-        'shadow-md'
-    )}>
-        <div className={clsx(
-            'mb-4',
-            'flex flex-nowrap',
-            'items-center',
-            'gap-4'
-        )}>
-            <AuthorAvatar author={author} className={clsx('w-8 h-8')}/>
-            <h4 className={clsx(
-                'm-0 p-0'
-            )}>
+    return <section className={clsx()}>
+        <div className={clsx()}>
+            <AuthorAvatar author={author} className={clsx()}/>
+            <h4 className={clsx()}>
                 {
                     showNameAsALink
                         ? <Link href={`/author/${author.slug}`}>{name}</Link>

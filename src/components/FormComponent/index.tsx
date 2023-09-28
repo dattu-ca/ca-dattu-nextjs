@@ -27,12 +27,9 @@ const FormComponent = ({form, onSubmit}: IProps) => {
 
 
     return <div
-        className={clsx(
-            'mx-auto my-8',
-            'daisyui-card bg-gray-200 shadow-xl'
-        )}
+        className={clsx()}
         style={{maxWidth: `${form.maxWidth ? form.maxWidth + 'px' : 'auto'}`}}>
-        <div className="daisyui-card-body">
+        <div className={clsx()}>
             <FormikComponent form={form} onSubmit={onSubmitHandler}/>
         </div>
     </div>

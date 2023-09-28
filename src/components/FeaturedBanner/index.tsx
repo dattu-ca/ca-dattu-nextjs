@@ -2,7 +2,6 @@
 import clsx from "clsx";
 import {BodyImage, BodyYoutube} from "~/models";
 import {RenderedImage} from './renderedImage'
-// import Image from 'next/image';
 import {RenderedYoutube} from "./renderedYoutube";
 
 
@@ -16,11 +15,7 @@ export const FeaturedBanner = ({featuredBanner}: IProps) => {
         return null;
     }
     return (
-        <div className={clsx(
-            'relative h-full w-full',
-            'transition-all'
-        )}
-        >
+        <div className={clsx()}>
             {
                 featuredBanner.contentType === 'BodyImage'
                 && <RenderedImage banner={featuredBanner as BodyImage}/>

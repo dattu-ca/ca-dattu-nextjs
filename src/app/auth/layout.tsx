@@ -9,11 +9,7 @@ interface IProps {
 const Layout = async ({children}: IProps) => {
     return <div>
         <ErrorBannerComponent />
-        <div className={clsx(
-            'mt-4 md:mt-8',
-            'pb-4 md:pb-8',
-            'wrapper-full-width'
-        )}>
+        <div className={clsx()}>
             {children}
         </div>
     </div>

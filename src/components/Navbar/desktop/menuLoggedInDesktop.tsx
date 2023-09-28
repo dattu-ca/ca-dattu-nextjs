@@ -18,24 +18,13 @@ const MenuLoggedInDesktop = () => {
 
 
     return (
-        <ul className={clsx(
-            'm-0 p-0',
-            'flex justify-end items-center gap-4',
-            'list-none '
-        )}>
+        <ul className={clsx()}>
             {
                 authLinks.map(link => (
                     <li key={link.label}>
                         <Link aria-current={getAriaCurrent(link.url)}
                               href={link.url}
-                              className={clsx(
-                                  'text-site-primary',
-                                  'text-sm',
-                                  'hover:scale-150',
-                                  {
-                                      ['after:w-full']: isCurrentPage(link.url)
-                                  }
-                              )}>
+                              className=className={clsx()}>
                             {link.label}
                         </Link>
                     </li>

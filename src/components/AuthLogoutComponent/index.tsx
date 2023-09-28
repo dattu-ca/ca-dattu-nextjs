@@ -15,24 +15,12 @@ const AuthLogoutComponent = () => {
         });
     }
 
-    return <div className={clsx(
-        'bg-white p-4 md:p-8',
-        'py-16 md:py-32',
-        'text-center',
-        'shadow-md'
-    )}>
+    return <div className={clsx()}>
         <h1>Are you sure?</h1>
         <button
             disabled={hasClicked}
             onClick={onClickHandler}
-            className={clsx(
-                'text-lg',
-                'btn-contained-secondary',
-                {
-                    ['animate-pulse']: hasClicked
-                }
-            )}
-        >
+            className={clsx()}>
             Yes, get me out of here!!!!
         </button>
     </div>

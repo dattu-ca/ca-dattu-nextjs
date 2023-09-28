@@ -80,36 +80,27 @@ const FormikComponent = ({form, onSubmit}: IProps) => {
                                 formModel.map((model, index) => <fieldset key={index}>
                                     {
                                         model.legend &&
-                                        <legend className={clsx(
-                                            'mb-4 font-bold text-gray-700 text-lg'
-                                        )}>{model.legend}</legend>
+                                        <legend className={clsx()}>{model.legend}</legend>
                                     }
                                     {
-                                        model.fields.map(f => <div key={f.id} className='mb-4'>
+                                        model.fields.map(f => <div key={f.id} className={clsx()}>
                                             <div>{getField(f)}</div>
-                                            <div className={clsx(
-                                                'flex justify-between gap-2 ',
-                                                'text-sm mt-2'
-                                            )}>
-                                                <div className={clsx('text-red-500')}>
+                                            <div className={clsx()}>
+                                                <div className={clsx()}>
                                                     {
                                                         getShowErrorFlag(f.id) &&
                                                         (errors[f.id] as string[]).map(error => <p
-                                                            className='flex items-center gap-2 mb-0'
+                                                            className={clsx()}
                                                             key={`${f.id}_${error}`}>
-                                                            <FiAlertCircle className={' w-6 h-6'}/> 
+                                                            <FiAlertCircle className={clsx()}/> 
                                                             <span>{error}</span>
                                                         </p>)
                                                     }
                                                 </div>
                                                 <div>
                                                     {
-                                                        <p className={clsx('mb-0')}>
-                                                            <span className={clsx(
-                                                                {
-                                                                    ['text-red-500']: (errors[f.id] as string[])?.find(error => error.toLowerCase().includes('max length'))
-                                                                }
-                                                            )}>{values[f.id].length}</span>
+                                                        <p className={clsx()}>
+                                                            <span className={clsx()}>{values[f.id].length}</span>
                                                             {
                                                                 f.validations.maxLength
                                                                 && <Fragment>
@@ -126,7 +117,7 @@ const FormikComponent = ({form, onSubmit}: IProps) => {
                                 </fieldset>)
                             }
 
-                            <div className={clsx('mb-4')}>
+                            <div className={clsx()}>
                                 {
                                     form.recaptchaEnabled
                                     && <ReCAPTCHA
@@ -139,8 +130,8 @@ const FormikComponent = ({form, onSubmit}: IProps) => {
                                     submitCount > 0 && !recaptchaToken
                                     && (
                                         <p
-                                            className='flex items-center gap-2 text-red-500'>
-                                            <FiAlertCircle className={' w-6 h-6'}/>
+                                            className={clsx()}>
+                                            <FiAlertCircle className={clsx()}/>
                                             <span>Recaptcha required!</span>
                                         </p>
                                     )
@@ -148,10 +139,7 @@ const FormikComponent = ({form, onSubmit}: IProps) => {
                             </div>
                             <button type="submit"
                                     disabled={isSubmitting}
-                                    className={clsx(
-                                        'w-full',
-                                        'btn-contained-secondary'
-                                    )}>
+                                    className={clsx()}>
                                 Submit
                             </button>
                         </Form>

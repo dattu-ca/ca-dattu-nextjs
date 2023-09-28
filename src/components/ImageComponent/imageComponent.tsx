@@ -1,5 +1,6 @@
 import {BodyImage} from "~/models";
 import {useMemo} from "react";
+import clsx from "clsx";
 
 interface IProps {
     image: BodyImage
@@ -30,7 +31,7 @@ const ImageComponent = ({image}: IProps) => {
                 height="250"
                 decoding="async"
                 data-nimg="1"
-                className="w-full h-full object-cover object-center"
+                className={clsx()}
                 sizes="100vw"
                 srcSet={srcSet.join(', ')}
                 src={srcSet[srcSet.length - 1]}/>

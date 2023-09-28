@@ -11,36 +11,20 @@ interface IProps {
 const AuthorsNameList = ({authors, suffix}: IProps) => {
     return authors && authors.length > 0 &&
         (
-            <div className={clsx(
-                'flex',
-                'items-center'
-            )}>
-                <div className={clsx(
-                    'flex gap-3',
-                    'flex-wrap',
-                    'items-center'
-                )}>
+            <div className={clsx()}>
+                <div className={clsx()}>
                     {
                         authors?.map((author, index) => (
                             <div key={author.slug}
-                                 className={clsx(
-                                     'flex gap-2',
-                                     'items-center'
-                                 )}>
-                                <div className={clsx('daisyui-avatar daisyui-placeholder')}>
+                                 className={clsx()}>
+                                <div className={clsx()}>
                                     <div
-                                        className={clsx(
-                                            'w-8 rounded-full',
-                                            {
-                                                ['bg-neutral-focus text-neutral-content']: !author.avatar,
-                                                ['ring ring-site-secondary-light']: author.avatar
-                                            }
-                                        )}>
+                                        className={clsx()}>
                                         {
                                             author.avatar
                                                 ? <img src={author.avatar.desktopImage?.url}
                                                        alt={author.name}/>
-                                                : <span className="text-xs">{author.avatarInitials}</span>
+                                                : <span className={clsx()}>{author.avatarInitials}</span>
                                         }
                                     </div>
                                 </div>

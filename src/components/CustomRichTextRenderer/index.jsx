@@ -1,5 +1,6 @@
 'use client';
 import {Fragment} from "react";
+import clsx from "clsx";
 import PropTypes from 'prop-types';
 import Link from 'next/link';
 import {documentToReactComponents} from '@contentful/rich-text-react-renderer';
@@ -10,13 +11,13 @@ import {YoutubeVideoComponent} from "../YoutubeVideoComponent";
 import {ImageComponentWrapper} from "../ImageComponent";
 
 
-const Bold = ({children}) => <span className="font-bold">{children}</span>;
-const Italic = ({children}) => <span className="italic">{children}</span>;
-const Underline = ({children}) => <span className="underline">{children}</span>;
+const Bold = ({children}) => <span className={clsx("font-bold")}>{children}</span>;
+const Italic = ({children}) => <span className={clsx("italic")}>{children}</span>;
+const Underline = ({children}) => <span className={clsx("underline")}>{children}</span>;
 const Text = ({children}) => <p>{children}</p>;
-const Ol = ({children}) => <ol className="">{children}</ol>;
-const Ul = ({children}) => <ul className="">{children}</ul>;
-const Li = ({children}) => <li className="">{children}</li>;
+const Ol = ({children}) => <ol>{children}</ol>;
+const Ul = ({children}) => <ul>{children}</ul>;
+const Li = ({children}) => <li>{children}</li>;
 
 const renderEmbeddedEntry = (node, children) => {
     const embeddedType = node.data.target.sys.contentType.sys.id;

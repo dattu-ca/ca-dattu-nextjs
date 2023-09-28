@@ -15,49 +15,23 @@ const NavbarDesktop = () => {
         },
     } = useNavbarContext();
     return (
-        <div className={clsx(
-            {
-                ['pb-[72px]']: !session,
-                ['pb-[104px]']: session,
-            }
-        )}>
+        <div className={clsx()}>
             {
                 session
                 && (
-                    <nav className={clsx(
-                        'w-full bg-site-color-dark',
-                        'py-1 px-4',
-                        'shadow-2xl',
-                        'fixed z-[100] top-0 left-0'
-                    )}>
-                        <div className={clsx(
-                            'flex justify-end items-center',
-                        )}>
+                    <nav className={clsx()}>
+                        <div className={clsx()}>
                             <MenuLoggedInDesktop/>
                         </div>
                     </nav>
                 )
             }
-            <nav className={clsx(
-                'w-full bg-site-color-dark',
-                'py-4 px-4',
-                'shadow-2xl',
-                'fixed z-[100] left-0',
-                {
-                    ['top-0 ']: !session,
-                    ['top-[32px]']: session,
-                }
-            )}
+            <nav className={clsx()}
                  style={{'--tw-bg-opacity': 0.95} as React.CSSProperties}>
-                <div className={clsx(
-                    'flex justify-between items-center',
-                )}>
+                <div className={clsx()}>
                     <div>
                         <Link href='/'
-                              className={clsx(
-                                  'hover:after:w-0',
-                                  'hover:skew-y-12'
-                              )}>
+                              className={clsx()}>
                             <Logo/>
                         </Link>
                     </div>

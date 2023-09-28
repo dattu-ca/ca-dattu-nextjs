@@ -24,16 +24,10 @@ const MenuDesktop = () => {
         }
     } = useNavbarContext();
     return <ul
-        className={clsx(
-            'm-0 p-0',
-            'flex justify-end items-center gap-4',
-            'list-none '
-        )}
+        className=className={clsx()}
         onMouseOut={() => closeSubMenu(null)}
     >
-        <li className={clsx(
-            'm-0 p-0'
-        )}>
+        <li className={clsx()}>
             <Link
                 href={'/auth/login'}>
                 Login
@@ -42,42 +36,23 @@ const MenuDesktop = () => {
         {
             links.map(link => (
                 <li key={link.id}
-                    className={clsx(
-                        'm-0 p-0',
-                        'relative',
-                    )}
+                    className={clsx()}
                     onMouseOver={() => openSubMenu(link.id)}
                 >
                     <ClickAwayListener onClickAway={() => ({})}>
                         <div>
-                            <div className={clsx(
-                                'flex gap-2 items-center'
-                            )}>
+                            <div className={clsx()}>
                                 <Link
                                     aria-current={getAriaCurrent(link.url)}
                                     href={link.url}
-                                    className={clsx(
-                                        'block',
-                                        'text-site-primary',
-                                        'text-xl',
-                                        {
-                                            ['after:w-full']: isCurrentPage(link.url)
-                                        }
-                                    )}>
+                                    className={clsx()}>
                                     {link.label}
                                 </Link>
                                 {
                                     Array.isArray(link?.links) && link.links.length > 0 &&
                                     <button onClick={() => toggleSubMenu(link.id)}
                                             aria-label={subMenuOpenId === link.id ? `Close sub menu for ${link.label}` : `Open sub menu for ${link.label}`}>
-                                        <AiOutlineDown className={clsx(
-                                            'transition',
-                                            'w-4 h-4 text-site-primary ',
-                                            {
-                                                ['rotate-180']: subMenuOpenId === link.id
-                                            }
-                                        )}
-                                        />
+                                        <AiOutlineDown className={clsx()}/>
                                     </button>
                                 }
                             </div>

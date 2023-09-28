@@ -12,18 +12,13 @@ interface IProps {
 const CategoriesNamesList = ({categories}: IProps) => {
     return categories &&
         categories.length > 0 &&
-        <div className={clsx(
-            'flex flex-wrap gap-3'
-        )}>
+        <div className={clsx()}>
             {
                 categories.map((category, index) => (
                     <div key={category.slug}>
                         <Link href={`/category/${category.slug}`}
-                              className={clsx(
-                                  'flex gap-1',
-                                  'items-center'
-                              )}>
-                            <AiTwotoneFolderOpen className={'w-4 h-4'}/>
+                              className={clsx()}>
+                            <AiTwotoneFolderOpen className={clsx()}/>
                             {category.name}
                         </Link>
                     </div>

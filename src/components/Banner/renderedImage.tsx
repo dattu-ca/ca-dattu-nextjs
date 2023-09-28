@@ -1,5 +1,6 @@
 import {BodyImage} from "~/models";
 import {ImageComponent} from "../ImageComponent/imageComponent";
+import clsx from "clsx";
 
 interface IProps {
     banner: BodyImage
@@ -7,7 +8,7 @@ interface IProps {
 
 const RenderedImage = ({banner}: IProps) => {
 
-    return <div className={'aspect-[8/2]'}>
+    return <div className={clsx()}>
         <ImageComponent image={banner} />
     </div>
 }

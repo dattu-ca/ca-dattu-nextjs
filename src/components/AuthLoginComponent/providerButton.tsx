@@ -37,24 +37,12 @@ const ProviderButton = ({provider}: IProps) => {
     return (
         <button onClick={onClickHandler}
                 disabled={Boolean(clickedProvider)}
-                className={clsx(
-                    'text-xl',
-                    'btn-contained-secondary',
-                    {
-                        ['animate-pulse']: clickedProvider === provider.id
-                    }
-                )}>
-            <div className={clsx(
-                'flex gap-4 align-center items-center',
-            )}>
+                className={clsx()}>
+            <div className={clsx()}>
                 <div>
                     {
                         getIcon(provider as IProvider) === 'FaGoogle'
-                        && <FaGoogle className={
-                            clsx('w-6 h-6', {
-                                ['animate-spin']: clickedProvider === provider.id
-                            })
-                        }/>
+                        && <FaGoogle className={clsx()}/>
                     }
                 </div>
                 <div>

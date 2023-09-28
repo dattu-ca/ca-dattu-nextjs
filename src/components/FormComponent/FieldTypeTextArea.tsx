@@ -1,8 +1,9 @@
 import {FieldInputProps} from "formik";
+import clsx from "clsx";
 
 
 const FieldTypeTextArea = (props: FieldInputProps<string>) => {
-    return <textarea className="daisyui-textarea daisyui-textarea-bordered w-full h-48" {...props}></textarea>;
+    return <textarea className={clsx()} {...props}></textarea>;
 }
 
 export {

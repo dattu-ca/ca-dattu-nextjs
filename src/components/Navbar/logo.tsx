@@ -30,11 +30,7 @@ const Logo = () => {
                 height="40"
                 decoding="async"
                 data-nimg="1"
-                className={clsx(
-                    'transition-all',
-                    'block w-auto h-[30px]',
-                    classes.flip
-                )}
+                className={clsx(classes.flip)}
                 sizes="40px"
                 srcSet={srcSet.join(', ')}
                 src={srcSet[srcSet.length - 1]}/>

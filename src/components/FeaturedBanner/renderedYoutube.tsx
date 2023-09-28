@@ -6,11 +6,7 @@ interface IProps {
     data: BodyYoutube
 }
 const RenderedYoutube = ({data}: IProps) => {
-    return <div className={clsx(
-        'h-[200px]',
-        'sm:h-[300px]',
-        'md:h-[400px]',
-    )}>
+    return <div className={clsx()}>
         <YoutubeIframe data={data} />
     </div>
 }

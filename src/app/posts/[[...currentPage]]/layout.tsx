@@ -29,17 +29,9 @@ export const generateMetadata = async (props: IProps) => {
 
 const Layout = async ({children}: IProps) => {
 
-    return <div className={clsx(
-        'mt-4 md:mt-8',
-    )}>
-        <div className={clsx(
-            'pb-4 md:pb-8',
-            'wrapper-with-sidebar',
-            'pb-4 md:pb-8',
-        )}>
-            <section className={clsx(
-                'container',
-            )}>
+    return <div className={clsx()}>
+        <div className={clsx()}>
+            <section className={clsx()}>
                 {children}
             </section>
         </div>

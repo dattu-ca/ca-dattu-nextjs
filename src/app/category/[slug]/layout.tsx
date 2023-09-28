@@ -27,33 +27,17 @@ const Layout = async ({children, params: {slug}}: IProps) => {
     const category = await metaCategoryServices.fetchBySlug(slug as string) as MetaCategory;
     return <div>
 
-        <div className={clsx(
-            'mt-4 md:mt-8',
-            'wrapper-full-width',
-        )}>
-            <div className={clsx(
-                'flex flex-wrap gap-2',
-                'items-center',
-                'mb-4 md:mb-8'
-            )}>
-                <AiTwotoneFolderOpen className={'w-12 h-12'}/>
-                <h1 className={clsx(
-                    'mb-0 pb-0'
-                )}>{category.name}</h1>
+        <div className={clsx()}>
+            <div className={clsx()}>
+                <AiTwotoneFolderOpen className={clsx()}/>
+                <h1 className={clsx()}>{category.name}</h1>
             </div>
         </div>
-        <div className={clsx(
-            'pb-4 md:pb-8',
-            'wrapper-with-sidebar',
-        )}>
-            <section className={clsx(
-                'container',
-            )}>
+        <div className={clsx()}>
+            <section className={clsx()}>
                 {children}
             </section>
-            <div className={clsx(
-                'sidebar'
-            )}>
+            <div className={clsx()}>
                 <CategoryDescription category={category} />
             </div>
         </div>

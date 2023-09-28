@@ -26,26 +26,16 @@ const Layout = async ({children, params: {slug}}: IProps) => {
     const tag = await metaTagServices.fetchBySlug(slug as string) as MetaTag;
     return <div>
 
-        <div className={clsx(
-            'mt-4 md:mt-8',
-            'wrapper-full-width',
-        )}>
+        <div className={clsx()}>
             <div>
                 <h1>{tag.name}</h1>
             </div>
         </div>
-        <div className={clsx(
-            'pb-4 md:pb-8',
-            'wrapper-with-sidebar',
-        )}>
-            <section className={clsx(
-                'container',
-            )}>
+        <div className={clsx()}>
+            <section className={clsx()}>
                 {children}
             </section>
-            <div className={clsx(
-                'sidebar'
-            )}>
+            <div className={clsx()}>
                 <TagDescription tag={tag} />
             </div>
         </div>

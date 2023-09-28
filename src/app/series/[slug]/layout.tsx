@@ -26,27 +26,17 @@ const Layout = async ({children, params: {slug}}: IProps) => {
     const series = await metaSeriesServices.fetchBySlug(slug as string) as MetaSeries;
     return <div>
 
-        <div className={clsx(
-            'mt-4 md:mt-8',
-            'wrapper-full-width',
-        )}>
+        <div className={clsx()}>
             <div>
                 <h1>{series.name}</h1>
             </div>
         </div>
-        <div className={clsx(
-            'pb-4 md:pb-8',
-            'wrapper-with-sidebar',
-        )}>
-            <section className={clsx(
-                'container',
-            )}>
+        <div className={clsx()}>
+            <section className={clsx()}>
                 {children}
             </section>
-            <div className={clsx(
-                'sidebar'
-            )}>
-                <SeriesDescription series={series} />
+            <div className={clsx()}>
+                <SeriesDescription series={series}/>
             </div>
         </div>
     </div>

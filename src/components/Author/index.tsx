@@ -9,10 +9,7 @@ interface IProps {
 
 const AuthorComponent = ({author}: IProps) => {
     const {bio} = author;
-    return <div className={clsx(
-        'bg-white p-4 md:p-8',
-        'shadow-md'
-    )}>
+    return <div className={clsx()}>
         <CustomRichTexRenderer document={bio}/>
     </div>
 }

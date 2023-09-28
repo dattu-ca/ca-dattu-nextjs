@@ -38,23 +38,12 @@ export const BannerComponent = ({banners}: IProps) => {
 
     return bannersLength > 0
         && (
-            <div className={clsx(
-                'relative',
-                'group'
-            )}>
+            <div className={clsx()}>
                 <div {...swipeHandlers}
-                     className={clsx(
-                         'flex col-auto overflow-hidden',
-                         'bg-gray-900'
-                     )}>
+                     className={clsx()}>
                     {
                         banners.map((banner, index) => (
-                            <div key={index} className={clsx(
-                                'relative h-full w-full flex-[0_0_100%]',
-                                'transition-all'
-                            )}
-                                 style={{'transform': `translateX(-${visibleIndex * 100}%)`}}
-                            >
+                            <div key={index} className={clsx()}>
                                 {
                                     banner.contentType === 'BodyImage'
                                     && <RenderedImage banner={banner as BodyImage}/>
@@ -72,27 +61,15 @@ export const BannerComponent = ({banners}: IProps) => {
                     && <Fragment>
                         <button onClick={onGoPrevHandler}
                                 disabled={visibleIndex === 0}
-                                className={clsx(
-                                    'transition-all',
-                                    'opacity-25 group-hover:opacity-50 group-hover:hover:opacity-90 disabled:opacity-10 group-hover:disabled:opacity-10',
-                                    'p-2 m-0',
-                                    'bg-site-primary',
-                                    'absolute top-[50%] translate-y-[-50%] left-0'
-                                )}
+                                className={clsx()}
                                 aria-label='Slide to the previous banner'>
-                            <BsFillCaretLeftFill className='w-8 h-8 text-white'/>
+                            <BsFillCaretLeftFill className={clsx()}/>
                         </button>
                         <button onClick={onGoNextHandler}
                                 disabled={visibleIndex === bannersLength - 1}
-                                className={clsx(
-                                    'transition-all',
-                                    'opacity-25 group-hover:opacity-50 group-hover:hover:opacity-90 disabled:opacity-10 group-hover:disabled:opacity-10',
-                                    'p-2 m-0',
-                                    'bg-site-primary',
-                                    'absolute top-[50%] translate-y-[-50%] right-0'
-                                )}
+                                className={clsx()}
                                 aria-label='Slide to the next banner'>
-                            <BsFillCaretRightFill className='w-8 h-8 text-white'/>
+                            <BsFillCaretRightFill className={clsx()}/>
                         </button>
                     </Fragment>
                 }
