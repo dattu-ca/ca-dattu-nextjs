@@ -1,13 +1,8 @@
 import {MetaSeries} from "~/models";
 import {IMetaSeriesFields} from "./generated/index";
+import {ISkeleton} from "./types";
 
-export type MetaSeriesSkeleton = {
-    contentTypeId: 'metaSeries';
-    fields: IMetaSeriesFields;
-    sys: {
-        id: string;
-    };
-}
+export type MetaSeriesSkeleton = ISkeleton<'metaSeries', IMetaSeriesFields>;
 
 export const mapContentful = (raw: any) => {
     const source = raw as MetaSeriesSkeleton;

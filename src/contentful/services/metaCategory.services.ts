@@ -1,9 +1,10 @@
-import {client} from "../client";
-import {MetaCategorySkeleton, mapContentful, mapContentfulList} from '../schema/metaCategory.schema'
+'use server';
 import {MetaCategory} from "~/models";
+import {client} from "../client";
+import {MetaCategorySkeleton, mapContentful, mapContentfulList} from '../schema/metaCategory.schema';
 
 
-const CONTENTFUL_META_CATEGORY_FIELDS = {
+const FIELDS = {
     SLUG: 'fields.slug',
     NAME: 'fields.name',
     DESCRIPTION: 'fields.description',
@@ -12,16 +13,15 @@ const CONTENTFUL_META_CATEGORY_FIELDS = {
 
 const content_type = 'metaCategory';
 
-
-const fetchByParentId = async (parentId: string) : Promise<MetaCategory[]> => {
-    return client
+const fetchByParentId = async (parentId: string): Promise<MetaCategory[]> =>
+    client
         .getEntries<MetaCategorySkeleton>({
             content_type,
             select: [
-                CONTENTFUL_META_CATEGORY_FIELDS.SLUG as 'fields',
-                CONTENTFUL_META_CATEGORY_FIELDS.NAME as 'fields',
-                CONTENTFUL_META_CATEGORY_FIELDS.DESCRIPTION as 'fields',
-                CONTENTFUL_META_CATEGORY_FIELDS.PARENT_META_CATEGORY as 'fields',
+                FIELDS.SLUG as 'fields',
+                FIELDS.NAME as 'fields',
+                FIELDS.DESCRIPTION as 'fields',
+                FIELDS.PARENT_META_CATEGORY as 'fields',
             ],
             // @ts-ignore
             'fields.parentMetaCategory.sys.id': parentId,
@@ -29,21 +29,19 @@ const fetchByParentId = async (parentId: string) : Promise<MetaCategory[]> => {
         })
         .then((response) => {
             return mapContentfulList(response.items);
-        });
-}
-
+        })
 
 const fetchBySlug = async (slug: string): Promise<MetaCategory> =>
     client
         .getEntries<MetaCategorySkeleton>({
             content_type,
             select: [
-                CONTENTFUL_META_CATEGORY_FIELDS.SLUG as 'fields',
-                CONTENTFUL_META_CATEGORY_FIELDS.NAME as 'fields',
-                CONTENTFUL_META_CATEGORY_FIELDS.DESCRIPTION as 'fields',
-                CONTENTFUL_META_CATEGORY_FIELDS.PARENT_META_CATEGORY as 'fields',
+                FIELDS.SLUG as 'fields',
+                FIELDS.NAME as 'fields',
+                FIELDS.DESCRIPTION as 'fields',
+                FIELDS.PARENT_META_CATEGORY as 'fields',
             ],
-            [CONTENTFUL_META_CATEGORY_FIELDS.SLUG]: slug,
+            [FIELDS.SLUG]: slug,
             include: 10,
         })
         .then((response) => {
@@ -55,7 +53,6 @@ const fetchBySlug = async (slug: string): Promise<MetaCategory> =>
             }
             throw new Error(`Cannot find content for [slug]=${slug}`)
         })
-;
 
 
 export {

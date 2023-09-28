@@ -2,7 +2,6 @@ import {BlogPost} from "~/models";
 import clsx from "clsx";
 import {CustomRichTexRenderer} from '../CustomRichTextRenderer'
 import Link from "next/link";
-import {BannerComponent} from "~/components/Banner";
 
 interface IProps {
     posts: BlogPost[]

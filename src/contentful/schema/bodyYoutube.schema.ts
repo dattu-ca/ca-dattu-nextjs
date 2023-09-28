@@ -1,13 +1,8 @@
 import {BodyYoutube} from "~/models";
 import {IBodyYouTubeFields} from "./generated/index";
+import {ISkeleton} from "./types";
 
-export type BodyYoutubeSkeleton = {
-    contentTypeId: 'bodyYoutube';
-    fields: IBodyYouTubeFields;
-    sys: {
-        id: string;
-    };
-}
+export type BodyYoutubeSkeleton = ISkeleton<'bodyYoutube', IBodyYouTubeFields>;
 
 export const mapContentful = (raw: any) => {
     const source = raw as BodyYoutubeSkeleton;

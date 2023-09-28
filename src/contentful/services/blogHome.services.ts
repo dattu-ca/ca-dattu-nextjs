@@ -2,7 +2,7 @@
 import {client} from "../client";
 import { BlogHomeSkeleton, mapContentful} from '../schema/blogHome.schema';
 
-const CONTENTFUL_FIELDS = {
+const FIELDS = {
     SLUG: 'fields.slug',
     BODY: 'fields.body',
     FEATURED_POST: 'fields.featuredPost',
@@ -11,17 +11,16 @@ const CONTENTFUL_FIELDS = {
 
 const content_type = 'blogHome';
 
-
 const fetchBySlug = (slug: string) =>
     client
         .getEntries<BlogHomeSkeleton>({
             content_type,
             select: [
-                CONTENTFUL_FIELDS.BODY as 'fields',
-                CONTENTFUL_FIELDS.FEATURED_POST as 'fields',
-                CONTENTFUL_FIELDS.SPOTLIGHT_POSTS as 'fields',
+                FIELDS.BODY as 'fields',
+                FIELDS.FEATURED_POST as 'fields',
+                FIELDS.SPOTLIGHT_POSTS as 'fields',
             ],
-            [CONTENTFUL_FIELDS.SLUG]: slug,
+            [FIELDS.SLUG]: slug,
             include: 10,
         })
         .then((response) => {

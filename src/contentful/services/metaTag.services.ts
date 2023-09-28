@@ -1,9 +1,10 @@
-import {client} from "../client";
-import {MetaTagSkeleton, mapContentful} from '../schema/metaTag.schema'
+'use server';
 import {MetaTag} from "~/models";
+import {client} from "../client";
+import {MetaTagSkeleton, mapContentful} from '../schema/metaTag.schema';
 
 
-const CONTENTFUL_META_TAG_FIELDS = {
+const FIELDS = {
     SLUG: 'fields.slug',
     NAME: 'fields.name',
     DESCRIPTION: 'fields.description',
@@ -11,17 +12,16 @@ const CONTENTFUL_META_TAG_FIELDS = {
 
 const content_type = 'metaTag';
 
-
 const fetchBySlug = async (slug: string): Promise<MetaTag> =>
     client
         .getEntries<MetaTagSkeleton>({
             content_type,
             select: [
-                CONTENTFUL_META_TAG_FIELDS.SLUG as 'fields',
-                CONTENTFUL_META_TAG_FIELDS.NAME as 'fields',
-                CONTENTFUL_META_TAG_FIELDS.DESCRIPTION as 'fields',
+                FIELDS.SLUG as 'fields',
+                FIELDS.NAME as 'fields',
+                FIELDS.DESCRIPTION as 'fields',
             ],
-            [CONTENTFUL_META_TAG_FIELDS.SLUG]: slug,
+            [FIELDS.SLUG]: slug,
             include: 10,
         })
         .then((response) => {
@@ -33,7 +33,6 @@ const fetchBySlug = async (slug: string): Promise<MetaTag> =>
             }
             throw new Error(`Cannot find content for [slug]=${slug}`)
         })
-;
 
 
 export {

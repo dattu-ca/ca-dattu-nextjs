@@ -1,6 +1,6 @@
 'use server';
-import {AuthProfileModel, AuthProviderModel} from './schema';
 import {insertInto as insertIntoUserProfile} from "~/services.db/user";
+import {AuthProfileModel, AuthProviderModel} from './schema';
 
 interface IAuthProvider {
     provider?: string | undefined;

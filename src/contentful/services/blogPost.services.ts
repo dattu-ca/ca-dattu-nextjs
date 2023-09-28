@@ -1,8 +1,9 @@
+'use server';
 import {client} from "../client";
 import {BlogPostSkeleton, mapContentful, mapContentfulList} from '../schema/blogPost.schema'
 
 
-const CONTENTFUL_BLOG_POST_FIELDS = {
+const FIELDS = {
     PUBLISHED_DATE: 'fields.publishedDate',
     HEADING: 'fields.heading',
     BODY: 'fields.body',
@@ -18,24 +19,34 @@ const CONTENTFUL_BLOG_POST_FIELDS = {
     SERIES: 'fields.series',
 }
 
-const content_type = 'blogPost';
+const PAGINATED_SELECT_FIELDS = [
+    FIELDS.SLUG as 'fields',
+    FIELDS.HEADING as 'fields',
+    FIELDS.SHORT_BODY as 'fields',
+    FIELDS.PUBLISHED_DATE as 'fields',
+    FIELDS.AUTHORS as 'fields',
+    FIELDS.FEATURED_BANNER as 'fields',
+    FIELDS.CATEGORIES as 'fields',
+    FIELDS.SERIES as 'fields',
+];
 
+const content_type = 'blogPost';
 
 const fetchBySlug = (slug: string) =>
     client
         .getEntries<BlogPostSkeleton>({
             content_type,
             select: [
-                CONTENTFUL_BLOG_POST_FIELDS.HEADING as 'fields',
-                CONTENTFUL_BLOG_POST_FIELDS.BODY as 'fields',
-                CONTENTFUL_BLOG_POST_FIELDS.BANNERS as 'fields',
-                CONTENTFUL_BLOG_POST_FIELDS.CATEGORIES as 'fields',
-                CONTENTFUL_BLOG_POST_FIELDS.TAGS as 'fields',
-                CONTENTFUL_BLOG_POST_FIELDS.SERIES as 'fields',
-                CONTENTFUL_BLOG_POST_FIELDS.PUBLISHED_DATE as 'fields',
-                CONTENTFUL_BLOG_POST_FIELDS.AUTHORS as 'fields',
+                FIELDS.HEADING as 'fields',
+                FIELDS.BODY as 'fields',
+                FIELDS.BANNERS as 'fields',
+                FIELDS.CATEGORIES as 'fields',
+                FIELDS.TAGS as 'fields',
+                FIELDS.SERIES as 'fields',
+                FIELDS.PUBLISHED_DATE as 'fields',
+                FIELDS.AUTHORS as 'fields',
             ],
-            [CONTENTFUL_BLOG_POST_FIELDS.SLUG]: slug,
+            [FIELDS.SLUG]: slug,
             include: 10,
         })
         .then((response) => {
@@ -46,25 +57,17 @@ const fetchBySlug = (slug: string) =>
                 throw new Error(`Found multiple content for [slug]=${slug}`)
             }
             throw new Error(`Cannot find content for [slug]=${slug}`)
-        });
+        })
+
 
 
 const fetchListPaginated = (skip: number = 0, limit: number = 10) =>
     client
         .getEntries<BlogPostSkeleton>({
             content_type,
-            select: [
-                CONTENTFUL_BLOG_POST_FIELDS.SLUG as 'fields',
-                CONTENTFUL_BLOG_POST_FIELDS.HEADING as 'fields',
-                CONTENTFUL_BLOG_POST_FIELDS.SHORT_BODY as 'fields',
-                CONTENTFUL_BLOG_POST_FIELDS.PUBLISHED_DATE as 'fields',
-                CONTENTFUL_BLOG_POST_FIELDS.AUTHORS as 'fields',
-                CONTENTFUL_BLOG_POST_FIELDS.FEATURED_BANNER as 'fields',
-                CONTENTFUL_BLOG_POST_FIELDS.CATEGORIES as 'fields',
-                CONTENTFUL_BLOG_POST_FIELDS.SERIES as 'fields',
-            ],
+            select: PAGINATED_SELECT_FIELDS,
             // @ts-ignore
-            order: `-${CONTENTFUL_BLOG_POST_FIELDS.PUBLISHED_DATE}`,
+            order: `-${FIELDS.PUBLISHED_DATE}`,
             skip: skip,
             limit: limit,
             include: 10,
@@ -76,26 +79,16 @@ const fetchListPaginated = (skip: number = 0, limit: number = 10) =>
                 total: response.total,
             }
         })
-
 
 const fetchListPaginatedByAuthor = (authorId: string, skip: number = 0, limit: number = 10) =>
     client
         .getEntries<BlogPostSkeleton>({
             content_type,
-            select: [
-                CONTENTFUL_BLOG_POST_FIELDS.SLUG as 'fields',
-                CONTENTFUL_BLOG_POST_FIELDS.HEADING as 'fields',
-                CONTENTFUL_BLOG_POST_FIELDS.SHORT_BODY as 'fields',
-                CONTENTFUL_BLOG_POST_FIELDS.PUBLISHED_DATE as 'fields',
-                CONTENTFUL_BLOG_POST_FIELDS.AUTHORS as 'fields',
-                CONTENTFUL_BLOG_POST_FIELDS.FEATURED_BANNER as 'fields',
-                CONTENTFUL_BLOG_POST_FIELDS.CATEGORIES as 'fields',
-                CONTENTFUL_BLOG_POST_FIELDS.SERIES as 'fields',
-            ],
+            select: PAGINATED_SELECT_FIELDS,
             // @ts-ignore
             'fields.authors.sys.id': authorId,
             // @ts-ignore
-            order: `-${CONTENTFUL_BLOG_POST_FIELDS.PUBLISHED_DATE}`,
+            order: `-${FIELDS.PUBLISHED_DATE}`,
             skip: skip,
             limit: limit,
             include: 10,
@@ -108,25 +101,15 @@ const fetchListPaginatedByAuthor = (authorId: string, skip: number = 0, limit: n
             }
         })
 
-
 const fetchListPaginatedByCategories = (categoryIds: string[], skip: number = 0, limit: number = 10) =>
     client
         .getEntries<BlogPostSkeleton>({
             content_type,
-            select: [
-                CONTENTFUL_BLOG_POST_FIELDS.SLUG as 'fields',
-                CONTENTFUL_BLOG_POST_FIELDS.HEADING as 'fields',
-                CONTENTFUL_BLOG_POST_FIELDS.SHORT_BODY as 'fields',
-                CONTENTFUL_BLOG_POST_FIELDS.PUBLISHED_DATE as 'fields',
-                CONTENTFUL_BLOG_POST_FIELDS.AUTHORS as 'fields',
-                CONTENTFUL_BLOG_POST_FIELDS.FEATURED_BANNER as 'fields',
-                CONTENTFUL_BLOG_POST_FIELDS.CATEGORIES as 'fields',
-                CONTENTFUL_BLOG_POST_FIELDS.SERIES as 'fields',
-            ],
+            select: PAGINATED_SELECT_FIELDS,
             // @ts-ignore
             'fields.categories.sys.id[in]': categoryIds.join(","),
             // @ts-ignore
-            order: `-${CONTENTFUL_BLOG_POST_FIELDS.PUBLISHED_DATE}`,
+            order: `-${FIELDS.PUBLISHED_DATE}`,
             skip: skip,
             limit: limit,
             include: 10,
@@ -143,20 +126,11 @@ const fetchListPaginatedByTag = (tagId: string, skip: number = 0, limit: number 
     client
         .getEntries<BlogPostSkeleton>({
             content_type,
-            select: [
-                CONTENTFUL_BLOG_POST_FIELDS.SLUG as 'fields',
-                CONTENTFUL_BLOG_POST_FIELDS.HEADING as 'fields',
-                CONTENTFUL_BLOG_POST_FIELDS.SHORT_BODY as 'fields',
-                CONTENTFUL_BLOG_POST_FIELDS.PUBLISHED_DATE as 'fields',
-                CONTENTFUL_BLOG_POST_FIELDS.AUTHORS as 'fields',
-                CONTENTFUL_BLOG_POST_FIELDS.FEATURED_BANNER as 'fields',
-                CONTENTFUL_BLOG_POST_FIELDS.CATEGORIES as 'fields',
-                CONTENTFUL_BLOG_POST_FIELDS.SERIES as 'fields',
-            ],
+            select: PAGINATED_SELECT_FIELDS,
             // @ts-ignore
             'fields.tags.sys.id': tagId,
             // @ts-ignore
-            order: `-${CONTENTFUL_BLOG_POST_FIELDS.PUBLISHED_DATE}`,
+            order: `-${FIELDS.PUBLISHED_DATE}`,
             skip: skip,
             limit: limit,
             include: 10,
@@ -173,20 +147,11 @@ const fetchListPaginatedBySeries = (seriesId: string, skip: number = 0, limit: n
     client
         .getEntries<BlogPostSkeleton>({
             content_type,
-            select: [
-                CONTENTFUL_BLOG_POST_FIELDS.SLUG as 'fields',
-                CONTENTFUL_BLOG_POST_FIELDS.HEADING as 'fields',
-                CONTENTFUL_BLOG_POST_FIELDS.SHORT_BODY as 'fields',
-                CONTENTFUL_BLOG_POST_FIELDS.PUBLISHED_DATE as 'fields',
-                CONTENTFUL_BLOG_POST_FIELDS.AUTHORS as 'fields',
-                CONTENTFUL_BLOG_POST_FIELDS.FEATURED_BANNER as 'fields',
-                CONTENTFUL_BLOG_POST_FIELDS.CATEGORIES as 'fields',
-                CONTENTFUL_BLOG_POST_FIELDS.SERIES as 'fields',
-            ],
+            select: PAGINATED_SELECT_FIELDS,
             // @ts-ignore
             'fields.series.sys.id': seriesId,
             // @ts-ignore
-            order: `-${CONTENTFUL_BLOG_POST_FIELDS.PUBLISHED_DATE}`,
+            order: `-${FIELDS.PUBLISHED_DATE}`,
             skip: skip,
             limit: limit,
             include: 10,
@@ -203,20 +168,11 @@ const fetchListBySeries = (seriesId: string) =>
     client
         .getEntries<BlogPostSkeleton>({
             content_type,
-            select: [
-                CONTENTFUL_BLOG_POST_FIELDS.SLUG as 'fields',
-                CONTENTFUL_BLOG_POST_FIELDS.HEADING as 'fields',
-                CONTENTFUL_BLOG_POST_FIELDS.SHORT_BODY as 'fields',
-                CONTENTFUL_BLOG_POST_FIELDS.PUBLISHED_DATE as 'fields',
-                CONTENTFUL_BLOG_POST_FIELDS.AUTHORS as 'fields',
-                CONTENTFUL_BLOG_POST_FIELDS.FEATURED_BANNER as 'fields',
-                CONTENTFUL_BLOG_POST_FIELDS.CATEGORIES as 'fields',
-                CONTENTFUL_BLOG_POST_FIELDS.SERIES as 'fields',
-            ],
+            select: PAGINATED_SELECT_FIELDS,
             // @ts-ignore
             'fields.series.sys.id': seriesId,
             // @ts-ignore
-            order: `${CONTENTFUL_BLOG_POST_FIELDS.PUBLISHED_DATE}`,
+            order: `${FIELDS.PUBLISHED_DATE}`,
             include: 10,
         })
         .then((response) => {

@@ -1,9 +1,10 @@
+'use server';
+import {MetaSeries} from "~/models";
 import {client} from "../client";
 import {MetaSeriesSkeleton, mapContentful} from '../schema/metaSeries.schema'
-import {MetaSeries} from "~/models";
 
 
-const CONTENTFUL_META_SERIES_FIELDS = {
+const FIELDS = {
     SLUG: 'fields.slug',
     NAME: 'fields.name',
     DESCRIPTION: 'fields.description',
@@ -17,11 +18,11 @@ const fetchBySlug = async (slug: string): Promise<MetaSeries> =>
         .getEntries<MetaSeriesSkeleton>({
             content_type,
             select: [
-                CONTENTFUL_META_SERIES_FIELDS.SLUG as 'fields',
-                CONTENTFUL_META_SERIES_FIELDS.NAME as 'fields',
-                CONTENTFUL_META_SERIES_FIELDS.DESCRIPTION as 'fields',
+                FIELDS.SLUG as 'fields',
+                FIELDS.NAME as 'fields',
+                FIELDS.DESCRIPTION as 'fields',
             ],
-            [CONTENTFUL_META_SERIES_FIELDS.SLUG]: slug,
+            [FIELDS.SLUG]: slug,
             include: 10,
         })
         .then((response) => {
@@ -33,8 +34,6 @@ const fetchBySlug = async (slug: string): Promise<MetaSeries> =>
             }
             throw new Error(`Cannot find content for [slug]=${slug}`)
         })
-;
-
 
 export {
     fetchBySlug

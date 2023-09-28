@@ -1,4 +1,3 @@
-// import './db.config';
 import {insertInto as saveForms} from './forms';
 import { signIn, fetchAuthProfileIdFromProviderData } from "./auth";
 

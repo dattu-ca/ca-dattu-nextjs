@@ -4,14 +4,9 @@ import {
     mapContentfulList as mapBlogPostContentfulList
 } from './blogPost.schema';
 import {IBlogHomeFields} from "./generated/index";
+import {ISkeleton} from "./types";
 
-export type BlogHomeSkeleton = {
-    contentTypeId: 'blogHome'
-    fields: IBlogHomeFields,
-    sys: {
-        id: string;
-    }
-}
+export type BlogHomeSkeleton = ISkeleton<'blogHome', IBlogHomeFields>
 
 export const mapContentful = (raw: any) => {
     const source = raw as BlogHomeSkeleton;
@@ -20,7 +15,6 @@ export const mapContentful = (raw: any) => {
         contentType: 'BlogHome',
         sysId: source.sys.id,
     };
-
     if (fields.slug) {
         target.slug = fields.slug as string;
     }
@@ -30,7 +24,7 @@ export const mapContentful = (raw: any) => {
     if (fields.featuredPost) {
         target.featuredPost = mapBlogPostContentful(fields.featuredPost);
     }
-    if(fields.spotlightPosts){
+    if (fields.spotlightPosts) {
         target.spotlightPosts = mapBlogPostContentfulList(fields.spotlightPosts);
     }
     return target as BlogHome;

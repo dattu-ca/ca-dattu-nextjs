@@ -1,16 +1,9 @@
-import {IBlogPageFields} from "./generated/index";
 import {BlogPage} from "~/models";
+import {IBlogPageFields} from "./generated/index";
 import {mapBanners} from "./utils";
+import {ISkeleton} from "./types";
 
-
-export type BlogPageSkeleton = {
-    contentTypeId: 'blogPage'
-    fields: IBlogPageFields,
-    sys: {
-        id: string;
-    }
-}
-
+export type BlogPageSkeleton = ISkeleton<'blogPage', IBlogPageFields>
 
 export const mapContentful = (raw: any) => {
     const source = raw as BlogPageSkeleton;
@@ -33,3 +26,5 @@ export const mapContentful = (raw: any) => {
     }
     return target as BlogPage;
 }
+
+export const mapContentfulList = (raw: any[]) => (raw || []).map(source => mapContentful(source));
