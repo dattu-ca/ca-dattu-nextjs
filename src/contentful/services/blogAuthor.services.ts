@@ -1,9 +1,8 @@
+'use server';
 import {client} from "../client";
 import {BlogAuthorSkeleton, mapContentful} from '../schema/blogAuthor.schema'
 
-
-
-const CONTENTFUL_BLOG_AUTHOR_FIELDS = {
+const FIELDS = {
     SLUG: 'fields.slug',
     NAME: 'fields.name',
     AVATAR: 'fields.avatar',
@@ -22,15 +21,15 @@ const fetchBySlug = (slug: string) =>
         .getEntries<BlogAuthorSkeleton>({
             content_type,
             select: [
-                CONTENTFUL_BLOG_AUTHOR_FIELDS.SLUG as 'fields',
-                CONTENTFUL_BLOG_AUTHOR_FIELDS.NAME as 'fields',
-                CONTENTFUL_BLOG_AUTHOR_FIELDS.AVATAR as 'fields',
-                CONTENTFUL_BLOG_AUTHOR_FIELDS.AVATAR_INITIALS as 'fields',
-                CONTENTFUL_BLOG_AUTHOR_FIELDS.SHORT_BIO as 'fields',
-                CONTENTFUL_BLOG_AUTHOR_FIELDS.BIO as 'fields',
-                CONTENTFUL_BLOG_AUTHOR_FIELDS.BANNERS as 'fields',
+                FIELDS.SLUG as 'fields',
+                FIELDS.NAME as 'fields',
+                FIELDS.AVATAR as 'fields',
+                FIELDS.AVATAR_INITIALS as 'fields',
+                FIELDS.SHORT_BIO as 'fields',
+                FIELDS.BIO as 'fields',
+                FIELDS.BANNERS as 'fields',
             ],
-            [CONTENTFUL_BLOG_AUTHOR_FIELDS.SLUG]: slug,
+            [FIELDS.SLUG]: slug,
             include: 10,
         })
         .then((response) => {

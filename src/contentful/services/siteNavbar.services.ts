@@ -1,10 +1,9 @@
+'use server';
 import {client} from "../client";
 import {SiteNavbarSkeleton, mapContentful} from '../schema/siteNavbar.schema';
 
 
-const content_type = 'siteNavbar';
-
-const CONTENTFUL_SITE_NAVBAR_FIELDS = {
+const FIELDS = {
     SLUG: 'fields.slug',
     LOGO: 'fields.logo',
     LINKS: 'fields.links',
@@ -12,17 +11,19 @@ const CONTENTFUL_SITE_NAVBAR_FIELDS = {
     CLOSE_MENU_TEXT: 'fields.closeMenuText'
 }
 
+const content_type = 'siteNavbar';
+
 const fetchBySlug = (slug: string) =>
     client
         .getEntries<SiteNavbarSkeleton>({
             content_type,
             select: [
-                CONTENTFUL_SITE_NAVBAR_FIELDS.LOGO as 'fields',
-                CONTENTFUL_SITE_NAVBAR_FIELDS.LINKS as 'fields',
-                CONTENTFUL_SITE_NAVBAR_FIELDS.OPEN_MENU_TEXT as 'fields',
-                CONTENTFUL_SITE_NAVBAR_FIELDS.CLOSE_MENU_TEXT as 'fields',
+                FIELDS.LOGO as 'fields',
+                FIELDS.LINKS as 'fields',
+                FIELDS.OPEN_MENU_TEXT as 'fields',
+                FIELDS.CLOSE_MENU_TEXT as 'fields',
             ],
-            [CONTENTFUL_SITE_NAVBAR_FIELDS.SLUG]: slug,
+            [FIELDS.SLUG]: slug,
             include: 3,
         })
         .then((response) => {
@@ -33,7 +34,7 @@ const fetchBySlug = (slug: string) =>
                 throw new Error(`Found multiple content for [slug]=${slug}`)
             }
             throw new Error(`Cannot find content for [slug]=${slug}`)
-        });
+        })
 
 export {
     fetchBySlug

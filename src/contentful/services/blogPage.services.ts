@@ -2,7 +2,7 @@
 import {client} from "../client";
 import { BlogPageSkeleton, mapContentful} from '../schema/blogPage.schema';
 
-const CONTENTFUL_FIELDS = {
+const FIELDS = {
     HEADING: 'fields.heading',
     BODY: 'fields.body',
     SLUG: 'fields.slug',
@@ -11,17 +11,16 @@ const CONTENTFUL_FIELDS = {
 
 const content_type = 'blogPage';
 
-
 const fetchBySlug = (slug: string) =>
     client
         .getEntries<BlogPageSkeleton>({
             content_type,
             select: [
-                CONTENTFUL_FIELDS.HEADING as 'fields',
-                CONTENTFUL_FIELDS.BODY as 'fields',
-                CONTENTFUL_FIELDS.BANNERS as 'fields',
+                FIELDS.HEADING as 'fields',
+                FIELDS.BODY as 'fields',
+                FIELDS.BANNERS as 'fields',
             ],
-            [CONTENTFUL_FIELDS.SLUG]: slug,
+            [FIELDS.SLUG]: slug,
             include: 10,
         })
         .then((response) => {

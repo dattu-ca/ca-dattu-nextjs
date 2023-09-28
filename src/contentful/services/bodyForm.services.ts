@@ -1,12 +1,9 @@
+'use server';
+import {BodyForm} from "~/models";
 import {client} from "../client";
 import {BodyFormSkeleton, mapContentful} from '../schema/bodyForm.schema'
-import {BodyForm} from "~/models";
 
-
-
-
-
-const CONTENTFUL_BLOG_PAGE_FIELDS = {
+const FIELDS = {
     FORM_ID: 'fields.formId',
     FORM_MODEL: 'fields.formModel',
     SUBMIT_FORM_ENABLED: 'fields.submitFormEnabled',
@@ -17,26 +14,23 @@ const CONTENTFUL_BLOG_PAGE_FIELDS = {
     FROM_EMAIL_KEY: 'fields.fromEmailKey',
 }
 
-
 const content_type = 'bodyForm';
-
-
 
 const fetchByFormId = (formId: string) =>
     client
         .getEntries<BodyFormSkeleton>({
             content_type,
             select: [
-                CONTENTFUL_BLOG_PAGE_FIELDS.FORM_ID as 'fields',
-                CONTENTFUL_BLOG_PAGE_FIELDS.FORM_MODEL as 'fields',
-                CONTENTFUL_BLOG_PAGE_FIELDS.SUBMIT_FORM_ENABLED as 'fields',
-                CONTENTFUL_BLOG_PAGE_FIELDS.RECAPTCHA_ENABLED as 'fields',
-                CONTENTFUL_BLOG_PAGE_FIELDS.SEND_EMAIL_ENABLED as 'fields',
-                CONTENTFUL_BLOG_PAGE_FIELDS.SUCCESS_MESSAGE as 'fields',
-                CONTENTFUL_BLOG_PAGE_FIELDS.FAILURE_MESSAGE as 'fields',
-                CONTENTFUL_BLOG_PAGE_FIELDS.FROM_EMAIL_KEY as 'fields',
+                FIELDS.FORM_ID as 'fields',
+                FIELDS.FORM_MODEL as 'fields',
+                FIELDS.SUBMIT_FORM_ENABLED as 'fields',
+                FIELDS.RECAPTCHA_ENABLED as 'fields',
+                FIELDS.SEND_EMAIL_ENABLED as 'fields',
+                FIELDS.SUCCESS_MESSAGE as 'fields',
+                FIELDS.FAILURE_MESSAGE as 'fields',
+                FIELDS.FROM_EMAIL_KEY as 'fields',
             ],
-            [CONTENTFUL_BLOG_PAGE_FIELDS.FORM_ID]: formId,
+            [FIELDS.FORM_ID]: formId,
             include: 10,
         })
         .then((response) => {
