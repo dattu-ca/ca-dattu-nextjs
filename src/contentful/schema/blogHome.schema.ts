@@ -6,7 +6,7 @@ import {
 import {IBlogHomeFields} from "./generated/index";
 
 export type BlogHomeSkeleton = {
-    contentTypeId: 'blogAuthor'
+    contentTypeId: 'blogHome'
     fields: IBlogHomeFields,
     sys: {
         id: string;
