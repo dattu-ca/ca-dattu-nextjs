@@ -4,17 +4,10 @@ import clsx from "clsx";
 import Link from "next/link";
 import {MenuDesktop} from "./menuDesktop";
 import {Logo} from "../logo";
-import {useNavbarContext} from "../context";
-import {MenuLoggedInDesktop} from "./menuLoggedInDesktop";
 import {ThemeSwitcher} from "../../themeSwitcher";
 
 
 const NavbarDesktop = () => {
-    const {
-        ctxData: {
-            session,
-        },
-    } = useNavbarContext();
     return (
         <div className={clsx(
             'mx-auto w-full max-w-7xl lg:px-8'

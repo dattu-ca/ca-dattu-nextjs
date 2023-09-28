@@ -2,7 +2,6 @@ import React from 'react';
 import clsx from "clsx";
 import Link from "next/link";
 import {useNavbarContext} from "../context";
-import {MenuLoggedInMobile} from "./menuLoggedInMobile";
 import {MenuMobileSubmenu} from "./menuMobileSubmenu";
 
 const MenuMobile = () => {
@@ -75,13 +74,6 @@ const MenuMobile = () => {
                         ))
                     }
                 </ul>
-                {
-                    session && (
-                        <div>
-                            <MenuLoggedInMobile/>
-                        </div>
-                    )
-                }
             </div>
         </div>
 
