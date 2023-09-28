@@ -1,7 +1,6 @@
 import Link from "next/link";
 import {MetaCategory} from "~/models";
 import clsx from "clsx";
-import {AiTwotoneFolderOpen} from "react-icons/ai";
 
 
 interface IProps {
@@ -18,7 +17,6 @@ const CategoriesNamesList = ({categories}: IProps) => {
                     <div key={category.slug}>
                         <Link href={`/category/${category.slug}`}
                               className={clsx()}>
-                            <AiTwotoneFolderOpen className={clsx()}/>
                             {category.name}
                         </Link>
                     </div>

@@ -3,7 +3,7 @@ import clsx from "clsx";
 import Link from "next/link";
 import {MetaCategory, CreateCategoryBreadCrumbs} from "~/models";
 import {CustomRichTexRenderer} from "../CustomRichTextRenderer";
-import {AiTwotoneFolderOpen} from "react-icons/ai";
+
 
 
 interface IProps {
@@ -30,7 +30,6 @@ const CategoryDescription = ({category}: IProps) => {
                                             : (
                                                 <Link href={`/category/${breadcrumb.slug}`}
                                                       className={clsx()}>
-                                                    <AiTwotoneFolderOpen className={clsx()}/>
                                                     <span>{breadcrumb.name}</span>
                                                 </Link>
                                             )

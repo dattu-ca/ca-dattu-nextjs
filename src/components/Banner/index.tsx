@@ -4,7 +4,7 @@ import clsx from "clsx";
 import {BodyImage, BodyYoutube} from "~/models";
 import {RenderedImage} from './renderedImage'
 // import Image from 'next/image';
-import {BsFillCaretLeftFill, BsFillCaretRightFill} from "react-icons/bs";
+
 import {RenderedYoutube} from "~/components/Banner/renderedYoutube";
 import {useSwipeable} from "react-swipeable";
 
@@ -63,13 +63,13 @@ export const BannerComponent = ({banners}: IProps) => {
                                 disabled={visibleIndex === 0}
                                 className={clsx()}
                                 aria-label='Slide to the previous banner'>
-                            <BsFillCaretLeftFill className={clsx()}/>
+                            &lt;
                         </button>
                         <button onClick={onGoNextHandler}
                                 disabled={visibleIndex === bannersLength - 1}
                                 className={clsx()}
                                 aria-label='Slide to the next banner'>
-                            <BsFillCaretRightFill className={clsx()}/>
+                            &gt;
                         </button>
                     </Fragment>
                 }

@@ -3,7 +3,7 @@ import clsx from "clsx";
 import {metaCategoryServices} from "~/services";
 import {MetaCategory} from "~/models";
 import {CategoryDescription} from "~/components/Category/CategoryDescription";
-import {AiTwotoneFolderOpen} from "react-icons/ai";
+
 
 
 interface IProps {
@@ -29,7 +29,6 @@ const Layout = async ({children, params: {slug}}: IProps) => {
 
         <div className={clsx()}>
             <div className={clsx()}>
-                <AiTwotoneFolderOpen className={clsx()}/>
                 <h1 className={clsx()}>{category.name}</h1>
             </div>
         </div>

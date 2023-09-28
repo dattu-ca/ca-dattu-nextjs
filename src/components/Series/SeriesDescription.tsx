@@ -2,7 +2,6 @@ import React from "react";
 import clsx from "clsx";
 import {MetaSeries} from "~/models";
 import {CustomRichTexRenderer} from "../CustomRichTextRenderer";
-import {IoIosAlbums} from "react-icons/io";
 
 
 interface IProps {
@@ -13,7 +12,6 @@ const SeriesDescription = ({series}: IProps) => {
     const {name, description} = series;
     return <section className={clsx()}>
         <h4 className={clsx()}>
-            <IoIosAlbums className={clsx()}/>
             <span>{name}</span>
         </h4>
 

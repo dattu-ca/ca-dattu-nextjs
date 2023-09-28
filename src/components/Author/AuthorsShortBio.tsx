@@ -13,16 +13,9 @@ interface IProps {
 
 const AuthorsShortBioComponent = ({authors, showNameAsALink}: IProps) => {
 
-    return <section className={clsx(
-        'bg-white',
-        'shadow-md'
-    )}>
-        <div className={clsx(
-            'p-4 md:p-8',
-        )}>
-            <h4 className={clsx(
-                'mb-0 md:mb-0'
-            )}>
+    return <section className={clsx()}>
+        <div className={clsx()}>
+            <h4 className={clsx( )}>
                 Authors
             </h4>
         </div>
@@ -31,21 +24,10 @@ const AuthorsShortBioComponent = ({authors, showNameAsALink}: IProps) => {
                 authors?.map((author) => {
                     const {name, shortBio, slug} = author;
                     return <div key={slug}
-                                className={clsx(
-                                    'border-b-2',
-                                    'p-4 md:p-8',
-                                    'first-of-type:pt-0 first-of-type:md:pt-0 last-of-type:border-b-0'
-                                )}>
-                        <div className={clsx(
-                            'flex flex-nowrap',
-                            'items-center',
-                            'gap-4',
-                            'mb-2 md:mb-4'
-                        )}>
-                            <AuthorAvatar author={author} className={clsx('w-8 h-8')}/>
-                            <h5 className={clsx(
-                                'm-0 p-0'
-                            )}>
+                                className={clsx()}>
+                        <div className={clsx( )}>
+                            <AuthorAvatar author={author} className={clsx()}/>
+                            <h5 className={clsx()}>
                                 {
                                     showNameAsALink
                                         ? <Link href={`/author/${author.slug}`}>{name}</Link>

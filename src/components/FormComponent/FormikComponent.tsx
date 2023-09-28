@@ -8,7 +8,6 @@ import {BodyForm} from "~/models/bodyForm";
 import {useForm} from "~/components/FormComponent/useForm";
 import {CLIENT_CONFIG} from "~/utils/config.client";
 import {sanitize} from "~/utils/utils";
-import {FiAlertCircle} from "react-icons/fi";
 
 
 interface IProps {
@@ -41,7 +40,7 @@ const FormikComponent = ({form, onSubmit}: IProps) => {
                 validateOnBlur={true}
                 validateOnChange={true}
                 onSubmit={async (values: Record<string, any>, actions) => {
-                    if (!isSubmitting && ( (recaptchaToken && form.recaptchaEnabled) || !form.recaptchaEnabled   )) {
+                    if (!isSubmitting && ((recaptchaToken && form.recaptchaEnabled) || !form.recaptchaEnabled)) {
                         setIsSubmitting(true);
                         actions.setSubmitting(true);
                         try {
@@ -92,7 +91,7 @@ const FormikComponent = ({form, onSubmit}: IProps) => {
                                                         (errors[f.id] as string[]).map(error => <p
                                                             className={clsx()}
                                                             key={`${f.id}_${error}`}>
-                                                            <FiAlertCircle className={clsx()}/> 
+                                                            
                                                             <span>{error}</span>
                                                         </p>)
                                                     }
