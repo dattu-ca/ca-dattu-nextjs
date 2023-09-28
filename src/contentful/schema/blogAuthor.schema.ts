@@ -1,15 +1,11 @@
 import {BlogAuthor} from "~/models";
-import {mapContentful as mapBodyImageContentful} from './bodyImages.schema';
 import {IBlogAuthorFields} from "./generated/index";
+import {mapContentful as mapBodyImageContentful} from './bodyImages.schema';
 import {mapBanners} from "./utils";
+import {ISkeleton} from "./types";
 
-export type BlogAuthorSkeleton = {
-    contentTypeId: 'blogAuthor'
-    fields: IBlogAuthorFields,
-    sys: {
-        id: string;
-    }
-}
+export type BlogAuthorSkeleton = ISkeleton<'blogAuthor', IBlogAuthorFields>;
+
 
 export const mapContentful = (raw: any) => {
     const source = raw as BlogAuthorSkeleton;
@@ -18,7 +14,6 @@ export const mapContentful = (raw: any) => {
         contentType: 'BlogAuthor',
         sysId: source.sys.id,
     };
-
     if (fields.slug) {
         target.slug = fields.slug as string;
     }

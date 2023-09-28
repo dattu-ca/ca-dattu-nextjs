@@ -1,12 +1,8 @@
 import {ILink, BodyLinks} from "~/models";
 import {IBodyLinksFields} from "./generated/index";
+import {ISkeleton} from "./types";
 
-export type BodyLinksSkeleton = {
-    fields: IBodyLinksFields;
-    sys: {
-        id: string;
-    };
-}
+export type BodyLinksSkeleton = ISkeleton<'bodyLinks', IBodyLinksFields>
 
 const mapLinks = (source: ILink[]): ILink[] => source.map(item => ({
     ...item,

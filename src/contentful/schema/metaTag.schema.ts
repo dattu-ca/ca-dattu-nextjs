@@ -1,13 +1,8 @@
 import {MetaTag} from "~/models";
 import {IMetaTagFields} from "./generated/index";
+import {ISkeleton} from "./types";
 
-export type MetaTagSkeleton = {
-    contentTypeId: 'metaTag';
-    fields: IMetaTagFields;
-    sys: {
-        id: string;
-    };
-}
+export type MetaTagSkeleton = ISkeleton<'metaTag', IMetaTagFields>;
 
 export const mapContentful = (raw: any) => {
     const source = raw as MetaTagSkeleton;

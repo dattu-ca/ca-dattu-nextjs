@@ -1,16 +1,11 @@
 import {SiteNavbar} from "~/models";
 import {ISiteNavbarFields} from "./generated/index";
-import {mapContentful as mapContentful_bodyLinks} from './bodyLinks.schema';
-import {mapContentful as mapContentful_bodyImages} from './bodyImages.schema';
+import {mapContentful as mapBodyLinksContentful} from './bodyLinks.schema';
+import {mapContentful as mapBodyImagesContentful} from './bodyImages.schema';
+import {ISkeleton} from "./types";
 
 
-export type SiteNavbarSkeleton = {
-    contentTypeId: 'siteNavbar';
-    fields: ISiteNavbarFields;
-    sys: {
-        id: string;
-    };
-}
+export type SiteNavbarSkeleton = ISkeleton<'siteNavbar', ISiteNavbarFields>;
 
 
 export const mapContentful = (raw: any) => {
@@ -24,10 +19,10 @@ export const mapContentful = (raw: any) => {
         target.slug = fields.slug as string;
     }
     if (fields.links) {
-        target.links = mapContentful_bodyLinks(fields.links);
+        target.links = mapBodyLinksContentful(fields.links);
     }
     if (fields.logo) {
-        target.logo = mapContentful_bodyImages(fields.logo);
+        target.logo = mapBodyImagesContentful(fields.logo);
     }
     if (fields.openMenuText) {
         target.openMenuText = fields.openMenuText as string;

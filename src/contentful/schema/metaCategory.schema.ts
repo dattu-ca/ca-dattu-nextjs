@@ -1,13 +1,8 @@
 import {MetaCategory} from "~/models";
 import {IMetaCategoryFields} from "./generated/index";
+import {ISkeleton} from "./types";
 
-export type MetaCategorySkeleton = {
-    contentTypeId: 'metaCategory';
-    fields: IMetaCategoryFields;
-    sys: {
-        id: string;
-    };
-}
+export type MetaCategorySkeleton = ISkeleton<'metaCategory', IMetaCategoryFields>;
 
 export const mapContentful = (raw: any) => {
     const source = raw as MetaCategorySkeleton;
@@ -25,7 +20,7 @@ export const mapContentful = (raw: any) => {
     if (fields.description) {
         result.description = fields.description as object;
     }
-    if(fields.parentMetaCategory){
+    if (fields.parentMetaCategory) {
         result.parent = mapContentful(fields.parentMetaCategory)
     }
     return result as MetaCategory;

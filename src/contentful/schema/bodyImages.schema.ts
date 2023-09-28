@@ -1,12 +1,8 @@
 import {BodyImage} from "~/models";
 import {IBodyImagesFields} from "./generated/index";
+import {ISkeleton} from "./types";
 
-export type BodyImagesSkeleton = {
-    fields: IBodyImagesFields;
-    sys: {
-        id: string;
-    }
-}
+export type BodyImagesSkeleton = ISkeleton<'bodyImages', IBodyImagesFields>;
 
 export const mapContentful = (raw: any) => {
     if (!raw) {
@@ -32,7 +28,6 @@ export const mapContentful = (raw: any) => {
         alt: (fields.mobileAltText || target.desktopImage.alt) as string
     }
     return target as BodyImage;
-
 }
 
 export const mapContentfulList = (raw: any) => {
