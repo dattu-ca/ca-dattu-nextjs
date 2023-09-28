@@ -29,9 +29,9 @@ const Layout = async ({children, params: {slug}}: IProps) => {
     return <div>
         <BannerComponent banners={banners}/>
         <div className={clsx()}>
-            <section className={clsx()}>
+            <div className={clsx()}>
                 {children}
-            </section>
+            </div>
         </div>
     </div>
 }

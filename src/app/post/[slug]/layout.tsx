@@ -32,16 +32,16 @@ const Layout = async ({children, params: {slug}}: IProps) => {
     return <div>
         <BannerComponent banners={banners}/>
         <div className={clsx()}>
-            <section className={clsx()}>
+            <div className={clsx()}>
 
                 {children}
-            </section>
-            <section className={clsx()}>
+            </div>
+            <div className={clsx()}>
                 <PostSidebarComponent 
                     post={post}
                     seriesPosts={seriesPosts}
                 />
-            </section>
+            </div>
         </div>
     </div>
 }

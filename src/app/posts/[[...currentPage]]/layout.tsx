@@ -31,9 +31,9 @@ const Layout = async ({children}: IProps) => {
 
     return <div className={clsx()}>
         <div className={clsx()}>
-            <section className={clsx()}>
+            <div className={clsx()}>
                 {children}
-            </section>
+            </div>
         </div>
     </div>
 }

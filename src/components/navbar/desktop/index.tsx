@@ -6,6 +6,7 @@ import {MenuDesktop} from "./menuDesktop";
 import {Logo} from "../logo";
 import {useNavbarContext} from "../context";
 import {MenuLoggedInDesktop} from "./menuLoggedInDesktop";
+import {ThemeSwitcher} from "../../themeSwitcher";
 
 
 const NavbarDesktop = () => {
@@ -15,32 +16,36 @@ const NavbarDesktop = () => {
         },
     } = useNavbarContext();
     return (
-        <div className={clsx()}>
-            {
-                session
-                && (
-                    <nav className={clsx()}>
-                        <div className={clsx()}>
-                            <MenuLoggedInDesktop/>
-                        </div>
-                    </nav>
-                )
-            }
-            <nav className={clsx()}
-                 style={{'--tw-bg-opacity': 0.95} as React.CSSProperties}>
-                <div className={clsx()}>
-                    <div>
+        <div className={clsx(
+            'mx-auto w-full max-w-7xl lg:px-8'
+        )}>
+            <div className={clsx(
+                'relative px-4 sm:px-8 lg:px-12'
+            )}>
+                <nav className={clsx(
+                    'relative flex gap-4'
+                )}>
+                    <div className={clsx(
+                        'flex flex-1'
+                    )}>
                         <Link href='/'
                               className={clsx()}>
                             <Logo/>
                         </Link>
                     </div>
-                    <div>
+                    <div className={clsx(
+                        'flex flex-1 justify-end md:justify-center'
+                    )}>
                         <MenuDesktop/>
                     </div>
+                    <div className={clsx(
+                        'flex justify-end md:flex-1'
+                    )}>
+                        <ThemeSwitcher/>
+                    </div>
+                </nav>
+            </div>
 
-                </div>
-            </nav>
 
         </div>
     )

@@ -11,7 +11,7 @@ interface IProps {
 
 const AuthorShortBioComponent = ({author, showNameAsALink}: IProps) => {
     const {name, shortBio} = author;
-    return <section className={clsx()}>
+    return <div className={clsx()}>
         <div className={clsx()}>
             <AuthorAvatar author={author} className={clsx()}/>
             <h4 className={clsx()}>
@@ -23,7 +23,7 @@ const AuthorShortBioComponent = ({author, showNameAsALink}: IProps) => {
             </h4>
         </div>
         <CustomRichTexRenderer document={shortBio}/>
-    </section>
+    </div>
 }
 
 export {

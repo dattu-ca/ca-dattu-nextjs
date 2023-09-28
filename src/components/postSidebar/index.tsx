@@ -15,33 +15,33 @@ const PostSidebarComponent = ({post, seriesPosts}: IProps) => {
         {
             post.categories
             && (
-                <section className={clsx()}>
+                <div className={clsx()}>
                     <SidebarCategories categories={post.categories as MetaCategory[]}/>
-                </section>
+                </div>
             )
         }
         {
             post.authors
             && (
-                <section className={clsx()}>
+                <div className={clsx()}>
                     <AuthorsShortBioComponent authors={post.authors} showNameAsALink={true}/>
-                </section>
+                </div>
             )
         }
         {
             post.tags
             && (
-                <section className={clsx()}>
+                <div className={clsx()}>
                     <SidebarTags tags={post.tags as MetaTag[]}/>
-                </section>
+                </div>
             )
         }
         {
             seriesPosts
             && (
-                <section className={clsx()}>
+                <div className={clsx()}>
                     <SidebarSeries posts={seriesPosts}/>
-                </section>
+                </div>
             )
         }
     </div>

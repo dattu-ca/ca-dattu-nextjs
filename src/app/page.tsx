@@ -11,18 +11,18 @@ const Page = async () => {
     const data = await blogHomeServices.fetchBySlug(SERVER_CONFIG.CONTENTFUL_SLUGS.HOME_PAGE);
     return <div>
         <div className={clsx()}>
-            <section>
+            <div>
                 <HomeComponent data={data}/>
-            </section>
+            </div>
 
         </div>
         <div className={clsx( )}>
-            <section className={clsx()}>
+            <div className={clsx()}>
                 {data.featuredPost && <PostExcerpt post={data.featuredPost}/>}
-            </section>
-            <section className={clsx()}>
+            </div>
+            <div className={clsx()}>
                 {data.spotlightPosts && <div className={clsx()}><SpotlightPosts posts={data.spotlightPosts}/></div>}
-            </section>
+            </div>
         </div>
 
     </div>

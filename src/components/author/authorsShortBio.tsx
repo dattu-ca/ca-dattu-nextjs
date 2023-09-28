@@ -11,7 +11,7 @@ interface IProps {
 
 const AuthorsShortBioComponent = ({authors, showNameAsALink}: IProps) => {
 
-    return <section className={clsx()}>
+    return <div className={clsx()}>
         <div className={clsx()}>
             <h4 className={clsx( )}>
                 Authors
@@ -38,7 +38,7 @@ const AuthorsShortBioComponent = ({authors, showNameAsALink}: IProps) => {
                 })
             }
         </div>
-    </section>
+    </div>
 }
 
 export {

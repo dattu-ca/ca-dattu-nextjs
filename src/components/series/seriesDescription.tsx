@@ -9,13 +9,13 @@ interface IProps {
 
 const SeriesDescription = ({series}: IProps) => {
     const {name, description} = series;
-    return <section className={clsx()}>
+    return <div className={clsx()}>
         <h4 className={clsx()}>
             <span>{name}</span>
         </h4>
 
         <CustomRichTexRenderer document={description}/>
-    </section>
+    </div>
 }
 
 export {

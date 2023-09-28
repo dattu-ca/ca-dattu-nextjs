@@ -36,10 +36,10 @@ const Layout = async ({children, params: {slug}}: IProps) => {
             </div>
         </div>
         <div className={clsx()}>
-            <section className={clsx()}>
+            <div className={clsx()}>
                 
                 {children}
-            </section>
+            </div>
             <div className={clsx()}>
                 <AuthorShortBioComponent author={author} showNameAsALink={false}/>
             </div>

@@ -12,7 +12,7 @@ interface IProps {
 const CategoryDescription = ({category}: IProps) => {
     const {name, description} = category;
     const breadcrumbs = CreateCategoryBreadCrumbs(category);
-    return <section className={clsx()}>
+    return <div className={clsx()}>
         {
             breadcrumbs.length > 1
             && (
@@ -46,7 +46,7 @@ const CategoryDescription = ({category}: IProps) => {
         </h4>
 
         <CustomRichTexRenderer document={description}/>
-    </section>
+    </div>
 }
 
 export {

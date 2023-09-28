@@ -1,6 +1,4 @@
-@import url("https://fonts.googleapis.com/css2?family=Black+Ops+One&display=swap");
-@import url("https://fonts.googleapis.com/css2?family=Acme&display=swap");
-@import url("https://fonts.googleapis.com/css2?family=Exo&display=swap");
+
 
 @tailwind base;
 @tailwind components;
@@ -10,47 +8,22 @@
 :root {
     --tw-shadow-color: rgb(218, 165, 32);
     --tw-shadow-color-split: rgb(0, 0, 0);
-}
-
-html,
-body {
-    min-height: 100vh;
+    
+    
+    --header-position: fixed; 
+    --header-height: 180px; 
+    --header-mb: -116px;
+    --header-top: 0px;
+    --content-offset: 116px;
+    
+    --avatar-image-transform: translate3d(0rem, 0, 0) scale(1); 
+    --avatar-border-transform: translate3d(-0.2222222222222222rem, 0, 0) scale(1.7777777777777777); 
+    --avatar-border-opacity: 0;
+    --avatar-top: 0px;
 }
 
 @layer base {
-
-    .wrapper-full-width {
-        @apply px-4;
-        @apply md:px-8;
-        @apply mx-auto;
-        @apply w-full;
-        @apply md:w-11/12;
-    }
-
-    .wrapper-with-sidebar {
-        @apply px-4;
-        @apply md:px-8;
-        @apply mx-auto;
-        @apply w-full;
-        @apply md:w-11/12;
-        @apply flex;
-        @apply justify-center;
-        @apply gap-4;
-        @apply md:gap-8;
-        @apply flex-wrap;
-        @apply md:flex-nowrap;
-    }
-
-    .container {
-        @apply !max-w-full;
-        @apply !w-full;
-        @apply md:!w-3/5;
-    }
-
-    .sidebar {
-        @apply w-full;
-        @apply md:w-2/5;
-    }
-
-    
+    body {
+        @apply dark:bg-gray-800 bg-white
+    }   
 }

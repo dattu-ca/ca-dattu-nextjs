@@ -4,21 +4,6 @@ import {Session} from "next-auth";
 import {BodyImage, ILink, SiteNavbar} from "~/models";
 
 
-const AUTH_LINKS = [
-    {
-        url: '/admin/dashboard',
-        label: 'Dashboard'
-    },
-    {
-        url: '/admin/profile',
-        label: 'Profile'
-    },
-    {
-        url: '/api/auth/signout',
-        label: 'Signout'
-    }
-];
-
 interface INavbarContextProps {
     ctxData: {
         logo: BodyImage;
@@ -139,7 +124,39 @@ const NavbarContextProvider = ({children, navbar: rawNavbar, session}: INavbarCo
             }
             return id;
         });
-    }, [])
+    }, []);
+
+    const authLinks = useMemo(() => {
+        const items: ILink[] = []
+        if (session) {
+            items.push({
+                id: 'dashboard',
+                contentType: 'Link',
+                url: '/admin/dashboard',
+                label: 'Dashboard'
+            });
+            items.push({
+                id: 'profile',
+                contentType: 'Link',
+                url: '/admin/profile',
+                label: 'Profile'
+            });
+            items.push({
+                id: 'logout',
+                contentType: 'Link',
+                url: '/auth/logout',
+                label: 'Logout'
+            });
+        } else {
+            items.push({
+                id: 'login',
+                contentType: 'Link',
+                url: '/auth/login',
+                label: 'Login'
+            });
+        }
+        return items;
+    }, [session])
 
     const props = useMemo<INavbarContextProps>(() => ({
         ctxData: {
@@ -147,7 +164,7 @@ const NavbarContextProvider = ({children, navbar: rawNavbar, session}: INavbarCo
             openMenuText: navbar.openMenuText,
             closeMenuText: navbar.closeMenuText,
             links: navbar.links.links || [],
-            authLinks: AUTH_LINKS,
+            authLinks,
             isMobileMenuOpen: isMobileMenuOpen,
             session,
             subMenuOpenId,
@@ -162,7 +179,7 @@ const NavbarContextProvider = ({children, navbar: rawNavbar, session}: INavbarCo
             closeSubMenu: closeSubMenuHandler,
             toggleSubMenu: toggleSubMenuHandler,
         },
-    } as INavbarContextProps), [session, navbar, isMobileMenuOpen, isCurrentPage, closeMobileMenuHandler, getAriaCurrent, subMenuOpenId, openSubMenuHandler, closeSubMenuHandler, toggleSubMenuHandler]);
+    } as INavbarContextProps), [session, navbar, isMobileMenuOpen, isCurrentPage, authLinks, closeMobileMenuHandler, getAriaCurrent, subMenuOpenId, openSubMenuHandler, closeSubMenuHandler, toggleSubMenuHandler]);
 
 
     return <NavbarContext.Provider value={props}>

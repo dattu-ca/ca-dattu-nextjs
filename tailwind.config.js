@@ -29,11 +29,7 @@ export default {
     ],
     theme: {
         extend: {
-            fontFamily: {
-                'black-ops': ['Black Ops One', 'sans-serif'],
-                'acme': ['Acme', 'sans-serif'],
-                'exo': ['Exo', 'sans-serif']
-            },
+            fontFamily: {},
             textShadow: {
                 sm: '-1px -1px 3px var(--tw-shadow-color-split), 0px 0px 6px var(--tw-shadow-color)',
                 DEFAULT: '-1px -1px 4px var(--tw-shadow-color-split), 0px 0px 7px var(--tw-shadow-color)',
@@ -62,14 +58,11 @@ export default {
         },
     },
     corePlugins: {},
-    plugins: [MyClass, require('daisyui')],
+    plugins: [MyClass],
     variants: {
         extend: {
             display: ['group-hover'],
             visibility: ['group-hover'],
         }
-    },
-    daisyui: {
-        prefix: "daisyui-"
-    },
+    }
 }

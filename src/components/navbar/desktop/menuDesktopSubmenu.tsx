@@ -23,8 +23,19 @@ const MenuDesktopSubmenu = ({id, links}: IProps) => {
 
     const isOpen = id === subMenuOpenId
 
-    return <div className={clsx()}>
-        <ul className={clsx()}>
+    return <div className={clsx(
+        'absolute'
+    )}>
+        <ul className={clsx(
+            'shadow-lg shadow-zinc-800/5 backdrop-blur',
+            'bg-white/90 text-zinc-800 ring-zinc-900/5',
+            'dark:bg-zinc-800/90 dark:text-zinc-200 dark:ring-white/10',
+            'flex flex-col',
+            {
+                ['ring-1']: isOpen,
+                ['h-0 overflow-hidden']: !isOpen
+            }
+        )}>
             {
                 links.map(link => (
                     <li key={link.id}
@@ -33,7 +44,12 @@ const MenuDesktopSubmenu = ({id, links}: IProps) => {
                         <Link href={link.url}
                               tabIndex={isOpen ? undefined : -1}
                               aria-current={getAriaCurrent(link.url)}
-                              className={clsx()}
+                              className={clsx(
+                                  'relative block px-3 py-2 transition hover:text-teal-500 dark:hover:text-teal-400',
+                                  {
+                                      ['text-teal-500 dark:text-teal-400']: isCurrentPage(link.url)
+                                  }
+                              )}
                               onClick={() => closeSubMenu(id)}
                         >{link.label}</Link>
                     </li>

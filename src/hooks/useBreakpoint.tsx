@@ -42,8 +42,8 @@ export function useBreakpoint<K extends string>(breakpointKey: K) {
     const capitalizedKey = breakpointKey[0].toUpperCase() + breakpointKey.substring(1);
 
     type KeyAbove = `isAbove${Capitalize<K>}`;
-    type KeyBelow = `isBelow${Capitalize<K>}`;
-
+    type KeyBelow = `isBelow${Capitalize<K>}`;    
+    
     return {
         [breakpointKey]: Number(String(breakpointValue).replace(/[^0-9]/g, "")),
         [`isAbove${capitalizedKey}`]: !bool,
