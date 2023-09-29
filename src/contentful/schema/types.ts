@@ -1,4 +1,4 @@
-export type ISkeleton<S, T> = {
+export type IBaseSkeleton<S, T> = {
     contentTypeId: S
     fields: T,
     sys: {

@@ -1,9 +1,10 @@
 import {BlogPage} from "~/models";
 import {IBlogPageFields} from "./generated/index";
+import {mapContentfulList as mapBlocksBodyContentContentfulList} from './blocksBodyContent.schema';
 import {mapBanners} from "./utils";
-import {ISkeleton} from "./types";
+import {IBaseSkeleton} from "./types";
 
-export type BlogPageSkeleton = ISkeleton<'blogPage', IBlogPageFields>
+export type BlogPageSkeleton = IBaseSkeleton<'blogPage', IBlogPageFields>
 
 export const mapContentful = (raw: any) => {
     const source = raw as BlogPageSkeleton;
@@ -18,12 +19,23 @@ export const mapContentful = (raw: any) => {
     if (fields.heading) {
         target.heading = fields.heading as string;
     }
+
+    if (fields.preHeadingContentBlocks) {
+        target.preHeadingContentBlocks = mapBlocksBodyContentContentfulList(fields.preHeadingContentBlocks);
+    }
+    if (fields.contentBlocks) {
+        target.contentBlocks = mapBlocksBodyContentContentfulList(fields.contentBlocks);
+    }
+
+
     if (fields.body) {
         target.body = fields.body as object;
     }
     if (fields.banners) {
         target.banners = mapBanners(fields.banners);
     }
+
+
     return target as BlogPage;
 }
 

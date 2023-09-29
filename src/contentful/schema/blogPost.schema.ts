@@ -5,10 +5,10 @@ import {mapContentfulList as mapMetaCategoryContentfulList} from './metaCategory
 import {mapContentfulList as mapMetaTagContentfulList} from './metaTag.schema';
 import {mapContentful as mapMetaSeriesContentful} from './metaSeries.schema';
 import {mapBanners, mapFeaturedBanner} from "./utils";
-import {ISkeleton} from "./types";
+import {IBaseSkeleton} from "./types";
 
 
-export type BlogPostSkeleton = ISkeleton<'blogPost', IBlogPostFields>;
+export type BlogPostSkeleton = IBaseSkeleton<'blogPost', IBlogPostFields>;
 
 export const mapContentful = (raw: any) => {
     const source = raw as BlogPostSkeleton;

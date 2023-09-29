@@ -3,6 +3,72 @@
 import { Asset, Entry } from "contentful";
 import { Document } from "@contentful/rich-text-types";
 
+export interface IBlocksBodyContentFields {
+  /** Entry Title */
+  entryTitle: string;
+
+  /** Layout Width */
+  layoutWidth: "Full Width" | "Default" | "Narrow";
+
+  /** Column Widths */
+  columnWidths: "1/1" | "1/2, 1/2" | "1/3, 2/3" | "2/3, 1/3" | "1/3, 1/3, 1/3";
+
+  /** Column Gaps */
+  columnGaps: "None" | "Xs" | "Sm" | "Md" | "Lg" | "Xl";
+
+  /** Column 1 Blocks */
+  column1Blocks?:
+    | (IBodyContent | IBodyForm | IBodyImages | IBodyLinks | IBodyYouTube)[]
+    | undefined;
+
+  /** Column 1 Layout */
+  column1Layout: "Adjacent" | "Slider" | "Stacked" | "Tabbed";
+
+  /** Column 1 Gaps */
+  column1Gaps: "None" | "Xs" | "Sm" | "Md" | "Lg" | "Xl";
+
+  /** Column 2 Blocks */
+  column2Blocks?:
+    | (IBodyContent | IBodyForm | IBodyImages | IBodyLinks | IBodyYouTube)[]
+    | undefined;
+
+  /** Column 2 Layout */
+  column2Layout: "Adjacent" | "Slider" | "Stacked" | "Tabbed";
+
+  /** Column 2 Gaps */
+  column2Gaps: "None" | "Xs" | "Sm" | "Md" | "Lg" | "Xl";
+
+  /** Column 3 Blocks */
+  column3Blocks?:
+    | (IBodyContent | IBodyForm | IBodyImages | IBodyLinks | IBodyYouTube)[]
+    | undefined;
+
+  /** Column 3 Layout */
+  column3Layout: "Adjacent" | "Slider" | "Stacked" | "Tabbed";
+
+  /** Column 3 Gaps */
+  column3Gaps: "None" | "Xs" | "Sm" | "Md" | "Lg" | "Xl";
+}
+
+/** A collection of all of the `body` content models, along with it's layout style. */
+
+export interface IBlocksBodyContent extends Entry<IBlocksBodyContentFields> {
+  sys: {
+    id: string;
+    type: string;
+    createdAt: string;
+    updatedAt: string;
+    locale: string;
+    contentType: {
+      sys: {
+        id: "blocksBodyContent";
+        linkType: "ContentType";
+        type: "Link";
+      };
+    };
+  };
+}
+
 export interface IBlogAuthorFields {
   /** Entry Title */
   entryTitle: string;
@@ -27,6 +93,9 @@ export interface IBlogAuthorFields {
 
   /** Bio */
   bio?: Document | undefined;
+
+  /** Content Blocks */
+  contentBlocks?: IBlocksBodyContent[] | undefined;
 }
 
 /** The author content */
@@ -54,6 +123,9 @@ export interface IBlogHomeFields {
 
   /** Slug */
   slug: string;
+
+  /** Content Blocks */
+  contentBlocks?: IBlocksBodyContent[] | undefined;
 
   /** Body */
   body?: Document | undefined;
@@ -91,8 +163,14 @@ export interface IBlogPageFields {
   /** Slug */
   slug: string;
 
+  /** Pre Heading Content Blocks */
+  preHeadingContentBlocks?: IBlocksBodyContent[] | undefined;
+
   /** Heading */
   heading: string;
+
+  /** Content Blocks */
+  contentBlocks?: IBlocksBodyContent[] | undefined;
 
   /** Banners */
   banners?: (IBodyImages | IBodyYouTube)[] | undefined;
@@ -133,20 +211,35 @@ export interface IBlogPostFields {
   /** Authors */
   authors?: IBlogAuthor[] | undefined;
 
+  /** Series */
+  series?: IMetaSeries | undefined;
+
   /** Heading */
   heading: string;
+
+  /** Excerpt Blocks */
+  excerptBlocks?: IBlocksBodyContent[] | undefined;
+
+  /** Content Blocks */
+  contentBlocks?: IBlocksBodyContent[] | undefined;
+
+  /** Categories */
+  categories?: IMetaCategory[] | undefined;
+
+  /** Tags */
+  tags?: IMetaTag[] | undefined;
+
+  /** Short Body */
+  shortBody?: Document | undefined;
+
+  /** Featured Banner */
+  featuredBanner?: IBodyImages | IBodyYouTube | undefined;
 
   /** Banners */
   banners?: (IBodyImages | IBodyYouTube)[] | undefined;
 
   /** Body */
   body?: Document | undefined;
-
-  /** Featured Banner */
-  featuredBanner?: IBodyImages | IBodyYouTube | undefined;
-
-  /** Short Body */
-  shortBody?: Document | undefined;
 
   /** Format */
   format: "Standard" | "Aside" | "Image" | "Video" | "Quote" | "Link";
@@ -158,15 +251,6 @@ export interface IBlogPostFields {
     | "Left Sidebar"
     | "No Sidebar"
     | "Full Width";
-
-  /** Categories */
-  categories?: IMetaCategory[] | undefined;
-
-  /** Tags */
-  tags?: IMetaTag[] | undefined;
-
-  /** Series */
-  series?: IMetaSeries | undefined;
 }
 
 /** The main content model for posts. */
@@ -191,6 +275,9 @@ export interface IBlogPost extends Entry<IBlogPostFields> {
 export interface IBodyContentFields {
   /** Entry Title */
   entryTitle: string;
+
+  /** Name */
+  name?: string | undefined;
 
   /** Body */
   body?: Document | undefined;
@@ -221,6 +308,9 @@ export interface IBodyFormFields {
 
   /** Form Id */
   formId: string;
+
+  /** Name */
+  name?: string | undefined;
 
   /** Max Width */
   maxWidth?: number | undefined;
@@ -270,6 +360,9 @@ export interface IBodyImagesFields {
   /** Entry Title */
   entryTitle: string;
 
+  /** Name */
+  name?: string | undefined;
+
   /** Max Width */
   maxWidth?: number | undefined;
 
@@ -315,6 +408,9 @@ export interface IBodyLinksFields {
   /** Entry Title */
   entryTitle: string;
 
+  /** Name */
+  name?: string | undefined;
+
   /** Links */
   links?: Record<string, any> | undefined;
 }
@@ -345,11 +441,11 @@ export interface IBodyYouTubeFields {
   /** YouTube URL */
   youTubeUrl: string;
 
-  /** Video ID */
-  videoId: string;
-
   /** Name */
   name?: string | undefined;
+
+  /** Video ID */
+  videoId: string;
 
   /** Description */
   description?: Document | undefined;
@@ -585,6 +681,7 @@ export interface ISiteSearch extends Entry<ISiteSearchFields> {
 }
 
 export type CONTENT_TYPE =
+  | "blocksBodyContent"
   | "blogAuthor"
   | "blogHome"
   | "blogPage"
@@ -602,6 +699,7 @@ export type CONTENT_TYPE =
   | "siteSearch";
 
 export type IEntry =
+  | IBlocksBodyContent
   | IBlogAuthor
   | IBlogHome
   | IBlogPage

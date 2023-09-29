@@ -1,6 +1,6 @@
-export interface MetaCategory {
-    sysId?: string | undefined;
-    contentType: 'MetaCategory';
+import {BaseModel} from "./types";
+
+export interface MetaCategory extends BaseModel<'MetaCategory'> {
     slug: string;
     name: string;
     description?: object | undefined;

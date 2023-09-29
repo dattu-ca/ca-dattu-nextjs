@@ -1,7 +1,5 @@
 import React, {ReactElement} from "react";
-import clsx from "clsx";
 import {blogPageServices} from "~/services";
-import {BannerComponent} from "~/components/banner";
 
 
 interface IProps {
@@ -21,11 +19,6 @@ export const generateMetadata = async (props: IProps) => {
     }
 }
 
-
-const Layout = async ({children}: IProps) => {
-    return <div>
-        {children}
-    </div>
-}
+const Layout = ({children}: IProps) => children;
 
 export default Layout;

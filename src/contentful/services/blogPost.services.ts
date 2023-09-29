@@ -6,6 +6,8 @@ import {BlogPostSkeleton, mapContentful, mapContentfulList} from '../schema/blog
 const FIELDS = {
     PUBLISHED_DATE: 'fields.publishedDate',
     HEADING: 'fields.heading',
+    EXCERPT_BLOCKS: 'fields.excerptBlocks',
+    CONTENT_BLOCKS: 'fields.contentBlocks',
     BODY: 'fields.body',
     SHORT_BODY: 'fields.shortBody',
     SLUG: 'fields.slug',
@@ -22,6 +24,7 @@ const FIELDS = {
 const PAGINATED_SELECT_FIELDS = [
     FIELDS.SLUG as 'fields',
     FIELDS.HEADING as 'fields',
+    FIELDS.EXCERPT_BLOCKS as 'fields',
     FIELDS.SHORT_BODY as 'fields',
     FIELDS.PUBLISHED_DATE as 'fields',
     FIELDS.AUTHORS as 'fields',
@@ -38,6 +41,7 @@ const fetchBySlug = (slug: string) =>
             content_type,
             select: [
                 FIELDS.HEADING as 'fields',
+                FIELDS.CONTENT_BLOCKS as 'fields',
                 FIELDS.BODY as 'fields',
                 FIELDS.BANNERS as 'fields',
                 FIELDS.CATEGORIES as 'fields',

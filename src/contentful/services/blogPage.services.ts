@@ -3,9 +3,11 @@ import {client} from "../client";
 import { BlogPageSkeleton, mapContentful} from '../schema/blogPage.schema';
 
 const FIELDS = {
-    HEADING: 'fields.heading',
-    BODY: 'fields.body',
     SLUG: 'fields.slug',
+    PRE_HEADING_CONTENT_BLOCKS: 'fields.preHeadingContentBlocks',
+    HEADING: 'fields.heading',
+    CONTENT_BLOCKS: 'fields.contentBlocks',
+    BODY: 'fields.body',
     BANNERS: 'fields.banners',
 }
 
@@ -16,7 +18,9 @@ const fetchBySlug = (slug: string) =>
         .getEntries<BlogPageSkeleton>({
             content_type,
             select: [
+                FIELDS.PRE_HEADING_CONTENT_BLOCKS as 'fields',
                 FIELDS.HEADING as 'fields',
+                FIELDS.CONTENT_BLOCKS as 'fields',
                 FIELDS.BODY as 'fields',
                 FIELDS.BANNERS as 'fields',
             ],

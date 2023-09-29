@@ -1,6 +1,6 @@
-export interface MetaTag {
-    sysId?: string | undefined;
-    contentType: 'MetaTag';
+import {BaseModel} from "./types";
+
+export interface MetaTag extends BaseModel<'MetaTag'> {
     slug: string;
     name: string;
     description?: object | undefined;

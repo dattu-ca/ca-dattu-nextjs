@@ -1,8 +1,8 @@
 import {BodyImage} from "~/models";
 import {IBodyImagesFields} from "./generated/index";
-import {ISkeleton} from "./types";
+import {IBaseSkeleton} from "./types";
 
-export type BodyImagesSkeleton = ISkeleton<'bodyImages', IBodyImagesFields>;
+export type BodyImagesSkeleton = IBaseSkeleton<'bodyImages', IBodyImagesFields>;
 
 export const mapContentful = (raw: any) => {
     if (!raw) {

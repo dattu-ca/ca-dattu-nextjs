@@ -2,10 +2,10 @@ import {SiteNavbar} from "~/models";
 import {ISiteNavbarFields} from "./generated/index";
 import {mapContentful as mapBodyLinksContentful} from './bodyLinks.schema';
 import {mapContentful as mapBodyImagesContentful} from './bodyImages.schema';
-import {ISkeleton} from "./types";
+import {IBaseSkeleton} from "./types";
 
 
-export type SiteNavbarSkeleton = ISkeleton<'siteNavbar', ISiteNavbarFields>;
+export type SiteNavbarSkeleton = IBaseSkeleton<'siteNavbar', ISiteNavbarFields>;
 
 
 export const mapContentful = (raw: any) => {

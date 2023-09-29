@@ -1,3 +1,5 @@
+import {BaseModel} from "./types";
+
 export interface IImage {
     contentType: 'Image';
     url: string;
@@ -5,9 +7,8 @@ export interface IImage {
 }
 
 
-export interface BodyImage {
-    sysId?: string | undefined;
-    contentType: 'BodyImage';
+export interface BodyImage extends BaseModel<'BodyImage'> {
+    name?: string | undefined;
     maxWidth: number | 'auto';
     maxHeight: number | 'auto';
     align: 'left' | 'right' | 'center';

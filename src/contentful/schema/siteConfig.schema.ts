@@ -12,21 +12,21 @@ export type SiteConfigSkeleton = {
 export const mapContentful = (raw: any) => {
     const source = raw as SiteConfigSkeleton;
     const fields = source.fields;
-    const result: Partial<SiteConfig> = {
+    const target: Partial<SiteConfig> = {
         sysId: source.sys.id,
         contentType: 'SiteConfig'
     };
     if (fields.slug) {
-        result.slug = fields.slug as string;
+        target.slug = fields.slug as string;
     }
     if (fields.siteTitleTemplate) {
-        result.siteTitleTemplate = fields.siteTitleTemplate as string;
+        target.siteTitleTemplate = fields.siteTitleTemplate as string;
     }
     if (fields.siteTitleDefault) {
-        result.siteTitleDefault = fields.siteTitleDefault as string;
+        target.siteTitleDefault = fields.siteTitleDefault as string;
     }
     if (fields.siteDescription) {
-        result.siteDescription = fields.siteDescription as string;
+        target.siteDescription = fields.siteDescription as string;
     }
-    return result as SiteConfig;
+    return target as SiteConfig;
 }

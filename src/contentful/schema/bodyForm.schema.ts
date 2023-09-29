@@ -1,8 +1,8 @@
 import {BodyForm, BodyFormModel} from "~/models";
 import {IBodyFormFields} from "./generated/index";
-import {ISkeleton} from "./types";
+import {IBaseSkeleton} from "./types";
 
-export type BodyFormSkeleton = ISkeleton<'bodyForm', IBodyFormFields>;
+export type BodyFormSkeleton = IBaseSkeleton<'bodyForm', IBodyFormFields>;
 
 export const mapContentful = (raw: any) => {
     if (!raw) {

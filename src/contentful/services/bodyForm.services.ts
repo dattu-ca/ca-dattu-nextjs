@@ -4,6 +4,7 @@ import {client} from "../client";
 import {BodyFormSkeleton, mapContentful} from '../schema/bodyForm.schema'
 
 const FIELDS = {
+    NAME: 'fields.name',
     FORM_ID: 'fields.formId',
     FORM_MODEL: 'fields.formModel',
     SUBMIT_FORM_ENABLED: 'fields.submitFormEnabled',
@@ -21,6 +22,7 @@ const fetchByFormId = (formId: string) =>
         .getEntries<BodyFormSkeleton>({
             content_type,
             select: [
+                FIELDS.NAME as 'fields',
                 FIELDS.FORM_ID as 'fields',
                 FIELDS.FORM_MODEL as 'fields',
                 FIELDS.SUBMIT_FORM_ENABLED as 'fields',

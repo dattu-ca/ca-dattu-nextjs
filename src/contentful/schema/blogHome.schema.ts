@@ -4,9 +4,9 @@ import {
     mapContentfulList as mapBlogPostContentfulList
 } from './blogPost.schema';
 import {IBlogHomeFields} from "./generated/index";
-import {ISkeleton} from "./types";
+import {IBaseSkeleton} from "./types";
 
-export type BlogHomeSkeleton = ISkeleton<'blogHome', IBlogHomeFields>
+export type BlogHomeSkeleton = IBaseSkeleton<'blogHome', IBlogHomeFields>
 
 export const mapContentful = (raw: any) => {
     const source = raw as BlogHomeSkeleton;

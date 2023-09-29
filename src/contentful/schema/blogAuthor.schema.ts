@@ -2,9 +2,9 @@ import {BlogAuthor} from "~/models";
 import {IBlogAuthorFields} from "./generated/index";
 import {mapContentful as mapBodyImageContentful} from './bodyImages.schema';
 import {mapBanners} from "./utils";
-import {ISkeleton} from "./types";
+import {IBaseSkeleton} from "./types";
 
-export type BlogAuthorSkeleton = ISkeleton<'blogAuthor', IBlogAuthorFields>;
+export type BlogAuthorSkeleton = IBaseSkeleton<'blogAuthor', IBlogAuthorFields>;
 
 
 export const mapContentful = (raw: any) => {

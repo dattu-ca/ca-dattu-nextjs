@@ -1,19 +1,21 @@
-import {Fragment, ReactElement} from "react";
-import clsx from "clsx";
+import {ReactElement} from "react";
 import './globals.css';
 import 'react-toastify/dist/ReactToastify.css';
-import {ToastContainer} from "react-toastify";
+import "slick-carousel/slick/slick.css";
+import "slick-carousel/slick/slick-theme.css";
 
+import {ToastContainer} from "react-toastify";
 import dbConnect from "~/services.db/dbConnect";
+import {siteConfigServices, siteNavbarServices} from "~/services";
 import {getAuthSession} from "~/auth.services";
 import {SERVER_CONFIG} from "~/utils/config.server";
 import "~/utils/dayjs.config";
 
-import {siteConfigServices, siteNavbarServices} from "~/services";
-import {ThemeSwitcherProvider} from "~/app.components/themeSwitcher/provider";
-import {RootLayoutWrapper} from "~/app.components/rootLayoutWrapper";
-import NavbarComponent from "~/app.components/navbarComponent";
 
+import {ThemeSwitcherProvider} from "~/app.ui.components/themeSwitcher/provider";
+import NavbarComponent from "~/app.ui.components/navbarComponent";
+import {SkipLink} from "~/app.ui.components/skipLink";
+import {LayoutBackground} from "~/app.ui.components/layoutBackground";
 
 
 const {PRIMARY_SITE_CONFIG, HEADER_SITE_NAVBAR} = SERVER_CONFIG.CONTENTFUL_SLUGS;
@@ -47,32 +49,18 @@ const RootLayout = async ({children}: IProps) => {
                 <meta name="robots" content="noindex,nofollow"/>
             </head>
             <body className={`flex h-full bg-zinc-50 dark:bg-black`}>
-            <ThemeSwitcherProvider>
-                <div>
-                    <a href="#mainContent"
-                       className={clsx(
-                           'transition-all ',
-                           'fixed z-[999] ',
-                           'top-0 left-[50%] translate-x-[-50%] ',
-                           'translate-y-[-100%] ',
-                           'focus:translate-y-1.5'
-                       )}>Skip to main Content</a>
-                </div>
-                <RootLayoutWrapper>
-                    <Fragment>
+                <ThemeSwitcherProvider>
+                    <SkipLink skipToId='mainContent'/>
+                    <LayoutBackground>
                         <header>
-                            <NavbarComponent navbar={navbar}
-                                             session={session}
-                                             data-superjson/>
+                            <NavbarComponent navbar={navbar} session={session} data-superjson/>
                         </header>
                         <main id="mainContent">
                             {children}
                         </main>
-                    </Fragment>
-                </RootLayoutWrapper>
-                <ToastContainer/>
-    
-            </ThemeSwitcherProvider>
+                    </LayoutBackground>
+                    <ToastContainer/>
+                </ThemeSwitcherProvider>
             </body>
         </html>
     )

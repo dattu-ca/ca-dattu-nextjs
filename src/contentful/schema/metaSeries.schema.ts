@@ -1,26 +1,26 @@
 import {MetaSeries} from "~/models";
 import {IMetaSeriesFields} from "./generated/index";
-import {ISkeleton} from "./types";
+import {IBaseSkeleton} from "./types";
 
-export type MetaSeriesSkeleton = ISkeleton<'metaSeries', IMetaSeriesFields>;
+export type MetaSeriesSkeleton = IBaseSkeleton<'metaSeries', IMetaSeriesFields>;
 
 export const mapContentful = (raw: any) => {
     const source = raw as MetaSeriesSkeleton;
     const fields = source.fields;
-    const result: Partial<MetaSeries> = {
+    const target: Partial<MetaSeries> = {
         sysId: source.sys.id,
         contentType: 'MetaSeries'
     };
     if (fields.slug) {
-        result.slug = fields.slug as string;
+        target.slug = fields.slug as string;
     }
     if (fields.name) {
-        result.name = fields.name as string;
+        target.name = fields.name as string;
     }
     if (fields.description) {
-        result.description = fields.description as object;
+        target.description = fields.description as object;
     }
-    return result as MetaSeries;
+    return target as MetaSeries;
 }
 
 export const mapContentfulList = (raw: any[]) => (raw || []).map(source => mapContentful(source));

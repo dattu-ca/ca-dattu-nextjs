@@ -2,10 +2,10 @@ import clsx from "clsx";
 import {ReactElement} from "react";
 
 interface IProps {
-    children: ReactElement;
+    children: ReactElement
 }
 
-const RootLayoutWrapper = ({children}: IProps) => {
+const LayoutBackground = ({children}: IProps) => {
     return (
         <div className={clsx(
             'flex w-full'
@@ -32,6 +32,8 @@ const RootLayoutWrapper = ({children}: IProps) => {
         </div>
     )
 }
+
 export {
-    RootLayoutWrapper
+    LayoutBackground
 }
+
