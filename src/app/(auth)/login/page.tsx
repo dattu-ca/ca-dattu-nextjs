@@ -8,7 +8,7 @@ import {getAuthSession} from "~/auth.services";
 const Page = async () => {
     const session = await getAuthSession();
     if (session) {
-        return redirect('/admin/dashboard', RedirectType.replace);
+        return redirect('/dashboard', RedirectType.replace);
     }
     const providers = await getProviders();
     return <div>

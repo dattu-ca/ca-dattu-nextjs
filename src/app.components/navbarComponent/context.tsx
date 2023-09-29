@@ -160,26 +160,26 @@ const NavbarContextProvider = ({children, navbar: rawNavbar, session}: INavbarCo
             items.push({
                 id: 'dashboard',
                 contentType: 'Link',
-                url: '/admin/dashboard',
+                url: '/dashboard',
                 label: 'Dashboard'
             });
             items.push({
                 id: 'profile',
                 contentType: 'Link',
-                url: '/admin/profile',
+                url: '/profile',
                 label: 'Profile'
             });
             items.push({
                 id: 'logout',
                 contentType: 'Link',
-                url: '/auth/logout',
+                url: '/logout',
                 label: 'Logout'
             });
         } else {
             items.push({
                 id: 'login',
                 contentType: 'Link',
-                url: '/auth/login',
+                url: '/login',
                 label: 'Login'
             });
         }

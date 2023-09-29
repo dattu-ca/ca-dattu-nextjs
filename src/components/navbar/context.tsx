@@ -160,13 +160,13 @@ const NavbarContextProvider = ({children, navbar: rawNavbar, session}: INavbarCo
             items.push({
                 id: 'dashboard',
                 contentType: 'Link',
-                url: '/admin/dashboard',
+                url: '/dashboard',
                 label: 'Dashboard'
             });
             items.push({
                 id: 'profile',
                 contentType: 'Link',
-                url: '/admin/profile',
+                url: '/profile',
                 label: 'Profile'
             });
             items.push({

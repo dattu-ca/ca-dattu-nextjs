@@ -6,7 +6,7 @@ import {AuthErrorComponent} from "~/components/authErrorComponent";
 const Page = async () => {
     const session = await getAuthSession();
     if(session){
-        return redirect('/admin/dashboard', RedirectType.replace);
+        return redirect('/dashboard', RedirectType.replace);
     }
 
     return <div>

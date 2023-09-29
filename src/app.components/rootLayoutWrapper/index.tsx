@@ -5,7 +5,7 @@ interface IProps {
     children: ReactElement;
 }
 
-const LayoutBackground = ({children}: IProps) => {
+const RootLayoutWrapper = ({children}: IProps) => {
     return (
         <div className={clsx(
             'flex w-full'
@@ -33,5 +33,5 @@ const LayoutBackground = ({children}: IProps) => {
     )
 }
 export {
-    LayoutBackground
+    RootLayoutWrapper
 }
