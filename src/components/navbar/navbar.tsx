@@ -12,7 +12,7 @@ import {MenuDesktop} from "./desktop";
 const Navbar = () => {
     const {isAboveMd} = useBreakpoint("md");
     
-    const [isDesktop, setIsDesktop] = useState(true)
+    const [isDesktop, setIsDesktop] = useState(false)
     
     useEffect(() => {
         setIsDesktop(isAboveMd);

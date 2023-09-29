@@ -22,13 +22,34 @@ export const ThemeSwitcher = () => {
         <button
             aria-label={`Set theme to ${theme === 'dark' ? 'light' : 'dark'} mode`}
             className={clsx(
-                'group rounded-full px-3 py-2 shadow-lg shadow-zinc-800/5  backdrop-blur transition',
+                'group rounded-full px-3 pt-2 pb-1 shadow-lg shadow-zinc-800/5  backdrop-blur transition',
                 'bg-white/90 ring-1 ring-zinc-900/5',
                 'dark:bg-zinc-800/90 dark:ring-white/10 dark:hover:ring-white/20'
             )}
             onClick={() => setTheme(theme === "dark" ? "light" : "dark")}
         >
-            {theme === "light" ? <BsSun/> : <BsMoonFill/>}
+            <div className={clsx(
+                'inline-grid',
+            )}>
+                <BsSun
+                    className={clsx(
+                        'transition duration-250 col-start-1 row-start-1',
+                        {
+                            ['opacity-1 rotate-0']: theme === 'light',
+                            ['opacity-0 rotate-45']: theme !== 'light'
+                        }
+                    )}
+                />
+                <BsMoonFill
+                    className={clsx(
+                        'transition duration-250 col-start-1 row-start-1',
+                        {
+                            ['opacity-1 rotate-0']: theme === 'dark',
+                            ['opacity-0 rotate-45']: theme !== 'dark'
+                        }
+                    )}
+                />
+            </div>            
         </button>
     );
 };

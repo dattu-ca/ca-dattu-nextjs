@@ -39,7 +39,11 @@ const MenuDesktopSubmenu = ({id, links}: IProps) => {
             {
                 links.map(link => (
                     <li key={link.id}
-                        className={clsx()}
+                        className={clsx(
+                            'border-b-[1px] last-of-type:border-b-0',
+                            'border-zinc-900/5',
+                            'dark:border-white/10'
+                        )}
                     >
                         <Link href={link.url}
                               tabIndex={isOpen ? undefined : -1}
