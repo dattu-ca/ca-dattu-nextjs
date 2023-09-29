@@ -5,7 +5,7 @@ import {BannerComponent} from "~/components/banner";
 
 
 interface IProps {
-    children: ReactElement;
+    children?: ReactElement;
     params: {
         slug: string | string[];
     }
@@ -22,17 +22,9 @@ export const generateMetadata = async (props: IProps) => {
 }
 
 
-const Layout = async ({children, params: {slug}}: IProps) => {
-    const data = await blogPageServices.fetchBySlug(Array.isArray(slug) ? slug.join('/') : slug);
-    const {banners} = data;
-
+const Layout = async ({children}: IProps) => {
     return <div>
-        <BannerComponent banners={banners}/>
-        <div className={clsx()}>
-            <div className={clsx()}>
-                {children}
-            </div>
-        </div>
+        {children}
     </div>
 }
 

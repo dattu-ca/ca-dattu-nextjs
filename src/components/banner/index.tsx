@@ -36,12 +36,14 @@ export const BannerComponent = ({banners}: IProps) => {
 
     return bannersLength > 0
         && (
-            <div className={clsx()}>
+            <div className={clsx(
+                
+            )}>
                 <div {...swipeHandlers}
                      className={clsx()}>
                     {
                         banners.map((banner, index) => (
-                            <div key={index} className={clsx()}>
+                            <div key={index} className={clsx('w-full')}>
                                 {
                                     banner.contentType === 'BodyImage'
                                     && <RenderedImage banner={banner as BodyImage}/>

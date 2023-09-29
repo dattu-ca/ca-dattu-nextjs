@@ -7,7 +7,7 @@ import {ToastContainer} from "react-toastify";
 import {getAuthSession} from "~/auth.services";
 import {siteConfigServices, siteNavbarServices} from "~/services";
 import {SERVER_CONFIG} from "~/utils/config.server";
-import NavbarComponent from "~/components/navbar";
+import NavbarComponent from "~/app.components/navbar";
 import dbConnect from "~/services.db/dbConnect";
 
 import './dayjs.config';
@@ -64,8 +64,10 @@ const RootLayout = async ({children}: IProps) => {
                         <NavbarComponent navbar={navbar} session={session} data-superjson/>
                     </header>
                     <main id="mainContent"
-                          className={clsx()}>
-                        {/*{children}*/}
+                          className={clsx(
+                              'flex-auto'
+                          )}>
+                        {children}
                     </main>
                 </Fragment>
             </LayoutBackground>

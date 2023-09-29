@@ -8,7 +8,9 @@ interface IProps {
 
 const RenderedImage = ({banner}: IProps) => {
 
-    return <div className={clsx()}>
+    return <div className={clsx(
+        
+    )}>
         <ImageComponent image={banner} />
     </div>
 }

@@ -31,7 +31,9 @@ const ImageComponent = ({image}: IProps) => {
                 height="250"
                 decoding="async"
                 data-nimg="1"
-                className={clsx()}
+                className={clsx(
+                    'w-full'
+                )}
                 sizes="100vw"
                 srcSet={srcSet.join(', ')}
                 src={srcSet[srcSet.length - 1]}/>
