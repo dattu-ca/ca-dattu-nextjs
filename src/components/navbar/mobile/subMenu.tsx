@@ -11,10 +11,10 @@ interface IProps {
 
 const MenuMobileSubmenu = ({id, links}: IProps) => {
     const {
-        ctxData: {subMenuOpenId},
+        ctxData: {mobileSubMenuOpenIds},
         ctxFunctions: {isCurrentPage, getAriaCurrent, closeMobileMenu}
     } = useNavbarContext();
-    const isOpen = id === subMenuOpenId
+    const isOpen = mobileSubMenuOpenIds.includes(id)
 
     return <div className={clsx(
         'transition duration-1000 h-full',

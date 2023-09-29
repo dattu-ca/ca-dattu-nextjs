@@ -5,7 +5,7 @@ import {GiHamburgerMenu} from "react-icons/gi";
 import {FaTimes} from "react-icons/fa";
 import {useNavbarContext} from "../context";
 import {MenuMobileSubmenu} from "./subMenu";
-import {FaCaretDown, FaUserGear} from "react-icons/fa6";
+import {FaCaretDown} from "react-icons/fa6";
 import {ClickAwayListener} from "@mui/base";
 
 const MenuMobile = () => {
@@ -16,14 +16,14 @@ const MenuMobile = () => {
             links,
             isMobileMenuOpen,
             authLinks,
-            subMenuOpenId,
+            mobileSubMenuOpenIds,
         },
         ctxFunctions: {
             getAriaCurrent,
             isCurrentPage,
             toggleMobileMenu,
             closeMobileMenu,
-            toggleSubMenu,
+            toggleMobileSubMenu,
         }
     } = useNavbarContext();
 
@@ -69,16 +69,16 @@ const MenuMobile = () => {
             <div
                 role="menu"
                 className={clsx(
-                'absolute w-full top-full left-0 translate-y-2',
-                'group rounded-xl shadow-lg shadow-zinc-800/5 backdrop-blur transition',
-                'bg-white/90 ring-zinc-900/5',
-                'dark:bg-zinc-800/90 dark:ring-white/10 dark:hover:ring-white/20',
-                {
-                    ['ring-1']: isMobileMenuOpen,
-                    ['h-0 overflow-hidden ring-0']: !isMobileMenuOpen
-                }
-            )}
-                 style={{'--tw-bg-opacity': 0.95} as React.CSSProperties}>
+                    'absolute w-full top-full left-0 translate-y-2',
+                    'group rounded-xl shadow-lg shadow-zinc-800/5 backdrop-blur transition',
+                    'bg-white/90 ring-zinc-900/5',
+                    'dark:bg-zinc-800/90 dark:ring-white/10 dark:hover:ring-white/20',
+                    {
+                        ['ring-1']: isMobileMenuOpen,
+                        ['h-0 overflow-hidden ring-0']: !isMobileMenuOpen
+                    }
+                )}
+                style={{'--tw-bg-opacity': 0.95} as React.CSSProperties}>
                 <div className={clsx()}>
                     <ul className={clsx(
                         'flex flex-col',
@@ -116,14 +116,14 @@ const MenuMobile = () => {
                                                 className={clsx(
                                                     'px-4'
                                                 )}
-                                                onClick={() => toggleSubMenu(link.id)}
-                                                aria-label={subMenuOpenId === link.id ? `Close sub menu for ${link.label}` : `Open sub menu for ${link.label}`}
+                                                onClick={() => toggleMobileSubMenu(link.id)}
+                                                aria-label={mobileSubMenuOpenIds.includes(link.id) ? `Close sub menu for ${link.label}` : `Open sub menu for ${link.label}`}
                                                 tabIndex={isMobileMenuOpen ? undefined : -1}>
 
                                                 <FaCaretDown className={clsx(
                                                     'transition',
                                                     {
-                                                        ['rotate-180']: subMenuOpenId === link.id
+                                                        ['rotate-180']: mobileSubMenuOpenIds.includes(link.id)
                                                     }
                                                 )}/>
 
@@ -145,20 +145,20 @@ const MenuMobile = () => {
                         )}>
                             <div>
                                 <button
-                                    onClick={() => toggleSubMenu('authMenu')}
+                                    onClick={() => toggleMobileSubMenu('authMenu')}
                                     className={clsx(
                                         'w-full',
                                         'flex gap-2 justify-center items-center',
                                         'relative block px-3 py-2 transition hover:text-teal-500 dark:hover:text-teal-400',
                                     )}
-                                    aria-label={subMenuOpenId === 'authMenu' ? `Close sub menu for User Management` : `Open sub menu for User Management`}
+                                    aria-label={mobileSubMenuOpenIds.includes('authMenu') ? `Close sub menu for User Management` : `Open sub menu for User Management`}
                                     tabIndex={isMobileMenuOpen ? undefined : -1}
                                 >
                                     <span>Profile</span>
                                     <FaCaretDown className={clsx(
                                         'transition',
                                         {
-                                            ['rotate-180']: subMenuOpenId === 'authMenu'
+                                            ['rotate-180']: mobileSubMenuOpenIds.includes('authMenu')
                                         }
                                     )}/>
                                 </button>
