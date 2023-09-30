@@ -3,7 +3,7 @@ import clsx from "clsx";
 import {ErrorBannerComponent} from "./errorBanner";
 
 interface IProps {
-    children: ReactElement;
+    children: ReactElement | ReactElement[];
 }
 
 const Layout = async ({children}: IProps) => {

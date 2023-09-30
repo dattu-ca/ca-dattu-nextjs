@@ -1,4 +1,4 @@
-import {BlocksBodyContent} from "~/models";
+import {BlocksBodyContent, ColumnBlock} from "~/models";
 import {
     IBlocksBodyContentFields,
     IBodyContent,
@@ -20,21 +20,21 @@ const mapBlocks = (blocks: (IBodyContent | IBodyForm | IBodyImages | IBodyLinks 
     return blocks.map(block => {
         const contentType = block.sys.contentType.sys.id;
         if (contentType === 'bodyContent') {
-            return mapBodyContentContentful(block);
+            return mapBodyContentContentful(block) as ColumnBlock;
         }
         if (contentType === 'bodyImages') {
-            return mapBodyImagesContentful(block);
+            return mapBodyImagesContentful(block) as ColumnBlock;
         }
         if (contentType === 'bodyYouTube') {
-            return mapBodyYoutubeContentful(block);
+            return mapBodyYoutubeContentful(block) as ColumnBlock;
         }
         if (contentType === 'bodyForm') {
-            return mapBodyFormContentful(block);
+            return mapBodyFormContentful(block) as ColumnBlock;
         }
         if (contentType === 'bodyLinks') {
-            return mapBodyLinksContentful(block);
+            return mapBodyLinksContentful(block) as ColumnBlock;
         }
-        return undefined;
+        throw new Error(`${contentType} not handled`);
     });
 }
 

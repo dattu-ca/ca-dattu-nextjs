@@ -1,11 +1,10 @@
 'use client';
-import {useMemo, useRef, useState} from 'react';
+import {Fragment, useMemo, useRef, useState} from 'react';
 import clsx from "clsx";
-import {ColumnBlock, ColumnGaps} from "~/models";
-import {BlocksBodyContentBlock} from "./block";
-import {Fragment} from "preact";
 import {FaRegCircle} from "react-icons/fa6";
 import {FaRegDotCircle} from "react-icons/fa";
+import {ColumnBlock, ColumnGaps} from "~/models";
+import {BlocksBodyContentBlock} from "./block";
 
 
 interface IProps {
@@ -18,14 +17,15 @@ const ColumnSlider = ({blocks}: IProps) => {
     const ref = useRef<HTMLDivElement>(null)
 
     const [current, setCurrent] = useState(0);
+    const [deltaX, setDeltaX] = useState(0);
 
     const translateX = useMemo(() => {
-        if(ref.current){
+        if (ref.current) {
             const width = ref.current.offsetWidth;
-            return (current * width) * -1;
+            return ((current * width) * -1) + deltaX;
         }
         return 0;
-    }, [current, ref])
+    }, [current, ref, deltaX])
 
 
     return <div ref={ref}

@@ -31,7 +31,7 @@ const usePaginationContext = () => {
 };
 
 interface IPaginationContextProviderProps {
-    children: ReactElement,
+    children: ReactElement | ReactElement[],
     totalItems: number;
     skip: number;
     limit: number;

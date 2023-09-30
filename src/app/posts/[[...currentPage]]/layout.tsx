@@ -5,7 +5,7 @@ import clsx from "clsx";
 
 
 interface IProps {
-    children: ReactElement;
+    children: ReactElement | ReactElement[];
     params: {
         currentPage: number;
     }

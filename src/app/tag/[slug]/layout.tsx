@@ -6,7 +6,7 @@ import {TagDescription} from "~/components/tag/tagDescription";
 
 
 interface IProps {
-    children: ReactElement;
+    children: ReactElement | ReactElement[];
     params: {
         slug: string;
     }

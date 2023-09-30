@@ -5,7 +5,7 @@ import {LayoutWidth} from "~/models";
 
 interface IProps {
     layoutWidth: LayoutWidth;
-    children: ReactElement;
+    children: ReactElement | ReactElement[];
 }
 
 const BlocksLayout = ({

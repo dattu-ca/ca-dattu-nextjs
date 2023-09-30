@@ -4,7 +4,7 @@ import {redirect} from "next/navigation";
 import {RedirectType} from "next/dist/client/components/redirect";
 
 interface IProps {
-    children: ReactElement;
+    children: ReactElement | ReactElement[];
 }
 
 const Layout = async ({children}: IProps) => {

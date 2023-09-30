@@ -2,7 +2,7 @@ import {ReactElement, Fragment} from "react";
 import clsx from "clsx";
 
 interface IProps {
-    children: ReactElement
+    children: ReactElement | ReactElement[];
 }
 
 const RootLayoutComponent = ({children}: IProps) => {

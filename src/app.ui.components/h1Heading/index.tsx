@@ -3,7 +3,7 @@ import {BlocksLayout} from "../blocksLayout";
 
 
 interface IProps {
-    children: ReactElement
+    children: ReactElement | ReactElement[];
 }
 
 const H1Heading = ({children}: IProps) => (

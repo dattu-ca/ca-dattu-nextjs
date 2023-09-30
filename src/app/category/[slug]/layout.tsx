@@ -7,7 +7,7 @@ import {CategoryDescription} from "~/components/category/categoryDescription";
 
 
 interface IProps {
-    children: ReactElement;
+    children: ReactElement | ReactElement[];
     params: {
         slug: string;
     }

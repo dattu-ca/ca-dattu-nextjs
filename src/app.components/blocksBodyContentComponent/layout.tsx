@@ -8,9 +8,9 @@ interface IProps {
     layoutWidth: LayoutWidth;
     columnWidths: ColumnWidths;
     columnGaps: ColumnGaps;
-    column1: ReactElement;
-    column2: ReactElement;
-    column3: ReactElement;
+    column1: ReactElement | ReactElement[];
+    column2: ReactElement | ReactElement[];
+    column3: ReactElement | ReactElement[];
 }
 
 const BlocksBodyContentLayout = ({

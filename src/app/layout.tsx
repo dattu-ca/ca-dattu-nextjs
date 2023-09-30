@@ -32,7 +32,7 @@ export const generateMetadata = async () => {
 }
 
 interface IProps {
-    children: ReactElement;
+    children: ReactElement | ReactElement[];
 }
 
 const RootLayout = async ({children}: IProps) => {

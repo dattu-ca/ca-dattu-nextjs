@@ -8,7 +8,7 @@ const RichTextRenderer = ({document}: IProps) => {
     if (!document) {
         return null;
     }
-    return <Renderer documenet={document}/>
+    return <Renderer document={document}/>
 }
 export {
     RichTextRenderer

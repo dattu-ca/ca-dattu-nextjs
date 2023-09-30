@@ -17,11 +17,7 @@ const BlogPageComponent = ({blogPage}: IProps) => {
                 {blogPage.heading}
             </Fragment>
         </H1Heading>
-        {/*<div className={clsx(*/}
-        {/*    'overflow-auto'*/}
-        {/*)}>*/}
-        {/*    <pre>{JSON.stringify(blogPage, null, 2)}</pre>*/}
-        {/*</div>*/}
+        <BlocksBodyContentComponent blocks={blogPage.contentBlocks}/>
     </div>
 }
 

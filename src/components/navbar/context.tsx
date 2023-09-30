@@ -76,7 +76,7 @@ const useNavbarContext = () => {
 };
 
 interface INavbarContextProviderProps {
-    children: ReactElement;
+    children: ReactElement | ReactElement[];
     navbar: {};
     session: Session | null;
 }

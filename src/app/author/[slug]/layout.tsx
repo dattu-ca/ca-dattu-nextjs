@@ -6,7 +6,7 @@ import {BannerComponent} from "~/components/banner";
 import {AuthorNavigation} from "./navigation";
 
 interface IProps {
-    children: ReactElement;
+    children: ReactElement | ReactElement[];
     params: {
         slug: string;
     }

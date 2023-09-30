@@ -7,7 +7,7 @@ import {BlogPost} from "~/models";
 
 
 interface IProps {
-    children: ReactElement;
+    children: ReactElement | ReactElement[];
     params: {
         slug: string | string[];
     }

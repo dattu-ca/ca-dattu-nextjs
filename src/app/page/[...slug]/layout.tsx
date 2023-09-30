@@ -3,7 +3,7 @@ import {blogPageServices} from "~/services";
 
 
 interface IProps {
-    children?: ReactElement;
+    children?: ReactElement | ReactElement[];
     params: {
         slug: string | string[];
     }
