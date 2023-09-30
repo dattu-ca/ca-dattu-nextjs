@@ -16,6 +16,7 @@ export const mapContentful = (raw: any) => {
         maxWidth: fields.maxWidth ?? 'auto',
         maxHeight: fields.maxWidth ?? 'auto',
         align: fields.align.toLowerCase() as ('left' | 'right' | 'center'),
+        name: fields.name,
     };
     target.desktopImage = {
         contentType: 'Image',

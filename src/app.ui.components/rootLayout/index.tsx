@@ -1,15 +1,13 @@
+import {ReactElement, Fragment} from "react";
 import clsx from "clsx";
-import {ReactElement} from "react";
 
 interface IProps {
     children: ReactElement
 }
 
-const LayoutBackground = ({children}: IProps) => {
+const RootLayoutComponent = ({children}: IProps) => {
     return (
-        <div className={clsx(
-            'flex w-full'
-        )}>
+        <Fragment>
             <div className={clsx(
                 'fixed inset-0 flex justify-center sm:px-8'
             )}>
@@ -25,15 +23,19 @@ const LayoutBackground = ({children}: IProps) => {
                 </div>
             </div>
             <div className={clsx(
-                'relative flex w-full flex-col'
+                'flex w-full'
             )}>
-                {children}
+                <div className={clsx(
+                    'relative flex w-full flex-col'
+                )}>
+                    {children}
+                </div>
             </div>
-        </div>
+        </Fragment>
     )
 }
 
 export {
-    LayoutBackground
+    RootLayoutComponent
 }
 

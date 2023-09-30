@@ -60,11 +60,20 @@ export default {
         },
     },
     corePlugins: {},
-    plugins: [MyClass],
+    plugins: [
+        MyClass,
+        require('daisyui')
+    ],
     variants: {
         extend: {
             display: ['group-hover'],
             visibility: ['group-hover'],
         }
-    }
+    },
+    daisyui: {
+        prefix: 'daisyui-',
+        themes: false,
+        darkTheme: "dark",
+        base: false,
+    },
 }

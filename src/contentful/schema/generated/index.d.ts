@@ -8,7 +8,7 @@ export interface IBlocksBodyContentFields {
   entryTitle: string;
 
   /** Layout Width */
-  layoutWidth: "Full Width" | "Default" | "Narrow";
+  layoutWidth: "Full Width" | "Container Width" | "Default" | "Narrow";
 
   /** Column Widths */
   columnWidths: "1/1" | "1/2, 1/2" | "1/3, 2/3" | "2/3, 1/3" | "1/3, 1/3, 1/3";

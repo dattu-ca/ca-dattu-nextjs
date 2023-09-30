@@ -4,6 +4,7 @@ import {ColumnBlock, ColumnGaps, ColumnLayout} from "~/models";
 
 
 interface IProps {
+    
     blocks: ColumnBlock[];
     gaps: ColumnGaps;
 }

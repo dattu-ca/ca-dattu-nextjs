@@ -1,6 +1,7 @@
 import {ColumnGaps, ColumnWidths, LayoutWidth} from "~/models";
 import {ReactElement} from "react";
 import clsx from "clsx";
+import {BlocksLayout} from "~/app.ui.components/blocksLayout";
 
 
 interface IProps {
@@ -21,32 +22,61 @@ const BlocksBodyContentLayout = ({
                                      column3,
                                  }: IProps) => {
 
-    return <div className={clsx(
-        'grid',
-        {
-            ['w-full']: layoutWidth === 'Full Width',
-            ['w-[75%]']: layoutWidth === 'Default',
-            ['w-[50%]']: layoutWidth === 'Narrow'
-        }
-    )}>
-        <div>
-            {column1}
+    const totalColumns = Number(columnWidths.slice(-1)) as number;
+    const widths = columnWidths.split(',').map(w => w.trim());
+
+    return <BlocksLayout layoutWidth={layoutWidth}>
+        <div className={clsx(
+            'grid',
+            'grid-cols-1',
+            {
+                ['gap-0']: columnGaps === 'None',
+                ['gap-2']: columnGaps === 'Xs',
+                ['gap-4']: columnGaps === 'Sm',
+                ['gap-6']: columnGaps === 'Md',
+                ['gap-8']: columnGaps === 'Lg',
+                ['gap-10']: columnGaps === 'Xl',
+                ['grid-cols-1']: totalColumns === 1,
+                ['md:grid-cols-2']: totalColumns === 2,
+                ['md:grid-cols-3']: totalColumns === 3,
+            }
+        )}>
+            <div className={clsx(
+                'col-span-1',
+                {
+                    ['col-span-1']: Number(widths[0].slice(0, 1)) === 1,
+                    ['md:col-span-2']: Number(widths[0].slice(0, 1)) === 2,
+                }
+            )}>
+                {column1}
+            </div>
+            {
+                widths.length >= 2 && (
+                    <div className={clsx(
+                        'col-span-1',
+                        {
+                            ['col-span-1']: Number(widths[1].slice(0, 1)) === 1,
+                            ['md:col-span-2']: Number(widths[1].slice(0, 1)) === 2,
+                        }
+                    )}>
+                        {column2}
+                    </div>
+                )
+            }
+            {
+                widths.length === 3 && (
+                    <div className={clsx(
+                        'col-span-1',
+                        {
+                            ['col-span-1']: Number(widths[2].slice(0, 1)) === 1,
+                        }
+                    )}>
+                        {column3}
+                    </div>
+                )
+            }
         </div>
-        {
-            columnWidths.split(',').length > 1 && (
-                <div>
-                    {column2}
-                </div>
-            )
-        }
-        {
-            columnWidths.split(',').length > 2 && (
-                <div>
-                    {column3}
-                </div>
-            )
-        }
-    </div>
+    </BlocksLayout>
 }
 
 export {

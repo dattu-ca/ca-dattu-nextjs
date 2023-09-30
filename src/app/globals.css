@@ -6,23 +6,11 @@
 :root {
     --tw-shadow-color: rgb(218, 165, 32);
     --tw-shadow-color-split: rgb(0, 0, 0);
-
-
-    --header-position: fixed;
-    --header-height: 180px;
-    --header-mb: -116px;
-    --header-top: 0px;
-    --content-offset: 116px;
-
-    --avatar-image-transform: translate3d(0rem, 0, 0) scale(1);
-    --avatar-border-transform: translate3d(-0.2222222222222222rem, 0, 0) scale(1.7777777777777777);
-    --avatar-border-opacity: 0;
-    --avatar-top: 0px;
 }
 
 @layer base {
     body {
-        @apply bg-white dark:bg-gray-800;
+
     }
 
     h1, .h1 {
@@ -33,5 +21,20 @@
         @apply text-zinc-800 dark:text-zinc-100;
         @apply mt-6;
         @apply mb-6;
+    }
+}
+
+@layer utilities {
+    @variants responsive {
+        /* Hide scrollbar for Chrome, Safari and Opera */
+        .no-scrollbar::-webkit-scrollbar {
+            display: none;
+        }
+
+        /* Hide scrollbar for IE, Edge and Firefox */
+        .no-scrollbar {
+            -ms-overflow-style: none; /* IE and Edge */
+            scrollbar-width: none; /* Firefox */
+        }
     }
 }

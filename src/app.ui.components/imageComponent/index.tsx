@@ -10,10 +10,10 @@ const ImageComponent = ({image}: IProps) => {
 
     const srcSet = useMemo(() => {
         const srcSet = [];
-        if(image){
+        if (image) {
             if (image.mobileImage?.url) {
                 srcSet.push(`${image.mobileImage?.url}?fm=avif&w=640&q=75 640w`)
-            } else{
+            } else {
                 srcSet.push(`${image.desktopImage?.url}?fm=avif&w=640&q=75 640w`)
             }
             const sizes = [750, 828, 1080, 1200, 1920, 2048, 3840]
@@ -21,22 +21,34 @@ const ImageComponent = ({image}: IProps) => {
                 srcSet.push(`${image.desktopImage?.url}?fm=avif&w=${size}&q=75 ${size}w`)
             })
         }
-
         return srcSet;
     }, [image]);
 
-    return <img alt={image?.desktopImage?.alt}
-                loading="lazy"
-                width="250"
-                height="250"
-                decoding="async"
-                data-nimg="1"
-                className={clsx(
-                    'w-full'
-                )}
-                sizes="100vw"
-                srcSet={srcSet.join(', ')}
-                src={srcSet[srcSet.length - 1]}/>
+    return <div className={clsx(
+        'flex',
+        {
+            ['justify-start']: image.align === 'left',
+            ['justify-center']: image.align === 'center',
+            ['justify-end']: image.align === 'right'
+        }
+    )}>
+        <img alt={image?.desktopImage?.alt}
+             loading="lazy"
+             width={image.maxWidth || 250}
+             height={image.maxHeight || 10}
+             decoding="async"
+             data-nimg="1"
+             className={clsx(
+                 'w-full'
+             )}
+             style={{
+                 maxWidth: image.maxWidth || 'auto',
+                 maxHeight: image.maxHeight || 'auto'
+             }}
+             sizes="100vw"
+             srcSet={srcSet.join(', ')}
+             src={srcSet[1]}/>
+    </div>
 }
 
 export {
@@ -73,7 +85,6 @@ export {
  src="w=3840&amp;q=75">
 
  */
-
 
 
 // return (
