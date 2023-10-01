@@ -7,19 +7,19 @@ import {MetaTag} from "./metaTag";
 import {MetaSeries} from "./metaSeries";
 import {BlocksBodyContent} from "./blocksBodyContent";
 
+export type BlogPostFormat = 'Standard' | 'Aside' | 'Image' | 'Video' | 'Quote' | 'Link';
 
-export interface BlogPost  extends BaseModel<'BlogPost'> {
+export interface BlogPost extends BaseModel<'BlogPost'> {
     slug?: string | undefined;
+    publishedDate: Date;
+    format: BlogPostFormat;
+    preHeadingContentBlocks?: BlocksBodyContent[] | undefined;
     heading?: string | undefined;
+    featuredBanner?: BodyImage | BodyYoutube | undefined;
     excerptBlocks?: BlocksBodyContent[] | undefined;
     contentBlocks?: BlocksBodyContent[] | undefined;
-    banners: (BodyImage | BodyYoutube)[];
-    featuredBanner?: BodyImage | BodyYoutube | undefined;
-    body?: object | undefined;
-    shortBody?: object | undefined;
-    publishedDate: Date;
-    authors: BlogAuthor[],
+    authors: BlogAuthor[];
+    series: MetaSeries;
     categories?: MetaCategory[];
     tags: MetaTag[];
-    series: MetaSeries;
 }

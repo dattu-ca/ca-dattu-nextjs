@@ -5,6 +5,9 @@ import {IBaseSkeleton} from "./types";
 export type BodyContentSkeleton = IBaseSkeleton<'bodyYoutube', IBodyContentFields>;
 
 export const mapContentful = (raw: any) => {
+    if(!raw){
+        return undefined;
+    }
     const source = raw as BodyContentSkeleton;
     const fields = source.fields;
     const target: Partial<BodyContent> = {

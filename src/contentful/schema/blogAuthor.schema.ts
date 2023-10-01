@@ -8,6 +8,9 @@ export type BlogAuthorSkeleton = IBaseSkeleton<'blogAuthor', IBlogAuthorFields>;
 
 
 export const mapContentful = (raw: any) => {
+    if(!raw){
+        return undefined;
+    }
     const source = raw as BlogAuthorSkeleton;
     const fields = source.fields;
     const target: Partial<BlogAuthor> = {
@@ -39,4 +42,4 @@ export const mapContentful = (raw: any) => {
 }
 
 
-export const mapContentfulList = (raw: any[]) => (raw || []).map(source => mapContentful(source));
+export const mapContentfulList = (raw: any[]) => (raw || []).map(source => mapContentful(source)).filter(item => !Boolean(item)) as BlogAuthor[];

@@ -23,7 +23,5 @@ export const mapContentful = (raw: any) => {
         formModel: fields.formModel as BodyFormModel[],
         fromEmailKey: fields.fromEmailKey,
     };
-
     return target as BodyForm;
-
 }

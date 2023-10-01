@@ -11,6 +11,9 @@ import {IBaseSkeleton} from "./types";
 export type BlogPostSkeleton = IBaseSkeleton<'blogPost', IBlogPostFields>;
 
 export const mapContentful = (raw: any) => {
+    if (!raw) {
+        return undefined;
+    }
     const source = raw as BlogPostSkeleton;
     const fields = source.fields
     const target: Partial<BlogPost> = {
@@ -41,16 +44,16 @@ export const mapContentful = (raw: any) => {
     if (fields.authors) {
         target.authors = mapBodyAuthorContentfulList(fields.authors);
     }
-    if(fields.categories){
+    if (fields.categories) {
         target.categories = mapMetaCategoryContentfulList(fields.categories);
     }
-    if(fields.tags){
+    if (fields.tags) {
         target.tags = mapMetaTagContentfulList(fields.tags);
     }
-    if(fields.series){
+    if (fields.series) {
         target.series = mapMetaSeriesContentful(fields.series);
     }
     return target as BlogPost;
 }
 
-export const mapContentfulList = (raw: any[]) => (raw || []).map(source => mapContentful(source));
+export const mapContentfulList = (raw: any[]) => (raw || []).map(source => mapContentful(source)).filter(item => !Boolean(item)) as BlogPost[];

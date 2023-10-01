@@ -36,5 +36,5 @@ export const mapContentfulList = (raw: any) => {
         return [] as BodyImage[]
     }
     const source = raw as any[];
-    return source.map(item => mapContentful(item)).filter(item => item) as BodyImage[];
+    return source.map(item => mapContentful(item)).filter(item => !Boolean(item)) as BodyImage[];
 }

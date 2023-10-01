@@ -76,11 +76,11 @@ export interface IBlogAuthorFields {
   /** Slug */
   slug: string;
 
+  /** Pre Heading Content Blocks */
+  preHeadingContentBlocks?: IBlocksBodyContent[] | undefined;
+
   /** Name */
   name: string;
-
-  /** Banners */
-  banners?: (IBodyImages | IBodyYouTube)[] | undefined;
 
   /** Avatar */
   avatar?: IBodyImages | undefined;
@@ -90,9 +90,6 @@ export interface IBlogAuthorFields {
 
   /** Short Bio */
   shortBio?: Document | undefined;
-
-  /** Bio */
-  bio?: Document | undefined;
 
   /** Content Blocks */
   contentBlocks?: IBlocksBodyContent[] | undefined;
@@ -126,15 +123,6 @@ export interface IBlogHomeFields {
 
   /** Content Blocks */
   contentBlocks?: IBlocksBodyContent[] | undefined;
-
-  /** Body */
-  body?: Document | undefined;
-
-  /** Featured Post */
-  featuredPost?: IBlogPost | undefined;
-
-  /** Spotlight Posts */
-  spotlightPosts?: IBlogPost[] | undefined;
 }
 
 /** The HOME page Content Model */
@@ -171,12 +159,6 @@ export interface IBlogPageFields {
 
   /** Content Blocks */
   contentBlocks?: IBlocksBodyContent[] | undefined;
-
-  /** Banners */
-  banners?: (IBodyImages | IBodyYouTube)[] | undefined;
-
-  /** Body */
-  body?: Document | undefined;
 }
 
 /** The main content model for pages. */
@@ -208,20 +190,23 @@ export interface IBlogPostFields {
   /** Published Date */
   publishedDate: string;
 
+  /** Format */
+  format: "Standard" | "Aside" | "Image" | "Video" | "Quote" | "Link";
+
+  /** Pre Heading Content Blocks */
+  preHeadingContentBlocks?: IBlocksBodyContent[] | undefined;
+
+  /** Heading */
+  heading: string;
+
+  /** Content Blocks */
+  contentBlocks?: IBlocksBodyContent[] | undefined;
+
   /** Authors */
   authors?: IBlogAuthor[] | undefined;
 
   /** Series */
   series?: IMetaSeries | undefined;
-
-  /** Heading */
-  heading: string;
-
-  /** Excerpt Blocks */
-  excerptBlocks?: IBlocksBodyContent[] | undefined;
-
-  /** Content Blocks */
-  contentBlocks?: IBlocksBodyContent[] | undefined;
 
   /** Categories */
   categories?: IMetaCategory[] | undefined;
@@ -229,28 +214,11 @@ export interface IBlogPostFields {
   /** Tags */
   tags?: IMetaTag[] | undefined;
 
-  /** Short Body */
-  shortBody?: Document | undefined;
+  /** Excerpt Blocks */
+  excerptBlocks?: IBlocksBodyContent[] | undefined;
 
   /** Featured Banner */
   featuredBanner?: IBodyImages | IBodyYouTube | undefined;
-
-  /** Banners */
-  banners?: (IBodyImages | IBodyYouTube)[] | undefined;
-
-  /** Body */
-  body?: Document | undefined;
-
-  /** Format */
-  format: "Standard" | "Aside" | "Image" | "Video" | "Quote" | "Link";
-
-  /** Layout Type */
-  layoutType:
-    | "Default"
-    | "Right Sidebar"
-    | "Left Sidebar"
-    | "No Sidebar"
-    | "Full Width";
 }
 
 /** The main content model for posts. */
@@ -370,7 +338,7 @@ export interface IBodyImagesFields {
   maxHeight?: number | undefined;
 
   /** Align */
-  align: "Center" | "Left" | "Right";
+  align: "Left" | "Center" | "Right";
 
   /** Desktop Image */
   desktopImage?: Asset | undefined;
@@ -477,14 +445,17 @@ export interface IMetaCategoryFields {
   /** Slug */
   slug: string;
 
+  /** Pre Heading Content Blocks */
+  preHeadingContentBlocks?: IBlocksBodyContent[] | undefined;
+
   /** Name */
   name: string;
 
-  /** Description */
-  description?: Document | undefined;
-
   /** Parent Meta Category */
   parentMetaCategory?: IMetaCategory | undefined;
+
+  /** Content Blocks */
+  contentBlocks?: IBlocksBodyContent[] | undefined;
 }
 
 /** The Category of a Blog Post */
@@ -513,11 +484,14 @@ export interface IMetaSeriesFields {
   /** Slug */
   slug: string;
 
+  /** Pre Heading Content Blocks */
+  preHeadingContentBlocks?: IBlocksBodyContent[] | undefined;
+
   /** Name */
   name: string;
 
-  /** Description */
-  description?: Document | undefined;
+  /** Content Blocks */
+  contentBlocks?: IBlocksBodyContent[] | undefined;
 }
 
 /** The Series of a Blog Post */
@@ -546,11 +520,14 @@ export interface IMetaTagFields {
   /** Slug */
   slug: string;
 
+  /** Pre Heading Content Blocks */
+  preHeadingContentBlocks?: IBlocksBodyContent[] | undefined;
+
   /** Name */
   name: string;
 
-  /** Description */
-  description?: Document | undefined;
+  /** Content Blocks */
+  contentBlocks?: IBlocksBodyContent[] | undefined;
 }
 
 /** The Tag of a Blog Post */

@@ -5,6 +5,9 @@ import {IBaseSkeleton} from "./types";
 export type MetaTagSkeleton = IBaseSkeleton<'metaTag', IMetaTagFields>;
 
 export const mapContentful = (raw: any) => {
+    if(!raw){
+        return undefined;
+    }
     const source = raw as MetaTagSkeleton;
     const fields = source.fields;
     const target: Partial<MetaTag> = {
@@ -23,4 +26,4 @@ export const mapContentful = (raw: any) => {
     return target as MetaTag;
 }
 
-export const mapContentfulList = (raw: any[]) => (raw || []).map(source => mapContentful(source));
+export const mapContentfulList = (raw: any[]) => (raw || []).map(source => mapContentful(source)).filter(item => !Boolean(item)) as MetaTag[];

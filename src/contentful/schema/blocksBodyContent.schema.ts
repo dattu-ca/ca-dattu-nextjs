@@ -39,6 +39,9 @@ const mapBlocks = (blocks: (IBodyContent | IBodyForm | IBodyImages | IBodyLinks 
 }
 
 export const mapContentful = (raw: any) => {
+    if(!raw){
+        return undefined;
+    }
     const source = raw as BlocksBodyContentSkeleton;
     const fields = source.fields;
     const target: Partial<BlocksBodyContent> = {
@@ -74,4 +77,4 @@ export const mapContentful = (raw: any) => {
     return target as BlocksBodyContent;
 }
 
-export const mapContentfulList = (raw: any[]) => (raw || []).map(source => mapContentful(source));
+export const mapContentfulList = (raw: any[]) => (raw || []).map(source => mapContentful(source)).map(item => !Boolean(item)) as  BlocksBodyContent[];

@@ -7,6 +7,9 @@ import {IBaseSkeleton} from "./types";
 export type BlogPageSkeleton = IBaseSkeleton<'blogPage', IBlogPageFields>
 
 export const mapContentful = (raw: any) => {
+    if(!raw){
+        return undefined;
+    }
     const source = raw as BlogPageSkeleton;
     const fields = source.fields
     const target: Partial<BlogPage> = {
@@ -19,24 +22,19 @@ export const mapContentful = (raw: any) => {
     if (fields.heading) {
         target.heading = fields.heading as string;
     }
-
     if (fields.preHeadingContentBlocks) {
         target.preHeadingContentBlocks = mapBlocksBodyContentContentfulList(fields.preHeadingContentBlocks);
     }
     if (fields.contentBlocks) {
         target.contentBlocks = mapBlocksBodyContentContentfulList(fields.contentBlocks);
     }
-
-
     if (fields.body) {
         target.body = fields.body as object;
     }
     if (fields.banners) {
         target.banners = mapBanners(fields.banners);
     }
-
-
     return target as BlogPage;
 }
 
-export const mapContentfulList = (raw: any[]) => (raw || []).map(source => mapContentful(source));
+export const mapContentfulList = (raw: any[]) => (raw || []).map(source => mapContentful(source)).filter(item => !Boolean(item)) as BlogPage[];

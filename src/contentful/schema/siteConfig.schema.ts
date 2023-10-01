@@ -10,6 +10,9 @@ export type SiteConfigSkeleton = {
 }
 
 export const mapContentful = (raw: any) => {
+    if(!raw){
+        return undefined;
+    }
     const source = raw as SiteConfigSkeleton;
     const fields = source.fields;
     const target: Partial<SiteConfig> = {

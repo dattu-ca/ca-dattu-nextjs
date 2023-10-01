@@ -9,6 +9,9 @@ import {IBaseSkeleton} from "./types";
 export type BlogHomeSkeleton = IBaseSkeleton<'blogHome', IBlogHomeFields>
 
 export const mapContentful = (raw: any) => {
+    if(!raw){
+        return undefined;
+    }
     const source = raw as BlogHomeSkeleton;
     const fields = source.fields;
     const target: Partial<BlogHome> = {
@@ -31,4 +34,4 @@ export const mapContentful = (raw: any) => {
 }
 
 
-export const mapContentfulList = (raw: any[]) => (raw || []).map(source => mapContentful(source));
+export const mapContentfulList = (raw: any[]) => (raw || []).map(source => mapContentful(source)).filter(item => !Boolean(item)) as BlogHome[];

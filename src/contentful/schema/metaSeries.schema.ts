@@ -5,6 +5,9 @@ import {IBaseSkeleton} from "./types";
 export type MetaSeriesSkeleton = IBaseSkeleton<'metaSeries', IMetaSeriesFields>;
 
 export const mapContentful = (raw: any) => {
+    if(!raw){
+        return undefined;
+    }
     const source = raw as MetaSeriesSkeleton;
     const fields = source.fields;
     const target: Partial<MetaSeries> = {
@@ -23,4 +26,4 @@ export const mapContentful = (raw: any) => {
     return target as MetaSeries;
 }
 
-export const mapContentfulList = (raw: any[]) => (raw || []).map(source => mapContentful(source));
+export const mapContentfulList = (raw: any[]) => (raw || []).map(source => mapContentful(source)).filter(item => !Boolean(item)) as MetaSeries[];
