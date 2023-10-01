@@ -1,7 +1,7 @@
 import {redirect} from "next/navigation";
 import {RedirectType} from "next/dist/client/components/redirect";
 import {getAuthSession} from "~/auth.services";
-import {AuthLogoutComponent} from "~/components/authLogoutComponent";
+import {AuthLogoutComponent} from "~/app.components/auth.logoutComponent";
 
 const Page = async () => {
     const session = await getAuthSession();

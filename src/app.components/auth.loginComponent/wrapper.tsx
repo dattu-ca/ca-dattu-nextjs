@@ -7,7 +7,9 @@ import {IProvider} from "./types";
 
 const WrapperComponent = () => {
     const {ctxData: {providers}} = useAuthLoginContext();
-    return <div className={clsx()}>
+    return <div className={clsx(
+        'text-center'
+    )}>
         <h1>Login</h1>
         {
             providers

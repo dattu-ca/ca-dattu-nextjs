@@ -67,9 +67,11 @@ const ColumnSlider = ({blocks}: IProps) => {
                     return <Fragment key={block.sysId}>
                         <button onClick={() => setCurrent(index)} className={clsx(
                             'daisyui-swap',
-                            'text-xl md:text-2xl'
+                            'text-xl md:text-2xl',
+                            {
+                                ['daisyui-swap-active']: current === index
+                            }
                         )}>
-                            <input type='checkbox' defaultChecked={current === index}/>
                             <FaRegCircle className={clsx('daisyui-swap-off')}/>
                             <FaRegDotCircle className={clsx('daisyui-swap-on')}/>
                         </button>

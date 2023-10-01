@@ -55,18 +55,15 @@ const MenuMobile = () => {
                 <span>Menu</span>
                 <div className={clsx(
                     'daisyui-swap daisyui-swap-rotate',
+                    {
+                        ['daisyui-swap-active']: isMobileMenuOpen
+                    }
                 )}>
                     <GiHamburgerMenu className={clsx(
-                        {
-                            ['daisyui-swap-on']: isMobileMenuOpen,
-                            ['daisyui-swap-off']: !isMobileMenuOpen,
-                        }
+                        'daisyui-swap-off'
                     )}/>
                     <FaTimes className={clsx(
-                        {
-                            ['daisyui-swap-on']: !isMobileMenuOpen,
-                            ['daisyui-swap-off']: isMobileMenuOpen,
-                        }
+                        'daisyui-swap-on'
                     )}/>
                 </div>
             </button>

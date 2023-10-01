@@ -5,6 +5,7 @@ import {FaGoogle} from "react-icons/fa6";
 
 import {IProvider} from "./types";
 import {useAuthLoginContext} from "./context";
+import {BiLoaderCircle} from "react-icons/bi";
 
 interface IProps {
     provider: IProvider
@@ -30,7 +31,7 @@ const AuthProviderButton = ({provider}: IProps) => {
     const onClickHandler = () => {
         if (!clickedProvider) {
             setClickedProvider(provider.id);
-            // signIn(provider.id).then(r => r);
+            signIn(provider.id).then(r => r);
         }
     }
 
@@ -38,23 +39,20 @@ const AuthProviderButton = ({provider}: IProps) => {
         <button onClick={onClickHandler}
                 disabled={Boolean(clickedProvider)}
                 className={clsx(
-                    'daisyui-btn daisyui-btn-wide'
+                    'daisyui-btn daisyui-btn-wide',
+                    'disabled:text-zinc-500 dark:dark:text-zinc-400',
                 )}>
             <div className={clsx(
-                'daisyui-swap swap-rotate'
+                'daisyui-swap daisyui-swap-rotate',
+                {
+                    ['daisyui-swap-active']: clickedProvider === provider.id
+                }
             )}>
+                <BiLoaderCircle className={clsx(
+                    "animate-spin daisyui-swap-on"
+                )}/>
                 <span className={clsx(
-                    "daisyui-loading daisyui-loading-spinner",
-                    {
-                        ['daisyui-swap-on']: clickedProvider !== provider.id,
-                        ['daisyui-swap-off']: clickedProvider === provider.id
-                    }
-                )}></span>
-                <span className={clsx(
-                    {
-                        ['daisyui-swap-on']: clickedProvider === provider.id,
-                        ['daisyui-swap-off']: clickedProvider !== provider.id
-                    }
+                    'daisyui-swap-off'
                 )}>
                     {
                         getIcon(provider as IProvider) === 'FaGoogle'

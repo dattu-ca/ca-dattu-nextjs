@@ -31,18 +31,15 @@ export const ThemeSwitcher = () => {
         >
             <div className={clsx(
                 'daisyui-swap daisyui-swap-rotate',
+                {
+                    ['daisyui-swap-active']: theme === "dark"
+                }
             )}>
                 <BsSun className={clsx(
-                    {
-                        ['daisyui-swap-on']: theme !== 'light',
-                        ['daisyui-swap-off']: theme === 'light',
-                    }
+                    'daisyui-swap-on'
                 )}/>
                 <BsMoonFill className={clsx(
-                    {
-                        ['daisyui-swap-on']: theme !== 'dark',
-                        ['daisyui-swap-off']: theme === 'dark',
-                    }
+                    'daisyui-swap-off'
                 )}/>
             </div>
         </button>
