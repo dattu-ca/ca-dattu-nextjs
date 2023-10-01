@@ -21,16 +21,14 @@ const MenuMobile = () => {
     } = useNavbarContext();
 
     useEffect(() => {
-        const closeModal = () => {
-            closeMobileMenu();
-        }
+        const dialogRef = ref.current;
         // @ts-ignore
-        ref.current?.addEventListener('close', closeModal)
+        dialogRef?.addEventListener('close', closeMobileMenu)
         return () => {
             // @ts-ignore
-            ref.current?.removeEventListener('close', closeModal)
+            dialogRef?.removeEventListener('close', closeMobileMenu)
         }
-    }, [ref.current])
+    }, [closeMobileMenu])
 
     useEffect(() => {
         if (ref.current) {
@@ -41,7 +39,7 @@ const MenuMobile = () => {
             }
         }
 
-    }, [isMobileMenuOpen, ref.current])
+    }, [isMobileMenuOpen])
 
     return <div>
         <div role="menubar">
