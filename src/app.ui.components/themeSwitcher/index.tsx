@@ -32,9 +32,18 @@ export const ThemeSwitcher = () => {
             <div className={clsx(
                 'daisyui-swap daisyui-swap-rotate',
             )}>
-                <input type="checkbox" checked={theme === 'dark'} onChange={() => ({})}/>
-                <BsSun className={clsx('daisyui-swap-off')}/>
-                <BsMoonFill className={clsx('daisyui-swap-on')}/>
+                <BsSun className={clsx(
+                    {
+                        ['daisyui-swap-on']: theme !== 'light',
+                        ['daisyui-swap-off']: theme === 'light',
+                    }
+                )}/>
+                <BsMoonFill className={clsx(
+                    {
+                        ['daisyui-swap-on']: theme !== 'dark',
+                        ['daisyui-swap-off']: theme === 'dark',
+                    }
+                )}/>
             </div>
         </button>
     );

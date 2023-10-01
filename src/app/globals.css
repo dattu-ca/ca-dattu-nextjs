@@ -10,7 +10,8 @@
 
 @layer base {
     body {
-
+        @apply min-h-full;
+        @apply text-zinc-800 dark:text-zinc-100;
     }
 
     h1, .h1 {

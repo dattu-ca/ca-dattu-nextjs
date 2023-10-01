@@ -23,7 +23,7 @@ const RootLayoutComponent = ({children}: IProps) => {
                 </div>
             </div>
             <div className={clsx(
-                'flex w-full'
+                'flex w-full items-stretch'
             )}>
                 <div className={clsx(
                     'relative flex w-full flex-col'

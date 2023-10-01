@@ -14,6 +14,7 @@ import {ThemeSwitcherProvider} from "~/app.ui.components/themeSwitcher/provider"
 import NavbarComponent from "~/app.ui.components/navbarComponent";
 import {SkipLink} from "~/app.ui.components/skipLink";
 import {RootLayoutComponent} from "~/app.ui.components/rootLayout";
+import clsx from "clsx";
 
 
 const {PRIMARY_SITE_CONFIG, HEADER_SITE_NAVBAR} = SERVER_CONFIG.CONTENTFUL_SLUGS;
@@ -46,14 +47,19 @@ const RootLayout = async ({children}: IProps) => {
             <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
             <meta name="robots" content="noindex,nofollow"/>
         </head>
-        <body className={`flex h-full bg-zinc-50 dark:bg-black`}>
+        <body className={clsx(
+            'flex h-full ',
+            'bg-zinc-50 dark:bg-black',
+            'dark:text-zinc-100',
+            'min-h-[100vh]'
+        )}>
         <ThemeSwitcherProvider>
             <SkipLink skipToId='mainContent'/>
             <RootLayoutComponent>
                 <header>
                     <NavbarComponent navbar={navbar} session={session} data-superjson/>
                 </header>
-                <main id="mainContent">
+                <main id="mainContent" className={clsx('h-full')}>
                     {children}
                 </main>
             </RootLayoutComponent>

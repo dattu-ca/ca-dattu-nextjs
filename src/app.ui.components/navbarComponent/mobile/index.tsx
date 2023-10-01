@@ -50,16 +50,26 @@ const MenuMobile = () => {
                 aria-label={isMobileMenuOpen ? closeMenuText : openMenuText}
                 className={clsx(
                     'daisyui-btn daisyui-btn-outline',
-                    'dark:text-zinc-100'
+                    'dark:text-zinc-100',
+                    'flex-nowrap'
                 )}
             >
                 <span>Menu</span>
                 <div className={clsx(
                     'daisyui-swap daisyui-swap-rotate',
                 )}>
-                    <input type="checkbox" checked={isMobileMenuOpen} onChange={() => ({})}/>
-                    <FaTimes className={clsx('daisyui-swap-on')}/>
-                    <GiHamburgerMenu className={clsx('daisyui-swap-off')}/>
+                    <GiHamburgerMenu className={clsx(
+                        {
+                            ['daisyui-swap-on']: isMobileMenuOpen,
+                            ['daisyui-swap-off']: !isMobileMenuOpen,
+                        }
+                    )}/>
+                    <FaTimes className={clsx(
+                        {
+                            ['daisyui-swap-on']: !isMobileMenuOpen,
+                            ['daisyui-swap-off']: isMobileMenuOpen,
+                        }
+                    )}/>
                 </div>
             </button>
 
