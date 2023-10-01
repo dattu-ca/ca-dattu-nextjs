@@ -49,43 +49,24 @@ const MenuMobile = () => {
                 onClick={toggleMobileMenu}
                 aria-label={isMobileMenuOpen ? closeMenuText : openMenuText}
                 className={clsx(
-                    'top-[30px] max-h-[calc(100vh - 60px)]',
-                    'flex items-center justify-center gap-2',
-                    'group rounded-2xl shadow-lg shadow-zinc-800/5 backdrop-blur transition',
-                    ' p-1 md:px-3 md:pt-2 md:pb-2 ',
-                    'bg-white/90 ring-1 ring-zinc-900/5',
-                    'dark:bg-zinc-800/90 dark:ring-white/10 focus:hover:ring-white/20'
+                    'daisyui-btn daisyui-btn-outline',
+                    'dark:text-zinc-100'
                 )}
             >
                 <span>Menu</span>
                 <div className={clsx(
-                    'inline-grid',
+                    'daisyui-swap daisyui-swap-rotate',
                 )}>
-                    <FaTimes
-                        className={clsx(
-                            'transition duration-250 col-start-1 row-start-1',
-                            {
-                                ['opacity-1 rotate-0']: isMobileMenuOpen,
-                                ['opacity-0 rotate-45']: !isMobileMenuOpen
-                            }
-                        )}
-                    />
-                    <GiHamburgerMenu
-                        className={clsx(
-                            'transition duration-250 col-start-1 row-start-1',
-                            {
-                                ['opacity-1 rotate-0']: !isMobileMenuOpen,
-                                ['opacity-0 rotate-45']: isMobileMenuOpen
-                            }
-                        )}
-                    />
+                    <input type="checkbox" checked={isMobileMenuOpen} onChange={() => ({})}/>
+                    <FaTimes className={clsx('daisyui-swap-on')}/>
+                    <GiHamburgerMenu className={clsx('daisyui-swap-off')}/>
                 </div>
             </button>
 
             <dialog ref={ref} className="daisyui-modal">
                 <div
                     className={clsx(
-                        'absolute',
+                        'absolute top-[30px] max-h-[calc(100vh - 60px)]',
                         'daisyui-modal-box',
                         'group rounded-xl shadow-lg shadow-zinc-800/5 backdrop-blur transition',
                         'bg-white/90 ring-zinc-900/5',

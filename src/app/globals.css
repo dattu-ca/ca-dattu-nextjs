@@ -19,8 +19,7 @@
         @apply font-bold;
         @apply tracking-tight;
         @apply text-zinc-800 dark:text-zinc-100;
-        @apply mt-6;
-        @apply mb-6;
+        @apply mb-4 sm:mb-6 md:mb-8 lg:mb-10;
     }
 }
 

@@ -22,34 +22,20 @@ export const ThemeSwitcher = () => {
         <button
             aria-label={`Set theme to ${theme === 'dark' ? 'light' : 'dark'} mode`}
             className={clsx(
-                'group rounded-full px-3 pt-2 pb-1 shadow-lg shadow-zinc-800/5  backdrop-blur transition',
-                'bg-white/90 ring-1 ring-zinc-900/5',
-                'dark:bg-zinc-800/90 dark:ring-white/10 dark:hover:ring-white/20'
+                'daisyui-btn daisyui-btn-circle',
+                'dark:text-zinc-100',
+                'bg-white/90',
+                'dark:bg-zinc-800/90'
             )}
             onClick={() => setTheme(theme === "dark" ? "light" : "dark")}
         >
             <div className={clsx(
-                'inline-grid',
+                'daisyui-swap daisyui-swap-rotate',
             )}>
-                <BsSun
-                    className={clsx(
-                        'transition duration-250 col-start-1 row-start-1',
-                        {
-                            ['opacity-1 rotate-0']: theme === 'light',
-                            ['opacity-0 rotate-45']: theme !== 'light'
-                        }
-                    )}
-                />
-                <BsMoonFill
-                    className={clsx(
-                        'transition duration-250 col-start-1 row-start-1',
-                        {
-                            ['opacity-1 rotate-0']: theme === 'dark',
-                            ['opacity-0 rotate-45']: theme !== 'dark'
-                        }
-                    )}
-                />
-            </div>            
+                <input type="checkbox" checked={theme === 'dark'} onChange={() => ({})}/>
+                <BsSun className={clsx('daisyui-swap-off')}/>
+                <BsMoonFill className={clsx('daisyui-swap-on')}/>
+            </div>
         </button>
     );
 };

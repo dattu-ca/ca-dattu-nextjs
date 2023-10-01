@@ -66,6 +66,7 @@
     "react-aria": "^3.27.0",
     "react-dom": "18.2.0",
     "react-google-recaptcha": "^3.1.0",
+    "react-hook-form": "^7.46.2",
     "react-icons": "^4.10.1",
     "react-responsive": "^9.0.2",
     "react-slide-button": "^2.0.0",

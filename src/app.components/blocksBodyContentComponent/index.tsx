@@ -2,6 +2,7 @@ import {Fragment} from "react";
 import {BlocksBodyContent} from "~/models";
 import {BlocksBodyContentLayout} from "./layout";
 import {BlocksBodyContentColumn} from "./column";
+import clsx from "clsx";
 
 interface IProps {
     blocks: BlocksBodyContent[] | undefined
@@ -15,7 +16,10 @@ const BlocksBodyContentComponent = ({blocks}: IProps) => {
     return <div>
         {
             blocks.map(block => {
-                return <Fragment key={block.sysId}>
+                return <div key={block.sysId}
+                className={clsx(
+                    'mb-4 sm:mb-6 md:mb-8 lg:mb-10'
+                )}>
                     <BlocksBodyContentLayout layoutWidth={block.layoutWidth}
                                              columnWidths={block.columnWidths}
                                              columnGaps={block.columnGaps}
@@ -29,7 +33,7 @@ const BlocksBodyContentComponent = ({blocks}: IProps) => {
                                                                                layout={block.column3Layout}
                                                                                gaps={block.column3Gaps}/>}
                     />
-                </Fragment>
+                </div>
             })
         }
     </div>

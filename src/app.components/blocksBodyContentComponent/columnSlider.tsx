@@ -66,27 +66,12 @@ const ColumnSlider = ({blocks}: IProps) => {
                 blocks.map((block, index) => {
                     return <Fragment key={block.sysId}>
                         <button onClick={() => setCurrent(index)} className={clsx(
-                            'inline-grid',
+                            'daisyui-swap',
                             'text-xl md:text-2xl'
                         )}>
-                            <FaRegCircle
-                                className={clsx(
-                                    'transition duration-250 col-start-1 row-start-1',
-                                    {
-                                        ['opacity-1 rotate-0']: current !== index,
-                                        ['opacity-0 rotate-45']: current === index
-                                    }
-                                )}
-                            />
-                            <FaRegDotCircle
-                                className={clsx(
-                                    'transition duration-250 col-start-1 row-start-1',
-                                    {
-                                        ['opacity-1 rotate-0']: current === index,
-                                        ['opacity-0 rotate-45']: current !== index
-                                    }
-                                )}
-                            />
+                            <input type='checkbox' defaultChecked={current === index}/>
+                            <FaRegCircle className={clsx('daisyui-swap-off')}/>
+                            <FaRegDotCircle className={clsx('daisyui-swap-on')}/>
                         </button>
                     </Fragment>
                 })
