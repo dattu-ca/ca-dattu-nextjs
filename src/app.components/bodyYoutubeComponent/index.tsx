@@ -1,6 +1,6 @@
 import clsx from "clsx";
 import {BodyYoutube} from "~/models";
-import {YoutubeIframe} from "./iframeComponent";
+import {YoutubeIFrameComponent} from "~/app.ui.components/youtubeIFrameComponent";
 
 interface IProps {
     data: BodyYoutube;
@@ -8,7 +8,7 @@ interface IProps {
 
 const BodyYoutubeComponent = ({data}: IProps) => {
     return <div className={clsx()}>
-        <YoutubeIframe data={data}/>
+        <YoutubeIFrameComponent data={data}/>
     </div>
 }
 
