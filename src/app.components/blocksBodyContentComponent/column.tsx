@@ -12,7 +12,6 @@ interface IProps {
 }
 
 const BlocksBodyContentColumn = ({blocks, layout, gaps}: IProps) => {
-    console.log('layout', layout)
     if (!blocks || !Array.isArray(blocks)) {
         return null;
     }
