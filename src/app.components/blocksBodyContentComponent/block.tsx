@@ -1,7 +1,8 @@
 import {ColumnBlock} from "~/models";
 import {BodyImagesComponent} from "../bodyImagesComponent";
 import {BodyContentComponent} from "../bodyContentComponent";
-import {BodyYoutubeComponent} from "~/app.components/bodyYoutubeComponent";
+import {BodyYoutubeComponent} from "../bodyYoutubeComponent";
+import {BodyFormComponent} from "../bodyFormComponent";
 
 
 interface IProps {
@@ -16,8 +17,11 @@ const BlocksBodyContentBlock = ({block}: IProps) => {
         case 'BodyContent': {
             return <BodyContentComponent data={block}/>
         }
-        case 'BodyYoutube':{
-            return <BodyYoutubeComponent data={block} />
+        case 'BodyYoutube': {
+            return <BodyYoutubeComponent data={block}/>
+        }
+        case 'BodyForm': {
+            return <BodyFormComponent data={block}/>
         }
         default: {
             return <p>{`Did not implement ${block.contentType}`}</p>
