@@ -18,14 +18,12 @@ const PaginationDots = () => {
 
     return <select defaultValue={0}
                    onChange={onChangeDdl}
-                   className={clsx(
-                       'transition-all duration-200',
+                   className={clsx(                       
                        'appearance-none relative',
                        'py-4 px-4',
-                       'w-[10px] box-content',
-                       'h-full bg-transparent',
-                       'text-center text-black',
-                       'hover:cursor-pointer hover:bg-gray-300 ',
+                       'w-[12px] box-content',
+                       'text-zinc-800 hover:hover:bg-zinc-800/10',
+                       'dark:text-zinc-200 dark:bg-transparent dark:hover:bg-zinc-800/90 ',
                    )}
                    aria-label='Select page number'
                    data-testid='pagination-dots'>

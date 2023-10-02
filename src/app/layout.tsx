@@ -54,6 +54,7 @@ const RootLayout = async ({children}: IProps) => {
             'flex h-full ',
             'bg-zinc-50 dark:bg-black',
             'dark:text-zinc-100',
+            'pb-8'
         )}>
         <ThemeSwitcherProvider>
             <SkipLink skipToId='mainContent'/>

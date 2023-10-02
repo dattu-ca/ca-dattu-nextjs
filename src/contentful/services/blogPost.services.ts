@@ -1,6 +1,7 @@
 'use server';
 import {client} from "../client";
 import {BlogPostSkeleton, mapContentful, mapContentfulList} from '../schema/blogPost.schema'
+import {BlogPost} from "~/models";
 
 
 const FIELDS = {
@@ -60,7 +61,6 @@ const fetchBySlug = (slug: string) =>
             }
             throw new Error(`Cannot find content for [slug]=${slug}`)
         })
-
 
 
 const fetchListPaginated = (skip: number = 0, limit: number = 10) =>

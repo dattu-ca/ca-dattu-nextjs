@@ -1,19 +1,19 @@
 import React, {ReactElement} from "react";
-import {blogPageServices} from "~/services";
+import {fetchPostsLists, getCurrentPageNumber} from "./utils";
 
 
 interface IProps {
     children?: ReactElement | ReactElement[];
     params: {
-        slug: string | string[];
+        currentPageNumber: number;
     }
 }
 
 export const generateMetadata = async (props: IProps) => {
-    const {params} = props;
-    const {slug} = params;
+    const currentPage = getCurrentPageNumber(props.params);
+    const {totalPages} = await fetchPostsLists(currentPage);
     return {
-        title: 'POSTS ' + slug?.toString()
+        title: `Posts: ${currentPage} of ${totalPages}`
     }
 }
 

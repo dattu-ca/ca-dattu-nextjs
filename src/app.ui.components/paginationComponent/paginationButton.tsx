@@ -22,9 +22,9 @@ const PaginationButton = ({children, pageNumber, aria, showDots}: IButtonLinkPro
         'flex items-center justify-center gap-1',
         'transition-all duration-200',
         {
-            ['text-gray-400 hover:text-gray-400 ']: isCurrent,
-            ['text-black hover:text-black hover:bg-gray-300 ' +
-            'hover:after:w-0']: !isCurrent
+            ['text-gray-400 hover:text-gray-400']: isCurrent,
+            ['text-zinc-800 hover:hover:bg-zinc-800/10']: !isCurrent,
+            ['dark:text-zinc-200 dark:hover:bg-zinc-800/90 ']: !isCurrent
         }
     );
 
@@ -33,7 +33,8 @@ const PaginationButton = ({children, pageNumber, aria, showDots}: IButtonLinkPro
     }
     return isCurrent
         ? (
-            <div className={clsx(btnClasses)} aria-label='Current page'>
+            <div className={clsx(btnClasses)}
+                 aria-label='Current page'>
                 {children}
             </div>
         )

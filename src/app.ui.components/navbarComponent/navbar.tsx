@@ -20,7 +20,7 @@ const Navbar = () => {
     
     return (
         <div className={clsx(
-            'h-[88px] w-full',
+            'h-[96px] w-full',
         )}>
             <nav className={clsx(
                 'fixed',
