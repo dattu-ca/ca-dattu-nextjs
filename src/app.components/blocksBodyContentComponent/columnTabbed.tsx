@@ -28,10 +28,8 @@ const ColumnTabbed = ({gaps, blocks}: IProps) => {
                                 onClick={() => setCurrent(index)}
                                 className={clsx(
                                     'daisyui-tab daisyui-tab-lifted',
-                                    
                                     {
-                                        ['dark:text-[var(--tab-bg)]']: current !== index, 
-                                        ['daisyui-tab-active dark:text-[var(--tab-color)]']: current === index
+                                        ['daisyui-tab-active']: current === index
                                     }
                                 )}>
                             {block.name}

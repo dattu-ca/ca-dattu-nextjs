@@ -13,6 +13,12 @@ export const ThemeSwitcher = () => {
     useEffect(() => {
         setMounted(true);
     }, []);
+    
+    useEffect(() => {
+        if(theme){
+            document.querySelector('html')?.setAttribute('data-theme', theme);
+        }
+    }, [theme])
 
     if (!mounted) {
         return null;
@@ -23,9 +29,6 @@ export const ThemeSwitcher = () => {
             aria-label={`Set theme to ${theme === 'dark' ? 'light' : 'dark'} mode`}
             className={clsx(
                 'daisyui-btn daisyui-btn-circle',
-                'dark:text-zinc-100',
-                'bg-white/90',
-                'dark:bg-zinc-800/90'
             )}
             onClick={() => setTheme(theme === "dark" ? "light" : "dark")}
         >

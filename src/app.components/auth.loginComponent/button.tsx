@@ -40,7 +40,6 @@ const AuthProviderButton = ({provider}: IProps) => {
                 disabled={Boolean(clickedProvider)}
                 className={clsx(
                     'daisyui-btn daisyui-btn-wide',
-                    'disabled:text-zinc-500 dark:dark:text-zinc-400',
                 )}>
             <div className={clsx(
                 'daisyui-swap daisyui-swap-rotate',

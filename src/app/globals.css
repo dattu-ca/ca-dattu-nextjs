@@ -10,7 +10,7 @@
 
 @layer base {
     body {
-        @apply min-h-full;
+        @apply min-h-screen;
         @apply text-zinc-800 dark:text-zinc-100;
     }
 
@@ -21,6 +21,12 @@
         @apply tracking-tight;
         @apply text-zinc-800 dark:text-zinc-100;
         @apply mb-4 sm:mb-6 md:mb-8 lg:mb-10;
+    }
+
+    .field-required:after {
+        content: '*';
+        @apply text-2xl;
+        @apply text-red-500;
     }
 }
 

@@ -22,7 +22,7 @@ const {PRIMARY_SITE_CONFIG, HEADER_SITE_NAVBAR} = SERVER_CONFIG.CONTENTFUL_SLUGS
 
 export const generateMetadata = async () => {
     const data = await siteConfigServices.fetchBySlug(PRIMARY_SITE_CONFIG);
-    if(!data){
+    if (!data) {
         return {};
     }
     const {siteTitleDefault, siteTitleTemplate, siteDescription} = data;
@@ -45,7 +45,7 @@ const RootLayout = async ({children}: IProps) => {
     const session = await getAuthSession();
     return (
 
-        <html lang="en">
+        <html lang="en" suppressHydrationWarning>
         <head>
             <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
             <meta name="robots" content="noindex,nofollow"/>
@@ -54,14 +54,13 @@ const RootLayout = async ({children}: IProps) => {
             'flex h-full ',
             'bg-zinc-50 dark:bg-black',
             'dark:text-zinc-100',
-            'min-h-[100vh]'
         )}>
         <ThemeSwitcherProvider>
             <SkipLink skipToId='mainContent'/>
             <RootLayoutComponent>
                 <header>
                     {
-                        navbar && <NavbarComponent navbar={navbar} session={session} data-superjson/> 
+                        navbar && <NavbarComponent navbar={navbar} session={session} data-superjson/>
                     }
                 </header>
                 <main id="mainContent" className={clsx('h-full')}>

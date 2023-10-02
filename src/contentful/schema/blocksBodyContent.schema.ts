@@ -44,7 +44,6 @@ export const mapContentful = (raw: any) => {
     }
     const source = raw as BlocksBodyContentSkeleton;
     const fields = source.fields;
-    console.log("FIELDS", fields);
     if (!fields) {
         return undefined;
     }

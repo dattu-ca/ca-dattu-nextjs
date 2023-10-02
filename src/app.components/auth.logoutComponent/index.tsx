@@ -24,7 +24,6 @@ const AuthLogoutComponent = () => {
             onClick={onClickHandler}
             className={clsx(
                 'daisyui-btn daisyui-btn-wide sm:flex-nowrap',
-                'disabled:text-zinc-500 dark:dark:text-zinc-400',
             )}>
             <span className={clsx(
                 'daisyui-swap daisyui-swap-rotate',

@@ -48,7 +48,6 @@ const MenuMobile = () => {
                 aria-label={isMobileMenuOpen ? closeMenuText : openMenuText}
                 className={clsx(
                     'daisyui-btn daisyui-btn-outline',
-                    'dark:text-zinc-100',
                     'flex-nowrap'
                 )}
             >

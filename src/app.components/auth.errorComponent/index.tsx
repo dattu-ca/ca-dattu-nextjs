@@ -9,7 +9,6 @@ const AuthErrorComponent = () => {
         <Link href='/login'
               className={clsx(
                   'daisyui-btn daisyui-btn-wide',
-                  'disabled:text-zinc-500 dark:dark:text-zinc-400',
               )}>
             Go back to login
         </Link>

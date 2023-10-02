@@ -72,7 +72,7 @@ export default {
     },
     daisyui: {
         prefix: 'daisyui-',
-        themes: false,
+        themes: ['dark', 'light'],
         darkTheme: "dark",
         base: false,
     },
