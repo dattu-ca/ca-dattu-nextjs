@@ -36,4 +36,4 @@ export const mapContentful = (raw: any) => {
     return target as MetaCategory;
 }
 
-export const mapContentfulList = (raw: any[]) => (raw || []).map(source => mapContentful(source)).filter(item => !Boolean(item)) as MetaCategory[];
+export const mapContentfulList = (raw: any[]) => (raw || []).map(source => mapContentful(source)).filter(item => Boolean(item)) as MetaCategory[];

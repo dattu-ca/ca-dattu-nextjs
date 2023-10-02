@@ -44,6 +44,7 @@ export const mapContentful = (raw: any) => {
     }
     const source = raw as BlocksBodyContentSkeleton;
     const fields = source.fields;
+    console.log("FIELDS", fields);
     if (!fields) {
         return undefined;
     }
@@ -80,4 +81,4 @@ export const mapContentful = (raw: any) => {
     return target as BlocksBodyContent;
 }
 
-export const mapContentfulList = (raw: any[]) => (raw || []).map(source => mapContentful(source)).filter(item => !Boolean(item)) as BlocksBodyContent[];
+export const mapContentfulList = (raw: any[]) => (raw || []).map(source => mapContentful(source)).filter(item => Boolean(item)) as BlocksBodyContent[];

@@ -33,4 +33,4 @@ export const mapContentful = (raw: any) => {
     return target as MetaSeries;
 }
 
-export const mapContentfulList = (raw: any[]) => (raw || []).map(source => mapContentful(source)).filter(item => !Boolean(item)) as MetaSeries[];
+export const mapContentfulList = (raw: any[]) => (raw || []).map(source => mapContentful(source)).filter(item => Boolean(item)) as MetaSeries[];

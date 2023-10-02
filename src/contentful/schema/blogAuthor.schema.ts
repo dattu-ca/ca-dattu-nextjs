@@ -40,4 +40,4 @@ export const mapContentful = (raw: any) => {
 }
 
 
-export const mapContentfulList = (raw: any[]) => (raw || []).map(source => mapContentful(source)).filter(item => !Boolean(item)) as BlogAuthor[];
+export const mapContentfulList = (raw: any[]) => (raw || []).map(source => mapContentful(source)).filter(item => Boolean(item)) as BlogAuthor[];

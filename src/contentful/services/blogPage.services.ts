@@ -7,8 +7,6 @@ const FIELDS = {
     PRE_HEADING_CONTENT_BLOCKS: 'fields.preHeadingContentBlocks',
     HEADING: 'fields.heading',
     CONTENT_BLOCKS: 'fields.contentBlocks',
-    BODY: 'fields.body',
-    BANNERS: 'fields.banners',
 }
 
 const content_type = 'blogPage';
@@ -21,8 +19,6 @@ const fetchBySlug = (slug: string) =>
                 FIELDS.PRE_HEADING_CONTENT_BLOCKS as 'fields',
                 FIELDS.HEADING as 'fields',
                 FIELDS.CONTENT_BLOCKS as 'fields',
-                FIELDS.BODY as 'fields',
-                FIELDS.BANNERS as 'fields',
             ],
             [FIELDS.SLUG]: slug,
             include: 10,
