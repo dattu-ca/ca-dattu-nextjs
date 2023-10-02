@@ -9,11 +9,14 @@ export type SiteNavbarSkeleton = IBaseSkeleton<'siteNavbar', ISiteNavbarFields>;
 
 
 export const mapContentful = (raw: any) => {
-    if(!raw){
+    if (!raw) {
         return undefined;
     }
     const source = raw as SiteNavbarSkeleton;
     const fields = source.fields;
+    if (!fields) {
+        return undefined;
+    }
     const target: Partial<SiteNavbar> = {
         sysId: source.sys.id,
         contentType: 'SiteNavbar'

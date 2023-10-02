@@ -15,6 +15,9 @@ export const mapContentful = (raw: any) => {
     }
     const source = raw as BodyLinksSkeleton;
     const fields = source.fields;
+    if(!fields){
+        return undefined;
+    }
     const target: Partial<BodyLinks> = {
         sysId: source.sys.id,
         contentType: 'BodyLinks',

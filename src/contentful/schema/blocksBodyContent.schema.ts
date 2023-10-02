@@ -39,11 +39,14 @@ const mapBlocks = (blocks: (IBodyContent | IBodyForm | IBodyImages | IBodyLinks 
 }
 
 export const mapContentful = (raw: any) => {
-    if(!raw){
+    if (!raw) {
         return undefined;
     }
     const source = raw as BlocksBodyContentSkeleton;
     const fields = source.fields;
+    if (!fields) {
+        return undefined;
+    }
     const target: Partial<BlocksBodyContent> = {
         sysId: source.sys.id,
         contentType: 'BlocksBodyContent'
@@ -73,8 +76,8 @@ export const mapContentful = (raw: any) => {
         target.column3Gaps = fields.column3Gaps;
         target.column3Layout = fields.column3Layout;
     }
-    
+
     return target as BlocksBodyContent;
 }
 
-export const mapContentfulList = (raw: any[]) => (raw || []).map(source => mapContentful(source)).map(item => !Boolean(item)) as  BlocksBodyContent[];
+export const mapContentfulList = (raw: any[]) => (raw || []).map(source => mapContentful(source)).filter(item => !Boolean(item)) as BlocksBodyContent[];

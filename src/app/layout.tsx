@@ -22,6 +22,9 @@ const {PRIMARY_SITE_CONFIG, HEADER_SITE_NAVBAR} = SERVER_CONFIG.CONTENTFUL_SLUGS
 
 export const generateMetadata = async () => {
     const data = await siteConfigServices.fetchBySlug(PRIMARY_SITE_CONFIG);
+    if(!data){
+        return {};
+    }
     const {siteTitleDefault, siteTitleTemplate, siteDescription} = data;
     return {
         title: {
@@ -57,7 +60,9 @@ const RootLayout = async ({children}: IProps) => {
             <SkipLink skipToId='mainContent'/>
             <RootLayoutComponent>
                 <header>
-                    <NavbarComponent navbar={navbar} session={session} data-superjson/>
+                    {
+                        navbar && <NavbarComponent navbar={navbar} session={session} data-superjson/> 
+                    }
                 </header>
                 <main id="mainContent" className={clsx('h-full')}>
                     {children}

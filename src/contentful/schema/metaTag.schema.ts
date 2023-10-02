@@ -1,6 +1,7 @@
 import {MetaTag} from "~/models";
 import {IMetaTagFields} from "./generated/index";
 import {IBaseSkeleton} from "./types";
+import {mapContentfulList as mapBlocksBodyContentContentfulList} from './blocksBodyContent.schema';
 
 export type MetaTagSkeleton = IBaseSkeleton<'metaTag', IMetaTagFields>;
 
@@ -10,6 +11,9 @@ export const mapContentful = (raw: any) => {
     }
     const source = raw as MetaTagSkeleton;
     const fields = source.fields;
+    if(!fields){
+        return undefined;
+    }
     const target: Partial<MetaTag> = {
         sysId: source.sys.id,
         contentType: 'MetaTag'
@@ -17,11 +21,14 @@ export const mapContentful = (raw: any) => {
     if (fields.slug) {
         target.slug = fields.slug as string;
     }
+    if (fields.preHeadingContentBlocks) {
+        target.preHeadingContentBlocks = mapBlocksBodyContentContentfulList(fields.preHeadingContentBlocks);
+    }
     if (fields.name) {
         target.name = fields.name as string;
     }
-    if (fields.description) {
-        target.description = fields.description as object;
+    if (fields.contentBlocks) {
+        target.contentBlocks = mapBlocksBodyContentContentfulList(fields.contentBlocks);
     }
     return target as MetaTag;
 }

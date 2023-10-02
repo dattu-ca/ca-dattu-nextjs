@@ -10,6 +10,9 @@ export const mapContentful = (raw: any) => {
     }
     const source = raw as BodyYoutubeSkeleton;
     const fields = source.fields;
+    if(!fields){
+        return undefined;
+    }
     const target: Partial<BodyYoutube> = {
         sysId: source.sys.id,
         contentType: 'BodyYoutube'

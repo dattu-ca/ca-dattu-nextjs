@@ -13,6 +13,9 @@ const Page = async (props: IProps) => {
     const {slug} = params;
 
     const blogPage = await blogPageServices.fetchBySlug(Array.isArray(slug) ? slug.join('/') : slug);
+    if (!blogPage) {
+        return null;
+    }
     return <BlogPageComponent blogPage={blogPage}/>
 }
 export default Page;

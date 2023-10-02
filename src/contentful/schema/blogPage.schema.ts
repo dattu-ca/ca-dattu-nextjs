@@ -11,7 +11,10 @@ export const mapContentful = (raw: any) => {
         return undefined;
     }
     const source = raw as BlogPageSkeleton;
-    const fields = source.fields
+    const fields = source.fields;
+    if(!fields){
+        return undefined;
+    }
     const target: Partial<BlogPage> = {
         contentType: 'BlogPage',
         sysId: source.sys.id
@@ -27,12 +30,6 @@ export const mapContentful = (raw: any) => {
     }
     if (fields.contentBlocks) {
         target.contentBlocks = mapBlocksBodyContentContentfulList(fields.contentBlocks);
-    }
-    if (fields.body) {
-        target.body = fields.body as object;
-    }
-    if (fields.banners) {
-        target.banners = mapBanners(fields.banners);
     }
     return target as BlogPage;
 }

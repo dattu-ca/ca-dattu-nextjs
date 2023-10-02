@@ -1,10 +1,11 @@
-import {BlogPost} from "~/models";
+import {BlogPost, BlogPostFormat} from "~/models";
 import {IBlogPostFields} from "./generated/index";
+import {mapContentfulList as mapBlocksBodyContentContentfulList} from './blocksBodyContent.schema';
 import {mapContentfulList as mapBodyAuthorContentfulList} from './blogAuthor.schema';
 import {mapContentfulList as mapMetaCategoryContentfulList} from './metaCategory.schema';
 import {mapContentfulList as mapMetaTagContentfulList} from './metaTag.schema';
 import {mapContentful as mapMetaSeriesContentful} from './metaSeries.schema';
-import {mapBanners, mapFeaturedBanner} from "./utils";
+import { mapFeaturedBanner} from "./utils";
 import {IBaseSkeleton} from "./types";
 
 
@@ -23,35 +24,38 @@ export const mapContentful = (raw: any) => {
     if (fields.slug) {
         target.slug = fields.slug as string;
     }
+    if (fields.publishedDate) {
+        target.publishedDate = new Date(fields.publishedDate);
+    }
+    if (fields.format) {
+        target.format = fields.format as BlogPostFormat;
+    }
+    if (fields.preHeadingContentBlocks) {
+        target.preHeadingContentBlocks = mapBlocksBodyContentContentfulList(fields.preHeadingContentBlocks);
+    }
     if (fields.heading) {
         target.heading = fields.heading as string;
-    }
-    if (fields.body) {
-        target.body = fields.body as object;
-    }
-    if (fields.shortBody) {
-        target.shortBody = fields.shortBody as object;
-    }
-    if (fields.banners) {
-        target.banners = mapBanners(fields.banners);
     }
     if (fields.featuredBanner) {
         target.featuredBanner = mapFeaturedBanner(fields.featuredBanner);
     }
-    if (fields.publishedDate) {
-        target.publishedDate = new Date(fields.publishedDate);
+    if (fields.excerptBlocks) {
+        target.excerptBlocks = mapBlocksBodyContentContentfulList(fields.excerptBlocks);
+    }
+    if (fields.contentBlocks) {
+        target.contentBlocks = mapBlocksBodyContentContentfulList(fields.contentBlocks);
     }
     if (fields.authors) {
         target.authors = mapBodyAuthorContentfulList(fields.authors);
+    }
+    if (fields.series) {
+        target.series = mapMetaSeriesContentful(fields.series);
     }
     if (fields.categories) {
         target.categories = mapMetaCategoryContentfulList(fields.categories);
     }
     if (fields.tags) {
         target.tags = mapMetaTagContentfulList(fields.tags);
-    }
-    if (fields.series) {
-        target.series = mapMetaSeriesContentful(fields.series);
     }
     return target as BlogPost;
 }

@@ -10,6 +10,9 @@ export const mapContentful = (raw: any) => {
     }
     const source = raw as BodyContentSkeleton;
     const fields = source.fields;
+    if(!fields){
+        return undefined;
+    }
     const target: Partial<BodyContent> = {
         sysId: source.sys.id,
         contentType: 'BodyContent'

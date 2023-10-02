@@ -10,6 +10,9 @@ export const mapContentful = (raw: any) => {
     }
     const source = raw as BodyImagesSkeleton;
     const fields = source.fields;
+    if (!fields) {
+        return undefined;
+    }
     const target: Partial<BodyImage> = {
         sysId: source.sys.id,
         contentType: 'BodyImage',
@@ -18,6 +21,8 @@ export const mapContentful = (raw: any) => {
         align: fields.align.toLowerCase() as ('left' | 'right' | 'center'),
         name: fields.name,
     };
+
+
     target.desktopImage = {
         contentType: 'Image',
         url: fields.desktopImage?.fields?.file?.url as string,

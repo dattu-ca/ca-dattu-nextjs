@@ -10,6 +10,9 @@ export const mapContentful = (raw: any) => {
     }
     const source = raw as BodyFormSkeleton;
     const fields = source.fields;
+    if(!fields){
+        return undefined;
+    }
     const target: BodyForm = {
         contentType: 'BodyForm',
         sysId: source.sys.id,

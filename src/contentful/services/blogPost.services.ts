@@ -4,17 +4,14 @@ import {BlogPostSkeleton, mapContentful, mapContentfulList} from '../schema/blog
 
 
 const FIELDS = {
-    PUBLISHED_DATE: 'fields.publishedDate',
-    HEADING: 'fields.heading',
-    EXCERPT_BLOCKS: 'fields.excerptBlocks',
-    CONTENT_BLOCKS: 'fields.contentBlocks',
-    BODY: 'fields.body',
-    SHORT_BODY: 'fields.shortBody',
     SLUG: 'fields.slug',
-    BANNERS: 'fields.banners',
-    FEATURED_BANNER: 'fields.featuredBanner',
+    PUBLISHED_DATE: 'fields.publishedDate',
     FORMAT: 'fields.format',
-    LAYOUT_TYPE: 'fields.layoutType',
+    PRE_HEADING_CONTENT_BLOCKS: 'preHeadingContentBlocks.format',
+    HEADING: 'fields.heading',
+    FEATURED_BANNER: 'fields.featuredBanner',
+    EXCERPT_BLOCKS: 'fields.excerptBlocks',
+    CONTENT_BLOCKS: 'contentBlocks.format',
     AUTHORS: 'fields.authors',
     CATEGORIES: 'fields.categories',
     TAGS: 'fields.tags',
@@ -23,13 +20,13 @@ const FIELDS = {
 
 const PAGINATED_SELECT_FIELDS = [
     FIELDS.SLUG as 'fields',
-    FIELDS.HEADING as 'fields',
-    FIELDS.EXCERPT_BLOCKS as 'fields',
-    FIELDS.SHORT_BODY as 'fields',
     FIELDS.PUBLISHED_DATE as 'fields',
-    FIELDS.AUTHORS as 'fields',
+    FIELDS.HEADING as 'fields',
     FIELDS.FEATURED_BANNER as 'fields',
+    FIELDS.EXCERPT_BLOCKS as 'fields',
+    FIELDS.AUTHORS as 'fields',
     FIELDS.CATEGORIES as 'fields',
+    FIELDS.TAGS as 'fields',
     FIELDS.SERIES as 'fields',
 ];
 
@@ -40,15 +37,16 @@ const fetchBySlug = (slug: string) =>
         .getEntries<BlogPostSkeleton>({
             content_type,
             select: [
+                FIELDS.SLUG as 'fields',
+                FIELDS.PUBLISHED_DATE as 'fields',
+                FIELDS.FORMAT as 'fields',
+                FIELDS.PRE_HEADING_CONTENT_BLOCKS as 'fields',
                 FIELDS.HEADING as 'fields',
                 FIELDS.CONTENT_BLOCKS as 'fields',
-                FIELDS.BODY as 'fields',
-                FIELDS.BANNERS as 'fields',
+                FIELDS.AUTHORS as 'fields',
                 FIELDS.CATEGORIES as 'fields',
                 FIELDS.TAGS as 'fields',
                 FIELDS.SERIES as 'fields',
-                FIELDS.PUBLISHED_DATE as 'fields',
-                FIELDS.AUTHORS as 'fields',
             ],
             [FIELDS.SLUG]: slug,
             include: 10,

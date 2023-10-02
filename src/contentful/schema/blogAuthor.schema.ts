@@ -13,6 +13,9 @@ export const mapContentful = (raw: any) => {
     }
     const source = raw as BlogAuthorSkeleton;
     const fields = source.fields;
+    if (!fields) {
+        return undefined;
+    }
     const target: Partial<BlogAuthor> = {
         contentType: 'BlogAuthor',
         sysId: source.sys.id,
@@ -26,12 +29,7 @@ export const mapContentful = (raw: any) => {
     if (fields.shortBio) {
         target.shortBio = fields.shortBio as object;
     }
-    if (fields.bio) {
-        target.bio = fields.bio as object;
-    }
-    if (fields.banners) {
-        target.banners = mapBanners(fields.banners);
-    }
+    
     if (fields.avatar) {
         target.avatar = mapBodyImageContentful(fields.avatar);
     }
