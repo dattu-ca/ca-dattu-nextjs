@@ -10,10 +10,10 @@ interface IProps {
 
 const BlocksBodyContentComponent = ({blocks}: IProps) => {
     if (!blocks) {
-        return null;
+        return <div className={clsx('mb-4 sm:mb-6 md:mb-8 lg:mb-10')} />;
     }
 
-    return <div>
+    return <div >
         {
             blocks.map(block => {
                 return <div key={block.sysId}
