@@ -22,7 +22,7 @@ const createMessage = (form: BodyForm, formValues: Record<string, any>) => {
 }
 
 interface IProps {
-    recaptchaToken: string;
+    recaptchaToken: string | null;
     formId: string;
     formValues: Record<string, any>;
 }

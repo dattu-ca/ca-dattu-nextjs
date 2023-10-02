@@ -1,44 +1,63 @@
-import {useCallback, Fragment} from "react";
+import {useCallback, Fragment, useRef, useState} from "react";
 import clsx from "clsx";
 import {useForm, SubmitHandler} from "react-hook-form"
+import ReCAPTCHA from "react-google-recaptcha";
 import {BodyFormFieldText, BodyFormFieldTextArea, BodyFormFieldType, BodyFormModel} from "~/models";
+import {CLIENT_CONFIG} from "~/utils/config.client";
+import {isEmailValid} from "~/utils/form.utils";
 
 
 interface IProps {
     formModel: BodyFormModel[];
     recaptchaEnabled: boolean;
     isSubmitting: boolean;
-    onSubmit: () => void;
+    onSubmit: (values: Record<string, any>, recaptchaToken: string | null) => Promise<any>;
 }
 
 const FormComponent = ({formModel, recaptchaEnabled, isSubmitting, onSubmit}: IProps) => {
     const {
         register,
         handleSubmit,
-        watch,
-        formState: {errors},
-    } = useForm()
+        formState,
+        reset,
+    } = useForm();
+    const {errors} = formState;
+
+    const recaptchaRef = useRef<ReCAPTCHA | null>(null)
+    const [recaptchaToken, setRecaptchaToken] = useState<string>(recaptchaEnabled ? '' : 'NOT_ENABLED');
+
+    async function handleCaptchaSubmission(token: string | null) {
+        if (token) {
+            setRecaptchaToken(token);
+        }
+    }
 
     const onSubmitHandler: SubmitHandler<any> = (data) => {
-        console.log(data)
-        // onSubmit(data);
+        if (recaptchaEnabled && !recaptchaToken) {
+            return;
+        }
+        onSubmit(data, recaptchaToken).then(() => {
+            reset();
+        });
     }
 
 
     const renderError = useCallback((field: BodyFormFieldType) => {
-        console.log(errors);
         const error = errors[field.id];
-        let message;
+        let message: string | undefined = undefined;
         if (error) {
             if (error.type === 'required') {
                 message = 'This field is required'
             } else if (error.type === 'maxLength') {
                 message = `The maximum length allowed is ${field.validations.maxLength}`
+            } else if (error.type === 'validate') {
+                message = error.message as string;
+            }
+            if (message) {
+                return <div className={clsx('mt-2 text-red-500')}><span>{message}</span></div>
             }
         }
-        if (message) {
-            return <div className={clsx('mt-2 text-red-500')}><span>{message}</span></div>
-        }
+        return null;
     }, [errors]);
 
 
@@ -62,15 +81,24 @@ const FormComponent = ({formModel, recaptchaEnabled, isSubmitting, onSubmit}: IP
                        id={field.id}
                        {...register(field.id, {
                            required: Boolean(field.validations.isRequired),
-                           maxLength: field.validations.maxLength || Number.MAX_SAFE_INTEGER
+                           maxLength: field.validations.maxLength || Number.MAX_SAFE_INTEGER,
+                           validate: (value) => {
+                               if (field.inputType === 'email') {
+                                   if (!isEmailValid(value)) {
+                                       return 'Please enter a valid email';
+                                   }
+                               }
+                               return true;
+                           }
                        })}
+                       disabled={isSubmitting}
                        className={clsx(
                            'daisyui-input daisyui-input-bordered',
                        )}/>
                 {renderError(field)}
             </Fragment>
         )
-    }, [renderError, register]);
+    }, [renderError, register, isSubmitting]);
 
 
     const renderField_textarea = useCallback((f: BodyFormFieldType) => {
@@ -94,6 +122,7 @@ const FormComponent = ({formModel, recaptchaEnabled, isSubmitting, onSubmit}: IP
                               required: Boolean(field.validations.isRequired),
                               maxLength: field.validations.maxLength || Number.MAX_SAFE_INTEGER
                           })}
+                          disabled={isSubmitting}
                           rows={8}
                           className={clsx(
                               'daisyui-textarea daisyui-textarea-bordered',
@@ -101,7 +130,7 @@ const FormComponent = ({formModel, recaptchaEnabled, isSubmitting, onSubmit}: IP
                 {renderError(field)}
             </Fragment>
         )
-    }, [renderError, register]);
+    }, [renderError, register, isSubmitting]);
 
 
     const renderField = useCallback((f: BodyFormFieldType) => {
@@ -117,44 +146,65 @@ const FormComponent = ({formModel, recaptchaEnabled, isSubmitting, onSubmit}: IP
 
 
     return <div>
-        <form onSubmit={handleSubmit(onSubmitHandler)}>
-            {errors.exampleRequired && <span>This field is required</span>}
+        <form onSubmit={handleSubmit(onSubmitHandler)} noValidate={true}>
             {
                 formModel.map(model => {
-                    return <Fragment key={model.legend}>
-                        <fieldset>
-                            <legend className={clsx(
-                                'text-xl',
-                                'mb-2'
-                            )}>{model.legend}</legend>
-                            <div className={clsx(
-                                'mb-4 md:mb-8'
-                            )}>
-                                {
-                                    model.fields.map(f => {
+                    return (
+                        <Fragment key={model.legend}>
+                            <fieldset>
+                                <legend className={clsx(
+                                    'text-xl',
+                                    'mb-2'
+                                )}>{model.legend}</legend>
+                                <div className={clsx(
+                                    'mb-4 md:mb-8'
+                                )}>
+                                    {
+                                        model.fields.map(f => {
 
-                                        return <Fragment key={f.id}>
-                                            <div className={clsx(
-                                                'daisyui-form-control',
-                                                'mb-4',
-                                            )}>
-                                                {
-                                                    renderField(f)
-                                                }
-                                            </div>
-                                        </Fragment>
-                                    })
-                                }
-                            </div>
-                        </fieldset>
-                    </Fragment>
+                                            return <Fragment key={f.id}>
+                                                <div className={clsx(
+                                                    'daisyui-form-control',
+                                                    'mb-4',
+                                                )}>
+                                                    {
+                                                        renderField(f)
+                                                    }
+                                                </div>
+                                            </Fragment>
+                                        })
+                                    }
+                                </div>
+                            </fieldset>
+                        </Fragment>
+                    )
                 })
             }
+            {
+                recaptchaEnabled
+                && (
+                    <fieldset>
+                        <div className={clsx('mb-4 md:mb-8')}>
+                            <ReCAPTCHA
+                                sitekey={CLIENT_CONFIG.GOOGLE_RECAPTCHA.SITE_KEY}
+                                ref={recaptchaRef}
+                                onChange={handleCaptchaSubmission}
+                            />
+                            {
+                                formState.submitCount > 0 && !recaptchaToken &&
+                                <div className={clsx('mt-2 text-red-500')}><span>reCAPTCHA is required</span></div>
+                            }
+                        </div>
+                    </fieldset>
+                )
+            }
 
-
-            <input type="submit" value='Submit' className={clsx(
-                'daisyui-btn daisyui-btn-outline'
-            )}/>
+            <input type="submit"
+                   value='Submit'
+                   disabled={isSubmitting}
+                   className={clsx(
+                       'daisyui-btn daisyui-btn-outline'
+                   )}/>
         </form>
     </div>
 }
