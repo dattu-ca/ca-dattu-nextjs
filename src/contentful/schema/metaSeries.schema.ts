@@ -1,26 +1,36 @@
 import {MetaSeries} from "~/models";
 import {IMetaSeriesFields} from "./generated/index";
-import {ISkeleton} from "./types";
+import {IBaseSkeleton} from "./types";
+import {mapContentfulList as mapBlocksBodyContentContentfulList} from './blocksBodyContent.schema';
 
-export type MetaSeriesSkeleton = ISkeleton<'metaSeries', IMetaSeriesFields>;
+export type MetaSeriesSkeleton = IBaseSkeleton<'metaSeries', IMetaSeriesFields>;
 
 export const mapContentful = (raw: any) => {
+    if(!raw){
+        return undefined;
+    }
     const source = raw as MetaSeriesSkeleton;
     const fields = source.fields;
-    const result: Partial<MetaSeries> = {
+    if(!fields){
+        return undefined;
+    }
+    const target: Partial<MetaSeries> = {
         sysId: source.sys.id,
         contentType: 'MetaSeries'
     };
     if (fields.slug) {
-        result.slug = fields.slug as string;
+        target.slug = fields.slug as string;
+    }
+    if (fields.preHeadingContentBlocks) {
+        target.preHeadingContentBlocks = mapBlocksBodyContentContentfulList(fields.preHeadingContentBlocks);
     }
     if (fields.name) {
-        result.name = fields.name as string;
+        target.name = fields.name as string;
     }
-    if (fields.description) {
-        result.description = fields.description as object;
+    if (fields.contentBlocks) {
+        target.contentBlocks = mapBlocksBodyContentContentfulList(fields.contentBlocks);
     }
-    return result as MetaSeries;
+    return target as MetaSeries;
 }
 
-export const mapContentfulList = (raw: any[]) => (raw || []).map(source => mapContentful(source));
+export const mapContentfulList = (raw: any[]) => (raw || []).map(source => mapContentful(source)).filter(item => Boolean(item)) as MetaSeries[];

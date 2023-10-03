@@ -1,6 +1,5 @@
-import {PageComponent} from "~/components/Page";
-
 import {blogPageServices} from "~/services";
+import {BlogPageComponent} from "~/app.components/blogPageComponent";
 
 
 interface IProps {
@@ -12,9 +11,11 @@ interface IProps {
 const Page = async (props: IProps) => {
     const {params} = props;
     const {slug} = params;
-    const data = await blogPageServices.fetchBySlug(Array.isArray(slug) ? slug.join('/') : slug);
-    return <div>
-        <PageComponent data={data}/>
-    </div>
+
+    const blogPage = await blogPageServices.fetchBySlug(Array.isArray(slug) ? slug.join('/') : slug);
+    if (!blogPage) {
+        return null;
+    }
+    return <BlogPageComponent blogPage={blogPage}/>
 }
 export default Page;

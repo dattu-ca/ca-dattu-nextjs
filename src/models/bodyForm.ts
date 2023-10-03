@@ -1,3 +1,5 @@
+import {BaseModel} from "./types";
+
 export interface BodyFormFieldValidations {
     isRequired: boolean;
     maxLength?: number | undefined;
@@ -30,9 +32,8 @@ export interface BodyFormModel {
     fields: BodyFormFieldType[];
 }
 
-export interface BodyForm {
-    sysId?: string | undefined;
-    contentType: 'BodyForm';
+export interface BodyForm extends BaseModel<'BodyForm'> {
+    name?: string | undefined;
     formId: string;
     maxWidth?: number | undefined;
     formModel: BodyFormModel[];

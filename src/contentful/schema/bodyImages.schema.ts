@@ -1,8 +1,8 @@
 import {BodyImage} from "~/models";
 import {IBodyImagesFields} from "./generated/index";
-import {ISkeleton} from "./types";
+import {IBaseSkeleton} from "./types";
 
-export type BodyImagesSkeleton = ISkeleton<'bodyImages', IBodyImagesFields>;
+export type BodyImagesSkeleton = IBaseSkeleton<'bodyImages', IBodyImagesFields>;
 
 export const mapContentful = (raw: any) => {
     if (!raw) {
@@ -10,13 +10,19 @@ export const mapContentful = (raw: any) => {
     }
     const source = raw as BodyImagesSkeleton;
     const fields = source.fields;
+    if (!fields) {
+        return undefined;
+    }
     const target: Partial<BodyImage> = {
         sysId: source.sys.id,
         contentType: 'BodyImage',
         maxWidth: fields.maxWidth ?? 'auto',
         maxHeight: fields.maxWidth ?? 'auto',
         align: fields.align.toLowerCase() as ('left' | 'right' | 'center'),
+        name: fields.name,
     };
+
+
     target.desktopImage = {
         contentType: 'Image',
         url: fields.desktopImage?.fields?.file?.url as string,
@@ -35,5 +41,5 @@ export const mapContentfulList = (raw: any) => {
         return [] as BodyImage[]
     }
     const source = raw as any[];
-    return source.map(item => mapContentful(item)).filter(item => item) as BodyImage[];
+    return source.map(item => mapContentful(item)).filter(item => Boolean(item)) as BodyImage[];
 }

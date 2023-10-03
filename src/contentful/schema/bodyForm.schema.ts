@@ -1,8 +1,8 @@
 import {BodyForm, BodyFormModel} from "~/models";
 import {IBodyFormFields} from "./generated/index";
-import {ISkeleton} from "./types";
+import {IBaseSkeleton} from "./types";
 
-export type BodyFormSkeleton = ISkeleton<'bodyForm', IBodyFormFields>;
+export type BodyFormSkeleton = IBaseSkeleton<'bodyForm', IBodyFormFields>;
 
 export const mapContentful = (raw: any) => {
     if (!raw) {
@@ -10,6 +10,9 @@ export const mapContentful = (raw: any) => {
     }
     const source = raw as BodyFormSkeleton;
     const fields = source.fields;
+    if(!fields){
+        return undefined;
+    }
     const target: BodyForm = {
         contentType: 'BodyForm',
         sysId: source.sys.id,
@@ -23,7 +26,5 @@ export const mapContentful = (raw: any) => {
         formModel: fields.formModel as BodyFormModel[],
         fromEmailKey: fields.fromEmailKey,
     };
-
     return target as BodyForm;
-
 }

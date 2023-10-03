@@ -1,9 +1,11 @@
-export interface MetaCategory {
-    sysId?: string | undefined;
-    contentType: 'MetaCategory';
+import {BaseModel} from "./types";
+import {BlocksBodyContent} from "./blocksBodyContent";
+
+export interface MetaCategory extends BaseModel<'MetaCategory'> {
     slug: string;
+    preHeadingContentBlocks?: BlocksBodyContent[] | undefined;
     name: string;
-    description?: object | undefined;
+    contentBlocks?: BlocksBodyContent[] | undefined;
     parent?: MetaCategory | undefined;
     children?: MetaCategory[] | undefined;
 }

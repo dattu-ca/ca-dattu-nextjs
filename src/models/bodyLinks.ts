@@ -1,5 +1,6 @@
-export interface ILink {
-    contentType: 'Link';
+import {BaseModel} from "./types";
+
+export interface ILink extends BaseModel<'Link'> {
     id: string;
     icon?: string;
     label: string;
@@ -7,8 +8,7 @@ export interface ILink {
     links?: ILink[];
 }
 
-export interface BodyLinks {
-    sysId?: string | undefined;
-    contentType: 'BodyLinks';
+export interface BodyLinks extends BaseModel<'BodyLinks'> {
+    name?: string | undefined;
     links: ILink[]
 }

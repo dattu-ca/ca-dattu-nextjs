@@ -2,14 +2,20 @@ import {BlogAuthor} from "~/models";
 import {IBlogAuthorFields} from "./generated/index";
 import {mapContentful as mapBodyImageContentful} from './bodyImages.schema';
 import {mapBanners} from "./utils";
-import {ISkeleton} from "./types";
+import {IBaseSkeleton} from "./types";
 
-export type BlogAuthorSkeleton = ISkeleton<'blogAuthor', IBlogAuthorFields>;
+export type BlogAuthorSkeleton = IBaseSkeleton<'blogAuthor', IBlogAuthorFields>;
 
 
 export const mapContentful = (raw: any) => {
+    if(!raw){
+        return undefined;
+    }
     const source = raw as BlogAuthorSkeleton;
     const fields = source.fields;
+    if (!fields) {
+        return undefined;
+    }
     const target: Partial<BlogAuthor> = {
         contentType: 'BlogAuthor',
         sysId: source.sys.id,
@@ -23,12 +29,7 @@ export const mapContentful = (raw: any) => {
     if (fields.shortBio) {
         target.shortBio = fields.shortBio as object;
     }
-    if (fields.bio) {
-        target.bio = fields.bio as object;
-    }
-    if (fields.banners) {
-        target.banners = mapBanners(fields.banners);
-    }
+    
     if (fields.avatar) {
         target.avatar = mapBodyImageContentful(fields.avatar);
     }
@@ -39,4 +40,4 @@ export const mapContentful = (raw: any) => {
 }
 
 
-export const mapContentfulList = (raw: any[]) => (raw || []).map(source => mapContentful(source));
+export const mapContentfulList = (raw: any[]) => (raw || []).map(source => mapContentful(source)).filter(item => Boolean(item)) as BlogAuthor[];

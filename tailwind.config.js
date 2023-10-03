@@ -16,9 +16,7 @@ const MyClass = plugin(function ({addUtilities, matchUtilities, theme, addCompon
         },
         {values: theme('textShadow')}
     );
-    addComponents({
-        
-    })
+    addComponents({})
 })
 
 export default {
@@ -26,16 +24,14 @@ export default {
     darkMode: 'class',
     content: [
         './src/pages/**/*.{js,ts,jsx,tsx,mdx}',
-        './src/components/**/*.{js,ts,jsx,tsx,mdx}',
+        './src/app.components/**/*.{js,ts,jsx,tsx,mdx}',
+        './src/app.ui.components/**/*.{js,ts,jsx,tsx,mdx}',
+        './src/contentful/richTextRenderer/**/*.{tsx,jsx}',
         './src/app/**/*.{js,ts,jsx,tsx,mdx}',
     ],
     theme: {
         extend: {
-            fontFamily: {
-                'black-ops': ['Black Ops One', 'sans-serif'],
-                'acme': ['Acme', 'sans-serif'],
-                'exo': ['Exo', 'sans-serif']
-            },
+            fontFamily: {},
             textShadow: {
                 sm: '-1px -1px 3px var(--tw-shadow-color-split), 0px 0px 6px var(--tw-shadow-color)',
                 DEFAULT: '-1px -1px 4px var(--tw-shadow-color-split), 0px 0px 7px var(--tw-shadow-color)',
@@ -45,27 +41,29 @@ export default {
                 '8/2': '8 / 2'
             },
             colors: {
-                'site-primary-light': 'rgb(237, 188, 64)',
-                'site-primary': 'rgb(218, 165, 32)',
-                'site-primary-dark': 'rgb(185, 138, 21)',
-                'site-secondary-light': 'rgb(37, 177, 164)',
-                'site-secondary': 'rgb(19,149,135)',
-                'site-secondary-dark': 'rgb(0, 119, 107)',
+                // 'site-primary-light': 'rgb(237, 188, 64)',
+                // 'site-primary': 'rgb(218, 165, 32)',
+                // 'site-primary-dark': 'rgb(185, 138, 21)',
+                // 'site-secondary-light': 'rgb(37, 177, 164)',
+                // 'site-secondary': 'rgb(19,149,135)',
+                // 'site-secondary-dark': 'rgb(0, 119, 107)',
                 // 'site-tertiary-light': 'rgb(68, 147, 255)',
                 // 'site-tertiary': 'rgb(0, 123, 255)',
                 // 'site-tertiary-dark': 'rgb(0, 96, 199)',
-                'site-color-dark': 'rgb(24, 25, 27)',
-                'site-color-light': 'rgb(231, 230, 228)',
+                // 'site-color-dark': 'rgb(24, 25, 27)',
+                // 'site-color-light': 'rgb(231, 230, 228)',
             },
             backgroundImage: {
                 'gradient-radial': 'radial-gradient(var(--tw-gradient-stops))',
-                'gradient-conic':
-                    'conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))',
+                'gradient-conic': 'conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))',
             },
         },
     },
     corePlugins: {},
-    plugins: [MyClass, require('daisyui')],
+    plugins: [
+        MyClass,
+        require('daisyui')
+    ],
     variants: {
         extend: {
             display: ['group-hover'],
@@ -73,6 +71,9 @@ export default {
         }
     },
     daisyui: {
-        prefix: "daisyui-"
+        prefix: 'daisyui-',
+        themes: ['dark', 'light'],
+        darkTheme: "dark",
+        base: false,
     },
 }

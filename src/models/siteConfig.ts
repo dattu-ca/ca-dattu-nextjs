@@ -1,6 +1,6 @@
-export interface SiteConfig {
-    sysId?: string | undefined;
-    contentType: 'SiteConfig';
+import {BaseModel} from "./types";
+
+export interface SiteConfig extends BaseModel<'SiteConfig'> {
     slug: string;
     siteTitleTemplate?: string | undefined;
     siteTitleDefault?: string | undefined;

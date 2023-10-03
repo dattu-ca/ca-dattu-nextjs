@@ -3,6 +3,72 @@
 import { Asset, Entry } from "contentful";
 import { Document } from "@contentful/rich-text-types";
 
+export interface IBlocksBodyContentFields {
+  /** Entry Title */
+  entryTitle: string;
+
+  /** Block Layout */
+  blockLayout?: Record<string, any> | undefined;
+
+  /** Columns Layout */
+  columnsLayout?: Record<string, any> | undefined;
+
+  /** Column 1 Blocks */
+  column1Blocks?:
+    | (
+        | IBodyContent
+        | IBodyForm
+        | IBodyImages
+        | IBodyLinks
+        | IBodyYouTube
+        | IBodyPostsList
+      )[]
+    | undefined;
+
+  /** Column 2 Blocks */
+  column2Blocks?:
+    | (
+        | IBodyContent
+        | IBodyForm
+        | IBodyImages
+        | IBodyLinks
+        | IBodyYouTube
+        | IBodyPostsList
+      )[]
+    | undefined;
+
+  /** Column 3 Blocks */
+  column3Blocks?:
+    | (
+        | IBodyContent
+        | IBodyForm
+        | IBodyImages
+        | IBodyLinks
+        | IBodyYouTube
+        | IBodyPostsList
+      )[]
+    | undefined;
+}
+
+/** A collection of all of the `body` content models, along with it's layout style. */
+
+export interface IBlocksBodyContent extends Entry<IBlocksBodyContentFields> {
+  sys: {
+    id: string;
+    type: string;
+    createdAt: string;
+    updatedAt: string;
+    locale: string;
+    contentType: {
+      sys: {
+        id: "blocksBodyContent";
+        linkType: "ContentType";
+        type: "Link";
+      };
+    };
+  };
+}
+
 export interface IBlogAuthorFields {
   /** Entry Title */
   entryTitle: string;
@@ -10,11 +76,11 @@ export interface IBlogAuthorFields {
   /** Slug */
   slug: string;
 
+  /** Pre Heading Content Blocks */
+  preHeadingContentBlocks?: IBlocksBodyContent[] | undefined;
+
   /** Name */
   name: string;
-
-  /** Banners */
-  banners?: (IBodyImages | IBodyYouTube)[] | undefined;
 
   /** Avatar */
   avatar?: IBodyImages | undefined;
@@ -25,8 +91,8 @@ export interface IBlogAuthorFields {
   /** Short Bio */
   shortBio?: Document | undefined;
 
-  /** Bio */
-  bio?: Document | undefined;
+  /** Content Blocks */
+  contentBlocks?: IBlocksBodyContent[] | undefined;
 }
 
 /** The author content */
@@ -55,14 +121,8 @@ export interface IBlogHomeFields {
   /** Slug */
   slug: string;
 
-  /** Body */
-  body?: Document | undefined;
-
-  /** Featured Post */
-  featuredPost?: IBlogPost | undefined;
-
-  /** Spotlight Posts */
-  spotlightPosts?: IBlogPost[] | undefined;
+  /** Content Blocks */
+  contentBlocks?: IBlocksBodyContent[] | undefined;
 }
 
 /** The HOME page Content Model */
@@ -91,14 +151,14 @@ export interface IBlogPageFields {
   /** Slug */
   slug: string;
 
+  /** Pre Heading Content Blocks */
+  preHeadingContentBlocks?: IBlocksBodyContent[] | undefined;
+
   /** Heading */
   heading: string;
 
-  /** Banners */
-  banners?: (IBodyImages | IBodyYouTube)[] | undefined;
-
-  /** Body */
-  body?: Document | undefined;
+  /** Content Blocks */
+  contentBlocks?: IBlocksBodyContent[] | undefined;
 }
 
 /** The main content model for pages. */
@@ -130,43 +190,35 @@ export interface IBlogPostFields {
   /** Published Date */
   publishedDate: string;
 
-  /** Authors */
-  authors?: IBlogAuthor[] | undefined;
+  /** Format */
+  format: "Standard" | "Aside" | "Image" | "Video" | "Quote" | "Link";
+
+  /** Pre Heading Content Blocks */
+  preHeadingContentBlocks?: IBlocksBodyContent[] | undefined;
 
   /** Heading */
   heading: string;
 
-  /** Banners */
-  banners?: (IBodyImages | IBodyYouTube)[] | undefined;
-
-  /** Body */
-  body?: Document | undefined;
-
   /** Featured Banner */
   featuredBanner?: IBodyImages | IBodyYouTube | undefined;
 
-  /** Short Body */
-  shortBody?: Document | undefined;
+  /** Excerpt Blocks */
+  excerptBlocks?: IBlocksBodyContent[] | undefined;
 
-  /** Format */
-  format: "Standard" | "Aside" | "Image" | "Video" | "Quote" | "Link";
+  /** Content Blocks */
+  contentBlocks?: IBlocksBodyContent[] | undefined;
 
-  /** Layout Type */
-  layoutType:
-    | "Default"
-    | "Right Sidebar"
-    | "Left Sidebar"
-    | "No Sidebar"
-    | "Full Width";
+  /** Authors */
+  authors?: IBlogAuthor[] | undefined;
+
+  /** Series */
+  series?: IMetaSeries | undefined;
 
   /** Categories */
   categories?: IMetaCategory[] | undefined;
 
   /** Tags */
   tags?: IMetaTag[] | undefined;
-
-  /** Series */
-  series?: IMetaSeries | undefined;
 }
 
 /** The main content model for posts. */
@@ -188,9 +240,42 @@ export interface IBlogPost extends Entry<IBlogPostFields> {
   };
 }
 
+export interface IBlogPostsListFields {
+  /** Entry Title */
+  entryTitle: string;
+
+  /** Slug */
+  slug: string;
+
+  /** Content Blocks */
+  contentBlocks?: IBlocksBodyContent[] | undefined;
+}
+
+/** The Main Content Model for Posts lists paginated pages. */
+
+export interface IBlogPostsList extends Entry<IBlogPostsListFields> {
+  sys: {
+    id: string;
+    type: string;
+    createdAt: string;
+    updatedAt: string;
+    locale: string;
+    contentType: {
+      sys: {
+        id: "blogPostsList";
+        linkType: "ContentType";
+        type: "Link";
+      };
+    };
+  };
+}
+
 export interface IBodyContentFields {
   /** Entry Title */
   entryTitle: string;
+
+  /** Name */
+  name?: string | undefined;
 
   /** Body */
   body?: Document | undefined;
@@ -221,6 +306,9 @@ export interface IBodyFormFields {
 
   /** Form Id */
   formId: string;
+
+  /** Name */
+  name?: string | undefined;
 
   /** Max Width */
   maxWidth?: number | undefined;
@@ -270,6 +358,9 @@ export interface IBodyImagesFields {
   /** Entry Title */
   entryTitle: string;
 
+  /** Name */
+  name?: string | undefined;
+
   /** Max Width */
   maxWidth?: number | undefined;
 
@@ -277,7 +368,7 @@ export interface IBodyImagesFields {
   maxHeight?: number | undefined;
 
   /** Align */
-  align: "Center" | "Left" | "Right";
+  align: "Left" | "Center" | "Right";
 
   /** Desktop Image */
   desktopImage?: Asset | undefined;
@@ -315,6 +406,9 @@ export interface IBodyLinksFields {
   /** Entry Title */
   entryTitle: string;
 
+  /** Name */
+  name?: string | undefined;
+
   /** Links */
   links?: Record<string, any> | undefined;
 }
@@ -338,6 +432,39 @@ export interface IBodyLinks extends Entry<IBodyLinksFields> {
   };
 }
 
+export interface IBodyPostsListFields {
+  /** Entry Title */
+  entryTitle: string;
+
+  /** Name */
+  name?: string | undefined;
+
+  /** Posts List Identifier */
+  postsListIdentifier: "All" | "Series" | "Category" | "Tag" | "Author";
+
+  /** Limit Per Page */
+  limitPerPage: number;
+}
+
+/** The configuration for the posts lists */
+
+export interface IBodyPostsList extends Entry<IBodyPostsListFields> {
+  sys: {
+    id: string;
+    type: string;
+    createdAt: string;
+    updatedAt: string;
+    locale: string;
+    contentType: {
+      sys: {
+        id: "bodyPostsList";
+        linkType: "ContentType";
+        type: "Link";
+      };
+    };
+  };
+}
+
 export interface IBodyYouTubeFields {
   /** Entry Title */
   entryTitle: string;
@@ -345,11 +472,11 @@ export interface IBodyYouTubeFields {
   /** YouTube URL */
   youTubeUrl: string;
 
-  /** Video ID */
-  videoId: string;
-
   /** Name */
   name?: string | undefined;
+
+  /** Video ID */
+  videoId: string;
 
   /** Description */
   description?: Document | undefined;
@@ -381,14 +508,17 @@ export interface IMetaCategoryFields {
   /** Slug */
   slug: string;
 
+  /** Pre Heading Content Blocks */
+  preHeadingContentBlocks?: IBlocksBodyContent[] | undefined;
+
   /** Name */
   name: string;
 
-  /** Description */
-  description?: Document | undefined;
-
   /** Parent Meta Category */
   parentMetaCategory?: IMetaCategory | undefined;
+
+  /** Content Blocks */
+  contentBlocks?: IBlocksBodyContent[] | undefined;
 }
 
 /** The Category of a Blog Post */
@@ -417,11 +547,14 @@ export interface IMetaSeriesFields {
   /** Slug */
   slug: string;
 
+  /** Pre Heading Content Blocks */
+  preHeadingContentBlocks?: IBlocksBodyContent[] | undefined;
+
   /** Name */
   name: string;
 
-  /** Description */
-  description?: Document | undefined;
+  /** Content Blocks */
+  contentBlocks?: IBlocksBodyContent[] | undefined;
 }
 
 /** The Series of a Blog Post */
@@ -450,11 +583,14 @@ export interface IMetaTagFields {
   /** Slug */
   slug: string;
 
+  /** Pre Heading Content Blocks */
+  preHeadingContentBlocks?: IBlocksBodyContent[] | undefined;
+
   /** Name */
   name: string;
 
-  /** Description */
-  description?: Document | undefined;
+  /** Content Blocks */
+  contentBlocks?: IBlocksBodyContent[] | undefined;
 }
 
 /** The Tag of a Blog Post */
@@ -585,14 +721,17 @@ export interface ISiteSearch extends Entry<ISiteSearchFields> {
 }
 
 export type CONTENT_TYPE =
+  | "blocksBodyContent"
   | "blogAuthor"
   | "blogHome"
   | "blogPage"
   | "blogPost"
+  | "blogPostsList"
   | "bodyContent"
   | "bodyForm"
   | "bodyImages"
   | "bodyLinks"
+  | "bodyPostsList"
   | "bodyYouTube"
   | "metaCategory"
   | "metaSeries"
@@ -602,14 +741,17 @@ export type CONTENT_TYPE =
   | "siteSearch";
 
 export type IEntry =
+  | IBlocksBodyContent
   | IBlogAuthor
   | IBlogHome
   | IBlogPage
   | IBlogPost
+  | IBlogPostsList
   | IBodyContent
   | IBodyForm
   | IBodyImages
   | IBodyLinks
+  | IBodyPostsList
   | IBodyYouTube
   | IMetaCategory
   | IMetaSeries

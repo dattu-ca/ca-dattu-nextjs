@@ -6,22 +6,21 @@ import {MetaCategorySkeleton, mapContentful, mapContentfulList} from '../schema/
 
 const FIELDS = {
     SLUG: 'fields.slug',
+    PRE_HEADING_CONTENT_BLOCKS: 'preHeadingContentBlocks.format',
     NAME: 'fields.name',
-    DESCRIPTION: 'fields.description',
+    CONTENT_BLOCKS: 'contentBlocks.format',
     PARENT_META_CATEGORY: 'fields.parentMetaCategory',
 }
 
 const content_type = 'metaCategory';
 
-const fetchByParentId = async (parentId: string): Promise<MetaCategory[]> =>
+const fetchByParentId = async (parentId: string) =>
     client
         .getEntries<MetaCategorySkeleton>({
             content_type,
             select: [
                 FIELDS.SLUG as 'fields',
                 FIELDS.NAME as 'fields',
-                FIELDS.DESCRIPTION as 'fields',
-                FIELDS.PARENT_META_CATEGORY as 'fields',
             ],
             // @ts-ignore
             'fields.parentMetaCategory.sys.id': parentId,
@@ -31,14 +30,15 @@ const fetchByParentId = async (parentId: string): Promise<MetaCategory[]> =>
             return mapContentfulList(response.items);
         })
 
-const fetchBySlug = async (slug: string): Promise<MetaCategory> =>
+const fetchBySlug = async (slug: string) =>
     client
         .getEntries<MetaCategorySkeleton>({
             content_type,
             select: [
                 FIELDS.SLUG as 'fields',
+                FIELDS.PRE_HEADING_CONTENT_BLOCKS as 'fields',
                 FIELDS.NAME as 'fields',
-                FIELDS.DESCRIPTION as 'fields',
+                FIELDS.CONTENT_BLOCKS as 'fields',
                 FIELDS.PARENT_META_CATEGORY as 'fields',
             ],
             [FIELDS.SLUG]: slug,

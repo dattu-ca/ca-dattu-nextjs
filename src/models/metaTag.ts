@@ -1,7 +1,9 @@
-export interface MetaTag {
-    sysId?: string | undefined;
-    contentType: 'MetaTag';
+import {BaseModel} from "./types";
+import {BlocksBodyContent} from "./blocksBodyContent";
+
+export interface MetaTag extends BaseModel<'MetaTag'> {
     slug: string;
+    preHeadingContentBlocks?: BlocksBodyContent[] | undefined;
     name: string;
-    description?: object | undefined;
+    contentBlocks?: BlocksBodyContent[] | undefined;
 }

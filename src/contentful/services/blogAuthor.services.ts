@@ -4,12 +4,12 @@ import {BlogAuthorSkeleton, mapContentful} from '../schema/blogAuthor.schema'
 
 const FIELDS = {
     SLUG: 'fields.slug',
+    PRE_HEADING_CONTENT_BLOCKS: 'fields.preHeadingContentBlocks',
     NAME: 'fields.name',
     AVATAR: 'fields.avatar',
     AVATAR_INITIALS: 'fields.avatarInitials',
     SHORT_BIO: 'fields.shortBio',
-    BIO: 'fields.bio',
-    BANNERS: 'fields.banners',
+    CONTENT_BLOCKS: 'fields.contentBlocks',
 
 }
 
@@ -22,12 +22,12 @@ const fetchBySlug = (slug: string) =>
             content_type,
             select: [
                 FIELDS.SLUG as 'fields',
+                FIELDS.PRE_HEADING_CONTENT_BLOCKS as 'fields',
                 FIELDS.NAME as 'fields',
                 FIELDS.AVATAR as 'fields',
                 FIELDS.AVATAR_INITIALS as 'fields',
                 FIELDS.SHORT_BIO as 'fields',
-                FIELDS.BIO as 'fields',
-                FIELDS.BANNERS as 'fields',
+                FIELDS.CONTENT_BLOCKS as 'fields',
             ],
             [FIELDS.SLUG]: slug,
             include: 10,

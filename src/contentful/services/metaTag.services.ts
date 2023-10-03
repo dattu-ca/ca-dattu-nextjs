@@ -6,20 +6,22 @@ import {MetaTagSkeleton, mapContentful} from '../schema/metaTag.schema';
 
 const FIELDS = {
     SLUG: 'fields.slug',
+    PRE_HEADING_CONTENT_BLOCKS: 'preHeadingContentBlocks.format',
     NAME: 'fields.name',
-    DESCRIPTION: 'fields.description',
+    CONTENT_BLOCKS: 'contentBlocks.format',
 }
 
 const content_type = 'metaTag';
 
-const fetchBySlug = async (slug: string): Promise<MetaTag> =>
+const fetchBySlug = async (slug: string) =>
     client
         .getEntries<MetaTagSkeleton>({
             content_type,
             select: [
                 FIELDS.SLUG as 'fields',
+                FIELDS.PRE_HEADING_CONTENT_BLOCKS as 'fields',
                 FIELDS.NAME as 'fields',
-                FIELDS.DESCRIPTION as 'fields',
+                FIELDS.CONTENT_BLOCKS as 'fields',
             ],
             [FIELDS.SLUG]: slug,
             include: 10,

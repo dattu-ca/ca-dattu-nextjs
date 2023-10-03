@@ -1,29 +1,39 @@
 import {MetaCategory} from "~/models";
 import {IMetaCategoryFields} from "./generated/index";
-import {ISkeleton} from "./types";
+import {IBaseSkeleton} from "./types";
+import {mapContentfulList as mapBlocksBodyContentContentfulList} from './blocksBodyContent.schema';
 
-export type MetaCategorySkeleton = ISkeleton<'metaCategory', IMetaCategoryFields>;
+export type MetaCategorySkeleton = IBaseSkeleton<'metaCategory', IMetaCategoryFields>;
 
 export const mapContentful = (raw: any) => {
+    if(!raw){
+        return undefined;
+    }
     const source = raw as MetaCategorySkeleton;
     const fields = source.fields;
-    const result: Partial<MetaCategory> = {
+    if(!fields){
+        return undefined;
+    }
+    const target: Partial<MetaCategory> = {
         sysId: source.sys.id,
         contentType: 'MetaCategory'
     };
     if (fields.slug) {
-        result.slug = fields.slug as string;
+        target.slug = fields.slug as string;
+    }
+    if (fields.preHeadingContentBlocks) {
+        target.preHeadingContentBlocks = mapBlocksBodyContentContentfulList(fields.preHeadingContentBlocks);
     }
     if (fields.name) {
-        result.name = fields.name as string;
+        target.name = fields.name as string;
     }
-    if (fields.description) {
-        result.description = fields.description as object;
+    if (fields.contentBlocks) {
+        target.contentBlocks = mapBlocksBodyContentContentfulList(fields.contentBlocks);
     }
     if (fields.parentMetaCategory) {
-        result.parent = mapContentful(fields.parentMetaCategory)
+        target.parent = mapContentful(fields.parentMetaCategory)
     }
-    return result as MetaCategory;
+    return target as MetaCategory;
 }
 
-export const mapContentfulList = (raw: any[]) => (raw || []).map(source => mapContentful(source));
+export const mapContentfulList = (raw: any[]) => (raw || []).map(source => mapContentful(source)).filter(item => Boolean(item)) as MetaCategory[];

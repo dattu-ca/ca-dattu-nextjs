@@ -1,13 +1,20 @@
 import {BlogPage} from "~/models";
 import {IBlogPageFields} from "./generated/index";
+import {mapContentfulList as mapBlocksBodyContentContentfulList} from './blocksBodyContent.schema';
 import {mapBanners} from "./utils";
-import {ISkeleton} from "./types";
+import {IBaseSkeleton} from "./types";
 
-export type BlogPageSkeleton = ISkeleton<'blogPage', IBlogPageFields>
+export type BlogPageSkeleton = IBaseSkeleton<'blogPage', IBlogPageFields>
 
 export const mapContentful = (raw: any) => {
+    if(!raw){
+        return undefined;
+    }
     const source = raw as BlogPageSkeleton;
-    const fields = source.fields
+    const fields = source.fields;
+    if(!fields){
+        return undefined;
+    }
     const target: Partial<BlogPage> = {
         contentType: 'BlogPage',
         sysId: source.sys.id
@@ -18,13 +25,13 @@ export const mapContentful = (raw: any) => {
     if (fields.heading) {
         target.heading = fields.heading as string;
     }
-    if (fields.body) {
-        target.body = fields.body as object;
+    if (fields.preHeadingContentBlocks) {
+        target.preHeadingContentBlocks = mapBlocksBodyContentContentfulList(fields.preHeadingContentBlocks);
     }
-    if (fields.banners) {
-        target.banners = mapBanners(fields.banners);
+    if (fields.contentBlocks) {
+        target.contentBlocks = mapBlocksBodyContentContentfulList(fields.contentBlocks);
     }
     return target as BlogPage;
 }
 
-export const mapContentfulList = (raw: any[]) => (raw || []).map(source => mapContentful(source));
+export const mapContentfulList = (raw: any[]) => (raw || []).map(source => mapContentful(source)).filter(item => Boolean(item)) as BlogPage[];
