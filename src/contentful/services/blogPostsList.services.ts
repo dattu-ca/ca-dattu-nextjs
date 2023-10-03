@@ -1,20 +1,19 @@
 'use server';
 import {client} from "../client";
-import { BlogHomeSkeleton, mapContentful} from '../schema/blogHome.schema';
+import { BlogPostsListSkeleton, mapContentful} from '../schema/blogPostsList.schema';
 
 const FIELDS = {
     SLUG: 'fields.slug',
     CONTENT_BLOCKS: 'fields.contentBlocks',
 }
 
-const content_type = 'blogHome';
+const content_type = 'blogPage';
 
 const fetchBySlug = (slug: string) =>
     client
-        .getEntries<BlogHomeSkeleton>({
+        .getEntries<BlogPostsListSkeleton>({
             content_type,
             select: [
-                FIELDS.SLUG as 'fields',
                 FIELDS.CONTENT_BLOCKS as 'fields',
             ],
             [FIELDS.SLUG]: slug,

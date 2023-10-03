@@ -15,56 +15,63 @@ export type BlocksBodyContentLayout = "Adjacent" | "Slider" | "Stacked" | "Tabbe
 export type BlocksBodyContentAlignment = "Start" | "Center" | "End";
 
 
+export type BlocksBodyLayoutGap = {
+    Xs: BlocksBodyContentGap;
+    Sm: BlocksBodyContentGap;
+    Md: BlocksBodyContentGap;
+    Lg: BlocksBodyContentGap;
+    Xl: BlocksBodyContentGap;
+}
+export type BlocksBodyLayoutFormat = {
+    Xs: BlocksBodyContentFormat;
+    Sm: BlocksBodyContentFormat;
+    Md: BlocksBodyContentFormat;
+    Lg: BlocksBodyContentFormat;
+    Xl: BlocksBodyContentFormat;
+};
+export type BlocksBodyLayoutAlignment = {
+    Xs: BlocksBodyContentAlignment;
+    Sm: BlocksBodyContentAlignment;
+    Md: BlocksBodyContentAlignment;
+    Lg: BlocksBodyContentAlignment;
+    Xl: BlocksBodyContentAlignment;
+}
+
+export type BlocksBodyContentColumnLayout = {
+    Xs: BlocksBodyContentLayout;
+    Sm: BlocksBodyContentLayout;
+    Md: BlocksBodyContentLayout;
+    Lg: BlocksBodyContentLayout;
+    Xl: BlocksBodyContentLayout;
+}
+
+export type BlocksBodyContentColumnGaps = {
+    Xs: BlocksBodyContentGap;
+    Sm: BlocksBodyContentGap;
+    Md: BlocksBodyContentGap;
+    Lg: BlocksBodyContentGap;
+    Xl: BlocksBodyContentGap;
+}
+export type BlocksBodyContentColumnGridColumnSize = {
+    Xs: number;
+    Sm: number;
+    Md: number;
+    Lg: number;
+    Xl: number;
+};
+
+
 export type BlocksBodyLayout = {
-    gap: {
-        Xs: BlocksBodyContentGap;
-        Sm: BlocksBodyContentGap;
-        Md: BlocksBodyContentGap;
-        Lg: BlocksBodyContentGap;
-        Xl: BlocksBodyContentGap;
-    },
-    format: {
-        Xs: BlocksBodyContentFormat;
-        Sm: BlocksBodyContentFormat;
-        Md: BlocksBodyContentFormat;
-        Lg: BlocksBodyContentFormat;
-        Xl: BlocksBodyContentFormat;
-    },
-    alignment: {
-        Xs: BlocksBodyContentAlignment;
-        Sm: BlocksBodyContentAlignment;
-        Md: BlocksBodyContentAlignment;
-        Lg: BlocksBodyContentAlignment;
-        Xl: BlocksBodyContentAlignment;
-    }
+    gap: BlocksBodyLayoutGap,
+    format: BlocksBodyLayoutFormat,
+    alignment: BlocksBodyLayoutAlignment
 }
 export type BlocksBodyContentColumn = {
     index: number;
-    /**
-     * The actual content
-     */
-    content?: BlocksBodyContentType[] | undefined;
-    layout: {
-        Xs: BlocksBodyContentLayout;
-        Sm: BlocksBodyContentLayout;
-        Md: BlocksBodyContentLayout;
-        Lg: BlocksBodyContentLayout;
-        Xl: BlocksBodyContentLayout;
-    };
-    gaps: {
-        Xs: BlocksBodyContentGap;
-        Sm: BlocksBodyContentGap;
-        Md: BlocksBodyContentGap;
-        Lg: BlocksBodyContentGap;
-        Xl: BlocksBodyContentGap;
-    };
-    gridColumnsSize: {
-        Xs: number;
-        Sm: number;
-        Md: number;
-        Lg: number;
-        Xl: number;
-    };
+    contentBlocks?: BlocksBodyContentType[] | undefined;
+    layout: BlocksBodyContentColumnLayout;
+    gaps: BlocksBodyContentColumnGaps;
+    gridColumnsSize: BlocksBodyContentColumnGridColumnSize;
 }
 
 

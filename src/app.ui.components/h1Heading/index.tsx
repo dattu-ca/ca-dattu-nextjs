@@ -7,7 +7,13 @@ interface IProps {
 }
 
 const H1Heading = ({children}: IProps) => (
-    <BlocksLayout layoutWidth='Narrow'>
+    <BlocksLayout format={{
+        Xs: 'Container Width',
+        Sm: 'Container Width',
+        Md: 'Default',
+        Lg: 'Narrow',
+        Xl: 'Narrow'
+    }}>
         <h1>{children}</h1>
     </BlocksLayout>
 )

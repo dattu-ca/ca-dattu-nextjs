@@ -16,6 +16,7 @@ const fetchBySlug = (slug: string) =>
         .getEntries<BlogPageSkeleton>({
             content_type,
             select: [
+                FIELDS.SLUG as 'fields',
                 FIELDS.PRE_HEADING_CONTENT_BLOCKS as 'fields',
                 FIELDS.HEADING as 'fields',
                 FIELDS.CONTENT_BLOCKS as 'fields',

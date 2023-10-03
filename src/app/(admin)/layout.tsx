@@ -15,7 +15,13 @@ const Layout = async ({children}: IProps) => {
     }
 
     return <Fragment>
-        <BlocksLayout layoutWidth='Narrow'>
+        <BlocksLayout format={{
+            Xs: 'Container Width',
+            Sm: 'Container Width',
+            Md: 'Default',
+            Lg: 'Narrow',
+            Xl: 'Narrow'
+        }}>
             {children}
         </BlocksLayout>
     </Fragment>

@@ -7,47 +7,47 @@ export interface IBlocksBodyContentFields {
   /** Entry Title */
   entryTitle: string;
 
-  /** Layout Width */
-  layoutWidth: "Full Width" | "Container Width" | "Default" | "Narrow";
+  /** Block Layout */
+  blockLayout?: Record<string, any> | undefined;
 
-  /** Column Widths */
-  columnWidths: "1/1" | "1/2, 1/2" | "1/3, 2/3" | "2/3, 1/3" | "1/3, 1/3, 1/3";
-
-  /** Column Gaps */
-  columnGaps: "None" | "Xs" | "Sm" | "Md" | "Lg" | "Xl";
+  /** Columns Layout */
+  columnsLayout?: Record<string, any> | undefined;
 
   /** Column 1 Blocks */
   column1Blocks?:
-    | (IBodyContent | IBodyForm | IBodyImages | IBodyLinks | IBodyYouTube)[]
+    | (
+        | IBodyContent
+        | IBodyForm
+        | IBodyImages
+        | IBodyLinks
+        | IBodyYouTube
+        | IBodyPostsList
+      )[]
     | undefined;
-
-  /** Column 1 Layout */
-  column1Layout: "Adjacent" | "Slider" | "Stacked" | "Tabbed";
-
-  /** Column 1 Gaps */
-  column1Gaps: "None" | "Xs" | "Sm" | "Md" | "Lg" | "Xl";
 
   /** Column 2 Blocks */
   column2Blocks?:
-    | (IBodyContent | IBodyForm | IBodyImages | IBodyLinks | IBodyYouTube)[]
+    | (
+        | IBodyContent
+        | IBodyForm
+        | IBodyImages
+        | IBodyLinks
+        | IBodyYouTube
+        | IBodyPostsList
+      )[]
     | undefined;
-
-  /** Column 2 Layout */
-  column2Layout: "Adjacent" | "Slider" | "Stacked" | "Tabbed";
-
-  /** Column 2 Gaps */
-  column2Gaps: "None" | "Xs" | "Sm" | "Md" | "Lg" | "Xl";
 
   /** Column 3 Blocks */
   column3Blocks?:
-    | (IBodyContent | IBodyForm | IBodyImages | IBodyLinks | IBodyYouTube)[]
+    | (
+        | IBodyContent
+        | IBodyForm
+        | IBodyImages
+        | IBodyLinks
+        | IBodyYouTube
+        | IBodyPostsList
+      )[]
     | undefined;
-
-  /** Column 3 Layout */
-  column3Layout: "Adjacent" | "Slider" | "Stacked" | "Tabbed";
-
-  /** Column 3 Gaps */
-  column3Gaps: "None" | "Xs" | "Sm" | "Md" | "Lg" | "Xl";
 }
 
 /** A collection of all of the `body` content models, along with it's layout style. */
@@ -199,6 +199,12 @@ export interface IBlogPostFields {
   /** Heading */
   heading: string;
 
+  /** Featured Banner */
+  featuredBanner?: IBodyImages | IBodyYouTube | undefined;
+
+  /** Excerpt Blocks */
+  excerptBlocks?: IBlocksBodyContent[] | undefined;
+
   /** Content Blocks */
   contentBlocks?: IBlocksBodyContent[] | undefined;
 
@@ -213,12 +219,6 @@ export interface IBlogPostFields {
 
   /** Tags */
   tags?: IMetaTag[] | undefined;
-
-  /** Excerpt Blocks */
-  excerptBlocks?: IBlocksBodyContent[] | undefined;
-
-  /** Featured Banner */
-  featuredBanner?: IBodyImages | IBodyYouTube | undefined;
 }
 
 /** The main content model for posts. */
@@ -233,6 +233,36 @@ export interface IBlogPost extends Entry<IBlogPostFields> {
     contentType: {
       sys: {
         id: "blogPost";
+        linkType: "ContentType";
+        type: "Link";
+      };
+    };
+  };
+}
+
+export interface IBlogPostsListFields {
+  /** Entry Title */
+  entryTitle: string;
+
+  /** Slug */
+  slug: string;
+
+  /** Content Blocks */
+  contentBlocks?: IBlocksBodyContent[] | undefined;
+}
+
+/** The Main Content Model for Posts lists paginated pages. */
+
+export interface IBlogPostsList extends Entry<IBlogPostsListFields> {
+  sys: {
+    id: string;
+    type: string;
+    createdAt: string;
+    updatedAt: string;
+    locale: string;
+    contentType: {
+      sys: {
+        id: "blogPostsList";
         linkType: "ContentType";
         type: "Link";
       };
@@ -395,6 +425,39 @@ export interface IBodyLinks extends Entry<IBodyLinksFields> {
     contentType: {
       sys: {
         id: "bodyLinks";
+        linkType: "ContentType";
+        type: "Link";
+      };
+    };
+  };
+}
+
+export interface IBodyPostsListFields {
+  /** Entry Title */
+  entryTitle: string;
+
+  /** Name */
+  name?: string | undefined;
+
+  /** Posts List Identifier */
+  postsListIdentifier: "All" | "Series" | "Category" | "Tag" | "Author";
+
+  /** Limit Per Page */
+  limitPerPage: number;
+}
+
+/** The configuration for the posts lists */
+
+export interface IBodyPostsList extends Entry<IBodyPostsListFields> {
+  sys: {
+    id: string;
+    type: string;
+    createdAt: string;
+    updatedAt: string;
+    locale: string;
+    contentType: {
+      sys: {
+        id: "bodyPostsList";
         linkType: "ContentType";
         type: "Link";
       };
@@ -663,10 +726,12 @@ export type CONTENT_TYPE =
   | "blogHome"
   | "blogPage"
   | "blogPost"
+  | "blogPostsList"
   | "bodyContent"
   | "bodyForm"
   | "bodyImages"
   | "bodyLinks"
+  | "bodyPostsList"
   | "bodyYouTube"
   | "metaCategory"
   | "metaSeries"
@@ -681,10 +746,12 @@ export type IEntry =
   | IBlogHome
   | IBlogPage
   | IBlogPost
+  | IBlogPostsList
   | IBodyContent
   | IBodyForm
   | IBodyImages
   | IBodyLinks
+  | IBodyPostsList
   | IBodyYouTube
   | IMetaCategory
   | IMetaSeries

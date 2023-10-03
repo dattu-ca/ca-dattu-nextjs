@@ -9,7 +9,13 @@ interface IProps {
 
 const Layout = async ({children}: IProps) => {
     return <Fragment>
-        <BlocksLayout layoutWidth='Container Width'>
+        <BlocksLayout format={{
+            Xs: 'Container Width',
+            Sm: 'Container Width',
+            Md: 'Default',
+            Lg: 'Narrow',
+            Xl: 'Narrow'
+        }}>
             <div className={clsx('flex h-full  items-center justify-center')}>
                 <div className={clsx(
                     'p-3',

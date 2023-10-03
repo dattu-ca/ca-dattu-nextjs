@@ -11,7 +11,7 @@ interface IProps {
     gaps: BlocksBodyContentGap;
 }
 
-const BlocksBodyContentColumn = ({blocks, layout, gaps}: IProps) => {
+const BlocksBodyContentColumnComponent = ({blocks, layout, gaps}: IProps) => {
     if (!blocks || !Array.isArray(blocks)) {
         return null;
     }
@@ -31,5 +31,5 @@ const BlocksBodyContentColumn = ({blocks, layout, gaps}: IProps) => {
 }
 
 export {
-    BlocksBodyContentColumn
+    BlocksBodyContentColumnComponent
 }

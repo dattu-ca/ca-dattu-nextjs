@@ -17,6 +17,9 @@ export const mapContentful = (raw: any) => {
         sysId: source.sys.id,
         contentType: 'BodyPostsList'
     };
+    if (fields.name) {
+        target.name = fields.name as string;
+    }
     if (fields.postsListIdentifier) {
         target.postsListIdentifier = fields.postsListIdentifier;
     }

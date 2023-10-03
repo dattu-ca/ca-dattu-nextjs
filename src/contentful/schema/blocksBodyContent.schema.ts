@@ -51,11 +51,15 @@ const mapBlocks = (blocks: (IBodyContent | IBodyForm | IBodyImages | IBodyLinks 
     });
 }
 
-const mapColumn = (blocks, columnsLayout, columnIndex: number) => {
-    console.log(columnsLayout.gaps)
+const mapColumn = (
+    blocks: (IBodyContent | IBodyForm | IBodyImages | IBodyLinks | IBodyYouTube | IBodyPostsList)[] | undefined,
+    columnsLayout: Record<string, any> | undefined,
+    columnIndex: number
+) => {
+    // @ts-ignore
     const column: Partial<BlocksBodyContentColumn> = {
         index: columnIndex,
-        // content: blocks,
+        contentBlocks: blocks ? mapBlocks(blocks) : undefined,
         layout: {
             Xs: columnsLayout.layouts.Xs[columnIndex] as BlocksBodyContentLayout,
             Sm: columnsLayout.layouts.Sm[columnIndex] as BlocksBodyContentLayout,
@@ -69,6 +73,13 @@ const mapColumn = (blocks, columnsLayout, columnIndex: number) => {
             Md: columnsLayout.gaps.Md[columnIndex] as BlocksBodyContentGap,
             Lg: columnsLayout.gaps.Lg[columnIndex] as BlocksBodyContentGap,
             Xl: columnsLayout.gaps.Xl[columnIndex] as BlocksBodyContentGap,
+        },
+        gridColumnsSize: {
+            Xs: columnsLayout.sizes.Xs[columnIndex] as number,
+            Sm: columnsLayout.sizes.Sm[columnIndex] as number,
+            Md: columnsLayout.sizes.Md[columnIndex] as number,
+            Lg: columnsLayout.sizes.Lg[columnIndex] as number,
+            Xl: columnsLayout.sizes.Xl[columnIndex] as number,
         }
     };
 
@@ -91,8 +102,6 @@ export const mapContentful = (raw: any) => {
     };
     target.columns = [];
 
-
-    console.log(fields);
     if (fields.blockLayout) {
         const blockLayout = fields.blockLayout;
         target.blockLayout = {
@@ -119,15 +128,10 @@ export const mapContentful = (raw: any) => {
             }
         } as BlocksBodyLayout
     }
-    if (fields.column1Blocks) {
-        target.columns.push(mapColumn(fields.column1Blocks, fields.columnsLayout, 0))
-    }
-    if (fields.column2Blocks) {
-        target.columns.push(mapColumn(fields.column2Blocks, fields.columnsLayout, 1))
-    }
-    if (fields.column3Blocks) {
-        target.columns.push(mapColumn(fields.column3Blocks, fields.columnsLayout, 2))
-    }
+    target.columns.push(mapColumn(fields.column1Blocks, fields.columnsLayout, 0))
+    target.columns.push(mapColumn(fields.column2Blocks, fields.columnsLayout, 1))
+    target.columns.push(mapColumn(fields.column3Blocks, fields.columnsLayout, 2))
+
     return target as BlocksBodyContent;
 }
 
