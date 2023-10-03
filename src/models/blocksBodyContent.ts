@@ -4,26 +4,71 @@ import {BodyForm} from "./bodyForm";
 import {BodyImage} from "./bodyImage";
 import {BodyLinks} from "./bodyLinks";
 import {BodyYoutube} from "./bodyYoutube";
-
-export type LayoutWidth = "Full Width" | "Container Width" | "Default" | "Narrow";
-export type ColumnWidths = "1/1" | "1/2, 1/2" | "1/3, 2/3" | "2/3, 1/3" | "1/3, 1/3, 1/3";
-export type ColumnGaps = "None" | "Xs" | "Sm" | "Md" | "Lg" | "Xl";
-export type ColumnLayout = "Adjacent" | "Slider" | "Stacked" | "Tabbed";
+import {BodyPostsList} from "./bodyPostsList";
 
 
-export type ColumnBlock = BodyContent | BodyForm | BodyImage | BodyLinks | BodyYoutube;
+export type BlocksBodyContentType = BodyContent | BodyForm | BodyImage | BodyLinks | BodyYoutube | BodyPostsList;
+
+export type BlocksBodyContentFormat = "Full Width" | "Container Width" | "Default" | "Narrow";
+export type BlocksBodyContentGap = "None" | "Xs" | "Sm" | "Md" | "Lg" | "Xl";
+export type BlocksBodyContentLayout = "Adjacent" | "Slider" | "Stacked" | "Tabbed";
+export type BlocksBodyContentAlignment = "Start" | "Center" | "End";
+
+
+export type BlocksBodyLayout = {
+    gap: {
+        Xs: BlocksBodyContentGap;
+        Sm: BlocksBodyContentGap;
+        Md: BlocksBodyContentGap;
+        Lg: BlocksBodyContentGap;
+        Xl: BlocksBodyContentGap;
+    },
+    format: {
+        Xs: BlocksBodyContentFormat;
+        Sm: BlocksBodyContentFormat;
+        Md: BlocksBodyContentFormat;
+        Lg: BlocksBodyContentFormat;
+        Xl: BlocksBodyContentFormat;
+    },
+    alignment: {
+        Xs: BlocksBodyContentAlignment;
+        Sm: BlocksBodyContentAlignment;
+        Md: BlocksBodyContentAlignment;
+        Lg: BlocksBodyContentAlignment;
+        Xl: BlocksBodyContentAlignment;
+    }
+}
+export type BlocksBodyContentColumn = {
+    index: number;
+    /**
+     * The actual content
+     */
+    content?: BlocksBodyContentType[] | undefined;
+    layout: {
+        Xs: BlocksBodyContentLayout;
+        Sm: BlocksBodyContentLayout;
+        Md: BlocksBodyContentLayout;
+        Lg: BlocksBodyContentLayout;
+        Xl: BlocksBodyContentLayout;
+    };
+    gaps: {
+        Xs: BlocksBodyContentGap;
+        Sm: BlocksBodyContentGap;
+        Md: BlocksBodyContentGap;
+        Lg: BlocksBodyContentGap;
+        Xl: BlocksBodyContentGap;
+    };
+    gridColumnsSize: {
+        Xs: number;
+        Sm: number;
+        Md: number;
+        Lg: number;
+        Xl: number;
+    };
+}
+
 
 export interface BlocksBodyContent extends BaseModel<'BlocksBodyContent'> {
-    layoutWidth: LayoutWidth;
-    columnWidths: ColumnWidths;
-    columnGaps: ColumnGaps;
-    column1Blocks?: ColumnBlock[] | undefined;
-    column1Layout: ColumnLayout
-    column1Gaps: ColumnGaps;
-    column2Blocks?: ColumnBlock[] | undefined;
-    column2Layout: ColumnLayout
-    column2Gaps: ColumnGaps;
-    column3Blocks?: ColumnBlock[] | undefined;
-    column3Layout: ColumnLayout
-    column3Gaps: ColumnGaps;
+    blockLayout: BlocksBodyLayout;
+    columns: BlocksBodyContentColumn[];
 }

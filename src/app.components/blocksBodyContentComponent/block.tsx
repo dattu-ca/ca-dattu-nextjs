@@ -1,4 +1,4 @@
-import {ColumnBlock} from "~/models";
+import {BlocksBodyContentType} from "~/models";
 import {BodyImagesComponent} from "../bodyImagesComponent";
 import {BodyContentComponent} from "../bodyContentComponent";
 import {BodyYoutubeComponent} from "../bodyYoutubeComponent";
@@ -6,7 +6,7 @@ import {BodyFormComponent} from "../bodyFormComponent";
 
 
 interface IProps {
-    block: ColumnBlock;
+    block: BlocksBodyContentType;
 }
 
 const BlocksBodyContentBlock = ({block}: IProps) => {

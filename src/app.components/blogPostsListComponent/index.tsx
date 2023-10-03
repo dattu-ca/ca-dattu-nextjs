@@ -14,7 +14,7 @@ interface IProps {
 const BlogPostsListComponent = ({
                                     skip, limit, total, current, posts, linkPrefix, linkFirstPage
                                 }:IProps) =>{
-    return <BlocksLayout layoutWidth='Narrow'>
+    return <BlocksLayout layoutWidth='Default'>
         <pre>{JSON.stringify(posts, null, 2)}</pre>
         <PaginationComponent total={total} skip={skip} limit={limit} current={current} linkPrefix={linkPrefix} linkFirstPage={linkFirstPage} />
     </BlocksLayout>

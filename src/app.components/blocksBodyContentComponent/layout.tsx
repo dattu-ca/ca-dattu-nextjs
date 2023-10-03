@@ -1,13 +1,13 @@
-import {ColumnGaps, ColumnWidths, LayoutWidth} from "~/models";
+import {BlocksBodyContentGap, ColumnWidths, BlocksBodyContentFormat} from "~/models";
 import {ReactElement} from "react";
 import clsx from "clsx";
 import {BlocksLayout} from "~/app.ui.components/blocksLayout";
 
 
 interface IProps {
-    layoutWidth: LayoutWidth;
+    layoutWidth: BlocksBodyContentFormat;
     columnWidths: ColumnWidths;
-    columnGaps: ColumnGaps;
+    columnGaps: BlocksBodyContentGap;
     column1: ReactElement | ReactElement[];
     column2: ReactElement | ReactElement[];
     column3: ReactElement | ReactElement[];

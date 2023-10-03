@@ -1,10 +1,10 @@
 import {ReactElement} from "react";
 import clsx from "clsx";
-import {LayoutWidth} from "~/models";
+import {BlocksBodyContentFormat} from "~/models";
 
 
 interface IProps {
-    layoutWidth: LayoutWidth;
+    layoutWidth: BlocksBodyContentFormat;
     children: ReactElement | ReactElement[];
 }
 

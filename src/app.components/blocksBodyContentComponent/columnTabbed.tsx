@@ -2,12 +2,12 @@
 import {useState} from 'react';
 import clsx from "clsx";
 import {BlocksBodyContentBlock} from "./block";
-import {ColumnBlock, ColumnGaps, ColumnLayout} from "~/models";
+import {BlocksBodyContentType, BlocksBodyContentGap, BlocksBodyContentLayout} from "~/models";
 
 
 interface IProps {
-    blocks: ColumnBlock[];
-    gaps: ColumnGaps;
+    blocks: BlocksBodyContentType[];
+    gaps: BlocksBodyContentGap;
 }
 
 const ColumnTabbed = ({gaps, blocks}: IProps) => {
