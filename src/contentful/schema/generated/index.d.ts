@@ -247,6 +247,12 @@ export interface IBlogPostsListFields {
   /** Slug */
   slug: string;
 
+  /** Pre Heading Content Blocks */
+  preHeadingContentBlocks?: IBlocksBodyContent[] | undefined;
+
+  /** Heading */
+  heading?: string | undefined;
+
   /** Content Blocks */
   contentBlocks?: IBlocksBodyContent[] | undefined;
 }
@@ -444,6 +450,9 @@ export interface IBodyPostsListFields {
 
   /** Limit Per Page */
   limitPerPage: number;
+
+  /** Pagination Location */
+  paginationLocation?: ("Above List" | "Below List")[] | undefined;
 }
 
 /** The configuration for the posts lists */

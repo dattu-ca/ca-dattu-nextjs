@@ -3,13 +3,13 @@ import {Fragment, useMemo, useRef, useState} from 'react';
 import clsx from "clsx";
 import {FaRegCircle} from "react-icons/fa6";
 import {FaRegDotCircle} from "react-icons/fa";
-import {BlocksBodyContentType, BlocksBodyContentGap} from "~/models";
+import {BlocksBodyContent_ContentType, BlocksBodyContent_Gap} from "~/models";
 import {BlocksBodyContentBlock} from "./block";
 
 
 interface IProps {
-    blocks: BlocksBodyContentType[];
-    gaps: BlocksBodyContentGap;
+    blocks: BlocksBodyContent_ContentType[];
+    gaps: BlocksBodyContent_Gap;
 }
 
 const ColumnSlider = ({blocks}: IProps) => {

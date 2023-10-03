@@ -20,7 +20,6 @@ const BlocksBodyContentComponent = ({blocks}: IProps) => {
                 )}>
                     <BlocksBodyContentLayoutComponent format={block.blockLayout.format}
                                                       gap={block.blockLayout.gap}
-                                                      alignment={block.blockLayout.alignment}
                                                       columns={block.columns}
                     />
                 </div>

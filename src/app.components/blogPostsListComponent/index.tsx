@@ -1,29 +1,19 @@
-import {BlogPost} from "~/models";
-import {PaginationComponent} from "~/app.ui.components/paginationComponent";
-import {BlocksLayout} from "~/app.ui.components/blocksLayout";
+import {BlogPost, BlogPostsList, PaginationConfig} from "~/models";
+import {BlocksBodyContentComponent} from "../blocksBodyContentComponent";
 
 interface IProps {
+    blogPostsList: BlogPostsList;
     posts: BlogPost[];
-    total: number;
-    skip: number;
-    limit: number;
-    current: number;
-    linkPrefix: string;
-    linkFirstPage: string;
+    paginationData: PaginationConfig;
 }
+
 const BlogPostsListComponent = ({
-                                    skip, limit, total, current, posts, linkPrefix, linkFirstPage
-                                }:IProps) =>{
-    return <BlocksLayout format={{
-        Xs: 'Default',
-        Sm: 'Default',
-        Md: 'Default',
-        Lg: 'Default',
-        Xl: 'Default'
-    }}>
-        <pre>{JSON.stringify(posts, null, 2)}</pre>
-        <PaginationComponent total={total} skip={skip} limit={limit} current={current} linkPrefix={linkPrefix} linkFirstPage={linkFirstPage} />
-    </BlocksLayout>
+                                    blogPostsList
+                                }: IProps) => {
+    return <div>
+        <BlocksBodyContentComponent blocks={blogPostsList.preHeadingContentBlocks}/>
+        <BlocksBodyContentComponent blocks={blogPostsList.contentBlocks}/>
+    </div>
 }
 
 export {

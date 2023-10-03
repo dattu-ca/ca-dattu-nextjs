@@ -2,6 +2,7 @@ export {blogHomeServices} from './blogHome.services';
 export {blogAuthorServices} from './blogAuthor.services';
 export {blogPageServices} from './blogPage.services';
 export {blogPostServices} from './blogPost.services';
+export {blogPostsListServices} from './blogPostsList.services';
 export {siteConfigServices} from './siteConfig.services';
 export {siteNavbarServices} from './siteNavbar.services';
 export {formsServices} from './form.services';

@@ -1,4 +1,4 @@
-import {BlocksBodyContentType, BlocksBodyContentGap, BlocksBodyContentLayout} from "~/models";
+import {BlocksBodyContent_ContentType, BlocksBodyContent_Gap, BlocksBodyContent_LayoutType} from "~/models";
 import {ColumnAdjacent} from "./columnAdjacent";
 import {ColumnSlider} from "./columnSlider";
 import {ColumnTabbed} from "./columnTabbed";
@@ -6,9 +6,9 @@ import {ColumnStacked} from "./columnStacked";
 
 
 interface IProps {
-    blocks?: BlocksBodyContentType[] | undefined;
-    layout: BlocksBodyContentLayout;
-    gaps: BlocksBodyContentGap;
+    blocks?: BlocksBodyContent_ContentType[] | undefined;
+    layout: BlocksBodyContent_LayoutType;
+    gaps: BlocksBodyContent_Gap;
 }
 
 const BlocksBodyContentColumnComponent = ({blocks, layout, gaps}: IProps) => {

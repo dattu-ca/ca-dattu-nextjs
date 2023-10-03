@@ -4,6 +4,8 @@ import { BlogPostsListSkeleton, mapContentful} from '../schema/blogPostsList.sch
 
 const FIELDS = {
     SLUG: 'fields.slug',
+    PRE_HEADING_CONTENT_BLOCKS: 'fields.preHeadingContentBlocks',
+    HEADING: 'fields.heading',
     CONTENT_BLOCKS: 'fields.contentBlocks',
 }
 
@@ -15,6 +17,8 @@ const fetchBySlug = (slug: string) =>
             content_type,
             select: [
                 FIELDS.SLUG as 'fields',
+                FIELDS.PRE_HEADING_CONTENT_BLOCKS as 'fields',
+                FIELDS.HEADING as 'fields',
                 FIELDS.CONTENT_BLOCKS as 'fields',
             ],
             [FIELDS.SLUG]: slug,

@@ -1,7 +1,7 @@
 import {
-    BlocksBodyLayoutGap,
+    BlocksBodyContent_GapBetweenColumns,
     BlocksBodyLayoutFormat,
-    BlocksBodyLayoutAlignment, BlocksBodyContentColumn
+    BlocksBodyContent_Column
 } from "~/models";
 import clsx from "clsx";
 import {BlocksLayout} from "~/app.ui.components/blocksLayout";
@@ -11,18 +11,16 @@ import {BlocksBodyContentColumnComponent} from "~/app.components/blocksBodyConte
 
 interface IProps {
     format: BlocksBodyLayoutFormat;
-    gap: BlocksBodyLayoutGap;
-    alignment: BlocksBodyLayoutAlignment;
-    columns: BlocksBodyContentColumn[];
+    gap: BlocksBodyContent_GapBetweenColumns;
+    columns: BlocksBodyContent_Column[];
 }
 
 const BlocksBodyContentLayoutComponent = ({
-                                     format,
-                                     gap,
-                                     alignment,
-                                     columns
-                                 }: IProps) => {
-    
+                                              format,
+                                              gap,
+                                              columns
+                                          }: IProps) => {
+
 
     return <BlocksLayout format={format}>
         <div className={clsx(
@@ -137,11 +135,12 @@ const BlocksBodyContentLayoutComponent = ({
                                 ['xl:hidden']: column.gridColumnsSize.Xl === 0,
                             }
                         )}>
-                            <BlocksBodyContentColumnComponent blocks={column.contentBlocks} gaps={column.gaps.Xs} layout={column.layout.Xs} />
+                            <BlocksBodyContentColumnComponent blocks={column.contentBlocks} gaps={column.gaps.Xs}
+                                                              layout={column.layout}/>
                         </div>
                     </Fragment>
                 })
-            }            
+            }
         </div>
     </BlocksLayout>
 }

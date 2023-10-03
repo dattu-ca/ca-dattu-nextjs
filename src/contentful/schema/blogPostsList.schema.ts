@@ -19,6 +19,12 @@ export const mapContentful = (raw: any) => {
     if (fields.slug) {
         target.slug = fields.slug as string;
     }
+    if (fields.preHeadingContentBlocks) {
+        target.preHeadingContentBlocks = mapBlocksBodyContentContentfulList(fields.preHeadingContentBlocks);
+    }
+    if (fields.heading) {
+        target.heading = fields.heading as string;
+    }
     if (fields.contentBlocks) {
         target.contentBlocks = mapBlocksBodyContentContentfulList(fields.contentBlocks);
     }

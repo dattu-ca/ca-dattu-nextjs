@@ -1,12 +1,11 @@
 import {
     BlocksBodyContent,
-    BlocksBodyContentAlignment,
-    BlocksBodyContentColumn,
-    BlocksBodyContentFormat,
-    BlocksBodyContentGap,
-    BlocksBodyContentLayout,
-    BlocksBodyContentType,
-    BlocksBodyLayout
+    BlocksBodyContent_Column,
+    BlocksBodyContent_LayoutFormat,
+    BlocksBodyContent_Gap,
+    BlocksBodyContent_LayoutType,
+    BlocksBodyContent_ContentType,
+    BlocksBodyContent_BlocksLayout
 } from "~/models";
 import {
     IBlocksBodyContentFields,
@@ -30,22 +29,22 @@ const mapBlocks = (blocks: (IBodyContent | IBodyForm | IBodyImages | IBodyLinks 
     return blocks.map(block => {
         const contentType = block.sys.contentType.sys.id;
         if (contentType === 'bodyContent') {
-            return mapBodyContentContentful(block) as BlocksBodyContentType;
+            return mapBodyContentContentful(block) as BlocksBodyContent_ContentType;
         }
         if (contentType === 'bodyImages') {
-            return mapBodyImagesContentful(block) as BlocksBodyContentType;
+            return mapBodyImagesContentful(block) as BlocksBodyContent_ContentType;
         }
         if (contentType === 'bodyYouTube') {
-            return mapBodyYoutubeContentful(block) as BlocksBodyContentType;
+            return mapBodyYoutubeContentful(block) as BlocksBodyContent_ContentType;
         }
         if (contentType === 'bodyForm') {
-            return mapBodyFormContentful(block) as BlocksBodyContentType;
+            return mapBodyFormContentful(block) as BlocksBodyContent_ContentType;
         }
         if (contentType === 'bodyLinks') {
-            return mapBodyLinksContentful(block) as BlocksBodyContentType;
+            return mapBodyLinksContentful(block) as BlocksBodyContent_ContentType;
         }
         if (contentType === 'bodyPostsList') {
-            return mapBodyPostsListContentful(block) as BlocksBodyContentType;
+            return mapBodyPostsListContentful(block) as BlocksBodyContent_ContentType;
         }
         throw new Error(`${contentType} not handled`);
     });
@@ -56,23 +55,17 @@ const mapColumn = (
     columnsLayout: Record<string, any>,
     columnIndex: number
 ) => {
-    // @ts-ignore
-    const column: Partial<BlocksBodyContentColumn> = {
+
+    const column: Partial<BlocksBodyContent_Column> = {
         index: columnIndex,
         contentBlocks: blocks ? mapBlocks(blocks) : undefined,
-        layout: {
-            Xs: columnsLayout.layouts.Xs[columnIndex] as BlocksBodyContentLayout,
-            Sm: columnsLayout.layouts.Sm[columnIndex] as BlocksBodyContentLayout,
-            Md: columnsLayout.layouts.Md[columnIndex] as BlocksBodyContentLayout,
-            Lg: columnsLayout.layouts.Lg[columnIndex] as BlocksBodyContentLayout,
-            Xl: columnsLayout.layouts.Xl[columnIndex] as BlocksBodyContentLayout,
-        },
+        layout: columnsLayout.layouts[columnIndex] as BlocksBodyContent_LayoutType,
         gaps: {
-            Xs: columnsLayout.gaps.Xs[columnIndex] as BlocksBodyContentGap,
-            Sm: columnsLayout.gaps.Sm[columnIndex] as BlocksBodyContentGap,
-            Md: columnsLayout.gaps.Md[columnIndex] as BlocksBodyContentGap,
-            Lg: columnsLayout.gaps.Lg[columnIndex] as BlocksBodyContentGap,
-            Xl: columnsLayout.gaps.Xl[columnIndex] as BlocksBodyContentGap,
+            Xs: columnsLayout.gaps.Xs[columnIndex] as BlocksBodyContent_Gap,
+            Sm: columnsLayout.gaps.Sm[columnIndex] as BlocksBodyContent_Gap,
+            Md: columnsLayout.gaps.Md[columnIndex] as BlocksBodyContent_Gap,
+            Lg: columnsLayout.gaps.Lg[columnIndex] as BlocksBodyContent_Gap,
+            Xl: columnsLayout.gaps.Xl[columnIndex] as BlocksBodyContent_Gap,
         },
         gridColumnsSize: {
             Xs: columnsLayout.sizes.Xs[columnIndex] as number,
@@ -83,7 +76,7 @@ const mapColumn = (
         }
     };
 
-    return column as BlocksBodyContentColumn;
+    return column as BlocksBodyContent_Column;
 }
 
 export const mapContentful = (raw: any) => {
@@ -105,28 +98,21 @@ export const mapContentful = (raw: any) => {
     if (fields.blockLayout) {
         const blockLayout = fields.blockLayout;
         target.blockLayout = {
-            alignment: {
-                Xs: blockLayout.alignment.Xs as BlocksBodyContentAlignment,
-                Sm: blockLayout.alignment.Sm as BlocksBodyContentAlignment,
-                Md: blockLayout.alignment.Md as BlocksBodyContentAlignment,
-                Lg: blockLayout.alignment.Lg as BlocksBodyContentAlignment,
-                Xl: blockLayout.alignment.Xl as BlocksBodyContentAlignment,
-            },
             format: {
-                Xs: blockLayout.format.Xs as BlocksBodyContentFormat,
-                Sm: blockLayout.format.Sm as BlocksBodyContentFormat,
-                Md: blockLayout.format.Md as BlocksBodyContentFormat,
-                Lg: blockLayout.format.Lg as BlocksBodyContentFormat,
-                Xl: blockLayout.format.Xl as BlocksBodyContentFormat,
+                Xs: blockLayout.format.Xs as BlocksBodyContent_LayoutFormat,
+                Sm: blockLayout.format.Sm as BlocksBodyContent_LayoutFormat,
+                Md: blockLayout.format.Md as BlocksBodyContent_LayoutFormat,
+                Lg: blockLayout.format.Lg as BlocksBodyContent_LayoutFormat,
+                Xl: blockLayout.format.Xl as BlocksBodyContent_LayoutFormat,
             },
             gap: {
-                Xs: blockLayout.gap.Xs as BlocksBodyContentGap,
-                Sm: blockLayout.gap.Sm as BlocksBodyContentGap,
-                Md: blockLayout.gap.Md as BlocksBodyContentGap,
-                Lg: blockLayout.gap.Lg as BlocksBodyContentGap,
-                Xl: blockLayout.gap.Xl as BlocksBodyContentGap,
+                Xs: blockLayout.gap.Xs as BlocksBodyContent_Gap,
+                Sm: blockLayout.gap.Sm as BlocksBodyContent_Gap,
+                Md: blockLayout.gap.Md as BlocksBodyContent_Gap,
+                Lg: blockLayout.gap.Lg as BlocksBodyContent_Gap,
+                Xl: blockLayout.gap.Xl as BlocksBodyContent_Gap,
             }
-        } as BlocksBodyLayout
+        } as BlocksBodyContent_BlocksLayout
     }
     target.columns.push(mapColumn(fields.column1Blocks, fields.columnsLayout as Record<string, any>, 0))
     target.columns.push(mapColumn(fields.column2Blocks, fields.columnsLayout as Record<string, any>, 1))
