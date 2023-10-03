@@ -53,7 +53,7 @@ const mapBlocks = (blocks: (IBodyContent | IBodyForm | IBodyImages | IBodyLinks 
 
 const mapColumn = (
     blocks: (IBodyContent | IBodyForm | IBodyImages | IBodyLinks | IBodyYouTube | IBodyPostsList)[] | undefined,
-    columnsLayout: Record<string, any> | undefined,
+    columnsLayout: Record<string, any>,
     columnIndex: number
 ) => {
     // @ts-ignore
@@ -128,9 +128,9 @@ export const mapContentful = (raw: any) => {
             }
         } as BlocksBodyLayout
     }
-    target.columns.push(mapColumn(fields.column1Blocks, fields.columnsLayout, 0))
-    target.columns.push(mapColumn(fields.column2Blocks, fields.columnsLayout, 1))
-    target.columns.push(mapColumn(fields.column3Blocks, fields.columnsLayout, 2))
+    target.columns.push(mapColumn(fields.column1Blocks, fields.columnsLayout as Record<string, any>, 0))
+    target.columns.push(mapColumn(fields.column2Blocks, fields.columnsLayout as Record<string, any>, 1))
+    target.columns.push(mapColumn(fields.column3Blocks, fields.columnsLayout as Record<string, any>, 2))
 
     return target as BlocksBodyContent;
 }

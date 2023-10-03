@@ -7,13 +7,14 @@ const FIELDS = {
     CONTENT_BLOCKS: 'fields.contentBlocks',
 }
 
-const content_type = 'blogPage';
+const content_type = 'blogPostsList';
 
 const fetchBySlug = (slug: string) =>
     client
         .getEntries<BlogPostsListSkeleton>({
             content_type,
             select: [
+                FIELDS.SLUG as 'fields',
                 FIELDS.CONTENT_BLOCKS as 'fields',
             ],
             [FIELDS.SLUG]: slug,

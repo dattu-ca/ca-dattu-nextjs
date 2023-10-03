@@ -14,7 +14,13 @@ interface IProps {
 const BlogPostsListComponent = ({
                                     skip, limit, total, current, posts, linkPrefix, linkFirstPage
                                 }:IProps) =>{
-    return <BlocksLayout layoutWidth='Default'>
+    return <BlocksLayout format={{
+        Xs: 'Default',
+        Sm: 'Default',
+        Md: 'Default',
+        Lg: 'Default',
+        Xl: 'Default'
+    }}>
         <pre>{JSON.stringify(posts, null, 2)}</pre>
         <PaginationComponent total={total} skip={skip} limit={limit} current={current} linkPrefix={linkPrefix} linkFirstPage={linkFirstPage} />
     </BlocksLayout>
