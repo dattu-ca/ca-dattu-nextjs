@@ -2,6 +2,7 @@ const CONTENTFUL_SLUGS = Object.freeze({
     PRIMARY_SITE_CONFIG: process.env.CONTENTFUL_SLUGS_PRIMARY_SITE_CONFIG as string,
     HEADER_SITE_NAVBAR: process.env.CONTENTFUL_SLUGS_HEADER_SITE_NAVBAR as string,
     HOME_PAGE: process.env.CONTENTFUL_SLUGS_HOME_PAGE as string,
+    ARTICLES_PAGE: process.env.CONTENTFUL_SLUGS_ARTICLES_PAGE as string,
 });
 
 const MONGO_DB = Object.freeze({
