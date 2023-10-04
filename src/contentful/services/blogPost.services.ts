@@ -25,10 +25,6 @@ const PAGINATED_SELECT_FIELDS = [
     FIELDS.HEADING as 'fields',
     FIELDS.FEATURED_BANNER as 'fields',
     FIELDS.EXCERPT_BLOCKS as 'fields',
-    FIELDS.AUTHORS as 'fields',
-    FIELDS.CATEGORIES as 'fields',
-    FIELDS.TAGS as 'fields',
-    FIELDS.SERIES as 'fields',
 ];
 
 const content_type = 'blogPost';

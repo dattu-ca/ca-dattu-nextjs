@@ -44,9 +44,6 @@ export const mapContentful = (raw: any) => {
     if (fields.avatarInitials) {
         target.avatarInitials = fields.avatarInitials as string;
     }
-    if (fields.shortBio) {
-        target.shortBio = fields.shortBio as object;
-    }
     if (fields.contentBlocks) {
         target.contentBlocks = mapBlocksBodyContentContentfulList(fields.contentBlocks);
         if (target.contentBlocks) {

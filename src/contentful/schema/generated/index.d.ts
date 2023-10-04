@@ -88,8 +88,8 @@ export interface IBlogAuthorFields {
   /** Avatar Initials */
   avatarInitials: string;
 
-  /** Short Bio */
-  shortBio?: Document | undefined;
+  /** Excerpt Blocks */
+  excerptBlocks?: IBlocksBodyContent[] | undefined;
 
   /** Content Blocks */
   contentBlocks?: IBlocksBodyContent[] | undefined;

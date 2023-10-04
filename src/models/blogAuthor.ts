@@ -10,7 +10,6 @@ export interface BlogAuthor extends BaseModel<'BlogAuthor'> {
     name: string;
     avatar?: BodyImage | undefined;
     avatarInitials: string;
-    shortBio?: object | undefined;
     contentBlocks?: BlocksBodyContent[] | undefined;
     postsLists: BodyPostsList[];
 }
