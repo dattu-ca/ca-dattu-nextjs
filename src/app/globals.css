@@ -31,6 +31,14 @@
         @apply tracking-tight;
         @apply text-zinc-900 dark:text-zinc-200;
     }
+
+    h3, .h3 {
+        @apply text-2xl;
+        @apply sm:text-3xl;
+        @apply font-bold;
+        @apply tracking-tight;
+        @apply text-zinc-900 dark:text-zinc-200;
+    }
     
     p{
         @apply antialiased;
