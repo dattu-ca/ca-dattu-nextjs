@@ -45,15 +45,13 @@ const RootLayout = async ({children}: IProps) => {
     const session = await getAuthSession();
     return (
 
-        <html lang="en" suppressHydrationWarning>
+        <html lang="en" suppressHydrationWarning className='h-full antialiased'>
         <head>
             <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
             <meta name="robots" content="noindex,nofollow"/>
         </head>
         <body className={clsx(
-            'flex h-full ',
-            'bg-zinc-50 dark:bg-black',
-            'dark:text-zinc-100',
+            'flex min-h-full ',
             'pb-8'
         )}>
         <ThemeSwitcherProvider>

@@ -11,7 +11,8 @@
 @layer base {
     body {
         @apply min-h-screen;
-        @apply text-zinc-800 dark:text-zinc-100;
+        @apply text-zinc-600 dark:text-zinc-400;
+        @apply bg-zinc-50 dark:bg-black;
     }
 
     h1, .h1 {
@@ -21,6 +22,18 @@
         @apply tracking-tight;
         @apply text-zinc-800 dark:text-zinc-100;
         @apply mb-4 sm:mb-6 md:mb-8 lg:mb-10;
+    }
+
+    h2, .h2 {
+        @apply text-3xl;
+        @apply sm:text-4xl;
+        @apply font-bold;
+        @apply tracking-tight;
+        @apply text-zinc-900 dark:text-zinc-200;
+    }
+    
+    p{
+        @apply antialiased;
     }
 
     .field-required:after {

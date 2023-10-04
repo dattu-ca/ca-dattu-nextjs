@@ -59,7 +59,7 @@ const AuthProviderButton = ({provider}: IProps) => {
                     }
                 </span>
             </div>
-            <span>Sign in with {provider.name}</span>
+            <span>Enter the matrix with {provider.name}</span>
         </button>
     )
 }

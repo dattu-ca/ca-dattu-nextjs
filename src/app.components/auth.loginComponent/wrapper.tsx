@@ -10,7 +10,7 @@ const WrapperComponent = () => {
     return <div className={clsx(
         'text-center'
     )}>
-        <h1>Login</h1>
+        <h1>You&apos;re about to dive into the rabbit hole. Sure you&apos;re ready?</h1>
         {
             providers
                 .map((provider: IProvider) => (
