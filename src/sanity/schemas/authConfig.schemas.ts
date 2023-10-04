@@ -45,6 +45,18 @@ const authConfigSchemas = defineType({
             type: 'string',
             validation: (rule) => rule.required(),
         }),
+        defineField({
+            name: 'errorTitle',
+            title: 'Title for the Error Box',
+            type: 'string',
+            validation: (rule) => rule.required(),
+        }),
+        defineField({
+            name: 'errorButton',
+            title: 'Text for the Error Link',
+            type: 'string',
+            validation: (rule) => rule.required(),
+        }),
     ]
 });
 

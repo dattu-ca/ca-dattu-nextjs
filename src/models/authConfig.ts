@@ -6,4 +6,6 @@ export interface AuthConfig extends BaseModel<'AuthConfig'> {
     loginButton?: string | undefined;
     logoutTitle?: string | undefined;
     logoutButton?: string | undefined;
+    errorTitle?: string | undefined;
+    errorButton?: string | undefined;
 }

@@ -12,6 +12,8 @@ export const fetchBySlug = async (slug: string) => {
                 loginButton,
                 logoutTitle,
                 logoutButton,
+                errorTitle,
+                errorButton
             }`
         )
         if (response.length === 1) {
