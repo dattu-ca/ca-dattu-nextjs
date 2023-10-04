@@ -621,42 +621,6 @@ export interface IMetaTag extends Entry<IMetaTagFields> {
   };
 }
 
-export interface ISiteConfigFields {
-  /** Entry Title */
-  entryTitle: string;
-
-  /** Slug */
-  slug: string;
-
-  /** Site Title Template */
-  siteTitleTemplate: string;
-
-  /** Site Title Default */
-  siteTitleDefault: string;
-
-  /** Site Description */
-  siteDescription: string;
-}
-
-/** This is the Site Content Config. */
-
-export interface ISiteConfig extends Entry<ISiteConfigFields> {
-  sys: {
-    id: string;
-    type: string;
-    createdAt: string;
-    updatedAt: string;
-    locale: string;
-    contentType: {
-      sys: {
-        id: "siteConfig";
-        linkType: "ContentType";
-        type: "Link";
-      };
-    };
-  };
-}
-
 export interface ISiteNavbarFields {
   /** Entry Title */
   entryTitle: string;
@@ -745,7 +709,6 @@ export type CONTENT_TYPE =
   | "metaCategory"
   | "metaSeries"
   | "metaTag"
-  | "siteConfig"
   | "siteNavbar"
   | "siteSearch";
 
@@ -765,7 +728,6 @@ export type IEntry =
   | IMetaCategory
   | IMetaSeries
   | IMetaTag
-  | ISiteConfig
   | ISiteNavbar
   | ISiteSearch;
 

@@ -1,15 +1,19 @@
 import clsx from "clsx";
-import {blogHomeServices} from "~/services";
-import {SERVER_CONFIG} from "~/utils/config.server";
+import { getProjects } from '~/sanity/utils'
+import {Fragment} from "react";
 
 
 const Page = async () => {
-
-    const data = await blogHomeServices.fetchBySlug(SERVER_CONFIG.CONTENTFUL_SLUGS.HOME_PAGE);
+    const data = await getProjects();
     return <div>
+        <p>My projects go here.</p>
         <div className={clsx()}>
             <div>
-                <pre>{JSON.stringify(data, null, 2)}</pre>
+                {data.map(project => (
+                    <Fragment key={project.slug}>
+                        <h1>{project.name}</h1>
+                    </Fragment>
+                ))}
             </div>
         </div>
     </div>
