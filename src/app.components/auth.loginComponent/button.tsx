@@ -12,7 +12,7 @@ interface IProps {
 }
 
 const AuthProviderButton = ({provider}: IProps) => {
-    const {ctxData: {clickedProvider}, ctxFns: {setClickedProvider}} = useAuthLoginContext();
+    const {ctxData: {clickedProvider, textContent}, ctxFns: {setClickedProvider}} = useAuthLoginContext();
 
     if (!provider) {
         return null;
@@ -39,7 +39,7 @@ const AuthProviderButton = ({provider}: IProps) => {
         <button onClick={onClickHandler}
                 disabled={Boolean(clickedProvider)}
                 className={clsx(
-                    'daisyui-btn daisyui-btn-wide',
+                    'daisyui-btn daisyui-btn-block sm:flex-nowrap',
                 )}>
             <div className={clsx(
                 'daisyui-swap daisyui-swap-rotate',
@@ -59,7 +59,7 @@ const AuthProviderButton = ({provider}: IProps) => {
                     }
                 </span>
             </div>
-            <span>Enter the matrix with {provider.name}</span>
+            <span>{textContent.button} {provider.name}</span>
         </button>
     )
 }

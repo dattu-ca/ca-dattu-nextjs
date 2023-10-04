@@ -1,3 +1,4 @@
+export * from './authConfig';
 export * from './blocksBodyContent';
 export * from './blogHome';
 export * from './blogPage';

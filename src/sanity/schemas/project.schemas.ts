@@ -1,6 +1,6 @@
 import {defineArrayMember, defineField, defineType} from 'sanity'
 
-const project = defineType({
+const projectSchemas = defineType({
     name: 'project',
     title: 'Projects',
     type: 'document',
@@ -54,5 +54,5 @@ const project = defineType({
 });
 
 export {
-    project
+    projectSchemas
 };

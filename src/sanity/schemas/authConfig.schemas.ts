@@ -1,8 +1,8 @@
 import {defineArrayMember, defineField, defineType} from 'sanity'
 
-const siteConfigSchemas = defineType({
-    name: 'siteConfig',
-    title: 'Site Configs',
+const authConfigSchemas = defineType({
+    name: 'authConfig',
+    title: 'Auth Configs',
     type: 'document',
     fields: [
         defineField({
@@ -22,20 +22,26 @@ const siteConfigSchemas = defineType({
             validation: (rule) => rule.required(),
         }),
         defineField({
-            name: 'siteTitleTemplate',
-            title: 'Site Title Template',
+            name: 'loginTitle',
+            title: 'Title for the Login Box',
             type: 'string',
             validation: (rule) => rule.required(),
         }),
         defineField({
-            name: 'siteTitleDefault',
-            title: 'Site Title Default',
+            name: 'loginButton',
+            title: 'Text for the Login Button',
             type: 'string',
             validation: (rule) => rule.required(),
         }),
         defineField({
-            name: 'siteDescription',
-            title: 'Site description',
+            name: 'logoutTitle',
+            title: 'Title for the Logout Box',
+            type: 'string',
+            validation: (rule) => rule.required(),
+        }),
+        defineField({
+            name: 'logoutButton',
+            title: 'Text for the Logout Button',
             type: 'string',
             validation: (rule) => rule.required(),
         }),
@@ -43,5 +49,5 @@ const siteConfigSchemas = defineType({
 });
 
 export {
-    siteConfigSchemas
+    authConfigSchemas
 };

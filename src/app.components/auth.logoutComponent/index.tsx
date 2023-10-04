@@ -5,7 +5,14 @@ import {signOut} from "next-auth/react";
 import {BiLoaderCircle} from "react-icons/bi";
 import {MdLogout} from "react-icons/md";
 
-const AuthLogoutComponent = () => {
+interface IProps {
+    textContent: {
+        title: string;
+        button: string;
+    }
+}
+
+const AuthLogoutComponent = ({textContent} : IProps) => {
     const [hasClicked, setHasClicked] = useState<boolean>(false);
 
     const onClickHandler = () => {
@@ -18,7 +25,7 @@ const AuthLogoutComponent = () => {
     return <div className={clsx(
         'text-center'
     )}>
-        <h1>Logout: The exit door to the real world. Proceed?</h1>
+        <h1>{textContent.title}</h1>
         <button
             disabled={hasClicked}
             onClick={onClickHandler}
@@ -39,7 +46,7 @@ const AuthLogoutComponent = () => {
                 )}/>
             </span>
             <span>
-                Yes, I&apos;m ready to see if I can dodge bullets in the real world.
+                {textContent.button}
             </span>
         </button>
     </div>

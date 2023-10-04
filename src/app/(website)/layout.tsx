@@ -17,15 +17,16 @@ import {RootLayoutComponent} from "~/app.ui.components/rootLayout";
 import clsx from "clsx";
 
 
-const {PRIMARY_SITE_CONFIG, HEADER_SITE_NAVBAR} = SERVER_CONFIG.CONTENTFUL_SLUGS;
+const {HEADER_SITE_NAVBAR} = SERVER_CONFIG.CONTENTFUL_SLUGS;
+const { PRIMARY_SITE_CONFIG } = SERVER_CONFIG.CONTENT_SLUGS;
 
 
 export const generateMetadata = async () => {
-    const data = await siteConfigServices.fetchBySlug(PRIMARY_SITE_CONFIG);
-    if (!data) {
+    const cmsContent = await siteConfigServices.fetchBySlug(PRIMARY_SITE_CONFIG);
+    if (!cmsContent) {
         return {};
     }
-    const {siteTitleDefault, siteTitleTemplate, siteDescription} = data;
+    const {siteTitleDefault, siteTitleTemplate, siteDescription} = cmsContent;
     return {
         title: {
             template: siteTitleTemplate,

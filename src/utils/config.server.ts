@@ -1,9 +1,13 @@
 const CONTENTFUL_SLUGS = Object.freeze({
-    PRIMARY_SITE_CONFIG: process.env.CONTENTFUL_SLUGS_PRIMARY_SITE_CONFIG as string,
     HEADER_SITE_NAVBAR: process.env.CONTENTFUL_SLUGS_HEADER_SITE_NAVBAR as string,
     HOME_PAGE: process.env.CONTENTFUL_SLUGS_HOME_PAGE as string,
     ARTICLES_PAGE: process.env.CONTENTFUL_SLUGS_ARTICLES_PAGE as string,
 });
+
+const CONTENT_SLUGS = Object.freeze({
+    PRIMARY_SITE_CONFIG: process.env.CONTENT_SLUGS_PRIMARY_SITE_CONFIG as string,
+    PRIMARY_AUTH_CONFIG: process.env.CONTENT_SLUGS_PRIMARY_AUTH_CONFIG as string,
+})
 
 const MONGO_DB = Object.freeze({
     USERNAME: process.env.MONGODB_USERNAME as string,
@@ -33,6 +37,7 @@ const NEXT_AUTH_ALLOWED_IDS = Object.freeze({
 });
 
 const SERVER_CONFIG = Object.freeze({
+    CONTENT_SLUGS,
     CONTENTFUL_SLUGS,
     MONGO_DB,
     YOUTUBE_API,
