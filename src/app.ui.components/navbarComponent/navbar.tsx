@@ -24,7 +24,7 @@ const Navbar = () => {
         )}>
             <nav className={clsx(
                 'fixed',
-                'top-0 z-10 pt-6 pb-6',
+                'top-0 z-50 pt-6 pb-6',
                 'w-full',
                 'bg-white/95 dark:bg-slate-900/95',
                 'shadow-xl'

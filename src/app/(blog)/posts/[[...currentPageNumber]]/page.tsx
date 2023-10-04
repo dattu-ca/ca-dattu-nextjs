@@ -10,7 +10,7 @@ interface IProps {
 
 const Page = async (props: IProps) => {
     const currentPage = getCurrentPageNumber(props.params);
-    const data = await fetchPostsLists(currentPage);
+    const data = await fetchPostsLists(currentPage, true);
 
     return <BlogPostsListComponent blogPostsList={data.blogPostsList} />
 }

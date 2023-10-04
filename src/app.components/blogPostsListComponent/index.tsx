@@ -11,13 +11,15 @@ const BlogPostsListComponent = ({
                                     blogPostsList
                                 }: IProps) => {
     return <div>
-        <BlocksBodyContentComponent blocks={blogPostsList.preHeadingContentBlocks} isExcerpts={false}/>
+        <BlocksBodyContentComponent blocks={blogPostsList.preHeadingContentBlocks} 
+                                    isExcerpts={false}/>
         <H1Heading>
             <Fragment>
                 {blogPostsList.heading}
             </Fragment>
         </H1Heading>
-        <BlocksBodyContentComponent blocks={blogPostsList.contentBlocks} isExcerpts={false}/>
+        <BlocksBodyContentComponent blocks={blogPostsList.contentBlocks}
+                                    isExcerpts={false}/>
     </div>
 }
 

@@ -18,12 +18,12 @@ const AuthLogoutComponent = () => {
     return <div className={clsx(
         'text-center'
     )}>
-        <h1>Are you sure?</h1>
+        <h1>Logout: The exit door to the real world. Proceed?</h1>
         <button
             disabled={hasClicked}
             onClick={onClickHandler}
             className={clsx(
-                'daisyui-btn daisyui-btn-wide sm:flex-nowrap',
+                'daisyui-btn daisyui-btn-block sm:flex-nowrap',
             )}>
             <span className={clsx(
                 'daisyui-swap daisyui-swap-rotate',
@@ -38,7 +38,9 @@ const AuthLogoutComponent = () => {
                     'daisyui-swap-off'
                 )}/>
             </span>
-            Yes, get me out of here!!!!
+            <span>
+                Yes, I&apos;m ready to see if I can dodge bullets in the real world.
+            </span>
         </button>
     </div>
 }
