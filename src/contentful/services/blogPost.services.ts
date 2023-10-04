@@ -25,10 +25,6 @@ const PAGINATED_SELECT_FIELDS = [
     FIELDS.HEADING as 'fields',
     FIELDS.FEATURED_BANNER as 'fields',
     FIELDS.EXCERPT_BLOCKS as 'fields',
-    FIELDS.AUTHORS as 'fields',
-    FIELDS.CATEGORIES as 'fields',
-    FIELDS.TAGS as 'fields',
-    FIELDS.SERIES as 'fields',
 ];
 
 const content_type = 'blogPost';
@@ -63,7 +59,7 @@ const fetchBySlug = (slug: string) =>
         })
 
 
-const fetchListPaginated = (skip: number = 0, limit: number = 10) =>
+const fetchListPaginated = (skip: number = 0, limit: number = 10): Promise<{ items: BlogPost[], total: number }> =>
     client
         .getEntries<BlogPostSkeleton>({
             content_type,
@@ -78,7 +74,7 @@ const fetchListPaginated = (skip: number = 0, limit: number = 10) =>
             const items = mapContentfulList(response.items);
             return {
                 items,
-                total: response.total,
+                total: response.total as number,
             }
         })
 

@@ -1,6 +1,6 @@
 import {SERVER_CONFIG} from "~/utils/config.server";
-import {blogPostServices} from "~/services/blogPost.services";
-import {BlogPost} from "~/models";
+import {blogPostServices, blogPostsListServices} from "~/services";
+import {BlogPost, PaginationConfig} from "~/models";
 
 interface IProps {
     currentPageNumber?: number | undefined;
@@ -14,14 +14,20 @@ export const getCurrentPageNumber = (params: IProps) => {
 export const fetchPostsLists = async (currentPage: number) => {
     const limit = 1;//SERVER_CONFIG.CONTENT_CONFIG.DEFAULT_MAX_POSTS_PER_PAGE;
     const skip = (currentPage - 1) * limit;
-    const result = await blogPostServices.fetchListPaginated(skip, limit);
-    const totalPages = Math.ceil(result.total / limit)
+
+
+    const blogPostsList = await blogPostsListServices.fetchBySlug('main-posts-list', {
+        paginationData: {
+            skip: skip,
+            limit: limit,
+            current: currentPage,            
+            linkPrefix: '/posts/',
+            linkFirstPage: '/posts',
+        } as PaginationConfig
+    });
+
     return {
-        items: result.items as BlogPost[],
-        total: result.total,
-        totalPages,
-        limit,
-        skip
+        blogPostsList: blogPostsList,
     }
 
 }

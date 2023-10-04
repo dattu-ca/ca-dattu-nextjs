@@ -2,17 +2,14 @@
 import React from "react";
 import {PaginationButtonsList} from "./paginationButtonsList";
 import {PaginationContextProvider} from "./context";
+import {PaginationConfig} from "~/models";
 
 interface IProps {
-    total: number;
-    skip: number;
-    limit: number;
-    current: number;
-    linkPrefix: string;
-    linkFirstPage: string;
+    paginationData: PaginationConfig
 }
 
-const PaginationComponent = ({total, skip, limit, current, linkPrefix, linkFirstPage}: IProps) => {
+const PaginationComponent = ({paginationData}: IProps) => {
+    const { total, skip, limit, current, linkPrefix, linkFirstPage } = paginationData;
     const totalPages = Math.ceil((total / limit));
     if (totalPages === 1) {
         return null;
@@ -22,8 +19,8 @@ const PaginationComponent = ({total, skip, limit, current, linkPrefix, linkFirst
                                       skip={skip}
                                       limit={limit}
                                       current={current}
-                                      linkPrefix={linkPrefix}
-                                      linkFirstPage={linkFirstPage}>
+                                      linkPrefix={linkPrefix || '/posts/'}
+                                      linkFirstPage={linkFirstPage || '/posts'}>
         <PaginationButtonsList/>
     </PaginationContextProvider>
 };

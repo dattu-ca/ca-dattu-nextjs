@@ -1,11 +1,11 @@
 import {BlogPost, BlogPostFormat} from "~/models";
 import {IBlogPostFields} from "./generated/index";
-import {mapContentfulList as mapBlocksBodyContentContentfulList} from './blocksBodyContent.schema';
+import {mapBodyPostsLists, mapContentfulList as mapBlocksBodyContentContentfulList} from './blocksBodyContent.schema';
 import {mapContentfulList as mapBodyAuthorContentfulList} from './blogAuthor.schema';
 import {mapContentfulList as mapMetaCategoryContentfulList} from './metaCategory.schema';
 import {mapContentfulList as mapMetaTagContentfulList} from './metaTag.schema';
 import {mapContentful as mapMetaSeriesContentful} from './metaSeries.schema';
-import { mapFeaturedBanner} from "./utils";
+import {mapFeaturedBanner} from "./utils";
 import {IBaseSkeleton} from "./types";
 
 
@@ -20,6 +20,7 @@ export const mapContentful = (raw: any) => {
     const target: Partial<BlogPost> = {
         sysId: source.sys.id,
         contentType: 'BlogPost',
+        postsLists: [],
     };
     if (fields.slug) {
         target.slug = fields.slug as string;
@@ -32,6 +33,9 @@ export const mapContentful = (raw: any) => {
     }
     if (fields.preHeadingContentBlocks) {
         target.preHeadingContentBlocks = mapBlocksBodyContentContentfulList(fields.preHeadingContentBlocks);
+        if (target.preHeadingContentBlocks) {
+            target.postsLists = [...(target.postsLists || []), ...mapBodyPostsLists(target.preHeadingContentBlocks)];
+        }
     }
     if (fields.heading) {
         target.heading = fields.heading as string;
@@ -41,9 +45,15 @@ export const mapContentful = (raw: any) => {
     }
     if (fields.excerptBlocks) {
         target.excerptBlocks = mapBlocksBodyContentContentfulList(fields.excerptBlocks);
+        if (target.excerptBlocks) {
+            target.postsLists = [...(target.postsLists || []), ...mapBodyPostsLists(target.excerptBlocks)];
+        }
     }
     if (fields.contentBlocks) {
         target.contentBlocks = mapBlocksBodyContentContentfulList(fields.contentBlocks);
+        if (target.contentBlocks) {
+            target.postsLists = [...(target.postsLists || []), ...mapBodyPostsLists(target.contentBlocks)];
+        }
     }
     if (fields.authors) {
         target.authors = mapBodyAuthorContentfulList(fields.authors);

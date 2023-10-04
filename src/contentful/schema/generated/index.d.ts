@@ -88,8 +88,8 @@ export interface IBlogAuthorFields {
   /** Avatar Initials */
   avatarInitials: string;
 
-  /** Short Bio */
-  shortBio?: Document | undefined;
+  /** Excerpt Blocks */
+  excerptBlocks?: IBlocksBodyContent[] | undefined;
 
   /** Content Blocks */
   contentBlocks?: IBlocksBodyContent[] | undefined;
@@ -246,6 +246,12 @@ export interface IBlogPostsListFields {
 
   /** Slug */
   slug: string;
+
+  /** Pre Heading Content Blocks */
+  preHeadingContentBlocks?: IBlocksBodyContent[] | undefined;
+
+  /** Heading */
+  heading?: string | undefined;
 
   /** Content Blocks */
   contentBlocks?: IBlocksBodyContent[] | undefined;
@@ -444,6 +450,9 @@ export interface IBodyPostsListFields {
 
   /** Limit Per Page */
   limitPerPage: number;
+
+  /** Is Paginated */
+  isPaginated: boolean;
 }
 
 /** The configuration for the posts lists */

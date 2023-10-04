@@ -11,13 +11,13 @@ interface IProps {
 
 const BlogPageComponent = ({blogPage}: IProps) => {
     return <div>
-        <BlocksBodyContentComponent blocks={blogPage.preHeadingContentBlocks}/>
+        <BlocksBodyContentComponent blocks={blogPage.preHeadingContentBlocks} isExcerpts={false}/>
         <H1Heading>
             <Fragment>
                 {blogPage.heading}
             </Fragment>
         </H1Heading>
-        <BlocksBodyContentComponent blocks={blogPage.contentBlocks}/>
+        <BlocksBodyContentComponent blocks={blogPage.contentBlocks} isExcerpts={false}/>
     </div>
 }
 

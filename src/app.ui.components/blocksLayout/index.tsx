@@ -1,15 +1,15 @@
 import {ReactElement} from "react";
 import clsx from "clsx";
-import {BlocksBodyContentFormat} from "~/models";
+import {BlocksBodyContent_LayoutFormat} from "~/models";
 
 
 interface IProps {
     format: {
-        Xs: BlocksBodyContentFormat;
-        Sm: BlocksBodyContentFormat;
-        Md: BlocksBodyContentFormat;
-        Lg: BlocksBodyContentFormat;
-        Xl: BlocksBodyContentFormat;
+        Xs: BlocksBodyContent_LayoutFormat;
+        Sm: BlocksBodyContent_LayoutFormat;
+        Md: BlocksBodyContent_LayoutFormat;
+        Lg: BlocksBodyContent_LayoutFormat;
+        Xl: BlocksBodyContent_LayoutFormat;
     }
     children: ReactElement | ReactElement[];
 }

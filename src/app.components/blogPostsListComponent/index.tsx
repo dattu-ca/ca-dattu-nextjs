@@ -1,29 +1,24 @@
-import {BlogPost} from "~/models";
-import {PaginationComponent} from "~/app.ui.components/paginationComponent";
-import {BlocksLayout} from "~/app.ui.components/blocksLayout";
+import {Fragment} from "react";
+import {BlogPostsList} from "~/models";
+import {H1Heading} from "~/app.ui.components/h1Heading";
+import {BlocksBodyContentComponent} from "../blocksBodyContentComponent";
 
 interface IProps {
-    posts: BlogPost[];
-    total: number;
-    skip: number;
-    limit: number;
-    current: number;
-    linkPrefix: string;
-    linkFirstPage: string;
+    blogPostsList: BlogPostsList;
 }
+
 const BlogPostsListComponent = ({
-                                    skip, limit, total, current, posts, linkPrefix, linkFirstPage
-                                }:IProps) =>{
-    return <BlocksLayout format={{
-        Xs: 'Default',
-        Sm: 'Default',
-        Md: 'Default',
-        Lg: 'Default',
-        Xl: 'Default'
-    }}>
-        <pre>{JSON.stringify(posts, null, 2)}</pre>
-        <PaginationComponent total={total} skip={skip} limit={limit} current={current} linkPrefix={linkPrefix} linkFirstPage={linkFirstPage} />
-    </BlocksLayout>
+                                    blogPostsList
+                                }: IProps) => {
+    return <div>
+        <BlocksBodyContentComponent blocks={blogPostsList.preHeadingContentBlocks} isExcerpts={false}/>
+        <H1Heading>
+            <Fragment>
+                {blogPostsList.heading}
+            </Fragment>
+        </H1Heading>
+        <BlocksBodyContentComponent blocks={blogPostsList.contentBlocks} isExcerpts={false}/>
+    </div>
 }
 
 export {

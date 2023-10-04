@@ -1,5 +1,6 @@
 import {BaseModel} from "./types";
 import {BlocksBodyContent} from "./blocksBodyContent";
+import {BodyPostsList} from "./bodyPostsList";
 
 export interface MetaCategory extends BaseModel<'MetaCategory'> {
     slug: string;
@@ -8,6 +9,7 @@ export interface MetaCategory extends BaseModel<'MetaCategory'> {
     contentBlocks?: BlocksBodyContent[] | undefined;
     parent?: MetaCategory | undefined;
     children?: MetaCategory[] | undefined;
+    postsLists: BodyPostsList[];
 }
 
 

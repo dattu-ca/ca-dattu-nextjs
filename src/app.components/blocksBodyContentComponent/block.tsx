@@ -1,12 +1,13 @@
-import {BlocksBodyContentType} from "~/models";
+import {BlocksBodyContent_ContentType} from "~/models";
 import {BodyImagesComponent} from "../bodyImagesComponent";
 import {BodyContentComponent} from "../bodyContentComponent";
 import {BodyYoutubeComponent} from "../bodyYoutubeComponent";
 import {BodyFormComponent} from "../bodyFormComponent";
+import {BodyPostsListComponent} from "../bodyPostsListComponent";
 
 
 interface IProps {
-    block: BlocksBodyContentType;
+    block: BlocksBodyContent_ContentType;
 }
 
 const BlocksBodyContentBlock = ({block}: IProps) => {
@@ -22,6 +23,9 @@ const BlocksBodyContentBlock = ({block}: IProps) => {
         }
         case 'BodyForm': {
             return <BodyFormComponent data={block}/>
+        }
+        case 'BodyPostsList': {
+            return <BodyPostsListComponent data={block}/>
         }
         default: {
             return <p>{`Did not implement ${block.contentType}`}</p>

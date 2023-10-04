@@ -8,7 +8,6 @@ const FIELDS = {
     NAME: 'fields.name',
     AVATAR: 'fields.avatar',
     AVATAR_INITIALS: 'fields.avatarInitials',
-    SHORT_BIO: 'fields.shortBio',
     CONTENT_BLOCKS: 'fields.contentBlocks',
 
 }
@@ -26,7 +25,6 @@ const fetchBySlug = (slug: string) =>
                 FIELDS.NAME as 'fields',
                 FIELDS.AVATAR as 'fields',
                 FIELDS.AVATAR_INITIALS as 'fields',
-                FIELDS.SHORT_BIO as 'fields',
                 FIELDS.CONTENT_BLOCKS as 'fields',
             ],
             [FIELDS.SLUG]: slug,

@@ -1,6 +1,6 @@
 import {BlogPage} from "~/models";
 import {IBlogPageFields} from "./generated/index";
-import {mapContentfulList as mapBlocksBodyContentContentfulList} from './blocksBodyContent.schema';
+import {mapBodyPostsLists, mapContentfulList as mapBlocksBodyContentContentfulList} from './blocksBodyContent.schema';
 import {mapBanners} from "./utils";
 import {IBaseSkeleton} from "./types";
 
@@ -17,19 +17,26 @@ export const mapContentful = (raw: any) => {
     }
     const target: Partial<BlogPage> = {
         contentType: 'BlogPage',
-        sysId: source.sys.id
+        sysId: source.sys.id,
+        postsLists: [],
     };
     if (fields.slug) {
         target.slug = fields.slug as string;
     }
+    if (fields.preHeadingContentBlocks) {
+        target.preHeadingContentBlocks = mapBlocksBodyContentContentfulList(fields.preHeadingContentBlocks);
+        if (target.preHeadingContentBlocks) {
+            target.postsLists = [...(target.postsLists || []), ...mapBodyPostsLists(target.preHeadingContentBlocks)];
+        }
+    }
     if (fields.heading) {
         target.heading = fields.heading as string;
     }
-    if (fields.preHeadingContentBlocks) {
-        target.preHeadingContentBlocks = mapBlocksBodyContentContentfulList(fields.preHeadingContentBlocks);
-    }
     if (fields.contentBlocks) {
         target.contentBlocks = mapBlocksBodyContentContentfulList(fields.contentBlocks);
+        if (target.contentBlocks) {
+            target.postsLists = [...(target.postsLists || []), ...mapBodyPostsLists(target.contentBlocks)];
+        }
     }
     return target as BlogPage;
 }

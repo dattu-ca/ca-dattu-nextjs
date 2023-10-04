@@ -13,5 +13,6 @@ export * from './bodyYoutube';
 export * from './metaCategory';
 export * from './metaSeries';
 export * from './metaTag';
+export * from './paginationConfig';
 export * from './siteConfig';
 export * from './siteNavbar';
