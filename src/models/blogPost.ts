@@ -6,6 +6,7 @@ import {MetaCategory} from "./metaCategory";
 import {MetaTag} from "./metaTag";
 import {MetaSeries} from "./metaSeries";
 import {BlocksBodyContent} from "./blocksBodyContent";
+import {BodyPostsList} from "./bodyPostsList";
 
 export type BlogPostFormat = 'Standard' | 'Aside' | 'Image' | 'Video' | 'Quote' | 'Link';
 
@@ -22,4 +23,5 @@ export interface BlogPost extends BaseModel<'BlogPost'> {
     series: MetaSeries;
     categories?: MetaCategory[];
     tags: MetaTag[];
+    postsLists: BodyPostsList[];
 }

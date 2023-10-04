@@ -1,6 +1,7 @@
 'use server';
 import {client} from "../client";
 import { BlogPostsListSkeleton, mapContentful} from '../schema/blogPostsList.schema';
+import {BlogPostsList} from "~/models";
 
 const FIELDS = {
     SLUG: 'fields.slug',
@@ -11,7 +12,7 @@ const FIELDS = {
 
 const content_type = 'blogPostsList';
 
-const fetchBySlug = (slug: string) =>
+const fetchBySlug = (slug: string) : Promise<BlogPostsList> =>
     client
         .getEntries<BlogPostsListSkeleton>({
             content_type,
@@ -27,7 +28,11 @@ const fetchBySlug = (slug: string) =>
         .then((response) => {
             if (response.items.length === 1) {
                 const item = response.items[0];
-                return mapContentful(item);
+                const result = mapContentful(item);
+                if(result){
+                    return result;
+                }
+                throw new Error(`Found during mapping for [slug]=${slug}`)
             } else if (response.items.length > 1) {
                 throw new Error(`Found multiple content for [slug]=${slug}`)
             }

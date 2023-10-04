@@ -1,6 +1,7 @@
 import {BaseModel} from "./types";
 import {BodyImage} from "./bodyImage";
 import {BlocksBodyContent} from "./blocksBodyContent";
+import {BodyPostsList} from "./bodyPostsList";
 
 
 export interface BlogAuthor extends BaseModel<'BlogAuthor'> {
@@ -11,4 +12,5 @@ export interface BlogAuthor extends BaseModel<'BlogAuthor'> {
     avatarInitials: string;
     shortBio?: object | undefined;
     contentBlocks?: BlocksBodyContent[] | undefined;
+    postsLists: BodyPostsList[];
 }

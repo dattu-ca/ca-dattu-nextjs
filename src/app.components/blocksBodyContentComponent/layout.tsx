@@ -135,7 +135,8 @@ const BlocksBodyContentLayoutComponent = ({
                                 ['xl:hidden']: column.gridColumnsSize.Xl === 0,
                             }
                         )}>
-                            <BlocksBodyContentColumnComponent blocks={column.contentBlocks} gaps={column.gaps.Xs}
+                            <BlocksBodyContentColumnComponent blocks={column.contentBlocks} 
+                                                              gaps={column.gaps.Xs}
                                                               layout={column.layout}/>
                         </div>
                     </Fragment>

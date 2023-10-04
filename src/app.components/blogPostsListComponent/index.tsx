@@ -1,18 +1,23 @@
-import {BlogPost, BlogPostsList, PaginationConfig} from "~/models";
+import {Fragment} from "react";
+import {BlogPostsList} from "~/models";
+import {H1Heading} from "~/app.ui.components/h1Heading";
 import {BlocksBodyContentComponent} from "../blocksBodyContentComponent";
 
 interface IProps {
     blogPostsList: BlogPostsList;
-    posts: BlogPost[];
-    paginationData: PaginationConfig;
 }
 
 const BlogPostsListComponent = ({
                                     blogPostsList
                                 }: IProps) => {
     return <div>
-        <BlocksBodyContentComponent blocks={blogPostsList.preHeadingContentBlocks}/>
-        <BlocksBodyContentComponent blocks={blogPostsList.contentBlocks}/>
+        <BlocksBodyContentComponent blocks={blogPostsList.preHeadingContentBlocks} isExcerpts={false}/>
+        <H1Heading>
+            <Fragment>
+                {blogPostsList.heading}
+            </Fragment>
+        </H1Heading>
+        <BlocksBodyContentComponent blocks={blogPostsList.contentBlocks} isExcerpts={false}/>
     </div>
 }
 

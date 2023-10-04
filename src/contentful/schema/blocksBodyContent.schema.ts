@@ -122,3 +122,19 @@ export const mapContentful = (raw: any) => {
 }
 
 export const mapContentfulList = (raw: any[]) => (raw || []).map(source => mapContentful(source)).filter(item => Boolean(item)) as BlocksBodyContent[];
+
+
+export const mapBodyPostsLists = (blocks: BlocksBodyContent[]) => {
+    const ret = [];
+    
+    for(const block of blocks){
+        for(const column of block.columns.filter(c => c.contentBlocks)){
+            for(const contentBlock of column.contentBlocks){
+                if(contentBlock.contentType === 'BodyPostsList'){
+                    ret.push(contentBlock);
+                }
+            }
+        }
+    }
+    return ret;
+}

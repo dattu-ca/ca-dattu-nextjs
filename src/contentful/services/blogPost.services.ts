@@ -63,7 +63,7 @@ const fetchBySlug = (slug: string) =>
         })
 
 
-const fetchListPaginated = (skip: number = 0, limit: number = 10) =>
+const fetchListPaginated = (skip: number = 0, limit: number = 10): Promise<{ items: BlogPost[], total: number }> =>
     client
         .getEntries<BlogPostSkeleton>({
             content_type,
@@ -78,7 +78,7 @@ const fetchListPaginated = (skip: number = 0, limit: number = 10) =>
             const items = mapContentfulList(response.items);
             return {
                 items,
-                total: response.total,
+                total: response.total as number,
             }
         })
 

@@ -23,8 +23,11 @@ export const mapContentful = (raw: any) => {
     if (fields.postsListIdentifier) {
         target.postsListIdentifier = fields.postsListIdentifier;
     }
-    if (fields.limitPerPage) {
-        target.limitPerPage = fields.limitPerPage;
+    if (typeof fields.limitPerPage !== 'undefined') {
+        target.limitPerPage = fields.limitPerPage as number;
+    }
+    if (typeof fields.isPaginated !== 'undefined') {
+        target.isPaginated = fields.isPaginated as boolean;
     }
 
     return target as BodyPostsList;

@@ -1,5 +1,4 @@
 import {
-
     fetchBySlug
 } from './services';
 

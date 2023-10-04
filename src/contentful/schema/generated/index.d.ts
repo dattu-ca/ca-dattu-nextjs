@@ -451,8 +451,8 @@ export interface IBodyPostsListFields {
   /** Limit Per Page */
   limitPerPage: number;
 
-  /** Pagination Location */
-  paginationLocation?: ("Above List" | "Below List")[] | undefined;
+  /** Is Paginated */
+  isPaginated: boolean;
 }
 
 /** The configuration for the posts lists */
