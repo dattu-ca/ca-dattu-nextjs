@@ -19,8 +19,8 @@ const PaginationComponent = ({paginationData}: IProps) => {
                                       skip={skip}
                                       limit={limit}
                                       current={current}
-                                      linkPrefix={linkPrefix}
-                                      linkFirstPage={linkFirstPage}>
+                                      linkPrefix={linkPrefix || '/posts/'}
+                                      linkFirstPage={linkFirstPage || '/posts'}>
         <PaginationButtonsList/>
     </PaginationContextProvider>
 };

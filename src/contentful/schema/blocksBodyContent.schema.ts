@@ -126,12 +126,17 @@ export const mapContentfulList = (raw: any[]) => (raw || []).map(source => mapCo
 
 export const mapBodyPostsLists = (blocks: BlocksBodyContent[]) => {
     const ret = [];
-    
-    for(const block of blocks){
-        for(const column of block.columns.filter(c => c.contentBlocks)){
-            for(const contentBlock of column.contentBlocks){
-                if(contentBlock.contentType === 'BodyPostsList'){
-                    ret.push(contentBlock);
+    if (blocks) {
+        for (const block of blocks) {
+            if (block.columns.filter(c => c.contentBlocks)) {
+                for (const column of block.columns.filter(c => c.contentBlocks)) {
+                    if (column.contentBlocks) {
+                        for (const contentBlock of column.contentBlocks) {
+                            if (contentBlock.contentType === 'BodyPostsList') {
+                                ret.push(contentBlock);
+                            }
+                        }
+                    }
                 }
             }
         }

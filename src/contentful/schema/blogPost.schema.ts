@@ -34,7 +34,7 @@ export const mapContentful = (raw: any) => {
     if (fields.preHeadingContentBlocks) {
         target.preHeadingContentBlocks = mapBlocksBodyContentContentfulList(fields.preHeadingContentBlocks);
         if (target.preHeadingContentBlocks) {
-            target.postsLists = [...target.postsLists, ...mapBodyPostsLists(target.preHeadingContentBlocks)];
+            target.postsLists = [...(target.postsLists || []), ...mapBodyPostsLists(target.preHeadingContentBlocks)];
         }
     }
     if (fields.heading) {
@@ -46,13 +46,13 @@ export const mapContentful = (raw: any) => {
     if (fields.excerptBlocks) {
         target.excerptBlocks = mapBlocksBodyContentContentfulList(fields.excerptBlocks);
         if (target.excerptBlocks) {
-            target.postsLists = [...target.postsLists, ...mapBodyPostsLists(target.excerptBlocks)];
+            target.postsLists = [...(target.postsLists || []), ...mapBodyPostsLists(target.excerptBlocks)];
         }
     }
     if (fields.contentBlocks) {
         target.contentBlocks = mapBlocksBodyContentContentfulList(fields.contentBlocks);
         if (target.contentBlocks) {
-            target.postsLists = [...target.postsLists, ...mapBodyPostsLists(target.contentBlocks)];
+            target.postsLists = [...(target.postsLists || []), ...mapBodyPostsLists(target.contentBlocks)];
         }
     }
     if (fields.authors) {

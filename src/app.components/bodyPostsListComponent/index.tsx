@@ -10,6 +10,9 @@ interface IProps {
 }
 
 const BodyPostsListComponent = ({data}: IProps) => {
+    if(!data){
+        return null;
+    }
     return (
         <div>
             <div className={clsx(
@@ -30,7 +33,7 @@ const BodyPostsListComponent = ({data}: IProps) => {
                 </div>                
             </div>
             {
-                data.paginationData?.totalPages > 1
+                data && data.paginationData && data.paginationData.totalPages > 1
                 && <PaginationComponent paginationData={data.paginationData as PaginationConfig} />
             }
         </div>

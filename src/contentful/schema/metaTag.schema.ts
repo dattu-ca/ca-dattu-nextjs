@@ -25,7 +25,7 @@ export const mapContentful = (raw: any) => {
     if (fields.preHeadingContentBlocks) {
         target.preHeadingContentBlocks = mapBlocksBodyContentContentfulList(fields.preHeadingContentBlocks);
         if (target.preHeadingContentBlocks) {
-            target.postsLists = [...target.postsLists, ...mapBodyPostsLists(target.preHeadingContentBlocks)];
+            target.postsLists = [...(target.postsLists || []), ...mapBodyPostsLists(target.preHeadingContentBlocks)];
         }
     }
     if (fields.name) {
@@ -34,7 +34,7 @@ export const mapContentful = (raw: any) => {
     if (fields.contentBlocks) {
         target.contentBlocks = mapBlocksBodyContentContentfulList(fields.contentBlocks);
         if (target.contentBlocks) {
-            target.postsLists = [...target.postsLists, ...mapBodyPostsLists(target.contentBlocks)];
+            target.postsLists = [...(target.postsLists || []), ...mapBodyPostsLists(target.contentBlocks)];
         }
     }
     return target as MetaTag;
