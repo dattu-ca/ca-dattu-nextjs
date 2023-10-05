@@ -7,28 +7,24 @@ import {SiteConfig} from "~/models";
 export const fetchBySlug = async (slug: string): Promise<SiteConfig> => {
     try {
         const response = await client.fetch(
-            groq`*[_type=="siteConfig" && slug.current=="${slug}"]{
+            groq`*[_type=="siteConfig" && slug.current==$slug][0]{
                 "sysId": _id,
                 "slug": slug.current,
                 siteTitleTemplate,
                 siteTitleDefault,
                 siteDescription
-            }`
+            }`,
+            {slug} as RequestInit
         )
-        if (response.length === 1) {
-            const item = response[0];
-            return {
-                cmsSource: 'Sanity',
-                contentType: 'SiteConfig',
-                sysId: item.sysId as string,
-                slug,
-                siteDescription: item.siteDescription as string,
-                siteTitleDefault: item.siteTitleDefault as string,
-                siteTitleTemplate: item.siteTitleTemplate as string
-            } as SiteConfig;            
-        } else {
-            throw new Error(`Found multiple content for [slug]=${slug}`)
-        }
+        return {
+            cmsSource: 'Sanity',
+            contentType: 'SiteConfig',
+            sysId: response.sysId as string,
+            slug,
+            siteDescription: response.siteDescription as string,
+            siteTitleDefault: response.siteTitleDefault as string,
+            siteTitleTemplate: response.siteTitleTemplate as string
+        } as SiteConfig;
     } catch (e) {
         console.log(e);
         throw new Error(e);

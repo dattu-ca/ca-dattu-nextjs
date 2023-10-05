@@ -7,7 +7,7 @@ import {SiteAuthConfig} from "~/models";
 export const fetchBySlug = async (slug: string): Promise<SiteAuthConfig> => {
     try {
         const response = await client.fetch(
-            groq`*[_type=="siteAuthConfig" && slug.current=="${slug}"]{
+            groq`*[_type=="siteAuthConfig" && slug.current==$slug][0]{
                 "sysId": _id,
                 loginTitle,
                 loginButton,
@@ -15,25 +15,21 @@ export const fetchBySlug = async (slug: string): Promise<SiteAuthConfig> => {
                 logoutButton,
                 errorTitle,
                 errorButton
-            }`
+            }`,
+            {slug} as RequestInit
         )
-        if (response.length === 1) {
-            const item = response[0];
-            return {
-                cmsSource: 'Sanity',
-                contentType: 'SiteAuthConfig',
-                sysId: item.sysId as string,
-                slug,
-                loginTitle: item.loginTitle as string,
-                loginButton: item.loginButton as string,
-                logoutTitle: item.logoutTitle as string,
-                logoutButton: item.logoutButton as string,
-                errorTitle: item.errorTitle as string,
-                errorButton: item.errorButton as string,
-            } as SiteAuthConfig;
-        } else {
-            throw new Error(`Found multiple content for [slug]=${slug}`)
-        }
+        return {
+            cmsSource: 'Sanity',
+            contentType: 'SiteAuthConfig',
+            sysId: response.sysId as string,
+            slug,
+            loginTitle: response.loginTitle as string,
+            loginButton: response.loginButton as string,
+            logoutTitle: response.logoutTitle as string,
+            logoutButton: response.logoutButton as string,
+            errorTitle: response.errorTitle as string,
+            errorButton: response.errorButton as string,
+        } as SiteAuthConfig;
     } catch (e) {
         console.log(e);
         throw new Error(e);
