@@ -6,7 +6,7 @@ import {BodyImage, ILink, SiteNavbar} from "~/models";
 
 interface INavbarContextProps {
     ctxData: {
-        logo: BodyImage;
+        logo: Partial<BodyImage>;
         openMenuText: string;
         closeMenuText: string;
         links: ILink[];
@@ -34,13 +34,7 @@ interface INavbarContextProps {
 
 const NavbarContext = createContext<INavbarContextProps>({
     ctxData: {
-        logo: {
-            sysId: 'logo',
-            contentType: "BodyImage",
-            align: 'center',
-            maxHeight: 'auto',
-            maxWidth: 'auto'
-        },
+        logo: {},
         openMenuText: 'Open Menu',
         closeMenuText: 'CLose Menu',
         links: [],
