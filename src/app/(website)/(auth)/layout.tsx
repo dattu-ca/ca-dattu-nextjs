@@ -39,3 +39,12 @@ const Layout = async ({children}: IProps) => {
 }
 
 export default Layout;
+
+/**
+ You are about to dive into the rabbit hole. Sure you are ready?
+ Enter the matrix with
+ Logout: The exit door to the real world. Proceed?
+ Yes, I am ready to see if I can dodge bullets in the real world.
+ Access Denied: You must be the chosen one to enter this reality.
+ Back to login, seeker.
+ */

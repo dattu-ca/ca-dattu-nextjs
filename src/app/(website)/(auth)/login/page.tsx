@@ -4,7 +4,6 @@ import {getProviders} from "next-auth/react";
 import {AuthLoginComponent} from "~/app.components/auth.loginComponent";
 import {getAuthSession} from "~/auth.services";
 import {siteAuthConfigServices} from "~/services";
-import {SERVER_CONFIG} from "~/utils/config.server";
 
 
 const Page = async () => {
@@ -12,7 +11,7 @@ const Page = async () => {
     if (session) {
         return redirect('/dashboard', RedirectType.replace);
     }
-    const cmsContent = await siteAuthConfigServices.fetchBySlug(SERVER_CONFIG.CONTENT_SLUGS.PRIMARY_AUTH_CONFIG);
+    const cmsContent = await siteAuthConfigServices.fetchBySlug();
     const providers = await getProviders();
     return <div>
         <AuthLoginComponent providers={providers}

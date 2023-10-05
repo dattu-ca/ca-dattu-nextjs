@@ -4,21 +4,28 @@ import {deskTool} from 'sanity/desk'
 
 // Go to https://www.sanity.io/docs/api-versioning to learn how API versioning works
 import {apiVersion, dataset, projectId} from '~/sanity/env';
-import {schema} from '~/sanity/schemas/';
+import {schemaTypes} from '~/sanity/schemas/';
+import {singletonTypes, pageStructure} from '~/sanity/schemas/singleton';
 
 // @ts-ignore
 export default defineConfig({
-  basePath: '/cms',
-  projectId,
-  dataset,
-  title: "dattu.ca CMS",
-  apiVersion: apiVersion,
-  // Add and edit the content schema in the './sanity/schema' folder
-  schema,
-  plugins: [
-    deskTool(),
-    // Vision is a tool that lets you query your content with GROQ in the studio
-    // https://www.sanity.io/docs/the-vision-plugin
-    visionTool({defaultApiVersion: apiVersion}),
-  ],
+    basePath: '/cms',
+    projectId,
+    dataset,
+    name: 'ca-dattu-cms',
+    title: "dattu.ca CMS",
+    apiVersion: apiVersion,
+    // Add and edit the content schema in the './sanity/schema' folder
+    schema: {
+        types: schemaTypes,
+    },
+    plugins: [
+        deskTool({
+            structure: pageStructure([...singletonTypes]),
+        }),
+        
+        // Vision is a tool that lets you query your content with GROQ in the studio
+        // https://www.sanity.io/docs/the-vision-plugin
+        visionTool({defaultApiVersion: apiVersion}),
+    ],
 })

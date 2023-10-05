@@ -1,9 +1,9 @@
-import {defineField, defineType} from 'sanity'
+import {defineArrayMember, defineField, defineType} from 'sanity'
 
-const siteAuthConfigSchemas = defineType({
-    name: 'siteAuthConfig',
-    title: 'Site Auth Configs',
-    type: 'document',
+const bodyYouTubeSchema = defineType({
+    name: 'bodyYouTube',
+    title: 'Body - YouTube',
+    type: 'object',
     fields: [
         defineField({
             name: 'entryTitle',
@@ -22,44 +22,33 @@ const siteAuthConfigSchemas = defineType({
             validation: (rule) => rule.required(),
         }),
         defineField({
-            name: 'loginTitle',
-            title: 'Title for the Login Box',
+            name: 'url',
+            title: 'YouTube URL',
             type: 'string',
             validation: (rule) => rule.required(),
         }),
         defineField({
-            name: 'loginButton',
-            title: 'Text for the Login Button',
+            name: 'name',
+            title: 'Name',
             type: 'string',
             validation: (rule) => rule.required(),
         }),
         defineField({
-            name: 'logoutTitle',
-            title: 'Title for the Logout Box',
+            name: 'videoId',
+            title: 'Video ID',
             type: 'string',
             validation: (rule) => rule.required(),
         }),
         defineField({
-            name: 'logoutButton',
-            title: 'Text for the Logout Button',
-            type: 'string',
-            validation: (rule) => rule.required(),
-        }),
-        defineField({
-            name: 'errorTitle',
-            title: 'Title for the Error Box',
-            type: 'string',
-            validation: (rule) => rule.required(),
-        }),
-        defineField({
-            name: 'errorButton',
-            title: 'Text for the Error Link',
-            type: 'string',
+            name: 'description',
+            title: 'description',
+            type: 'array',
+            of: [defineArrayMember({type: 'block'})],
             validation: (rule) => rule.required(),
         }),
     ]
 });
 
 export {
-    siteAuthConfigSchemas
+    bodyYouTubeSchema
 };

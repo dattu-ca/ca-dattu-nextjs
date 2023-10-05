@@ -18,11 +18,10 @@ import clsx from "clsx";
 
 
 const {HEADER_SITE_NAVBAR} = SERVER_CONFIG.CONTENTFUL_SLUGS;
-const { PRIMARY_SITE_CONFIG } = SERVER_CONFIG.CONTENT_SLUGS;
 
 
 export const generateMetadata = async () => {
-    const cmsContent = await siteConfigServices.fetchBySlug(PRIMARY_SITE_CONFIG);
+    const cmsContent = await siteConfigServices.fetchBySlug();
     if (!cmsContent) {
         return {};
     }

@@ -1,8 +1,8 @@
-import {defineArrayMember, defineField, defineType} from 'sanity'
+import {defineArrayMember, defineField, defineType} from 'sanity';
 
-const siteConfigSchemas = defineType({
-    name: 'siteConfig',
-    title: 'Site Configs',
+const categorySchema = defineType({
+    name: 'category',
+    title: 'Category',
     type: 'document',
     fields: [
         defineField({
@@ -22,26 +22,20 @@ const siteConfigSchemas = defineType({
             validation: (rule) => rule.required(),
         }),
         defineField({
-            name: 'siteTitleTemplate',
-            title: 'Site Title Template',
+            name: 'name',
+            title: 'Name',
             type: 'string',
             validation: (rule) => rule.required(),
         }),
         defineField({
-            name: 'siteTitleDefault',
-            title: 'Site Title Default',
-            type: 'string',
-            validation: (rule) => rule.required(),
-        }),
-        defineField({
-            name: 'siteDescription',
-            title: 'Site description',
-            type: 'string',
-            validation: (rule) => rule.required(),
+            name: 'parentCategory',
+            title: 'Parent - Category',
+            type: 'reference',
+            to: [{type: 'category'}],
         }),
     ]
 });
 
 export {
-    siteConfigSchemas
-};
+    categorySchema
+}

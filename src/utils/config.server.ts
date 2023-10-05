@@ -5,8 +5,7 @@ const CONTENTFUL_SLUGS = Object.freeze({
 });
 
 const CONTENT_SLUGS = Object.freeze({
-    PRIMARY_SITE_CONFIG: process.env.CONTENT_SLUGS_PRIMARY_SITE_CONFIG as string,
-    PRIMARY_AUTH_CONFIG: process.env.CONTENT_SLUGS_PRIMARY_AUTH_CONFIG as string,
+    
 })
 
 const MONGO_DB = Object.freeze({
