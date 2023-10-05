@@ -1,4 +1,4 @@
-export {authConfigServices} from './authConfig.services';
+export {siteAuthConfigServices} from './siteAuthConfig.services';
 export {blogHomeServices} from './blogHome.services';
 export {blogAuthorServices} from './blogAuthor.services';
 export {blogPageServices} from './blogPage.services';

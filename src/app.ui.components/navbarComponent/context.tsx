@@ -35,6 +35,7 @@ interface INavbarContextProps {
 const NavbarContext = createContext<INavbarContextProps>({
     ctxData: {
         logo: {
+            sysId: 'logo',
             contentType: "BodyImage",
             align: 'center',
             maxHeight: 'auto',
@@ -145,11 +146,11 @@ const NavbarContextProvider = ({children, navbar: rawNavbar, session}: INavbarCo
     const closeMobileSubMenuHandler = useCallback((id: string) => {
         setMobileSubMenuOpenIds(prev => prev.filter(item => item !== id))
     }, []);
-    
+
     const toggleMobileSubMenuHandler = useCallback((id: string) => {
         setMobileSubMenuOpenIds(prev => prev.includes(id) ? prev.filter(item => item !== id) : [...prev, id]);
     }, []);
-    
+
     const closeAllMobileSubMenuHandler = useCallback(() => {
         setMobileSubMenuOpenIds([]);
     }, [])
@@ -158,18 +159,28 @@ const NavbarContextProvider = ({children, navbar: rawNavbar, session}: INavbarCo
         const items: ILink[] = []
         if (session) {
             items.push({
+                sysId: 'dashboard',
                 id: 'dashboard',
                 contentType: 'Link',
                 url: '/dashboard',
                 label: 'Dashboard'
             });
             items.push({
+                sysId: 'profile',
                 id: 'profile',
                 contentType: 'Link',
                 url: '/profile',
                 label: 'Profile'
             });
             items.push({
+                sysId: 'cms',
+                id: 'cms',
+                contentType: 'Link',
+                url: '/cms',
+                label: 'CMS'
+            });
+            items.push({
+                sysId: 'logout',
                 id: 'logout',
                 contentType: 'Link',
                 url: '/logout',
@@ -177,6 +188,7 @@ const NavbarContextProvider = ({children, navbar: rawNavbar, session}: INavbarCo
             });
         } else {
             items.push({
+                sysId: 'login',
                 id: 'login',
                 contentType: 'Link',
                 url: '/login',

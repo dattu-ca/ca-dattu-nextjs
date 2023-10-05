@@ -1,7 +1,7 @@
-import * as authConfigServices from './authConfig.services';
+import * as siteAuthConfigServices from './siteAuthConfig.services';
 import * as siteConfigServices from './siteConfig.services';
 
 export {
-    authConfigServices,
+    siteAuthConfigServices,
     siteConfigServices
 }

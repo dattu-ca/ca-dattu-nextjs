@@ -1,5 +1,5 @@
 import { fetchBySlug } from './services';
 
-export const authConfigServices = {
+export const siteAuthConfigServices = {
     fetchBySlug
 };

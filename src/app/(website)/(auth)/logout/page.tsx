@@ -2,7 +2,7 @@ import {redirect} from "next/navigation";
 import {RedirectType} from "next/dist/client/components/redirect";
 import {getAuthSession} from "~/auth.services";
 import {AuthLogoutComponent} from "~/app.components/auth.logoutComponent";
-import {authConfigServices} from "~/services";
+import {siteAuthConfigServices} from "~/services";
 import {SERVER_CONFIG} from "~/utils/config.server";
 
 const Page = async () => {
@@ -11,7 +11,7 @@ const Page = async () => {
         return redirect('/', RedirectType.replace);
     }
 
-    const cmsContent = await authConfigServices.fetchBySlug(SERVER_CONFIG.CONTENT_SLUGS.PRIMARY_AUTH_CONFIG);
+    const cmsContent = await siteAuthConfigServices.fetchBySlug(SERVER_CONFIG.CONTENT_SLUGS.PRIMARY_AUTH_CONFIG);
 
     return <div>
         <AuthLogoutComponent textContent={{

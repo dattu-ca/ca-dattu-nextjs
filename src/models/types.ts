@@ -1,4 +1,4 @@
 export type BaseModel<S> = {
-    sysId?: string | undefined;
+    sysId: string;
     contentType: S;
 }
