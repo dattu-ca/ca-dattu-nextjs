@@ -1,6 +1,6 @@
 'use server';
 import {blogPostsListServices} from "~/contentful/services";
-import {blogPostServices} from "../blogPost.services";
+import * as blogPostServices from "./blogPost.services";
 import {BlogPostsList, PaginationConfig} from "~/models";
 
 

@@ -1,6 +1,6 @@
 'use server';
 import {BodyForm} from "~/models";
-import {googleRecaptchaServices} from "../google.recaptcha";
+import * as googleRecaptchaServices from "./google.recaptcha.services";
 import {formsDbServices} from "~/services.db";
 import {sanitize} from "~/utils/utils";
 import {sendMailServices} from "~/services";
