@@ -1,4 +1,5 @@
-export type BaseModel<S> = {
+export type BaseModel<ContentType> = {
     sysId: string;
-    contentType: S;
+    contentType: ContentType;
+    cmsSource: 'Contentful' | 'Sanity' | undefined;
 }

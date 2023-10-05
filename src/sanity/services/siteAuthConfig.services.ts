@@ -20,6 +20,7 @@ export const fetchBySlug = async (slug: string): Promise<SiteAuthConfig> => {
         if (response.length === 1) {
             const item = response[0];
             return {
+                cmsSource: 'Sanity',
                 contentType: 'SiteAuthConfig',
                 sysId: item.sysId as string,
                 slug,

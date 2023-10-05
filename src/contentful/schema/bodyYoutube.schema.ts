@@ -14,6 +14,7 @@ export const mapContentful = (raw: any) => {
         return undefined;
     }
     const target: Partial<BodyYoutube> = {
+        cmsSource: 'Contentful',
         sysId: source.sys.id,
         contentType: 'BodyYoutube'
     };

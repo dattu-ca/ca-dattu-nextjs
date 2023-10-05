@@ -16,6 +16,7 @@ export const mapContentful = (raw: any) => {
         return undefined;
     }
     const target: Partial<BlogPage> = {
+        cmsSource: 'Contentful',
         contentType: 'BlogPage',
         sysId: source.sys.id,
         postsLists: [],
