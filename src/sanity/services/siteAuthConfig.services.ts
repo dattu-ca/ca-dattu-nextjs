@@ -7,7 +7,7 @@ import {SiteAuthConfig} from "~/models";
 export const fetchBySlug = async (slug: string): Promise<SiteAuthConfig> => {
     try {
         const response = await client.fetch(
-            groq`*[_type=="authConfig" && slug.current=="${slug}"]{
+            groq`*[_type=="siteAuthConfig" && slug.current=="${slug}"]{
                 "sysId": _id,
                 loginTitle,
                 loginButton,

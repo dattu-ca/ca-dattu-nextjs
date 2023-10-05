@@ -1,8 +1,8 @@
-import {defineArrayMember, defineField, defineType} from 'sanity'
+import {defineField, defineType} from 'sanity'
 
-const authConfigSchemas = defineType({
-    name: 'authConfig',
-    title: 'Auth Configs',
+const siteAuthConfigSchemas = defineType({
+    name: 'siteAuthConfig',
+    title: 'Site Auth Configs',
     type: 'document',
     fields: [
         defineField({
@@ -61,5 +61,5 @@ const authConfigSchemas = defineType({
 });
 
 export {
-    authConfigSchemas
+    siteAuthConfigSchemas
 };

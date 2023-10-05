@@ -4,7 +4,7 @@ import {groq} from "next-sanity";
 import {client} from './client';
 import {SiteConfig} from "~/models";
 
-export const fetchBySlug = async (slug: string) => {
+export const fetchBySlug = async (slug: string): Promise<SiteConfig> => {
     try {
         const response = await client.fetch(
             groq`*[_type=="siteConfig" && slug.current=="${slug}"]{
