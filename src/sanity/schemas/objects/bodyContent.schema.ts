@@ -1,11 +1,9 @@
-import {defineArrayMember, defineField, defineType} from 'sanity';
-import {FaHashtag} from "react-icons/fa6";
+import {defineArrayMember, defineField, defineType} from 'sanity'
 
-const tagSchema = defineType({
-    name: 'tag',
-    title: 'Tags',
-    type: 'document',
-    icon: FaHashtag,
+const bodyContentSchema = defineType({
+    name: 'bodyContent',
+    title: 'Body - Content',
+    type: 'object',
     fields: [
         defineField({
             name: 'entryTitle',
@@ -24,14 +22,15 @@ const tagSchema = defineType({
             validation: (rule) => rule.required(),
         }),
         defineField({
-            name: 'name',
-            title: 'Name',
-            type: 'string',
+            name: 'description',
+            title: 'description',
+            type: 'array',
+            of: [defineArrayMember({type: 'block'})],
             validation: (rule) => rule.required(),
         }),
     ]
 });
 
 export {
-    tagSchema
-}
+    bodyContentSchema
+};

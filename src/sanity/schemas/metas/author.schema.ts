@@ -1,12 +1,12 @@
-import {defineField, defineType} from 'sanity';
-import {BsBook} from "react-icons/bs";
+import {defineArrayMember, defineField, defineType} from 'sanity';
+import {FaUserEdit} from "react-icons/fa";
 import {blocksBodyContentSchema} from "../objects/blocksBodyContent.schema";
 
-const blogPageSchema = defineType({
-    name: 'blogPage',
-    title: 'Page',
+const authorSchema = defineType({
+    name: 'author',
+    title: 'Authors',
     type: 'document',
-    icon: BsBook,
+    icon: FaUserEdit,
     fields: [
         defineField({
             name: 'entryTitle',
@@ -38,10 +38,31 @@ const blogPageSchema = defineType({
             ]
         }),
         defineField({
-            name: 'heading',
-            title: 'Page Heading',
+            name: 'name',
+            title: 'Name',
             type: 'string',
             validation: (rule) => rule.required(),
+        }),
+        defineField({
+            name: 'avatarInitials',
+            title: 'Avatar Initials',
+            description: 'If the image is not found, then this is displayed in the avatar.',
+            type: 'string',
+            validation: (rule) => rule.custom((initials, context) => {
+                const avatar = context.document['avatarImage'];
+                if (!avatar && !initials) {
+                    return 'Avatar initials are required if the Avatar Image is not provided';
+                }
+                return true;
+            }),
+        }),
+        defineField({
+            name: 'avatarImage',
+            title: 'Avatar ',
+            type: 'image',
+            options: {
+                hotspot: true,
+            },
         }),
         defineField({
             name: 'contentBlocks',
@@ -60,5 +81,5 @@ const blogPageSchema = defineType({
 });
 
 export {
-    blogPageSchema
+    authorSchema
 }

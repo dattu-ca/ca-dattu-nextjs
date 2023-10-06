@@ -9,7 +9,7 @@ export const fetchBySlug = async (): Promise<SiteConfig> => {
         const response = await client.fetch(
             groq`*[_type=="siteConfig"][0]{
                 "sysId": _id,
-                "slug": slug.current,
+                "slug": _type,
                 siteTitleTemplate,
                 siteTitleDefault,
                 siteDescription

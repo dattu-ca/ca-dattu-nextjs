@@ -25,6 +25,28 @@ const siteConfigSchema = defineType({
             type: 'string',
             validation: (rule) => rule.required(),
         }),
+        defineField({
+            name: 'numberOfPostsPerPage',
+            title: 'Posts per page',
+            description: 'Default maximum number of posts per page.',
+            type: 'number',
+            initialValue: 10,
+            validation: (rule) => rule.required(),
+        }),
+        defineField({
+            name: 'paginationMaxLinks',
+            title: 'Pagination Maximum Links',
+            description: 'Default maximum number of page links in the pagination component.',
+            type: 'number',
+            initialValue: 9,
+            validation: (rule) => rule.custom(num => {
+                if(!(num > 0 && num % 2 !== 0 && num <= 9)){
+                    return 'Number should be an odd number between 1 and 9'
+                }
+                return true;
+            }),
+        }),
+        //NEXT_PUBLIC_DEFAULT_PAGINATION_MAX_LINKS
     ],
     preview: {
         prepare() {
