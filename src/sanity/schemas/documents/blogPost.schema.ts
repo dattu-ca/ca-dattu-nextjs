@@ -1,11 +1,11 @@
 import {defineField, defineType} from 'sanity';
-import {BsBook} from "react-icons/bs";
+import {FaScroll} from "react-icons/fa6";
 
-const blogPageSchema = defineType({
-    name: 'blogPage',
-    title: 'Blog - Page',
+const blogPostSchema = defineType({
+    name: 'blogPost',
+    title: 'Blog - Post',
     type: 'document',
-    icon: BsBook,
+    icon: FaScroll,
     fields: [
         defineField({
             name: 'entryTitle',
@@ -39,5 +39,5 @@ const blogPageSchema = defineType({
 });
 
 export {
-    blogPageSchema
+    blogPostSchema
 }

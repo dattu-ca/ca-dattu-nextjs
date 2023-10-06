@@ -1,6 +1,9 @@
 import {type SchemaTypeDefinition} from 'sanity'
-import {blogPagSchema} from './documents/blogPage.schema';
-import {categorySchema} from './documents/category.schema';
+import {blogPageSchema} from './documents/blogPage.schema';
+import {blogPostSchema} from './documents/blogPost.schema';
+
+import {categorySchema} from './metas/category.schema';
+import {tagSchema} from './metas/tag.schema';
 
 
 import {bodyYouTubeSchema} from "./objects/bodyYouTube.schema";
@@ -13,9 +16,12 @@ const schemaTypes: SchemaTypeDefinition[] = [
     // Singletons
     authPagesConfigSchema,
     siteConfigSchema,
-    // Documents
-    blogPagSchema,
+    // Main Documents
+    blogPageSchema,
+    blogPostSchema,
+    // Other Documents 
     categorySchema,
+    tagSchema,
     // Objects
     bodyYouTubeSchema,
 ];

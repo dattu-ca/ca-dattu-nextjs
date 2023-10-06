@@ -1,9 +1,11 @@
 import {defineArrayMember, defineField, defineType} from 'sanity';
+import {FaTags} from "react-icons/fa6";
 
-const categorySchema = defineType({
-    name: 'category',
-    title: 'Category',
+const tagSchema = defineType({
+    name: 'tag',
+    title: 'Tags',
     type: 'document',
+    icon: FaTags,
     fields: [
         defineField({
             name: 'entryTitle',
@@ -37,5 +39,5 @@ const categorySchema = defineType({
 });
 
 export {
-    categorySchema
+    tagSchema
 }

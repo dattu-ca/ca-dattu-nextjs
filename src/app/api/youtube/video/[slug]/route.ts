@@ -1,24 +1,20 @@
 import {NextRequest, NextResponse} from "next/server";
-import {youtube_v3} from "googleapis";
-import {YoutubeClient} from "../../client";
+import {youtubeServices} from "~/services.youtube";
 
 export async function GET(req: NextRequest, {params}: { params: { slug: string } }) {
     const slug = params.slug;
-    const yParams: youtube_v3.Params$Resource$Videos$List = {
-        part: ["snippet", "recordingDetails"],
-        id: [slug as string]
-    }
+
     try {
 
-        const response = await YoutubeClient.videos.list(yParams);
-
-
-        return NextResponse.json(
-            response?.data,
-            {
-                status: 200
-            }
-        );
+        const response = await youtubeServices.fetchVideo(slug);
+        if (response) {
+            return NextResponse.json(
+                response,
+                {
+                    status: 200
+                }
+            );
+        }
     } catch (e) {
         console.error(e);
     }

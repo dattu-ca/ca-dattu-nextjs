@@ -5,7 +5,7 @@ import {deskTool} from 'sanity/desk'
 // Go to https://www.sanity.io/docs/api-versioning to learn how API versioning works
 import {apiVersion, dataset, projectId} from '~/sanity/env';
 import {schemaTypes} from '~/sanity/schemas/';
-import {singletonTypes, pageStructure} from '~/sanity/schemas/singleton';
+import {singletonTypes, mainTypes, pageStructure} from '~/sanity/schemas/pageStructure';
 
 // @ts-ignore
 export default defineConfig({
@@ -21,7 +21,7 @@ export default defineConfig({
     },
     plugins: [
         deskTool({
-            structure: pageStructure([...singletonTypes]),
+            structure: pageStructure([...singletonTypes], [...mainTypes]),
         }),
         
         // Vision is a tool that lets you query your content with GROQ in the studio

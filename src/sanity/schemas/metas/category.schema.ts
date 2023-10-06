@@ -1,11 +1,12 @@
-import {defineField, defineType} from 'sanity';
-import {BsBook} from "react-icons/bs";
+import {defineArrayMember, defineField, defineType} from 'sanity';
+import {BsFolder} from "react-icons/bs";
+import {MdFolder} from "react-icons/md";
 
-const blogPageSchema = defineType({
-    name: 'blogPage',
-    title: 'Blog - Page',
+const categorySchema = defineType({
+    name: 'category',
+    title: 'Categories',
     type: 'document',
-    icon: BsBook,
+    icon: MdFolder,
     fields: [
         defineField({
             name: 'entryTitle',
@@ -24,20 +25,20 @@ const blogPageSchema = defineType({
             validation: (rule) => rule.required(),
         }),
         defineField({
-            name: 'preHeadingContentBlocks',
-            title: 'Pre Heading Content Blocks',
+            name: 'name',
+            title: 'Name',
             type: 'string',
             validation: (rule) => rule.required(),
         }),
         defineField({
-            name: 'heading',
-            title: 'Page Heading',
-            type: 'string',
-            validation: (rule) => rule.required(),
+            name: 'parentCategory',
+            title: 'Parent - Category',
+            type: 'reference',
+            to: [{type: 'category'}],
         }),
     ]
 });
 
 export {
-    blogPageSchema
+    categorySchema
 }
