@@ -1,6 +1,6 @@
 import {ReactElement} from "react";
 import 'react-toastify/dist/ReactToastify.css';
-import './globals.css';
+import '../globals.css';
 
 import {ToastContainer} from "react-toastify";
 import dbConnect from "~/services.db/dbConnect";

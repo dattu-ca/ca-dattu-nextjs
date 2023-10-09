@@ -1,14 +1,9 @@
-import {ArrowRightIcon} from '@sanity/icons'
+
 import {Box, Stack, Flex, Text, Button, TextInput, Card} from '@sanity/ui'
 import {useCallback, useMemo, useState} from 'react'
 import {useFormValue} from 'sanity'
-import {
-    FieldMember,
-    MemberField,
-    ObjectInputProps,
-    RenderFieldCallback,
-} from 'sanity'
 import {youtubeServices} from "~/services.youtube";
+import {FaSpinner} from "react-icons/fa";
 
 
 export function BodyYouTubeVideoIDControl(props) {
@@ -60,13 +55,21 @@ export function BodyYouTubeVideoIDControl(props) {
                 </Box>
             </Flex>
             <Stack padding={4} space={[3, 3, 4, 5]}>
-                <Card>
+                {
+                    (isFetching || true) && (<Card tone='primary' padding={4}>
+                        <Flex align='center' gap={3} justify='center'>
+                            <FaSpinner className='animate-spin'/>
+                            <Text size={4} align='center'>Fetching</Text>
+                        </Flex>
+                    </Card>)
+                }
+                <Card tone={isFetching ? 'ghost' : 'default'}>
                     <Text size={1}>{video.title}</Text>
                 </Card>
-                <Card>
+                <Card tone={isFetching ? 'ghost' : 'default'}>
                     <Text size={1}>{video.url}</Text>
                 </Card>
-                <Card>
+                <Card tone={isFetching ? 'ghost' : 'default'}>
                     <Text size={1}>
                         <div dangerouslySetInnerHTML={{__html: video.description}}/>
                     </Text>

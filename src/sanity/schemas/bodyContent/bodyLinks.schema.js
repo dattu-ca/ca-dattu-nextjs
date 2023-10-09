@@ -1,11 +1,11 @@
-import {defineArrayMember, defineField, defineType} from 'sanity';
-import {BiSolidBookContent} from "react-icons/bi";
+import {defineField, defineType} from 'sanity';
+import {FaLink} from "react-icons/fa";
 
-const bodyContentSchema = defineType({
-    name: 'bodyContent',
-    title: 'Body - Content',
+const bodyLinksSchema = defineType({
+    name: 'bodyLinks',
+    title: 'Body - Links',
     type: 'document',
-    icon: BiSolidBookContent,
+    icon: FaLink,
     fields: [
         defineField({
             name: 'entryTitle',
@@ -23,15 +23,13 @@ const bodyContentSchema = defineType({
             validation: (rule) => rule.required(),
         }),
         defineField({
-            name: 'description',
-            title: 'description',
-            type: 'array',
-            of: [defineArrayMember({type: 'block'})],
-            validation: (rule) => rule.required(),
-        }),
+            name: 'links',
+            title: 'Links',
+            type: 'bodyLinksField'
+        })
     ]
 });
 
 export {
-    bodyContentSchema
+    bodyLinksSchema
 };
