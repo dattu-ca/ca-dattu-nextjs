@@ -10,6 +10,7 @@ const WrapperComponent = () => {
     return <div className={clsx(
         'text-center'
     )}>
+        <pre>{JSON.stringify(providers, null, 2)}</pre>
         <h1>{textContent.title}</h1>
         {
             providers
