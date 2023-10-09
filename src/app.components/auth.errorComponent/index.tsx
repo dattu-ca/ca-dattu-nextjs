@@ -1,16 +1,23 @@
 import Link from "next/link";
 import clsx from "clsx";
 
-const AuthErrorComponent = () => {
+
+interface IProps {
+    textContent: {
+        title: string;
+        button: string;
+    }
+}
+const AuthErrorComponent = ({textContent} : IProps) => {
     return <div className={clsx(
         'text-center'
     )}>
-        <h1>Access Denied</h1>
+        <h1>{textContent.title}</h1>
         <Link href='/login'
               className={clsx(
                   'daisyui-btn daisyui-btn-wide',
               )}>
-            Go back to login
+            {textContent.button}
         </Link>
     </div>
 }

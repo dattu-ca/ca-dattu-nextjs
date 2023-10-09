@@ -1,3 +1,4 @@
+export * from './siteAuthConfig';
 export * from './blocksBodyContent';
 export * from './blogHome';
 export * from './blogPage';

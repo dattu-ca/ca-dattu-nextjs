@@ -1,12 +1,29 @@
-export {blogHomeServices} from './blogHome.services';
-export {blogAuthorServices} from './blogAuthor.services';
-export {blogPageServices} from './blogPage.services';
-export {blogPostServices} from './blogPost.services';
-export {blogPostsListServices} from './blogPostsList.services';
-export {siteConfigServices} from './siteConfig.services';
-export {siteNavbarServices} from './siteNavbar.services';
-export {formsServices} from './form.services';
-export {sendMailServices} from './sendMail.services';
-export {metaCategoryServices} from './metaCategory.services';
-export {metaTagServices} from './metaTag.services';
-export {metaSeriesServices} from './metaSeries.services';
+import * as siteAuthConfigServices from './siteAuthConfig.services';
+import * as blogHomeServices from './blogHome.services';
+import * as blogAuthorServices from './blogAuthor.services';
+import * as blogPageServices from './blogPage.services';
+import * as blogPostServices from './blogPost.services';
+import * as blogPostsListServices from './blogPostsList.services';
+import * as siteConfigServices from './siteConfig.services';
+import * as siteNavbarServices from './siteNavbar.services';
+import * as formsServices from './form.services';
+import * as sendMailServices from './sendMail.services';
+import * as metaCategoryServices from './metaCategory.services';
+import * as metaTagServices from './metaTag.services';
+import * as metaSeriesServices from './metaSeries.services';
+
+export {
+    siteAuthConfigServices,
+    blogPostServices,
+    formsServices,
+    blogPostsListServices,
+    metaTagServices,
+    siteConfigServices,
+    blogPageServices,
+    sendMailServices,
+    blogHomeServices,
+    siteNavbarServices,
+    metaSeriesServices,
+    metaCategoryServices,
+    blogAuthorServices
+}

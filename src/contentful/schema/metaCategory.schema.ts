@@ -15,6 +15,7 @@ export const mapContentful = (raw: any) => {
         return undefined;
     }
     const target: Partial<MetaCategory> = {
+        cmsSource: 'Contentful',
         sysId: source.sys.id,
         contentType: 'MetaCategory',
         postsLists: [],

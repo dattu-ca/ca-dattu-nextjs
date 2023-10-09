@@ -6,11 +6,11 @@ import {useAuthLoginContext} from "./context";
 import {IProvider} from "./types";
 
 const WrapperComponent = () => {
-    const {ctxData: {providers}} = useAuthLoginContext();
+    const {ctxData: {providers, textContent}} = useAuthLoginContext();
     return <div className={clsx(
         'text-center'
     )}>
-        <h1>You&apos;re about to dive into the rabbit hole. Sure you&apos;re ready?</h1>
+        <h1>{textContent.title}</h1>
         {
             providers
                 .map((provider: IProvider) => (

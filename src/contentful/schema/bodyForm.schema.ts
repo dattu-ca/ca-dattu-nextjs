@@ -14,6 +14,7 @@ export const mapContentful = (raw: any) => {
         return undefined;
     }
     const target: BodyForm = {
+        cmsSource: 'Contentful',
         contentType: 'BodyForm',
         sysId: source.sys.id,
         formId: fields.formId,

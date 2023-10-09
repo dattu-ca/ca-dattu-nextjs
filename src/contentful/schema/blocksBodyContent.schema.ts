@@ -89,6 +89,7 @@ export const mapContentful = (raw: any) => {
         return undefined;
     }
     const target: Partial<BlocksBodyContent> = {
+        cmsSource: 'Contentful',
         sysId: source.sys.id,
         contentType: 'BlocksBodyContent',
         columns: []

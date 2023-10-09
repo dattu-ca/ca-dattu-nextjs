@@ -13,6 +13,7 @@ export const mapContentful = (raw: any) => {
     const source = raw as BlogPostsListSkeleton;
     const fields = source.fields
     const target: Partial<BlogPostsList> = {
+        cmsSource: 'Contentful',
         sysId: source.sys.id,
         contentType: 'BlogPostsList',
         postsLists: [],

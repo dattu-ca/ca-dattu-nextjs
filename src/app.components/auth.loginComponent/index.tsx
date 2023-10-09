@@ -6,11 +6,15 @@ interface IProps {
     providers: Record<"google"
             | "github",
             IProvider>
-        | null
+        | null;
+    textContent: {
+        title: string;
+        button: string;
+    }
 }
 
-const AuthLoginComponent = async ({providers}: IProps) => {
-    return <AuthLoginContextProvider providers={providers}>
+const AuthLoginComponent = async ({providers, textContent}: IProps) => {
+    return <AuthLoginContextProvider providers={providers} textContent={textContent}>
         <WrapperComponent/>
     </AuthLoginContextProvider>
 }
