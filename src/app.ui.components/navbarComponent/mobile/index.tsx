@@ -42,7 +42,7 @@ const MenuMobile = () => {
     }, [isMobileMenuOpen])
 
     return <div>
-        <div role="menubar">
+        <div>
             <button
                 onClick={toggleMobileMenu}
                 aria-label={isMobileMenuOpen ? closeMenuText : openMenuText}

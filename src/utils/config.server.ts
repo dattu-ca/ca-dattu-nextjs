@@ -1,3 +1,8 @@
+
+const CONSTANTS = Object.freeze({
+    DEFAULT_SITE_NAME: process.env.DEFAULT_SITE_NAME as string
+})
+
 const CONTENTFUL_SLUGS = Object.freeze({
     HEADER_SITE_NAVBAR: process.env.CONTENTFUL_SLUGS_HEADER_SITE_NAVBAR as string,
     HOME_PAGE: process.env.CONTENTFUL_SLUGS_HOME_PAGE as string,
@@ -35,7 +40,31 @@ const NEXT_AUTH_ALLOWED_IDS = Object.freeze({
     GITHUB: (process.env.NEXT_AUTH_ALLOWED_GITHUB_ACCOUNT_IDS as string || '').split(',').map(f => f.trim())
 });
 
+const GOOGLE_AUTH = Object.freeze({
+    CLIENT_ID: process.env.GOOGLE_AUTH_CLIENT_ID as string,
+    CLIENT_SECRET: process.env.GOOGLE_AUTH_CLIENT_SECRET as string,
+})
+
+const GITHUB_AUTH = Object.freeze({
+    ID: process.env.GITHUB_ID as string,
+    SECRET: process.env.GITHUB_SECRET as string,
+})
+
+const SENDGRID = Object.freeze({
+    API_KEY: process.env.SENDGRID_API_KEY as string,
+    SITE_EMAIL: process.env.SENDGRID_SITE_EMAIL as string,
+})
+
+const CORS = Object.freeze({
+    ALLOW_CORS: (process.env.ALLOW_CORS as string || '').split(";")
+})
+
+const SANITY = Object.freeze({
+    ACCESS_TOKEN: process.env.SANITY_ACCESS_TOKEN as string
+})
+
 const SERVER_CONFIG = Object.freeze({
+    CONSTANTS,
     CONTENT_SLUGS,
     CONTENTFUL_SLUGS,
     MONGO_DB,
@@ -44,6 +73,11 @@ const SERVER_CONFIG = Object.freeze({
     SERVER_CONSTANTS,
     GOOGLE_RECAPTCHA,
     NEXT_AUTH_ALLOWED_IDS,
+    SENDGRID,
+    CORS,
+    GOOGLE_AUTH,
+    GITHUB_AUTH,
+    SANITY
 });
 
 export {
