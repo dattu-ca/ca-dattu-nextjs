@@ -16,12 +16,12 @@ interface IToken extends JWT {
 export const nextAuthOptions: NextAuthOptions = {
     providers: [
         GoogleProvider({
-            clientId: process.env.GOOGLE_AUTH_CLIENT_ID as string,
-            clientSecret: process.env.GOOGLE_AUTH_CLIENT_SECRET as string,
+            clientId: SERVER_CONFIG.GOOGLE_AUTH.CLIENT_ID,
+            clientSecret: SERVER_CONFIG.GOOGLE_AUTH.CLIENT_SECRET,
         }),
         GitHubProvider({
-            clientId: process.env.GITHUB_ID as string,
-            clientSecret: process.env.GITHUB_SECRET as string,
+            clientId: SERVER_CONFIG.GITHUB_AUTH.ID,
+            clientSecret: SERVER_CONFIG.GITHUB_AUTH.SECRET,
         })
     ],
     callbacks: {

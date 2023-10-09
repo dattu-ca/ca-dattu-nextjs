@@ -6,6 +6,7 @@ import {sanitize} from "~/utils/utils";
 import {sendMailServices} from "~/services";
 import {bodyFormServices} from "~/contentful/services";
 import {flattenFields} from "~/utils/form.utils";
+import {SERVER_CONFIG} from "~/utils/config.server";
 
 const createMessage = (form: BodyForm, formValues: Record<string, any>) => {
     const fields = flattenFields(form);
@@ -48,12 +49,12 @@ const saveForm = async ({recaptchaToken, formId, formValues}: IProps) => {
         if (result && form.sendEmailEnabled) {
             const {message, html} = createMessage(form, formValues)
             await sendMailServices.send({
-                subject: `[${process.env.DEFAULT_SITE_NAME as string}] New form has been submitted: [FormId: ${formId}]`,
+                subject: `[${SERVER_CONFIG.CONSTANTS.DEFAULT_SITE_NAME}] New form has been submitted: [FormId: ${formId}]`,
                 message,
                 html,
-                from: process.env.SENDGRID_SITE_EMAIL as string,
-                to: process.env.SENDGRID_SITE_EMAIL as string,
-                replyTo: formValues['email'] || process.env.SENDGRID_SITE_EMAIL as string
+                from: SERVER_CONFIG.SENDGRID.SITE_EMAIL,
+                to: SERVER_CONFIG.SENDGRID.SITE_EMAIL,
+                replyTo: formValues['email'] || SERVER_CONFIG.SENDGRID.SITE_EMAIL
             });
         }
         return {

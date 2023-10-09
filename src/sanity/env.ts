@@ -1,13 +1,14 @@
-export const apiVersion =
-  process.env.NEXT_PUBLIC_SANITY_API_VERSION || '2023-10-04'
+import {CLIENT_CONFIG} from "~/utils/config.client";
+
+export const apiVersion = CLIENT_CONFIG.SANITY.API_VERSION;
 
 export const dataset = assertValue(
-  process.env.NEXT_PUBLIC_SANITY_DATASET,
+  CLIENT_CONFIG.SANITY.DATASET,
   'Missing environment variable: NEXT_PUBLIC_SANITY_DATASET'
 )
 
 export const projectId = assertValue(
-  process.env.NEXT_PUBLIC_SANITY_PROJECT_ID,
+  CLIENT_CONFIG.SANITY.PROJECT_ID,
   'Missing environment variable: NEXT_PUBLIC_SANITY_PROJECT_ID'
 )
 
