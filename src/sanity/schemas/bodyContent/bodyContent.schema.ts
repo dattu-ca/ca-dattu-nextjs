@@ -1,9 +1,11 @@
-import {defineArrayMember, defineField, defineType} from 'sanity'
+import {defineArrayMember, defineField, defineType} from 'sanity';
+import {BiSolidBookContent} from "react-icons/bi";
 
 const bodyContentSchema = defineType({
     name: 'bodyContent',
     title: 'Body - Content',
-    type: 'object',
+    type: 'document',
+    icon: BiSolidBookContent,
     fields: [
         defineField({
             name: 'entryTitle',

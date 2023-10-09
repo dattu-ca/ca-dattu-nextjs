@@ -1,5 +1,4 @@
 import {defineArrayMember, defineField, defineType} from 'sanity';
-import {BsFolder} from "react-icons/bs";
 import {MdFolder} from "react-icons/md";
 
 const categorySchema = defineType({

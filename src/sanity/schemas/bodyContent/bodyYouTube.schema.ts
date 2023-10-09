@@ -1,9 +1,13 @@
-import {defineArrayMember, defineField, defineType} from 'sanity'
+import {defineArrayMember, defineField, defineType} from 'sanity';
+import { FaYoutube } from 'react-icons/fa6';
+import {BodyYouTubeVideoIDControl} from "./controls/bodyYouTubeVideoID.control";
 
+// @ts-ignore
 const bodyYouTubeSchema = defineType({
     name: 'bodyYouTube',
     title: 'Body - YouTube',
-    type: 'object',
+    type: 'document',
+    icon: FaYoutube,
     fields: [
         defineField({
             name: 'entryTitle',
@@ -17,9 +21,18 @@ const bodyYouTubeSchema = defineType({
             title: 'Slug',
             type: 'slug',
             options: {
-                source: 'entryTitle',
+                source: 'name',
             },
             validation: (rule) => rule.required(),
+        }),
+        defineField({
+            name: 'videoId',
+            title: 'Video ID',
+            type: 'string',
+            validation: (rule) => rule.required(),
+            components:{
+                input: BodyYouTubeVideoIDControl
+            },
         }),
         defineField({
             name: 'url',
@@ -30,12 +43,6 @@ const bodyYouTubeSchema = defineType({
         defineField({
             name: 'name',
             title: 'Name',
-            type: 'string',
-            validation: (rule) => rule.required(),
-        }),
-        defineField({
-            name: 'videoId',
-            title: 'Video ID',
             type: 'string',
             validation: (rule) => rule.required(),
         }),

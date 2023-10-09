@@ -46,7 +46,6 @@ const siteConfigSchema = defineType({
                 return true;
             }),
         }),
-        //NEXT_PUBLIC_DEFAULT_PAGINATION_MAX_LINKS
     ],
     preview: {
         prepare() {

@@ -1,6 +1,6 @@
 import {defineField, defineType} from 'sanity';
 import {BsBook} from "react-icons/bs";
-import {blocksBodyContentSchema} from "../objects/blocksBodyContent.schema";
+import {contentBlockSchema} from "../blocks/block.schema";
 
 const blogPageSchema = defineType({
     name: 'blogPage',
@@ -32,7 +32,7 @@ const blogPageSchema = defineType({
                 {
                     type: 'reference',
                     to: [
-                        {type: blocksBodyContentSchema.name}
+                        {type: contentBlockSchema.name},
                     ]
                 }
             ]
@@ -44,14 +44,14 @@ const blogPageSchema = defineType({
             validation: (rule) => rule.required(),
         }),
         defineField({
-            name: 'contentBlocks',
+            name: 'contentBlock',
             title: 'Content Blocks',
             type: 'array',
             of: [
                 {
                     type: 'reference',
                     to: [
-                        {type: blocksBodyContentSchema.name}
+                        {type: contentBlockSchema.name},
                     ]
                 }
             ]

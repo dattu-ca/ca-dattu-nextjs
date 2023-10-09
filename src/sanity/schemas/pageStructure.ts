@@ -1,29 +1,40 @@
-// Define the actions that should be available for singleton documents
-
-import {type DocumentDefinition} from 'sanity'
 import {type StructureResolver} from 'sanity/desk';
 
 
 import {authPagesConfigSchema} from "./singletons/authPagesConfig.schema";
 import {siteConfigSchema} from "./singletons/siteConfig.schema";
-import {blogPageSchema} from "./documents/blogPage.schema";
-import {blogPostSchema} from "./documents/blogPost.schema";
+import {blogPageSchema} from "./mainContent/blogPage.schema";
+import {blogPostSchema} from "./mainContent/blogPost.schema";
+import { homePageSchema } from './mainContent/homePage.schema'
+
+import {contentBlockSchema} from "./blocks/block.schema";
+import {bodyContentSchema} from "./bodyContent/bodyContent.schema";
+import {bodyYouTubeSchema} from "./bodyContent/bodyYouTube.schema";
 
 
-// Define the singleton document types
-export const singletonTypes = new Set([authPagesConfigSchema, siteConfigSchema]);
-export const mainTypes = new Set([blogPostSchema, blogPageSchema]);
+const settingsTypes = [...new Set([ authPagesConfigSchema, siteConfigSchema])];
+const singletonTypes = [...new Set([homePageSchema])];
+const mainTypes = [...new Set([blogPostSchema, blogPageSchema])];
+const bodyTypes = [...new Set([contentBlockSchema, bodyContentSchema, bodyYouTubeSchema])];
 
 
-// The StructureResolver is how we're changing the DeskTool structure to linking to document (named Singleton)
-// like how "Home" is handled.
-export const pageStructure = (
-    singleTonArray: DocumentDefinition[],
-    mainTypes: DocumentDefinition[],
-): StructureResolver => {
+export const pageStructure = (): StructureResolver => {
     return (S) => {
-
-        const singletonItems = singleTonArray.map((typeDef) => {
+        const singletonItems = singletonTypes.map((typeDef) => {
+            return S.listItem()
+                .title(typeDef.title!)
+                .icon(typeDef.icon)
+                .child(
+                    S.editor()
+                        .id(typeDef.name)
+                        .schemaType(typeDef.name)
+                        .documentId(typeDef.name)
+                        .views([
+                            S.view.form(),
+                        ])
+                )
+        });
+        const settingsItems = settingsTypes.map((typeDef) => {
             return S.listItem()
                 .title(typeDef.title!)
                 .icon(typeDef.icon)
@@ -39,15 +50,33 @@ export const pageStructure = (
         });
 
         const mainItems = S.documentTypeListItems()
-            .filter((listItem) => [...mainTypes].find((item) => item.name === listItem.getId()))
+            .filter((listItem) => mainTypes.find((item) => item.name === listItem.getId()))
 
-        // The default root list items (except custom ones)
-        const defaultListItems = S.documentTypeListItems()
-            .filter((listItem) => ![...singleTonArray, ...mainTypes].find((item) => item.name === listItem.getId()))
+        const bodyItems = S.documentTypeListItems()
+            .filter((listItem) => bodyTypes.find((item) => item.name === listItem.getId()))
+
+
+        const remainingItems = S.documentTypeListItems()
+            .filter((listItem) => ![
+                ...singletonTypes,
+                ...settingsTypes,
+                ...mainTypes,
+                ...bodyTypes,
+            ].find((item) => item.name === listItem.getId()))
 
         return S.list()
             .title('Content')
-            .items([...mainItems, S.divider(), ...defaultListItems, S.divider(), ...singletonItems]);
+            .items([
+                ...singletonItems,
+                S.divider(),
+                ...mainItems,
+                S.divider(),
+                ...bodyItems,
+                S.divider(),
+                ...remainingItems,
+                S.divider(),
+                ...settingsItems,
+            ]);
 
 
     }

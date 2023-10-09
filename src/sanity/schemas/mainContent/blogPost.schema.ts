@@ -1,8 +1,10 @@
 import {defineField, defineType} from 'sanity';
 import {FaScroll} from "react-icons/fa6";
+import {contentBlockSchema} from "../blocks/block.schema";
 import {categorySchema} from "../metas/category.schema";
 import {tagSchema} from "../metas/tag.schema";
-import {blocksBodyContentSchema} from "../objects/blocksBodyContent.schema";
+import {authorSchema} from "../metas/author.schema";
+import {seriesSchema} from "../metas/series.schema";
 
 const blogPostSchema = defineType({
     name: 'blogPost',
@@ -15,8 +17,6 @@ const blogPostSchema = defineType({
             title: 'Entry Title',
             description: 'This is only used for slug creation and display in CMS',
             type: 'string',
-            options: {},
-            validation: (rule) => rule.required(),
         }),
         defineField({
             name: 'slug',
@@ -31,6 +31,30 @@ const blogPostSchema = defineType({
             name: 'datePublished',
             title: 'Date Published',
             type: 'date',
+        }),
+        defineField({
+            name: 'publishStatus',
+            title: 'Publish Status',
+            type: 'string',
+            initialValue: 'Draft',
+            options: {
+                list: [
+                    {title: 'Draft', value: 'Draft'},
+                    {title: 'Published', value: 'Published'},
+                ]
+            },
+            validation: (rule) => rule.required(),
+        }),
+        defineField({
+            name: 'authors',
+            title: 'Authors',
+            type: 'array',
+            of: [
+                {
+                    type: 'reference',
+                    to: [{type: authorSchema.name}]
+                }
+            ]
         }),
         defineField({
             name: 'format',
@@ -57,14 +81,14 @@ const blogPostSchema = defineType({
                 {
                     type: 'reference',
                     to: [
-                        {type: blocksBodyContentSchema.name}
+                        {type: contentBlockSchema.name},
                     ]
                 }
             ]
         }),
         defineField({
             name: 'heading',
-            title: 'Post Heading',
+            title: 'Heading',
             type: 'string',
             validation: (rule) => rule.required(),
         }),
@@ -76,8 +100,19 @@ const blogPostSchema = defineType({
                 {
                     type: 'reference',
                     to: [
-                        {type: blocksBodyContentSchema.name}
+                        {type: contentBlockSchema.name},
                     ]
+                }
+            ]
+        }),
+        defineField({
+            name: 'series',
+            title: 'Series',
+            type: 'array',
+            of: [
+                {
+                    type: 'reference',
+                    to: [{type: seriesSchema.name}]
                 }
             ]
         }),
@@ -103,17 +138,15 @@ const blogPostSchema = defineType({
                 }
             ]
         }),
-
-
         defineField({
-            name: 'excerptPreHeadingContentBlocks',
-            title: 'Excerpt: Pre Heading Content Blocks',
+            name: 'preHeadingExcerptBlocks',
+            title: 'Pre Heading Excerpt Blocks',
             type: 'array',
             of: [
                 {
                     type: 'reference',
                     to: [
-                        {type: blocksBodyContentSchema.name}
+                        {type: contentBlockSchema.name},
                     ]
                 }
             ]
@@ -126,7 +159,7 @@ const blogPostSchema = defineType({
                 {
                     type: 'reference',
                     to: [
-                        {type: blocksBodyContentSchema.name}
+                        {type: contentBlockSchema.name},
                     ]
                 }
             ]

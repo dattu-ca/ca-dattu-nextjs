@@ -1,6 +1,5 @@
-import {defineArrayMember, defineField, defineType} from 'sanity';
+import { defineField, defineType} from 'sanity';
 import {FaUserEdit} from "react-icons/fa";
-import {blocksBodyContentSchema} from "../objects/blocksBodyContent.schema";
 
 const authorSchema = defineType({
     name: 'author',
@@ -23,19 +22,6 @@ const authorSchema = defineType({
                 source: 'entryTitle',
             },
             validation: (rule) => rule.required(),
-        }),
-        defineField({
-            name: 'preHeadingContentBlocks',
-            title: 'Pre Heading Content Blocks',
-            type: 'array',
-            of: [
-                {
-                    type: 'reference',
-                    to: [
-                        {type: blocksBodyContentSchema.name}
-                    ]
-                }
-            ]
         }),
         defineField({
             name: 'name',
@@ -63,19 +49,6 @@ const authorSchema = defineType({
             options: {
                 hotspot: true,
             },
-        }),
-        defineField({
-            name: 'contentBlocks',
-            title: 'Content Blocks',
-            type: 'array',
-            of: [
-                {
-                    type: 'reference',
-                    to: [
-                        {type: blocksBodyContentSchema.name}
-                    ]
-                }
-            ]
         }),
     ]
 });
