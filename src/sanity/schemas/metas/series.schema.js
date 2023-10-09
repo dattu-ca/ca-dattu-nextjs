@@ -1,11 +1,12 @@
-import {defineArrayMember, defineField, defineType} from 'sanity';
-import {FaHashtag} from "react-icons/fa6";
+import {defineField, defineType} from 'sanity';
+import {BsCollection} from "react-icons/bs";
 
-const tagSchema = defineType({
-    name: 'tag',
-    title: 'Tags',
+const seriesSchema = defineType({
+    name: 'series',
+    title: 'Series',
+    description: 'The series with which a list of posts belong to.',
     type: 'document',
-    icon: FaHashtag,
+    icon: BsCollection,
     fields: [
         defineField({
             name: 'entryTitle',
@@ -33,5 +34,5 @@ const tagSchema = defineType({
 });
 
 export {
-    tagSchema
+    seriesSchema
 }

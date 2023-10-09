@@ -11,9 +11,9 @@ import {
 import {youtubeServices} from "~/services.youtube";
 
 
-export function BodyYouTubeVideoIDControl(props: ObjectInputProps) {
+export function BodyYouTubeVideoIDControl(props) {
     const [isFetching, setIsFetching] = useState(false);
-    const [video, setVideo] = useState<{ title: string, url: string, description: string  }>({
+    const [video, setVideo] = useState({
         description: '',
         title: '',
         url: ''
@@ -29,7 +29,7 @@ export function BodyYouTubeVideoIDControl(props: ObjectInputProps) {
 
         if (validation.length === 0) {
             setIsFetching(true);
-            const video = await youtubeServices.fetchVideo(value as string);
+            const video = await youtubeServices.fetchVideo(value);
             setIsFetching(false);
             if (video && video.items && Array.isArray(video.items) && video.items.length > 0) {
                 console.log('videeeeee', video.items[0])

@@ -1,8 +1,6 @@
 import {defineField, defineType} from 'sanity'
 import {FaSignInAlt} from "react-icons/fa";
 
-
-
 const authPagesConfigSchema = defineType({
     name: 'authPagesConfig',
     title: 'Auth Pages Config',

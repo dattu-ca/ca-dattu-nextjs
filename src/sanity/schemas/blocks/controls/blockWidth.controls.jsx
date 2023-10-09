@@ -8,11 +8,11 @@ import {
 } from 'sanity';
 
 
-export function BlockWidthControls(props: ObjectInputProps) {
+export function BlockWidthControls(props) {
     const {members, renderInput, renderItem, renderPreview} = props
 
     const fieldMembers = useMemo(
-        () => members.filter((mem) => mem.kind === 'field') as FieldMember[],
+        () => members.filter((mem) => mem.kind === 'field'),
         [members],
     )
 
@@ -22,7 +22,7 @@ export function BlockWidthControls(props: ObjectInputProps) {
     const lg = fieldMembers.find((mem) => mem.name === 'lg')
     const xl = fieldMembers.find((mem) => mem.name === 'xl')
 
-    const renderField: RenderFieldCallback = useCallback(
+    const renderField = useCallback(
         (props) => props.children,
         [],
     )
@@ -35,7 +35,7 @@ export function BlockWidthControls(props: ObjectInputProps) {
     return (
         <Box>
             <Flex align="center" justify='center' gap={3} style={{ textAlign: 'center', marginBottom: 15 }}>
-                <Box flex={1} align='center'>
+                <Box flex={1}>
                     {xs && <strong>Xs</strong>}
                 </Box>
                 <Box flex={1} >

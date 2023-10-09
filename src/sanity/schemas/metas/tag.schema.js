@@ -1,11 +1,11 @@
-import {defineArrayMember, defineField, defineType} from 'sanity';
-import {MdFolder} from "react-icons/md";
+import { defineField, defineType} from 'sanity';
+import {FaHashtag} from "react-icons/fa6";
 
-const categorySchema = defineType({
-    name: 'category',
-    title: 'Categories',
+const tagSchema = defineType({
+    name: 'tag',
+    title: 'Tags',
     type: 'document',
-    icon: MdFolder,
+    icon: FaHashtag,
     fields: [
         defineField({
             name: 'entryTitle',
@@ -29,15 +29,9 @@ const categorySchema = defineType({
             type: 'string',
             validation: (rule) => rule.required(),
         }),
-        defineField({
-            name: 'parentCategory',
-            title: 'Parent - Category',
-            type: 'reference',
-            to: [{type: 'category'}],
-        }),
     ]
 });
 
 export {
-    categorySchema
+    tagSchema
 }

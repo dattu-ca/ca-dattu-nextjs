@@ -1,12 +1,11 @@
-import {defineArrayMember, defineField, defineType} from 'sanity';
-import {BsCollection} from "react-icons/bs";
+import { defineField, defineType} from 'sanity';
+import {MdFolder} from "react-icons/md";
 
-const seriesSchema = defineType({
-    name: 'series',
-    title: 'Series',
-    description: 'The series with which a list of posts belong to.',
+const categorySchema = defineType({
+    name: 'category',
+    title: 'Categories',
     type: 'document',
-    icon: BsCollection,
+    icon: MdFolder,
     fields: [
         defineField({
             name: 'entryTitle',
@@ -30,9 +29,15 @@ const seriesSchema = defineType({
             type: 'string',
             validation: (rule) => rule.required(),
         }),
+        defineField({
+            name: 'parentCategory',
+            title: 'Parent - Category',
+            type: 'reference',
+            to: [{type: 'category'}],
+        }),
     ]
 });
 
 export {
-    seriesSchema
+    categorySchema
 }

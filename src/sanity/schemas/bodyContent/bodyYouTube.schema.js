@@ -2,7 +2,6 @@ import {defineArrayMember, defineField, defineType} from 'sanity';
 import { FaYoutube } from 'react-icons/fa6';
 import {BodyYouTubeVideoIDControl} from "./controls/bodyYouTubeVideoID.control";
 
-// @ts-ignore
 const bodyYouTubeSchema = defineType({
     name: 'bodyYouTube',
     title: 'Body - YouTube',

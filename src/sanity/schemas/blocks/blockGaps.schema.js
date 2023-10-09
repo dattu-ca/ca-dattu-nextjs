@@ -1,8 +1,7 @@
 import {defineType} from 'sanity';
-
 import {BlockGapsControls} from './controls/blockGaps.controls'
 
-const createField = (viewport: string) => ({
+const createField = (viewport) => ({
     name: viewport.toLowerCase(),
     title: viewport,
     type: 'string',
@@ -20,11 +19,10 @@ const createField = (viewport: string) => ({
     validation: (rule) => rule.required(),
 })
 
-// @ts-ignore
-const columnGapsSchema = defineType({
-    name: 'columnGap',
-    title: 'Column Gaps',
-    description: 'The gaps between content of the columns',
+const blockGapsSchema = defineType({
+    name: 'blockGap',
+    title: 'Block Gaps',
+    description: 'The gaps between columns for this content to take  up.',
     type: 'object',
     components: {
         input: BlockGapsControls,
@@ -39,5 +37,5 @@ const columnGapsSchema = defineType({
 });
 
 export {
-    columnGapsSchema
+    blockGapsSchema
 };

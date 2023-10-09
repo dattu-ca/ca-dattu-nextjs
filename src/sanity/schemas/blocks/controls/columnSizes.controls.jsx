@@ -8,8 +8,8 @@ import {
 } from 'sanity';
 
 
-export function ColumnSizeControls(props: ObjectInputProps) {
-    const numberOfColumnsProp = useFormValue(['numberOfColumns']) as unknown as number;
+export function ColumnSizeControls(props) {
+    const numberOfColumnsProp = Number(useFormValue(['numberOfColumns']));
     const numberOfColumns = !isNaN(numberOfColumnsProp) ? Math.min(Math.max(1, numberOfColumnsProp), 5) : undefined;
 
     const {value, onChange} = props
@@ -26,7 +26,7 @@ export function ColumnSizeControls(props: ObjectInputProps) {
             })
             onChange(param);
         }
-    }, [numberOfColumns])
+    }, [numberOfColumns, onChange])
 
     const onChangeHandler = (viewport, index, inputValue) => {
         const newInputValue = Math.min(Math.max(0, Number(inputValue)), 12);
@@ -49,7 +49,7 @@ export function ColumnSizeControls(props: ObjectInputProps) {
     return (
         <Card>
             <Flex align="center" justify='center' gap={3} style={{marginBottom: 20}}>
-                <Box flex={1} align='center'>
+                <Box flex={1}>
                     <Text>Viewport</Text>
                 </Box>
                 {
@@ -62,7 +62,7 @@ export function ColumnSizeControls(props: ObjectInputProps) {
             {
                 ['Xs', 'Sm', 'Md', 'Lg', 'Xl'].map(viewport => (
                     <Flex align="center" justify='center' gap={3} key={viewport}>
-                        <Box flex={1} align='center'>
+                        <Box flex={1}>
                             <Text>{viewport}</Text>
                         </Box>
                         {

@@ -14,7 +14,6 @@ export const fetchVideo = async (slug: string) => {
         return response?.data;
     } catch (e) {
         console.error(e);
-        throw new Error(e);
     }
-
+    return undefined;
 }

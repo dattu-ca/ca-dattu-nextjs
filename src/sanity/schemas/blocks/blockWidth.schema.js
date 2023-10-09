@@ -2,7 +2,7 @@ import {defineType} from 'sanity';
 
 import {BlockWidthControls} from './controls/blockWidth.controls'
 
-const createField = (viewport: string) => ({
+const createField = (viewport) => ({
     name: viewport.toLowerCase(),
     title: viewport,
     type: 'string',
@@ -18,7 +18,6 @@ const createField = (viewport: string) => ({
     validation: (rule) => rule.required(),
 })
 
-// @ts-ignore
 const blockWidthSchema = defineType({
     name: 'blockWidth',
     title: 'Block Width',

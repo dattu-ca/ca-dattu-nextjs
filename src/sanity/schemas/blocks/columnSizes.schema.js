@@ -1,8 +1,7 @@
 import {defineType} from 'sanity';
-
 import {ColumnSizeControls} from "./controls/columnSizes.controls";
 
-const createField = (viewport: string) => ({
+const createField = (viewport) => ({
     name: viewport.toLowerCase(),
     title: viewport,
     type: 'array',
@@ -11,7 +10,6 @@ const createField = (viewport: string) => ({
     validation: (rule) => rule.required(),
 })
 
-// @ts-ignore
 const columnSizesSchema = defineType({
     name: 'columnSize',
     title: 'Column Sizes',

@@ -8,11 +8,11 @@ import {
 } from 'sanity';
 
 
-export function BlockGapsControls(props: ObjectInputProps) {
+export function BlockGapsControls(props) {
     const {members, renderInput, renderItem, renderPreview} = props
 
     const fieldMembers = useMemo(
-        () => members.filter((mem) => mem.kind === 'field') as FieldMember[],
+        () => members.filter((mem) => mem.kind === 'field'),
         [members],
     )
 
@@ -22,7 +22,7 @@ export function BlockGapsControls(props: ObjectInputProps) {
     const lg = fieldMembers.find((mem) => mem.name === 'lg')
     const xl = fieldMembers.find((mem) => mem.name === 'xl')
 
-    const renderField: RenderFieldCallback = useCallback(
+    const renderField = useCallback(
         (props) => props.children,
         [],
     )
