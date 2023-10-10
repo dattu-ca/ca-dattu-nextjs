@@ -13,7 +13,9 @@ import {bodyYouTubeSchema} from "./bodyContent/bodyYouTube.schema";
 import {bodyContentSchema} from "./bodyContent/bodyContent.schema";
 import {bodyImagesSchema} from './bodyContent/bodyImages.schema';
 import {bodyLinksSchema} from './bodyContent/bodyLinks.schema';
-import { bodyLinksFieldSchema } from './bodyContent/bodyLinksField.schema';
+import {bodyLinksFieldSchema} from './bodyContent/bodyLinksField.schema';
+import {bodyFormSchema} from './bodyContent/bodyForm.schema';
+import{bodyPostsListSchema} from './bodyContent/bodyPostsList.schema';
 
 import {authPagesConfigSchema} from "./singletons/authPagesConfig.schema";
 import {siteConfigSchema} from "./singletons/siteConfig.schema";
@@ -59,6 +61,8 @@ const schemaTypes: SchemaTypeDefinition[] = [
     bodyImagesSchema,
     bodyLinksSchema,
     bodyLinksFieldSchema,
+    bodyFormSchema,
+    bodyPostsListSchema,
 ];
 
 

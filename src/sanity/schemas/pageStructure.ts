@@ -13,12 +13,14 @@ import {bodyContentSchema} from "./bodyContent/bodyContent.schema";
 import {bodyYouTubeSchema} from "./bodyContent/bodyYouTube.schema";
 import {bodyImagesSchema} from './bodyContent/bodyImages.schema';
 import {bodyLinksSchema} from './bodyContent/bodyLinks.schema';
+import {bodyFormSchema} from './bodyContent/bodyForm.schema';
+import{bodyPostsListSchema} from './bodyContent/bodyPostsList.schema';
 
 
 const settingsTypes = [...new Set([siteNavbarSchema, authPagesConfigSchema, siteConfigSchema])];
 const singletonTypes = [...new Set([homePageSchema])];
 const mainTypes = [...new Set([blogPostSchema, blogPageSchema])];
-const bodyTypes = [...new Set([contentBlockSchema, bodyContentSchema, bodyImagesSchema, bodyYouTubeSchema, bodyLinksSchema])];
+const bodyTypes = [...new Set([contentBlockSchema, bodyContentSchema, bodyImagesSchema, bodyFormSchema, bodyPostsListSchema, bodyYouTubeSchema, bodyLinksSchema])];
 
 
 export const pageStructure = (): StructureResolver => {

@@ -1,32 +1,47 @@
-import {useEffect, useMemo} from 'react';
+import {useEffect, useRef, useState} from 'react';
+import {isEqual} from 'lodash';
 import {Box, Flex, Text, Card, TextInput} from '@sanity/ui';
 import {
-    FieldMember,
-    ObjectInputProps,
     useFormValue,
     set,
 } from 'sanity';
 
 
 export function ColumnSizeControls(props) {
+    const {value, onChange} = props;
+    
+    
     const numberOfColumnsProp = Number(useFormValue(['numberOfColumns']));
-    const numberOfColumns = !isNaN(numberOfColumnsProp) ? Math.min(Math.max(1, numberOfColumnsProp), 5) : undefined;
+    const numberOfColumnsPropRef = useRef(numberOfColumnsProp)
+    const [numberOfColumns, setNumberOfColumns] = useState(!isNaN(numberOfColumnsProp) ? Math.min(Math.max(1, numberOfColumnsProp), 5) : undefined);
+    
+    useEffect(() => {
+        if(numberOfColumnsPropRef.current !== numberOfColumnsProp){
+            numberOfColumnsPropRef.current = numberOfColumnsProp;
+            setNumberOfColumns(!isNaN(numberOfColumnsProp) ? Math.min(Math.max(1, numberOfColumnsProp), 5) : undefined)
+        }
+    }, [numberOfColumnsProp])
+    
+    
 
-    const {value, onChange} = props
+    
 
     useEffect(() => {
-        if (numberOfColumns) {
+        if (numberOfColumns !== numberOfColumnsPropRef.current) {
             const row = Array(numberOfColumns).fill(12);
-            const param = set({
+            const newValue = {
                 'xs': [...row],
                 'sm': [...row],
                 'md': [...row],
                 'lg': [...row],
                 'xl': [...row],
-            })
-            onChange(param);
+            }
+            if (!isEqual(value, newValue)) {
+                const param = set(newValue)
+                onChange(param);
+            }
         }
-    }, [numberOfColumns, onChange])
+    }, [numberOfColumns, onChange, value])
 
     const onChangeHandler = (viewport, index, inputValue) => {
         const newInputValue = Math.min(Math.max(0, Number(inputValue)), 12);
@@ -40,7 +55,7 @@ export function ColumnSizeControls(props) {
     }
 
 
-    if (typeof numberOfColumns === 'undefined') {
+    if (typeof numberOfColumns === 'undefined' || !numberOfColumns) {
         return <Card tone='caution' padding={4}><Text size={4}>Please enter a number of columns</Text></Card>
     }
     if (!value) {

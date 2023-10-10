@@ -18,6 +18,7 @@ export const fetchBySlug = async (): Promise<SiteAuthConfig> => {
                 errorButton
             }`
         )
+        
         return {
             cmsSource: 'Sanity',
             contentType: 'SiteAuthConfig',

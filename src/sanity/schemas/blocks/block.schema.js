@@ -32,7 +32,7 @@ const contentBlockSchema = defineType({
             title: 'Number of Columns',
             type: 'number',
             initialValue: 3,
-            validation: (rule) => rule.required().min(1).max(5),
+            validation: (rule) => rule.required().min(1).max(3),
         }),
         defineField({
             name: 'widths',
