@@ -23,6 +23,11 @@ const bodyPostsListSchema = defineType({
             validation: (rule) => rule.required(),
         }),
         defineField({
+            name: 'name',
+            title: 'Name',
+            type: 'string',
+        }),
+        defineField({
             name: 'postsListIdentifier',
             title: 'Posts List Identifier',
             type: 'string',

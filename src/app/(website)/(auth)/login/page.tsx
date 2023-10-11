@@ -11,7 +11,7 @@ const Page = async () => {
     if (session) {
         return redirect('/dashboard', RedirectType.replace);
     }
-    const cmsContent = await siteAuthConfigServices.fetchBySlug();
+    const cmsContent = await siteAuthConfigServices.fetch();
     const providers = await getProviders();
     return <div>
         <AuthLoginComponent providers={providers}

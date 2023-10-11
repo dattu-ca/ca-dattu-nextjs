@@ -9,7 +9,7 @@ const Page = async () => {
     if (session) {
         return redirect('/dashboard', RedirectType.replace);
     }
-    const cmsContent = await siteAuthConfigServices.fetchBySlug();
+    const cmsContent = await siteAuthConfigServices.fetch();
 
     return <div>
         <AuthErrorComponent textContent={{

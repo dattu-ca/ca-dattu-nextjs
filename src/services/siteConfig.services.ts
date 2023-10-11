@@ -2,4 +2,4 @@
 import {siteConfigServices} from "~/sanity/services";
 
 
-export const fetchBySlug = () => siteConfigServices.fetchBySlug();
+export const fetch = () => siteConfigServices.fetch();

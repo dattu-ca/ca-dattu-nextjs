@@ -2,7 +2,7 @@ import {BaseModel} from "./types";
 
 export interface ILink extends BaseModel<'Link'> {
     id: string;
-    icon?: string;
+    target?: '_self' | '_blank' | undefined;
     label: string;
     url: string;
     links?: ILink[];

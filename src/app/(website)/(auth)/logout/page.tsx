@@ -10,7 +10,7 @@ const Page = async () => {
         return redirect('/', RedirectType.replace);
     }
 
-    const cmsContent = await siteAuthConfigServices.fetchBySlug();
+    const cmsContent = await siteAuthConfigServices.fetch();
 
     return <div>
         <AuthLogoutComponent textContent={{

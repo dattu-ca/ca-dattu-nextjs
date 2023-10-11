@@ -1,5 +1,5 @@
 'use server';
-import {siteNavbarServices} from "~/contentful/services";
+import {siteNavbarServices} from "~/sanity/services";
 
 
-export const fetchBySlug = (slug: string) => siteNavbarServices.fetchBySlug(slug);
+export const fetch = () => siteNavbarServices.fetch();

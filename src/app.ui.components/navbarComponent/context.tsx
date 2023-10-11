@@ -157,28 +157,32 @@ const NavbarContextProvider = ({children, navbar: rawNavbar, session}: INavbarCo
                 id: 'dashboard',
                 contentType: 'Link',
                 url: '/dashboard',
-                label: 'Dashboard'
+                label: 'Dashboard',
+                target: "_self"
             });
             items.push({
                 sysId: 'profile',
                 id: 'profile',
                 contentType: 'Link',
                 url: '/profile',
-                label: 'Profile'
+                label: 'Profile',
+                target: "_self"
             });
             items.push({
                 sysId: 'cms',
                 id: 'cms',
                 contentType: 'Link',
                 url: '/cms',
-                label: 'CMS'
+                label: 'CMS',
+                target: "_blank"
             });
             items.push({
                 sysId: 'logout',
                 id: 'logout',
                 contentType: 'Link',
                 url: '/logout',
-                label: 'Logout'
+                label: 'Logout',
+                target: "_self"
             });
         } else {
             items.push({
@@ -186,7 +190,8 @@ const NavbarContextProvider = ({children, navbar: rawNavbar, session}: INavbarCo
                 id: 'login',
                 contentType: 'Link',
                 url: '/login',
-                label: 'Login'
+                label: 'Login',
+                target: "_self"
             });
         }
         return items;

@@ -23,6 +23,11 @@ const bodyContentSchema = defineType({
             validation: (rule) => rule.required(),
         }),
         defineField({
+            name: 'name',
+            title: 'Name',
+            type: 'string',
+        }),
+        defineField({
             name: 'description',
             title: 'description',
             type: 'array',

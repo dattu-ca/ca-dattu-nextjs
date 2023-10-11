@@ -20,20 +20,24 @@ import clsx from "clsx";
 const {HEADER_SITE_NAVBAR} = SERVER_CONFIG.CONTENTFUL_SLUGS;
 
 
-// export const generateMetadata = async () => {
-//     const cmsContent = await siteConfigServices.fetchBySlug();
-//     if (!cmsContent) {
-//         return {};
-//     }
-//     const {siteTitleDefault, siteTitleTemplate, siteDescription} = cmsContent;
-//     return {
-//         title: {
-//             template: siteTitleTemplate,
-//             default: siteTitleDefault,
-//         },
-//         description: siteDescription,
-//     }
-// }
+export const generateMetadata = async () => {
+    const cmsContent = await siteConfigServices.fetch();
+    if (!cmsContent) {
+        return {};
+    }
+    const {
+        siteTitleDefault,
+        siteTitleTemplate,
+        siteDescription
+    } = cmsContent;
+    return {
+        title: {
+            template: siteTitleTemplate,
+            default: siteTitleDefault,
+        },
+        description: siteDescription,
+    }
+}
 
 interface IProps {
     children: ReactElement | ReactElement[];
@@ -41,10 +45,9 @@ interface IProps {
 
 const RootLayout = async ({children}: IProps) => {
     await dbConnect();
-    const navbar = await siteNavbarServices.fetchBySlug(HEADER_SITE_NAVBAR);
+    const navbar = await siteNavbarServices.fetch();
     const session = await getAuthSession();
     return (
-
         <html lang="en" suppressHydrationWarning className='h-full antialiased'>
         <head>
             <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
