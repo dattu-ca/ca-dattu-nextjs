@@ -1,6 +1,6 @@
 import {defineField, defineType} from 'sanity';
 import {SiReacthookform} from "react-icons/si";
-import {BodyFormJSONEditorControl} from "./controls/bodyFormJSONEditor.control";
+// import {BodyFormJSONEditorControl} from "./controls/bodyFormJSONEditor.control";
 
 const bodyFormSchema = defineType({
     name: 'bodyForm',
@@ -87,9 +87,9 @@ const bodyFormSchema = defineType({
             name: 'formModel',
             title: 'Form Model',
             type: 'string',
-            components: {
-                input: BodyFormJSONEditorControl
-            }
+            // components: {
+            //     input: BodyFormJSONEditorControl
+            // }
         }),
     ]
 });

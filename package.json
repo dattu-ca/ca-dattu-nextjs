@@ -12,7 +12,7 @@
     "contentful-codegen": "contentful-typescript-codegen --output src/contentful/schema/generated/index.d.ts"
   },
   "devDependencies": {
-    "@netlify/plugin-nextjs": "^4.29.5-appdir.0",
+    "@netlify/plugin-nextjs": "^4.40.2",
     "@testing-library/jest-dom": "^6.1.2",
     "@testing-library/react": "^14.0.0",
     "@testing-library/user-event": "^14.4.3",
