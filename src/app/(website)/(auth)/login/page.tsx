@@ -16,8 +16,8 @@ const Page = async () => {
     return <div>
         <AuthLoginComponent providers={providers}
                             textContent={{
-                                title: cmsContent.loginTitle,
-                                button: cmsContent.loginButton
+                                title: cmsContent?.loginTitle ?? 'Login',
+                                button: cmsContent?.loginButton ?? 'Login with '
                             }}/>
     </div>
 }

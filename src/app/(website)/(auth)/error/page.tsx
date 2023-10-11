@@ -13,8 +13,8 @@ const Page = async () => {
 
     return <div>
         <AuthErrorComponent textContent={{
-            title: cmsContent.errorTitle,
-            button: cmsContent.errorButton
+            title: cmsContent?.errorTitle ?? 'Error',
+            button: cmsContent?.errorButton ?? 'Go back to login'
         }}/>
     </div>
 }
