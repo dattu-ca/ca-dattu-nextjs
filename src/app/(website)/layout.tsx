@@ -20,20 +20,20 @@ import clsx from "clsx";
 const {HEADER_SITE_NAVBAR} = SERVER_CONFIG.CONTENTFUL_SLUGS;
 
 
-export const generateMetadata = async () => {
-    const cmsContent = await siteConfigServices.fetchBySlug();
-    if (!cmsContent) {
-        return {};
-    }
-    const {siteTitleDefault, siteTitleTemplate, siteDescription} = cmsContent;
-    return {
-        title: {
-            template: siteTitleTemplate,
-            default: siteTitleDefault,
-        },
-        description: siteDescription,
-    }
-}
+// export const generateMetadata = async () => {
+//     const cmsContent = await siteConfigServices.fetchBySlug();
+//     if (!cmsContent) {
+//         return {};
+//     }
+//     const {siteTitleDefault, siteTitleTemplate, siteDescription} = cmsContent;
+//     return {
+//         title: {
+//             template: siteTitleTemplate,
+//             default: siteTitleDefault,
+//         },
+//         description: siteDescription,
+//     }
+// }
 
 interface IProps {
     children: ReactElement | ReactElement[];
