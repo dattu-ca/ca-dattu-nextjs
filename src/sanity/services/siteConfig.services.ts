@@ -15,6 +15,10 @@ export const fetchBySlug = async (): Promise<SiteConfig> => {
                 siteDescription
             }`
         )
+
+
+        
+        
         return {
             cmsSource: 'Sanity',
             contentType: 'SiteConfig',

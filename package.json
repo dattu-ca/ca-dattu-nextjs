@@ -12,7 +12,7 @@
     "contentful-codegen": "contentful-typescript-codegen --output src/contentful/schema/generated/index.d.ts"
   },
   "devDependencies": {
-    "@netlify/plugin-nextjs": "^4.29.5-appdir.0",
+    "@netlify/plugin-nextjs": "^4.40.2",
     "@testing-library/jest-dom": "^6.1.2",
     "@testing-library/react": "^14.0.0",
     "@testing-library/user-event": "^14.4.3",
@@ -38,7 +38,9 @@
     "@contentful/rich-text-types": "^16.2.1",
     "@headlessui/react": "^1.7.17",
     "@mui/base": "^5.0.0-beta.13",
+    "@sanity/icons": "^2.5.0",
     "@sanity/image-url": "^1.0.2",
+    "@sanity/ui": "^1.8.2",
     "@sanity/vision": "^3.17.0",
     "@sendgrid/mail": "^7.7.0",
     "@uidotdev/usehooks": "github:uidotdev/usehooks",
@@ -80,7 +82,9 @@
     "sanity-plugin-iframe-pane": "^2.5.7",
     "styled-components": "5.2",
     "superjson": "^1.13.1",
+    "svelte-jsoneditor": "^0.18.8",
     "tailwindcss": "^3.3.3",
+    "vanilla-jsoneditor": "^0.18.8",
     "web3": "^1.7.1"
   }
 }

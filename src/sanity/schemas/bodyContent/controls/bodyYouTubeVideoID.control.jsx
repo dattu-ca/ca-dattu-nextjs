@@ -1,14 +1,7 @@
-import {ArrowRightIcon} from '@sanity/icons'
 import {Box, Stack, Flex, Text, Button, TextInput, Card} from '@sanity/ui'
-import {useCallback, useMemo, useState} from 'react'
-import {useFormValue} from 'sanity'
-import {
-    FieldMember,
-    MemberField,
-    ObjectInputProps,
-    RenderFieldCallback,
-} from 'sanity'
+import {useState} from 'react'
 import {youtubeServices} from "~/services.youtube";
+import {FaSpinner} from "react-icons/fa";
 
 
 export function BodyYouTubeVideoIDControl(props) {
@@ -19,20 +12,13 @@ export function BodyYouTubeVideoIDControl(props) {
         url: ''
     })
     const {value, elementProps, validation} = props;
-    const documentId = useFormValue(["_id"]);
-    const docId = typeof documentId === "string"
-        ? documentId.replace("drafts.", "")
-        : props.id;
-
 
     const onFetchHandler = async () => {
-
         if (validation.length === 0) {
             setIsFetching(true);
             const video = await youtubeServices.fetchVideo(value);
             setIsFetching(false);
             if (video && video.items && Array.isArray(video.items) && video.items.length > 0) {
-                console.log('videeeeee', video.items[0])
                 const url = `https://www.youtube.com/watch?v=${value}`;
                 setVideo({
                     title: video.items[0].snippet.title,
@@ -41,6 +27,10 @@ export function BodyYouTubeVideoIDControl(props) {
                 })
             }
         }
+    }
+
+    const onSetHandler = (key) => {
+        
     }
 
 
@@ -60,16 +50,64 @@ export function BodyYouTubeVideoIDControl(props) {
                 </Box>
             </Flex>
             <Stack padding={4} space={[3, 3, 4, 5]}>
-                <Card>
-                    <Text size={1}>{video.title}</Text>
+                {
+                    isFetching && (<Card tone='primary' padding={4}>
+                        <Flex align='center' gap={3} justify='center'>
+                            <FaSpinner className='animate-spin'/>
+                            <Text size={4} align='center'>Fetching</Text>
+                        </Flex>
+                    </Card>)
+                }
+                <Card tone={isFetching ? 'ghost' : 'default'}>
+                    <Flex gap={2}>
+                        <Box flex={1}>
+                            <Text size={1}>{video.title}</Text>
+                        </Box>
+                        <Box>
+                            <Button disabled={isFetching || !video.title}
+                                    fontSize={1}
+                                    padding={1}
+                                    paddingX={4}
+                                    mode='ghost'
+                                    tone='primary'
+                                    onClick={() => onSetHandler('title')}>Set</Button>
+                        </Box>
+                    </Flex>
                 </Card>
-                <Card>
-                    <Text size={1}>{video.url}</Text>
+                <Card tone={isFetching ? 'ghost' : 'default'}>
+                    <Flex gap={2}>
+                        <Box flex={1}>
+                            <Text size={1}>{video.url}</Text>
+                        </Box>
+                        <Box>
+                            <Button disabled={isFetching || !video.url}
+                                    fontSize={1}
+                                    padding={1}
+                                    paddingX={4}
+                                    mode='ghost'
+                                    tone='primary'
+                                    onClick={() => onSetHandler('url')}>Set</Button>
+                        </Box>
+                    </Flex>
                 </Card>
-                <Card>
-                    <Text size={1}>
-                        <div dangerouslySetInnerHTML={{__html: video.description}}/>
-                    </Text>
+                <Card tone={isFetching ? 'ghost' : 'default'}>
+                    <Flex gap={2}>
+                        <Box flex={1}>
+                            <Text size={1}>
+                                <div dangerouslySetInnerHTML={{__html: video.description}}/>
+                            </Text>
+                        </Box>
+                        <Box>
+                            <Button disabled={isFetching || !video.description}
+                                    fontSize={1}
+                                    padding={1}
+                                    paddingX={4}
+                                    mode='ghost'
+                                    tone='primary'
+                                    onClick={() => onSetHandler('description')}>Set</Button>
+                        </Box>
+                    </Flex>
+
                 </Card>
             </Stack>
         </Box>

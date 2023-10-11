@@ -2,6 +2,10 @@ import {defineField, defineType} from 'sanity'
 import {columnGapsSchema} from "./columnGaps.schema";
 import {bodyContentSchema} from "../bodyContent/bodyContent.schema";
 import {bodyYouTubeSchema} from "../bodyContent/bodyYouTube.schema";
+import {bodyImagesSchema} from '../bodyContent/bodyImages.schema';
+import {bodyLinksSchema} from '../bodyContent/bodyLinks.schema';
+import {bodyFormSchema} from '../bodyContent/bodyForm.schema';
+import {bodyPostsListSchema} from '../bodyContent/bodyPostsList.schema';
 
 const contentColumnSchema = defineType({
     name: 'contentColumn',
@@ -46,7 +50,11 @@ const contentColumnSchema = defineType({
                     type: 'reference',
                     to: [
                         {type: bodyContentSchema.name},
-                        {type: bodyYouTubeSchema.name}
+                        {type: bodyYouTubeSchema.name},
+                        {type: bodyImagesSchema.name},
+                        {type: bodyLinksSchema.name},
+                        {type: bodyFormSchema.name},
+                        {type: bodyPostsListSchema.name},
                     ]
                 },
             ]
