@@ -5,13 +5,13 @@ import '../globals.css';
 import {ToastContainer} from "react-toastify";
 import dbConnect from "~/services.db/dbConnect";
 import {siteConfigServices, siteNavbarServices} from "~/services";
-// import {getAuthSession} from "~/auth.services";
+import {getAuthSession} from "~/auth.services";
 import {SERVER_CONFIG} from "~/utils/config.server";
 import "~/utils/dayjs.config";
 
 
 import {ThemeSwitcherProvider} from "~/app.ui.components/themeSwitcher/provider";
-// import NavbarComponent from "~/app.ui.components/navbarComponent";
+import NavbarComponent from "~/app.ui.components/navbarComponent";
 import {SkipLink} from "~/app.ui.components/skipLink";
 import {RootLayoutComponent} from "~/app.ui.components/rootLayout";
 import clsx from "clsx";
@@ -20,20 +20,20 @@ import clsx from "clsx";
 const {HEADER_SITE_NAVBAR} = SERVER_CONFIG.CONTENTFUL_SLUGS;
 
 
-export const generateMetadata = async () => {
-    const cmsContent = await siteConfigServices.fetchBySlug();
-    if (!cmsContent) {
-        return {};
-    }
-    const {siteTitleDefault, siteTitleTemplate, siteDescription} = cmsContent;
-    return {
-        title: {
-            template: siteTitleTemplate,
-            default: siteTitleDefault,
-        },
-        description: siteDescription,
-    }
-}
+// export const generateMetadata = async () => {
+//     const cmsContent = await siteConfigServices.fetchBySlug();
+//     if (!cmsContent) {
+//         return {};
+//     }
+//     const {siteTitleDefault, siteTitleTemplate, siteDescription} = cmsContent;
+//     return {
+//         title: {
+//             template: siteTitleTemplate,
+//             default: siteTitleDefault,
+//         },
+//         description: siteDescription,
+//     }
+// }
 
 interface IProps {
     children: ReactElement | ReactElement[];
@@ -41,8 +41,8 @@ interface IProps {
 
 const RootLayout = async ({children}: IProps) => {
     await dbConnect();
-    // const navbar = await siteNavbarServices.fetchBySlug(HEADER_SITE_NAVBAR);
-    // const session = await getAuthSession();
+    const navbar = await siteNavbarServices.fetchBySlug(HEADER_SITE_NAVBAR);
+    const session = await getAuthSession();
     return (
 
         <html lang="en" suppressHydrationWarning className='h-full antialiased'>
@@ -57,11 +57,11 @@ const RootLayout = async ({children}: IProps) => {
         <ThemeSwitcherProvider>
             <SkipLink skipToId='mainContent'/>
             <RootLayoutComponent>
-                {/*<header>*/}
-                {/*    {*/}
-                {/*        navbar && <NavbarComponent navbar={navbar} session={session} data-superjson/>*/}
-                {/*    }*/}
-                {/*</header>*/}
+                <header>
+                    {
+                        navbar && <NavbarComponent navbar={navbar} session={session} data-superjson/>
+                    }
+                </header>
                 <main id="mainContent" className={clsx('h-full')}>
                     {children}
                 </main>
