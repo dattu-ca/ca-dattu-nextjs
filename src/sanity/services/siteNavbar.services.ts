@@ -35,9 +35,7 @@ export const fetch = async () => {
                       name,
                       links
                     }
-                }`, {
-                next: {revalidate: 0}
-            }
+                }`
         )
         return mapSanity(response);
     } catch (e) {

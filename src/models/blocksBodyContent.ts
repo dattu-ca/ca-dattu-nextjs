@@ -3,7 +3,7 @@ import {BodyContent} from "./bodyContent";
 import {BodyForm} from "./bodyForm";
 import {BodyImage} from "./bodyImage";
 import {BodyLinks} from "./bodyLinks";
-import {BodyYoutube} from "./bodyYoutube";
+import {BodyYouTube} from "./bodyYoutube";
 import {BodyPostsList} from "./bodyPostsList";
 
 
@@ -12,7 +12,7 @@ export type BlocksBodyContent_ContentType =
     | BodyForm
     | BodyImage
     | BodyLinks
-    | BodyYoutube
+    | BodyYouTube
     | BodyPostsList;
 export type BlocksBodyContent_LayoutFormat = "Full Width" | "Container Width" | "Default" | "Narrow";
 export type BlocksBodyContent_Gap = "None" | "Xs" | "Sm" | "Md" | "Lg" | "Xl";
@@ -62,13 +62,9 @@ export type BlocksBodyContent_Column = {
 }
 
 export interface BlocksBodyContent extends BaseModel<'BlocksBodyContent'> {
+    name: string;
+    slug: string;
     blockLayout: BlocksBodyContent_BlocksLayout;
+    numberOfColumns: number;
     columns: BlocksBodyContent_Column[];
-}
-
-
-export class BlocksBodyContentClass {
-    static createPostsLists(blocks: BlocksBodyContent) {
-        console.log('blocks', blocks);
-    }
 }

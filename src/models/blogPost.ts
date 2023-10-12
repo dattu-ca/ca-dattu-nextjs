@@ -1,7 +1,7 @@
 import {BaseModel} from "./types";
 import {BodyImage} from "./bodyImage";
 import {BlogAuthor} from "./blogAuthor";
-import {BodyYoutube} from "./bodyYoutube";
+import {BodyYouTube} from "./bodyYoutube";
 import {MetaCategory} from "./metaCategory";
 import {MetaTag} from "./metaTag";
 import {MetaSeries} from "./metaSeries";
@@ -16,7 +16,7 @@ export interface BlogPost extends BaseModel<'BlogPost'> {
     format: BlogPostFormat;
     preHeadingContentBlocks?: BlocksBodyContent[] | undefined;
     heading?: string | undefined;
-    featuredBanner?: BodyImage | BodyYoutube | undefined;
+    featuredBanner?: BodyImage | BodyYouTube | undefined;
     excerptBlocks?: BlocksBodyContent[] | undefined;
     contentBlocks?: BlocksBodyContent[] | undefined;
     authors: BlogAuthor[];

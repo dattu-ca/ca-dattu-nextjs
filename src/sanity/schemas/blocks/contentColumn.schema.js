@@ -28,15 +28,13 @@ const contentColumnSchema = defineType({
             name: 'format',
             title: 'Format of the content in the column',
             type: 'string',
-            initialValue: 'Md',
+            initialValue: 'Stacked',
             options: {
                 list: [
-                    {title: 'None', value: 'None'},
-                    {title: 'Xs', value: 'Xs'},
-                    {title: 'Sm', value: 'Sm'},
-                    {title: 'Md', value: 'Md'},
-                    {title: 'Lg', value: 'Lg'},
-                    {title: 'Xl', value: 'Xl'},
+                    {title: 'Adjacent', value: 'Adjacent'},
+                    {title: 'Slider', value: 'Slider'},
+                    {title: 'Stacked', value: 'Stacked'},
+                    {title: 'Tabbed', value: 'Tabbed'},
                 ]
             },
             validation: (rule) => rule.required(),

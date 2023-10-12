@@ -1,6 +1,6 @@
 import {mapContentful as mapBodyImagesContentful} from "~/contentful/schema/bodyImages.schema";
 import {mapContentful as mapBodyYoutubeContentful} from "~/contentful/schema/bodyYoutube.schema";
-import {BodyImage, BodyYoutube} from "~/models";
+import {BodyImage, BodyYouTube} from "~/models";
 import {IBodyImages, IBodyYouTube} from "~/contentful/schema/generated";
 
 export const mapBanners = (banners: (IBodyImages | IBodyYouTube)[]) => {
@@ -13,7 +13,7 @@ export const mapBanners = (banners: (IBodyImages | IBodyYouTube)[]) => {
         }
         return undefined;
     });
-    return result.filter(item => Boolean(item)) as (BodyYoutube | BodyImage)[];
+    return result.filter(item => Boolean(item)) as (BodyYouTube | BodyImage)[];
 }
 
 export const mapFeaturedBanner = (banner: (IBodyImages | IBodyYouTube)) => {

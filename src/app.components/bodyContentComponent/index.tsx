@@ -10,7 +10,11 @@ const BodyContentComponent = ({data}: IProps) => {
     if (!data || !data.body) {
         return null;
     }
-    return <RichTextRenderer document={data.body}/>
+    if(data.cmsSource === 'Contentful'){
+        return <RichTextRenderer document={data.body}/>
+    }
+    return <p>BodyContentComponent for [{data.cmsSource}] not implemented</p>
+    
 }
 
 export {

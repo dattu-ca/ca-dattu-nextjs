@@ -27,6 +27,7 @@ const bodyYouTubeSchema = defineType({
             name: 'name',
             title: 'Name',
             type: 'string',
+            validation: (rule) => rule.required(),
         }),
         defineField({
             name: 'videoId',
@@ -40,12 +41,6 @@ const bodyYouTubeSchema = defineType({
         defineField({
             name: 'url',
             title: 'YouTube URL',
-            type: 'string',
-            validation: (rule) => rule.required(),
-        }),
-        defineField({
-            name: 'name',
-            title: 'Name',
             type: 'string',
             validation: (rule) => rule.required(),
         }),
