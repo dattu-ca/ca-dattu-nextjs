@@ -2,6 +2,7 @@ import {visionTool} from '@sanity/vision'
 import {defineConfig} from 'sanity'
 import {deskTool} from 'sanity/desk'
 import {unsplashImageAsset} from 'sanity-plugin-asset-source-unsplash';
+import {codeInput} from '@sanity/code-input'
 
 // Go to https://www.sanity.io/docs/api-versioning to learn how API versioning works
 import {apiVersion, dataset, projectId} from '~/sanity/env';
@@ -21,6 +22,7 @@ export default defineConfig({
         types: schemaTypes,
     },
     plugins: [
+        codeInput(),
         deskTool({
             structure: pageStructure(),
         }),

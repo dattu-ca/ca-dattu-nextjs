@@ -14,6 +14,9 @@ const Renderer = ({ document } = { document: undefined }) => {
             value={document}
 
         />
+        <div>
+        <pre>{JSON.stringify(document, null, 2)}</pre>
+        </div>
     </Fragment>
 }
 

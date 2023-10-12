@@ -48,7 +48,15 @@ const contentBlocksQuery = `{
         fromEmailKey
       },
       '': *[_type == 'bodyContent' && _id == ^._id][0]{
-        description
+        "raw" : description,
+        "description": description[]{
+          ...,
+          _type == 'image' =>{
+            ...,
+            asset ->
+          }
+          
+        }
       },
       '': *[_type == 'bodyYouTube' && _id == ^._id][0]{
         videoId,
@@ -79,7 +87,10 @@ export const fetchBySlug = async (slug: string) => {
       }`,
       {
         slug: slug,
-        cache: 'no-cache'
+        cache: 'no-cache',
+        next: {
+          revalidate: 0
+        }
       }
     )
     return mapBlogPageSanity(response);
