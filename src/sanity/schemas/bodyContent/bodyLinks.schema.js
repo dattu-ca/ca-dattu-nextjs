@@ -23,6 +23,11 @@ const bodyLinksSchema = defineType({
             validation: (rule) => rule.required(),
         }),
         defineField({
+            name: 'name',
+            title: 'Name',
+            type: 'string',
+        }),
+        defineField({
             name: 'links',
             title: 'Links',
             type: 'bodyLinksField'

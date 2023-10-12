@@ -1,4 +1,4 @@
-import {BodyYoutube} from "~/models";
+import {BodyYouTube as BodyYouTube} from "~/models";
 import {IBodyYouTubeFields} from "./generated/index";
 import {IBaseSkeleton} from "./types";
 
@@ -13,10 +13,10 @@ export const mapContentful = (raw: any) => {
     if(!fields){
         return undefined;
     }
-    const target: Partial<BodyYoutube> = {
+    const target: Partial<BodyYouTube> = {
         cmsSource: 'Contentful',
         sysId: source.sys.id,
-        contentType: 'BodyYoutube'
+        contentType: 'BodyYouTube'
     };
     if (fields.name) {
         target.name = fields.name as string;
@@ -27,5 +27,5 @@ export const mapContentful = (raw: any) => {
     if (fields.description) {
         target.description = fields.description as object;
     }
-    return target as BodyYoutube;
+    return target as BodyYouTube;
 }

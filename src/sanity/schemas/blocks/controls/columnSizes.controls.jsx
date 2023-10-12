@@ -9,36 +9,35 @@ import {
 
 export function ColumnSizeControls(props) {
     const {value, onChange} = props;
-    
-    
+
+
     const numberOfColumnsProp = Number(useFormValue(['numberOfColumns']));
     const numberOfColumnsPropRef = useRef(numberOfColumnsProp)
     const [numberOfColumns, setNumberOfColumns] = useState(!isNaN(numberOfColumnsProp) ? Math.min(Math.max(1, numberOfColumnsProp), 5) : undefined);
-    
+
     useEffect(() => {
-        if(numberOfColumnsPropRef.current !== numberOfColumnsProp){
+        if (numberOfColumnsPropRef.current !== numberOfColumnsProp) {
             numberOfColumnsPropRef.current = numberOfColumnsProp;
             setNumberOfColumns(!isNaN(numberOfColumnsProp) ? Math.min(Math.max(1, numberOfColumnsProp), 5) : undefined)
         }
     }, [numberOfColumnsProp])
-    
-    
 
-    
 
     useEffect(() => {
-        if (numberOfColumns !== numberOfColumnsPropRef.current) {
-            const row = Array(numberOfColumns).fill(12);
-            const newValue = {
-                'xs': [...row],
-                'sm': [...row],
-                'md': [...row],
-                'lg': [...row],
-                'xl': [...row],
-            }
-            if (!isEqual(value, newValue)) {
-                const param = set(newValue)
-                onChange(param);
+        if(!isNaN(numberOfColumns)){
+            if (numberOfColumns !== numberOfColumnsPropRef.current) {
+                const row = Array(numberOfColumns).fill(12);
+                const newValue = {
+                    'xs': [...row],
+                    'sm': [...row],
+                    'md': [...row],
+                    'lg': [...row],
+                    'xl': [...row],
+                }
+                if (!isEqual(value, newValue)) {
+                    const param = set(newValue)
+                    onChange(param);
+                }
             }
         }
     }, [numberOfColumns, onChange, value])

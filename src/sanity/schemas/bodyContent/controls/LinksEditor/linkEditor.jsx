@@ -1,11 +1,11 @@
 import React, {useState} from 'react';
-import {Box, TextInput, Flex, Tooltip, Button} from '@sanity/ui';
+import {Box, TextInput, Flex, Tooltip, Button, Checkbox, Text} from '@sanity/ui';
 import {BsArrowBarDown, BsArrowBarUp} from "react-icons/bs";
 import {FaTrashCan} from "react-icons/fa6";
 import {FaCheck, FaTimes} from "react-icons/fa";
 
 
-const LinkEditor = ({item, index, isLastInList, onChange, onRemove, onMoveUp, onMoveDown}) => {
+const LinkEditor = ({item, index, isLastInList, onChange, onCheckChanged, onRemove, onMoveUp, onMoveDown}) => {
     const [confirmRemove, setConfirmRemove] = useState(false);
 
     return (<Flex justify="space-between"
@@ -29,7 +29,7 @@ const LinkEditor = ({item, index, isLastInList, onChange, onRemove, onMoveUp, on
                     disabled={isLastInList}/>
             </Flex>
         </Box>
-        <Box>
+        <Box style={{width: 70}}>
             <TextInput
                 value={item.id}
                 type="number"
@@ -37,10 +37,11 @@ const LinkEditor = ({item, index, isLastInList, onChange, onRemove, onMoveUp, on
                 name="txtId"
                 placeholder="id"
                 min={1}
+                style={{ textAlign: 'right'}}
                 onChange={(e) => onChange(item.id, 'id', e)}
             />
         </Box>
-        <Box>
+        <Box flex={1}>
             <TextInput
                 value={item.url}
                 type="text"
@@ -50,7 +51,7 @@ const LinkEditor = ({item, index, isLastInList, onChange, onRemove, onMoveUp, on
                 onChange={(e) => onChange(item.id, 'url', e)}
             />
         </Box>
-        <Box>
+        <Box flex={1}>
             <TextInput
                 value={item.label}
                 type="text"
@@ -60,7 +61,19 @@ const LinkEditor = ({item, index, isLastInList, onChange, onRemove, onMoveUp, on
                 onChange={(e) => onChange(item.id, 'label', e)}
             />
         </Box>
-        <Box style={{width: 150}}>
+        <Box flex={1}>
+            <Flex align="center">
+                <Checkbox id={`link_target_${item.id}`} style={{display: 'block'}} 
+                          checked={item.target === "_blank"} 
+                          onClick={() => onCheckChanged(item.id, 'target', item.target !== "_blank")} />
+                <Box flex={1} paddingLeft={3}>
+                    <Text>
+                        <label htmlFor={`link_target_${item.id}`}>_blank?</label>
+                    </Text>
+                </Box>
+            </Flex>
+        </Box>
+        <Box style={{width: 80}}>
             {
                 confirmRemove
                     ? <Flex gap={1}>

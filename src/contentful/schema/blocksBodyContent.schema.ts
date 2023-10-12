@@ -92,7 +92,9 @@ export const mapContentful = (raw: any) => {
         cmsSource: 'Contentful',
         sysId: source.sys.id,
         contentType: 'BlocksBodyContent',
-        columns: []
+        columns: [],
+        name: source.sys.id,
+        numberOfColumns: 3,
     };
     target.columns = [];
 

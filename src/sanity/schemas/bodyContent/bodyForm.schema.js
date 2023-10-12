@@ -24,16 +24,16 @@ const bodyFormSchema = defineType({
             validation: (rule) => rule.required(),
         }),
         defineField({
+            name: 'name',
+            title: 'Name',
+            type: 'string',
+        }),
+        defineField({
             name: 'formId',
             title: 'Form ID',
             description: 'This is the form id that will be used to save the form in the database.',
             type: 'string',
             validation: (rule) => rule.required(),
-        }),
-        defineField({
-            name: 'name',
-            title: 'Form Name',
-            type: 'string',
         }),
         defineField({
             name: 'maxWidth',

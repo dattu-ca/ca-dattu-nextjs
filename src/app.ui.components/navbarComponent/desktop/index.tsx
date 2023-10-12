@@ -56,6 +56,7 @@ const MenuDesktop = () => {
                             )}>
                                 <Link
                                     aria-current={getAriaCurrent(link.url)}
+                                    target={link.target}
                                     href={link.url}
                                     className={clsx(
                                         'relative block px-3 py-2 transition ',

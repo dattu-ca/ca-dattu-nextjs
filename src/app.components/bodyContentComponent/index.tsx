@@ -1,5 +1,6 @@
 import {BodyContent} from "~/models";
-import {RichTextRenderer} from "~/contentful/richTextRenderer";
+import {ContentfulRichTextRenderer} from "~/contentful/richTextRenderer";
+import {SanityRichTextRenderer} from "~/sanity/richTextRenderer";
 
 
 interface IProps {
@@ -10,7 +11,14 @@ const BodyContentComponent = ({data}: IProps) => {
     if (!data || !data.body) {
         return null;
     }
-    return <RichTextRenderer document={data.body}/>
+    if(data.cmsSource === 'Contentful'){
+        return <ContentfulRichTextRenderer document={data.body}/>
+    }
+    if(data.cmsSource === 'Sanity'){
+        return <SanityRichTextRenderer document={data.body}/>
+    }
+    return <p>BodyContentComponent for [{data.cmsSource}] not implemented</p>
+    
 }
 
 export {

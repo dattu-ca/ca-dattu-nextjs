@@ -10,12 +10,12 @@ const Page = async () => {
         return redirect('/', RedirectType.replace);
     }
 
-    const cmsContent = await siteAuthConfigServices.fetchBySlug();
+    const cmsContent = await siteAuthConfigServices.fetch();
 
     return <div>
         <AuthLogoutComponent textContent={{
-            title: cmsContent.logoutTitle,
-            button: cmsContent.logoutButton
+            title: cmsContent?.logoutTitle ?? 'Logout?',
+            button: cmsContent?.logoutButton ?? 'Logout'
         }}/>
     </div>
 }

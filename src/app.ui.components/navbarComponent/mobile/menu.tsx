@@ -39,6 +39,7 @@ const Menu = () => {
                             onClick={closeMobileMenu}
                             aria-current={getAriaCurrent(link.url)}
                             href={link.url}
+                            target={link.target}
                             className={clsx(
                                 'flex-1',
                                 'relative block px-3 py-4 transition hover:text-teal-500 dark:hover:text-teal-400',

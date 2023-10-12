@@ -46,6 +46,7 @@ const MenuDesktopSubmenu = ({id, links}: IProps) => {
                         )}
                     >
                         <Link href={link.url}
+                              target={link.target}
                               tabIndex={isOpen ? undefined : -1}
                               aria-current={getAriaCurrent(link.url)}
                               className={clsx(

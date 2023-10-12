@@ -12,13 +12,13 @@ const ImageComponent = ({image}: IProps) => {
         const srcSet = [];
         if (image) {
             if (image.mobileImage?.url) {
-                srcSet.push(`${image.mobileImage?.url}?fm=avif&w=640&q=75 640w`)
+                srcSet.push(`${image.mobileImage?.url}`) //?fm=avif&w=640&q=75 640w
             } else {
-                srcSet.push(`${image.desktopImage?.url}?fm=avif&w=640&q=75 640w`)
+                srcSet.push(`${image.desktopImage?.url}`) //?fm=avif&w=640&q=75 640w
             }
             const sizes = [750, 828, 1080, 1200, 1920, 2048, 3840]
             sizes.forEach(size => {
-                srcSet.push(`${image.desktopImage?.url}?fm=avif&w=${size}&q=75 ${size}w`)
+                srcSet.push(`${image.desktopImage?.url}`) // ?fm=avif&w=${size}&q=75 ${size}w
             })
         }
         return srcSet;

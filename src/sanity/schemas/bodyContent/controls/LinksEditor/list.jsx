@@ -16,6 +16,16 @@ const LinksList = ({data, setNewLinks, nextId, levels, parentIds, newItem}) => {
         }
         setNewLinks(parentIds, newLinks);
     }
+    
+    const onCheckChangedHandler = (id, key, newValue) =>{
+        const newLinks = _.cloneDeep(data).links;
+        const item = newLinks.find(item => item.id === id);
+        
+        if (item && key === 'target') {
+            item[key] = newValue ? '_blank' : '_self';
+        }
+        setNewLinks(parentIds, newLinks);
+    }
 
     const onRemoveHandler = (id) => {
         const newLinks = _.cloneDeep(data).links.filter(item => item.id !== id)
@@ -57,6 +67,7 @@ const LinksList = ({data, setNewLinks, nextId, levels, parentIds, newItem}) => {
                                     index={index}
                                     isLastInList={index === data.links.length - 1}
                                     onChange={onChangeHandler}
+                                    onCheckChanged={onCheckChangedHandler}
                                     onRemove={onRemoveHandler}
                                     onMoveUp={onMoveUpHandler.bind(this, index)}
                                     onMoveDown={onMoveDownHandler.bind(this, index)}

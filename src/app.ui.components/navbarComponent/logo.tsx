@@ -11,15 +11,15 @@ const Logo = () => {
     const srcSet = useMemo(() => {
         const srcSet = [];
         if(logo){
-            if (logo.mobileImage) {
-                srcSet.push(`${logo.mobileImage?.url}?fm=avif&w=40&q=75 640w`)
+            if (logo.mobileImage?.url) {
+                srcSet.push(`${logo.mobileImage?.url}`) //?fm=avif&w=40&q=75 640w
             } else{
-                srcSet.push(`${logo.desktopImage?.url}?fm=avif&w=40&q=75 640w`)
+                srcSet.push(`${logo.desktopImage?.url}`) //?fm=avif&w=40&q=75 640w
             }
-            const sizes = [750, 828, 1080, 1200, 1920, 2048, 3840]
-            sizes.forEach(size => {
-                srcSet.push(`${logo.desktopImage?.url}?fm=avif&w=40&q=75 ${size}w`)
-            })
+            // const sizes = [750, 828, 1080, 1200, 1920, 2048, 3840]
+            // sizes.forEach(size => {
+            //     srcSet.push(`${logo.desktopImage?.url}`) //?fm=avif&w=40&q=75 ${size}w
+            // })
         }
         return srcSet;
     }, [logo])

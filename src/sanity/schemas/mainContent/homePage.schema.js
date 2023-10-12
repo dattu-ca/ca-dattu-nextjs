@@ -28,7 +28,7 @@ const homePageSchema = defineType({
             validation: (rule) => rule.required(),
         }),
         defineField({
-            name: 'contentBlock',
+            name: 'contentBlocks',
             title: 'Content Blocks',
             type: 'array',
             of: [

@@ -23,6 +23,11 @@ const bodyImagesSchema = defineType({
             validation: (rule) => rule.required(),
         }),
         defineField({
+            name: 'name',
+            title: 'Name',
+            type: 'string',
+        }),
+        defineField({
             name: 'maxWidth',
             title: 'Max Width',
             description: 'maximum width in pixels',

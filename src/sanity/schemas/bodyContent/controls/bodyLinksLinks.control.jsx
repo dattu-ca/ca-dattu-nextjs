@@ -1,5 +1,5 @@
 import {useEffect, useMemo, useState} from "react";
-import { isEqual } from 'lodash'
+import {isEqual} from 'lodash'
 import {LinksEditor} from "./LinksEditor";
 import {set} from "sanity";
 
@@ -17,7 +17,7 @@ export function BodyLinksLinksControl(props) {
 
     useEffect(() => {
         const param = set(JSON.stringify(data));
-        if(!isEqual(JSON.stringify(data), value)){
+        if (!isEqual(JSON.stringify(data), value)) {
             onChange(param);
         }
     }, [data, onChange, value]);
@@ -46,6 +46,7 @@ export function BodyLinksLinksControl(props) {
         id: nextAvailableId,
         url: '',
         label: '',
+        target: "_self",
         links: [],
     }), [nextAvailableId])
 

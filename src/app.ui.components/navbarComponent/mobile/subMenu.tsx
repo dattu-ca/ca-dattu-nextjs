@@ -33,6 +33,7 @@ const MenuMobileSubmenu = ({id, links}: IProps) => {
                             'dark:border-white/10'
                         )}>
                         <Link href={link.url}
+                              target={link.target}
                               tabIndex={isOpen ? undefined : -1}
                               aria-current={getAriaCurrent(link.url)}
                               onClick={() => closeMobileMenu()}
