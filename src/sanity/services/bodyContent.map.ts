@@ -9,6 +9,6 @@ export const mapSanity = (raw: any) => {
         contentType: 'BodyContent',
         sysId: raw.sysId as string,
         name: raw.name as string,
-        description: raw.description as object,
+        body: raw.description as object,
     } as BodyContent;
 }
