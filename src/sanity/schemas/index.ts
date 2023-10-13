@@ -28,6 +28,9 @@ import {blockGapsSchema} from "./blocks/blockGaps.schema";
 import {columnSizesSchema} from "./blocks/columnSizes.schema";
 import {contentColumnSchema} from "./blocks/contentColumn.schema";
 import {columnGapsSchema} from "./blocks/columnGaps.schema";
+import { blockFieldSchema } from './bodyContent/block.field';
+
+import { playgroundSchema } from './playground/playground.schema';
 
 
 const schemaTypes: SchemaTypeDefinition[] = [
@@ -63,6 +66,9 @@ const schemaTypes: SchemaTypeDefinition[] = [
     bodyLinksFieldSchema,
     bodyFormSchema,
     bodyPostsListSchema,
+
+    playgroundSchema,
+    blockFieldSchema,
 ];
 
 

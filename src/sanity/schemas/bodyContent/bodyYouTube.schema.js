@@ -1,6 +1,7 @@
-import {defineArrayMember, defineField, defineType} from 'sanity';
+import {defineField, defineType} from 'sanity';
 import { FaYoutube } from 'react-icons/fa6';
 import {BodyYouTubeVideoIDControl} from "./controls/bodyYouTubeVideoID.control";
+import { blockFieldSchema } from './block.field';
 
 const bodyYouTubeSchema = defineType({
     name: 'bodyYouTube',
@@ -47,8 +48,7 @@ const bodyYouTubeSchema = defineType({
         defineField({
             name: 'description',
             title: 'description',
-            type: 'array',
-            of: [defineArrayMember({type: 'block'})],
+            type: blockFieldSchema.name,
             validation: (rule) => rule.required(),
         }),
     ]

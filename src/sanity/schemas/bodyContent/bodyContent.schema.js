@@ -1,5 +1,6 @@
-import { defineArrayMember, defineField, defineType } from 'sanity';
+import { defineField, defineType } from 'sanity';
 import { BiSolidBookContent } from "react-icons/bi";
+import { blockFieldSchema } from './block.field';
 
 const bodyContentSchema = defineType({
     name: 'bodyContent',
@@ -29,24 +30,8 @@ const bodyContentSchema = defineType({
         }),
         defineField({
             name: 'description',
-            title: 'description',
-            type: 'array',
-            of: [
-                defineArrayMember({ 
-                    type: 'block',
-                    styles: [
-                        {title: 'Normal', value: 'normal'},
-                        {title: 'H2', value: 'h2'},
-                        {title: 'H3', value: 'h3'},
-                        {title: 'H4', value: 'h4'},
-                        {title: 'H5', value: 'h5'},
-                        {title: 'H6', value: 'h6'},
-                        {title: 'Quote', value: 'blockquote'}
-                      ]
-                 }),
-                defineArrayMember({ type: 'image' }),
-                defineArrayMember({ type: 'code' })
-            ],
+            title: 'Description',
+            type: blockFieldSchema.name,
             validation: (rule) => rule.required(),
         }),
     ]
