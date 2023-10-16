@@ -8,6 +8,7 @@ import { markdownSchema } from 'sanity-plugin-markdown';
 import { pexelsImageAsset } from 'sanity-plugin-asset-source-pexels';
 import { table } from '@sanity/table';
 import { iconify } from 'sanity-plugin-iconify';
+// @ts-ignore
 import { giphyAssetSourcePlugin } from "sanity-plugin-asset-source-giphy";
 
 
