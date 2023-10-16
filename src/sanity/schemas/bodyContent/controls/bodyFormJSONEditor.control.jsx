@@ -12,6 +12,10 @@ export function BodyFormJSONEditorControl(props) {
         text: undefined
     });
 
+    if(typeof window === 'undefined'){
+        return null;
+    }
+
 
     function handleChange(updatedContent) {
         setData(updatedContent);
