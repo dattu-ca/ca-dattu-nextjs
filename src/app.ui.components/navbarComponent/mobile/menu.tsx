@@ -22,6 +22,8 @@ const Menu = () => {
     } = useNavbarContext();
     return <ul className={clsx(
         'flex flex-col',
+        'space-y-none',
+        'list-none',
     )}>
         {
             links.map(link => (
@@ -42,8 +44,11 @@ const Menu = () => {
                             target={link.target}
                             className={clsx(
                                 'flex-1',
-                                'relative block px-3 py-4 transition hover:text-teal-500 dark:hover:text-teal-400',
+                                'relative block px-3 py-4 transition',
+                                'hover:after:w-0',
+                                'hover:text-teal-500 dark:hover:text-teal-400',
                                 {
+                                    ['text-zinc-800 dark:text-zinc-100']: !isCurrentPage(link.url),
                                     ['text-teal-500 dark:text-teal-400']: isCurrentPage(link.url)
                                 }
                             )}

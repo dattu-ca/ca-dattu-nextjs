@@ -1,5 +1,5 @@
 'use client';
-import {Fragment, useMemo, useRef, useState} from 'react';
+import {useMemo, useRef, useState} from 'react';
 import clsx from "clsx";
 import {FaRegCircle} from "react-icons/fa6";
 import {FaRegDotCircle} from "react-icons/fa";
@@ -60,11 +60,13 @@ const ColumnSlider = ({blocks}: IProps) => {
             'py-4',
             'flex',
             'items-center justify-center',
-            'gap-4'
+            'gap-4',
+            'list-none',
+            'space-y-0'
         )}>
             {
                 blocks.map((block, index) => {
-                    return <Fragment key={block.sysId}>
+                    return <li key={block.sysId}>
                         <button onClick={() => setCurrent(index)} className={clsx(
                             'daisyui-swap',
                             'text-xl md:text-2xl',
@@ -75,7 +77,7 @@ const ColumnSlider = ({blocks}: IProps) => {
                             <FaRegCircle className={clsx('daisyui-swap-off')}/>
                             <FaRegDotCircle className={clsx('daisyui-swap-on')}/>
                         </button>
-                    </Fragment>
+                    </li>
                 })
             }
         </ul>

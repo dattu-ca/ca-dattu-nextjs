@@ -56,6 +56,27 @@ const bodyImagesSchema = defineType({
             validation: (rule) => rule.required(),
         }),
         defineField({
+            name: 'border',
+            title: 'Add border?',
+            type: 'boolean',
+            initialValue: false,
+            validation: (rule) => rule.required(),
+        }),
+        defineField({
+            name: 'shadow',
+            title: 'Add Shadow?',
+            type: 'boolean',
+            initialValue: false,
+            validation: (rule) => rule.required(),
+        }),
+        defineField({
+            name: 'shape',
+            title: 'Add Shape?',
+            description: 'tailwind shape classes',
+            type: 'string',
+            initialValue: '',
+        }),
+        defineField({
             type: 'image',
             icon: ImageIcon,
             name: 'desktopImage',

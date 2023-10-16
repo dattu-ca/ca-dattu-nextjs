@@ -22,7 +22,7 @@ export const fetchBySlug = async (slug: string) => {
         slug: slug,
         cache: 'no-cache',
         next: {
-          revalidate: 0
+          revalidate: 1
         }
       }
     )

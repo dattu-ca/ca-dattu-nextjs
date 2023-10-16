@@ -15,6 +15,7 @@ import { bodyImagesSchema } from './bodyContent/bodyImages.schema';
 import { bodyLinksSchema } from './bodyContent/bodyLinks.schema';
 import { bodyFormSchema } from './bodyContent/bodyForm.schema';
 import { bodyPostsListSchema } from './bodyContent/bodyPostsList.schema';
+import { bodyCodeSchema } from './bodyContent/bodyCode.schema';
 
 import { playgroundSchema } from './playground/playground.schema';
 
@@ -22,7 +23,7 @@ import { playgroundSchema } from './playground/playground.schema';
 const settingsTypes = [...new Set([siteNavbarSchema, authPagesConfigSchema, siteConfigSchema])];
 const singletonTypes = [...new Set([homePageSchema])];
 const mainTypes = [...new Set([blogPostSchema, blogPageSchema])];
-const bodyTypes = [...new Set([contentBlockSchema, bodyContentSchema, bodyImagesSchema, bodyFormSchema, bodyPostsListSchema, bodyYouTubeSchema, bodyLinksSchema])];
+const bodyTypes = [...new Set([contentBlockSchema, bodyContentSchema, bodyImagesSchema, bodyCodeSchema, bodyFormSchema, bodyPostsListSchema, bodyYouTubeSchema, bodyLinksSchema])];
 
 const playgroundTypes = [playgroundSchema,]
 
