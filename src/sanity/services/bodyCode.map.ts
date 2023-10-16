@@ -9,6 +9,7 @@ export const mapSanity = (raw: any) => {
         contentType: 'BodyCode',
         sysId: raw.sysId as string,
         name: raw.name as string,
-        code: raw.code as string,
+        code: raw.code?.code as string,
+        language: raw.code?.language as string
     } as BodyCode;
 }

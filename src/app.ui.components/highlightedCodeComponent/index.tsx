@@ -10,7 +10,6 @@ interface IProps {
 }
 
 const getLanguage = (language?: string | undefined) => {
-    console.log('language', language)
     if (!language) {
         return '';
     }
