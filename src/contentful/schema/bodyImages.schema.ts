@@ -17,8 +17,8 @@ export const mapContentful = (raw: any) => {
         cmsSource: 'Contentful',
         sysId: source.sys.id,
         contentType: 'BodyImage',
-        maxWidth: fields.maxWidth ?? 'auto',
-        maxHeight: fields.maxWidth ?? 'auto',
+        maxWidth: fields.maxWidth ?? 'none',
+        maxHeight: fields.maxWidth ?? 'none',
         align: fields.align.toLowerCase() as ('left' | 'right' | 'center'),
         name: fields.name,
     };
