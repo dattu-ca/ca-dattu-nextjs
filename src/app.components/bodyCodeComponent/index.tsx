@@ -7,7 +7,6 @@ interface IProps {
 }
 
 const BodyCodeComponent = ({data}: IProps) => {
-    console.log(data);
     if (!data || !data.code) {
         return null;
     }
