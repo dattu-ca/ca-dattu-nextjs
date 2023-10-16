@@ -1,7 +1,7 @@
 'use server';
-import {groq} from "next-sanity";
-import {client} from './client';
-import {mapSanity} from "./siteConfig.map";
+import { groq } from "next-sanity";
+import { client } from './client';
+import { mapSanity } from "./siteConfig.map";
 
 export const fetch = async () => {
     try {
@@ -12,12 +12,17 @@ export const fetch = async () => {
                 siteTitleTemplate,
                 siteTitleDefault,
                 siteDescription
-            }`
+            }`,
+            {
+                cache: 'no-cache',
+                next: {
+                    revalidate: 0
+                }
+            }
         )
         return mapSanity(response);
     } catch (e) {
         console.error(`Cannot find [siteConfig] content`, e);
-        
     }
 
 

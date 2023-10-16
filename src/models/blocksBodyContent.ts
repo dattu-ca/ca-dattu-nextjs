@@ -5,6 +5,7 @@ import {BodyImage} from "./bodyImage";
 import {BodyLinks} from "./bodyLinks";
 import {BodyYouTube} from "./bodyYoutube";
 import {BodyPostsList} from "./bodyPostsList";
+import {BodyCode} from "./bodyCode";
 
 
 export type BlocksBodyContent_ContentType =
@@ -13,7 +14,8 @@ export type BlocksBodyContent_ContentType =
     | BodyImage
     | BodyLinks
     | BodyYouTube
-    | BodyPostsList;
+    | BodyPostsList
+    | BodyCode;
 export type BlocksBodyContent_LayoutFormat = "Full Width" | "Container Width" | "Default" | "Narrow";
 export type BlocksBodyContent_Gap = "None" | "Xs" | "Sm" | "Md" | "Lg" | "Xl";
 export type BlocksBodyContent_LayoutType = "Adjacent" | "Slider" | "Stacked" | "Tabbed";

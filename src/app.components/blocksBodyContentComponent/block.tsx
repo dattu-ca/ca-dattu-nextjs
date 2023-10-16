@@ -4,6 +4,7 @@ import { BodyContentComponent } from "../bodyContentComponent";
 import { BodyYoutubeComponent } from "../bodyYoutubeComponent";
 import { BodyFormComponent } from "../bodyFormComponent";
 import { BodyPostsListComponent } from "../bodyPostsListComponent";
+import { BodyCodeComponent } from "../bodyCodeComponent";
 
 
 interface IProps {
@@ -23,6 +24,9 @@ const BlocksBodyContentBlock = ({ block }: IProps) => {
         }
         case 'BodyForm': {
             return <BodyFormComponent data={block} />
+        }
+        case 'BodyCode': {
+            return <BodyCodeComponent data={block} />
         }
         case 'BodyPostsList': {
             return <BodyPostsListComponent data={block} />

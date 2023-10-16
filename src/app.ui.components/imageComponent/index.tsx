@@ -1,12 +1,12 @@
-import {useMemo} from "react";
+import { useMemo } from "react";
 import clsx from "clsx";
-import {BodyImage} from "~/models";
+import { BodyImage } from "~/models";
 
 interface IProps {
-    image: BodyImage
+    image: BodyImage,
 }
 
-const ImageComponent = ({image}: IProps) => {
+const ImageComponent = ({ image }: IProps) => {
 
     const srcSet = useMemo(() => {
         const srcSet = [];
@@ -16,10 +16,10 @@ const ImageComponent = ({image}: IProps) => {
             } else {
                 srcSet.push(`${image.desktopImage?.url}`) //?fm=avif&w=640&q=75 640w
             }
-            const sizes = [750, 828, 1080, 1200, 1920, 2048, 3840]
-            sizes.forEach(size => {
-                srcSet.push(`${image.desktopImage?.url}`) // ?fm=avif&w=${size}&q=75 ${size}w
-            })
+            // const sizes = [750, 828, 1080, 1200, 1920, 2048, 3840]
+            // sizes.forEach(size => {
+            //     srcSet.push(`${image.desktopImage?.url}`) // ?fm=avif&w=${size}&q=75 ${size}w
+            // })
         }
         return srcSet;
     }, [image]);
@@ -33,21 +33,26 @@ const ImageComponent = ({image}: IProps) => {
         }
     )}>
         <img alt={image?.desktopImage?.alt}
-             loading="lazy"
-             width={image.maxWidth || 250}
-             height={image.maxHeight || 10}
-             decoding="async"
-             data-nimg="1"
-             className={clsx(
-                 'w-full'
-             )}
-             style={{
-                 maxWidth: image.maxWidth || 'auto',
-                 maxHeight: image.maxHeight || 'auto'
-             }}
-             sizes="100vw"
-             srcSet={srcSet.join(', ')}
-             src={srcSet[1]}/>
+            loading="lazy"
+            width={image.maxWidth || 250}
+            height={image.maxHeight || 10}
+            decoding="async"
+            data-nimg="1"
+            className={clsx(
+                'w-full',
+                'h-full',
+                {
+                    ['border bg-white p-1 dark:border-neutral-700 dark:bg-neutral-800']: image.border,
+                    ['shadow-lg dark:shadow-black/30']: image.shadow
+                }
+            )}
+            style={{
+                maxWidth: image.maxWidth || 'auto',
+                maxHeight: image.maxHeight || 'auto'
+            }}
+            sizes="100vw"
+            srcSet={srcSet.join(', ')}
+            src={srcSet.length > 1 ? srcSet[1] : srcSet[0]} />
     </div>
 }
 

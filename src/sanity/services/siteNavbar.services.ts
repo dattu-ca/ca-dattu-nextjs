@@ -1,7 +1,7 @@
 'use server';
-import {groq} from "next-sanity";
-import {client} from './client';
-import {mapSanity} from "./siteNavbar.map";
+import { groq } from "next-sanity";
+import { client } from './client';
+import { mapSanity } from "./siteNavbar.map";
 
 export const fetch = async () => {
     try {
@@ -35,7 +35,13 @@ export const fetch = async () => {
                       name,
                       links
                     }
-                }`
+                }`,
+            {
+                cache: 'no-cache',
+                next: {
+                    revalidate: 0
+                }
+            }
         )
         return mapSanity(response);
     } catch (e) {

@@ -9,6 +9,9 @@ export const mapSanity = (raw: any) => {
         maxWidth: raw.maxWidth as number,
         maxHeight: raw.maxHeight as number,
         name: raw.name as string,
+        border: raw.border as boolean ?? false,
+        shadow: raw.shadow as boolean ?? false,
+        shape: raw.shape as string ?? '',
         desktopImage: {
             url: raw.desktopImage?.url as string,
             alt: raw.desktopImage?.alt as string,

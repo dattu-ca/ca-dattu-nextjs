@@ -1,26 +1,31 @@
-import {type StructureResolver} from 'sanity/desk';
+import { type StructureResolver } from 'sanity/desk';
 
 
-import {siteNavbarSchema} from './singletons/siteNavbar.schema';
-import {authPagesConfigSchema} from "./singletons/authPagesConfig.schema";
-import {siteConfigSchema} from "./singletons/siteConfig.schema";
-import {blogPageSchema} from "./mainContent/blogPage.schema";
-import {blogPostSchema} from "./mainContent/blogPost.schema";
-import {homePageSchema} from './mainContent/homePage.schema'
+import { siteNavbarSchema } from './singletons/siteNavbar.schema';
+import { authPagesConfigSchema } from "./singletons/authPagesConfig.schema";
+import { siteConfigSchema } from "./singletons/siteConfig.schema";
+import { blogPageSchema } from "./mainContent/blogPage.schema";
+import { blogPostSchema } from "./mainContent/blogPost.schema";
+import { homePageSchema } from './mainContent/homePage.schema'
 
-import {contentBlockSchema} from "./blocks/block.schema";
-import {bodyContentSchema} from "./bodyContent/bodyContent.schema";
-import {bodyYouTubeSchema} from "./bodyContent/bodyYouTube.schema";
-import {bodyImagesSchema} from './bodyContent/bodyImages.schema';
-import {bodyLinksSchema} from './bodyContent/bodyLinks.schema';
-import {bodyFormSchema} from './bodyContent/bodyForm.schema';
-import{bodyPostsListSchema} from './bodyContent/bodyPostsList.schema';
+import { contentBlockSchema } from "./blocks/block.schema";
+import { bodyContentSchema } from "./bodyContent/bodyContent.schema";
+import { bodyYouTubeSchema } from "./bodyContent/bodyYouTube.schema";
+import { bodyImagesSchema } from './bodyContent/bodyImages.schema';
+import { bodyLinksSchema } from './bodyContent/bodyLinks.schema';
+import { bodyFormSchema } from './bodyContent/bodyForm.schema';
+import { bodyPostsListSchema } from './bodyContent/bodyPostsList.schema';
+import { bodyCodeSchema } from './bodyContent/bodyCode.schema';
+
+import { playgroundSchema } from './playground/playground.schema';
 
 
 const settingsTypes = [...new Set([siteNavbarSchema, authPagesConfigSchema, siteConfigSchema])];
 const singletonTypes = [...new Set([homePageSchema])];
 const mainTypes = [...new Set([blogPostSchema, blogPageSchema])];
-const bodyTypes = [...new Set([contentBlockSchema, bodyContentSchema, bodyImagesSchema, bodyFormSchema, bodyPostsListSchema, bodyYouTubeSchema, bodyLinksSchema])];
+const bodyTypes = [...new Set([contentBlockSchema, bodyContentSchema, bodyImagesSchema, bodyCodeSchema, bodyFormSchema, bodyPostsListSchema, bodyYouTubeSchema, bodyLinksSchema])];
+
+const playgroundTypes = [playgroundSchema,]
 
 
 export const pageStructure = (): StructureResolver => {
@@ -60,11 +65,15 @@ export const pageStructure = (): StructureResolver => {
         const bodyItems = S.documentTypeListItems()
             .filter((listItem) => bodyTypes.find((item) => item.name === listItem.getId()))
 
+        const playgroundItems = S.documentTypeListItems()
+            .filter((listItem) => playgroundTypes.find((item) => item.name === listItem.getId()))
+
 
         const remainingItems = S.documentTypeListItems()
             .filter((listItem) => ![
                 ...singletonTypes,
                 ...settingsTypes,
+                ...playgroundTypes,
                 ...mainTypes,
                 ...bodyTypes,
             ].find((item) => item.name === listItem.getId()))
@@ -81,6 +90,8 @@ export const pageStructure = (): StructureResolver => {
                 ...remainingItems,
                 S.divider(),
                 ...settingsItems,
+                S.divider(),
+                ...playgroundItems,
             ]);
 
 

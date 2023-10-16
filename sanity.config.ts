@@ -1,12 +1,21 @@
-import {visionTool} from '@sanity/vision'
-import {defineConfig} from 'sanity'
-import {deskTool} from 'sanity/desk'
-import {unsplashImageAsset} from 'sanity-plugin-asset-source-unsplash';
+import { visionTool } from '@sanity/vision'
+import { defineConfig } from 'sanity'
+import { deskTool } from 'sanity/desk'
+import { unsplashImageAsset } from 'sanity-plugin-asset-source-unsplash';
+import { codeInput } from '@sanity/code-input';
+import { media } from 'sanity-plugin-media';
+import { markdownSchema } from 'sanity-plugin-markdown';
+import { pexelsImageAsset } from 'sanity-plugin-asset-source-pexels';
+import { table } from '@sanity/table';
+import { iconify } from 'sanity-plugin-iconify';
+// @ts-ignore
+import { giphyAssetSourcePlugin } from "sanity-plugin-asset-source-giphy";
 
-// Go to https://www.sanity.io/docs/api-versioning to learn how API versioning works
-import {apiVersion, dataset, projectId} from '~/sanity/env';
-import {schemaTypes} from '~/sanity/schemas/';
-import {pageStructure} from '~/sanity/schemas/pageStructure';
+
+import { apiVersion, dataset, projectId } from '~/sanity/env';
+import { schemaTypes } from '~/sanity/schemas/';
+import { pageStructure } from '~/sanity/schemas/pageStructure';
+import { CustomMarkdownInput } from '~/sanity/customControls/CustomMarkdownInput';
 
 // @ts-ignore
 export default defineConfig({
@@ -24,10 +33,21 @@ export default defineConfig({
         deskTool({
             structure: pageStructure(),
         }),
-        unsplashImageAsset(),
 
         // Vision is a tool that lets you query your content with GROQ in the studio
         // https://www.sanity.io/docs/the-vision-plugin
-        visionTool({defaultApiVersion: apiVersion}),
+        visionTool({ defaultApiVersion: apiVersion }),
+        media(),
+        table(),
+        markdownSchema({ input: CustomMarkdownInput }),
+        unsplashImageAsset(),
+        pexelsImageAsset({
+            API_KEY: process.env.NEXT_PUBLIC_PEXEL_API_KEY as string,
+        }),
+        giphyAssetSourcePlugin({
+            apiKey: process.env.NEXT_PUBLIC_GIPHY_API_KEY as string,
+          }),
+        codeInput(),
+        iconify(),
     ],
 })

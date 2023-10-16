@@ -1,12 +1,11 @@
 import { defineField, defineType } from 'sanity';
-import { BiSolidBookContent } from "react-icons/bi";
-import { blockFieldSchema } from './block.field';
+import { FaCode } from "react-icons/fa6";
 
-const bodyContentSchema = defineType({
-    name: 'bodyContent',
-    title: 'Body - Content',
+const bodyCodeSchema = defineType({
+    name: 'bodyCode',
+    title: 'Body - Code',
     type: 'document',
-    icon: BiSolidBookContent,
+    icon: FaCode,
     fields: [
         defineField({
             name: 'entryTitle',
@@ -29,14 +28,14 @@ const bodyContentSchema = defineType({
             type: 'string',
         }),
         defineField({
-            name: 'description',
-            title: 'Description',
-            type: blockFieldSchema.name,
+            name: 'code',
+            title: 'Code',
+            type: 'code',
             validation: (rule) => rule.required(),
         }),
     ]
 });
 
 export {
-    bodyContentSchema
+    bodyCodeSchema
 };

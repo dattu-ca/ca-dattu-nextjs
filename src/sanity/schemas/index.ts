@@ -16,6 +16,7 @@ import {bodyLinksSchema} from './bodyContent/bodyLinks.schema';
 import {bodyLinksFieldSchema} from './bodyContent/bodyLinksField.schema';
 import {bodyFormSchema} from './bodyContent/bodyForm.schema';
 import{bodyPostsListSchema} from './bodyContent/bodyPostsList.schema';
+import{bodyCodeSchema} from './bodyContent/bodyCode.schema';
 
 import {authPagesConfigSchema} from "./singletons/authPagesConfig.schema";
 import {siteConfigSchema} from "./singletons/siteConfig.schema";
@@ -28,6 +29,9 @@ import {blockGapsSchema} from "./blocks/blockGaps.schema";
 import {columnSizesSchema} from "./blocks/columnSizes.schema";
 import {contentColumnSchema} from "./blocks/contentColumn.schema";
 import {columnGapsSchema} from "./blocks/columnGaps.schema";
+import { blockFieldSchema } from './bodyContent/block.field';
+
+import { playgroundSchema } from './playground/playground.schema';
 
 
 const schemaTypes: SchemaTypeDefinition[] = [
@@ -59,10 +63,14 @@ const schemaTypes: SchemaTypeDefinition[] = [
     bodyContentSchema,
     bodyYouTubeSchema,
     bodyImagesSchema,
+    bodyCodeSchema,
     bodyLinksSchema,
     bodyLinksFieldSchema,
     bodyFormSchema,
     bodyPostsListSchema,
+
+    playgroundSchema,
+    blockFieldSchema,
 ];
 
 
