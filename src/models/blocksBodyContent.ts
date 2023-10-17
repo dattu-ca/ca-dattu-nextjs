@@ -1,11 +1,12 @@
-import {BaseModel} from "./types";
-import {BodyContent} from "./bodyContent";
-import {BodyForm} from "./bodyForm";
-import {BodyImage} from "./bodyImage";
-import {BodyLinks} from "./bodyLinks";
-import {BodyYouTube} from "./bodyYoutube";
-import {BodyPostsList} from "./bodyPostsList";
-import {BodyCode} from "./bodyCode";
+import { BaseModel } from "./types";
+import { BodyContent } from "./bodyContent";
+import { BodyForm } from "./bodyForm";
+import { BodyImage } from "./bodyImage";
+import { BodyLinks } from "./bodyLinks";
+import { BodyYouTube } from "./bodyYoutube";
+import { BodyPostsList } from "./bodyPostsList";
+import { BodyCode } from "./bodyCode";
+import { BodyMarkdown } from "./bodyMarkdown";
 
 
 export type BlocksBodyContent_ContentType =
@@ -15,7 +16,8 @@ export type BlocksBodyContent_ContentType =
     | BodyLinks
     | BodyYouTube
     | BodyPostsList
-    | BodyCode;
+    | BodyCode
+    | BodyMarkdown;
 export type BlocksBodyContent_LayoutFormat = "Full Width" | "Container Width" | "Default" | "Narrow";
 export type BlocksBodyContent_Gap = "None" | "Xs" | "Sm" | "Md" | "Lg" | "Xl";
 export type BlocksBodyContent_LayoutType = "Adjacent" | "Slider" | "Stacked" | "Tabbed";

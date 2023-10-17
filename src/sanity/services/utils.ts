@@ -62,6 +62,9 @@ export const contentBlocksQuery = `{
         '': *[_type == 'bodyCode' && _id == ^._id][0]{
           code
         },
+        '': *[_type == 'bodyMarkdown' && _id == ^._id][0]{
+          markdown
+        },
         '': *[_type == 'bodyPostsList' && _id == ^._id][0]{
           postsListIdentifier,
           limitPerPage,

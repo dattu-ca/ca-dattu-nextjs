@@ -4,10 +4,10 @@ import PropTypes from 'prop-types';
 import Link from 'next/link';
 
 import { PortableText } from '@portabletext/react';
-import { BodyImage, BodyCode } from '~/models';
+import { BodyImage, BodyCode, BodyMarkdown } from '~/models';
 import { ImageComponent } from "~/app.ui.components/imageComponent";
 import { HighlightedCodeComponent } from "~/app.ui.components/highlightedCodeComponent";
-
+import { MarkdownComponent } from "~/app.ui.components/markdownComponent";
 
 
 const portableTextComponents = {
@@ -46,6 +46,16 @@ const portableTextComponents = {
                 <HighlightedCodeComponent data={bodyCode} />
             </div>
 
+        },
+        markdown: ({ value }: any) => {
+            const bodyMarkdown: BodyMarkdown = {
+                contentType: 'BodyMarkdown',
+                sysId: value._key,
+                markdown: value.markdown
+            }
+            return <div>
+                <MarkdownComponent data={bodyMarkdown} />
+            </div>
         }
     }
 }

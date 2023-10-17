@@ -1,6 +1,5 @@
 import { defineField, defineType } from 'sanity';
 import { SiSparkfun } from 'react-icons/si';
-import { CustomMarkdownInput } from '../../customControls/CustomMarkdownInput';
 
 const playgroundSchema = defineType({
     name: 'playground',
@@ -27,7 +26,6 @@ const playgroundSchema = defineType({
             type: 'markdown',
             name: 'markdown',
             title: 'Markdown',
-            components: { input: CustomMarkdownInput }
         }),
 
         defineField({

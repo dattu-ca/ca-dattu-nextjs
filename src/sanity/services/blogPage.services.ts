@@ -28,7 +28,7 @@ export const fetchBySlug = async (slug: string) => {
     )
     return mapBlogPageSanity(response);
   } catch (e) {
-    console.error(`Cannot find [siteNavbar] content`, e);
+    console.error(`Cannot find [blogPage] for slug=${slug}`, e);
   }
 
 
