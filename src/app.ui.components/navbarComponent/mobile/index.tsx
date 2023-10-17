@@ -85,7 +85,7 @@ const MenuMobile = () => {
                     <Menu/>
                 </div>
                 <form method="dialog" className="daisyui-modal-backdrop">
-                    <button>close</button>
+                    <button role='button' aria-label='Close modal'>close</button>
                 </form>
             </dialog>
 
