@@ -1,18 +1,22 @@
-import {useEffect, useState} from "react";
-import {isEqual} from 'lodash'
-import {set} from "sanity";
-import {VanillaJSONEditor} from "./JSONEditor/";
+import { useEffect, useState, Suspense } from "react";
+import { set } from "sanity";
+import { VanillaJSONEditor } from "./JSONEditor";
 
 
 export function BodyFormJSONEditorControl(props) {
-    const {value, onChange} = props;
+    const { value, onChange } = props;
+    const [mounted, setMounted] = useState(false);
+
+    useEffect(() => {
+        setMounted(true);
+    }, []);
 
     const [data, setData] = useState({
         json: value ? JSON.parse(value) : [],
         text: undefined
     });
 
-    if(typeof window === 'undefined'){
+    if (typeof window === 'undefined') {
         return null;
     }
 
@@ -23,12 +27,18 @@ export function BodyFormJSONEditorControl(props) {
         onChange(param);
     }
 
+    if (!mounted) {
+        return null;
+    }
+
 
     return <div>
-        <VanillaJSONEditor
-            content={data}
-            readOnly={false}
-            onChange={handleChange}
-        />
+        <Suspense >
+            <VanillaJSONEditor
+                content={data}
+                readOnly={false}
+                onChange={handleChange}
+            />
+        </Suspense>
     </div>
 }

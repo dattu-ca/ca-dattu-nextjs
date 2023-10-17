@@ -17,6 +17,7 @@ import {bodyLinksFieldSchema} from './bodyContent/bodyLinksField.schema';
 import {bodyFormSchema} from './bodyContent/bodyForm.schema';
 import{bodyPostsListSchema} from './bodyContent/bodyPostsList.schema';
 import{bodyCodeSchema} from './bodyContent/bodyCode.schema';
+import{bodyMarkdownSchema} from './bodyContent/bodyMarkdown.schema';
 
 import {authPagesConfigSchema} from "./singletons/authPagesConfig.schema";
 import {siteConfigSchema} from "./singletons/siteConfig.schema";
@@ -64,6 +65,7 @@ const schemaTypes: SchemaTypeDefinition[] = [
     bodyYouTubeSchema,
     bodyImagesSchema,
     bodyCodeSchema,
+    bodyMarkdownSchema,
     bodyLinksSchema,
     bodyLinksFieldSchema,
     bodyFormSchema,

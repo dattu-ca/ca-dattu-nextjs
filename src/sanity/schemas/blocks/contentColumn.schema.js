@@ -7,6 +7,7 @@ import { bodyLinksSchema } from '../bodyContent/bodyLinks.schema';
 import { bodyFormSchema } from '../bodyContent/bodyForm.schema';
 import { bodyCodeSchema } from '../bodyContent/bodyCode.schema';
 import { bodyPostsListSchema } from '../bodyContent/bodyPostsList.schema';
+import { bodyMarkdownSchema } from '../bodyContent/bodyMarkdown.schema';
 
 const contentColumnSchema = defineType({
     name: 'contentColumn',
@@ -49,6 +50,7 @@ const contentColumnSchema = defineType({
                     type: 'reference',
                     to: [
                         { type: bodyContentSchema.name },
+                        { type: bodyMarkdownSchema.name },
                         { type: bodyYouTubeSchema.name },
                         { type: bodyImagesSchema.name },
                         { type: bodyLinksSchema.name },

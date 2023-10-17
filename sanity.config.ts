@@ -15,7 +15,6 @@ import { giphyAssetSourcePlugin } from "sanity-plugin-asset-source-giphy";
 import { apiVersion, dataset, projectId } from '~/sanity/env';
 import { schemaTypes } from '~/sanity/schemas/';
 import { pageStructure } from '~/sanity/schemas/pageStructure';
-import { CustomMarkdownInput } from '~/sanity/customControls/CustomMarkdownInput';
 
 // @ts-ignore
 export default defineConfig({
@@ -39,14 +38,14 @@ export default defineConfig({
         visionTool({ defaultApiVersion: apiVersion }),
         media(),
         table(),
-        markdownSchema({ input: CustomMarkdownInput }),
+        markdownSchema(),
         unsplashImageAsset(),
         pexelsImageAsset({
             API_KEY: process.env.NEXT_PUBLIC_PEXEL_API_KEY as string,
         }),
         giphyAssetSourcePlugin({
             apiKey: process.env.NEXT_PUBLIC_GIPHY_API_KEY as string,
-          }),
+        }),
         codeInput(),
         iconify(),
     ],

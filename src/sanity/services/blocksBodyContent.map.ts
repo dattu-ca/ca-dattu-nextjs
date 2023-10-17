@@ -14,6 +14,7 @@ import { mapSanity as mapBodyFormSanity } from "./bodyForm.map";
 import { mapSanity as mapBodyYouTubeSanity } from "./bodyYouTube.map";
 import { mapSanity as mapBodyContentSanity } from "./bodyContent.map";
 import { mapSanity as mapBodyCodeSanity } from "./bodyCode.map";
+import { mapSanity as mapBodyMarkdownSanity } from "./bodyMarkdown.map";
 
 const mapBlocks = (raw: any[]) => {
     if (Array.isArray(raw) && raw.length > 0) {
@@ -36,6 +37,9 @@ const mapBlocks = (raw: any[]) => {
                 }
                 case 'bodyCode':{
                     return mapBodyCodeSanity(item);
+                }
+                case 'bodyMarkdown':{
+                    return mapBodyMarkdownSanity(item);
                 }
                 default: {
                     return {

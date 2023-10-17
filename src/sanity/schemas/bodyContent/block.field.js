@@ -17,7 +17,7 @@ const blockFieldSchema = defineField({
             ]
         }),
         defineArrayMember({ type: 'image' }),
-        defineArrayMember({ type: 'code' })
+        defineArrayMember({ type: 'code' }),
     ],
     validation: (rule) => rule.required(),
 });

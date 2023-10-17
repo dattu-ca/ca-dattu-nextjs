@@ -6,6 +6,7 @@ export * from './blogPost';
 export * from './blogPostsList';
 export * from './blogAuthor';
 export * from './bodyCode';
+export * from './bodyMarkdown';
 export * from './bodyContent';
 export * from './bodyForm';
 export * from './bodyImage';

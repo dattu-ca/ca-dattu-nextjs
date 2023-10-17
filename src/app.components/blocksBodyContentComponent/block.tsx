@@ -5,6 +5,7 @@ import { BodyYoutubeComponent } from "../bodyYoutubeComponent";
 import { BodyFormComponent } from "../bodyFormComponent";
 import { BodyPostsListComponent } from "../bodyPostsListComponent";
 import { BodyCodeComponent } from "../bodyCodeComponent";
+import { BodyMarkdownComponent } from '../bodyMarkdownComponent';
 
 
 interface IProps {
@@ -19,7 +20,7 @@ const BlocksBodyContentBlock = ({ block }: IProps) => {
         case 'BodyContent': {
             return <BodyContentComponent data={block} />
         }
-        case 'BodyYouTube':{
+        case 'BodyYouTube': {
             return <BodyYoutubeComponent data={block} />
         }
         case 'BodyForm': {
@@ -27,6 +28,9 @@ const BlocksBodyContentBlock = ({ block }: IProps) => {
         }
         case 'BodyCode': {
             return <BodyCodeComponent data={block} />
+        }
+        case 'BodyMarkdown': {
+            return <BodyMarkdownComponent data={block} />
         }
         case 'BodyPostsList': {
             return <BodyPostsListComponent data={block} />
