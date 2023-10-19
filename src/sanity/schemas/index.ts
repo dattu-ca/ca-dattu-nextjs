@@ -1,4 +1,5 @@
 import {type SchemaTypeDefinition} from 'sanity'
+import {allPostsSchema} from './mainContent/allPosts.schema';
 import {homePageSchema} from './mainContent/homePage.schema';
 import {blogPageSchema} from './mainContent/blogPage.schema';
 import {blogPostSchema} from './mainContent/blogPost.schema';
@@ -43,6 +44,7 @@ const schemaTypes: SchemaTypeDefinition[] = [
 
     // Main Documents
     homePageSchema,
+    allPostsSchema,
     blogPageSchema,
     blogPostSchema,
 

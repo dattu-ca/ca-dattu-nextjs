@@ -1,6 +1,5 @@
-import {BlogPostsListComponent} from "~/app.components/blogPostsListComponent";
-import {fetchPostsLists, getCurrentPageNumber} from "./utils";
-
+import { AllPostsComponent } from "~/app.components/allPostsComponent";
+import {getCurrentPageNumber, fetchAllPosts} from "./utils";
 
 interface IProps {
     params: {
@@ -10,8 +9,10 @@ interface IProps {
 
 const Page = async (props: IProps) => {
     const currentPage = getCurrentPageNumber(props.params);
-    const data = await fetchPostsLists(currentPage, true);
+    const data = await fetchAllPosts(currentPage);
 
-    return <BlogPostsListComponent blogPostsList={data.blogPostsList} />
+    return <div>
+        <AllPostsComponent allPosts={data} />
+    </div>
 }
 export default Page;

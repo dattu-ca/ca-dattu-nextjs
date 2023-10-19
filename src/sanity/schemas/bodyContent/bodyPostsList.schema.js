@@ -51,6 +51,20 @@ const bodyPostsListSchema = defineType({
             validation: (rule) => rule.required().min(0),
         }),
         defineField({
+            name: 'layout',
+            title: 'Layout Type',
+            type: 'string',
+            options: {
+                list: [
+                    {title: 'Excerpt', value: 'Excerpt'},
+                    {title: 'Heading Only', value: 'Heading Only'},
+                    {title: 'Full Post', value: 'Full Post'},
+                ]
+            },
+            initialValue: 'Excerpt',
+            validation: (rule) => rule.required(),
+        }),
+        defineField({
             name: 'isPaginated',
             title: 'Is Paginated',
             description: 'Whether this will be a paginated list of do we show all available posts on the same page.',

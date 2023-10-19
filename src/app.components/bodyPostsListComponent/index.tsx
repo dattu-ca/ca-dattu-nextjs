@@ -1,20 +1,23 @@
-import {BodyPostsList, PaginationConfig} from "~/models";
-import {Fragment} from "react";
+import { Fragment } from "react";
 import clsx from "clsx";
-import {ArticleComponent} from "~/app.components/bodyPostsListComponent/article";
-import {PaginationComponent} from "~/app.ui.components/paginationComponent";
+import { BodyPostsList, PaginationConfig } from "~/models";
+import { ArticleComponent } from "~/app.components/bodyPostsListComponent/article";
+import { PaginationComponent } from "~/app.ui.components/paginationComponent";
 
 
 interface IProps {
     data: BodyPostsList
 }
 
-const BodyPostsListComponent = ({data}: IProps) => {
-    if(!data){
+const BodyPostsListComponent = ({ data }: IProps) => {
+    if (!data) {
         return null;
     }
+
+
     return (
         <div>
+            <pre>{JSON.stringify({ data }, null, 2)}</pre>
             <div className={clsx(
                 'md:pl-6',
                 'md:border-l md:border-zinc-100 md:dark:border-zinc-700/40',
@@ -26,11 +29,11 @@ const BodyPostsListComponent = ({data}: IProps) => {
                     {
                         data.posts?.map(post => {
                             return <Fragment key={post.sysId}>
-                                <ArticleComponent post={post}/>
+                                <ArticleComponent post={post} />
                             </Fragment>
                         })
-                    }    
-                </div>                
+                    }
+                </div>
             </div>
             {
                 data && data.paginationData && data.paginationData.totalPages > 1
