@@ -16,7 +16,7 @@ export interface BlogPost extends BaseModel<'BlogPost'> {
     format: BlogPostFormat;
     publishStatus?: string | undefined;
     preHeadingContentBlocks?: BlocksBodyContent[] | undefined;
-    preHeadingExcerptsBlocks?: BlocksBodyContent[] | undefined;
+    preHeadingExcerptBlocks?: BlocksBodyContent[] | undefined;
     heading?: string | undefined;
     excerptBlocks?: BlocksBodyContent[] | undefined;
     contentBlocks?: BlocksBodyContent[] | undefined;

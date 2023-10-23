@@ -11,7 +11,7 @@ export const mapSanity = (raw: any) => {
         heading: raw.heading as string,
         datePublished: new Date(raw.datePublished),        
         preHeadingContentBlocks: mapBlocksBodyContentSanityList(raw.preHeadingContentBlocks),
-        preHeadingExcerptsBlocks: mapBlocksBodyContentSanityList(raw.preHeadingExcerptsBlocks),
+        preHeadingExcerptBlocks: mapBlocksBodyContentSanityList(raw.preHeadingExcerptBlocks),
         contentBlocks: mapBlocksBodyContentSanityList(raw.contentBlocks),
         excerptBlocks: mapBlocksBodyContentSanityList(raw.excerptBlocks),
         format: 'Standard',
