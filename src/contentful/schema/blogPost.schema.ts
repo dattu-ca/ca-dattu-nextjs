@@ -27,7 +27,7 @@ export const mapContentful = (raw: any) => {
         target.slug = fields.slug as string;
     }
     if (fields.publishedDate) {
-        target.publishedDate = new Date(fields.publishedDate);
+        target.datePublished = new Date(fields.publishedDate);
     }
     if (fields.format) {
         target.format = fields.format as BlogPostFormat;

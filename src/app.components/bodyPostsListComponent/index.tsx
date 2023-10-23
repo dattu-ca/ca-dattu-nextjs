@@ -17,7 +17,6 @@ const BodyPostsListComponent = ({ data }: IProps) => {
 
     return (
         <div>
-            <pre>{JSON.stringify({ data }, null, 2)}</pre>
             <div className={clsx(
                 'md:pl-6',
                 'md:border-l md:border-zinc-100 md:dark:border-zinc-700/40',
@@ -37,7 +36,7 @@ const BodyPostsListComponent = ({ data }: IProps) => {
             </div>
             {
                 data && data.paginationData && data.paginationData.totalPages > 1
-                && <PaginationComponent paginationData={data.paginationData as PaginationConfig} />
+                && <PaginationComponent paginationData={data.paginationData} />
             }
         </div>
     );

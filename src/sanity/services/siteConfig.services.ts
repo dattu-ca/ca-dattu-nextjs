@@ -14,10 +14,6 @@ export const fetch = async () => {
                 siteDescription
             }`,
             {
-                cache: 'no-cache',
-                next: {
-                    revalidate: 0
-                }
             }
         )
         return mapSanity(response);

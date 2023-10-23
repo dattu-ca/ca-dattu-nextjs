@@ -33,30 +33,6 @@ const blogPostSchema = defineType({
             type: 'date',
         }),
         defineField({
-            name: 'publishStatus',
-            title: 'Publish Status',
-            type: 'string',
-            initialValue: 'Draft',
-            options: {
-                list: [
-                    {title: 'Draft', value: 'Draft'},
-                    {title: 'Published', value: 'Published'},
-                ]
-            },
-            validation: (rule) => rule.required(),
-        }),
-        defineField({
-            name: 'authors',
-            title: 'Authors',
-            type: 'array',
-            of: [
-                {
-                    type: 'reference',
-                    to: [{type: authorSchema.name}]
-                }
-            ]
-        }),
-        defineField({
             name: 'format',
             title: 'Format',
             type: 'string',
@@ -74,8 +50,34 @@ const blogPostSchema = defineType({
             validation: (rule) => rule.required(),
         }),
         defineField({
+            name: 'publishStatus',
+            title: 'Publish Status',
+            type: 'string',
+            initialValue: 'Draft',
+            options: {
+                list: [
+                    {title: 'Draft', value: 'Draft'},
+                    {title: 'Published', value: 'Published'},
+                ]
+            },
+            validation: (rule) => rule.required(),
+        }),
+        defineField({
             name: 'preHeadingContentBlocks',
             title: 'Pre Heading Content Blocks',
+            type: 'array',
+            of: [
+                {
+                    type: 'reference',
+                    to: [
+                        {type: contentBlockSchema.name},
+                    ]
+                }
+            ]
+        }),
+        defineField({
+            name: 'preHeadingExcerptBlocks',
+            title: 'Pre Heading Excerpt Blocks',
             type: 'array',
             of: [
                 {
@@ -102,6 +104,30 @@ const blogPostSchema = defineType({
                     to: [
                         {type: contentBlockSchema.name},
                     ]
+                }
+            ]
+        }),
+        defineField({
+            name: 'excerptBlocks',
+            title: 'Excerpt Blocks',
+            type: 'array',
+            of: [
+                {
+                    type: 'reference',
+                    to: [
+                        {type: contentBlockSchema.name},
+                    ]
+                }
+            ]
+        }),
+        defineField({
+            name: 'authors',
+            title: 'Authors',
+            type: 'array',
+            of: [
+                {
+                    type: 'reference',
+                    to: [{type: authorSchema.name}]
                 }
             ]
         }),
@@ -135,32 +161,6 @@ const blogPostSchema = defineType({
                 {
                     type: 'reference',
                     to: [{type: tagSchema.name}]
-                }
-            ]
-        }),
-        defineField({
-            name: 'preHeadingExcerptBlocks',
-            title: 'Pre Heading Excerpt Blocks',
-            type: 'array',
-            of: [
-                {
-                    type: 'reference',
-                    to: [
-                        {type: contentBlockSchema.name},
-                    ]
-                }
-            ]
-        }),
-        defineField({
-            name: 'excerptBlocks',
-            title: 'Excerpt Blocks',
-            type: 'array',
-            of: [
-                {
-                    type: 'reference',
-                    to: [
-                        {type: contentBlockSchema.name},
-                    ]
                 }
             ]
         }),

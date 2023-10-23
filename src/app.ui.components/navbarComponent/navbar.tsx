@@ -41,7 +41,8 @@ const Navbar = () => {
                         'relative px-4 sm:px-8 lg:px-12'
                     )}>
                         <nav className={clsx(
-                            'relative flex gap-4'
+                            'relative flex gap-4',
+                            'items-center'
                         )}>
                             <div className={clsx(
                                 'flex flex-1'

@@ -1,19 +1,15 @@
-import {fetchPost} from "./utils";
-import {BlogPostComponent} from "~/app.components/blogPostComponent";
-import {BlogPost} from "~/models";
-
-
 interface IProps {
     params: {
-        slug: string;
+        slug: string | string []
     }
 }
 
 const Page = async (props: IProps) => {
-    const data = await fetchPost(props.params.slug, false) as BlogPost;
-    if(!data){
-        return null;
-    }
-    return <BlogPostComponent blogPost={data}/>
+
+
+    return <div>
+        <h1>POST PAGE</h1>
+        <pre>{JSON.stringify(props, null, 2)}</pre>
+    </div>
 }
 export default Page;

@@ -1,7 +1,10 @@
-import { allPostsServices } from '~/sanity/services';
+import {allPostsServices} from '~/sanity/services';
+import {processFillingPostsList} from "./bodyPostsList.services";
+import {PaginationConfig} from "~/models";
 
 
-export const fetch = async () => {
+export const fetch = async (paginationConfig: PaginationConfig) => {
     const data = await allPostsServices.fetch();
+    await processFillingPostsList('All', paginationConfig, [data.contentBlocks, data.preHeadingContentBlocks])
     return data;
 }

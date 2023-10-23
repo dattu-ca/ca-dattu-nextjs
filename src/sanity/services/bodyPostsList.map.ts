@@ -13,7 +13,5 @@ export const mapSanity = (raw: any) => {
         postsListIdentifier: raw.postsListIdentifier as PostsListIdentifierType,
         layout: raw.layout as PostsListLayoutType,
     };
-    console.log(target);
-
     return target as BodyPostsList;
 }
