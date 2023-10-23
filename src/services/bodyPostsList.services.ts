@@ -1,7 +1,5 @@
 import {blogPostServices} from '~/sanity/services';
 import {BlocksBodyContent, PaginationConfig, PostsListIdentifierType} from "~/models";
-import {Main} from "next/document";
-import {fetchList} from "~/sanity/services/blogPost.services";
 
 //
 // const fetchPostsList = async () => {
@@ -15,26 +13,31 @@ const fillPostsList = async (mainPostsListIdentifier: PostsListIdentifierType,
 ) => {
     if (Array.isArray(blocks) && blocks.length > 0) {
         for (const contentBlock of blocks) {
-            for (const column of contentBlock.columns) {
-                for (const contentBlock of column.contentBlocks) {
-                    if (contentBlock.contentType === 'BodyPostsList') {
-                        const limit = contentBlock.limitPerPage > 0 ? contentBlock.limitPerPage : paginationConfig.limit;
-                        const skip = (paginationConfig.current - 1) * limit;
-                        if (contentBlock.postsListIdentifier === mainPostsListIdentifier) {                            
-                            const response = await blogPostServices.fetchList(skip, limit);
-                            contentBlock.posts = response.items;
-                            contentBlock.paginationData = {
-                                ...paginationConfig,
-                                limit: limit,
-                                skip: skip,
-                                total: response.total,
-                                totalPages: Math.ceil((response.total / limit))
-                            }
+            if(contentBlock && Array.isArray(contentBlock.columns) && contentBlock.columns.length > 0){
+                for (const column of contentBlock.columns) {
+                    if(column && Array.isArray(column.contentBlocks) && column.contentBlocks.length > 0){
+                        for (const contentBlock of column.contentBlocks) {
+                            if (contentBlock.contentType === 'BodyPostsList') {
+                                const limit = contentBlock.limitPerPage > 0 ? contentBlock.limitPerPage : paginationConfig.limit;
+                                const skip = (paginationConfig.current - 1) * limit;
+                                if (contentBlock.postsListIdentifier === mainPostsListIdentifier) {
+                                    const response = await blogPostServices.fetchList(skip, limit);
+                                    contentBlock.posts = response.items;
+                                    contentBlock.paginationData = {
+                                        ...paginationConfig,
+                                        limit: limit,
+                                        skip: skip,
+                                        total: response.total,
+                                        totalPages: Math.ceil((response.total / limit))
+                                    }
 
+                                }
+                            }
                         }
                     }
                 }
             }
+            
         }
     }
 

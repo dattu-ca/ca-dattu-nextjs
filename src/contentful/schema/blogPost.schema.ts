@@ -41,9 +41,9 @@ export const mapContentful = (raw: any) => {
     if (fields.heading) {
         target.heading = fields.heading as string;
     }
-    if (fields.featuredBanner) {
-        target.featuredBanner = mapFeaturedBanner(fields.featuredBanner);
-    }
+    // if (fields.featuredBanner) {
+    //     target.featuredBanner = mapFeaturedBanner(fields.featuredBanner);
+    // }
     if (fields.excerptBlocks) {
         target.excerptBlocks = mapBlocksBodyContentContentfulList(fields.excerptBlocks);
         if (target.excerptBlocks) {

@@ -5,6 +5,6 @@ import {PaginationConfig} from "~/models";
 
 export const fetch = async (paginationConfig: PaginationConfig) => {
     const data = await allPostsServices.fetch();
-    await processFillingPostsList('All', paginationConfig, [data.contentBlocks, data.preHeadingContentBlocks])
+    await processFillingPostsList('All', paginationConfig, [data?.contentBlocks])
     return data;
 }
