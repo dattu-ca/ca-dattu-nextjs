@@ -13,17 +13,13 @@ export const fetchBySlug = async (slug: string) => {
     const response = await client.fetch(
       groq`*[_type=="blogPage" && slug.current == $slug][0]{
         "sysId": _id,
-        "slug": slug.current,                
+        "slug": slug.current,
         heading,
         preHeadingContentBlocks[] -> ${contentBlocksQuery},
         contentBlocks[] -> ${contentBlocksQuery},
       }`,
       {
         slug: slug,
-        cache: 'no-cache',
-        next: {
-          revalidate: 1
-        }
       }
     )
     return mapBlogPageSanity(response);

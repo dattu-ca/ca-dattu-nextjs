@@ -30,7 +30,11 @@ const ArticleComponent = ({post}: IProps) => {
                         'sm:rounded-2xl',
                         'bg-zinc-50 group-hover:scale-100 group-hover:opacity-100 dark:bg-zinc-800/50'
                     )}/>
-                    <Link href={`/post/${post.slug}`}>
+                    <Link href={`/post/${post.slug}`}
+                        className={clsx(
+                            'static',
+                            'hover:after:w-0'
+                        )}>
                         <span className={clsx(
                             'absolute ',
                             '-inset-x-4 -inset-y-6 z-20 sm:-inset-x-6 ',
@@ -48,7 +52,7 @@ const ArticleComponent = ({post}: IProps) => {
                         'text-sm text-zinc-400 dark:text-zinc-500',
                         'md:hidden  order-first flex items-center',
                     )}
-                    dateTime={dayjs(post.publishedDate).format('YYYY-MM-DD')}>
+                    dateTime={dayjs(post.datePublished).format('YYYY-MM-DD')}>
                     <span className={clsx(
                         'absolute',
                         'flex items-center',
@@ -59,7 +63,7 @@ const ArticleComponent = ({post}: IProps) => {
                             "bg-zinc-200 dark:bg-zinc-500"
                         )}></span>
                     </span>
-                    {dayjs(post.publishedDate).format('MMM DD, YYYY')}
+                    {dayjs(post.datePublished).format('MMM DD, YYYY')}
                 </time>
                 <div className={clsx(
                     'relative z-10 ',
@@ -84,8 +88,8 @@ const ArticleComponent = ({post}: IProps) => {
                     "hidden md:block relative z-10 order-first flex items-center",
                     "text-sm text-zinc-400 dark:text-zinc-500"
                 )}
-                dateTime={dayjs(post.publishedDate).format('YYYY-MM-DD')}>
-                {dayjs(post.publishedDate).format('MMM DD, YYYY')}
+                dateTime={dayjs(post.datePublished).format('YYYY-MM-DD')}>
+                {dayjs(post.datePublished).format('MMM DD, YYYY')}
             </time>
         </article>
     )

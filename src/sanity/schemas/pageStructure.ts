@@ -6,7 +6,8 @@ import { authPagesConfigSchema } from "./singletons/authPagesConfig.schema";
 import { siteConfigSchema } from "./singletons/siteConfig.schema";
 import { blogPageSchema } from "./mainContent/blogPage.schema";
 import { blogPostSchema } from "./mainContent/blogPost.schema";
-import { homePageSchema } from './mainContent/homePage.schema'
+import { homePageSchema } from './mainContent/homePage.schema';
+import {allPostsSchema} from './mainContent/allPosts.schema';
 
 import { contentBlockSchema } from "./blocks/block.schema";
 import { bodyContentSchema } from "./bodyContent/bodyContent.schema";
@@ -22,11 +23,11 @@ import { playgroundSchema } from './playground/playground.schema';
 
 
 const settingsTypes = [...new Set([siteNavbarSchema, authPagesConfigSchema, siteConfigSchema])];
-const singletonTypes = [...new Set([homePageSchema])];
+const singletonTypes = [...new Set([homePageSchema, allPostsSchema])];
 const mainTypes = [...new Set([blogPostSchema, blogPageSchema])];
 const bodyTypes = [...new Set([contentBlockSchema, bodyContentSchema, bodyImagesSchema, bodyCodeSchema, bodyMarkdownSchema, bodyFormSchema, bodyPostsListSchema, bodyYouTubeSchema, bodyLinksSchema])];
 
-const playgroundTypes = [playgroundSchema,]
+const playgroundTypes = [playgroundSchema]
 
 
 export const pageStructure = (): StructureResolver => {

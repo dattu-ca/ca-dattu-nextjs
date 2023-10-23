@@ -31,3 +31,9 @@ export interface PaginationConfig {
      */
     linkFirstPage?: string | undefined;
 }
+
+
+export interface PaginationParams {
+    skip: number;
+    limit: number;
+}

@@ -12,16 +12,18 @@ export type BlogPostFormat = 'Standard' | 'Aside' | 'Image' | 'Video' | 'Quote' 
 
 export interface BlogPost extends BaseModel<'BlogPost'> {
     slug?: string | undefined;
-    publishedDate: Date;
+    datePublished: Date;
     format: BlogPostFormat;
+    publishStatus?: string | undefined;
     preHeadingContentBlocks?: BlocksBodyContent[] | undefined;
+    preHeadingExcerptsBlocks?: BlocksBodyContent[] | undefined;
     heading?: string | undefined;
-    featuredBanner?: BodyImage | BodyYouTube | undefined;
     excerptBlocks?: BlocksBodyContent[] | undefined;
     contentBlocks?: BlocksBodyContent[] | undefined;
     authors: BlogAuthor[];
     series: MetaSeries;
     categories?: MetaCategory[];
     tags: MetaTag[];
+
     postsLists: BodyPostsList[];
 }

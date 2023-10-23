@@ -7,6 +7,7 @@ const Close = () => {
     const {
         ctxData: {
             isMobileMenuOpen,
+            closeMenuText
         },
         ctxFunctions: {
             closeMobileMenu,
@@ -25,7 +26,8 @@ const Close = () => {
                             Navigation
                         </span>
             <button onClick={closeMobileMenu}
-                    tabIndex={isMobileMenuOpen ? undefined : -1}>
+                    tabIndex={isMobileMenuOpen ? undefined : -1}
+                    aria-label={closeMenuText}>
                 <FaTimes
                     className={clsx(
                         'transition duration-250 col-start-1 row-start-1',

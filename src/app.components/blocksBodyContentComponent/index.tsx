@@ -26,7 +26,8 @@ const BlocksBodyContentComponent = ({ blocks, isExcerpts }: IProps) => {
                                 ['mb-4 sm:mb-6 md:mb-8 lg:mb-10']: !isExcerpts
                             }
                         )}>
-                        <BlocksBodyContentLayoutComponent format={block.blockLayout.format}
+                        <BlocksBodyContentLayoutComponent 
+                            format={block.blockLayout.format}
                             gap={block.blockLayout.gap}
                             columns={block.columns}
                         />

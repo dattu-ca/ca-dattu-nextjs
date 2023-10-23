@@ -1,3 +1,4 @@
+import * as allPostsServices from './allPosts.services';
 import * as siteAuthConfigServices from './siteAuthConfig.services';
 import * as blogHomeServices from './blogHome.services';
 import * as blogAuthorServices from './blogAuthor.services';
@@ -13,6 +14,7 @@ import * as metaTagServices from './metaTag.services';
 import * as metaSeriesServices from './metaSeries.services';
 
 export {
+    allPostsServices,
     siteAuthConfigServices,
     blogPostServices,
     formsServices,

@@ -19,11 +19,12 @@ const PaginationButtonsList = () => {
             'flex items-center justify-center flex-wrap',
             'border border-solid border-2 border-gray-400',
             'rounded-2xl',
+            'space-y-0'
         )}>
             <li className={'p-0 m-0'}>
                 <PaginationButton pageNumber={Math.max(1, current - 1)}
                                   aria='Go to previous page'>
-                    <BsChevronLeft  className='w-[auto] h-full'/> Previous
+                    <BsChevronLeft className='w-[auto] h-full'/> Previous
                 </PaginationButton>
             </li>
             {

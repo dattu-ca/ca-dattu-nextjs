@@ -27,7 +27,7 @@ export const mapContentful = (raw: any) => {
         target.slug = fields.slug as string;
     }
     if (fields.publishedDate) {
-        target.publishedDate = new Date(fields.publishedDate);
+        target.datePublished = new Date(fields.publishedDate);
     }
     if (fields.format) {
         target.format = fields.format as BlogPostFormat;
@@ -41,9 +41,9 @@ export const mapContentful = (raw: any) => {
     if (fields.heading) {
         target.heading = fields.heading as string;
     }
-    if (fields.featuredBanner) {
-        target.featuredBanner = mapFeaturedBanner(fields.featuredBanner);
-    }
+    // if (fields.featuredBanner) {
+    //     target.featuredBanner = mapFeaturedBanner(fields.featuredBanner);
+    // }
     if (fields.excerptBlocks) {
         target.excerptBlocks = mapBlocksBodyContentContentfulList(fields.excerptBlocks);
         if (target.excerptBlocks) {

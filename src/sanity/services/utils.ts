@@ -67,6 +67,7 @@ export const contentBlocksQuery = `{
         },
         '': *[_type == 'bodyPostsList' && _id == ^._id][0]{
           postsListIdentifier,
+          layout,
           limitPerPage,
           isPaginated
         },
