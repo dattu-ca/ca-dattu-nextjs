@@ -1,15 +1,15 @@
-import { Fragment } from "react";
+import {Fragment} from "react";
 import clsx from "clsx";
-import { BodyPostsList, PaginationConfig } from "~/models";
-import { ArticleComponent } from "~/app.components/bodyPostsListComponent/article";
-import { PaginationComponent } from "~/app.ui.components/paginationComponent";
+import {BodyPostsList, PaginationConfig} from "~/models";
+import {ArticleComponent} from "~/app.components/bodyPostsListComponent/article";
+import {PaginationComponent} from "~/app.ui.components/paginationComponent";
 
 
 interface IProps {
     data: BodyPostsList
 }
 
-const BodyPostsListComponent = ({ data }: IProps) => {
+const BodyPostsListComponent = ({data}: IProps) => {
     if (!data) {
         return null;
     }
@@ -26,9 +26,9 @@ const BodyPostsListComponent = ({ data }: IProps) => {
                     'flex flex-col space-y-16'
                 )}>
                     {
-                        data.posts?.map(post => {
+                        (data.posts || []).filter(post => !post).map(post => {
                             return <Fragment key={post.sysId}>
-                                <ArticleComponent post={post} />
+                                <ArticleComponent post={post}/>
                             </Fragment>
                         })
                     }
@@ -36,7 +36,7 @@ const BodyPostsListComponent = ({ data }: IProps) => {
             </div>
             {
                 data && data.paginationData && data.paginationData.totalPages > 1
-                && <PaginationComponent paginationData={data.paginationData} />
+                && <PaginationComponent paginationData={data.paginationData}/>
             }
         </div>
     );

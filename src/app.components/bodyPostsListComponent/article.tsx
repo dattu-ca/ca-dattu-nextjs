@@ -12,12 +12,15 @@ interface IProps {
 
 
 const ArticleComponent = ({post}: IProps) => {
+    if(!post){
+        return null;
+    }
     return (
         <article>
             <div className={clsx(
                 'text-zinc-600 dark:text-zinc-400',
                 {
-                    ['mb-4']: post.preHeadingExcerptBlocks?.length > 0
+                    ['mb-4']: (post.preHeadingExcerptBlocks || []).length > 0
                 }
             )}>
                 <BlocksBodyContentComponent blocks={post.preHeadingExcerptBlocks} isExcerpts={true}/>
