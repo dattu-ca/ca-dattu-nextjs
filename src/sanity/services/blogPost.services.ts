@@ -36,7 +36,7 @@ export const fetchList = async (skip: number = 0, limit: number = 10): Promise<{
                     "datePublished": dateTime(datePublished + 'T00:00:00Z'),
                     heading,
                     excerptBlocks[] -> ${contentBlocksQuery},
-                    preHeadingExcerptsBlocks[] -> ${contentBlocksQuery},
+                    preHeadingExcerptBlocks[] -> ${contentBlocksQuery},
                   }
               )
            }
