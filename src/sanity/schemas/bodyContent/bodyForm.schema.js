@@ -87,9 +87,9 @@ const bodyFormSchema = defineType({
             name: 'formModel',
             title: 'Form Model',
             type: 'string',
-            components: {
-                input: BodyFormJSONEditorControl
-            }
+            // components: {
+            //     input: BodyFormJSONEditorControl
+            // }
         }),
     ]
 });

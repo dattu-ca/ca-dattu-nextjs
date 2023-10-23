@@ -15,7 +15,7 @@ export const mapSanity = (raw: any) => {
         recaptchaEnabled: raw.recaptchaEnabled,
         submitFormEnabled: raw.submitFormEnabled,
         sendEmailEnabled: raw.sendEmailEnabled,
-        formModel: JSON.parse(raw.formModel) as BodyFormModel[],
+        formModel: JSON.parse(raw.formModel) as BodyFormModel[] || [],
         fromEmailKey: raw.fromEmailKey,
     } as BodyForm
 }
