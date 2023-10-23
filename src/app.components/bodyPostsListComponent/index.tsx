@@ -26,7 +26,7 @@ const BodyPostsListComponent = ({data}: IProps) => {
                     'flex flex-col space-y-16'
                 )}>
                     {
-                        (data.posts || []).filter(post => !post).map(post => {
+                        (data.posts || []).filter(post => Boolean(post)).map(post => {
                             return <Fragment key={post.sysId}>
                                 <ArticleComponent post={post}/>
                             </Fragment>
