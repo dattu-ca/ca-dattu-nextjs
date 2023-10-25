@@ -134,13 +134,8 @@ const blogPostSchema = defineType({
         defineField({
             name: 'series',
             title: 'Series',
-            type: 'array',
-            of: [
-                {
-                    type: 'reference',
-                    to: [{type: seriesSchema.name}]
-                }
-            ]
+            type: 'reference',
+            to: [{type: seriesSchema.name}]
         }),
         defineField({
             name: 'categories',

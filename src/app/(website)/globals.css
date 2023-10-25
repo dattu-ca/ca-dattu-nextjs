@@ -23,7 +23,7 @@
         @apply mb-2;
     }
 
-    h2, .h2 {        
+    h2, .h2 {
         @apply text-4xl;
         @apply font-medium;
         @apply leading-tight;
@@ -31,7 +31,7 @@
         @apply mb-2;
     }
 
-    h3, .h3 {      
+    h3, .h3 {
         @apply text-3xl;
         @apply font-medium;
         @apply leading-tight;
@@ -39,7 +39,7 @@
         @apply mb-2;
     }
 
-    h4, .h4 {      
+    h4, .h4 {
         @apply text-2xl;
         @apply font-medium;
         @apply leading-tight;
@@ -47,7 +47,7 @@
         @apply mb-2;
     }
 
-    h5, .h5 {      
+    h5, .h5 {
         @apply text-xl;
         @apply font-medium;
         @apply leading-tight;
@@ -55,56 +55,49 @@
         @apply mb-2;
     }
 
-    h6, .h6 {      
+    h6, .h6 {
         @apply text-base;
         @apply font-medium;
         @apply leading-tight;
         @apply text-zinc-800 dark:text-zinc-100;
         @apply mb-2;
     }
-    
-    p, .p{
+
+    p, .p {
         @apply antialiased;
         @apply mb-2;
     }
 
-    blockquote, .blockquote{
+    blockquote, .blockquote {
         @apply text-xl;
         @apply italic font-semibold;
         @apply p-4 my-4;
         @apply border-l-4 border-gray-300 bg-gray-50 dark:border-gray-500 dark:bg-gray-800;
     }
 
-    ul, .ul{
+    ul, .ul {
         @apply space-y-4;
         @apply text-gray-500  dark:text-gray-400;
         @apply list-disc list-inside;
-
-        ul, .ul, ol, .ol {
-            @apply pl-8;
-        }
     }
-    ol, .ol{
+
+    ol, .ol {
         @apply space-y-4;
         @apply text-gray-500  dark:text-gray-400;
         @apply list-decimal list-inside;
     }
     li {
-        > ul, 
-        .ul, 
-        ol, 
-        .ol {
+        > ul, .ul, ol, .ol {
             @apply pl-8;
         }
-        > ul, 
-        .ul{
+        > ul, .ul {
             list-style-type: circle;
         }
-        > ol, 
-        .ol{
+        > ol, .ol {
             list-style-type: lower-alpha;
         }
     }
+
 
     a {
         @apply relative;
@@ -133,7 +126,7 @@
     a:hover:after {
         @apply w-full;
     }
-    
+
 
     .field-required:after {
         content: '*';
