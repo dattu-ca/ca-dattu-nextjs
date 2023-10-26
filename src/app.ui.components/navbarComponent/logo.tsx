@@ -33,7 +33,7 @@ const Logo = () => {
                   data-nimg="1"
                   className={clsx(classes.flip)}
                   sizes="40px"
-                  srcSet={srcSet.join(', ')}
+                  // srcSet={srcSet.join(', ')}
                   src={srcSet[srcSet.length - 1]}/>
 }
 

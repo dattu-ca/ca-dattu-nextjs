@@ -52,7 +52,7 @@ const ImageComponent = ({image}: IProps) => {
                    maxHeight: image.maxHeight || 'auto'
                }}
                sizes="100vw"
-               srcSet={srcSet.join(', ')}
+               // srcSet={srcSet.join(', ')}
                src={srcSet.length > 1 ? srcSet[1] : srcSet[0]}/>
     </div>
 }
