@@ -19,17 +19,23 @@ const nextConfig = {
         res.headers.push({key: 'Access-Control-Allow-Headers', value: process.env.ACCESS_CONTROL_ALLOW_HEADERS})
 
         return [res]
+    },
+    images: {
+        remotePatterns: [
+            {
+                protocol: 'https',
+                hostname: 'images.ctfassets.net',
+                port: '',
+                pathname: `/${process.env.CONTENTFUL_SPACE_ID}/**`,
+            },
+            {
+                protocol: 'https',
+                hostname: 'cdn.sanity.io',
+                port: '',
+                pathname: `images/${process.env.NEXT_PUBLIC_SANITY_DATASET}/**`,
+            }
+        ]
     }
-    // images: {
-    //     remotePatterns: [
-    //         {
-    //             protocol: 'https',
-    //             hostname: 'images.ctfassets.net',
-    //             port: '',
-    //             pathname: `/${process.env.CONTENTFUL_SPACE_ID}/**`,
-    //         }
-    //     ]
-    // }
 };
 
 module.exports = nextConfig
