@@ -2,8 +2,6 @@
 const nextConfig = {
     reactStrictMode: true,
     experimental: {
-        appDir: true,
-        serverActions: true,
         swcPlugins: [["next-superjson-plugin", {}]],
     },
     productionBrowserSourceMaps: true,

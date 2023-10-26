@@ -15,6 +15,7 @@ export const fetch = async () => {
                     contentBlocks[] -> ${contentBlocksQuery},
                 }`,
             {
+                cache: 'no-cache'
             }
         )
         return mapAllPostsSanity(response);

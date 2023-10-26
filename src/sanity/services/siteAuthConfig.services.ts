@@ -16,7 +16,10 @@ export const fetch = async () => {
                 logoutButton,
                 errorTitle,
                 errorButton
-            }`
+            }`,
+            {
+                cache: 'no-cache'
+            }
         )
         return mapSanity(response);
     } catch (e) {
