@@ -4,10 +4,10 @@ export const mapSanity = (raw: any) => {
     const target: Partial<BlogAuthor> = {
         cmsSource: 'Sanity',
         contentType: 'BlogAuthor',
-        sysId: raw.sysId as string,
-        slug: raw.slug as string,
-        name: raw.name as string,
-        avatarInitials: raw.avatarInitials as string,
+        sysId: raw?.sysId as string,
+        slug: raw?.slug as string,
+        name: raw?.name as string,
+        avatarInitials: raw?.avatarInitials as string,
         avatar: raw.avatarImage ? {
             cmsSource: 'Sanity',
             contentType: 'BodyImage',
