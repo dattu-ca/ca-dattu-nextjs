@@ -2,7 +2,6 @@
 const nextConfig = {
     reactStrictMode: true,
     experimental: {
-        appDir: true,
         serverActions: true,
         swcPlugins: [["next-superjson-plugin", {}]],
     },
@@ -31,8 +30,8 @@ const nextConfig = {
             {
                 protocol: 'https',
                 hostname: 'cdn.sanity.io',
-                port: '',
-                pathname: `images/${process.env.NEXT_PUBLIC_SANITY_DATASET}/**`,
+                // port: '',
+                // pathname: `images/${process.env.NEXT_PUBLIC_SANITY_PROJECT_ID}/${process.env.NEXT_PUBLIC_SANITY_DATASET}/**`,
             }
         ]
     }

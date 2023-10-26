@@ -1,12 +1,13 @@
-import { useMemo } from "react";
+import {useMemo} from "react";
 import clsx from "clsx";
-import { BodyImage } from "~/models";
+import Image from 'next/image';
+import {BodyImage} from "~/models";
 
 interface IProps {
     image: BodyImage,
 }
 
-const ImageComponent = ({ image }: IProps) => {
+const ImageComponent = ({image}: IProps) => {
 
     const srcSet = useMemo(() => {
         const srcSet = [];
@@ -32,27 +33,27 @@ const ImageComponent = ({ image }: IProps) => {
             ['justify-end']: image.align === 'right'
         }
     )}>
-        <img alt={image?.desktopImage?.alt}
-            loading="lazy"
-            width={image.maxWidth || 250}
-            height={image.maxHeight || 10}
-            decoding="async"
-            data-nimg="1"
-            className={clsx(
-                'w-full',
-                'h-full',
-                {
-                    ['border bg-white p-1 dark:border-neutral-700 dark:bg-neutral-800']: image.border,
-                    ['shadow-lg dark:shadow-black/30']: image.shadow
-                }
-            )}
-            style={{
-                maxWidth: image.maxWidth || 'auto',
-                maxHeight: image.maxHeight || 'auto'
-            }}
-            sizes="100vw"
-            srcSet={srcSet.join(', ')}
-            src={srcSet.length > 1 ? srcSet[1] : srcSet[0]} />
+        <Image alt={image?.desktopImage?.alt || ''}
+               loading="lazy"
+               width={image.maxWidth || 250}
+               height={image.maxHeight || 10}
+               decoding="async"
+               data-nimg="1"
+               className={clsx(
+                   'w-full',
+                   'h-full',
+                   {
+                       ['border bg-white p-1 dark:border-neutral-700 dark:bg-neutral-800']: image.border,
+                       ['shadow-lg dark:shadow-black/30']: image.shadow
+                   }
+               )}
+               style={{
+                   maxWidth: image.maxWidth || 'auto',
+                   maxHeight: image.maxHeight || 'auto'
+               }}
+               sizes="100vw"
+               srcSet={srcSet.join(', ')}
+               src={srcSet.length > 1 ? srcSet[1] : srcSet[0]}/>
     </div>
 }
 
