@@ -1,4 +1,3 @@
-import {Fragment} from "react";
 import clsx from "clsx";
 import {BlogPost} from "~/models";
 import {H1Heading} from "~/app.ui.components/h1Heading";
@@ -8,6 +7,7 @@ import {AuthorsComponent} from "./authorsComponent";
 import {TagsComponent} from "./tagsComponent";
 import {CategoriesComponent} from "./categoriesComponent";
 import {DatePublished} from "./datePublished";
+import {MetaContainer} from "./metaContainer";
 
 interface IProps {
     blogPost: BlogPost;
@@ -21,17 +21,26 @@ const BlogPostComponent = ({blogPost}: IProps) => {
             'mt-8'
         )}>
             <DatePublished date={blogPost.datePublished}/>
+            <div className={clsx('mb-4')}/>
             <SeriesComponent series={blogPost.series}/>
             <H1Heading>
-                <Fragment>
+                <div className={clsx('mb-6')}>
                     {blogPost.heading}
-                </Fragment>
+                </div>
             </H1Heading>
+            <MetaContainer allFormats={'Default'}>
+                <div className="daisyui-divider"></div>
+            </MetaContainer>
             <AuthorsComponent authors={blogPost.authors}/>
+            <div className={clsx('mb-6')}/>
             <CategoriesComponent categories={blogPost.categories}/>
-            <TagsComponent tags={blogPost.tags}/>
+            <MetaContainer allFormats={'Default'}>
+                <div className="daisyui-divider"></div>
+            </MetaContainer>
+
         </div>
         <BlocksBodyContentComponent blocks={blogPost.contentBlocks} isExcerpts={false}/>
+        <TagsComponent tags={blogPost.tags}/>
     </div>
 }
 

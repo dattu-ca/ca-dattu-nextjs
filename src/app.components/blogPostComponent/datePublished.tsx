@@ -10,7 +10,7 @@ interface IProps {
 const DatePublished = ({date}: IProps) => {
     return <MetaContainer>
         <div className={clsx(
-            'mb-2'
+            
         )}>
             <time dateTime={dayjs(date).format('YYYY-MM-DD')}
             className={clsx('flex items-center text-base text-zinc-400 dark:text-zinc-500')}>

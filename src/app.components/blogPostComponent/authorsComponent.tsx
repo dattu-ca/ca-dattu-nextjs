@@ -11,7 +11,6 @@ const AuthorsComponent = ({authors}: IProps) => {
     return authors && Array.isArray(authors) && authors.length > 0 && <MetaContainer>
         <ul className={clsx(
             'space-y-0',
-            'mb-2',
             'list-none',
             'flex gap-4 items-center justify-start',
         )}>{

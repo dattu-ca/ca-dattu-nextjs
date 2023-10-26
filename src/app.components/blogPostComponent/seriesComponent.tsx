@@ -10,7 +10,6 @@ interface IProps {
 const SeriesComponent = ({series}: IProps) => {
     return series && <MetaContainer>
         <div className={clsx(
-            'mb-0',
             'flex items-center justify-start gap-1'
         )}>
             <strong><em>Series:</em></strong>
