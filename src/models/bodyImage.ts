@@ -11,8 +11,8 @@ export interface IImage {
 
 export interface BodyImage extends BaseModel<'BodyImage'> {
     name?: string | undefined;
-    maxWidth: number | 'none';
-    maxHeight: number | 'none';
+    maxWidth?: number | undefined;
+    maxHeight?: number | undefined;
     align: 'left' | 'right' | 'center';
     desktopImage?: IImage;
     mobileImage?: IImage;
