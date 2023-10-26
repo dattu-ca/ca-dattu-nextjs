@@ -17,8 +17,8 @@ const portableTextComponents = {
                 align: 'center',
                 contentType: "BodyImage",
                 sysId: value._key,
-                maxWidth: 'none',
-                maxHeight: 'none',
+                maxWidth: undefined,
+                maxHeight: undefined,
                 border: true,
                 shadow: true,
                 desktopImage: {
