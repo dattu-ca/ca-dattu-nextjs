@@ -35,6 +35,8 @@ export const fetchList = async (skip: number = 0, limit: number = 10): Promise<{
         `, {
             skip,
             limit: skip + limit,
+            cache: 'no-cache',
+            useCdn: false,
         })
 
     return {
@@ -93,6 +95,8 @@ export const fetchBySlug = async (slug: string) => {
               }`,
             {
                 slug: slug,
+                cache: 'no-cache',
+                useCdn: false,
             }
         )
         return mapBlogPostSanity(response);
