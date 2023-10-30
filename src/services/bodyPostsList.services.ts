@@ -21,7 +21,7 @@ const fillPostsList = async (mainPostsListIdentifier: PostsListIdentifierType,
                                 const limit = contentBlock.limitPerPage > 0 ? contentBlock.limitPerPage : paginationConfig.limit;
                                 const skip = (paginationConfig.current - 1) * limit;
                                 if (contentBlock.postsListIdentifier === mainPostsListIdentifier) {
-                                    const response = await blogPostServices.fetchList(skip, limit);
+                                    const response = await blogPostServices.fetchListPaginated(skip, limit);
                                     contentBlock.posts = response.items;
                                     contentBlock.paginationData = {
                                         ...paginationConfig,

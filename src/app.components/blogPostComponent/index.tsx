@@ -8,6 +8,7 @@ import {TagsComponent} from "./tagsComponent";
 import {CategoriesComponent} from "./categoriesComponent";
 import {DatePublished} from "./datePublished";
 import {MetaContainer} from "./metaContainer";
+import {SeriesPostsListComponent} from "./seriesPostsListComponent";
 
 interface IProps {
     blogPost: BlogPost;
@@ -41,6 +42,23 @@ const BlogPostComponent = ({blogPost}: IProps) => {
         </div>
         <BlocksBodyContentComponent blocks={blogPost.contentBlocks} isExcerpts={false}/>
         <TagsComponent tags={blogPost.tags}/>
+        {
+            blogPost.seriesPostsLists.length > 0
+            && <div className={clsx(
+                'mt-8'
+            )}>
+                <MetaContainer allFormats={'Default'}>
+                    <div className="daisyui-divider"></div>
+                </MetaContainer>
+                <SeriesPostsListComponent series={blogPost.series} 
+                                          postsList={blogPost.seriesPostsLists}
+                                          currentPostSlug={blogPost.slug as string}
+                />
+                <MetaContainer allFormats={'Default'}>
+                    <div className="daisyui-divider"></div>
+                </MetaContainer>
+            </div>
+        }
     </div>
 }
 

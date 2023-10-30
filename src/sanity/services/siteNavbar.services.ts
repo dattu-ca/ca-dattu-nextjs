@@ -37,7 +37,8 @@ export const fetch = async () => {
                     }
                 }`,
             {
-                cache: 'no-cache'
+                cache: 'no-cache',
+                useCdn: false,
             }
         )
         return mapSanity(response);

@@ -11,7 +11,7 @@ import {BodyPostsList} from "./bodyPostsList";
 export type BlogPostFormat = 'Standard' | 'Aside' | 'Image' | 'Video' | 'Quote' | 'Link';
 
 export interface BlogPost extends BaseModel<'BlogPost'> {
-    slug?: string | undefined;
+    slug: string;
     datePublished: Date;
     format: BlogPostFormat;
     publishStatus?: string | undefined;
@@ -25,5 +25,5 @@ export interface BlogPost extends BaseModel<'BlogPost'> {
     categories?: MetaCategory[];
     tags: MetaTag[];
 
-    postsLists: BodyPostsList[];
+    seriesPostsLists: BlogPost[];
 }

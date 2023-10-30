@@ -8,4 +8,11 @@ import { blogPostServices } from "~/sanity/services";
 // export const fetchListPaginatedBySeries = (seriesId: string, skip : number = 0, limit: number = 10) => blogPostServices.fetchListPaginatedBySeries(seriesId, skip, limit);
 // export const fetchListBySeries = (seriesId: string) => blogPostServices.fetchListBySeries(seriesId);
 
-export const fetchBySlug = (slug: string) => blogPostServices.fetchBySlug(slug)
+export const fetchBySlug = async (slug: string) => {
+    const post = await blogPostServices.fetchBySlug(slug);
+    if(post && post.series && post.series.sysId){
+        const result = await blogPostServices.fetchListByMetaId(post.series.sysId, false);
+        post.seriesPostsLists = result.items;
+    }
+    return post;
+}
