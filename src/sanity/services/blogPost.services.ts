@@ -20,7 +20,8 @@ export const fetchListPaginated = async (skip: number = 0, limit: number = 10): 
               "items": (
                 ${filter}
                 | order(dateTime(datePublished + 'T00:00:00Z')  desc)
-                [$skip...$limit] {
+                [$skip...$limit] 
+                {
                    "sysId": _id,
                     "slug" : slug.current,
                     "datePublished": dateTime(datePublished + 'T00:00:00Z'),
