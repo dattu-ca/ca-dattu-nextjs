@@ -4,17 +4,15 @@ import {client} from './client';
 
 import {contentBlocksQuery} from "./utils";
 import {BlogPost} from "~/models";
-import { mapSanityList as mapBlogPostSanityList, mapSanity as mapBlogPostSanity} from "~/sanity/services/blogPost.map";
+import {mapSanityList as mapBlogPostSanityList, mapSanity as mapBlogPostSanity} from "~/sanity/services/blogPost.map";
 
 
-export const fetchList = async (skip: number = 0, limit: number = 10): Promise<{ items: BlogPost[], total: number }> => {
-
+export const fetchListPaginated = async (skip: number = 0, limit: number = 10): Promise<{ items: BlogPost[], total: number }> => {
     const filter = `*[
       _type=='blogPost' 
       && dateTime(now()) >= dateTime(datePublished + 'T00:00:00Z') 
       && publishStatus == 'Published'
   ]`
-
     const response = await client.fetch(
         groq`
            {
@@ -45,9 +43,45 @@ export const fetchList = async (skip: number = 0, limit: number = 10): Promise<{
     };
 }
 
+export const fetchListByMetaId = async (id: string, includeExcerpts = true): Promise<{ items: BlogPost[], total: number }> => {
+    const filter = `*[
+      _type=='blogPost' 
+      && dateTime(now()) >= dateTime(datePublished + 'T00:00:00Z') 
+      && publishStatus == 'Published'
+      && references($id)
+  ]`
+    const response = await client.fetch(
+        groq`
+           {
+              "total": count(${filter}),
+              "items": (
+                ${filter}
+                | order(dateTime(datePublished + 'T00:00:00Z')  desc)
+                {
+                   "sysId": _id,
+                    "slug" : slug.current,
+                    "datePublished": dateTime(datePublished + 'T00:00:00Z'),
+                    heading,
+                    ${
+            includeExcerpts
+                ? `excerptBlocks[] -> ${contentBlocksQuery},
+                               preHeadingExcerptBlocks[] -> ${contentBlocksQuery},` : ''
+        }
+                    
+                  }
+              )
+           }
+        `, {
+            id,
+            cache: 'no-cache',
+            useCdn: false,
+        })
 
-
-
+    return {
+        total: response.total as number,
+        items: mapBlogPostSanityList(response.items)
+    };
+}
 
 export const fetchBySlug = async (slug: string) => {
     try {

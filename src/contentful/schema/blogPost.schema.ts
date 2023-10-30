@@ -21,7 +21,7 @@ export const mapContentful = (raw: any) => {
         cmsSource: 'Contentful',
         sysId: source.sys.id,
         contentType: 'BlogPost',
-        postsLists: [],
+        seriesPostsLists: [],
     };
     if (fields.slug) {
         target.slug = fields.slug as string;
@@ -35,7 +35,7 @@ export const mapContentful = (raw: any) => {
     if (fields.preHeadingContentBlocks) {
         target.preHeadingContentBlocks = mapBlocksBodyContentContentfulList(fields.preHeadingContentBlocks);
         if (target.preHeadingContentBlocks) {
-            target.postsLists = [...(target.postsLists || []), ...mapBodyPostsLists(target.preHeadingContentBlocks)];
+            target.seriesPostsLists = [...(target.seriesPostsLists || []), ...mapBodyPostsLists(target.preHeadingContentBlocks)];
         }
     }
     if (fields.heading) {
@@ -47,13 +47,13 @@ export const mapContentful = (raw: any) => {
     if (fields.excerptBlocks) {
         target.excerptBlocks = mapBlocksBodyContentContentfulList(fields.excerptBlocks);
         if (target.excerptBlocks) {
-            target.postsLists = [...(target.postsLists || []), ...mapBodyPostsLists(target.excerptBlocks)];
+            target.seriesPostsLists = [...(target.seriesPostsLists || []), ...mapBodyPostsLists(target.excerptBlocks)];
         }
     }
     if (fields.contentBlocks) {
         target.contentBlocks = mapBlocksBodyContentContentfulList(fields.contentBlocks);
         if (target.contentBlocks) {
-            target.postsLists = [...(target.postsLists || []), ...mapBodyPostsLists(target.contentBlocks)];
+            target.seriesPostsLists = [...(target.seriesPostsLists || []), ...mapBodyPostsLists(target.contentBlocks)];
         }
     }
     if (fields.authors) {

@@ -25,5 +25,5 @@ export interface BlogPost extends BaseModel<'BlogPost'> {
     categories?: MetaCategory[];
     tags: MetaTag[];
 
-    postsLists: BodyPostsList[];
+    seriesPostsLists: BlogPost[];
 }

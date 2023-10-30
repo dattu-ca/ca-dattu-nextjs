@@ -10,6 +10,9 @@ import { blogPostServices } from "~/sanity/services";
 
 export const fetchBySlug = async (slug: string) => {
     const post = await blogPostServices.fetchBySlug(slug);
-    
+    if(post.series.sysId){
+        const result = await blogPostServices.fetchListByMetaId(post.series.sysId, false);
+        post.seriesPostsLists = result.items;
+    }
     return post;
 }
