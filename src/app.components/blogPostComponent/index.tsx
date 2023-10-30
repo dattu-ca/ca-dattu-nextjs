@@ -52,7 +52,7 @@ const BlogPostComponent = ({blogPost}: IProps) => {
                 </MetaContainer>
                 <SeriesPostsListComponent series={blogPost.series} 
                                           postsList={blogPost.seriesPostsLists}
-                                          currentPostSlug={blogPost.slug}
+                                          currentPostSlug={blogPost.slug as string}
                 />
                 <MetaContainer allFormats={'Default'}>
                     <div className="daisyui-divider"></div>

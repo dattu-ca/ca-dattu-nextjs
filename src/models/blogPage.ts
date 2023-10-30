@@ -4,7 +4,7 @@ import {BodyPostsList} from "./bodyPostsList";
 
 
 export interface BlogPage extends BaseModel<'BlogPage'> {
-    slug?: string | undefined;
+    slug: string;
     preHeadingContentBlocks?: BlocksBodyContent[] | undefined;
     heading?: string | undefined;
     contentBlocks?: BlocksBodyContent[] | undefined;

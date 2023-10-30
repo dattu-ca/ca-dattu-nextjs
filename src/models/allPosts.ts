@@ -3,7 +3,7 @@ import {BlocksBodyContent} from "./blocksBodyContent";
 
 
 export interface AllPosts extends BaseModel<'AllPosts'> {
-    slug?: string | undefined;
+    slug: string;
     preHeadingContentBlocks?: BlocksBodyContent[] | undefined;
     heading?: string | undefined;
     contentBlocks?: BlocksBodyContent[] | undefined;
