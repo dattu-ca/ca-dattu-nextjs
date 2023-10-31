@@ -1,5 +1,6 @@
 import { defineField, defineType} from 'sanity';
 import {FaUserEdit} from "react-icons/fa";
+import {contentBlockSchema} from "../blocks/block.schema";
 
 const authorSchema = defineType({
     name: 'author',
@@ -68,6 +69,32 @@ const authorSchema = defineType({
                         'Alternative text for screenreaders. Falls back on caption if not set',
                 }),
             ],
+        }),
+        defineField({
+            name: 'preHeadingContentBlocks',
+            title: 'Pre Heading Content Blocks',
+            type: 'array',
+            of: [
+                {
+                    type: 'reference',
+                    to: [
+                        {type: contentBlockSchema.name},
+                    ]
+                }
+            ]
+        }),
+        defineField({
+            name: 'contentBlocks',
+            title: 'Content Blocks',
+            type: 'array',
+            of: [
+                {
+                    type: 'reference',
+                    to: [
+                        {type: contentBlockSchema.name},
+                    ]
+                }
+            ]
         }),
     ]
 });
