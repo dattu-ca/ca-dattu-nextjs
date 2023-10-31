@@ -20,6 +20,8 @@ export const fetchBySlug = async (slug: string) => {
       }`,
       {
         slug: slug,
+        cache: 'no-cache',
+        useCdn: false,
       }
     )
     return mapBlogPageSanity(response);

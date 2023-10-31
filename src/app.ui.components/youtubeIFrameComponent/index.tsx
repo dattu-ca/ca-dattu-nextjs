@@ -13,7 +13,6 @@ const YoutubeIFrameComponent = ({data}: IProps) => {
         <YouTubeEmbed videoid={data.videoId} 
                       params="controls=1" 
                       playlabel='Play video' 
-                      style={{'margin': '0 auto'}}
         />
     </div>
 }
