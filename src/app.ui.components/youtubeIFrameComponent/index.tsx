@@ -1,4 +1,5 @@
 import clsx from "clsx";
+import { YouTubeEmbed } from '@next/third-parties/google'
 import {BodyYouTube} from "~/models";
 
 interface IProps {
@@ -6,14 +7,15 @@ interface IProps {
 }
 
 const YoutubeIFrameComponent = ({data}: IProps) => {
-    return <iframe src={`https://www.youtube.com/embed/${data.videoId}`}
-                   title={data.name}
-                   allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                   allowFullScreen
-                   width="560"
-                   height="315"
-                   className={clsx('max-w-full max-h-full')}>
-    </iframe>
+    return <div className={clsx(
+        'mx-auto'
+    )}>
+        <YouTubeEmbed videoid={data.videoId} 
+                      params="controls=1" 
+                      playlabel='Play video' 
+                      style={{'margin': '0 auto'}}
+        />
+    </div>
 }
 
 export {
