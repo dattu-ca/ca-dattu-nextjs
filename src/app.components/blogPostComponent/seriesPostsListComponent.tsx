@@ -10,7 +10,7 @@ interface IProps {
 
 const SeriesPostsListComponent = ({series, postsList, currentPostSlug}: IProps) => {
     return <MetaContainer>
-        <h4>Series: {series.name}</h4>
+        <h4>Series: <Link href={`/series/${series.slug}`}>{series.name}</Link></h4>
         <p>Other posts in this series are as follows:</p>
         <ul>
             {

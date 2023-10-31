@@ -23,7 +23,7 @@ export const mapSanity = (raw: any) => {
         series: mapMetaSeriesSanity(raw.series),
         categories: mapMetaCategorySanityList(raw.categories),
         tags: mapMetaTagSanityList(raw.tags),
-        seriesPostsLists: []
+        seriesPostsList: []
     }
     return target as BlogPost;
 }
