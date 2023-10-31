@@ -1,4 +1,5 @@
 import {ReactElement} from "react";
+import { Analytics } from '@vercel/analytics/react';
 import 'react-toastify/dist/ReactToastify.css';
 import './globals.css';
 
@@ -6,7 +7,6 @@ import {ToastContainer} from "react-toastify";
 import dbConnect from "~/services.db/dbConnect";
 import {siteConfigServices, siteNavbarServices} from "~/services";
 import {getAuthSession} from "~/auth.services";
-import {SERVER_CONFIG} from "~/utils/config.server";
 import "~/utils/dayjs.config";
 
 
@@ -15,9 +15,7 @@ import NavbarComponent from "~/app.ui.components/navbarComponent";
 import {SkipLink} from "~/app.ui.components/skipLink";
 import {RootLayoutComponent} from "~/app.ui.components/rootLayout";
 import clsx from "clsx";
-
-
-const {HEADER_SITE_NAVBAR} = SERVER_CONFIG.CONTENTFUL_SLUGS;
+import GoogleAnalytics from "./googleAnalytics";
 
 
 export const generateMetadata = async () => {
@@ -71,6 +69,8 @@ const RootLayout = async ({children}: IProps) => {
             </RootLayoutComponent>
             <ToastContainer/>
         </ThemeSwitcherProvider>
+        <Analytics />
+        <GoogleAnalytics />
         </body>
         </html>
     )
