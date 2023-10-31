@@ -2,7 +2,7 @@ import {BaseModel} from "./types";
 import {BlogPost} from "./blogPost";
 import {PaginationConfig} from "./paginationConfig";
 
-export type PostsListIdentifierType = "All" | "Series" | "Category" | "Tag" | "Author";
+export type PostsListIdentifierType = "All" | "Post" | "Series" | "Category" | "Tag" | "Author";
 export type PostsListLayoutType = 'Excerpt' | 'Full Post' | 'Heading Only';
 
 export interface BodyPostsList extends BaseModel<'BodyPostsList'> {

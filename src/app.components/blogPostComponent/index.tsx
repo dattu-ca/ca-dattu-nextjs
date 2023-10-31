@@ -43,7 +43,7 @@ const BlogPostComponent = ({blogPost}: IProps) => {
         <BlocksBodyContentComponent blocks={blogPost.contentBlocks} isExcerpts={false}/>
         <TagsComponent tags={blogPost.tags}/>
         {
-            blogPost.seriesPostsLists.length > 0
+            blogPost.seriesPostsList.length > 0
             && <div className={clsx(
                 'mt-8'
             )}>
@@ -51,7 +51,7 @@ const BlogPostComponent = ({blogPost}: IProps) => {
                     <div className="daisyui-divider"></div>
                 </MetaContainer>
                 <SeriesPostsListComponent series={blogPost.series} 
-                                          postsList={blogPost.seriesPostsLists}
+                                          postsList={blogPost.seriesPostsList}
                                           currentPostSlug={blogPost.slug as string}
                 />
                 <MetaContainer allFormats={'Default'}>
