@@ -7,6 +7,23 @@ import {BlogPost} from "~/models";
 import {mapSanityList as mapBlogPostSanityList, mapSanity as mapBlogPostSanity} from "~/sanity/services/blogPost.map";
 
 
+export const fetchTotalByAuthorSlug = async (slug: string) => {
+    const filter = `*[
+      _type=='blogPost' 
+      && dateTime(now()) >= dateTime(datePublished + 'T00:00:00Z') 
+      && publishStatus == 'Published'
+      && $slug in authors[]->slug.current
+  ]`;
+    const response = await client.fetch(
+        groq`count(${filter})`, {
+            slug: slug,
+            cache: 'no-cache',
+            useCdn: false,
+        }
+    );
+    return response as number;
+}
+
 export const fetchListPaginatedByReference = async (skip: number = 0, limit: number = 10, includeExcerpts: boolean = true, referenceId: string = ''): Promise<{ items: BlogPost[], total: number }> => {
     const filter = `*[
       _type=='blogPost' 
@@ -22,19 +39,19 @@ export const fetchListPaginatedByReference = async (skip: number = 0, limit: num
                 ${filter}
                 | order(dateTime(datePublished + 'T00:00:00Z')  desc)
                 ${
-                    limit <= 0 ? '' : '[$skip...$limit]'
-                }
+            limit <= 0 ? '' : '[$skip...$limit]'
+        }
                 {
                    "sysId": _id,
                     "slug" : slug.current,
                     "datePublished": dateTime(datePublished + 'T00:00:00Z'),
                     heading,
                     ${
-                        includeExcerpts
-                            ? `excerptBlocks[] -> ${contentBlocksQuery},
+            includeExcerpts
+                ? `excerptBlocks[] -> ${contentBlocksQuery},
                                preHeadingExcerptBlocks[] -> ${contentBlocksQuery},`
-                            : ''
-                    }
+                : ''
+        }
                   }
               )
            }

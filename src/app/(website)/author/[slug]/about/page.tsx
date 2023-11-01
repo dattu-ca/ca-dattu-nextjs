@@ -1,5 +1,5 @@
-
 import {blogAuthorServices} from "~/services";
+import {BlogAuthorContent} from "~/app.components/blogAuthorComponent/content";
 
 interface IProps {
     params: {
@@ -17,7 +17,7 @@ const Page = async (props: IProps) => {
 
 
     return <div>
-        <pre>{JSON.stringify(blogAuthor, null, 2)}</pre>
+        <BlogAuthorContent author={blogAuthor}/>
     </div>
 }
 export default Page;

@@ -1,5 +1,13 @@
 'use server';
-import {blogAuthorServices} from "~/sanity/services";
+import {blogAuthorServices, blogPostServices} from "~/sanity/services";
 
 
-export const fetchBySlug = (slug: string) => blogAuthorServices.fetchBySlug(slug)
+export const fetchBySlug = async (slug: string) => {
+    const author = await blogAuthorServices.fetchBySlug(slug);
+    if (author) {
+        author.totalPosts = await blogPostServices.fetchTotalByAuthorSlug(slug);
+    }
+
+
+    return author;
+}
