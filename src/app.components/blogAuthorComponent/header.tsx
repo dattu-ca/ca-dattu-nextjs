@@ -31,7 +31,7 @@ const BlogAuthorHeader = ({author}: IProps) => {
             </div>
         </MetaContainer>
         <MetaContainer allFormats={'Default'}>
-            <div className={clsx('mb-12')}>Total Posts: {author.totalPosts}</div>
+            <div className={clsx('mb-12')}>Total Articles: {author.totalPosts}</div>
         </MetaContainer>
         <BlogAuthorTabsComponent author={author}/>
         <div className={clsx('mb-12')}/>

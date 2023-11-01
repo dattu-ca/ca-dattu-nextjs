@@ -7,11 +7,14 @@ import {BlogPost} from "~/models";
 import {mapSanityList as mapBlogPostSanityList, mapSanity as mapBlogPostSanity} from "~/sanity/services/blogPost.map";
 
 
+const availablePostsFilter = `_type=="blogPost"
+                    && dateTime(now()) >= dateTime(datePublished + 'T00:00:00Z') 
+                    && publishStatus == 'Published' `
+
+
 export const fetchTotalByAuthorSlug = async (slug: string) => {
     const filter = `*[
-      _type=='blogPost' 
-      && dateTime(now()) >= dateTime(datePublished + 'T00:00:00Z') 
-      && publishStatus == 'Published'
+      ${availablePostsFilter}
       && $slug in authors[]->slug.current
   ]`;
     const response = await client.fetch(
@@ -19,6 +22,9 @@ export const fetchTotalByAuthorSlug = async (slug: string) => {
             slug: slug,
             cache: 'no-cache',
             useCdn: false,
+            next: {
+                revalidate: 0
+            }
         }
     );
     return response as number;
@@ -26,9 +32,7 @@ export const fetchTotalByAuthorSlug = async (slug: string) => {
 
 export const fetchListPaginatedByReference = async (skip: number = 0, limit: number = 10, includeExcerpts: boolean = true, referenceId: string = ''): Promise<{ items: BlogPost[], total: number }> => {
     const filter = `*[
-      _type=='blogPost' 
-      && dateTime(now()) >= dateTime(datePublished + 'T00:00:00Z') 
-      && publishStatus == 'Published'
+      ${availablePostsFilter}
       ${referenceId ? "&& references($id)" : ''}
   ]`
     const response = await client.fetch(
@@ -38,20 +42,17 @@ export const fetchListPaginatedByReference = async (skip: number = 0, limit: num
               "items": (
                 ${filter}
                 | order(dateTime(datePublished + 'T00:00:00Z')  desc)
-                ${
-            limit <= 0 ? '' : '[$skip...$limit]'
-        }
+                ${limit <= 0 ? '' : '[$skip...$limit]'}
                 {
                    "sysId": _id,
                     "slug" : slug.current,
                     "datePublished": dateTime(datePublished + 'T00:00:00Z'),
                     heading,
-                    ${
-            includeExcerpts
-                ? `excerptBlocks[] -> ${contentBlocksQuery},
-                               preHeadingExcerptBlocks[] -> ${contentBlocksQuery},`
-                : ''
-        }
+                    ${ includeExcerpts 
+                                ? `excerptBlocks[] -> ${contentBlocksQuery},
+                                   preHeadingExcerptBlocks[] -> ${contentBlocksQuery},`
+                                : ''
+                    }
                   }
               )
            }
@@ -61,6 +62,9 @@ export const fetchListPaginatedByReference = async (skip: number = 0, limit: num
             id: referenceId,
             cache: 'no-cache',
             useCdn: false,
+            next: {
+                revalidate: 0
+            }
         })
 
     return {
@@ -73,9 +77,7 @@ export const fetchBySlug = async (slug: string) => {
     try {
         const response = await client.fetch(
             groq`*[
-                    _type=="blogPost"
-                    && dateTime(now()) >= dateTime(datePublished + 'T00:00:00Z') 
-                    && publishStatus == 'Published' 
+                    ${availablePostsFilter}
                     && slug.current == $slug
                 ][0]{
                 "sysId": _id,
@@ -117,6 +119,9 @@ export const fetchBySlug = async (slug: string) => {
                 slug: slug,
                 cache: 'no-cache',
                 useCdn: false,
+                next: {
+                    revalidate: 0
+                }
             }
         )
         return mapBlogPostSanity(response);

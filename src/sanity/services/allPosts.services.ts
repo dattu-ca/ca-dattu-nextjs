@@ -4,6 +4,7 @@ import { client } from './client';
 import { contentBlocksQuery } from "./utils";
 import { mapSanity as mapAllPostsSanity } from './allPosts.map';
 
+
 export const fetch = async () => {
     try {
         const response = await client.fetch(
@@ -17,6 +18,9 @@ export const fetch = async () => {
             {
                 cache: 'no-cache',
                 useCdn: false,
+                next:{
+                    revalidate: 0
+                }
             }
         )
         return mapAllPostsSanity(response);

@@ -27,6 +27,9 @@ export const fetchBySlug = async (slug: string) => {
                 slug: slug,
                 cache: 'no-cache',
                 useCdn: false,
+                next:{
+                    revalidate: 0
+                }
             }
         )
         return mapBlogAuthorSanity(response);
