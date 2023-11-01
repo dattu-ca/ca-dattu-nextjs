@@ -41,7 +41,9 @@ const PaginationButton = ({children, pageNumber, aria, showDots}: IButtonLinkPro
         : (
             <Link href={getLinkUrl(pageNumber)}
                   className={clsx(btnClasses)}
-                  aria-label={aria || `Navigate to page number ${pageNumber}`}>
+                  aria-label={aria || `Navigate to page number ${pageNumber}`}
+                  scroll={false}
+            >
                 {children}
             </Link>
         )

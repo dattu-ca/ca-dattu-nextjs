@@ -10,6 +10,18 @@ interface IProps {
     children?: ReactElement | ReactElement[];
 }
 
+export const generateMetadata = async ({params}: IProps) => {
+    const {slug} = params;
+    const blogAuthor = await blogAuthorServices.fetchBySlug(slug);
+    if (!blogAuthor) {
+        return {};
+    }
+    const {name} = blogAuthor;
+    return {
+        title: name
+    }
+}
+
 const Layout = async ({params, children}: IProps) => {
     const {slug} = params;
     const blogAuthor = await blogAuthorServices.fetchBySlug(slug);

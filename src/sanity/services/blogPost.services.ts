@@ -11,15 +11,14 @@ const availablePostsFilter = `_type=="blogPost"
                     && dateTime(now()) >= dateTime(datePublished + 'T00:00:00Z') 
                     && publishStatus == 'Published' `
 
-
-export const fetchTotalByAuthorSlug = async (slug: string) => {
+export const fetchTotalByReference = async (referenceId: string) => {
     const filter = `*[
       ${availablePostsFilter}
-      && $slug in authors[]->slug.current
-  ]`;
+      && references($id)
+    ]`
     const response = await client.fetch(
         groq`count(${filter})`, {
-            slug: slug,
+            id: referenceId,
             cache: 'no-cache',
             useCdn: false,
             next: {
@@ -48,11 +47,11 @@ export const fetchListPaginatedByReference = async (skip: number = 0, limit: num
                     "slug" : slug.current,
                     "datePublished": dateTime(datePublished + 'T00:00:00Z'),
                     heading,
-                    ${ includeExcerpts 
-                                ? `excerptBlocks[] -> ${contentBlocksQuery},
-                                   preHeadingExcerptBlocks[] -> ${contentBlocksQuery},`
-                                : ''
-                    }
+                    ${includeExcerpts
+            ? `excerptBlocks[] -> ${contentBlocksQuery},
+                           preHeadingExcerptBlocks[] -> ${contentBlocksQuery},`
+            : ''
+        }
                   }
               )
            }
