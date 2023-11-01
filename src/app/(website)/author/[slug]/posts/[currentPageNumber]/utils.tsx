@@ -1,8 +1,9 @@
 import {PaginationConfig} from "~/models";
 import {blogAuthorServices} from "~/services";
+import {SERVER_CONFIG} from "~/utils/config.server";
 
 export const fetchAuthorPosts = async (slug: string, currentPage: number) => {
-    const limit = 1;//SERVER_CONFIG.CONTENT_CONFIG.DEFAULT_MAX_POSTS_PER_PAGE;
+    const limit = SERVER_CONFIG.CONTENT_CONFIG.DEFAULT_MAX_POSTS_PER_PAGE;
     const skip = (currentPage - 1) * limit;
     const paginationConfig: Partial<PaginationConfig> = {
         skip,
