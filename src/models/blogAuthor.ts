@@ -11,5 +11,7 @@ export interface BlogAuthor extends BaseModel<'BlogAuthor'> {
     avatar?: BodyImage | undefined;
     avatarInitials: string;
     contentBlocks?: BlocksBodyContent[] | undefined;
-    postsLists: BodyPostsList[];
+    
+    // postsLists: BodyPostsList[];
+    totalPosts?: number | undefined;
 }

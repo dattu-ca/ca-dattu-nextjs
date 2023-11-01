@@ -19,6 +19,22 @@ const nextConfig = {
 
         return [res]
     },
+    async rewrites() {
+        return [
+            {
+                source: '/posts',
+                destination: '/posts/1'
+            },
+            {
+                source: '/author/:slug',
+                destination: '/author/:slug/about'
+            },
+            {
+                source: '/author/:slug/posts',
+                destination: '/author/:slug/posts/1'
+            },
+        ]
+    },
     images: {
         remotePatterns: [
             {

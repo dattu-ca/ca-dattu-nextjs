@@ -2,6 +2,7 @@ import {ClientConfig, createClient} from "next-sanity";
 import {apiVersion, dataset, projectId} from "~/sanity/env";
 import {SERVER_CONFIG} from "~/utils/config.server";
 
+
 const client = createClient({
     projectId,
     dataset,

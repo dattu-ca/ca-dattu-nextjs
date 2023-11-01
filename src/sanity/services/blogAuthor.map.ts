@@ -1,4 +1,5 @@
 import {BlogAuthor, BodyImage} from "~/models";
+import {mapSanityList as mapBlocksBodyContentSanityList} from './blocksBodyContent.map'
 
 export const mapSanity = (raw: any) => {
     const target: Partial<BlogAuthor> = {
@@ -20,7 +21,9 @@ export const mapSanity = (raw: any) => {
                 url: raw.avatarImage.url as string
             }
 
-        } as BodyImage : undefined
+        } as BodyImage : undefined,
+        preHeadingContentBlocks: mapBlocksBodyContentSanityList(raw.preHeadingContentBlocks),
+        contentBlocks: mapBlocksBodyContentSanityList(raw.contentBlocks),
     }
     return target as BlogAuthor;
 }
