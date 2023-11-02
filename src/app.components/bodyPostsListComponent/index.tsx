@@ -13,8 +13,7 @@ const BodyPostsListComponent = ({data}: IProps) => {
     if (!data) {
         return null;
     }
-
-
+    
     return (
         <div>
             {

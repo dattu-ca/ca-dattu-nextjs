@@ -19,7 +19,7 @@ export const fetch = async () => {
                 cache: 'no-cache',
                 useCdn: false,
                 next:{
-                    revalidate: 0
+                    revalidate: 1
                 }
             }
         )

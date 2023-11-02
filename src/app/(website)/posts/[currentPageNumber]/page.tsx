@@ -9,10 +9,12 @@ interface IProps {
 
 const Page = async (props: IProps) => {
     const currentPage = getCurrentPageNumber(props.params);
-    const data = await fetchAllPosts(currentPage);
+    const {allPosts, paginationConfig} = await fetchAllPosts(currentPage);
+    
+    
 
     return <div>
-        <AllPostsComponent allPosts={data} />
+        <AllPostsComponent allPosts={allPosts} paginationConfig={paginationConfig}/>
     </div>
 }
 export default Page;
