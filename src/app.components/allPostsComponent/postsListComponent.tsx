@@ -3,18 +3,17 @@ import {BlogPost, BodyPostsList, PaginationConfig} from "~/models";
 import {MetaContainer} from "./metaContainer";
 
 interface IProps {
-    slug: string,
     paginationData: PaginationConfig;
     posts: BlogPost[];
 }
 
-const BlogAuthorPostsListComponent = ({slug, posts, paginationData}: IProps) => {
+const AllPostsListComponent = ({posts, paginationData}: IProps) => {
     const data: BodyPostsList = {
-        sysId: slug,
+        sysId: 'allPosts',
         contentType: 'BodyPostsList',
         cmsSource: 'Sanity',
-        name: 'author',
-        postsListIdentifier: "Author",
+        name: 'Articles',
+        postsListIdentifier: "All",
         limitPerPage: paginationData.limit,
         isPaginated: true,
         layout: "Excerpt",
@@ -27,5 +26,5 @@ const BlogAuthorPostsListComponent = ({slug, posts, paginationData}: IProps) => 
 }
 
 export {
-    BlogAuthorPostsListComponent
+    AllPostsListComponent
 }
