@@ -1,5 +1,6 @@
 import { defineField, defineType} from 'sanity';
 import {FaHashtag} from "react-icons/fa6";
+import {contentBlockSchema} from "../blocks/block.schema";
 
 const tagSchema = defineType({
     name: 'tag',
@@ -23,10 +24,36 @@ const tagSchema = defineType({
             validation: (rule) => rule.required(),
         }),
         defineField({
+            name: 'preHeadingContentBlocks',
+            title: 'Pre Heading Content Blocks',
+            type: 'array',
+            of: [
+                {
+                    type: 'reference',
+                    to: [
+                        {type: contentBlockSchema.name},
+                    ]
+                }
+            ]
+        }),
+        defineField({
             name: 'name',
             title: 'Name',
             type: 'string',
             validation: (rule) => rule.required(),
+        }),
+        defineField({
+            name: 'contentBlocks',
+            title: 'Content Blocks',
+            type: 'array',
+            of: [
+                {
+                    type: 'reference',
+                    to: [
+                        { type: contentBlockSchema.name },
+                    ]
+                }
+            ]
         }),
     ]
 });

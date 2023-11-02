@@ -6,6 +6,8 @@ import * as siteAuthConfigServices from './siteAuthConfig.services';
 import * as siteConfigServices from './siteConfig.services';
 import * as siteNavbarServices from './siteNavbar.services';
 
+import * as bodyFormServices from './bodyForm.services';
+
 export {
     allPostsServices,
     blogPageServices,
@@ -13,5 +15,6 @@ export {
     siteAuthConfigServices,
     siteConfigServices,
     siteNavbarServices,
-    blogAuthorServices
+    blogAuthorServices,
+    bodyFormServices
 }

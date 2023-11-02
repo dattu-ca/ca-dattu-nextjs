@@ -1,5 +1,6 @@
 import {defineField, defineType} from 'sanity';
 import {BsCollection} from "react-icons/bs";
+import {contentBlockSchema} from "~/sanity/schemas/blocks/block.schema";
 
 const seriesSchema = defineType({
     name: 'series',
@@ -24,10 +25,36 @@ const seriesSchema = defineType({
             validation: (rule) => rule.required(),
         }),
         defineField({
+            name: 'preHeadingContentBlocks',
+            title: 'Pre Heading Content Blocks',
+            type: 'array',
+            of: [
+                {
+                    type: 'reference',
+                    to: [
+                        {type: contentBlockSchema.name},
+                    ]
+                }
+            ]
+        }),
+        defineField({
             name: 'name',
             title: 'Name',
             type: 'string',
             validation: (rule) => rule.required(),
+        }),
+        defineField({
+            name: 'contentBlocks',
+            title: 'Content Blocks',
+            type: 'array',
+            of: [
+                {
+                    type: 'reference',
+                    to: [
+                        { type: contentBlockSchema.name },
+                    ]
+                }
+            ]
         }),
     ]
 });

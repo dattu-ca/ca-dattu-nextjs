@@ -7,5 +7,7 @@ export interface MetaSeries extends BaseModel<'MetaSeries'> {
     preHeadingContentBlocks?: BlocksBodyContent[] | undefined;
     name: string;
     contentBlocks?: BlocksBodyContent[] | undefined;
+
+    
     postsLists: BodyPostsList[];
 }
