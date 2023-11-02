@@ -1,5 +1,5 @@
 import {ReactElement} from "react";
-import {BlocksLayout} from "~/app.ui.components/blocksLayout";
+import {BlocksLayout} from "./";
 import {BlocksBodyContent_LayoutFormat} from "~/models";
 
 interface IProps {
@@ -7,7 +7,7 @@ interface IProps {
     allFormats?:  BlocksBodyContent_LayoutFormat | undefined;
 }
 
-const MetaContainer = ({children, allFormats}: IProps) => {
+const DefaultBlocksLayout = ({children, allFormats}: IProps) => {
     return <BlocksLayout format={{
         Xs: allFormats ?? 'Container Width',
         Sm: allFormats ?? 'Container Width',
@@ -20,5 +20,5 @@ const MetaContainer = ({children, allFormats}: IProps) => {
 }
 
 export {
-    MetaContainer
+    DefaultBlocksLayout
 }

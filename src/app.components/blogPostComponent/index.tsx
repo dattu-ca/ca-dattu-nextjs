@@ -7,8 +7,8 @@ import {AuthorsComponent} from "./authorsComponent";
 import {TagsComponent} from "./tagsComponent";
 import {CategoriesComponent} from "./categoriesComponent";
 import {DatePublished} from "./datePublished";
-import {MetaContainer} from "./metaContainer";
 import {SeriesPostsListComponent} from "./seriesPostsListComponent";
+import {DefaultBlocksLayout} from "~/app.ui.components/blocksLayout/defaultBLocksLayout";
 
 interface IProps {
     blogPost: BlogPost;
@@ -29,15 +29,15 @@ const BlogPostComponent = ({blogPost}: IProps) => {
                     {blogPost.heading}
                 </div>
             </H1Heading>
-            <MetaContainer allFormats={'Default'}>
+            <DefaultBlocksLayout allFormats={'Default'}>
                 <div className="daisyui-divider"></div>
-            </MetaContainer>
+            </DefaultBlocksLayout>
             <AuthorsComponent authors={blogPost.authors}/>
             <div className={clsx('mb-6')}/>
             <CategoriesComponent categories={blogPost.categories}/>
-            <MetaContainer allFormats={'Default'}>
+            <DefaultBlocksLayout allFormats={'Default'}>
                 <div className="daisyui-divider"></div>
-            </MetaContainer>
+            </DefaultBlocksLayout>
 
         </div>
         <BlocksBodyContentComponent blocks={blogPost.contentBlocks} isExcerpts={false}/>
@@ -47,16 +47,16 @@ const BlogPostComponent = ({blogPost}: IProps) => {
             && <div className={clsx(
                 'mt-8'
             )}>
-                <MetaContainer allFormats={'Default'}>
+                <DefaultBlocksLayout allFormats={'Default'}>
                     <div className="daisyui-divider"></div>
-                </MetaContainer>
+                </DefaultBlocksLayout>
                 <SeriesPostsListComponent series={blogPost.series} 
                                           postsList={blogPost.seriesPostsList}
                                           currentPostSlug={blogPost.slug as string}
                 />
-                <MetaContainer allFormats={'Default'}>
+                <DefaultBlocksLayout allFormats={'Default'}>
                     <div className="daisyui-divider"></div>
-                </MetaContainer>
+                </DefaultBlocksLayout>
             </div>
         }
     </div>

@@ -2,8 +2,8 @@
 import Link from "next/link";
 import {useSelectedLayoutSegment} from 'next/navigation'
 import {BlogAuthor} from "~/models";
-import {MetaContainer} from "./metaContainer";
 import clsx from "clsx";
+import {DefaultBlocksLayout} from "~/app.ui.components/blocksLayout/defaultBLocksLayout";
 
 interface IProps {
     author: BlogAuthor
@@ -19,7 +19,7 @@ const BlogAuthorTabsComponent = ({author}: IProps) => {
 
 
     return <>
-        <MetaContainer allFormats={'Container Width'}>
+        <DefaultBlocksLayout allFormats={'Container Width'}>
             <div className="daisyui-tabs">
                 {
                     links.map(link => (
@@ -38,7 +38,7 @@ const BlogAuthorTabsComponent = ({author}: IProps) => {
                 'daisyui-divider my-0',
                 'translate-y-[-9px]'
             )}></div>
-        </MetaContainer>
+        </DefaultBlocksLayout>
     </>
 }
 
