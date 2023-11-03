@@ -29,7 +29,24 @@ export const fetchTotalByReference = async (referenceId: string) => {
     return response as number;
 }
 
-export const fetchListPaginatedByReference = async (skip: number = 0, limit: number = 10, includeExcerpts: boolean = true, referenceId: string = ''): Promise<{ items: BlogPost[], total: number }> => {
+
+interface IProps {
+    skip: number;
+    limit: number;
+    includeExcerpts?: boolean | undefined;
+    referenceId?: string | undefined;
+    includeAuthors?: boolean | undefined;
+    sortAscendingPublishDate?: boolean | undefined;
+}
+
+export const fetchListPaginatedByReference = async ({
+                                                        skip,
+                                                        limit,
+                                                        includeExcerpts,
+                                                        referenceId,
+                                                        includeAuthors,
+                                                        sortAscendingPublishDate
+                                                    }: IProps): Promise<{ items: BlogPost[], total: number }> => {
     const filter = `*[
       ${availablePostsFilter}
       ${referenceId ? "&& references($id)" : ''}
@@ -40,7 +57,7 @@ export const fetchListPaginatedByReference = async (skip: number = 0, limit: num
               "total": count(${filter}),
               "items": (
                 ${filter}
-                | order(dateTime(datePublished + 'T00:00:00Z')  desc)
+                | order(dateTime(datePublished + 'T00:00:00Z')  ${sortAscendingPublishDate ? 'asc' : 'desc'})
                 ${limit <= 0 ? '' : '[$skip...$limit]'}
                 {
                    "sysId": _id,
@@ -49,8 +66,23 @@ export const fetchListPaginatedByReference = async (skip: number = 0, limit: num
                     heading,
                     ${includeExcerpts
             ? `excerptBlocks[] -> ${contentBlocksQuery},
-                           preHeadingExcerptBlocks[] -> ${contentBlocksQuery},`
+                        preHeadingExcerptBlocks[] -> ${contentBlocksQuery},`
             : ''
+        }
+                    ${
+            includeAuthors ? `authors[]->{
+                                "sysId": _id,
+                                "slug": slug.current,
+                                name,
+                                avatarInitials,
+                                "avatarImage":{
+                                  "sysId": _id,
+                                  name,
+                                  "caption": avatarImage.caption,
+                                  "alt": avatarImage.alt,
+                                  "url": avatarImage.asset -> url
+                                }
+                            }` : ''
         }
                   }
               )
@@ -58,7 +90,7 @@ export const fetchListPaginatedByReference = async (skip: number = 0, limit: num
         `, {
             skip,
             limit: skip + limit,
-            id: referenceId,
+            ...(referenceId ? {id: referenceId} : {}),
             cache: 'no-cache',
             useCdn: false,
             next: {

@@ -1,6 +1,6 @@
 import dayjs from "dayjs";
-import {MetaContainer} from "./metaContainer";
 import clsx from "clsx";
+import {DefaultBlocksLayout} from "~/app.ui.components/blocksLayout/defaultBLocksLayout";
 
 
 interface IProps {
@@ -8,7 +8,7 @@ interface IProps {
 }
 
 const DatePublished = ({date}: IProps) => {
-    return <MetaContainer>
+    return <DefaultBlocksLayout>
         <div className={clsx(
             
         )}>
@@ -18,7 +18,7 @@ const DatePublished = ({date}: IProps) => {
                 <span className={clsx('ml-3')}>{dayjs(date).format('MMM DD, YYYY')}</span>
             </time>
         </div>
-    </MetaContainer>
+    </DefaultBlocksLayout>
 }
 
 export {

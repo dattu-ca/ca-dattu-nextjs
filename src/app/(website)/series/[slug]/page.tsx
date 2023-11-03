@@ -1,3 +1,6 @@
+import {metaSeriesServices} from "~/services";
+import {MetaSeriesComponent} from "~/app.components/metaSeriesComponent";
+
 interface IProps {
     params: {
         slug: string
@@ -5,8 +8,10 @@ interface IProps {
 }
 
 const Page = async (props: IProps) => {
-
-
-    return <pre>{JSON.stringify(props, null, 2)}</pre>
+    const data = await metaSeriesServices.fetchBySlug(props.params.slug)
+    if (!data) {
+        return null;
+    }
+    return <MetaSeriesComponent series={data}/>
 }
 export default Page;

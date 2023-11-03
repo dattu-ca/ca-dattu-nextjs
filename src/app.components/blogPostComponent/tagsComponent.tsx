@@ -1,14 +1,14 @@
 import {MetaTag} from "~/models";
-import {MetaContainer} from "./metaContainer";
 import clsx from "clsx";
 import Link from "next/link";
+import {DefaultBlocksLayout} from "~/app.ui.components/blocksLayout/defaultBLocksLayout";
 
 interface IProps {
     tags?: MetaTag[] | undefined;
 }
 
 const TagsComponent = ({tags}: IProps) => {
-    return tags && Array.isArray(tags) && tags.length > 0 && <MetaContainer>
+    return tags && Array.isArray(tags) && tags.length > 0 && <DefaultBlocksLayout>
         <ul className={clsx(
             'space-y-0',
             'list-none',
@@ -30,7 +30,7 @@ const TagsComponent = ({tags}: IProps) => {
                 ))
             }
         </ul>
-    </MetaContainer>
+    </DefaultBlocksLayout>
 
 }
 

@@ -1,6 +1,7 @@
 import {BaseModel} from "./types";
 import {BlocksBodyContent} from "./blocksBodyContent";
-import {BodyPostsList} from "./bodyPostsList";
+import {BlogPost} from "./blogPost";
+import {BlogAuthor} from "~/models/blogAuthor";
 
 export interface MetaSeries extends BaseModel<'MetaSeries'> {
     slug: string;
@@ -9,5 +10,6 @@ export interface MetaSeries extends BaseModel<'MetaSeries'> {
     contentBlocks?: BlocksBodyContent[] | undefined;
 
     
-    postsLists: BodyPostsList[];
+    postsLists: BlogPost[];
+    authorsList: BlogAuthor[];
 }

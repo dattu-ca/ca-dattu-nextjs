@@ -1,6 +1,6 @@
 import {BodyPostsListComponent} from "~/app.components/bodyPostsListComponent";
 import {BlogPost, BodyPostsList, PaginationConfig} from "~/models";
-import {MetaContainer} from "./metaContainer";
+import {DefaultBlocksLayout} from "~/app.ui.components/blocksLayout/defaultBLocksLayout";
 
 interface IProps {
     slug: string,
@@ -21,9 +21,9 @@ const BlogAuthorPostsListComponent = ({slug, posts, paginationData}: IProps) => 
         posts,
         paginationData
     }
-    return <MetaContainer>
+    return <DefaultBlocksLayout>
         <BodyPostsListComponent data={data}/>
-    </MetaContainer>
+    </DefaultBlocksLayout>
 }
 
 export {

@@ -1,7 +1,7 @@
 import clsx from "clsx";
 import {BlogAuthor} from "~/models";
 import {BlogAuthorTabsComponent} from "./tabsComponent";
-import {MetaContainer} from "./metaContainer";
+import {DefaultBlocksLayout} from "~/app.ui.components/blocksLayout/defaultBLocksLayout";
 
 interface IProps {
     author: BlogAuthor
@@ -9,7 +9,7 @@ interface IProps {
 
 const BlogAuthorHeader = ({author}: IProps) => {
     return <div className={clsx('mt-8')}>
-        <MetaContainer allFormats={'Default'}>
+        <DefaultBlocksLayout allFormats={'Default'}>
             <div className={clsx('mb-6')}>
                 <div className={clsx('flex items-center  gap-4')}>
                     <div className={clsx('daisyui-avatar daisyui-placeholder')}>
@@ -29,10 +29,10 @@ const BlogAuthorHeader = ({author}: IProps) => {
                     </div>
                 </div>
             </div>
-        </MetaContainer>
-        <MetaContainer allFormats={'Default'}>
+        </DefaultBlocksLayout>
+        <DefaultBlocksLayout allFormats={'Default'}>
             <div className={clsx('mb-12')}>Total Articles: {author.totalPosts}</div>
-        </MetaContainer>
+        </DefaultBlocksLayout>
         <BlogAuthorTabsComponent author={author}/>
         <div className={clsx('mb-12')}/>
     </div>

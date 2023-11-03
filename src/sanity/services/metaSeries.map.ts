@@ -1,4 +1,5 @@
 import {MetaSeries} from "~/models";
+import {mapSanityList as mapBlocksBodyContentSanityList} from "./blocksBodyContent.map";
 
 export const mapSanity = (raw: any) => {
     const target: Partial<MetaSeries> = {
@@ -7,6 +8,8 @@ export const mapSanity = (raw: any) => {
         sysId: raw?.sysId as string,
         slug: raw?.slug as string,
         name: raw?.name as string,
+        preHeadingContentBlocks: mapBlocksBodyContentSanityList(raw?.preHeadingContentBlocks),
+        contentBlocks: mapBlocksBodyContentSanityList(raw?.contentBlocks),
     }
     return target as MetaSeries;
 }

@@ -11,7 +11,7 @@ import * as formsServices from './form.services';
 import * as sendMailServices from './sendMail.services';
 // import * as metaCategoryServices from './metaCategory.services';
 // import * as metaTagServices from './metaTag.services';
-// import * as metaSeriesServices from './metaSeries.services';
+import * as metaSeriesServices from './metaSeries.services';
 
 export {
     allPostsServices,
@@ -25,7 +25,7 @@ export {
     // blogHomeServices,
     siteNavbarServices,
     // metaTagServices,
-    // metaSeriesServices,
+    metaSeriesServices,
     // metaCategoryServices,
     blogAuthorServices
 }

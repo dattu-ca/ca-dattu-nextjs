@@ -5,9 +5,13 @@ import {PaginationConfig} from "~/models";
 
 export const fetch = async (paginationConfig: PaginationConfig) => {
     const allPosts = await allPostsServices.fetch();
-    if(allPosts){
+    if (allPosts) {
         await processFillingPostsList('All', paginationConfig, [allPosts?.contentBlocks])
-        const response = await blogPostServices.fetchListPaginatedByReference(paginationConfig.skip, paginationConfig.limit, true);
+        const response = await blogPostServices.fetchListPaginatedByReference({
+            skip: paginationConfig.skip,
+            limit: paginationConfig.limit,
+            includeExcerpts: true
+        });
         allPosts.postsLists = response.items;
         paginationConfig = {
             ...paginationConfig,
@@ -15,7 +19,7 @@ export const fetch = async (paginationConfig: PaginationConfig) => {
             totalPages: Math.ceil((response.total / paginationConfig.limit))
         }
     }
-    
+
     return {
         allPosts,
         paginationConfig
