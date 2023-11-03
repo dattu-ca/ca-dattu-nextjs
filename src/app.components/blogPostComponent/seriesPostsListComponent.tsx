@@ -11,8 +11,8 @@ interface IProps {
 const SeriesPostsListComponent = ({series, postsList, currentPostSlug}: IProps) => {
     return <DefaultBlocksLayout>
         <h4>Series: <Link href={`/series/${series.slug}`}>{series.name}</Link></h4>
-        <p>Other posts in this series are as follows:</p>
-        <ul>
+        <p>Other articles in this series are as follows:</p>
+        <ol>
             {
                 postsList.map((post) => (
                     <li key={post.slug}>
@@ -24,7 +24,7 @@ const SeriesPostsListComponent = ({series, postsList, currentPostSlug}: IProps) 
                     </li>
                 ))
             }
-        </ul>
+        </ol>
     </DefaultBlocksLayout>
 }
 

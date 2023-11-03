@@ -11,6 +11,7 @@ export const fetchBySlug = async (slug: string) => {
             referenceId: metaSeries.sysId,
             includeExcerpts: false,
             includeAuthors: true,
+            sortAscendingPublishDate: true,
         });
         metaSeries.postsLists = response.items;
         metaSeries.authorsList = response.items.reduce((previousValue, currentValue, currentIndex, array) => {

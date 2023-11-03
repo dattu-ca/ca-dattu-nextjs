@@ -17,7 +17,8 @@ export const fetchBySlug = async (slug: string) => {
             skip: 0,
             limit: 0,
             includeExcerpts: false,
-            referenceId: post.series.sysId
+            referenceId: post.series.sysId,
+            sortAscendingPublishDate: true,
         });
         post.seriesPostsList = result.items;
     }

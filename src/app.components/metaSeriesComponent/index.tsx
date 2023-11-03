@@ -1,19 +1,21 @@
 import {MetaSeries} from "~/models";
-import {BlocksBodyContentComponent} from "~/app.components/blocksBodyContentComponent";
+import {BlocksBodyContentComponent} from "../blocksBodyContentComponent";
 import clsx from "clsx";
 import {H1Heading} from "~/app.ui.components/h1Heading";
 import {Fragment} from "react";
 import Link from "next/link";
 import {DefaultBlocksLayout} from "~/app.ui.components/blocksLayout/defaultBLocksLayout";
+import {AuthorsComponent} from "./authorsComponent";
 
-interface  IProps{
+interface IProps {
     series: MetaSeries
 }
-const MetaSeriesComponent = ({series} : IProps) => {
-    if(!series){
+
+const MetaSeriesComponent = ({series}: IProps) => {
+    if (!series) {
         return null;
     }
-    
+
     return <div>
         <BlocksBodyContentComponent blocks={series.preHeadingContentBlocks} isExcerpts={false}/>
         <div className={clsx(
@@ -25,14 +27,32 @@ const MetaSeriesComponent = ({series} : IProps) => {
                 </Fragment>
             </H1Heading>
         </div>
-        <BlocksBodyContentComponent blocks={series.contentBlocks} isExcerpts={false}/>
+        <div className={clsx(
+            'mt-8'
+        )}>
+            <DefaultBlocksLayout allFormats={'Default'}>
+                <div className="daisyui-divider"></div>
+                <h5>Authors of this series</h5>
+            </DefaultBlocksLayout>
+            <AuthorsComponent authors={series.authorsList}/>
+            <DefaultBlocksLayout allFormats={'Default'}>
+                <div className="daisyui-divider"></div>
+            </DefaultBlocksLayout>
+        </div>
+        <div className={clsx(
+            {
+                ['mt-8']: (series.contentBlocks || []).length > 0
+            }
+        )}>
+            <BlocksBodyContentComponent blocks={series.contentBlocks} isExcerpts={false}/>
+        </div>
 
         <div className={clsx(
             'mt-8'
         )}>
             <DefaultBlocksLayout>
                 <p>All articles in this series are:</p>
-                <ul>
+                <ol>
                     {
                         series.postsLists.map((post) => (
                             <li key={post.slug}>
@@ -40,7 +60,7 @@ const MetaSeriesComponent = ({series} : IProps) => {
                             </li>
                         ))
                     }
-                </ul>
+                </ol>
             </DefaultBlocksLayout>
         </div>
     </div>
