@@ -1,5 +1,4 @@
 import {Fragment} from "react";
-// import clsx from "clsx";
 import {AllPosts, PaginationConfig} from "~/models";
 import {H1Heading} from "~/app.ui.components/h1Heading";
 import {BlocksBodyContentComponent} from "../blocksBodyContentComponent";

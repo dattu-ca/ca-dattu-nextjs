@@ -29,7 +29,15 @@ export const fetchTotalByReference = async (referenceId: string) => {
     return response as number;
 }
 
-export const fetchListPaginatedByReference = async (skip: number = 0, limit: number = 10, includeExcerpts: boolean = true, referenceId: string = ''): Promise<{ items: BlogPost[], total: number }> => {
+
+interface IProps{
+    skip: number;
+    limit: number;
+    includeExcerpts?: boolean | undefined;
+    referenceId?: string | undefined;
+    includeAuthors?: boolean | undefined;
+}
+export const fetchListPaginatedByReference = async ({ skip, limit, includeExcerpts, referenceId, includeAuthors} : IProps): Promise<{ items: BlogPost[], total: number }> => {
     const filter = `*[
       ${availablePostsFilter}
       ${referenceId ? "&& references($id)" : ''}
@@ -48,10 +56,25 @@ export const fetchListPaginatedByReference = async (skip: number = 0, limit: num
                     "datePublished": dateTime(datePublished + 'T00:00:00Z'),
                     heading,
                     ${includeExcerpts
-            ? `excerptBlocks[] -> ${contentBlocksQuery},
-                           preHeadingExcerptBlocks[] -> ${contentBlocksQuery},`
-            : ''
-        }
+                        ? `excerptBlocks[] -> ${contentBlocksQuery},
+                                       preHeadingExcerptBlocks[] -> ${contentBlocksQuery},`
+                        : ''
+                    }
+                    ${
+                        includeAuthors ? `authors[]->{
+                    "sysId": _id,
+                    "slug": slug.current,
+                    name,
+                    avatarInitials,
+                    "avatarImage":{
+                      "sysId": _id,
+                      name,
+                      "caption": avatarImage.caption,
+                      "alt": avatarImage.alt,
+                      "url": avatarImage.asset -> url
+                    }
+                }`: ''            
+                    }
                   }
               )
            }

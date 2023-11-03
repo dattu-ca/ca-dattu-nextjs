@@ -19,7 +19,7 @@ const SeriesPostsListComponent = ({series, postsList, currentPostSlug}: IProps) 
                         {
                             currentPostSlug === post.slug
                                 ? <span>{post.heading}</span>
-                                : <Link href={post.slug}>{post.heading}</Link>
+                                : <Link href={`/post/${post.slug}`}>{post.heading}</Link>
                         }
                     </li>
                 ))
