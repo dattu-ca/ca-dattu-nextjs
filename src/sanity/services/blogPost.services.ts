@@ -65,12 +65,12 @@ export const fetchListPaginatedByReference = async ({
                     "datePublished": dateTime(datePublished + 'T00:00:00Z'),
                     heading,
                     ${includeExcerpts
-                        ? `excerptBlocks[] -> ${contentBlocksQuery},
+            ? `excerptBlocks[] -> ${contentBlocksQuery},
                         preHeadingExcerptBlocks[] -> ${contentBlocksQuery},`
-                        : ''
-                    }
+            : ''
+        }
                     ${
-                        includeAuthors ? `authors[]->{
+            includeAuthors ? `authors[]->{
                                 "sysId": _id,
                                 "slug": slug.current,
                                 name,
@@ -83,14 +83,14 @@ export const fetchListPaginatedByReference = async ({
                                   "url": avatarImage.asset -> url
                                 }
                             }` : ''
-                    }
+        }
                   }
               )
            }
         `, {
             skip,
             limit: skip + limit,
-            id: referenceId,
+            ...(referenceId ? {id: referenceId} : {}),
             cache: 'no-cache',
             useCdn: false,
             next: {

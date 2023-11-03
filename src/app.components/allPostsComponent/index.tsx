@@ -29,7 +29,7 @@ const AllPostsComponent = ({allPosts, paginationConfig}: IProps) => {
         </div>
         <BlocksBodyContentComponent blocks={allPosts.contentBlocks} isExcerpts={false}/>
         {
-            allPosts.postsLists.length > 0 && <div className={clsx(
+            allPosts.postsLists && allPosts.postsLists.length > 0 && <div className={clsx(
                 'mt-8'
             )}>
                 <AllPostsListComponent paginationData={paginationConfig} posts={allPosts.postsLists}/>
