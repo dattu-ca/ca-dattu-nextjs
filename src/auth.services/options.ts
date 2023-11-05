@@ -25,41 +25,80 @@ export const nextAuthOptions: NextAuthOptions = {
         })
     ],
     callbacks: {
+        // signIn: async ({user, account, profile, email, credentials}) => {
+        //     try {
+        //         if (!account?.provider || !account?.providerAccountId) {
+        //             return false;
+        //         }
+        //
+        //         const userProfile = {
+        //             name: '',
+        //             givenName: '',
+        //             familyName: '',
+        //             email: '',
+        //         }
+        //         const authProvider = {
+        //             provider: account?.provider?.toLowerCase(),
+        //             providerAccountId: account?.providerAccountId,
+        //
+        //         };
+        //
+        //         if (authProvider.provider === 'google') {
+        //             if (!SERVER_CONFIG.NEXT_AUTH_ALLOWED_IDS.GOOGLE.includes(account?.providerAccountId as string)) {
+        //                 return false;
+        //             }
+        //             const p = profile as GoogleProfile;
+        //             userProfile.name = p.name;
+        //             userProfile.givenName = p.given_name;
+        //             userProfile.familyName = p.family_name;
+        //             userProfile.email = p.email;
+        //         }
+        //         const result = await authDbServices.signIn({ authProvider, userProfile });
+        //         return Boolean(result);
+        //     } catch (err) {
+        //         console.error('Error in the signin callback', err);
+        //     }
+        //
+        //     return false;
+        // },
         signIn: async ({user, account, profile, email, credentials}) => {
             try {
+                // console.log(' ------- signIn START -------')
+                // console.log(user, account, profile, email, credentials)
+                // console.log(' ------- signIn END -------')
                 if (!account?.provider || !account?.providerAccountId) {
                     return false;
                 }
 
-                const userProfile = {
-                    name: '',
-                    givenName: '',
-                    familyName: '',
-                    email: '',
-                }
+
+                const provider = account?.provider;
+
+                let authProfile = {};
                 const authProvider = {
-                    provider: account?.provider?.toLowerCase(),
+                    provider,
                     providerAccountId: account?.providerAccountId,
 
                 };
 
-                if (authProvider.provider === 'google') {
+                if (provider?.toLowerCase() === 'google') {
                     if (!SERVER_CONFIG.NEXT_AUTH_ALLOWED_IDS.GOOGLE.includes(account?.providerAccountId as string)) {
                         return false;
                     }
                     const p = profile as GoogleProfile;
-                    userProfile.name = p.name;
-                    userProfile.givenName = p.given_name;
-                    userProfile.familyName = p.family_name;
-                    userProfile.email = p.email;
+                    authProfile = {
+                        name: p.name,
+                        givenName: p.given_name,
+                        familyName: p.family_name,
+                    };
+                    // const result = await authDbServices.signIn({authProvider, authProfile});
+                    // console.log("RESULT", result)
+
                 }
-                const result = await authDbServices.signIn({ authProvider, userProfile });
-                return Boolean(result);
             } catch (err) {
                 console.error('Error in the signin callback', err);
             }
 
-            return false;
+            return true;
         },
         jwt: async (params) => {
             const {token, account} = params;
