@@ -54,6 +54,7 @@ export const nextAuthOptions: NextAuthOptions = {
         //             userProfile.email = p.email;
         //         }
         //         const result = await authDbServices.signIn({ authProvider, userProfile });
+        //         console.log("RESULT", result);
         //         return Boolean(result);
         //     } catch (err) {
         //         console.error('Error in the signin callback', err);
@@ -61,47 +62,6 @@ export const nextAuthOptions: NextAuthOptions = {
         //
         //     return false;
         // },
-        signIn: async ({user, account, profile, email, credentials}) => {
-            try {
-                console.log(' ------- signIn START -------')
-                console.log(user, account, profile, email, credentials)
-                console.log(' ------- signIn END -------')
-                if (!account?.provider || !account?.providerAccountId) {
-                    return false;
-                }
-
-
-                const provider = account?.provider;
-
-                let authProfile = {};
-                const authProvider = {
-                    provider,
-                    providerAccountId: account?.providerAccountId,
-
-                };
-
-                if (provider?.toLowerCase() === 'google') {
-                    if (!SERVER_CONFIG.NEXT_AUTH_ALLOWED_IDS.GOOGLE.includes(account?.providerAccountId as string)) {
-                        return false;
-                    }
-                    const p = profile as GoogleProfile;
-                    authProfile = {
-                        name: p.name,
-                        givenName: p.given_name,
-                        familyName: p.family_name,
-                    };
-                    console.log('authProfile', authProfile)
-                    // return authProfile;
-                    // const result = await authDbServices.signIn({authProvider, authProfile});
-                    // console.log("RESULT", result)
-
-                }
-            } catch (err) {
-                console.error('Error in the signin callback', err);
-            }
-
-            return true;
-        },
         jwt: async (params) => {
             const {token, account} = params;
             if (account) {
