@@ -6,6 +6,7 @@ import * as siteAuthConfigServices from './siteAuthConfig.services';
 import * as siteConfigServices from './siteConfig.services';
 import * as siteNavbarServices from './siteNavbar.services';
 import * as metaSeriesServices from './metaSeries.services';
+import * as metaTagServices from './metaTag.services';
 
 import * as bodyFormServices from './bodyForm.services';
 
@@ -18,5 +19,6 @@ export {
     siteNavbarServices,
     blogAuthorServices,
     metaSeriesServices,
+    metaTagServices,
     bodyFormServices
 }

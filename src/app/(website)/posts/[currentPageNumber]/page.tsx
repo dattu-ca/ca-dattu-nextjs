@@ -3,7 +3,7 @@ import {getCurrentPageNumber, fetchAllPosts} from "./utils";
 
 interface IProps {
     params: {
-        currentPageNumber?: number | undefined;
+        currentPageNumber: string;
     }
 }
 
