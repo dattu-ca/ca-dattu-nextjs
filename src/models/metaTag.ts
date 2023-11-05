@@ -8,4 +8,6 @@ export interface MetaTag extends BaseModel<'MetaTag'> {
     name: string;
     contentBlocks?: BlocksBodyContent[] | undefined;
     postsLists: BlogPost[];
+    
+    totalPosts?: number | undefined;
 }

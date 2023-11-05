@@ -1,13 +1,12 @@
+import {metaTagServices} from "~/services";
+import {MetaTagsListComponent} from "~/app.components/metaTagsListComponent";
+
 interface IProps {
-    params: {
-        
-    }
+    params: {}
 }
 
 const Page = async (props: IProps) => {
-    
-    return <div>
-        TAG CLOUD
-    </div>
+    const result = await metaTagServices.fetchAllActiveTags();
+    return <MetaTagsListComponent tags={result}/>
 }
 export default Page;
