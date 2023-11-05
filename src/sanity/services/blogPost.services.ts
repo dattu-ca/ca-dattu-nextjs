@@ -30,6 +30,27 @@ export const fetchTotalByReference = async (referenceId: string) => {
 }
 
 
+export const fetchActivePostsWithReference = async (reference: 'Tag' | 'Category')=> {
+    const filter = `*[
+      ${availablePostsFilter}
+    ]`
+    const response = await client.fetch(
+        groq`${filter}{
+            ${  reference === 'Tag' ? `tags[]->{
+                "sysId": _id,
+                "slug": slug.current,
+                name
+            },` : ''     }
+            ${  reference === 'Category' ? `categories[]->{
+                "sysId": _id,
+                "slug": slug.current,
+                name
+            },` : ''     }
+        }`
+    );
+    return mapBlogPostSanityList(response)
+}
+
 interface IProps {
     skip: number;
     limit: number;

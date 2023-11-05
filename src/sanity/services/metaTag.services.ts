@@ -28,6 +28,4 @@ export const fetchBySlug = async (slug: string) => {
     } catch (e) {
         console.error(`Cannot find [tag] for slug=${slug}`, e);
     }
-
-
 }
