@@ -1,5 +1,5 @@
 import {SERVER_CONFIG} from "~/utils/config.server";
-import {allPostsServices} from "~/services";
+import {metaTagServices} from "~/services";
 import {PaginationConfig} from "~/models";
 
 interface IProps {
@@ -12,15 +12,15 @@ export const getCurrentPageNumber = (params: IProps) => {
 }
 
 
-export const fetchAllPosts = async (currentPage: number) => {
+export const fetchBySlug = async (slug: string, currentPage: number) => {
     const limit = SERVER_CONFIG.CONTENT_CONFIG.DEFAULT_MAX_POSTS_PER_PAGE;
     const skip = (currentPage - 1) * limit;
     const paginationConfig: Partial<PaginationConfig> = {
         skip,
         limit,
         current: currentPage,
-        linkFirstPage: '/posts',
-        linkPrefix: '/posts/',
+        linkFirstPage: `/tag/${slug}`,
+        linkPrefix: `/tag/${slug}/`,
     }
-    return await allPostsServices.fetch(paginationConfig as PaginationConfig);
+    return await metaTagServices.fetchBySlug(slug, paginationConfig as PaginationConfig);
 }

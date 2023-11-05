@@ -4,7 +4,6 @@ let System = System || {
 };
 System.config({
     "paths": {
-        "~/contentful": ".src/contentful/",
         "~/*": ".src/",
     }
 })
