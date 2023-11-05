@@ -63,9 +63,9 @@ export const nextAuthOptions: NextAuthOptions = {
         // },
         signIn: async ({user, account, profile, email, credentials}) => {
             try {
-                // console.log(' ------- signIn START -------')
-                // console.log(user, account, profile, email, credentials)
-                // console.log(' ------- signIn END -------')
+                console.log(' ------- signIn START -------')
+                console.log(user, account, profile, email, credentials)
+                console.log(' ------- signIn END -------')
                 if (!account?.provider || !account?.providerAccountId) {
                     return false;
                 }
@@ -90,6 +90,8 @@ export const nextAuthOptions: NextAuthOptions = {
                         givenName: p.given_name,
                         familyName: p.family_name,
                     };
+                    console.log('authProfile', authProfile)
+                    return authProfile;
                     // const result = await authDbServices.signIn({authProvider, authProfile});
                     // console.log("RESULT", result)
 
