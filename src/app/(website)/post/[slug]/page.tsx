@@ -7,10 +7,6 @@ interface IProps {
     }
 }
 
-
-export const dynamic = 'force-dynamic';
-
-
 const Page = async (props: IProps) => {
     const {params} = props;
     const {slug} = params;
