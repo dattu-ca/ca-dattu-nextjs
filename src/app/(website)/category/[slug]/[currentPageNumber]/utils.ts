@@ -13,7 +13,7 @@ export const getCurrentPageNumber = (params: IProps) => {
 
 
 export const fetchBySlug = async (slug: string, currentPage: number) => {
-    const limit = SERVER_CONFIG.CONTENT_CONFIG.DEFAULT_MAX_POSTS_PER_PAGE;
+    const limit = 1;//SERVER_CONFIG.CONTENT_CONFIG.DEFAULT_MAX_POSTS_PER_PAGE;
     const skip = (currentPage - 1) * limit;
     const paginationConfig: Partial<PaginationConfig> = {
         skip,
