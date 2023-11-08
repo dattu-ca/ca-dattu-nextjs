@@ -54,28 +54,25 @@ export const fetchBySlug = async (slug: string, config: IConfig) => {
     const category = await fetchCategoryAndRelatives(slug, config);
     if (category) {
         category.children = flattenChildren(category);
-        if (category.children.length > 0 && config.paginationConfig) {
-            const ids = [category.sysId, ...category.children.map(child => child.sysId)];
-            if (paginationConfig) {
-                const response =
-                    await blogPostServices.fetchListPaginatedByReferences({
-                        skip: paginationConfig.skip,
-                        limit: paginationConfig.limit,
-                        includeExcerpts: true,
-                        referenceIds: ids,
-                        includeAuthors: false,
-                        sortAscendingPublishDate: false,
-                    })
-                if (response.items && Array.isArray(response.items)) {
-                    category.postsLists = response.items;
-                }
-                paginationConfig = {
-                    ...paginationConfig,
-                    total: response.total,
-                    totalPages: Math.ceil((response.total / paginationConfig.limit))
-                }
+        const ids = [category.sysId, ...category.children.map(child => child.sysId)];
+        if (paginationConfig) {
+            const response =
+                await blogPostServices.fetchListPaginatedByReferences({
+                    skip: paginationConfig.skip,
+                    limit: paginationConfig.limit,
+                    includeExcerpts: true,
+                    referenceIds: ids,
+                    includeAuthors: false,
+                    sortAscendingPublishDate: false,
+                })
+            if (response.items && Array.isArray(response.items)) {
+                category.postsLists = response.items;
             }
-
+            paginationConfig = {
+                ...paginationConfig,
+                total: response.total,
+                totalPages: Math.ceil((response.total / paginationConfig.limit))
+            }
         }
     }
 

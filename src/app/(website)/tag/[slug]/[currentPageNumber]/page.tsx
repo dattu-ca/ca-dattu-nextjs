@@ -1,4 +1,5 @@
-import {fetchBySlug, getCurrentPageNumber} from "~/app/(website)/tag/[slug]/[currentPageNumber]/utils";
+import {redirect} from 'next/navigation'
+import {fetchBySlug, getCurrentPageNumber} from "./utils";
 import {MetaTagComponent} from "~/app.components/metaTagComponent";
 import {metaTagServices} from "~/services";
 
@@ -18,12 +19,30 @@ export async function generateStaticParams() {
     }))
 }
 
+
+export const generateMetadata = async (props: IProps) => {
+    const currentPage = getCurrentPageNumber(props.params);
+    const data = await fetchBySlug(props.params.slug, currentPage)
+
+    if (!data || !data?.tag) {
+        return {}
+    }
+    return {
+        title: data.tag.name
+    }
+
+}
+
 const Page = async (props: IProps) => {
     const currentPage = getCurrentPageNumber(props.params);
     const data = await fetchBySlug(props.params.slug, currentPage);
 
     if (!data.tag || !data.paginationConfig) {
         return null;
+    }
+
+    if (currentPage > data.paginationConfig.totalPages) {
+        redirect(`/tag/${props.params.slug}`)
     }
 
     return <div>
