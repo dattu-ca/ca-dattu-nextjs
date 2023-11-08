@@ -10,6 +10,7 @@ export const fetch = async () => {
             groq`*[_type=="authPagesConfig"][0]{
                 "sysId": _id,
                 "slug": _type,
+                "lastFetchedOn": ${Date.now()},
                 loginTitle,
                 loginButton,
                 logoutTitle,

@@ -14,6 +14,7 @@ export const fetch = async () => {
                     heading,
                     preHeadingContentBlocks[] -> ${contentBlocksQuery},
                     contentBlocks[] -> ${contentBlocksQuery},
+                    "lastFetchedOn": ${Date.now()}
                 }`,
             {
                 cache: 'no-cache',

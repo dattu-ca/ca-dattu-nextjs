@@ -9,6 +9,7 @@ export const fetch = async () => {
             groq`*[_type=="siteNavbar"][0]{
                     "sysId": _id,
                     "slug": _type,
+                    "lastFetchedOn": ${Date.now()},
                     openMenuText,
                     closeMenuText,
                     logo ->{

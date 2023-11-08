@@ -14,7 +14,7 @@ const availablePostsFilter = `_type=="blogPost"
 export const fetchAllActiveSlugs = async () => {
     const filter = `*[
       ${availablePostsFilter}
-    ]{ "slug": slug.current }`
+    ]{ "slug": slug.current, "lastFetchedOn": ${Date.now()} }`
     const response = await client.fetch(
         groq`${filter}`, {
             cache: 'no-cache',
@@ -50,6 +50,7 @@ export const fetchActivePostsWithReference = async (reference: 'Tag' | 'Category
     ]`
     const response = await client.fetch(
         groq`${filter}{
+            "lastFetchedOn": ${Date.now()},
             ${reference === 'Tag' ? `tags[]->{
                 "sysId": _id,
                 "slug": slug.current,
@@ -58,7 +59,7 @@ export const fetchActivePostsWithReference = async (reference: 'Tag' | 'Category
             ${reference === 'Category' ? `categories[]->{
                 "sysId": _id,
                 "slug": slug.current,
-                name
+                name,
             },` : ''}
         }`
     );
@@ -99,26 +100,27 @@ export const fetchListPaginatedByReferences = async ({
                     "slug" : slug.current,
                     "datePublished": dateTime(datePublished + 'T00:00:00Z'),
                     heading,
+                    "lastFetchedOn": ${Date.now()},
                     ${includeExcerpts
-            ? `excerptBlocks[] -> ${contentBlocksQuery},
-                            preHeadingExcerptBlocks[] -> ${contentBlocksQuery},`
-            : ''
-        }
+                        ? `excerptBlocks[] -> ${contentBlocksQuery},
+                                        preHeadingExcerptBlocks[] -> ${contentBlocksQuery},`
+                        : ''
+                    }
                     ${
-            includeAuthors ? `authors[]->{
-                                            "sysId": _id,
-                                            "slug": slug.current,
-                                            name,
-                                            avatarInitials,
-                                            "avatarImage":{
-                                              "sysId": _id,
-                                              name,
-                                              "caption": avatarImage.caption,
-                                              "alt": avatarImage.alt,
-                                              "url": avatarImage.asset -> url
-                                            }
-                                        }` : ''
-        }
+                        includeAuthors ? `authors[]->{
+                                                        "sysId": _id,
+                                                        "slug": slug.current,
+                                                        name,
+                                                        avatarInitials,
+                                                        "avatarImage":{
+                                                          "sysId": _id,
+                                                          name,
+                                                          "caption": avatarImage.caption,
+                                                          "alt": avatarImage.alt,
+                                                          "url": avatarImage.asset -> url
+                                                        }
+                                                    }` : ''
+                    }
                   }
               )
            }
@@ -147,7 +149,8 @@ export const fetchBySlug = async (slug: string) => {
                 ][0]{
                 "sysId": _id,
                 "slug": slug.current,
-                heading,
+                "lastFetchedOn": ${Date.now()},
+                heading,                
                 preHeadingContentBlocks[] -> ${contentBlocksQuery},
                 contentBlocks[] -> ${contentBlocksQuery},
                 "datePublished": dateTime(datePublished + 'T00:00:00Z'),
