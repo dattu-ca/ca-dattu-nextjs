@@ -5,8 +5,9 @@ import {parseBody} from 'next-sanity/webhook'
 import {SERVER_CONFIG} from "~/utils/config.server";
 
 export async function POST(req: NextRequest) {
+    console.log("API POST > REVALIDATE", req);
     try {
-        const {isValidSignature, body} = await parseBody<{_type: string}>(
+        const {isValidSignature, body} = await parseBody<{_type: any}>(
             req,
             SERVER_CONFIG.SANITY.SANITY_REVALIDATE_SECRET
         )

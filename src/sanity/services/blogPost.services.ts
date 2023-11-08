@@ -1,5 +1,5 @@
 'use server';
-import {groq} from "next-sanity";
+import {QueryParams, groq} from "next-sanity";
 import {client} from './client';
 
 import {contentBlocksQuery} from "./utils";
@@ -188,7 +188,7 @@ export const fetchBySlug = async (slug: string) => {
                 next:{
                     revalidate: 30,
                     tags: ['blogPost']
-                }
+                } as QueryParams
             }
         )
         return mapBlogPostSanity(response);
