@@ -1,10 +1,17 @@
-import {metaSeriesServices} from "~/services";
+import { metaSeriesServices} from "~/services";
 import {MetaSeriesComponent} from "~/app.components/metaSeriesComponent";
 
 interface IProps {
     params: {
         slug: string
     }
+}
+export async function generateStaticParams() {
+    const slugs = await metaSeriesServices.fetchAllSlugs();
+
+    return slugs.map((slug) => ({
+        slug,
+    }))
 }
 
 const Page = async (props: IProps) => {

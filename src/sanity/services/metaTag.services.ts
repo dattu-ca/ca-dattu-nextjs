@@ -4,6 +4,19 @@ import {client} from './client';
 import {mapSanity as mapMetaTagSanity} from './metaTag.map';
 import {contentBlocksQuery} from "./utils";
 
+export const fetchAllSlugs = async () => {
+    const filter = `*[_type=="tag"]{ "slug": slug.current }`
+    const response = await client.fetch(
+        groq`${filter}`, {
+            cache: 'no-cache',
+            useCdn: false,
+            next: {
+                revalidate: 0
+            }
+        }
+    );
+    return response.map((r: { slug: string }) => r.slug) as string[];
+}
 
 export const fetchBySlug = async (slug: string) => {
     try {

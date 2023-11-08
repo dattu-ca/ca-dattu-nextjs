@@ -1,8 +1,8 @@
 'use server';
-import {blogPostServices, metaCategoryServices} from "~/sanity/services";
+import { blogPostServices, metaCategoryServices} from "~/sanity/services";
 import {MetaCategory, PaginationConfig} from "~/models";
 
-
+export const fetchAllSlugs = () => metaCategoryServices.fetchAllSlugs();
 interface IConfig {
     includeContent: boolean;
     includeParent: boolean;

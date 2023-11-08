@@ -11,6 +11,21 @@ const availablePostsFilter = `_type=="blogPost"
                     && dateTime(now()) >= dateTime(datePublished + 'T00:00:00Z') 
                     && publishStatus == 'Published' `
 
+export const fetchAllActiveSlugs = async () => {
+    const filter = `*[
+      ${availablePostsFilter}
+    ]{ "slug": slug.current }`
+    const response = await client.fetch(
+        groq`${filter}`, {
+            cache: 'no-cache',
+            useCdn: false,
+            next: {
+                revalidate: 0
+            }
+        }
+    );
+    return response.map((r: { slug: string }) => r.slug) as string[];
+}
 export const fetchTotalByReference = async (referenceId: string) => {
     const filter = `*[
       ${availablePostsFilter}
@@ -29,22 +44,22 @@ export const fetchTotalByReference = async (referenceId: string) => {
 }
 
 
-export const fetchActivePostsWithReference = async (reference: 'Tag' | 'Category')=> {
+export const fetchActivePostsWithReference = async (reference: 'Tag' | 'Category') => {
     const filter = `*[
       ${availablePostsFilter}
     ]`
     const response = await client.fetch(
         groq`${filter}{
-            ${  reference === 'Tag' ? `tags[]->{
+            ${reference === 'Tag' ? `tags[]->{
                 "sysId": _id,
                 "slug": slug.current,
                 name
-            },` : ''     }
-            ${  reference === 'Category' ? `categories[]->{
+            },` : ''}
+            ${reference === 'Category' ? `categories[]->{
                 "sysId": _id,
                 "slug": slug.current,
                 name
-            },` : ''     }
+            },` : ''}
         }`
     );
     return mapBlogPostSanityList(response)
@@ -60,16 +75,16 @@ interface IProps {
 }
 
 export const fetchListPaginatedByReferences = async ({
-                                                        skip,
-                                                        limit,
-                                                        includeExcerpts,
-                                                        referenceIds,
-                                                        includeAuthors,
-                                                        sortAscendingPublishDate
-                                                    }: IProps): Promise<{ items: BlogPost[], total: number }> => {
+                                                         skip,
+                                                         limit,
+                                                         includeExcerpts,
+                                                         referenceIds,
+                                                         includeAuthors,
+                                                         sortAscendingPublishDate
+                                                     }: IProps): Promise<{ items: BlogPost[], total: number }> => {
     const filter = `*[
       ${availablePostsFilter}
-      ${(referenceIds && Array.isArray(referenceIds) && referenceIds.length > 0) ? ` && ( ${referenceIds.map(id => "references('" + id  +"')").join("  || ")} )` : ''}
+      ${(referenceIds && Array.isArray(referenceIds) && referenceIds.length > 0) ? ` && ( ${referenceIds.map(id => "references('" + id + "')").join("  || ")} )` : ''}
   ]`
     const response = await client.fetch(
         groq`
@@ -85,12 +100,12 @@ export const fetchListPaginatedByReferences = async ({
                     "datePublished": dateTime(datePublished + 'T00:00:00Z'),
                     heading,
                     ${includeExcerpts
-                        ? `excerptBlocks[] -> ${contentBlocksQuery},
+            ? `excerptBlocks[] -> ${contentBlocksQuery},
                             preHeadingExcerptBlocks[] -> ${contentBlocksQuery},`
-                        : ''
-                    }
+            : ''
+        }
                     ${
-                        includeAuthors ? `authors[]->{
+            includeAuthors ? `authors[]->{
                                             "sysId": _id,
                                             "slug": slug.current,
                                             name,
@@ -103,7 +118,7 @@ export const fetchListPaginatedByReferences = async ({
                                               "url": avatarImage.asset -> url
                                             }
                                         }` : ''
-                    }
+        }
                   }
               )
            }

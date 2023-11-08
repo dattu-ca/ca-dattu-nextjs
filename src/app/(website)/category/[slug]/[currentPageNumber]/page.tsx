@@ -1,11 +1,20 @@
 import {fetchBySlug, getCurrentPageNumber} from "./utils";
 import {MetaCategoryComponent} from "~/app.components/metaCategoryComponent";
+import { metaCategoryServices} from "~/services";
 
 interface IProps {
     params: {
         slug: string;
         currentPageNumber: string;
     }
+}
+
+export async function generateStaticParams() {
+    const slugs = await metaCategoryServices.fetchAllSlugs();
+
+    return slugs.map((slug) => ({
+        slug,
+    }))
 }
 
 const Page = async (props: IProps) => {

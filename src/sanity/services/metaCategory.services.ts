@@ -4,6 +4,21 @@ import {client} from './client';
 import {mapSanity as mapMetaCategorySanity, mapSanityList as mapMetaCategoryListSanity} from './metaCategory.map';
 import {contentBlocksQuery} from "./utils";
 
+
+
+export const fetchAllSlugs = async () => {
+    const filter = `*[_type=="category"]{ "slug": slug.current }`
+    const response = await client.fetch(
+        groq`${filter}`, {
+            cache: 'no-cache',
+            useCdn: false,
+            next: {
+                revalidate: 0
+            }
+        }
+    );
+    return response.map((r: { slug: string }) => r.slug) as string[];
+}
 export const fetchListByReference = async (sysId: string) => {
     try {
         const response = await client.fetch(

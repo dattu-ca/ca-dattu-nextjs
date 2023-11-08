@@ -2,7 +2,7 @@
 import {blogAuthorServices, blogPostServices} from "~/sanity/services";
 import {PaginationConfig} from "~/models";
 
-
+export const fetchAllSlugs = () => blogAuthorServices.fetchAllSlugs();
 export const fetchBySlug = async (slug: string) => {
     const author = await blogAuthorServices.fetchBySlug(slug);
     if (author) {

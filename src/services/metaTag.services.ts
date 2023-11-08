@@ -2,6 +2,7 @@
 import {blogPostServices, metaTagServices} from "~/sanity/services";
 import {MetaTag, PaginationConfig} from "~/models";
 
+export const fetchAllSlugs = () => metaTagServices.fetchAllSlugs();
 export const fetchAllActiveTags = async () => {
     const activePosts = await blogPostServices.fetchActivePostsWithReference('Tag')
     const tags: MetaTag[] = [];

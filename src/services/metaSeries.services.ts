@@ -2,6 +2,7 @@
 import {blogPostServices, metaSeriesServices} from "~/sanity/services";
 import {BlogAuthor} from "~/models";
 
+export const fetchAllSlugs = () => metaSeriesServices.fetchAllSlugs();
 export const fetchBySlug = async (slug: string) => {
     const metaSeries = await metaSeriesServices.fetchBySlug(slug);
     if (metaSeries) {

@@ -7,6 +7,16 @@ interface IProps {
     }
 }
 
+
+export async function generateStaticParams() {
+    const slugs = await blogAuthorServices.fetchAllSlugs();
+
+    return slugs.map((slug) => ({
+        slug,
+    }))
+}
+
+
 const Page = async (props: IProps) => {
     const {params} = props;
     const {slug} = params;
