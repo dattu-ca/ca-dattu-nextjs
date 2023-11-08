@@ -14,6 +14,7 @@ export async function generateStaticParams() {
 
     return slugs.map((slug) => ({
         slug,
+        currentPageNumber: "1"
     }))
 }
 
