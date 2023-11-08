@@ -60,7 +60,8 @@ const CORS = Object.freeze({
 })
 
 const SANITY = Object.freeze({
-    ACCESS_TOKEN: process.env.SANITY_ACCESS_TOKEN as string
+    ACCESS_TOKEN: process.env.SANITY_ACCESS_TOKEN as string,
+    SANITY_REVALIDATE_SECRET: process.env.SANITY_REVALIDATE_SECRET as string
 })
 
 const SERVER_CONFIG = Object.freeze({
