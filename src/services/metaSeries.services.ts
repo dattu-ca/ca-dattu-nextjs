@@ -5,10 +5,10 @@ import {BlogAuthor} from "~/models";
 export const fetchBySlug = async (slug: string) => {
     const metaSeries = await metaSeriesServices.fetchBySlug(slug);
     if (metaSeries) {
-        const response = await blogPostServices.fetchListPaginatedByReference({
+        const response = await blogPostServices.fetchListPaginatedByReferences({
             skip: 0,
             limit: 0,
-            referenceId: metaSeries.sysId,
+            referenceIds: [metaSeries.sysId],
             includeExcerpts: false,
             includeAuthors: true,
             sortAscendingPublishDate: true,

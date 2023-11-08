@@ -14,11 +14,10 @@ const availablePostsFilter = `_type=="blogPost"
 export const fetchTotalByReference = async (referenceId: string) => {
     const filter = `*[
       ${availablePostsFilter}
-      && references($id)
+      && references("${referenceId}")
     ]`
     const response = await client.fetch(
         groq`count(${filter})`, {
-            id: referenceId,
             cache: 'no-cache',
             useCdn: false,
             next: {
@@ -55,22 +54,22 @@ interface IProps {
     skip: number;
     limit: number;
     includeExcerpts?: boolean | undefined;
-    referenceId?: string | undefined;
+    referenceIds?: string[] | undefined;
     includeAuthors?: boolean | undefined;
     sortAscendingPublishDate?: boolean | undefined;
 }
 
-export const fetchListPaginatedByReference = async ({
+export const fetchListPaginatedByReferences = async ({
                                                         skip,
                                                         limit,
                                                         includeExcerpts,
-                                                        referenceId,
+                                                        referenceIds,
                                                         includeAuthors,
                                                         sortAscendingPublishDate
                                                     }: IProps): Promise<{ items: BlogPost[], total: number }> => {
     const filter = `*[
       ${availablePostsFilter}
-      ${referenceId ? "&& references($id)" : ''}
+      ${(referenceIds && Array.isArray(referenceIds) && referenceIds.length > 0) ? ` && ( ${referenceIds.map(id => "references('" + id  +"')").join("  || ")} )` : ''}
   ]`
     const response = await client.fetch(
         groq`
@@ -86,32 +85,31 @@ export const fetchListPaginatedByReference = async ({
                     "datePublished": dateTime(datePublished + 'T00:00:00Z'),
                     heading,
                     ${includeExcerpts
-            ? `excerptBlocks[] -> ${contentBlocksQuery},
-                        preHeadingExcerptBlocks[] -> ${contentBlocksQuery},`
-            : ''
-        }
+                        ? `excerptBlocks[] -> ${contentBlocksQuery},
+                            preHeadingExcerptBlocks[] -> ${contentBlocksQuery},`
+                        : ''
+                    }
                     ${
-            includeAuthors ? `authors[]->{
-                                "sysId": _id,
-                                "slug": slug.current,
-                                name,
-                                avatarInitials,
-                                "avatarImage":{
-                                  "sysId": _id,
-                                  name,
-                                  "caption": avatarImage.caption,
-                                  "alt": avatarImage.alt,
-                                  "url": avatarImage.asset -> url
-                                }
-                            }` : ''
-        }
+                        includeAuthors ? `authors[]->{
+                                            "sysId": _id,
+                                            "slug": slug.current,
+                                            name,
+                                            avatarInitials,
+                                            "avatarImage":{
+                                              "sysId": _id,
+                                              name,
+                                              "caption": avatarImage.caption,
+                                              "alt": avatarImage.alt,
+                                              "url": avatarImage.asset -> url
+                                            }
+                                        }` : ''
+                    }
                   }
               )
            }
         `, {
             skip,
             limit: skip + limit,
-            ...(referenceId ? {id: referenceId} : {}),
             cache: 'no-cache',
             useCdn: false,
             next: {

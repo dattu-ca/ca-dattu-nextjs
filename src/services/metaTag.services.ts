@@ -31,11 +31,11 @@ export const fetchBySlug = async (slug: string, paginationConfig?: PaginationCon
     const tag = await metaTagServices.fetchBySlug(slug);
     if (tag && paginationConfig) {
         const response =
-            await blogPostServices.fetchListPaginatedByReference({
+            await blogPostServices.fetchListPaginatedByReferences({
                 skip: paginationConfig.skip,
                 limit: paginationConfig.limit,
                 includeExcerpts: true,
-                referenceId: tag.sysId,
+                referenceIds: [tag.sysId],
                 includeAuthors: false,
                 sortAscendingPublishDate: false,
             })

@@ -13,11 +13,11 @@ export const fetchBySlug = async (slug: string) => {
 
     await processFillingPostsList('Post', paginationConfig as PaginationConfig, [post?.contentBlocks])
     if (post && post.series && post.series.sysId) {
-        const result = await blogPostServices.fetchListPaginatedByReference({
+        const result = await blogPostServices.fetchListPaginatedByReferences({
             skip: 0,
             limit: 0,
             includeExcerpts: false,
-            referenceId: post.series.sysId,
+            referenceIds: [post.series.sysId],
             sortAscendingPublishDate: true,
         });
         post.seriesPostsList = result.items;
