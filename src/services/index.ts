@@ -9,7 +9,7 @@ import * as siteConfigServices from './siteConfig.services';
 import * as siteNavbarServices from './siteNavbar.services';
 import * as formsServices from './form.services';
 import * as sendMailServices from './sendMail.services';
-// import * as metaCategoryServices from './metaCategory.services';
+import * as metaCategoryServices from './metaCategory.services';
 import * as metaTagServices from './metaTag.services';
 import * as metaSeriesServices from './metaSeries.services';
 
@@ -26,6 +26,6 @@ export {
     siteNavbarServices,
     metaTagServices,
     metaSeriesServices,
-    // metaCategoryServices,
+    metaCategoryServices,
     blogAuthorServices
 }

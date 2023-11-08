@@ -18,7 +18,7 @@ const CategoriesComponent = ({categories}: IProps) => {
             {
                 categories.map(category => (
                     <li key={category.slug}>
-                        <Link href={`/category/${category.name}`}
+                        <Link href={`/category/${category.slug}`}
                         className={clsx(
                             'normal-case',
                             'daisyui-btn daisyui-btn-sm',

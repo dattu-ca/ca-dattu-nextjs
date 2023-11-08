@@ -37,6 +37,10 @@ const nextConfig = {
                 source: '/tag/:slug',
                 destination: '/tag/:slug/1'
             },
+            {
+                source: '/category/:slug',
+                destination: '/category/:slug/1'
+            },
         ]
     },
     images: {

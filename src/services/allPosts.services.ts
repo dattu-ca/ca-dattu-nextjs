@@ -7,7 +7,7 @@ export const fetch = async (paginationConfig: PaginationConfig) => {
     const allPosts = await allPostsServices.fetch();
     if (allPosts) {
         await processFillingPostsList('All', paginationConfig, [allPosts?.contentBlocks])
-        const response = await blogPostServices.fetchListPaginatedByReference({
+        const response = await blogPostServices.fetchListPaginatedByReferences({
             skip: paginationConfig.skip,
             limit: paginationConfig.limit,
             includeExcerpts: true

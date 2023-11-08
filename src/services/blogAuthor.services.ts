@@ -15,11 +15,11 @@ export const fetchPostsListBySlug = async (slug: string, paginationConfig: Pagin
     const author = await blogAuthorServices.fetchBySlug(slug);
 
     if (author) {
-        const response = await blogPostServices.fetchListPaginatedByReference({
+        const response = await blogPostServices.fetchListPaginatedByReferences({
             skip: paginationConfig.skip,
             limit: paginationConfig.limit,
             includeExcerpts: true,
-            referenceId: author.sysId
+            referenceIds: [author.sysId]
         })
         return {
             posts: response.items,

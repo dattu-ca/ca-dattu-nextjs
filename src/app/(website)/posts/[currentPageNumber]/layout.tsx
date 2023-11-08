@@ -12,7 +12,7 @@ export const generateMetadata = async (props: IProps) => {
     const currentPage = getCurrentPageNumber(props.params);
     const {allPosts, paginationConfig} = await fetchAllPosts(currentPage);
     return {
-        title: `${allPosts?.heading || 'Articles'} - Page ${paginationConfig.current}/${paginationConfig.totalPages}`
+        title: `${allPosts?.heading || 'Articles'}`
     }
 
 }

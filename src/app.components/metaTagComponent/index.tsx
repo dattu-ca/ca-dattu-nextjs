@@ -46,7 +46,7 @@ const MetaTagComponent = ({tag, paginationConfig}: IProps) => {
         </div>
         <div className={clsx(
             {
-                ['mt-8']: tag.postsLists.length > 0
+                ['mt-8']: tag.postsLists?.length > 0
             }
         )}>
             <TagPostsListComponent paginationData={paginationConfig} posts={tag.postsLists}/>

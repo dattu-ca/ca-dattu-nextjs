@@ -1,4 +1,5 @@
 import {MetaCategory} from "~/models";
+import {mapSanityList as mapBlocksBodyContentSanityList} from "./blocksBodyContent.map";
 
 export const mapSanity = (raw: any) => {
     const target: Partial<MetaCategory> = {
@@ -7,6 +8,9 @@ export const mapSanity = (raw: any) => {
         sysId: raw?.sysId as string,
         slug: raw?.slug as string,
         name: raw?.name as string,
+        parent: raw?.parentCategory,
+        preHeadingContentBlocks: mapBlocksBodyContentSanityList(raw.preHeadingContentBlocks),
+        contentBlocks: mapBlocksBodyContentSanityList(raw.contentBlocks),
     }
     return target as MetaCategory;
 }
