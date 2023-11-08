@@ -38,7 +38,7 @@ const Page = async (props: IProps) => {
 
 
     if(!data.category || !data.paginationConfig){
-        return null;
+        redirect('/')
     }
 
     if(currentPage > data.paginationConfig.totalPages){

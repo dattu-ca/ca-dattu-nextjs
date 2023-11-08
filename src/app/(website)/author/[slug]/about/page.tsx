@@ -1,5 +1,6 @@
 import {blogAuthorServices} from "~/services";
 import {BlogAuthorContent} from "~/app.components/blogAuthorComponent/content";
+import {redirect} from "next/navigation";
 
 interface IProps {
     params: {
@@ -22,7 +23,7 @@ const Page = async (props: IProps) => {
     const {slug} = params;
     const blogAuthor = await blogAuthorServices.fetchBySlug(slug);
     if (!blogAuthor) {
-        return null;
+        redirect('/');
     }
 
 

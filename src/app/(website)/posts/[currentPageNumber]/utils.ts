@@ -19,7 +19,7 @@ export const fetchAllPosts = async (currentPage: number) => {
         skip,
         limit,
         current: currentPage,
-        linkFirstPage: '/posts',
+        linkFirstPage: '/posts/',
         linkPrefix: '/posts/',
     }
     return await allPostsServices.fetch(paginationConfig as PaginationConfig);

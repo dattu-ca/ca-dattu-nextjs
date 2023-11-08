@@ -1,11 +1,13 @@
-import { metaSeriesServices} from "~/services";
+import {metaSeriesServices} from "~/services";
 import {MetaSeriesComponent} from "~/app.components/metaSeriesComponent";
+import {redirect} from "next/navigation";
 
 interface IProps {
     params: {
         slug: string
     }
 }
+
 export async function generateStaticParams() {
     const slugs = await metaSeriesServices.fetchAllSlugs();
 
@@ -15,10 +17,12 @@ export async function generateStaticParams() {
 }
 
 const Page = async (props: IProps) => {
-    const data = await metaSeriesServices.fetchBySlug(props.params.slug)
-    if (!data) {
-        return null;
+    const {series} = await metaSeriesServices.fetchBySlug(props.params.slug);
+
+    if (!series || !series.sysId) {
+        redirect('/')
     }
-    return <MetaSeriesComponent series={data}/>
+    
+    return <MetaSeriesComponent series={series}/>
 }
 export default Page;
