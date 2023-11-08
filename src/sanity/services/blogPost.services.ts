@@ -149,7 +149,6 @@ export const fetchBySlug = async (slug: string) => {
                 ][0]{
                 "sysId": _id,
                 "slug": slug.current,
-                "lastFetchedOn": ${Date.now()},
                 heading,                
                 preHeadingContentBlocks[] -> ${contentBlocksQuery},
                 contentBlocks[] -> ${contentBlocksQuery},
@@ -185,10 +184,10 @@ export const fetchBySlug = async (slug: string) => {
               }`,
             {
                 slug: slug,
-                cache: 'no-cache',
                 useCdn: false,
-                next: {
-                    revalidate: 0
+                next:{
+                    revalidate: 30,
+                    tags: ['blogPost']
                 }
             }
         )

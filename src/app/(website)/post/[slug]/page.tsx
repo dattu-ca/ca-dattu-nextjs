@@ -1,5 +1,5 @@
 import {BlogPostComponent} from "~/app.components/blogPostComponent";
-import {blogPostServices} from "~/services";
+import { blogPostServices} from "~/services";
 import {redirect} from "next/navigation";
 
 interface IProps {
@@ -14,6 +14,19 @@ export async function generateStaticParams() {
     return slugs.map((slug) => ({
         slug,
     }))
+}
+
+export const generateMetadata = async (props: IProps) => {
+    const {params} = props;
+    const {slug} = params;
+    const data = await blogPostServices.fetchBySlug(slug);
+    if(!data){
+        return {};
+    }
+    const {heading} = data;
+    return {
+        title: heading
+    }
 }
 
 const Page = async ({params: {slug}}: IProps) => {
