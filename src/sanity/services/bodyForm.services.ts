@@ -11,6 +11,7 @@ export const fetchByFormId = async (formId: string) => {
             groq`*[_type=="bodyForm" && formId == $formId][0]{
                     "sysId": _id,
                     "slug": slug.current,
+                    "lastFetchedOn": ${Date.now()},
                     name,
                     formId,
                     submitFormEnabled,

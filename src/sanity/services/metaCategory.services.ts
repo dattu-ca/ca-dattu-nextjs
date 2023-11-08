@@ -7,7 +7,7 @@ import {contentBlocksQuery} from "./utils";
 
 
 export const fetchAllSlugs = async () => {
-    const filter = `*[_type=="category"]{ "slug": slug.current }`
+    const filter = `*[_type=="category"]{ "slug": slug.current, "lastFetchedOn": ${Date.now()}, }`
     const response = await client.fetch(
         groq`${filter}`, {
             cache: 'no-cache',
@@ -25,6 +25,7 @@ export const fetchListByReference = async (sysId: string) => {
             groq`*[_type=="category" && references($id)]{
                 "sysId": _id,
                 "slug": slug.current,
+                "lastFetchedOn": ${Date.now()},
                 name,
               }`,
             {
@@ -48,6 +49,7 @@ export const fetchBySlug = async (slug: string, includeContent = false) => {
             groq`*[_type=="category" && slug.current == $slug][0]{
                 "sysId": _id,
                 "slug": slug.current,
+                "lastFetchedOn": ${Date.now()},
                 name,
                 parentCategory -> {
                     "sysId": _id,

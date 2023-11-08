@@ -4,10 +4,11 @@ import {client} from './client';
 import {mapSanity as mapBlogPageSanity} from './blogPage.map';
 import {contentBlocksQuery} from "./utils";
 
-
-
 export const fetchAllSlugs = async () => {
-    const filter = `*[_type=="blogPage"]{ "slug": slug.current }`
+    const filter = `*[_type=="blogPage"]{ 
+                                "slug": slug.current,
+                                "lastFetchedOn": ${Date.now()} 
+                           }`
     const response = await client.fetch(
         groq`${filter}`, {
             cache: 'no-cache',
@@ -29,6 +30,7 @@ export const fetchBySlug = async (slug: string) => {
                     heading,
                     preHeadingContentBlocks[] -> ${contentBlocksQuery},
                     contentBlocks[] -> ${contentBlocksQuery},
+                    "lastFetchedOn": ${Date.now()}
                   }`,
             {
                 slug: slug,

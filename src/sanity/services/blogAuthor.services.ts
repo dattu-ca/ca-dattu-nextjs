@@ -6,7 +6,10 @@ import {contentBlocksQuery} from "./utils";
 
 
 export const fetchAllSlugs = async () => {
-    const filter = `*[_type=="author"]{ "slug": slug.current }`
+    const filter = `*[_type=="author"]{ 
+                        "slug": slug.current,
+                        "lastFetchedOn": ${Date.now()} 
+                    }`
     const response = await client.fetch(
         groq`${filter}`, {
             cache: 'no-cache',
@@ -35,6 +38,7 @@ export const fetchBySlug = async (slug: string) => {
                 },
                 preHeadingContentBlocks[] -> ${contentBlocksQuery},
                 contentBlocks[] -> ${contentBlocksQuery},
+                "lastFetchedOn": ${Date.now()}
               }`,
             {
                 slug: slug,
