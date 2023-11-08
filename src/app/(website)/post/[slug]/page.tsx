@@ -3,14 +3,20 @@ import {blogPostServices} from "~/services";
 
 interface IProps {
     params: {
-        slug: string | string []
+        slug: string
     }
 }
 
-const Page = async (props: IProps) => {
-    const {params} = props;
-    const {slug} = params;
-    const blogPost = await blogPostServices.fetchBySlug(Array.isArray(slug) ? slug.join('/') : slug);
+export async function generateStaticParams() {
+    const slugs = await blogPostServices.fetchAllActiveSlugs();
+
+    return slugs.map((slug) => ({
+        slug,
+    }))
+}
+
+const Page = async ({params: {slug}}: IProps) => {
+    const blogPost = await blogPostServices.fetchBySlug(slug);
     if (!blogPost) {
         return null;
     }

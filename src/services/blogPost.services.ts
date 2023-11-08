@@ -3,6 +3,8 @@ import {blogPostServices} from "~/sanity/services";
 import {processFillingPostsList} from "~/services/bodyPostsList.services";
 import {PaginationConfig} from "~/models";
 
+
+export const fetchAllActiveSlugs = () => blogPostServices.fetchAllActiveSlugs();
 export const fetchBySlug = async (slug: string) => {
     const post = await blogPostServices.fetchBySlug(slug);
 
