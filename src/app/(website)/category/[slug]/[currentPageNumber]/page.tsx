@@ -1,6 +1,7 @@
 import {fetchBySlug, getCurrentPageNumber} from "./utils";
 import {MetaCategoryComponent} from "~/app.components/metaCategoryComponent";
 import { metaCategoryServices} from "~/services";
+import {redirect} from "next/navigation";
 
 interface IProps {
     params: {
@@ -18,6 +19,19 @@ export async function generateStaticParams() {
     }))
 }
 
+export const generateMetadata = async (props: IProps) => {
+    const currentPage = getCurrentPageNumber(props.params);
+    const data = await fetchBySlug(props.params.slug, currentPage)
+
+    if (!data || !data?.category) {
+        return {}
+    }
+    return {
+        title: data.category.name
+    }
+
+}
+
 const Page = async (props: IProps) => {
     const currentPage = getCurrentPageNumber(props.params);
     const data = await fetchBySlug(props.params.slug, currentPage)
@@ -25,6 +39,10 @@ const Page = async (props: IProps) => {
 
     if(!data.category || !data.paginationConfig){
         return null;
+    }
+
+    if(currentPage > data.paginationConfig.totalPages){
+        redirect(`/category/${props.params.slug}`)
     }
 
     return <div>

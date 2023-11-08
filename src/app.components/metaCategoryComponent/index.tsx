@@ -44,7 +44,7 @@ const MetaCategoryComponent = ({category, paginationConfig}: IProps) => {
                 </div>
             </H1Heading>
             {
-                category.children && (
+                category.children && category.children.length > 0 && (
                     <div>
                         <DefaultBlocksLayout allFormats={'Default'}>
                             <div className="daisyui-divider"></div>
