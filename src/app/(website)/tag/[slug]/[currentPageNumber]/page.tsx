@@ -38,7 +38,7 @@ const Page = async (props: IProps) => {
     const data = await fetchBySlug(props.params.slug, currentPage);
 
     if (!data.tag || !data.paginationConfig) {
-        return null;
+        redirect('/')
     }
 
     if (currentPage > data.paginationConfig.totalPages) {

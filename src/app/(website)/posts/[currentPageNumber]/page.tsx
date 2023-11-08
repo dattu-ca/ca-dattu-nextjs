@@ -9,9 +9,9 @@ interface IProps {
 }
 export const generateMetadata = async (props: IProps) => {
     const currentPage = getCurrentPageNumber(props.params);
-    const {allPosts, paginationConfig} = await fetchAllPosts(currentPage);
+    const {allPosts} = await fetchAllPosts(currentPage);
     return {
-        title: `${allPosts?.heading || 'Articles'}`
+        title: allPosts?.heading || 'Articles'
     }
 
 }
@@ -19,13 +19,14 @@ export const generateMetadata = async (props: IProps) => {
 const Page = async (props: IProps) => {
     const currentPage = getCurrentPageNumber(props.params);
     const {allPosts, paginationConfig} = await fetchAllPosts(currentPage);
-
-
+    
+    if(!allPosts){
+        redirect('/')
+    }
     if(currentPage > paginationConfig.totalPages){
         redirect(`/posts/`)
     }
     
-
     return <div>
         <AllPostsComponent allPosts={allPosts} paginationConfig={paginationConfig}/>
     </div>

@@ -4,18 +4,18 @@ import {BlogAuthor} from "~/models";
 
 export const fetchAllSlugs = () => metaSeriesServices.fetchAllSlugs();
 export const fetchBySlug = async (slug: string) => {
-    const metaSeries = await metaSeriesServices.fetchBySlug(slug);
-    if (metaSeries) {
+    const series = await metaSeriesServices.fetchBySlug(slug);
+    if (series) {
         const response = await blogPostServices.fetchListPaginatedByReferences({
             skip: 0,
             limit: 0,
-            referenceIds: [metaSeries.sysId],
+            referenceIds: [series.sysId],
             includeExcerpts: false,
             includeAuthors: true,
             sortAscendingPublishDate: true,
         });
-        metaSeries.postsLists = response.items;
-        metaSeries.authorsList = response.items.reduce((previousValue, currentValue, currentIndex, array) => {
+        series.postsLists = response.items;
+        series.authorsList = response.items.reduce((previousValue, currentValue, currentIndex, array) => {
             const previousAuthorSysIds = previousValue.map(author => author.sysId);
             return [...previousValue, ...currentValue.authors.filter(author => !previousAuthorSysIds.includes(author.sysId))]
                 .sort((a, b) => {
@@ -26,5 +26,7 @@ export const fetchBySlug = async (slug: string) => {
                 });
         }, [] as BlogAuthor[])
     }
-    return metaSeries;
+    return {
+        series
+    };
 }

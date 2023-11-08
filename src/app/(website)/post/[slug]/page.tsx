@@ -1,5 +1,6 @@
 import {BlogPostComponent} from "~/app.components/blogPostComponent";
 import {blogPostServices} from "~/services";
+import {redirect} from "next/navigation";
 
 interface IProps {
     params: {
@@ -18,7 +19,7 @@ export async function generateStaticParams() {
 const Page = async ({params: {slug}}: IProps) => {
     const blogPost = await blogPostServices.fetchBySlug(slug);
     if (!blogPost) {
-        return null;
+        redirect('/')
     }
 
 

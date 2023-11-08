@@ -17,7 +17,7 @@ const Page = async (props: IProps) => {
     
     
     if(!postsList){
-        return <p>Error retrieving data</p>
+        redirect('/')
     }
 
     if(currentPage > postsList.pagination.totalPages){

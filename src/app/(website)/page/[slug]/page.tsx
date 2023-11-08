@@ -1,5 +1,6 @@
 import {blogPageServices} from "~/services";
 import {BlogPageComponent} from "~/app.components/blogPageComponent";
+import {redirect} from "next/navigation";
 
 
 interface IProps {
@@ -36,7 +37,7 @@ const Page = async (props: IProps) => {
 
     const blogPage = await blogPageServices.fetchBySlug(Array.isArray(slug) ? slug.join('/') : slug);
     if (!blogPage) {
-        return null;
+        redirect('/')
     }
     return <BlogPageComponent blogPage={blogPage}/>
 }
