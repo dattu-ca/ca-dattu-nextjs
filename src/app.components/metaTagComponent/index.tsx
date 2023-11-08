@@ -26,14 +26,14 @@ const MetaTagComponent = ({tag, paginationConfig}: IProps) => {
                 <div className="text-sm daisyui-breadcrumbs">
                     <ul>
                         <li>
-                            <Link href='/tags'>All Tags</Link>
+                            <Link href='/tags' className={clsx('hover:!no-underline')}>All Tags</Link>
                         </li>
                     </ul>
                 </div>
             </DefaultBlocksLayout>
             <H1Heading>
                 <div className={clsx('flex items-center')}>
-                    <FaHashtag aria-label='#' /> {tag.name}
+                    <FaHashtag aria-label='#'/> {tag.name}
                 </div>
             </H1Heading>
         </div>
