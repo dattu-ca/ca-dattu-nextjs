@@ -7,6 +7,8 @@ interface IProps {
     children: ReactElement | ReactElement[];
 }
 
+export const revalidate = 3600;
+
 const Layout = async ({children}: IProps) => {
     return <Fragment>
         <BlocksLayout format={{

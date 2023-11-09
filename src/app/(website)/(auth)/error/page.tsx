@@ -4,6 +4,7 @@ import {getAuthSession} from "~/auth.services";
 import {AuthErrorComponent} from "~/app.components/auth.errorComponent";
 import {siteAuthConfigServices} from "~/services";
 
+export const revalidate = 3600;
 const Page = async () => {
     const session = await getAuthSession();
     if (session) {
