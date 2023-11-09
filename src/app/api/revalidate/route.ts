@@ -10,16 +10,16 @@ export async function GET(request: NextRequest) {
         return NextResponse.json({error: JSON.stringify({message})}, {status: 401})
     }
 
-    revalidatePath('/');
-    revalidatePath('/author/[slug]');
-    revalidatePath('/author/[slug]/posts/[currentPageNumber]');
-    revalidatePath('/category/[slug]/[currentPageNumber]');
-    revalidatePath('/page/[slug]');
-    revalidatePath('/post/[slug]');
-    revalidatePath('/posts/[currentPageNumber]');
-    revalidatePath('/series/[slug]');
-    revalidatePath('/tag/[slug]/[currentPageNumber]');
-    revalidatePath('/tags');
+    revalidatePath('/', 'layout');
+    // revalidatePath('/author/[slug]');
+    // revalidatePath('/author/[slug]/posts/[currentPageNumber]');
+    // revalidatePath('/category/[slug]/[currentPageNumber]');
+    // revalidatePath('/page/[slug]');
+    // revalidatePath('/post/[slug]');
+    // revalidatePath('/posts/[currentPageNumber]');
+    // revalidatePath('/series/[slug]');
+    // revalidatePath('/tag/[slug]/[currentPageNumber]');
+    // revalidatePath('/tags');
 
     return NextResponse.json({
         revalidated: true,
@@ -43,16 +43,16 @@ export async function POST(req: NextRequest) {
             return NextResponse.json({error: JSON.stringify({message, body})}, {status: 400})
         }
 
-        revalidatePath('/');
-        revalidatePath('/author/[slug]');
-        revalidatePath('/author/[slug]/posts/[currentPageNumber]');
-        revalidatePath('/category/[slug]/[currentPageNumber]');
-        revalidatePath('/page/[slug]');
-        revalidatePath('/post/[slug]');
-        revalidatePath('/posts/[currentPageNumber]');
-        revalidatePath('/series/[slug]');
-        revalidatePath('/tag/[slug]/[currentPageNumber]');
-        revalidatePath('/tags');
+        revalidatePath('/', 'layout');
+        // revalidatePath('/author/[slug]');
+        // revalidatePath('/author/[slug]/posts/[currentPageNumber]');
+        // revalidatePath('/category/[slug]/[currentPageNumber]');
+        // revalidatePath('/page/[slug]');
+        // revalidatePath('/post/[slug]');
+        // revalidatePath('/posts/[currentPageNumber]');
+        // revalidatePath('/series/[slug]');
+        // revalidatePath('/tag/[slug]/[currentPageNumber]');
+        // revalidatePath('/tags');
 
         return NextResponse.json({body})
     } catch (err: any) {
