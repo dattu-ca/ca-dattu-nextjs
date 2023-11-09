@@ -102,12 +102,12 @@ export const fetchListPaginatedByReferences = async ({
                     heading,
                     "lastFetchedOn": ${Date.now()},
                     ${includeExcerpts
-                        ? `excerptBlocks[] -> ${contentBlocksQuery},
+            ? `excerptBlocks[] -> ${contentBlocksQuery},
                                         preHeadingExcerptBlocks[] -> ${contentBlocksQuery},`
-                        : ''
-                    }
+            : ''
+        }
                     ${
-                        includeAuthors ? `authors[]->{
+            includeAuthors ? `authors[]->{
                                                         "sysId": _id,
                                                         "slug": slug.current,
                                                         name,
@@ -120,7 +120,7 @@ export const fetchListPaginatedByReferences = async ({
                                                           "url": avatarImage.asset -> url
                                                         }
                                                     }` : ''
-                    }
+        }
                   }
               )
            }
@@ -185,9 +185,9 @@ export const fetchBySlug = async (slug: string) => {
             {
                 slug: slug,
                 useCdn: false,
-                next:{
-                    revalidate: 0
-                }
+                next: {
+                    tags: ['layout', 'page']
+                } as QueryParams
             }
         )
         return mapBlogPostSanity(response);
