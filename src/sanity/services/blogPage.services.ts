@@ -37,7 +37,7 @@ export const fetchBySlug = async (slug: string) => {
                 useCdn: false,
             }, {
                 next: {
-                    revalidate: 60,
+                    // revalidate: 60,
                     tags: ['layout', 'page']
                 }
             }
