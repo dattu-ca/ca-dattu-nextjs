@@ -186,9 +186,8 @@ export const fetchBySlug = async (slug: string) => {
                 slug: slug,
                 useCdn: false,
                 next:{
-                    revalidate: 30,
-                    tags: ['blogPost']
-                } as QueryParams
+                    revalidate: 0
+                }
             }
         )
         return mapBlogPostSanity(response);
