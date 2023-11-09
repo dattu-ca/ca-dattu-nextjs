@@ -16,10 +16,10 @@ export const fetch = async () => {
                     contentBlocks[] -> ${contentBlocksQuery}
                 }`,
             {
-                cache: 'no-cache',
-                useCdn: false,
-                next:{
-                    revalidate: 1
+                useCdn: false
+            }, {
+                next: {
+                    revalidate: 60
                 }
             }
         )

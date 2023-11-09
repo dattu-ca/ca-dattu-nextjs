@@ -1,7 +1,7 @@
 'use server';
-import { groq } from "next-sanity";
-import { client } from './client';
-import { mapSanity } from "./siteNavbar.map";
+import {groq} from "next-sanity";
+import {client} from './client';
+import {mapSanity} from "./siteNavbar.map";
 
 export const fetch = async () => {
     try {
@@ -37,10 +37,10 @@ export const fetch = async () => {
                     }
                 }`,
             {
-                cache: 'no-cache',
                 useCdn: false,
+            }, {
                 next: {
-                    revalidate: 0
+                    revalidate: 60
                 }
             }
         )
