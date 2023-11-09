@@ -14,12 +14,12 @@ export async function GET(request: NextRequest) {
 
 export async function POST(req: NextRequest) {
     try {
-        console.log("API POST > REVALIDATE", req.json());
+        console.log("API POST > REVALIDATE", await req.json());
     } catch (e) {
     }
 
     try {
-        const {isValidSignature, body} = await parseBody<{ _type: string }>(
+        const {isValidSignature, body} = await parseBody<{ _type: any }>(
             req,
             SERVER_CONFIG.SANITY.SANITY_REVALIDATE_SECRET
         )
@@ -31,7 +31,7 @@ export async function POST(req: NextRequest) {
 
         if (!body?._type) {
             const message: string = 'Bad Request'
-            return new Response(JSON.stringify({message, body}), {status: 400})
+            return new Response(JSON.stringify({message, isValidSignature, body}), {status: 400})
         }
 
         // If the `_type` is `page`, then all `client.fetch` calls with
