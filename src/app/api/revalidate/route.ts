@@ -5,7 +5,11 @@ import {parseBody} from 'next-sanity/webhook'
 import {SERVER_CONFIG} from "~/utils/config.server";
 
 export async function POST(req: NextRequest) {
-    console.log("API POST > REVALIDATE", req);
+    try{
+        console.log("API POST > REVALIDATE", req.json());
+    }
+    catch (e){}
+    
     try {
         const {isValidSignature, body} = await parseBody<{_type: any}>(
             req,
