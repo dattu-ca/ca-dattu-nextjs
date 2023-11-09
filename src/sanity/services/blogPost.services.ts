@@ -17,10 +17,10 @@ export const fetchAllActiveSlugs = async () => {
     ]{ "slug": slug.current }`
     const response = await client.fetch(
         groq`${filter}`, {
-            cache: 'no-cache',
             useCdn: false,
+        }, {
             next: {
-                revalidate: 0
+                revalidate: 60
             }
         }
     );
@@ -33,10 +33,10 @@ export const fetchTotalByReference = async (referenceId: string) => {
     ]`
     const response = await client.fetch(
         groq`count(${filter})`, {
-            cache: 'no-cache',
             useCdn: false,
+        }, {
             next: {
-                revalidate: 0
+                revalidate: 60
             }
         }
     );
@@ -60,7 +60,13 @@ export const fetchActivePostsWithReference = async (reference: 'Tag' | 'Category
                 "slug": slug.current,
                 name,
             },` : ''}
-        }`
+        }`, {
+            useCdn: false,
+        }, {
+            next: {
+                revalidate: 60
+            }
+        }
     );
     return mapBlogPostSanityList(response)
 }
@@ -127,8 +133,9 @@ export const fetchListPaginatedByReferences = async ({
             limit: skip + limit,
             cache: 'no-cache',
             useCdn: false,
+        }, {
             next: {
-                revalidate: 0
+                revalidate: 60
             }
         })
 
@@ -183,8 +190,12 @@ export const fetchBySlug = async (slug: string) => {
             {
                 slug: slug,
                 useCdn: false,
+            }, {
+                next: {
+                    revalidate: 60
+                }
             }
-        )
+        );
         return mapBlogPostSanity(response);
     } catch (e) {
         console.error(`Cannot find [blogPost] for slug=${slug}`, e);

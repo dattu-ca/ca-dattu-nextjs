@@ -23,10 +23,10 @@ export const fetchByFormId = async (formId: string) => {
                   }`,
             {
                 formId: formId,
-                cache: 'no-cache',
                 useCdn: false,
+            }, {
                 next: {
-                    revalidate: 0
+                    revalidate: 60
                 }
             }
         )

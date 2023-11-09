@@ -3,6 +3,7 @@ import {groq} from "next-sanity";
 import {client} from './client';
 import {mapSanity as mapBlogPageSanity} from './blogPage.map';
 import {contentBlocksQuery} from "./utils";
+import {revalidate} from "~/app/(website)/page/[slug]/page";
 
 export const fetchAllSlugs = async () => {
     const filter = `*[_type=="blogPage"]{ 
@@ -10,10 +11,10 @@ export const fetchAllSlugs = async () => {
                            }`
     const response = await client.fetch(
         groq`${filter}`, {
-            cache: 'no-cache',
             useCdn: false,
+        }, {
             next: {
-                revalidate: 0
+                revalidate: 60
             }
         }
     );
@@ -33,8 +34,13 @@ export const fetchBySlug = async (slug: string) => {
             {
                 slug: slug,
                 useCdn: false,
+            }, {
+                next: {
+                    revalidate: 60
+                }
             }
         )
+        console.log("response", response.heading)
         return mapBlogPageSanity(response);
     } catch (e) {
         console.error(`Cannot find [blogPage] for slug=${slug}`, e);

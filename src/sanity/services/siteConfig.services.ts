@@ -14,10 +14,10 @@ export const fetch = async () => {
                 siteDescription
             }`,
             {
-                cache: 'no-cache',
                 useCdn: false,
+            }, {
                 next: {
-                    revalidate: 0
+                    revalidate: 60
                 }
             }
         )

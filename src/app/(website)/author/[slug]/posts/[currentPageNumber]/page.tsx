@@ -9,7 +9,7 @@ interface IProps {
     }
 }
 
-export const revalidate = 3600;
+export const revalidate = 86400;
 
 const Page = async (props: IProps) => {
     const {params} = props;

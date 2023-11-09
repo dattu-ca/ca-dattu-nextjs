@@ -8,10 +8,10 @@ export const fetchAllSlugs = async () => {
     const filter = `*[_type=="tag"]{ "slug": slug.current }`
     const response = await client.fetch(
         groq`${filter}`, {
-            cache: 'no-cache',
             useCdn: false,
+        }, {
             next: {
-                revalidate: 0
+                revalidate: 60
             }
         }
     );
@@ -30,10 +30,10 @@ export const fetchBySlug = async (slug: string) => {
               }`,
             {
                 slug: slug,
-                cache: 'no-cache',
                 useCdn: false,
+            }, {
                 next: {
-                    revalidate: 0
+                    revalidate: 60
                 }
             }
         )

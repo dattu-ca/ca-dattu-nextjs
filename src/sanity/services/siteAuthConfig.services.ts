@@ -17,10 +17,10 @@ export const fetch = async () => {
                 errorTitle,
                 errorButton
             }`,{
-                cache: 'no-cache',
                 useCdn: false,
+            }, {
                 next: {
-                    revalidate: 0
+                    revalidate: 60
                 }
             }
         )

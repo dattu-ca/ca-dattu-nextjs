@@ -18,6 +18,7 @@ import clsx from "clsx";
 import GoogleAnalytics from "./googleAnalytics";
 
 
+export const revalidate = 86400;
 export const generateMetadata = async () => {
     const cmsContent = await siteConfigServices.fetch();
     if (!cmsContent) {
