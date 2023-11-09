@@ -20,7 +20,6 @@ export const fetchAllActiveSlugs = async () => {
             useCdn: false,
         }, {
             next: {
-                revalidate: 60,
                 tags: ['layout', 'page']
             }
         }
@@ -37,7 +36,6 @@ export const fetchTotalByReference = async (referenceId: string) => {
             useCdn: false,
         }, {
             next: {
-                revalidate: 60,
                 tags: ['layout', 'page']
             }
         }
@@ -66,7 +64,6 @@ export const fetchActivePostsWithReference = async (reference: 'Tag' | 'Category
             useCdn: false,
         }, {
             next: {
-                revalidate: 60,
                 tags: ['layout', 'page']
             }
         }
@@ -138,7 +135,6 @@ export const fetchListPaginatedByReferences = async ({
             useCdn: false,
         }, {
             next: {
-                revalidate: 60,
                 tags: ['layout', 'page']
             }
         })
@@ -196,7 +192,6 @@ export const fetchBySlug = async (slug: string) => {
                 useCdn: false,
             }, {
                 next: {
-                    revalidate: 60,
                     tags: ['layout', 'page']
                 }
             }
