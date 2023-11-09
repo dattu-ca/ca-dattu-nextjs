@@ -9,7 +9,6 @@ export const fetch = async () => {
             groq`*[_type=="siteConfig"][0]{
                 "sysId": _id,
                 "slug": _type,
-                "lastFetchedOn": ${Date.now()},
                 siteTitleTemplate,
                 siteTitleDefault,
                 siteDescription

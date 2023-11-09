@@ -9,6 +9,8 @@ interface IProps {
     }
 }
 
+export const revalidate = 3600;
+
 const Page = async (props: IProps) => {
     const {params} = props;
     const {slug, currentPageNumber} = params;

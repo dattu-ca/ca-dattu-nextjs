@@ -14,7 +14,7 @@ const availablePostsFilter = `_type=="blogPost"
 export const fetchAllActiveSlugs = async () => {
     const filter = `*[
       ${availablePostsFilter}
-    ]{ "slug": slug.current, "lastFetchedOn": ${Date.now()} }`
+    ]{ "slug": slug.current }`
     const response = await client.fetch(
         groq`${filter}`, {
             cache: 'no-cache',
@@ -50,7 +50,6 @@ export const fetchActivePostsWithReference = async (reference: 'Tag' | 'Category
     ]`
     const response = await client.fetch(
         groq`${filter}{
-            "lastFetchedOn": ${Date.now()},
             ${reference === 'Tag' ? `tags[]->{
                 "sysId": _id,
                 "slug": slug.current,
@@ -100,7 +99,6 @@ export const fetchListPaginatedByReferences = async ({
                     "slug" : slug.current,
                     "datePublished": dateTime(datePublished + 'T00:00:00Z'),
                     heading,
-                    "lastFetchedOn": ${Date.now()},
                     ${includeExcerpts
             ? `excerptBlocks[] -> ${contentBlocksQuery},
                                         preHeadingExcerptBlocks[] -> ${contentBlocksQuery},`
@@ -185,9 +183,6 @@ export const fetchBySlug = async (slug: string) => {
             {
                 slug: slug,
                 useCdn: false,
-                next: {
-                    tags: ['layout', 'page']
-                } as QueryParams
             }
         )
         return mapBlogPostSanity(response);

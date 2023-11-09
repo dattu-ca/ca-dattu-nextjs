@@ -10,6 +10,9 @@ interface IProps {
     }
 }
 
+export const revalidate = 3600;
+
+
 export async function generateStaticParams() {
     const slugs = await metaTagServices.fetchAllSlugs();
 

@@ -7,6 +7,9 @@ interface IProps {
         currentPageNumber: string;
     }
 }
+
+export const revalidate = 3600;
+
 export const generateMetadata = async (props: IProps) => {
     const currentPage = getCurrentPageNumber(props.params);
     const {allPosts} = await fetchAllPosts(currentPage);

@@ -10,6 +10,8 @@ interface IProps {
     children?: ReactElement | ReactElement[];
 }
 
+export const revalidate = 3600;
+
 export const generateMetadata = async ({params}: IProps) => {
     const {slug} = params;
     const blogAuthor = await blogAuthorServices.fetchBySlug(slug);

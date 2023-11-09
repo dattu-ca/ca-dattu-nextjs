@@ -13,8 +13,7 @@ export const fetch = async () => {
                     "slug": _type,
                     heading,
                     preHeadingContentBlocks[] -> ${contentBlocksQuery},
-                    contentBlocks[] -> ${contentBlocksQuery},
-                    "lastFetchedOn": ${Date.now()}
+                    contentBlocks[] -> ${contentBlocksQuery}
                 }`,
             {
                 cache: 'no-cache',
