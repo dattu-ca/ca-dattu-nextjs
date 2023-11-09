@@ -5,7 +5,7 @@ import {mapSanity as mapMetaTagSanity} from './metaTag.map';
 import {contentBlocksQuery} from "./utils";
 
 export const fetchAllSlugs = async () => {
-    const filter = `*[_type=="tag"]{ "slug": slug.current, "lastFetchedOn": ${Date.now()}, }`
+    const filter = `*[_type=="tag"]{ "slug": slug.current }`
     const response = await client.fetch(
         groq`${filter}`, {
             cache: 'no-cache',
@@ -24,7 +24,6 @@ export const fetchBySlug = async (slug: string) => {
             groq`*[_type=="tag" && slug.current == $slug][0]{
                 "sysId": _id,
                 "slug": slug.current,
-                "lastFetchedOn": ${Date.now()},
                 name,
                 preHeadingContentBlocks[] -> ${contentBlocksQuery},
                 contentBlocks[] -> ${contentBlocksQuery},

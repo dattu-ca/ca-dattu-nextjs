@@ -7,8 +7,7 @@ import {contentBlocksQuery} from "./utils";
 
 export const fetchAllSlugs = async () => {
     const filter = `*[_type=="author"]{ 
-                        "slug": slug.current,
-                        "lastFetchedOn": ${Date.now()} 
+                        "slug": slug.current
                     }`
     const response = await client.fetch(
         groq`${filter}`, {
@@ -37,8 +36,7 @@ export const fetchBySlug = async (slug: string) => {
                   "url": avatarImage.asset -> url
                 },
                 preHeadingContentBlocks[] -> ${contentBlocksQuery},
-                contentBlocks[] -> ${contentBlocksQuery},
-                "lastFetchedOn": ${Date.now()}
+                contentBlocks[] -> ${contentBlocksQuery}
               }`,
             {
                 slug: slug,
