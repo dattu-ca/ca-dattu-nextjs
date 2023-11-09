@@ -8,7 +8,7 @@ interface IProps {
 }
 
 const SeriesComponent = ({series}: IProps) => {
-    return series && <DefaultBlocksLayout>
+    return series?.slug && <DefaultBlocksLayout>
         <div className={clsx(
             'flex items-center justify-start gap-1'
         )}>

@@ -29,16 +29,20 @@ const BlogPostComponent = ({blogPost}: IProps) => {
                     {blogPost.heading}
                 </div>
             </H1Heading>
-            <DefaultBlocksLayout allFormats={'Default'}>
-                <div className="daisyui-divider"></div>
-            </DefaultBlocksLayout>
-            <AuthorsComponent authors={blogPost.authors}/>
-            <div className={clsx('mb-6')}/>
-            <CategoriesComponent categories={blogPost.categories}/>
-            <DefaultBlocksLayout allFormats={'Default'}>
-                <div className="daisyui-divider"></div>
-            </DefaultBlocksLayout>
-
+            {
+                ((blogPost.authors || []).length > 0 || (blogPost.categories || []).length > 0)
+                && <>
+                    <DefaultBlocksLayout allFormats={'Default'}>
+                        <div className="daisyui-divider"></div>
+                    </DefaultBlocksLayout>
+                    <AuthorsComponent authors={blogPost.authors}/>
+                    <div className={clsx('mb-6')}/>
+                    <CategoriesComponent categories={blogPost.categories}/>
+                    <DefaultBlocksLayout allFormats={'Default'}>
+                        <div className="daisyui-divider"></div>
+                    </DefaultBlocksLayout>
+                </>
+            }
         </div>
         <BlocksBodyContentComponent blocks={blogPost.contentBlocks} isExcerpts={false}/>
         <TagsComponent tags={blogPost.tags}/>

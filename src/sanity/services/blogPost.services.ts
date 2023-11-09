@@ -185,6 +185,7 @@ export const fetchBySlug = async (slug: string) => {
                 useCdn: false,
             }
         )
+        console.log(response.heading)
         return mapBlogPostSanity(response);
     } catch (e) {
         console.error(`Cannot find [blogPost] for slug=${slug}`, e);
