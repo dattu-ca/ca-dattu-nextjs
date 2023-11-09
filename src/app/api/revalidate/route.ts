@@ -4,14 +4,22 @@ import {type NextRequest, NextResponse} from 'next/server'
 import {parseBody} from 'next-sanity/webhook'
 import {SERVER_CONFIG} from "~/utils/config.server";
 
-export async function POST(req: NextRequest) {
-    try{
-        console.log("API POST > REVALIDATE", req.json());
+export async function GET(request: NextRequest) {
+    const tag = request.nextUrl.searchParams.get('tag')
+    if (tag) {
+        revalidateTag(tag)
     }
-    catch (e){}
-    
+    return Response.json({revalidated: true, now: Date.now()});
+}
+
+export async function POST(req: NextRequest) {
     try {
-        const {isValidSignature, body} = await parseBody<{_type: any}>(
+        console.log("API POST > REVALIDATE", req.json());
+    } catch (e) {
+    }
+
+    try {
+        const {isValidSignature, body} = await parseBody<{ _type: string }>(
             req,
             SERVER_CONFIG.SANITY.SANITY_REVALIDATE_SECRET
         )
