@@ -10,7 +10,7 @@ interface IProps {
     children?: ReactElement | ReactElement[];
 }
 
-export const revalidate = 3600;
+export const revalidate = 86400;
 
 export const generateMetadata = async ({params}: IProps) => {
     const {slug} = params;

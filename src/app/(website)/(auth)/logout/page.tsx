@@ -5,7 +5,7 @@ import {AuthLogoutComponent} from "~/app.components/auth.logoutComponent";
 import {siteAuthConfigServices} from "~/services";
 
 
-export const revalidate = 3600;
+export const revalidate = 86400;
 const Page = async () => {
     const session = await getAuthSession();
     if (!session) {

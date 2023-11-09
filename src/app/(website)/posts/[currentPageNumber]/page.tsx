@@ -8,7 +8,7 @@ interface IProps {
     }
 }
 
-export const revalidate = 3600;
+export const revalidate = 86400;
 
 export const generateMetadata = async (props: IProps) => {
     const currentPage = getCurrentPageNumber(props.params);

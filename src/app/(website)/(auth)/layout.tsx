@@ -7,7 +7,7 @@ interface IProps {
     children: ReactElement | ReactElement[];
 }
 
-export const revalidate = 3600;
+export const revalidate = 86400;
 
 const Layout = async ({children}: IProps) => {
     return <Fragment>
