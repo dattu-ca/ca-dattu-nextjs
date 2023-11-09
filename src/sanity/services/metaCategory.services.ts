@@ -13,7 +13,8 @@ export const fetchAllSlugs = async () => {
             useCdn: false,
         }, {
             next: {
-                revalidate: 60
+                revalidate: 60,
+                tags: ['layout', 'page']
             }
         }
     );
@@ -32,7 +33,8 @@ export const fetchListByReference = async (sysId: string) => {
                 useCdn: false,
             }, {
                 next: {
-                    revalidate: 60
+                    revalidate: 60,
+                    tags: ['layout', 'page']
                 }
             }
         )
@@ -64,7 +66,8 @@ export const fetchBySlug = async (slug: string, includeContent = false) => {
                 useCdn: false,
             }, {
                 next: {
-                    revalidate: 60
+                    revalidate: 60,
+                    tags: ['layout', 'page']
                 }
             }
         )

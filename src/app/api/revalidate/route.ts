@@ -1,5 +1,5 @@
 import {NextRequest, NextResponse} from "next/server";
-import {revalidatePath} from 'next/cache';
+import {revalidatePath, revalidateTag} from 'next/cache';
 import {parseBody} from 'next-sanity/webhook'
 import {SERVER_CONFIG} from "~/utils/config.server";
 
@@ -10,6 +10,8 @@ export async function GET(request: NextRequest) {
         return NextResponse.json({error: JSON.stringify({message})}, {status: 401})
     }
 
+    revalidateTag('layout');
+    revalidateTag('page');
     revalidatePath('/', 'layout');
     // revalidatePath('/author/[slug]');
     // revalidatePath('/author/[slug]/posts/[currentPageNumber]');
@@ -43,6 +45,8 @@ export async function POST(req: NextRequest) {
             return NextResponse.json({error: JSON.stringify({message, body})}, {status: 400})
         }
 
+        revalidateTag('layout');
+        revalidateTag('page');
         revalidatePath('/', 'layout');
         // revalidatePath('/author/[slug]');
         // revalidatePath('/author/[slug]/posts/[currentPageNumber]');
