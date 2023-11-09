@@ -24,7 +24,8 @@ const CONTENT_CONFIG = Object.freeze({
 });
 
 const SERVER_CONSTANTS = Object.freeze({
-    ENVIRONMENT: process.env.ENVIRONMENT as string
+    ENVIRONMENT: process.env.ENVIRONMENT as string,
+    REVALIDATE_TOKEN: process.env.REVALIDATE_TOKEN as string
 });
 
 const GOOGLE_RECAPTCHA = Object.freeze({
@@ -61,7 +62,6 @@ const CORS = Object.freeze({
 
 const SANITY = Object.freeze({
     ACCESS_TOKEN: process.env.SANITY_ACCESS_TOKEN as string,
-    SANITY_REVALIDATE_SECRET: process.env.SANITY_REVALIDATE_SECRET as string
 })
 
 const SERVER_CONFIG = Object.freeze({
