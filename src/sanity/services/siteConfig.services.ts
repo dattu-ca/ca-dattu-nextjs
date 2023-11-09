@@ -17,7 +17,8 @@ export const fetch = async () => {
                 useCdn: false,
             }, {
                 next: {
-                    revalidate: 60
+                    revalidate: 60,
+                    tags: ['layout', 'page']
                 }
             }
         )
