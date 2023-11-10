@@ -15,7 +15,7 @@ const MetaCategoryChildrenComponent = ({category}: IProps) => {
 
     return category.children && category.children.length > 0 && (
         <DividerComponent allFormats={'Default'}>
-            <h6>Sub Categories</h6>
+            <h5>Sub Categories:</h5>
             <ul className={clsx(
                 'space-y-0',
                 'list-none',
