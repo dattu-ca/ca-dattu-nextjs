@@ -25,14 +25,14 @@ export const fetchPostsListBySlug = async (slug: string, paginationConfig: Pagin
             author.postsListData = {
                 cmsSource: author.cmsSource,
                 contentType: "BodyPostsList",
-                isPaginated: false,
+                isPaginated: true,
                 layout: 'Excerpt',
-                limitPerPage: 0,
+                limitPerPage: paginationConfig.limit,
                 name: 'Articles',
                 paginationData: {
                     ...paginationConfig,
                     total: response.total,
-                    totalPages: Math.ceil((response.total / paginationConfig.limit))
+                    totalPages: Math.ceil((response.total / paginationConfig.limit)) || 1
                 },
                 posts: response.items,
                 postsListIdentifier: 'Author',

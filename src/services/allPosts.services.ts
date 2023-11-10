@@ -10,23 +10,21 @@ export const fetch = async (paginationConfig: PaginationConfig) => {
             limit: paginationConfig.limit,
             includeExcerpts: true
         });
-        if(response.total > 0){
-            allPosts.postsListData = {
-                sysId: allPosts.sysId,
-                cmsSource: allPosts.cmsSource,
-                contentType: "BodyPostsList",
-                isPaginated: false,
-                layout: 'Excerpt',
-                limitPerPage: paginationConfig.limit,
-                name: 'All Posts',
-                paginationData: {
-                    ...paginationConfig,
-                    total: response.total,
-                    totalPages: Math.ceil((response.total / paginationConfig.limit))
-                },
-                posts: response.items,
-                postsListIdentifier: 'All',
-            }
+        allPosts.postsListData = {
+            sysId: allPosts.sysId,
+            cmsSource: allPosts.cmsSource,
+            contentType: "BodyPostsList",
+            isPaginated: true,
+            layout: 'Excerpt',
+            limitPerPage: paginationConfig.limit,
+            name: 'All Posts',
+            paginationData: {
+                ...paginationConfig,
+                total: response.total,
+                totalPages: Math.ceil((response.total / paginationConfig.limit)) || 1
+            },
+            posts: response.items,
+            postsListIdentifier: 'All',
         }
     }
 

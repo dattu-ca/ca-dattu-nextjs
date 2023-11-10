@@ -56,34 +56,31 @@ export const fetchBySlug = async (slug: string, config: IConfig) => {
     const category = await fetchCategoryAndRelatives(slug, config);
     if (category) {
         category.children = flattenChildren(category);
-        const ids = [category.sysId, ...category.children.map(child => child.sysId)];
+        const ids = [category.sysId, ...(category.children || []).map(child => child.sysId)];
         if (paginationConfig) {
-            const response =
-                await blogPostServices.fetchListPaginatedByReferences({
-                    skip: paginationConfig.skip,
-                    limit: paginationConfig.limit,
-                    includeExcerpts: true,
-                    referenceIds: ids,
-                    includeAuthors: false,
-                    sortAscendingPublishDate: false,
-                })
-            if (response.items && Array.isArray(response.items)) {
-                category.postsListData = {
-                    cmsSource: category.cmsSource,
-                    contentType: "BodyPostsList",
-                    isPaginated: false,
-                    layout: 'Excerpt',
-                    limitPerPage: paginationConfig.limit,
-                    name: 'Articles',
-                    paginationData: {
-                        ...paginationConfig,
-                        total: response.total,
-                        totalPages: Math.ceil((response.total / paginationConfig.limit))
-                    },
-                    posts: response.items,
-                    postsListIdentifier: 'Category',
-                    sysId: category.sysId
-                }
+            const response = await blogPostServices.fetchListPaginatedByReferences({
+                skip: paginationConfig.skip,
+                limit: paginationConfig.limit,
+                includeExcerpts: true,
+                referenceIds: ids,
+                includeAuthors: false,
+                sortAscendingPublishDate: false,
+            });
+            category.postsListData = {
+                cmsSource: category.cmsSource,
+                contentType: "BodyPostsList",
+                isPaginated: true,
+                layout: 'Excerpt',
+                limitPerPage: paginationConfig.limit,
+                name: 'Articles',
+                paginationData: {
+                    ...paginationConfig,
+                    total: response.total,
+                    totalPages: Math.ceil((response.total / paginationConfig.limit)) || 1
+                },
+                posts: response.items,
+                postsListIdentifier: 'Category',
+                sysId: category.sysId
             }
         }
     }

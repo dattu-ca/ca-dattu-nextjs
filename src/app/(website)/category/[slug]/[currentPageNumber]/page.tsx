@@ -49,8 +49,6 @@ const Page = async (props: IProps) => {
         redirect(`/category/${props.params.slug}`)
     }
 
-    return <div>
-        <MetaCategoryComponent category={category} />
-    </div>
+    return <MetaCategoryComponent category={category} />
 }
 export default Page;

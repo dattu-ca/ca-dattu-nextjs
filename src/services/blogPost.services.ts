@@ -13,18 +13,16 @@ export const fetchBySlug = async (slug: string) => {
             referenceIds: [post.series.sysId],
             sortAscendingPublishDate: true,
         });
-        if (response && response.items) {
-            post.series.postsListData = {
-                cmsSource: post.cmsSource,
-                contentType: "BodyPostsList",
-                isPaginated: false,
-                layout: 'Heading Only',
-                limitPerPage: 0,
-                name: 'Series Articles',
-                posts: response.items,
-                postsListIdentifier: "Post",
-                sysId: post.sysId
-            }
+        post.series.postsListData = {
+            cmsSource: post.cmsSource,
+            contentType: "BodyPostsList",
+            isPaginated: false,
+            layout: 'Heading Only',
+            limitPerPage: 0,
+            name: 'Series Articles',
+            posts: response.items,
+            postsListIdentifier: "Post",
+            sysId: post.sysId
         }
     }
     return post;

@@ -39,24 +39,22 @@ export const fetchBySlug = async (slug: string, paginationConfig?: PaginationCon
                 includeAuthors: false,
                 sortAscendingPublishDate: false,
             })
-        if (response.items && Array.isArray(response.items)) {
-            tag.postsListData = {
-                cmsSource: tag.cmsSource,
-                contentType: "BodyPostsList",
-                isPaginated: true,
-                layout: 'Excerpt',
-                limitPerPage: paginationConfig.limit,
-                name: 'Articles',
-                paginationData: {
-                    ...paginationConfig,
-                    total: response.total,
-                    totalPages: Math.ceil((response.total / paginationConfig.limit))
-                },
-                posts: response.items,
-                postsListIdentifier: 'Tag',
-                sysId: tag.sysId
-            };
-        }
+        tag.postsListData = {
+            cmsSource: tag.cmsSource,
+            contentType: "BodyPostsList",
+            isPaginated: true,
+            layout: 'Excerpt',
+            limitPerPage: paginationConfig.limit,
+            name: 'Articles',
+            paginationData: {
+                ...paginationConfig,
+                total: response.total,
+                totalPages: Math.ceil((response.total / paginationConfig.limit)) || 1
+            },
+            posts: response.items,
+            postsListIdentifier: 'Tag',
+            sysId: tag.sysId
+        };
     }
     return tag;
 }
