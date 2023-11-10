@@ -13,7 +13,17 @@ const nextConfig = {
         }
 
         res.headers.push({key: 'Access-Control-Allow-Credentials', value: process.env.ACCESS_CONTROL_ALLOW_CREDENTIALS})
-        res.headers.push({key: 'Access-Control-Allow-Origin', value: process.env.ACCESS_CONTROL_ALLOW_ORIGIN}) // replace this your actual origin
+        const allowedOrigins = process.env.ACCESS_CONTROL_ALLOW_ORIGIN;
+        if(allowedOrigins === '*'){
+            res.headers.push({key: 'Access-Control-Allow-Origin', value: allowedOrigins});
+        }
+        else{
+            const arr = allowedOrigins.split(';');
+            for(const o in arr){
+                res.headers.push({key: 'Access-Control-Allow-Origin', value: o});
+            }
+        }
+        
         res.headers.push({key: 'Access-Control-Allow-Methods', value: process.env.ACCESS_CONTROL_ALLOW_METHODS})
         res.headers.push({key: 'Access-Control-Allow-Headers', value: process.env.ACCESS_CONTROL_ALLOW_HEADERS})
 
