@@ -1,11 +1,7 @@
-import {createParentBreadCrumbs, MetaCategory, PaginationConfig} from "~/models";
-import {BlocksBodyContentComponent} from "../blocksBodyContentComponent";
+import {MetaCategory} from "~/models";
 import clsx from "clsx";
-import {H1Heading} from "~/app.ui.components/h1Heading";
-import {DefaultBlocksLayout} from "~/app.ui.components/blocksLayout/defaultBLocksLayout";
 import Link from "next/link";
-import {CategoryPostsListComponent} from "./postsListComponent";
-import {MdFolder, MdFolderOpen} from "react-icons/md";
+import {MdFolder} from "react-icons/md";
 import {DividerComponent} from "~/app.ui.components/dividerComponent";
 
 interface IProps {

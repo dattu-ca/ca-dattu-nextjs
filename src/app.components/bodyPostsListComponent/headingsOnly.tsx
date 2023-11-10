@@ -1,5 +1,5 @@
-import {BodyPostsList} from "~/models";
 import Link from "next/link";
+import {BodyPostsList} from "~/models";
 import {PaginationComponent} from "~/app.ui.components/paginationComponent";
 
 

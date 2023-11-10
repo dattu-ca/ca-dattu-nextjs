@@ -1,11 +1,11 @@
-import {createParentBreadCrumbs, MetaCategory, PaginationConfig} from "~/models";
+import {createParentBreadCrumbs, MetaCategory} from "~/models";
 import {BlocksBodyContentComponent} from "../blocksBodyContentComponent";
 import clsx from "clsx";
 import {H1Heading} from "~/app.ui.components/h1Heading";
 import {DefaultBlocksLayout} from "~/app.ui.components/blocksLayout/defaultBLocksLayout";
 import Link from "next/link";
-import {CategoryPostsListComponent} from "./postsListComponent";
-import {MdFolder, MdFolderOpen} from "react-icons/md";
+import {PostsListComponent} from "../bodyPostsListComponent/postsListComponent";
+import { MdFolderOpen} from "react-icons/md";
 import {MetaCategoryChildrenComponent} from "./childrenCategories";
 
 interface IProps {
@@ -52,7 +52,7 @@ const MetaCategoryComponent = ({category}: IProps) => {
         )}>
             <BlocksBodyContentComponent blocks={category.contentBlocks} isExcerpts={true}/>
         </div>
-        <CategoryPostsListComponent postsListData={category.postsListData}
+        <PostsListComponent postsListData={category.postsListData}
                                     className={clsx(
                                         'mt-8'
                                     )}/>

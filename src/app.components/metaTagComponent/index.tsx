@@ -5,7 +5,7 @@ import {H1Heading} from "~/app.ui.components/h1Heading";
 import {DefaultBlocksLayout} from "~/app.ui.components/blocksLayout/defaultBLocksLayout";
 import Link from "next/link";
 import {FaHashtag} from "react-icons/fa6";
-import {TagPostsListComponent} from "./postsListComponent";
+import {PostsListComponent} from "../bodyPostsListComponent/postsListComponent";
 
 interface IProps {
     tag: MetaTag
@@ -43,7 +43,7 @@ const MetaTagComponent = ({tag}: IProps) => {
         )}>
             <BlocksBodyContentComponent blocks={tag.contentBlocks} isExcerpts={true}/>
         </div>
-        <TagPostsListComponent
+        <PostsListComponent
             postsListData={tag.postsListData}
             className={clsx(
                 'mt-8'

@@ -1,6 +1,6 @@
-import {fetchAuthorPosts} from "./utils";
-import {BlogAuthorPostsListComponent} from "~/app.components/blogAuthorComponent/postsListComponent";
 import {redirect} from "next/navigation";
+import {fetchAuthorPosts} from "./utils";
+import {PostsListComponent} from "~/app.components/bodyPostsListComponent/postsListComponent";
 
 interface IProps {
     params: {
@@ -17,7 +17,6 @@ const Page = async (props: IProps) => {
     const currentPage = parseInt(currentPageNumber, 10);
     const author = await fetchAuthorPosts(slug, currentPage)
 
-
     if (!author || !author.postsListData) {
         redirect('/')
     }
@@ -27,8 +26,6 @@ const Page = async (props: IProps) => {
         redirect(`/author/${props.params.slug}/posts`)
     }
 
-    return <div>
-        <BlogAuthorPostsListComponent postsListData={author.postsListData}/>
-    </div>
+    return <PostsListComponent postsListData={author.postsListData}/>
 }
 export default Page;
