@@ -1,6 +1,5 @@
-import {Fragment} from "react";
 import clsx from "clsx";
-import {BodyPostsList, PaginationConfig} from "~/models";
+import {BodyPostsList,} from "~/models";
 import {ArticleComponent} from "~/app.components/bodyPostsListComponent/article";
 import {PaginationComponent} from "~/app.ui.components/paginationComponent";
 

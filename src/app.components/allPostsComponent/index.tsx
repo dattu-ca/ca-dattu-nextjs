@@ -1,9 +1,9 @@
 import {Fragment} from "react";
-import {AllPosts, PaginationConfig} from "~/models";
+import clsx from "clsx";
+import {AllPosts} from "~/models";
 import {H1Heading} from "~/app.ui.components/h1Heading";
 import {BlocksBodyContentComponent} from "../blocksBodyContentComponent";
-import clsx from "clsx";
-import {AllPostsListComponent} from "~/app.components/allPostsComponent/postsListComponent";
+import {PostsListComponent} from "../bodyPostsListComponent/postsListComponent";
 
 interface IProps {
     allPosts?: AllPosts | undefined;
@@ -26,7 +26,7 @@ const AllPostsComponent = ({allPosts}: IProps) => {
             </Fragment>
         </H1Heading>
         <BlocksBodyContentComponent blocks={allPosts.contentBlocks} isExcerpts={false}/>
-        <AllPostsListComponent
+        <PostsListComponent
             postsListData={allPosts.postsListData}
             className={clsx(
                 'mt-8'

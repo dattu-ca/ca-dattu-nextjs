@@ -1,13 +1,13 @@
 import {BodyPostsListComponent} from "~/app.components/bodyPostsListComponent";
-import {BlogPost, BodyPostsList, PaginationConfig} from "~/models";
-import { DefaultBlocksLayout } from "~/app.ui.components/blocksLayout/defaultBLocksLayout";
+import {BodyPostsList} from "~/models";
+import {DefaultBlocksLayout} from "~/app.ui.components/blocksLayout/defaultBLocksLayout";
 
 interface IProps {
     className?: string | undefined;
     postsListData?: BodyPostsList | undefined
 }
 
-const CategoryPostsListComponent = ({className, postsListData}: IProps) => {
+const PostsListComponent = ({className, postsListData}: IProps) => {
     if (!postsListData || !postsListData.posts || postsListData.posts.length === 0) {
         return null
     }
@@ -19,5 +19,5 @@ const CategoryPostsListComponent = ({className, postsListData}: IProps) => {
 }
 
 export {
-    CategoryPostsListComponent
+    PostsListComponent
 }
