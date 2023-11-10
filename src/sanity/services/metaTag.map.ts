@@ -10,7 +10,6 @@ export const mapSanity = (raw: any) => {
         name: raw?.name as string,
         preHeadingContentBlocks: mapBlocksBodyContentSanityList(raw?.preHeadingContentBlocks),
         contentBlocks: mapBlocksBodyContentSanityList(raw?.contentBlocks),
-        postsLists: [],
         totalPosts: 0,
     }
     return target as MetaTag;
