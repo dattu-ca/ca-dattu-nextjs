@@ -17,7 +17,7 @@ export const fetch = async (paginationConfig: PaginationConfig) => {
         if(response.total > 0){
             allPosts.postsListData = {
                 sysId: allPosts.sysId,
-                cmsSource: 'Sanity',
+                cmsSource: allPosts.cmsSource,
                 contentType: "BodyPostsList",
                 isPaginated: false,
                 layout: 'Excerpt',

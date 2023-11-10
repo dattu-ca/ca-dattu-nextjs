@@ -1,7 +1,6 @@
 import {BaseModel} from "./types";
 import {BlocksBodyContent} from "./blocksBodyContent";
-import {BlogPost} from "./blogPost";
-import {BodyPostsList} from "~/models/bodyPostsList";
+import {BodyPostsList} from "./bodyPostsList";
 
 
 export interface AllPosts extends BaseModel<'AllPosts'> {
