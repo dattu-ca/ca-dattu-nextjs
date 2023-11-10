@@ -1,7 +1,6 @@
 import {allPostsServices, blogPostServices} from '~/sanity/services';
 import {processFillingPostsList} from "./bodyPostsList.services";
 import {PaginationConfig} from "~/models";
-import {undefined} from "zod";
 
 
 export const fetch = async (paginationConfig: PaginationConfig) => {

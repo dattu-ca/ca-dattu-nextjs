@@ -18,15 +18,13 @@ const MetaSeriesComponent = ({series}: IProps) => {
 
     return <div>
         <BlocksBodyContentComponent blocks={series.preHeadingContentBlocks} isExcerpts={false}/>
-        <div className={clsx(
+        <H1Heading className={clsx(
             'mt-8'
         )}>
-            <H1Heading>
-                <Fragment>
-                    {series.name}
-                </Fragment>
-            </H1Heading>
-        </div>
+            <Fragment>
+                {series.name}
+            </Fragment>
+        </H1Heading>
         <div className={clsx(
             'mt-8'
         )}>
@@ -54,7 +52,7 @@ const MetaSeriesComponent = ({series}: IProps) => {
                 <p>All articles in this series are:</p>
                 <ol>
                     {
-                        series.postsLists.map((post) => (
+                        (series.postsListData?.posts || []).map((post) => (
                             <li key={post.slug}>
                                 <Link href={`/post/${post.slug}`}>{post.heading}</Link>
                             </li>
