@@ -6,13 +6,13 @@ import {DefaultBlocksLayout} from "~/app.ui.components/blocksLayout/defaultBLock
 import Link from "next/link";
 import {CategoryPostsListComponent} from "./postsListComponent";
 import {MdFolder, MdFolderOpen} from "react-icons/md";
+import {DividerComponent} from "~/app.ui.components/dividerComponent";
 
 interface IProps {
     category: MetaCategory;
-    paginationConfig: PaginationConfig
 }
 
-const MetaCategoryComponent = ({category, paginationConfig}: IProps) => {
+const MetaCategoryComponent = ({category}: IProps) => {
     if (!category) {
         return null;
     }
@@ -24,7 +24,7 @@ const MetaCategoryComponent = ({category, paginationConfig}: IProps) => {
         )}>
             {
                 category.parent && (
-                    <DefaultBlocksLayout>
+                    <DefaultBlocksLayout allFormats='Default'>
                         <div className="text-sm daisyui-breadcrumbs">
                             <ul className={clsx('space-y-0')}>
                                 {
@@ -45,35 +45,31 @@ const MetaCategoryComponent = ({category, paginationConfig}: IProps) => {
             </H1Heading>
             {
                 category.children && category.children.length > 0 && (
-                    <div>
-                        <DefaultBlocksLayout allFormats={'Default'}>
-                            <div className="daisyui-divider"></div>
-                            <ul className={clsx(
-                                'space-y-0',
-                                'list-none',
-                                'flex gap-4 items-center justify-start flex-wrap',
-                            )}>
-                                {
-                                    category.children.map(category => (
-                                        <li key={category.slug}>
-                                            <Link href={`/category/${category.slug}`}
-                                                  className={clsx(
-                                                      'normal-case',
-                                                      'daisyui-btn daisyui-btn-sm',
-                                                      'text-zinc-600 dark:text-zinc-400',
-                                                      'bg-zinc-50 dark:bg-black',
-                                                      'hover:after:w-0'
-                                                  )}>
-                                                <MdFolder/>
-                                                {category.name}
-                                            </Link>
-                                        </li>
-                                    ))
-                                }
-                            </ul>
-                            <div className="daisyui-divider"></div>
-                        </DefaultBlocksLayout>
-                    </div>
+                    <DividerComponent allFormats={'Default'}>
+                        <ul className={clsx(
+                            'space-y-0',
+                            'list-none',
+                            'flex gap-4 items-center justify-start flex-wrap',
+                        )}>
+                            {
+                                category.children.map(category => (
+                                    <li key={category.slug}>
+                                        <Link href={`/category/${category.slug}`}
+                                              className={clsx(
+                                                  'normal-case',
+                                                  'daisyui-btn daisyui-btn-sm',
+                                                  'text-zinc-600 dark:text-zinc-400',
+                                                  'bg-zinc-50 dark:bg-black',
+                                                  'hover:after:w-0'
+                                              )}>
+                                            <MdFolder/>
+                                            {category.name}
+                                        </Link>
+                                    </li>
+                                ))
+                            }
+                        </ul>
+                    </DividerComponent>
                 )
             }
         </div>
@@ -84,13 +80,10 @@ const MetaCategoryComponent = ({category, paginationConfig}: IProps) => {
         )}>
             <BlocksBodyContentComponent blocks={category.contentBlocks} isExcerpts={true}/>
         </div>
-        <div className={clsx(
-            {
-                ['mt-8']: category.postsLists?.length > 0
-            }
-        )}>
-            <CategoryPostsListComponent paginationData={paginationConfig} posts={category.postsLists}/>
-        </div>
+        <CategoryPostsListComponent postsListData={category.postsListData}
+                                    className={clsx(
+                                        'mt-8'
+                                    )}/>
     </div>
 }
 

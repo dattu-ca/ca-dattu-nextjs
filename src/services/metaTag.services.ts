@@ -1,7 +1,6 @@
 'use server';
 import {blogPostServices, metaTagServices} from "~/sanity/services";
 import {MetaTag, PaginationConfig} from "~/models";
-import {undefined} from "zod";
 
 export const fetchAllSlugs = () =>  metaTagServices.fetchAllSlugs();
 export const fetchAllActiveTags = async () => {

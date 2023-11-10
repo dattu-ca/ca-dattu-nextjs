@@ -1,7 +1,6 @@
 'use server';
 import {blogPostServices, metaSeriesServices} from "~/sanity/services";
 import {BlogAuthor} from "~/models";
-import {undefined} from "zod";
 
 export const fetchAllSlugs = () => metaSeriesServices.fetchAllSlugs();
 export const fetchBySlug = async (slug: string) => {

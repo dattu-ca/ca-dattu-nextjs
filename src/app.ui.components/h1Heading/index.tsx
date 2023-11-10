@@ -4,7 +4,7 @@ import {BlocksLayout} from "../blocksLayout";
 
 interface IProps {
     className?: string | undefined;
-    children: ReactElement | ReactElement[];
+    children: string | ReactElement | ReactElement[] | undefined;
 }
 
 const H1Heading = ({className, children}: IProps) => (

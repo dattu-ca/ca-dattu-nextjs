@@ -24,32 +24,33 @@ export async function generateStaticParams() {
 
 export const generateMetadata = async (props: IProps) => {
     const currentPage = getCurrentPageNumber(props.params);
-    const data = await fetchBySlug(props.params.slug, currentPage)
+    const category = await fetchBySlug(props.params.slug, currentPage)
 
-    if (!data || !data?.category) {
+    if (!category || !category.name) {
         return {}
     }
     return {
-        title: data.category.name
+        title: category.name
     }
 
 }
 
 const Page = async (props: IProps) => {
     const currentPage = getCurrentPageNumber(props.params);
-    const data = await fetchBySlug(props.params.slug, currentPage)
+    const category = await fetchBySlug(props.params.slug, currentPage)
 
 
-    if(!data.category || !data.paginationConfig){
+    if(!category || !category.postsListData){
         redirect('/')
     }
-
-    if(currentPage > data.paginationConfig.totalPages){
+    
+    const paginationConfig = category.postsListData?.paginationData;
+    if (paginationConfig && currentPage > paginationConfig.totalPages) {
         redirect(`/category/${props.params.slug}`)
     }
 
     return <div>
-        <MetaCategoryComponent category={data.category} paginationConfig={data.paginationConfig} />
+        <MetaCategoryComponent category={category} />
     </div>
 }
 export default Page;

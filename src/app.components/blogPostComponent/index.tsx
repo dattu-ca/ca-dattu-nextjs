@@ -8,60 +8,42 @@ import {TagsComponent} from "./tagsComponent";
 import {CategoriesComponent} from "./categoriesComponent";
 import {DatePublished} from "./datePublished";
 import {SeriesPostsListComponent} from "./seriesPostsListComponent";
-import {DefaultBlocksLayout} from "~/app.ui.components/blocksLayout/defaultBLocksLayout";
+import {DividerComponent} from "~/app.ui.components/dividerComponent";
 
 interface IProps {
     blogPost: BlogPost;
 }
 
-
 const BlogPostComponent = ({blogPost}: IProps) => {
     return <div>
         <BlocksBodyContentComponent blocks={blogPost.preHeadingContentBlocks} isExcerpts={false}/>
-        <div className={clsx(
-            'mt-8'
-        )}>
-            <DatePublished date={blogPost.datePublished}/>
-            <div className={clsx('mb-4')}/>
-            <SeriesComponent series={blogPost.series}/>
-            <H1Heading>
-                <div className={clsx('mb-6')}>
-                    {blogPost.heading}
-                </div>
-            </H1Heading>
-            {
-                ((blogPost.authors || []).length > 0 || (blogPost.categories || []).length > 0)
-                && <>
-                    <DefaultBlocksLayout allFormats={'Default'}>
-                        <div className="daisyui-divider"></div>
-                    </DefaultBlocksLayout>
+        <DatePublished date={blogPost.datePublished}
+                       className={clsx('mt-8')}/>
+        <SeriesComponent series={blogPost.series}
+                         className={clsx('mt-8')}/>
+        <H1Heading className={clsx('mt-0')}>{blogPost.heading}</H1Heading>
+        {
+            ((blogPost.authors || []).length > 0 || (blogPost.categories || []).length > 0)
+            && <>
+                <DividerComponent>
                     <AuthorsComponent authors={blogPost.authors}/>
                     <div className={clsx('mb-6')}/>
                     <CategoriesComponent categories={blogPost.categories}/>
-                    <DefaultBlocksLayout allFormats={'Default'}>
-                        <div className="daisyui-divider"></div>
-                    </DefaultBlocksLayout>
-                </>
-            }
-        </div>
+                </DividerComponent>
+            </>
+        }
         <BlocksBodyContentComponent blocks={blogPost.contentBlocks} isExcerpts={false}/>
         <TagsComponent tags={blogPost.tags}/>
         {
-            blogPost.seriesPostsList.length > 0
-            && <div className={clsx(
-                'mt-8'
-            )}>
-                <DefaultBlocksLayout allFormats={'Default'}>
-                    <div className="daisyui-divider"></div>
-                </DefaultBlocksLayout>
-                <SeriesPostsListComponent series={blogPost.series} 
-                                          postsList={blogPost.seriesPostsList}
-                                          currentPostSlug={blogPost.slug as string}
-                />
-                <DefaultBlocksLayout allFormats={'Default'}>
-                    <div className="daisyui-divider"></div>
-                </DefaultBlocksLayout>
-            </div>
+            blogPost.series?.postsListData && (blogPost.series.postsListData.posts || []).length > 0 && (
+                <DividerComponent className={clsx(
+                    'mt-8'
+                )}>
+                    <SeriesPostsListComponent series={blogPost.series}
+                                              currentPostSlug={blogPost.slug as string}
+                    />
+                </DividerComponent>
+            )
         }
     </div>
 }

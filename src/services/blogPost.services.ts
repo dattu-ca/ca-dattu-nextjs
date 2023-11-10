@@ -1,28 +1,31 @@
 'use server';
 import {blogPostServices} from "~/sanity/services";
-import {processFillingPostsList} from "~/services/bodyPostsList.services";
-import {PaginationConfig} from "~/models";
 
 
 export const fetchAllActiveSlugs = () => blogPostServices.fetchAllActiveSlugs();
 export const fetchBySlug = async (slug: string) => {
     const post = await blogPostServices.fetchBySlug(slug);
-
-    const paginationConfig: Partial<PaginationConfig> = {
-        skip: 0,
-        limit: 0,
-    }
-
-    await processFillingPostsList('Post', paginationConfig as PaginationConfig, [post?.contentBlocks])
     if (post && post.series && post.series.sysId) {
-        const result = await blogPostServices.fetchListPaginatedByReferences({
+        const response = await blogPostServices.fetchListPaginatedByReferences({
             skip: 0,
             limit: 0,
             includeExcerpts: false,
             referenceIds: [post.series.sysId],
             sortAscendingPublishDate: true,
         });
-        post.seriesPostsList = result.items;
+        if (response && response.items) {
+            post.series.postsListData = {
+                cmsSource: post.cmsSource,
+                contentType: "BodyPostsList",
+                isPaginated: false,
+                layout: 'Heading Only',
+                limitPerPage: 0,
+                name: 'Series Articles',
+                posts: response.items,
+                postsListIdentifier: "Post",
+                sysId: post.sysId
+            }
+        }
     }
     return post;
 }

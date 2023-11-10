@@ -1,13 +1,10 @@
 import {allPostsServices, blogPostServices} from '~/sanity/services';
-import {processFillingPostsList} from "./bodyPostsList.services";
 import {PaginationConfig} from "~/models";
 
 
 export const fetch = async (paginationConfig: PaginationConfig) => {
     const allPosts = await allPostsServices.fetch();
     if (allPosts) {
-        await processFillingPostsList('All', paginationConfig, [allPosts?.contentBlocks])
-        
         const response = await blogPostServices.fetchListPaginatedByReferences({
             skip: paginationConfig.skip,
             limit: paginationConfig.limit,

@@ -1,8 +1,10 @@
 'use server';
-import { blogPostServices, metaCategoryServices} from "~/sanity/services";
+import {blogPostServices, metaCategoryServices} from "~/sanity/services";
 import {MetaCategory, PaginationConfig} from "~/models";
+import {undefined} from "zod";
 
 export const fetchAllSlugs = () => metaCategoryServices.fetchAllSlugs();
+
 interface IConfig {
     includeContent: boolean;
     includeParent: boolean;
@@ -66,18 +68,25 @@ export const fetchBySlug = async (slug: string, config: IConfig) => {
                     sortAscendingPublishDate: false,
                 })
             if (response.items && Array.isArray(response.items)) {
-                category.postsLists = response.items;
-            }
-            paginationConfig = {
-                ...paginationConfig,
-                total: response.total,
-                totalPages: Math.ceil((response.total / paginationConfig.limit))
+                category.postsListData = {
+                    cmsSource: category.cmsSource,
+                    contentType: "BodyPostsList",
+                    isPaginated: false,
+                    layout: 'Excerpt',
+                    limitPerPage: paginationConfig.limit,
+                    name: 'Articles',
+                    paginationData: {
+                        ...paginationConfig,
+                        total: response.total,
+                        totalPages: Math.ceil((response.total / paginationConfig.limit))
+                    },
+                    posts: response.items,
+                    postsListIdentifier: 'Category',
+                    sysId: category.sysId
+                }
             }
         }
     }
 
-    return {
-        category,
-        paginationConfig
-    };
+    return category;
 }
