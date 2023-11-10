@@ -8,7 +8,7 @@ interface IProps {
 }
 
 const AuthorsComponent = ({authors}: IProps) => {
-    return authors && Array.isArray(authors) && authors.length > 0 && <DefaultBlocksLayout>
+    return authors && Array.isArray(authors) && authors.length > 0 && <>
         <ul className={clsx(
             'space-y-0',
             'list-none',
@@ -40,7 +40,7 @@ const AuthorsComponent = ({authors}: IProps) => {
                 </li>
             ))
         }</ul>
-    </DefaultBlocksLayout>
+    </>
 
 }
 

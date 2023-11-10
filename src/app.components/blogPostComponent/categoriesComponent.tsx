@@ -2,14 +2,13 @@ import {MetaCategory} from "~/models";
 import clsx from "clsx";
 import Link from "next/link";
 import {MdFolder} from "react-icons/md";
-import {DefaultBlocksLayout} from "~/app.ui.components/blocksLayout/defaultBLocksLayout";
 
 interface IProps {
     categories?: MetaCategory[] | undefined;
 }
 
 const CategoriesComponent = ({categories}: IProps) => {
-    return categories && Array.isArray(categories) && categories.length > 0 && <DefaultBlocksLayout>
+    return categories && Array.isArray(categories) && categories.length > 0 && <>
         <ul className={clsx(
             'space-y-0',
             'list-none',
@@ -33,7 +32,7 @@ const CategoriesComponent = ({categories}: IProps) => {
                 ))
             }
         </ul>
-    </DefaultBlocksLayout>
+    </>
 
 }
 

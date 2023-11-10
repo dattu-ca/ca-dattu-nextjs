@@ -6,7 +6,7 @@ import {DefaultBlocksLayout} from "~/app.ui.components/blocksLayout/defaultBLock
 import Link from "next/link";
 import {CategoryPostsListComponent} from "./postsListComponent";
 import {MdFolder, MdFolderOpen} from "react-icons/md";
-import {DividerComponent} from "~/app.ui.components/dividerComponent";
+import {MetaCategoryChildrenComponent} from "./childrenCategories";
 
 interface IProps {
     category: MetaCategory;
@@ -43,35 +43,7 @@ const MetaCategoryComponent = ({category}: IProps) => {
                     <MdFolderOpen/> {category.name}
                 </div>
             </H1Heading>
-            {
-                category.children && category.children.length > 0 && (
-                    <DividerComponent allFormats={'Default'}>
-                        <ul className={clsx(
-                            'space-y-0',
-                            'list-none',
-                            'flex gap-4 items-center justify-start flex-wrap',
-                        )}>
-                            {
-                                category.children.map(category => (
-                                    <li key={category.slug}>
-                                        <Link href={`/category/${category.slug}`}
-                                              className={clsx(
-                                                  'normal-case',
-                                                  'daisyui-btn daisyui-btn-sm',
-                                                  'text-zinc-600 dark:text-zinc-400',
-                                                  'bg-zinc-50 dark:bg-black',
-                                                  'hover:after:w-0'
-                                              )}>
-                                            <MdFolder/>
-                                            {category.name}
-                                        </Link>
-                                    </li>
-                                ))
-                            }
-                        </ul>
-                    </DividerComponent>
-                )
-            }
+            <MetaCategoryChildrenComponent category={category}/>
         </div>
         <div className={clsx(
             {

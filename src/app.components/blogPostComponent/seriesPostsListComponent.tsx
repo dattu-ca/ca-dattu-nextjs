@@ -1,6 +1,5 @@
 import {MetaSeries} from "~/models";
 import Link from "next/link";
-import {DefaultBlocksLayout} from "~/app.ui.components/blocksLayout/defaultBLocksLayout";
 
 interface IProps {
     series: MetaSeries;
@@ -12,7 +11,7 @@ const SeriesPostsListComponent = ({series, currentPostSlug}: IProps) => {
     if (!postsList) {
         return null;
     }
-    return <DefaultBlocksLayout>
+    return <>
         <h4>Series: <Link href={`/series/${series.slug}`}>{series.name}</Link></h4>
         <p>Other articles in this series are as follows:</p>
         <ol>
@@ -28,7 +27,7 @@ const SeriesPostsListComponent = ({series, currentPostSlug}: IProps) => {
                 ))
             }
         </ol>
-    </DefaultBlocksLayout>
+    </>
 }
 
 export {
