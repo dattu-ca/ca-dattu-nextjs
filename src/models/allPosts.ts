@@ -1,6 +1,6 @@
 import {BaseModel} from "./types";
 import {BlocksBodyContent} from "./blocksBodyContent";
-import {BlogPost} from "./blogPost";
+import {BodyPostsList} from "./bodyPostsList";
 
 
 export interface AllPosts extends BaseModel<'AllPosts'> {
@@ -8,6 +8,6 @@ export interface AllPosts extends BaseModel<'AllPosts'> {
     preHeadingContentBlocks?: BlocksBodyContent[] | undefined;
     heading?: string | undefined;
     contentBlocks?: BlocksBodyContent[] | undefined;
-
-    postsLists: BlogPost[];
+    
+    postsListData?: BodyPostsList | undefined;
 }

@@ -21,13 +21,24 @@ export const fetchPostsListBySlug = async (slug: string, paginationConfig: Pagin
             includeExcerpts: true,
             referenceIds: [author.sysId]
         })
-        return {
-            posts: response.items,
-            pagination: {
-                ...paginationConfig,
-                total: response.total,
-                totalPages: Math.ceil((response.total / paginationConfig.limit))
+        if (response && response.items) {
+            author.postsListData = {
+                cmsSource: author.cmsSource,
+                contentType: "BodyPostsList",
+                isPaginated: true,
+                layout: 'Excerpt',
+                limitPerPage: paginationConfig.limit,
+                name: 'Articles',
+                paginationData: {
+                    ...paginationConfig,
+                    total: response.total,
+                    totalPages: Math.ceil((response.total / paginationConfig.limit)) || 1
+                },
+                posts: response.items,
+                postsListIdentifier: 'Author',
+                sysId: author.sysId
             }
         }
+        return author
     }
 }

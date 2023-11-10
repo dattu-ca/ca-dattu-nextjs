@@ -1,11 +1,12 @@
-import {MetaSeries} from "~/models";
-import {BlocksBodyContentComponent} from "../blocksBodyContentComponent";
 import clsx from "clsx";
-import {H1Heading} from "~/app.ui.components/h1Heading";
 import {Fragment} from "react";
-import Link from "next/link";
-import {DefaultBlocksLayout} from "~/app.ui.components/blocksLayout/defaultBLocksLayout";
+import {MetaSeries} from "~/models";
 import {AuthorsComponent} from "./authorsComponent";
+import {BodyPostsListComponent} from "../bodyPostsListComponent";
+import {BlocksBodyContentComponent} from "../blocksBodyContentComponent";
+import {H1Heading} from "~/app.ui.components/h1Heading";
+import {DefaultBlocksLayout} from "~/app.ui.components/blocksLayout/defaultBLocksLayout";
+import {DividerComponent} from "~/app.ui.components/dividerComponent";
 
 interface IProps {
     series: MetaSeries
@@ -16,29 +17,19 @@ const MetaSeriesComponent = ({series}: IProps) => {
         return null;
     }
 
-    return <div>
+    return <>
         <BlocksBodyContentComponent blocks={series.preHeadingContentBlocks} isExcerpts={false}/>
-        <div className={clsx(
+        <H1Heading className={clsx(
             'mt-8'
         )}>
-            <H1Heading>
-                <Fragment>
-                    {series.name}
-                </Fragment>
-            </H1Heading>
-        </div>
-        <div className={clsx(
+            <>{series.name}</>
+        </H1Heading>
+        <DividerComponent className={clsx(
             'mt-8'
         )}>
-            <DefaultBlocksLayout allFormats={'Default'}>
-                <div className="daisyui-divider"></div>
-                <h5>Authors of this series</h5>
-            </DefaultBlocksLayout>
+            <h5>Authors of this series</h5>
             <AuthorsComponent authors={series.authorsList}/>
-            <DefaultBlocksLayout allFormats={'Default'}>
-                <div className="daisyui-divider"></div>
-            </DefaultBlocksLayout>
-        </div>
+        </DividerComponent>
         <div className={clsx(
             {
                 ['mt-8']: (series.contentBlocks || []).length > 0
@@ -47,23 +38,20 @@ const MetaSeriesComponent = ({series}: IProps) => {
             <BlocksBodyContentComponent blocks={series.contentBlocks} isExcerpts={false}/>
         </div>
 
-        <div className={clsx(
-            'mt-8'
-        )}>
-            <DefaultBlocksLayout>
-                <p>All articles in this series are:</p>
-                <ol>
-                    {
-                        series.postsLists.map((post) => (
-                            <li key={post.slug}>
-                                <Link href={`/post/${post.slug}`}>{post.heading}</Link>
-                            </li>
-                        ))
-                    }
-                </ol>
-            </DefaultBlocksLayout>
-        </div>
-    </div>
+        {
+            series.postsListData && (
+                <div className={clsx(
+                    'mt-8'
+                )}>
+                    <DefaultBlocksLayout>
+                        <p>All articles in this series are:</p>
+                        <BodyPostsListComponent data={series.postsListData}/>
+                    </DefaultBlocksLayout>
+                </div>
+            )
+        }
+
+    </>
 }
 
 export {

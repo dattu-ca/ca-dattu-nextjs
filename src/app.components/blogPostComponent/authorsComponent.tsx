@@ -1,14 +1,13 @@
 import {BlogAuthor} from "~/models";
 import clsx from "clsx";
 import Link from "next/link";
-import {DefaultBlocksLayout} from "~/app.ui.components/blocksLayout/defaultBLocksLayout";
 
 interface IProps {
     authors?: BlogAuthor[] | undefined;
 }
 
 const AuthorsComponent = ({authors}: IProps) => {
-    return authors && Array.isArray(authors) && authors.length > 0 && <DefaultBlocksLayout>
+    return authors && Array.isArray(authors) && authors.length > 0 && <>
         <ul className={clsx(
             'space-y-0',
             'list-none',
@@ -40,7 +39,7 @@ const AuthorsComponent = ({authors}: IProps) => {
                 </li>
             ))
         }</ul>
-    </DefaultBlocksLayout>
+    </>
 
 }
 

@@ -1,7 +1,5 @@
 import {BaseModel} from "./types";
-import {BodyImage} from "./bodyImage";
 import {BlogAuthor} from "./blogAuthor";
-import {BodyYouTube} from "./bodyYoutube";
 import {MetaCategory} from "./metaCategory";
 import {MetaTag} from "./metaTag";
 import {MetaSeries} from "./metaSeries";
@@ -25,6 +23,5 @@ export interface BlogPost extends BaseModel<'BlogPost'> {
     categories?: MetaCategory[];
     tags: MetaTag[];
 
-    seriesPostsList: BlogPost[];
-    recommendedPostsList: BlogPost[];
+    seriesPostsListData?: BodyPostsList | undefined;
 }

@@ -1,28 +1,17 @@
 import {BodyPostsListComponent} from "~/app.components/bodyPostsListComponent";
-import {BlogPost, BodyPostsList, PaginationConfig} from "~/models";
+import {BlogAuthor, BlogPost, BodyPostsList, PaginationConfig} from "~/models";
 import {DefaultBlocksLayout} from "~/app.ui.components/blocksLayout/defaultBLocksLayout";
 
 interface IProps {
-    slug: string,
-    paginationData: PaginationConfig;
-    posts: BlogPost[];
+    postsListData: BodyPostsList | undefined
 }
 
-const BlogAuthorPostsListComponent = ({slug, posts, paginationData}: IProps) => {
-    const data: BodyPostsList = {
-        sysId: slug,
-        contentType: 'BodyPostsList',
-        cmsSource: 'Sanity',
-        name: 'author',
-        postsListIdentifier: "Author",
-        limitPerPage: paginationData.limit,
-        isPaginated: true,
-        layout: "Excerpt",
-        posts,
-        paginationData
+const BlogAuthorPostsListComponent = ({postsListData}: IProps) => {
+    if (!postsListData || !postsListData.posts || postsListData.posts.length === 0) {
+        return null
     }
     return <DefaultBlocksLayout>
-        <BodyPostsListComponent data={data}/>
+        <BodyPostsListComponent data={postsListData}/>
     </DefaultBlocksLayout>
 }
 

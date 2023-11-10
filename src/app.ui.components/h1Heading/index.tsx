@@ -3,19 +3,22 @@ import {BlocksLayout} from "../blocksLayout";
 
 
 interface IProps {
-    children: ReactElement | ReactElement[];
+    className?: string | undefined;
+    children: string | ReactElement | ReactElement[] | undefined;
 }
 
-const H1Heading = ({children}: IProps) => (
-    <BlocksLayout format={{
-        Xs: 'Container Width',
-        Sm: 'Container Width',
-        Md: 'Default',
-        Lg: 'Narrow',
-        Xl: 'Narrow'
-    }}>
-        <h1>{children}</h1>
-    </BlocksLayout>
+const H1Heading = ({className, children}: IProps) => (
+    <div className={className}>
+        <BlocksLayout format={{
+            Xs: 'Container Width',
+            Sm: 'Container Width',
+            Md: 'Default',
+            Lg: 'Narrow',
+            Xl: 'Narrow'
+        }}>
+            <h1>{children}</h1>
+        </BlocksLayout>
+    </div>
 )
 
 export {

@@ -25,31 +25,30 @@ export async function generateStaticParams() {
 
 export const generateMetadata = async (props: IProps) => {
     const currentPage = getCurrentPageNumber(props.params);
-    const data = await fetchBySlug(props.params.slug, currentPage)
+    const tag = await fetchBySlug(props.params.slug, currentPage)
 
-    if (!data || !data?.tag) {
+    if (!tag || !tag.name) {
         return {}
     }
     return {
-        title: data.tag.name
+        title: tag.name
     }
 
 }
 
 const Page = async (props: IProps) => {
     const currentPage = getCurrentPageNumber(props.params);
-    const data = await fetchBySlug(props.params.slug, currentPage);
+    const tag = await fetchBySlug(props.params.slug, currentPage);
 
-    if (!data.tag || !data.paginationConfig) {
+    if (!tag) {
         redirect('/')
     }
 
-    if (currentPage > data.paginationConfig.totalPages) {
+    const paginationConfig = tag.postsListData?.paginationData;
+    if (paginationConfig && currentPage > paginationConfig.totalPages) {
         redirect(`/tag/${props.params.slug}`)
     }
 
-    return <div>
-        <MetaTagComponent tag={data.tag} paginationConfig={data.paginationConfig}/>
-    </div>
+    return <MetaTagComponent tag={tag} />
 }
 export default Page;

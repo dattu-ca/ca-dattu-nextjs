@@ -3,26 +3,19 @@ import {BlogPost, BodyPostsList, PaginationConfig} from "~/models";
 import { DefaultBlocksLayout } from "~/app.ui.components/blocksLayout/defaultBLocksLayout";
 
 interface IProps {
-    paginationData: PaginationConfig;
-    posts: BlogPost[];
+    className?: string | undefined;
+    postsListData?: BodyPostsList | undefined
 }
 
-const CategoryPostsListComponent = ({posts, paginationData}: IProps) => {
-    const data: BodyPostsList = {
-        sysId: 'categories',
-        contentType: 'BodyPostsList',
-        cmsSource: 'Sanity',
-        name: 'Categories',
-        postsListIdentifier: "All",
-        limitPerPage: paginationData.limit,
-        isPaginated: true,
-        layout: "Excerpt",
-        posts,
-        paginationData
+const CategoryPostsListComponent = ({className, postsListData}: IProps) => {
+    if (!postsListData || !postsListData.posts || postsListData.posts.length === 0) {
+        return null
     }
-    return <DefaultBlocksLayout>
-        <BodyPostsListComponent data={data}/>
-    </DefaultBlocksLayout>
+    return <div className={className}>
+        <DefaultBlocksLayout>
+            <BodyPostsListComponent data={postsListData}/>
+        </DefaultBlocksLayout>
+    </div>
 }
 
 export {

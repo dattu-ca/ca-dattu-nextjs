@@ -1,6 +1,6 @@
-import { AllPostsComponent } from "~/app.components/allPostsComponent";
-import {getCurrentPageNumber, fetchAllPosts} from "./utils";
 import {redirect} from "next/navigation";
+import {AllPostsComponent} from "~/app.components/allPostsComponent";
+import {getCurrentPageNumber, fetchAllPosts} from "./utils";
 
 interface IProps {
     params: {
@@ -12,7 +12,7 @@ export const revalidate = 86400;
 
 export const generateMetadata = async (props: IProps) => {
     const currentPage = getCurrentPageNumber(props.params);
-    const {allPosts} = await fetchAllPosts(currentPage);
+    const allPosts = await fetchAllPosts(currentPage);
     return {
         title: allPosts?.heading || 'Articles'
     }
@@ -21,17 +21,17 @@ export const generateMetadata = async (props: IProps) => {
 
 const Page = async (props: IProps) => {
     const currentPage = getCurrentPageNumber(props.params);
-    const {allPosts, paginationConfig} = await fetchAllPosts(currentPage);
-    
-    if(!allPosts){
+    const allPosts = await fetchAllPosts(currentPage);
+
+    if (!allPosts) {
         redirect('/')
     }
-    if(currentPage > paginationConfig.totalPages){
+
+    const paginationConfig = allPosts.postsListData?.paginationData;
+    if (paginationConfig && currentPage > paginationConfig.totalPages) {
         redirect(`/posts/`)
     }
-    
-    return <div>
-        <AllPostsComponent allPosts={allPosts} paginationConfig={paginationConfig}/>
-    </div>
+
+    return <AllPostsComponent allPosts={allPosts}/>
 }
 export default Page;

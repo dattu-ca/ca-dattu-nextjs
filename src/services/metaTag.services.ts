@@ -2,7 +2,7 @@
 import {blogPostServices, metaTagServices} from "~/sanity/services";
 import {MetaTag, PaginationConfig} from "~/models";
 
-export const fetchAllSlugs = () => metaTagServices.fetchAllSlugs();
+export const fetchAllSlugs = () =>  metaTagServices.fetchAllSlugs();
 export const fetchAllActiveTags = async () => {
     const activePosts = await blogPostServices.fetchActivePostsWithReference('Tag')
     const tags: MetaTag[] = [];
@@ -27,7 +27,6 @@ export const fetchAllActiveTags = async () => {
         return (b.totalPosts as number) - (a.totalPosts as number);
     });
 }
-
 export const fetchBySlug = async (slug: string, paginationConfig?: PaginationConfig) => {
     const tag = await metaTagServices.fetchBySlug(slug);
     if (tag && paginationConfig) {
@@ -40,18 +39,22 @@ export const fetchBySlug = async (slug: string, paginationConfig?: PaginationCon
                 includeAuthors: false,
                 sortAscendingPublishDate: false,
             })
-        if (response.items && Array.isArray(response.items)) {
-            tag.postsLists = response.items;
-        }
-        paginationConfig = {
-            ...paginationConfig,
-            total: response.total,
-            totalPages: Math.ceil((response.total / paginationConfig.limit))
-        }
-
+        tag.postsListData = {
+            cmsSource: tag.cmsSource,
+            contentType: "BodyPostsList",
+            isPaginated: true,
+            layout: 'Excerpt',
+            limitPerPage: paginationConfig.limit,
+            name: 'Articles',
+            paginationData: {
+                ...paginationConfig,
+                total: response.total,
+                totalPages: Math.ceil((response.total / paginationConfig.limit)) || 1
+            },
+            posts: response.items,
+            postsListIdentifier: 'Tag',
+            sysId: tag.sysId
+        };
     }
-    return {
-        tag,
-        paginationConfig
-    };
+    return tag;
 }

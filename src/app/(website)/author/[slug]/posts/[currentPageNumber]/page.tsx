@@ -15,19 +15,20 @@ const Page = async (props: IProps) => {
     const {params} = props;
     const {slug, currentPageNumber} = params;
     const currentPage = parseInt(currentPageNumber, 10);
-    const postsList = await fetchAuthorPosts(slug, currentPage)
-    
-    
-    if(!postsList){
+    const author = await fetchAuthorPosts(slug, currentPage)
+
+
+    if (!author || !author.postsListData) {
         redirect('/')
     }
 
-    if(currentPage > postsList.pagination.totalPages){
+    const paginationConfig = author.postsListData?.paginationData;
+    if (paginationConfig && currentPage > paginationConfig.totalPages) {
         redirect(`/author/${props.params.slug}/posts`)
     }
-    
+
     return <div>
-        <BlogAuthorPostsListComponent slug={slug} posts={postsList.posts} paginationData={postsList.pagination} />
+        <BlogAuthorPostsListComponent postsListData={author.postsListData}/>
     </div>
 }
 export default Page;

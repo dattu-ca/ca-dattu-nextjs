@@ -1,4 +1,4 @@
-import {metaSeriesServices} from "~/services";
+import {blogPostServices, metaSeriesServices} from "~/services";
 import {MetaSeriesComponent} from "~/app.components/metaSeriesComponent";
 import {redirect} from "next/navigation";
 
@@ -19,8 +19,21 @@ export async function generateStaticParams() {
     }))
 }
 
+export const generateMetadata = async (props: IProps) => {
+    const {params} = props;
+    const {slug} = params;
+    const series = await metaSeriesServices.fetchBySlug(props.params.slug);
+    if(!series || !series.name){
+        return {};
+    }
+    const {name} = series;
+    return {
+        title: name
+    }
+}
+
 const Page = async (props: IProps) => {
-    const {series} = await metaSeriesServices.fetchBySlug(props.params.slug);
+    const series = await metaSeriesServices.fetchBySlug(props.params.slug);
 
     if (!series || !series.sysId) {
         redirect('/')

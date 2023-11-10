@@ -8,11 +8,10 @@ import {FaHashtag} from "react-icons/fa6";
 import {TagPostsListComponent} from "./postsListComponent";
 
 interface IProps {
-    tag: MetaTag;
-    paginationConfig: PaginationConfig
+    tag: MetaTag
 }
 
-const MetaTagComponent = ({tag, paginationConfig}: IProps) => {
+const MetaTagComponent = ({tag}: IProps) => {
     if (!tag) {
         return null;
     }
@@ -44,13 +43,11 @@ const MetaTagComponent = ({tag, paginationConfig}: IProps) => {
         )}>
             <BlocksBodyContentComponent blocks={tag.contentBlocks} isExcerpts={true}/>
         </div>
-        <div className={clsx(
-            {
-                ['mt-8']: tag.postsLists?.length > 0
-            }
-        )}>
-            <TagPostsListComponent paginationData={paginationConfig} posts={tag.postsLists}/>
-        </div>
+        <TagPostsListComponent
+            postsListData={tag.postsListData}
+            className={clsx(
+                'mt-8'
+            )}/>
     </div>
 }
 

@@ -4,7 +4,6 @@ import * as siteAuthConfigServices from './siteAuthConfig.services';
 import * as blogAuthorServices from './blogAuthor.services';
 import * as blogPageServices from './blogPage.services';
 import * as blogPostServices from './blogPost.services';
-// import * as blogPostsListServices from './blogPostsList.services';
 import * as siteConfigServices from './siteConfig.services';
 import * as siteNavbarServices from './siteNavbar.services';
 import * as formsServices from './form.services';
@@ -18,7 +17,6 @@ export {
     siteAuthConfigServices,
     blogPostServices,
     formsServices,
-    // blogPostsListServices,
     siteConfigServices,
     blogPageServices,
     sendMailServices,

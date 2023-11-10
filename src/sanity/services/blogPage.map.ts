@@ -13,7 +13,6 @@ export const mapSanity = (raw: any) => {
         contentBlocks: mapBlocksBodyContentSanityList(raw.contentBlocks),
         format: 'Standard',
         layoutType: 'Default',
-        postsLists: []
     }
 
 

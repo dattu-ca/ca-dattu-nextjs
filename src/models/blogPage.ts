@@ -10,5 +10,4 @@ export interface BlogPage extends BaseModel<'BlogPage'> {
     contentBlocks?: BlocksBodyContent[] | undefined;
     format: "Standard" | "Aside" | "Image" | "Video" | "Quote" | "Link";
     layoutType: "Default" | "Right Sidebar" | "Left Sidebar" | "No Sidebar" | "Full Width";
-    postsLists: BodyPostsList[];
 }
