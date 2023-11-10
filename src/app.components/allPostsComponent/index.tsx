@@ -7,36 +7,30 @@ import {AllPostsListComponent} from "~/app.components/allPostsComponent/postsLis
 
 interface IProps {
     allPosts?: AllPosts | undefined;
-    paginationConfig: PaginationConfig,
 }
 
 
-const AllPostsComponent = ({allPosts, paginationConfig}: IProps) => {
+const AllPostsComponent = ({allPosts}: IProps) => {
     if (!allPosts) {
         return null;
     }
 
     return <div>
         <BlocksBodyContentComponent blocks={allPosts.preHeadingContentBlocks} isExcerpts={false}/>
-        <div className={clsx(
-            'mt-8'
-        )}>
-            <H1Heading>
-                <Fragment>
-                    {allPosts.heading}
-                </Fragment>
-            </H1Heading>
-        </div>
-        <BlocksBodyContentComponent blocks={allPosts.contentBlocks} isExcerpts={false}/>
-        {
-            allPosts.postsLists && allPosts.postsLists.length > 0 && <div className={clsx(
+        <H1Heading
+            className={clsx(
                 'mt-8'
             )}>
-                <AllPostsListComponent paginationData={paginationConfig} posts={allPosts.postsLists}/>
-            </div>
-        }
-
-
+            <Fragment>
+                {allPosts.heading}
+            </Fragment>
+        </H1Heading>
+        <BlocksBodyContentComponent blocks={allPosts.contentBlocks} isExcerpts={false}/>
+        <AllPostsListComponent
+            postsListData={allPosts.postsListData}
+            className={clsx(
+                'mt-8'
+            )}/>
     </div>
 }
 

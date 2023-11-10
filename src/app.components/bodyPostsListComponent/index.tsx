@@ -10,14 +10,14 @@ interface IProps {
 }
 
 const BodyPostsListComponent = ({data}: IProps) => {
-    if (!data) {
+    if (!data || !data.posts) {
         return null;
     }
     
     return (
         <div>
             {
-                (data.posts || []).filter(post => Boolean(post)).map(post => {
+                data.posts.filter(post => Boolean(post)).map(post => {
                     return <div key={post.sysId}>
                         <div className={clsx(
                             'md:pl-6',
