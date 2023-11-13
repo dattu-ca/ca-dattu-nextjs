@@ -1,9 +1,9 @@
-import {MetaTag, PaginationConfig} from "~/models";
+import {MetaTag} from "~/models";
 import {BlocksBodyContentComponent} from "../blocksBodyContentComponent";
 import clsx from "clsx";
 import {H1Heading} from "~/app.ui.components/h1Heading";
-import {DefaultBlocksLayout} from "~/app.ui.components/blocksLayout/defaultBLocksLayout";
-import Link from "next/link";
+// import {DefaultBlocksLayout} from "~/app.ui.components/blocksLayout/defaultBLocksLayout";
+// import Link from "next/link";
 import {FaHashtag} from "react-icons/fa6";
 import {PostsListComponent} from "../bodyPostsListComponent/postsListComponent";
 
@@ -21,15 +21,15 @@ const MetaTagComponent = ({tag}: IProps) => {
         <div className={clsx(
             'mt-8'
         )}>
-            <DefaultBlocksLayout>
-                <div className="text-sm daisyui-breadcrumbs">
-                    <ul>
-                        <li>
-                            <Link href='/tags' className={clsx('hover:!no-underline')}>All Tags</Link>
-                        </li>
-                    </ul>
-                </div>
-            </DefaultBlocksLayout>
+            {/*<DefaultBlocksLayout>*/}
+            {/*    <div className="text-sm daisyui-breadcrumbs">*/}
+            {/*        <ul>*/}
+            {/*            <li>*/}
+            {/*                <Link href='/tags' className={clsx('hover:!no-underline')}>All Tags</Link>*/}
+            {/*            </li>*/}
+            {/*        </ul>*/}
+            {/*    </div>*/}
+            {/*</DefaultBlocksLayout>*/}
             <H1Heading>
                 <div className={clsx('flex items-center')}>
                     <FaHashtag aria-label='#'/> {tag.name}
