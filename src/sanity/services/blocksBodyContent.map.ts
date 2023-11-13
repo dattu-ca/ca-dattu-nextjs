@@ -91,26 +91,26 @@ const mapColumns = (raw: any, rawColumnSizes: any, numberOfColumns: number) => {
 const mapSanity = (raw: any) => {
     const target: BlocksBodyContent = {
         cmsSource: 'Sanity',
-        sysId: raw.sysId as string,
+        sysId: raw?.sysId as string,
         contentType: 'BlocksBodyContent',
-        slug: raw.slug as string,
-        name: raw.name as string,
-        numberOfColumns: raw.numberOfColumns as number,
-        columns: mapColumns(raw.contentColumns, raw.columnSizes, raw.numberOfColumns),
+        slug: raw?.slug as string,
+        name: raw?.name as string,
+        numberOfColumns: raw?.numberOfColumns as number,
+        columns: mapColumns(raw?.contentColumns, raw?.columnSizes, raw?.numberOfColumns),
         blockLayout: {
             format: {
-                Xs: raw.widths.xs as BlocksBodyContent_LayoutFormat,
-                Sm: raw.widths.sm as BlocksBodyContent_LayoutFormat,
-                Md: raw.widths.md as BlocksBodyContent_LayoutFormat,
-                Lg: raw.widths.lg as BlocksBodyContent_LayoutFormat,
-                Xl: raw.widths.xl as BlocksBodyContent_LayoutFormat,
+                Xs: raw?.widths.xs as BlocksBodyContent_LayoutFormat,
+                Sm: raw?.widths.sm as BlocksBodyContent_LayoutFormat,
+                Md: raw?.widths.md as BlocksBodyContent_LayoutFormat,
+                Lg: raw?.widths.lg as BlocksBodyContent_LayoutFormat,
+                Xl: raw?.widths.xl as BlocksBodyContent_LayoutFormat,
             },
             gap: {
-                Xs: raw.gaps.xs as BlocksBodyContent_Gap,
-                Sm: raw.gaps.sm as BlocksBodyContent_Gap,
-                Md: raw.gaps.md as BlocksBodyContent_Gap,
-                Lg: raw.gaps.lg as BlocksBodyContent_Gap,
-                Xl: raw.gaps.xl as BlocksBodyContent_Gap,
+                Xs: raw?.gaps.xs as BlocksBodyContent_Gap,
+                Sm: raw?.gaps.sm as BlocksBodyContent_Gap,
+                Md: raw?.gaps.md as BlocksBodyContent_Gap,
+                Lg: raw?.gaps.lg as BlocksBodyContent_Gap,
+                Xl: raw?.gaps.xl as BlocksBodyContent_Gap,
             }
         }
     }
@@ -122,11 +122,11 @@ const mapSanity = (raw: any) => {
 const mapDefaultBlocksBodyContent = (raw: any, type: ContentType) => {
     const target: BlocksBodyContent = {
         cmsSource: 'Sanity',
-        sysId: raw.sysId as string,
+        sysId: (Array.isArray(raw) ? raw.map(r => r.sysId).join('-') : raw?.sysId) as string,
         contentType: 'BlocksBodyContent',
-        slug: raw.slug as string,
-        name: raw.name as string,
-        numberOfColumns: raw.numberOfColumns as number,
+        slug: raw?.slug as string,
+        name: raw?.name as string,
+        numberOfColumns: (raw?.numberOfColumns || 1) as number,
         columns: [
             {
                 index: 0,

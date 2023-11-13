@@ -40,7 +40,7 @@ const Page = async (props: IProps) => {
     const currentPage = getCurrentPageNumber(props.params);
     const tag = await fetchBySlug(props.params.slug, currentPage);
 
-    if (!tag) {
+    if (!tag || !tag.sysId) {
         redirect('/')
     }
 
