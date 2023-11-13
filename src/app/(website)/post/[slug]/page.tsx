@@ -10,13 +10,13 @@ interface IProps {
 
 export const revalidate = 86400;
 
-export async function generateStaticParams() {
-    const slugs = await blogPostServices.fetchAllActiveSlugs();
-
-    return slugs.map((slug) => ({
-        slug,
-    }))
-}
+// export async function generateStaticParams() {
+//     const slugs = await blogPostServices.fetchAllActiveSlugs();
+//
+//     return slugs.map((slug) => ({
+//         slug,
+//     }))
+// }
 
 export const generateMetadata = async (props: IProps) => {
     const {params} = props;

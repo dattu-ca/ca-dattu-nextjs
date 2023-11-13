@@ -122,7 +122,7 @@ const mapSanity = (raw: any) => {
 const mapDefaultBlocksBodyContent = (raw: any, type: ContentType) => {
     const target: BlocksBodyContent = {
         cmsSource: 'Sanity',
-        sysId: raw?.sysId as string,
+        sysId: (Array.isArray(raw) ? raw.map(r => r.sysId).join('-') : raw?.sysId) as string,
         contentType: 'BlocksBodyContent',
         slug: raw?.slug as string,
         name: raw?.name as string,
