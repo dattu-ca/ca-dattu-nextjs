@@ -1,6 +1,7 @@
 export const contentBlocksQuery = `{
     name,
     "slug": slug.current,
+    "sysId": _id,
     numberOfColumns,
     widths,
     gaps,
