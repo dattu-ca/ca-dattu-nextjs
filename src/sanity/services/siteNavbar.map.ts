@@ -4,6 +4,7 @@ import {mapSanity as mapBodyLinksSanity} from './bodyLinks.map';
 import {mapSanity as mapBodyImagesSanity} from './bodyImages.map';
 
 export const mapSanity = (raw: any): SiteNavbar => {
+    console.log('RAW', raw)
     return {
         cmsSource: 'Sanity',
         contentType: 'SiteNavbar',

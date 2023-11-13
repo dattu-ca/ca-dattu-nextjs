@@ -1,7 +1,5 @@
 import { Fragment } from "react";
 import clsx from "clsx";
-import PropTypes from 'prop-types';
-import Link from 'next/link';
 
 import { PortableText } from '@portabletext/react';
 import { BodyImage, BodyCode, BodyMarkdown } from '~/models';
@@ -61,7 +59,11 @@ const portableTextComponents = {
 }
 
 
-const Renderer = ({ document } = { document: undefined }) => {
+interface IProps {
+    document?: any | undefined
+}
+
+const Renderer = ({ document } : IProps) => {
     if (!document) {
         return null;
     }
@@ -72,10 +74,6 @@ const Renderer = ({ document } = { document: undefined }) => {
         />
 
     </Fragment>
-}
-
-Renderer.propTypes = {
-    document: PropTypes.object
 }
 
 export {
