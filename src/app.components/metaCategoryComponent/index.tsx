@@ -39,8 +39,8 @@ const MetaCategoryComponent = ({category}: IProps) => {
                 )
             }
             <H1Heading>
-                <div className={clsx('flex items-center')}>
-                    <MdFolderOpen/> {category.name}
+                <div className={clsx('flex items-start gap-1')}>
+                    <div className={clsx('pt-2')}><MdFolderOpen/></div> <span>{category.name}</span>
                 </div>
             </H1Heading>
             <MetaCategoryChildrenComponent category={category}/>

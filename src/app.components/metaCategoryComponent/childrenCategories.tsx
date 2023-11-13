@@ -32,8 +32,10 @@ const MetaCategoryChildrenComponent = ({category}: IProps) => {
                                       'bg-zinc-50 dark:bg-black',
                                       'hover:after:w-0'
                                   )}>
-                                <MdFolder/>
-                                {category.name}
+                                <div className={clsx('flex items-start gap-1')}>
+                                    <MdFolder/>
+                                    <span>{category.name}</span>
+                                </div>
                             </Link>
                         </li>
                     ))
