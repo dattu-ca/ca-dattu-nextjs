@@ -6,15 +6,17 @@ export const fetchAllSlugs = () =>  metaTagServices.fetchAllSlugs();
 export const fetchAllActiveTags = async () => {
     const activePosts = await blogPostServices.fetchActivePostsWithReference('Tag')
     const tags: MetaTag[] = [];
-    for (const post of activePosts) {
-        for(const tag of post.tags){
-            const foundTag = tags.find(t => t.sysId === tag.sysId)
-            if(foundTag && typeof foundTag.totalPosts !== 'undefined' && !isNaN(foundTag.totalPosts)){
-                foundTag.totalPosts = +foundTag.totalPosts + 1;
-            }
-            else{
-                tag.totalPosts = 1;
-                tags.push(tag);
+    if(activePosts.length > 0){
+        for (const post of activePosts) {
+            for(const tag of post.tags){
+                const foundTag = tags.find(t => t.sysId === tag.sysId)
+                if(foundTag && typeof foundTag.totalPosts !== 'undefined' && !isNaN(foundTag.totalPosts)){
+                    foundTag.totalPosts = +foundTag.totalPosts + 1;
+                }
+                else{
+                    tag.totalPosts = 1;
+                    tags.push(tag);
+                }
             }
         }
     }

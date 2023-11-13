@@ -68,7 +68,11 @@ export const fetchActivePostsWithReference = async (reference: 'Tag' | 'Category
             }
         }
     );
-    return mapBlogPostSanityList(response)
+    if(response){
+        return mapBlogPostSanityList(response)    
+    }
+    return [] as BlogPost[];
+    
 }
 
 interface IProps {
