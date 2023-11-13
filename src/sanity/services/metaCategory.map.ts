@@ -9,8 +9,8 @@ export const mapSanity = (raw: any) => {
         slug: raw?.slug as string,
         name: raw?.name as string,
         parent: raw?.parentCategory,
-        preHeadingContentBlocks: mapBlocksBodyContentSanityList(raw.preHeadingContentBlocks),
-        contentBlocks: mapBlocksBodyContentSanityList(raw.contentBlocks),
+        preHeadingContentBlocks: mapBlocksBodyContentSanityList(raw.preHeadingContentBlocks, "PreHeadingContent"),
+        contentBlocks: mapBlocksBodyContentSanityList(raw.contentBlocks, "Content"),
     }
     return target as MetaCategory;
 }

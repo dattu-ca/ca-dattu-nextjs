@@ -8,7 +8,7 @@ import {contentColumnSchema} from "../blocks/contentColumn.schema";
 
 const contentBlockSchema = defineType({
     name: 'contentBlock',
-    title: 'Blocks of content',
+    title: 'Blocks of Content with different Layouts',
     description: 'The main blocks of content, each one will contain columns',
     type: 'document',
     icon: FaCubes,

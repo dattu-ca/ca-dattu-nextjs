@@ -1,20 +1,4 @@
-export const contentBlocksQuery = `{
-    name,
-    "slug": slug.current,
-    "sysId": _id,
-    numberOfColumns,
-    widths,
-    gaps,
-    columnSizes,
-    contentColumns[] {
-      gaps,
-      format,
-      contentCollection[] -> {
-        "type": _type,
-        "sysId": _id,
-        name,
-        'slug': slug.current,
-        '': *[_type == 'bodyImages' && _id == ^._id][0]{
+const bodyImages = `'': *[_type == 'bodyImages' && _id == ^._id][0]{
           name,
           maxWidth,
           maxHeight,
@@ -29,8 +13,9 @@ export const contentBlocksQuery = `{
               "alt" : mobileImage.alt,
               "url": mobileImage.asset -> url
           },
-        },
-        '': *[_type == 'bodyForm' && _id == ^._id][0]{
+        }`
+
+const bodyForm = `'': *[_type == 'bodyForm' && _id == ^._id][0]{
           formId,
           formModel,
           maxWidth,
@@ -40,8 +25,9 @@ export const contentBlocksQuery = `{
           successMessage,
           failureMessage,
           fromEmailKey
-        },
-        '': *[_type == 'bodyContent' && _id == ^._id][0]{
+        }`
+
+const bodyContent = `'': *[_type == 'bodyContent' && _id == ^._id][0]{
           "raw" : description,
           "description": description[]{
             ...,
@@ -51,27 +37,71 @@ export const contentBlocksQuery = `{
             }
             
           }
-        },
-        '': *[_type == 'bodyYouTube' && _id == ^._id][0]{
+        }`
+
+const bodyYouTube = `'': *[_type == 'bodyYouTube' && _id == ^._id][0]{
           videoId,
           url,
           description
-        },
-        '': *[_type == 'bodyLinks' && _id == ^._id][0]{
+        }`
+
+const bodyLinks = `'': *[_type == 'bodyLinks' && _id == ^._id][0]{
           links
-        },
-        '': *[_type == 'bodyCode' && _id == ^._id][0]{
+        }`
+
+const bodyCode = `'': *[_type == 'bodyCode' && _id == ^._id][0]{
           code
-        },
-        '': *[_type == 'bodyMarkdown' && _id == ^._id][0]{
+        }`
+
+
+const bodyMarkdown = `'': *[_type == 'bodyMarkdown' && _id == ^._id][0]{
           markdown
-        },
-        '': *[_type == 'bodyPostsList' && _id == ^._id][0]{
+        }`
+
+const bodyPostsList = `'': *[_type == 'bodyPostsList' && _id == ^._id][0]{
           postsListIdentifier,
           layout,
           limitPerPage,
           isPaginated
-        },
-      }
-    }
+        }`
+
+const contentBlock = `'': *[_type == 'contactBlock' && _id == ^._id][0]{
+          numberOfColumns,
+            widths,
+            gaps,
+            columnSizes,
+            contentColumns[] {
+              gaps,
+              format,
+              contentCollection[] -> {
+                "type": _type,
+                "sysId": _id,
+                name,
+                'slug': slug.current,
+                ${bodyImages},
+                ${bodyForm},
+                ${bodyContent},
+                ${bodyYouTube},
+                ${bodyLinks},
+                ${bodyCode},
+                ${bodyMarkdown},
+                ${bodyPostsList},
+              }
+            }
+        } `
+
+export const contentBlocksQuery = `{
+    name,
+    "type": _type,
+    "slug": slug.current,
+    "sysId": _id,
+    ${bodyImages},
+    ${bodyForm},
+    ${bodyContent},
+    ${bodyYouTube},
+    ${bodyLinks},
+    ${bodyCode},
+    ${bodyMarkdown},
+    ${bodyPostsList},
+    ${contentBlock},
   }`

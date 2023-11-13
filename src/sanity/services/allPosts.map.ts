@@ -10,8 +10,8 @@ export const mapSanity = (raw: any) => {
         sysId: raw.sysId as string,
         slug: raw.slug as string,
         heading: raw.heading as string,
-        preHeadingContentBlocks: mapBlocksBodyContentSanityList(raw.preHeadingContentBlocks),
-        contentBlocks: mapBlocksBodyContentSanityList(raw.contentBlocks),
+        preHeadingContentBlocks: mapBlocksBodyContentSanityList(raw.preHeadingContentBlocks, "PreHeadingContent"),
+        contentBlocks: mapBlocksBodyContentSanityList(raw.contentBlocks, "Content"),
     }
 
 
