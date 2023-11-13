@@ -1,6 +1,14 @@
 import {defineField, defineType} from 'sanity';
 import {BsBook} from "react-icons/bs";
 import {contentBlockSchema} from "../blocks/block.schema";
+import {bodyContentSchema} from "../bodyContent/bodyContent.schema";
+import {bodyMarkdownSchema} from "../bodyContent/bodyMarkdown.schema";
+import {bodyYouTubeSchema} from "../bodyContent/bodyYouTube.schema";
+import {bodyImagesSchema} from "../bodyContent/bodyImages.schema";
+import {bodyLinksSchema} from "../bodyContent/bodyLinks.schema";
+import {bodyFormSchema} from "../bodyContent/bodyForm.schema";
+import {bodyPostsListSchema} from "../bodyContent/bodyPostsList.schema";
+import {bodyCodeSchema} from "../bodyContent/bodyCode.schema";
 
 const blogPageSchema = defineType({
     name: 'blogPage',
@@ -31,7 +39,8 @@ const blogPageSchema = defineType({
                 {
                     type: 'reference',
                     to: [
-                        {type: contentBlockSchema.name},
+                        {type: bodyYouTubeSchema.name},
+                        {type: bodyImagesSchema.name},
                     ]
                 }
             ]
@@ -49,7 +58,14 @@ const blogPageSchema = defineType({
             of: [
                 {
                     type: 'reference',
-                    to: [
+                    to: [{type: bodyContentSchema.name},
+                        {type: bodyMarkdownSchema.name},
+                        {type: bodyYouTubeSchema.name},
+                        {type: bodyImagesSchema.name},
+                        {type: bodyLinksSchema.name},
+                        {type: bodyFormSchema.name},
+                        {type: bodyPostsListSchema.name},
+                        {type: bodyCodeSchema.name},
                         {type: contentBlockSchema.name},
                     ]
                 }

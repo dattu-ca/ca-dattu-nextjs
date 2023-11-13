@@ -1,6 +1,14 @@
 import {defineField, defineType} from 'sanity';
 import {BsCollection} from "react-icons/bs";
-import {contentBlockSchema} from "~/sanity/schemas/blocks/block.schema";
+// import {contentBlockSchema} from "../blocks/block.schema";
+import {bodyContentSchema} from "../bodyContent/bodyContent.schema";
+import {bodyMarkdownSchema} from "../bodyContent/bodyMarkdown.schema";
+import {bodyYouTubeSchema} from "../bodyContent/bodyYouTube.schema";
+import {bodyImagesSchema} from "../bodyContent/bodyImages.schema";
+import {bodyLinksSchema} from "../bodyContent/bodyLinks.schema";
+import {bodyFormSchema} from "../bodyContent/bodyForm.schema";
+import {bodyPostsListSchema} from "../bodyContent/bodyPostsList.schema";
+import {bodyCodeSchema} from "../bodyContent/bodyCode.schema";
 
 const seriesSchema = defineType({
     name: 'series',
@@ -32,7 +40,8 @@ const seriesSchema = defineType({
                 {
                     type: 'reference',
                     to: [
-                        {type: contentBlockSchema.name},
+                        {type: bodyYouTubeSchema.name},
+                        {type: bodyImagesSchema.name},
                     ]
                 }
             ]
@@ -51,7 +60,15 @@ const seriesSchema = defineType({
                 {
                     type: 'reference',
                     to: [
-                        { type: contentBlockSchema.name },
+                        {type: bodyContentSchema.name},
+                        {type: bodyMarkdownSchema.name},
+                        {type: bodyYouTubeSchema.name},
+                        {type: bodyImagesSchema.name},
+                        {type: bodyLinksSchema.name},
+                        {type: bodyFormSchema.name},
+                        {type: bodyPostsListSchema.name},
+                        {type: bodyCodeSchema.name},
+                        // { type: contentBlockSchema.name },
                     ]
                 }
             ]

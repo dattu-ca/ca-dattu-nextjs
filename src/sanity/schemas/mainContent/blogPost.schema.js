@@ -5,6 +5,14 @@ import {categorySchema} from "../metas/category.schema";
 import {tagSchema} from "../metas/tag.schema";
 import {authorSchema} from "../metas/author.schema";
 import {seriesSchema} from "../metas/series.schema";
+import {bodyContentSchema} from "../bodyContent/bodyContent.schema";
+import {bodyMarkdownSchema} from "../bodyContent/bodyMarkdown.schema";
+import {bodyYouTubeSchema} from "../bodyContent/bodyYouTube.schema";
+import {bodyImagesSchema} from "../bodyContent/bodyImages.schema";
+import {bodyLinksSchema} from "../bodyContent/bodyLinks.schema";
+import {bodyFormSchema} from "../bodyContent/bodyForm.schema";
+import {bodyPostsListSchema} from "../bodyContent/bodyPostsList.schema";
+import {bodyCodeSchema} from "../bodyContent/bodyCode.schema";
 
 const blogPostSchema = defineType({
     name: 'blogPost',
@@ -70,7 +78,8 @@ const blogPostSchema = defineType({
                 {
                     type: 'reference',
                     to: [
-                        {type: contentBlockSchema.name},
+                        {type: bodyYouTubeSchema.name},
+                        {type: bodyImagesSchema.name},
                     ]
                 }
             ]
@@ -83,7 +92,8 @@ const blogPostSchema = defineType({
                 {
                     type: 'reference',
                     to: [
-                        {type: contentBlockSchema.name},
+                        {type: bodyYouTubeSchema.name},
+                        {type: bodyImagesSchema.name},
                     ]
                 }
             ]
@@ -102,6 +112,14 @@ const blogPostSchema = defineType({
                 {
                     type: 'reference',
                     to: [
+                        {type: bodyContentSchema.name},
+                        {type: bodyMarkdownSchema.name},
+                        {type: bodyYouTubeSchema.name},
+                        {type: bodyImagesSchema.name},
+                        {type: bodyLinksSchema.name},
+                        {type: bodyFormSchema.name},
+                        {type: bodyPostsListSchema.name},
+                        {type: bodyCodeSchema.name},
                         {type: contentBlockSchema.name},
                     ]
                 }
@@ -115,7 +133,14 @@ const blogPostSchema = defineType({
                 {
                     type: 'reference',
                     to: [
-                        {type: contentBlockSchema.name},
+                        {type: bodyContentSchema.name},
+                        {type: bodyMarkdownSchema.name},
+                        {type: bodyYouTubeSchema.name},
+                        {type: bodyImagesSchema.name},
+                        {type: bodyLinksSchema.name},
+                        {type: bodyFormSchema.name},
+                        {type: bodyPostsListSchema.name},
+                        {type: bodyCodeSchema.name},
                     ]
                 }
             ]

@@ -54,14 +54,6 @@ const schemaTypes: SchemaTypeDefinition[] = [
     categorySchema,
     tagSchema,
 
-    // type schemas
-    contentBlockSchema,
-    blockWidthSchema,
-    blockGapsSchema,
-    columnSizesSchema,
-    contentColumnSchema,
-    columnGapsSchema,
-
     // Content schemas
     bodyContentSchema,
     bodyYouTubeSchema,
@@ -72,6 +64,14 @@ const schemaTypes: SchemaTypeDefinition[] = [
     bodyLinksFieldSchema,
     bodyFormSchema,
     bodyPostsListSchema,
+
+    // type schemas
+    contentBlockSchema,
+    blockWidthSchema,
+    blockGapsSchema,
+    columnSizesSchema,
+    contentColumnSchema,
+    columnGapsSchema,
 
     playgroundSchema,
     blockFieldSchema,

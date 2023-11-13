@@ -10,7 +10,7 @@ interface IProps {
 
 const DatePublished = ({className, date}: IProps) => {
     return <div className={className}>
-        <DefaultBlocksLayout>
+        <DefaultBlocksLayout allFormats='Default'>
             <div className={clsx()}>
                 <time dateTime={dayjs(date).format('YYYY-MM-DD')}
                       className={clsx('flex items-center text-base text-zinc-400 dark:text-zinc-500')}>

@@ -22,8 +22,8 @@ export const mapSanity = (raw: any) => {
             }
 
         } as BodyImage : undefined,
-        preHeadingContentBlocks: mapBlocksBodyContentSanityList(raw.preHeadingContentBlocks),
-        contentBlocks: mapBlocksBodyContentSanityList(raw.contentBlocks),
+        preHeadingContentBlocks: mapBlocksBodyContentSanityList(raw.preHeadingContentBlocks, 'PreHeadingContent'),
+        contentBlocks: mapBlocksBodyContentSanityList(raw.contentBlocks, "Content"),
     }
     return target as BlogAuthor;
 }
