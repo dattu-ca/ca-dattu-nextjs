@@ -122,10 +122,10 @@ const mapSanity = (raw: any) => {
 const mapDefaultBlocksBodyContent = (raw: any, type: ContentType) => {
     const target: BlocksBodyContent = {
         cmsSource: 'Sanity',
-        sysId: raw.sysId as string,
+        sysId: raw?.sysId as string,
         contentType: 'BlocksBodyContent',
-        slug: raw.slug as string,
-        name: raw.name as string,
+        slug: raw?.slug as string,
+        name: raw?.name as string,
         numberOfColumns: raw.numberOfColumns as number,
         columns: [
             {

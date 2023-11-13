@@ -40,7 +40,7 @@ const Page = async (props: IProps) => {
     const category = await fetchBySlug(props.params.slug, currentPage)
 
 
-    if(!category || !category.postsListData){
+    if(!category || !category.sysId){
         redirect('/')
     }
     
