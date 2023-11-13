@@ -1,20 +1,6 @@
-'use client'; // Error components must be Client Components
-import {useEffect} from 'react';
+'use client';
+import {ErrorPageComponent} from "~/app.components/errorComponents/error";
 
-export default function Error({ error, reset }) {
-    useEffect(() => {
-        // Log the error to an error reporting service
-        console.error(error)
-    }, [error])
-
-    return (
-        <div>
-            <h1>Something went wrong!</h1>
-            <button
-                onClick={reset}
-            >
-                Try again
-            </button>
-        </div>
-    )
+export default function Error({error, reset}) {
+    return <ErrorPageComponent error={error} reset={reset}/>
 }
