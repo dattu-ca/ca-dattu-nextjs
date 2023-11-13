@@ -13,14 +13,14 @@ interface IProps {
 export const revalidate = 86400;
 
 
-// export async function generateStaticParams() {
-//     const slugs = await metaTagServices.fetchAllSlugs();
-//
-//     return slugs.map((slug) => ({
-//         slug,
-//         currentPageNumber: "1"
-//     }))
-// }
+export async function generateStaticParams() {
+    const slugs = await metaTagServices.fetchAllSlugs();
+
+    return slugs.map((slug) => ({
+        slug,
+        currentPageNumber: "1"
+    }))
+}
 
 
 export const generateMetadata = async (props: IProps) => {
