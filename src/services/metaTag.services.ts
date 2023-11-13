@@ -5,6 +5,7 @@ import {MetaTag, PaginationConfig} from "~/models";
 export const fetchAllSlugs = () =>  metaTagServices.fetchAllSlugs();
 export const fetchAllActiveTags = async () => {
     const activePosts = await blogPostServices.fetchActivePostsWithReference('Tag')
+    console.log("activePosts", activePosts)
     const tags: MetaTag[] = [];
     if(activePosts.length > 0){
         for (const post of activePosts) {
