@@ -15,7 +15,7 @@ const MetaCategoryChildrenComponent = ({category}: IProps) => {
 
     return category.children && category.children.length > 0 && (
         <DividerComponent allFormats={'Default'}>
-            <h6>Sub Categories</h6>
+            <h5>Sub Categories:</h5>
             <ul className={clsx(
                 'space-y-0',
                 'list-none',
@@ -32,8 +32,10 @@ const MetaCategoryChildrenComponent = ({category}: IProps) => {
                                       'bg-zinc-50 dark:bg-black',
                                       'hover:after:w-0'
                                   )}>
-                                <MdFolder/>
-                                {category.name}
+                                <div className={clsx('flex items-start gap-1')}>
+                                    <MdFolder/>
+                                    <span>{category.name}</span>
+                                </div>
                             </Link>
                         </li>
                     ))

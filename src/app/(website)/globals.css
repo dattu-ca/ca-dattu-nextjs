@@ -149,3 +149,10 @@
         }
     }
 }
+
+
+.daisyui-btn{
+    padding-top: 0.75rem;
+    padding-bottom: 0.75rem;
+    @apply h-auto;
+}

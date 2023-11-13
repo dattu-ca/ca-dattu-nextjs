@@ -21,47 +21,36 @@ const BlocksLayout = ({
 
     return <>
         <div className={clsx(
-            'w-full h-full',
+            'w-full h-full mx-auto',
             {
-                ['flex justify-center px-8']: ['Container Width', 'Default', 'Narrow'].includes(format.Xs),
-                ['sm:flex sm:justify-center sm:px-8']: ['Container Width', 'Default', 'Narrow'].includes(format.Sm),
-                ['md:flex md:justify-center md:px-8']: ['Container Width', 'Default', 'Narrow'].includes(format.Md),
-                ['lg:flex lg:justify-center lg:px-8']: ['Container Width', 'Default', 'Narrow'].includes(format.Lg),
-                ['xl:flex xl:justify-center xl:px-8']: ['Container Width', 'Default', 'Narrow'].includes(format.Xl),
+                ['inset-0 flex justify-center max-w-7xl px-4']: ['Container Width', 'Default', 'Narrow'].includes(format.Xs),
+                ['sm:inset-0 sm:flex sm:justify-center max-w-7xl sm:px-8']: ['Container Width', 'Default', 'Narrow'].includes(format.Sm),
+                ['md:inset-0 md:flex md:justify-center max-w-7xl md:px-8']: ['Container Width', 'Default', 'Narrow'].includes(format.Md),
+                ['lg:inset-0 lg:flex lg:justify-center max-w-7xl lg:px-16']: ['Container Width', 'Default', 'Narrow'].includes(format.Lg),
+                ['xl:inset-0 xl:flex xl:justify-center max-w-7xl xl:px-8']: ['Container Width', 'Default', 'Narrow'].includes(format.Xl),
             }
         )}>
             <div className={clsx(
-                'h-full',
+                'h-full w-full mx-auto',
                 {
-                    ['flex w-full max-w-7xl px-8']: ['Container Width', 'Default', 'Narrow'].includes(format.Xs),
-                    ['sm:flex sm:w-full sm:max-w-7xl']: ['Container Width', 'Default', 'Narrow'].includes(format.Md),
-                    ['md:flex md:w-full md:max-w-7xl']: ['Container Width', 'Default', 'Narrow'].includes(format.Md),
-                    ['lg:flex lg:w-full lg:max-w-7xl lg:px-8']: ['Container Width', 'Default', 'Narrow'].includes(format.Lg),
-                    ['xl:flex xl:w-full xl:max-w-7xl xl:px-8']: ['Container Width', 'Default', 'Narrow'].includes(format.Xl),
+                    ['px-6']: ['Default', 'Narrow'].includes(format.Xs),
+                    ['sm:px-8']: ['Default', 'Narrow'].includes(format.Md),
+                    ['md:px-10']: ['Default', 'Narrow'].includes(format.Md),
+                    ['lg:px-12']: ['Default', 'Narrow'].includes(format.Lg),
+                    ['xl:px-16']: ['Default', 'Narrow'].includes(format.Xl),
                 }
             )}>
                 <div className={clsx(
-                    'mx-auto w-full h-full',
+                    'w-full h-full',
                     {
-                        ['relative px-4 lg:px-12']: ['Default', 'Narrow'].includes(format.Xs),
-                        ['sm:relative sm:px-4 sm:px-8']: ['Default', 'Narrow'].includes(format.Sm),
-                        ['md:relative md:px-4 md:px-8']: ['Default', 'Narrow'].includes(format.Md),
-                        ['lg:relative lg:px-4 lg:px-8 lg:px-12']: ['Default', 'Narrow'].includes(format.Lg),
-                        ['xl:relative xl:px-4 xl:px-8 xl:px-12']: ['Default', 'Narrow'].includes(format.Xl),
+                        ['pr-[80px]']: ['Narrow'].includes(format.Xs),
+                        ['sm:pr-[140px]']: ['Narrow'].includes(format.Sm),
+                        ['md:pr-[200px]']: ['Narrow'].includes(format.Md),
+                        ['lg:pr-[240px]']: ['Narrow'].includes(format.Lg),
+                        ['xl:pr-[320px]']: ['Narrow'].includes(format.Xl),
                     }
                 )}>
-                    <div className={clsx(
-                        'h-full',
-                        {
-                            ['max-w-3xl']: ['Narrow'].includes(format.Xs),
-                            ['sm:max-w-3xl']: ['Narrow'].includes(format.Sm),
-                            ['md:max-w-3xl']: ['Narrow'].includes(format.Md),
-                            ['lg:max-w-3xl']: ['Narrow'].includes(format.Lg),
-                            ['xl:max-w-3xl']: ['Narrow'].includes(format.Xl),
-                        }
-                    )}>
-                        {children}
-                    </div>
+                    {children}
                 </div>
             </div>
         </div>
