@@ -12,7 +12,7 @@ const CategoriesComponent = ({categories}: IProps) => {
         <ul className={clsx(
             'space-y-0',
             'list-none',
-            'flex gap-4 items-center justify-start',
+            'flex gap-4 items-center justify-start flex-wrap',
         )}>
             {
                 categories.map(category => (

@@ -9,7 +9,7 @@ interface IProps {
 }
 
 const TagsComponent = ({tags}: IProps) => {
-    return tags && Array.isArray(tags) && tags.length > 0 && <DefaultBlocksLayout>
+    return tags && Array.isArray(tags) && tags.length > 0 && <DefaultBlocksLayout allFormats='Default'>
         <ul className={clsx(
             'space-y-0',
             'list-none',

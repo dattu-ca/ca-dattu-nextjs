@@ -10,11 +10,11 @@ interface IProps {
 const H1Heading = ({className, children}: IProps) => (
     <div className={className}>
         <BlocksLayout format={{
-            Xs: 'Container Width',
-            Sm: 'Container Width',
+            Xs: 'Default',
+            Sm: 'Default',
             Md: 'Default',
-            Lg: 'Narrow',
-            Xl: 'Narrow'
+            Lg: 'Default',
+            Xl: 'Default'
         }}>
             <h1>{children}</h1>
         </BlocksLayout>
