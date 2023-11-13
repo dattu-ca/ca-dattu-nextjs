@@ -68,7 +68,7 @@ export const fetchActivePostsWithReference = async (reference: 'Tag' | 'Category
             }
         }
     );
-    console.log("response", response)
+    console.log("response", JSON.stringify(response, null, 2))
     if(response){
         return mapBlogPostSanityList(response)    
     }
