@@ -134,7 +134,7 @@ const mapDefaultBlocksBodyContent = (raw: any, type: ContentType) => {
         columns: [
             {
                 index: 0,
-                layout: type === 'PreHeadingContent' ? 'Slider' : "Stacked",
+                layout: (type === 'PreHeadingContent' && Array.isArray(raw) && raw.length > 1) ? 'Slider' : "Stacked",
                 gaps: {
                     Xs: "None",
                     Sm: "None",
