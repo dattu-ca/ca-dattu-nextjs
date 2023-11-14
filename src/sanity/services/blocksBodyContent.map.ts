@@ -145,7 +145,7 @@ const mapDefaultBlocksBodyContent = (raw: any, type: ContentType) => {
                     Lg: 12,
                     Xl: 12,
                 },
-                contentBlocks: mapBlocks(Array.isArray(raw) ? raw : [raw])
+                contentBlocks: raw ? mapBlocks(Array.isArray(raw) ? raw : [raw]) : []
             }
         ],
         blockLayout: {

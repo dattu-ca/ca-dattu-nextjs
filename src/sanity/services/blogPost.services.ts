@@ -4,7 +4,7 @@ import {client} from './client';
 
 import {contentBlocksQuery} from "./utils";
 import {BlogPost} from "~/models";
-import {mapSanityList as mapBlogPostSanityList, mapSanity as mapBlogPostSanity} from "~/sanity/services/blogPost.map";
+import {mapSanityList as mapBlogPostSanityList, mapSanity as mapBlogPostSanity} from "./blogPost.map";
 
 
 const availablePostsFilter = `_type=="blogPost"
