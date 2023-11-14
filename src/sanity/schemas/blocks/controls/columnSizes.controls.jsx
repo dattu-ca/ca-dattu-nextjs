@@ -15,13 +15,13 @@ export function ColumnSizeControls(props) {
     const numberOfColumnsPropRef = useRef(numberOfColumnsProp)
     const [numberOfColumns, setNumberOfColumns] = useState(!isNaN(numberOfColumnsProp) ? Math.min(Math.max(1, numberOfColumnsProp), 5) : undefined);
 
+    
     useEffect(() => {
         if (numberOfColumnsPropRef.current !== numberOfColumnsProp) {
             numberOfColumnsPropRef.current = numberOfColumnsProp;
             setNumberOfColumns(!isNaN(numberOfColumnsProp) ? Math.min(Math.max(1, numberOfColumnsProp), 5) : undefined)
         }
     }, [numberOfColumnsProp])
-
 
     useEffect(() => {
         if(!isNaN(numberOfColumns)){

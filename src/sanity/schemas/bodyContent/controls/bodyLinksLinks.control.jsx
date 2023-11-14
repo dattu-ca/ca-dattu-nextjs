@@ -16,7 +16,7 @@ export function BodyLinksLinksControl(props) {
     const [data, setData] = useState(value ? JSON.parse(value) : {links: []});
 
     useEffect(() => {
-        const param = set(JSON.stringify(data));
+        const param = set((data && data.links.length !== 0) ? JSON.stringify(data) : undefined);
         if (!isEqual(JSON.stringify(data), value)) {
             onChange(param);
         }
