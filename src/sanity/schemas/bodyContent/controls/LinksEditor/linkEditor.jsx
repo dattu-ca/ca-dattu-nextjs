@@ -65,7 +65,7 @@ const LinkEditor = ({item, index, isLastInList, onChange, onCheckChanged, onRemo
             <Flex align="center">
                 <Checkbox id={`link_target_${item.id}`} style={{display: 'block'}} 
                           checked={item.target === "_blank"} 
-                          onClick={() => onCheckChanged(item.id, 'target', item.target !== "_blank")} />
+                          onChange={() => onCheckChanged(item.id, 'target', item.target !== "_blank")} />
                 <Box flex={1} paddingLeft={3}>
                     <Text>
                         <label htmlFor={`link_target_${item.id}`}>_blank?</label>

@@ -1,5 +1,5 @@
 import {MetaTag} from "~/models";
-import {mapSanityList as mapBlocksBodyContentSanityList} from "~/sanity/services/blocksBodyContent.map";
+import {mapSanityList as mapBlocksBodyContentSanityList} from "./blocksBodyContent.map";
 
 export const mapSanity = (raw: any) => {
     const target: Partial<MetaTag> = {

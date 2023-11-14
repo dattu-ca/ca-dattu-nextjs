@@ -1,5 +1,7 @@
-import {defineArrayMember, defineField, defineType} from 'sanity';
+import { defineField, defineType} from 'sanity';
 import {BiSolidBookContent} from "react-icons/bi";
+// import { blogPostSchema} from "../mainContent/blogPost.schema";
+// import { blogPageSchema} from "../mainContent/blogPage.schema";
 
 const bodyPostsListSchema = defineType({
     name: 'bodyPostsList',
@@ -27,17 +29,28 @@ const bodyPostsListSchema = defineType({
             title: 'Name',
             type: 'string',
         }),
+        // defineField({
+        //     name: 'postsList',
+        //     title: 'Posts List',
+        //     type: 'array',
+        //     of: [
+        //         {
+        //             type: 'reference',
+        //             to: [
+        //                 // {type: "blogPostSchema"},
+        //                 // {type: blogPageSchema.name}
+        //             ]
+        //         }
+        //     ]
+        // }),
         defineField({
             name: 'postsListIdentifier',
             title: 'Posts List Identifier',
             type: 'string',
+            initialValue: 'Custom',
             options: {
                 list: [
-                    {title: 'All', value: 'All'},
-                    {title: 'Series', value: 'Series'},
-                    {title: 'Category', value: 'Category'},
-                    {title: 'Tag', value: 'Tag'},
-                    {title: 'Author', value: 'Author'},
+                    {title: 'Custom', value: 'Custom'},                    
                 ]
             },
             validation: (rule) => rule.required(),
