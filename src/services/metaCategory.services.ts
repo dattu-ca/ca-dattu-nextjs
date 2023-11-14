@@ -1,9 +1,42 @@
 'use server';
 import {blogPostServices, metaCategoryServices} from "~/sanity/services";
 import {MetaCategory, PaginationConfig} from "~/models";
-import {undefined} from "zod";
 
 export const fetchAllSlugs = () => metaCategoryServices.fetchAllSlugs();
+
+
+const getChildren = (parent: MetaCategory, list: MetaCategory[]) => {
+    const children = list.filter(item => item.parent?.sysId === parent.sysId);
+    for (const child of children) {
+        getChildren(child, list);
+        parent.postsListIds = [...(parent.postsListIds || []), ...(child.postsListIds || [])];
+    }
+    parent.children = children;
+    parent.postsListIds = Array.from(new Set(parent.postsListIds))
+    parent.totalPosts = parent.postsListIds.length;
+}
+export const fetchAllCategories = async () => {
+    const categories = await metaCategoryServices.fetchAllCategories();
+    for (const category of categories) {
+        const response = await blogPostServices.fetchListPaginatedByReferences({
+            skip: 0,
+            referenceIds: [category.sysId],
+            limit: 0,
+            sortAscendingPublishDate: false,
+            includeAuthors: false,
+            includeExcerpts: false
+        })
+        category.postsListIds = response.items.map(item => item.sysId);
+        category.totalPosts = response.total;
+    }
+
+
+    const processedCategories = categories.filter(c => !c.parent)
+    for (const parent of processedCategories) {
+        getChildren(parent, categories);
+    }
+    return processedCategories;
+}
 
 interface IConfig {
     includeContent: boolean;
