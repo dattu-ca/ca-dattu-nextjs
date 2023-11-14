@@ -14,15 +14,15 @@ export const mapSanity = (raw: any) => {
         slug: raw.slug as string,
         heading: raw.heading as string,
         datePublished: new Date(raw.datePublished),
-        // preHeadingContentBlocks: mapBlocksBodyContentSanityList(raw.preHeadingContentBlocks, "PreHeadingContent"),
-        // preHeadingExcerptBlocks: mapBlocksBodyContentSanityList(raw.preHeadingExcerptBlocks, "PreHeadingExcerpt"),
-        // contentBlocks: mapBlocksBodyContentSanityList(raw.contentBlocks, "Content"),
-        // excerptBlocks: mapBlocksBodyContentSanityList(raw.excerptBlocks, "Excerpt"),
+        preHeadingContentBlocks: mapBlocksBodyContentSanityList(raw.preHeadingContentBlocks, "PreHeadingContent"),
+        preHeadingExcerptBlocks: mapBlocksBodyContentSanityList(raw.preHeadingExcerptBlocks, "PreHeadingExcerpt"),
+        contentBlocks: mapBlocksBodyContentSanityList(raw.contentBlocks, "Content"),
+        excerptBlocks: mapBlocksBodyContentSanityList(raw.excerptBlocks, "Excerpt"),
         format: 'Standard',
-        // authors: mapBlogAuthorsSanityList(raw.authors),
-        // series: mapMetaSeriesSanity(raw.series),
-        // categories: mapMetaCategorySanityList(raw.categories),
-        // tags: mapMetaTagSanityList(raw.tags),
+        authors: mapBlogAuthorsSanityList(raw.authors),
+        series: mapMetaSeriesSanity(raw.series),
+        categories: mapMetaCategorySanityList(raw.categories),
+        tags: mapMetaTagSanityList(raw.tags),
     }
     return target as BlogPost;
 }

@@ -89,6 +89,9 @@ const mapColumns = (raw: any, rawColumnSizes: any, numberOfColumns: number) => {
 }
 
 const mapSanity = (raw: any) => {
+    if (!raw || !raw.sysId) {
+        return undefined;
+    }
     const target: BlocksBodyContent = {
         cmsSource: 'Sanity',
         sysId: raw?.sysId as string,
@@ -114,12 +117,13 @@ const mapSanity = (raw: any) => {
             }
         }
     }
-
-
     return target as BlocksBodyContent;
 }
 
 const mapDefaultBlocksBodyContent = (raw: any, type: ContentType) => {
+    if (!raw) {
+        return undefined;
+    }
     const target: BlocksBodyContent = {
         cmsSource: 'Sanity',
         sysId: (Array.isArray(raw) ? raw.map(r => r.sysId).join('-') : raw?.sysId) as string,
@@ -150,10 +154,10 @@ const mapDefaultBlocksBodyContent = (raw: any, type: ContentType) => {
         ],
         blockLayout: {
             format: {
-                Xs: type === 'PreHeadingContent' ? 'Full Width' : "Container Width",
-                Sm: type === 'PreHeadingContent' ? 'Full Width' : "Container Width",
-                Md: type === 'PreHeadingContent' ? 'Full Width' : "Default",
-                Lg: type === 'PreHeadingContent' ? 'Full Width' : "Default",
+                Xs: type === 'PreHeadingContent' ? 'Full Width' : "Default",
+                Sm: type === 'PreHeadingContent' ? 'Full Width' : "Default",
+                Md: type === 'PreHeadingContent' ? 'Full Width' : "Narrow",
+                Lg: type === 'PreHeadingContent' ? 'Full Width' : "Narrow",
                 Xl: type === 'PreHeadingContent' ? 'Full Width' : "Narrow",
             },
             gap: {
@@ -170,12 +174,13 @@ const mapDefaultBlocksBodyContent = (raw: any, type: ContentType) => {
 
 export const mapSanityList = (raw: any[], type: ContentType) => {
     if (type === 'PreHeadingContent') {
-        return [mapDefaultBlocksBodyContent(raw, type)];
+        const x = mapDefaultBlocksBodyContent(raw, type);
+        return x ? [x] : [];
     }
     return (raw || []).map(raw => {
-        if (raw.type === 'contactBlock') {
+        if (raw.type === 'contentBlock') {
             return mapSanity(raw)
         }
         return mapDefaultBlocksBodyContent(raw, type);
-    }).filter(item => Boolean(item)) as BlocksBodyContent[]
+    }).filter(block => Boolean(block)) as BlocksBodyContent[]
 };

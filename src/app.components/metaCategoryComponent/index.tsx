@@ -5,7 +5,7 @@ import {H1Heading} from "~/app.ui.components/h1Heading";
 import {DefaultBlocksLayout} from "~/app.ui.components/blocksLayout/defaultBLocksLayout";
 import Link from "next/link";
 import {PostsListComponent} from "../bodyPostsListComponent/postsListComponent";
-import { MdFolderOpen} from "react-icons/md";
+import {MdFolderOpen} from "react-icons/md";
 import {MetaCategoryChildrenComponent} from "./childrenCategories";
 
 interface IProps {
@@ -27,6 +27,12 @@ const MetaCategoryComponent = ({category}: IProps) => {
                     <DefaultBlocksLayout allFormats='Default'>
                         <div className="text-sm daisyui-breadcrumbs">
                             <ul className={clsx('space-y-0')}>
+                                <li>
+                                    <Link href={`/categories`}
+                                          className={clsx('hover:!no-underline')}>
+                                        All Categories
+                                    </Link>
+                                </li>
                                 {
                                     createParentBreadCrumbs(category).reverse().map(p => <li key={p.slug}>
                                         <Link href={`/category/${p.slug}`}
@@ -40,7 +46,8 @@ const MetaCategoryComponent = ({category}: IProps) => {
             }
             <H1Heading>
                 <div className={clsx('flex items-start gap-1')}>
-                    <div className={clsx('pt-2')}><MdFolderOpen/></div> <span>{category.name}</span>
+                    <div className={clsx('pt-2')}><MdFolderOpen/></div>
+                    <span>{category.name}</span>
                 </div>
             </H1Heading>
             <MetaCategoryChildrenComponent category={category}/>
@@ -53,9 +60,9 @@ const MetaCategoryComponent = ({category}: IProps) => {
             <BlocksBodyContentComponent blocks={category.contentBlocks} isExcerpts={true}/>
         </div>
         <PostsListComponent postsListData={category.postsListData}
-                                    className={clsx(
-                                        'mt-8'
-                                    )}/>
+                            className={clsx(
+                                'mt-8'
+                            )}/>
     </div>
 }
 

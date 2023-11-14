@@ -5,7 +5,6 @@ import {mapSanity as mapMetaCategorySanity, mapSanityList as mapMetaCategoryList
 import {contentBlocksQuery} from "./utils";
 
 
-
 export const fetchAllSlugs = async () => {
     const filter = `*[_type=="category"]{ "slug": slug.current }`
     const response = await client.fetch(
@@ -18,6 +17,29 @@ export const fetchAllSlugs = async () => {
         }
     );
     return response.map((r: { slug: string }) => r.slug) as string[];
+}
+
+export const fetchAllCategories = async () => {
+    const filter = `*[_type=="category"]{ 
+        "sysId": _id,
+        "slug": slug.current,
+        name,
+        parentCategory -> {
+            "sysId": _id,
+            "slug": slug.current,
+            name
+        }
+     }`
+    const response = await client.fetch(
+        groq`${filter}`, {
+            useCdn: false,
+        }, {
+            next: {
+                tags: ['layout', 'page']
+            }
+        }
+    );
+    return mapMetaCategoryListSanity(response);
 }
 export const fetchListByReference = async (sysId: string) => {
     try {
@@ -54,10 +76,10 @@ export const fetchBySlug = async (slug: string, includeContent = false) => {
                     "slug": slug.current,
                     name
                 },
-                ${ includeContent
-                    ? `preHeadingContentBlocks[] -> ${contentBlocksQuery}, contentBlocks[] -> ${contentBlocksQuery},`
-                    : ''
-                }
+                ${includeContent
+                ? `preHeadingContentBlocks[] -> ${contentBlocksQuery}, contentBlocks[] -> ${contentBlocksQuery},`
+                : ''
+            }
               }`,
             {
                 slug: slug,

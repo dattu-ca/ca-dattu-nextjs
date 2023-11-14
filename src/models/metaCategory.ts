@@ -13,6 +13,10 @@ export interface MetaCategory extends BaseModel<'MetaCategory'> {
     children?: MetaCategory[] | undefined;
     
     postsListData?: BodyPostsList | undefined;
+    
+    // For the `/categories` page.
+    postsListIds?: string[] | undefined;
+    totalPosts?: number | undefined;
 }
 
 
