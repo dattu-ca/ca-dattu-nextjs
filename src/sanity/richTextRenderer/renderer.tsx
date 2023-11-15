@@ -25,7 +25,9 @@ const portableTextComponents = {
                     alt: value.asset.creditLine,
                     credit: value.asset.creditLine,
                     caption: value.asset.creditLine,
-                }
+                },
+                linkUrl: value.linkUrl as string,
+                linkTarget: value.linkTarget,
             }
 
             return <div className={clsx('mb-2')}>

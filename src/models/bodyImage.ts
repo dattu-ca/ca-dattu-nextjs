@@ -21,5 +21,5 @@ export interface BodyImage extends BaseModel<'BodyImage'> {
     shadow?: boolean;
     shape?: string;
     linkTarget?: '_self' | '_blank' | undefined;
-    linkUrl: string;
+    linkUrl?: string | undefined;
 }
