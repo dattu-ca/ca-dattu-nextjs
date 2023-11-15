@@ -154,11 +154,11 @@ const mapDefaultBlocksBodyContent = (raw: any, type: ContentType) => {
         ],
         blockLayout: {
             format: {
-                Xs: type === 'PreHeadingContent' ? 'Full Width' : "Default",
-                Sm: type === 'PreHeadingContent' ? 'Full Width' : "Default",
-                Md: type === 'PreHeadingContent' ? 'Full Width' : "Narrow",
-                Lg: type === 'PreHeadingContent' ? 'Full Width' : "Narrow",
-                Xl: type === 'PreHeadingContent' ? 'Full Width' : "Narrow",
+                Xs: ['PreHeadingContent', 'PreHeadingExcerpt', 'Excerpt'].includes(type) ? 'Full Width' : "Default",
+                Sm: ['PreHeadingContent', 'PreHeadingExcerpt', 'Excerpt'].includes(type) ? 'Full Width' : "Default",
+                Md: ['PreHeadingContent', 'PreHeadingExcerpt', 'Excerpt'].includes(type) ? 'Full Width' : "Narrow",
+                Lg: ['PreHeadingContent', 'PreHeadingExcerpt', 'Excerpt'].includes(type) ? 'Full Width' : "Narrow",
+                Xl: ['PreHeadingContent', 'PreHeadingExcerpt', 'Excerpt'].includes(type) ? 'Full Width' : "Narrow",
             },
             gap: {
                 Xs: "None",

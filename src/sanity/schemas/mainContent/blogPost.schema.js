@@ -137,9 +137,6 @@ const blogPostSchema = defineType({
                         {type: bodyMarkdownSchema.name},
                         {type: bodyYouTubeSchema.name},
                         {type: bodyImagesSchema.name},
-                        {type: bodyLinksSchema.name},
-                        {type: bodyFormSchema.name},
-                        {type: bodyPostsListSchema.name},
                         {type: bodyCodeSchema.name},
                     ]
                 }

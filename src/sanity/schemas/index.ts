@@ -42,6 +42,17 @@ const schemaTypes: SchemaTypeDefinition[] = [
     siteConfigSchema,
     siteNavbarSchema,
 
+    // Content schemas
+    bodyContentSchema,
+    bodyYouTubeSchema,
+    bodyImagesSchema,
+    bodyCodeSchema,
+    bodyMarkdownSchema,
+    bodyLinksSchema,
+    bodyLinksFieldSchema,
+    bodyFormSchema,
+    bodyPostsListSchema,
+
     // Main Documents
     homePageSchema,
     allPostsSchema,
@@ -53,17 +64,6 @@ const schemaTypes: SchemaTypeDefinition[] = [
     seriesSchema,
     categorySchema,
     tagSchema,
-
-    // Content schemas
-    bodyContentSchema,
-    bodyYouTubeSchema,
-    bodyImagesSchema,
-    bodyCodeSchema,
-    bodyMarkdownSchema,
-    bodyLinksSchema,
-    bodyLinksFieldSchema,
-    bodyFormSchema,
-    bodyPostsListSchema,
 
     // type schemas
     contentBlockSchema,
