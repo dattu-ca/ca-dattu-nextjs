@@ -66,7 +66,7 @@ const ImageComponent = ({image}: IProps) => {
                         target={image.linkTarget}
                         className={clsx(
                             'w-full h-full',
-                            'hover:after:w-0'
+                            'hover:brightness-125'
                         )}>
                         {renderImage()}
                     </Link>

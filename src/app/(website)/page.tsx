@@ -1,7 +1,13 @@
+import {homePageServices} from "~/services";
+import {HomePageComponent} from "~/app.components/homePageComponent";
+
 const Page = async () => {
+    const data = await homePageServices.fetch();
+    if (!data || !data.sysId) {
+        return <p>NOT CREATED</p>
+    }
     return <div>
-        <h1>Home Page</h1>
-        
+        <HomePageComponent homePage={data}/>
     </div>
 }
 

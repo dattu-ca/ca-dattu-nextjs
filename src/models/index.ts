@@ -1,6 +1,6 @@
 export * from './siteAuthConfig';
 export * from './blocksBodyContent';
-export * from './blogHome';
+export * from './homePage';
 export * from './allPosts';
 export * from './blogPage';
 export * from './blogPost';
