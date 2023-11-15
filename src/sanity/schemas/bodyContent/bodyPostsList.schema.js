@@ -28,6 +28,12 @@ const bodyPostsListSchema = defineType({
             type: 'string',
         }),
         defineField({
+            name: 'showName',
+            title: 'Show Name?',
+            type: 'boolean',
+            initialValue: false,
+        }),
+        defineField({
             name: 'postsList',
             title: 'Posts List',
             type: 'array',

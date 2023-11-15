@@ -7,6 +7,7 @@ export type PostsListLayoutType = 'Excerpt' | 'Full Post' | 'Heading Only';
 
 export interface BodyPostsList extends BaseModel<'BodyPostsList'> {
     name?: string | undefined;
+    showName?: boolean | undefined;
     postsListIdentifier: PostsListIdentifierType;
     limitPerPage: number;
     isPaginated: boolean;

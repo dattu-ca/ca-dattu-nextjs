@@ -121,7 +121,7 @@ const mapSanity = (raw: any) => {
 }
 
 const mapDefaultBlocksBodyContent = (raw: any, type: ContentType) => {
-    if (!raw) {
+    if (!raw || !raw.sysId) {
         return undefined;
     }
     const target: BlocksBodyContent = {

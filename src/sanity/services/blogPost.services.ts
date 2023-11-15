@@ -2,7 +2,12 @@
 import {QueryParams, groq} from "next-sanity";
 import {client} from './client';
 
-import {contentBlocksQuery, excerptBlocksQuery, preHeadingContentBlocksQuery} from "./utils";
+import {
+    contentBlocksQuery,
+    excerptBlocksQuery,
+    preHeadingContentBlocksQuery,
+    preHeadingExcerptBlocksQuery
+} from "./utils";
 import {BlogPost} from "~/models";
 import {mapSanityList as mapBlogPostSanityList, mapSanity as mapBlogPostSanity} from "./blogPost.map";
 
@@ -114,7 +119,7 @@ export const fetchListPaginatedByReferences = async ({
                     "slug" : slug.current,
                     "datePublished": dateTime(datePublished + 'T00:00:00Z'),
                     heading,
-                    ${includeExcerpts ? `excerptBlocks[] -> ${excerptBlocksQuery}, preHeadingExcerptBlocks[] -> ${contentBlocksQuery},` : ''}
+                    ${includeExcerpts ? `preHeadingExcerptBlocks[] -> ${preHeadingExcerptBlocksQuery},excerptBlocks[] -> ${excerptBlocksQuery}, ` : ''}
                     ${includeAuthors ? `authors[]->{
                                                         "sysId": _id,
                                                         "slug": slug.current,
