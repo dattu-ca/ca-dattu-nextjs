@@ -53,16 +53,19 @@ const bodyCode = `'': *[_type == 'bodyCode' && _id == ^._id][0]{
           code
         }`
 
-
 const bodyMarkdown = `'': *[_type == 'bodyMarkdown' && _id == ^._id][0]{
           markdown
         }`
 
 const bodyPostsList = `'': *[_type == 'bodyPostsList' && _id == ^._id][0]{
-          postsListIdentifier,
           layout,
-          limitPerPage,
-          isPaginated
+          postsList[] ->{
+            heading,
+            "type": _type,
+            "slug": slug.current,
+            "sysId": _id,
+            "datePublished": dateTime(datePublished + 'T00:00:00Z'),
+          }
         }`
 
 const contentBlock = `'': *[_type == 'contactBlock' && _id == ^._id][0]{
@@ -89,6 +92,39 @@ const contentBlock = `'': *[_type == 'contactBlock' && _id == ^._id][0]{
               }
             }
         } `
+
+
+export const preHeadingContentBlocksQuery = `{
+    name,
+    "type": _type,
+    "slug": slug.current,
+    "sysId": _id,
+    ${bodyImages},
+    ${bodyForm},
+    ${bodyContent},
+    ${bodyYouTube},
+    ${bodyLinks},
+    ${bodyCode},
+    ${bodyMarkdown},
+    ${bodyPostsList},
+    ${contentBlock},
+  }`
+
+export const excerptBlocksQuery = `{
+    name,
+    "type": _type,
+    "slug": slug.current,
+    "sysId": _id,
+    ${bodyImages},
+    ${bodyForm},
+    ${bodyContent},
+    ${bodyYouTube},
+    ${bodyLinks},
+    ${bodyCode},
+    ${bodyMarkdown},
+    ${bodyPostsList},
+    ${contentBlock},
+  }`
 
 export const contentBlocksQuery = `{
     name,
