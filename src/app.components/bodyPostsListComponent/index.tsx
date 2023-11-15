@@ -1,6 +1,7 @@
 import {BodyPostsList} from "~/models";
 import {BodyPostsListExcerptsComponent} from "./excerptsList";
 import {BodyPostsListHeadingsOnlyComponent} from "./headingsOnly";
+import clsx from "clsx";
 
 
 interface IProps {
@@ -11,15 +12,18 @@ const BodyPostsListComponent = ({data}: IProps) => {
     if (!data || !data.posts) {
         return null;
     }
-    if (data.layout === 'Excerpt') {
-        return <BodyPostsListExcerptsComponent data={data}/>
-    }
-    if(data.layout === 'Heading Only'){
-        return <BodyPostsListHeadingsOnlyComponent data={data} />
-    }
-    return null;
-
-
+    
+    return <div>
+        {
+            data.showName && <p className={clsx('mb-2')}><strong><em>{data.name}:</em></strong></p>
+        }
+        {
+            (data.layout === 'Excerpt') && <BodyPostsListExcerptsComponent data={data}/>
+        }
+        {
+            (data.layout === 'Heading Only') && <BodyPostsListHeadingsOnlyComponent data={data}/>
+        }
+    </div>
 }
 
 export {

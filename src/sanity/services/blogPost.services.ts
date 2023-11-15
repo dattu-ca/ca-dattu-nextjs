@@ -2,7 +2,12 @@
 import {QueryParams, groq} from "next-sanity";
 import {client} from './client';
 
-import {contentBlocksQuery} from "./utils";
+import {
+    contentBlocksQuery,
+    excerptBlocksQuery,
+    preHeadingContentBlocksQuery,
+    preHeadingExcerptBlocksQuery
+} from "./utils";
 import {BlogPost} from "~/models";
 import {mapSanityList as mapBlogPostSanityList, mapSanity as mapBlogPostSanity} from "./blogPost.map";
 
@@ -24,7 +29,9 @@ export const fetchAllActiveSlugs = async () => {
             }
         }
     );
-    return response.map((r: { slug: string }) => r.slug) as string[];
+    return response.map((r: {
+        slug: string
+    }) => r.slug) as string[];
 }
 export const fetchTotalByReference = async (referenceId: string) => {
     const filter = `*[
@@ -68,11 +75,11 @@ export const fetchActivePostsWithReference = async (reference: 'Tag' | 'Category
             }
         }
     );
-    if(response){
-        return mapBlogPostSanityList(response)    
+    if (response) {
+        return mapBlogPostSanityList(response)
     }
     return [] as BlogPost[];
-    
+
 }
 
 interface IProps {
@@ -91,7 +98,10 @@ export const fetchListPaginatedByReferences = async ({
                                                          referenceIds,
                                                          includeAuthors,
                                                          sortAscendingPublishDate
-                                                     }: IProps): Promise<{ items: BlogPost[], total: number }> => {
+                                                     }: IProps): Promise<{
+    items: BlogPost[],
+    total: number
+}> => {
     const filter = `*[
       ${availablePostsFilter}
       ${(referenceIds && Array.isArray(referenceIds) && referenceIds.length > 0) ? ` && ( ${referenceIds.map(id => "references('" + id + "')").join("  || ")} )` : ''}
@@ -109,13 +119,8 @@ export const fetchListPaginatedByReferences = async ({
                     "slug" : slug.current,
                     "datePublished": dateTime(datePublished + 'T00:00:00Z'),
                     heading,
-                    ${includeExcerpts
-            ? `excerptBlocks[] -> ${contentBlocksQuery},
-                                        preHeadingExcerptBlocks[] -> ${contentBlocksQuery},`
-            : ''
-        }
-                    ${
-            includeAuthors ? `authors[]->{
+                    ${includeExcerpts ? `preHeadingExcerptBlocks[] -> ${preHeadingExcerptBlocksQuery},excerptBlocks[] -> ${excerptBlocksQuery}, ` : ''}
+                    ${includeAuthors ? `authors[]->{
                                                         "sysId": _id,
                                                         "slug": slug.current,
                                                         name,
@@ -127,8 +132,7 @@ export const fetchListPaginatedByReferences = async ({
                                                           "alt": avatarImage.alt,
                                                           "url": avatarImage.asset -> url
                                                         }
-                                                    }` : ''
-        }
+                                                    }` : ''}
                   }
               )
            }
@@ -159,7 +163,7 @@ export const fetchBySlug = async (slug: string) => {
                 "sysId": _id,
                 "slug": slug.current,
                 heading,                
-                preHeadingContentBlocks[] -> ${contentBlocksQuery},
+                preHeadingContentBlocks[] -> ${preHeadingContentBlocksQuery},
                 contentBlocks[] -> ${contentBlocksQuery},
                 "datePublished": dateTime(datePublished + 'T00:00:00Z'),
                 series -> {

@@ -1,7 +1,5 @@
-import { defineField, defineType} from 'sanity';
+import {defineField, defineType} from 'sanity';
 import {BiSolidBookContent} from "react-icons/bi";
-// import { blogPostSchema} from "../mainContent/blogPost.schema";
-// import { blogPageSchema} from "../mainContent/blogPage.schema";
 
 const bodyPostsListSchema = defineType({
     name: 'bodyPostsList',
@@ -29,39 +27,25 @@ const bodyPostsListSchema = defineType({
             title: 'Name',
             type: 'string',
         }),
-        // defineField({
-        //     name: 'postsList',
-        //     title: 'Posts List',
-        //     type: 'array',
-        //     of: [
-        //         {
-        //             type: 'reference',
-        //             to: [
-        //                 // {type: "blogPostSchema"},
-        //                 // {type: blogPageSchema.name}
-        //             ]
-        //         }
-        //     ]
-        // }),
         defineField({
-            name: 'postsListIdentifier',
-            title: 'Posts List Identifier',
-            type: 'string',
-            initialValue: 'Custom',
-            options: {
-                list: [
-                    {title: 'Custom', value: 'Custom'},                    
-                ]
-            },
-            validation: (rule) => rule.required(),
+            name: 'showName',
+            title: 'Show Name?',
+            type: 'boolean',
+            initialValue: false,
         }),
         defineField({
-            name: 'limitPerPage',
-            title: 'Limit Per Page',
-            description: '0 means default',
-            type: 'number',
-            initialValue: 10,
-            validation: (rule) => rule.required().min(0),
+            name: 'postsList',
+            title: 'Posts List',
+            type: 'array',
+            of: [
+                {
+                    type: 'reference',
+                    to: [
+
+                        {type: "blogPost"},
+                    ]
+                }
+            ]
         }),
         defineField({
             name: 'layout',
@@ -74,15 +58,7 @@ const bodyPostsListSchema = defineType({
                     {title: 'Full Post', value: 'Full Post'},
                 ]
             },
-            initialValue: 'Excerpt',
-            validation: (rule) => rule.required(),
-        }),
-        defineField({
-            name: 'isPaginated',
-            title: 'Is Paginated',
-            description: 'Whether this will be a paginated list of do we show all available posts on the same page.',
-            type: 'boolean',
-            initialValue: true,
+            initialValue: 'Heading Only',
             validation: (rule) => rule.required(),
         }),
     ]

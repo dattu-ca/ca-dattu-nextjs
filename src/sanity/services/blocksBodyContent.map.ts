@@ -121,7 +121,7 @@ const mapSanity = (raw: any) => {
 }
 
 const mapDefaultBlocksBodyContent = (raw: any, type: ContentType) => {
-    if (!raw) {
+    if (!raw || !raw.sysId) {
         return undefined;
     }
     const target: BlocksBodyContent = {
@@ -134,7 +134,7 @@ const mapDefaultBlocksBodyContent = (raw: any, type: ContentType) => {
         columns: [
             {
                 index: 0,
-                layout: type === 'PreHeadingContent' ? 'Slider' : "Stacked",
+                layout: (type === 'PreHeadingContent' && Array.isArray(raw) && raw.length > 1) ? 'Slider' : "Stacked",
                 gaps: {
                     Xs: "None",
                     Sm: "None",
@@ -154,11 +154,11 @@ const mapDefaultBlocksBodyContent = (raw: any, type: ContentType) => {
         ],
         blockLayout: {
             format: {
-                Xs: type === 'PreHeadingContent' ? 'Full Width' : "Default",
-                Sm: type === 'PreHeadingContent' ? 'Full Width' : "Default",
-                Md: type === 'PreHeadingContent' ? 'Full Width' : "Narrow",
-                Lg: type === 'PreHeadingContent' ? 'Full Width' : "Narrow",
-                Xl: type === 'PreHeadingContent' ? 'Full Width' : "Narrow",
+                Xs: ['PreHeadingContent', 'PreHeadingExcerpt', 'Excerpt'].includes(type) ? 'Full Width' : "Default",
+                Sm: ['PreHeadingContent', 'PreHeadingExcerpt', 'Excerpt'].includes(type) ? 'Full Width' : "Default",
+                Md: ['PreHeadingContent', 'PreHeadingExcerpt', 'Excerpt'].includes(type) ? 'Full Width' : "Narrow",
+                Lg: ['PreHeadingContent', 'PreHeadingExcerpt', 'Excerpt'].includes(type) ? 'Full Width' : "Narrow",
+                Xl: ['PreHeadingContent', 'PreHeadingExcerpt', 'Excerpt'].includes(type) ? 'Full Width' : "Narrow",
             },
             gap: {
                 Xs: "None",
