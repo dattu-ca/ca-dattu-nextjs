@@ -1,7 +1,7 @@
 'use server';
 import { groq } from "next-sanity";
 import { client } from './client';
-import { contentBlocksQuery } from "./utils";
+import {contentBlocksQuery, preHeadingContentBlocksQuery} from "./utils";
 import { mapSanity as mapAllPostsSanity } from './allPosts.map';
 
 
@@ -12,7 +12,7 @@ export const fetch = async () => {
                     "sysId": _id,
                     "slug": _type,
                     heading,
-                    preHeadingContentBlocks[] -> ${contentBlocksQuery},
+                    preHeadingContentBlocks[] -> ${preHeadingContentBlocksQuery},
                     contentBlocks[] -> ${contentBlocksQuery}
                 }`,
             {

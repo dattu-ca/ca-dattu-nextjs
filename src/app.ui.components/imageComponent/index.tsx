@@ -2,6 +2,7 @@ import {useMemo} from "react";
 import clsx from "clsx";
 import Image from 'next/image';
 import {BodyImage} from "~/models";
+import Link from "next/link";
 
 interface IProps {
     image: BodyImage,
@@ -26,6 +27,30 @@ const ImageComponent = ({image}: IProps) => {
         return srcSet;
     }, [image]);
 
+    const renderImage = () => {
+        return <Image alt={image?.desktopImage?.alt || ''}
+                      loading="lazy"
+                      width={image.maxWidth || 250}
+                      height={image.maxHeight || 10}
+                      decoding="async"
+                      data-nimg="1"
+                      className={clsx(
+                          'w-full',
+                          'h-full',
+                          {
+                              ['border bg-white p-1 dark:border-neutral-700 dark:bg-neutral-800']: image.border,
+                              ['shadow-lg dark:shadow-black/30']: image.shadow
+                          }
+                      )}
+                      style={{
+                          maxWidth: image.maxWidth || 'auto',
+                          maxHeight: image.maxHeight || 'auto'
+                      }}
+                      sizes="100vw"
+            // srcSet={srcSet.join(', ')}
+                      src={srcSet[0]}/>
+    }
+
     return <div className={clsx(
         'flex',
         {
@@ -34,27 +59,21 @@ const ImageComponent = ({image}: IProps) => {
             ['justify-end']: image.align === 'right'
         }
     )}>
-        <Image alt={image?.desktopImage?.alt || ''}
-               loading="lazy"
-               width={image.maxWidth || 250}
-               height={image.maxHeight || 10}
-               decoding="async"
-               data-nimg="1"
-               className={clsx(
-                   'w-full',
-                   'h-full',
-                   {
-                       ['border bg-white p-1 dark:border-neutral-700 dark:bg-neutral-800']: image.border,
-                       ['shadow-lg dark:shadow-black/30']: image.shadow
-                   }
-               )}
-               style={{
-                   maxWidth: image.maxWidth || 'auto',
-                   maxHeight: image.maxHeight || 'auto'
-               }}
-               sizes="100vw"
-               // srcSet={srcSet.join(', ')}
-               src={srcSet[0]}/>
+        <figure className={clsx('w-full h-full')}>
+            {
+                image.linkUrl ? <Link
+                        href={image.linkUrl}
+                        target={image.linkTarget}
+                        className={clsx(
+                            'w-full h-full',
+                            'hover:after:w-0'
+                        )}>
+                        {renderImage()}
+                    </Link>
+                    : renderImage()
+            }
+            {image.desktopImage?.caption && <figcaption className={clsx('text-center')}>{image.desktopImage?.caption}</figcaption>}
+        </figure>
     </div>
 }
 

@@ -134,7 +134,21 @@ const bodyImagesSchema = defineType({
                 }),
             ],
         }),
-
+        defineField({
+            name: 'linkUrl',
+            title: 'Link URL',
+            type: 'url',
+            validation: Rule => Rule.uri({
+                scheme: ['http', 'https', 'mailto', 'tel'],
+                allowRelative: true
+            })
+        }),
+        defineField({
+            name: 'linkTarget',
+            title: 'Open Link in New Tab?',
+            type: 'boolean',
+            initialValue: false,
+        }),
     ]
 });
 

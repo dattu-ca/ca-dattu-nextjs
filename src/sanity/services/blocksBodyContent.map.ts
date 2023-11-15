@@ -121,7 +121,7 @@ const mapSanity = (raw: any) => {
 }
 
 const mapDefaultBlocksBodyContent = (raw: any, type: ContentType) => {
-    if (!raw || !raw.sysId) {
+    if (!raw) {
         return undefined;
     }
     const target: BlocksBodyContent = {
@@ -175,6 +175,7 @@ const mapDefaultBlocksBodyContent = (raw: any, type: ContentType) => {
 export const mapSanityList = (raw: any[], type: ContentType) => {
     if (type === 'PreHeadingContent') {
         const x = mapDefaultBlocksBodyContent(raw, type);
+        
         return x ? [x] : [];
     }
     return (raw || []).map(raw => {

@@ -2,7 +2,7 @@
 import {groq} from "next-sanity";
 import {client} from './client';
 import {mapSanity as mapBlogAuthorSanity} from './blogAuthor.map';
-import {contentBlocksQuery} from "./utils";
+import {contentBlocksQuery, preHeadingContentBlocksQuery} from "./utils";
 
 
 export const fetchAllSlugs = async () => {
@@ -35,7 +35,7 @@ export const fetchBySlug = async (slug: string) => {
                   "alt": avatarImage.alt,
                   "url": avatarImage.asset -> url
                 },
-                preHeadingContentBlocks[] -> ${contentBlocksQuery},
+                preHeadingContentBlocks[] -> ${preHeadingContentBlocksQuery},
                 contentBlocks[] -> ${contentBlocksQuery}
               }`,
             {

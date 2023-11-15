@@ -2,7 +2,7 @@
 import {groq} from "next-sanity";
 import {client} from './client';
 import {mapSanity as mapMetaTagSanity} from './metaTag.map';
-import {contentBlocksQuery} from "./utils";
+import {contentBlocksQuery, preHeadingContentBlocksQuery} from "./utils";
 
 export const fetchAllSlugs = async () => {
     const filter = `*[_type=="tag"]{ "slug": slug.current }`
@@ -25,7 +25,7 @@ export const fetchBySlug = async (slug: string) => {
                 "sysId": _id,
                 "slug": slug.current,
                 name,
-                preHeadingContentBlocks[] -> ${contentBlocksQuery},
+                preHeadingContentBlocks[] -> ${preHeadingContentBlocksQuery},
                 contentBlocks[] -> ${contentBlocksQuery},
               }`,
             {

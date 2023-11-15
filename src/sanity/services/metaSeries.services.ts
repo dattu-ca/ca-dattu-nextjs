@@ -2,7 +2,7 @@
 import {groq} from "next-sanity";
 import {client} from './client';
 import {mapSanity as mapMetaSeriesSanity} from './metaSeries.map';
-import {contentBlocksQuery} from "./utils";
+import {contentBlocksQuery, preHeadingContentBlocksQuery} from "./utils";
 
 
 export const fetchAllSlugs = async () => {
@@ -26,7 +26,7 @@ export const fetchBySlug = async (slug: string) => {
                 "sysId": _id,
                 "slug": slug.current,
                 name,
-                preHeadingContentBlocks[] -> ${contentBlocksQuery},
+                preHeadingContentBlocks[] -> ${preHeadingContentBlocksQuery},
                 contentBlocks[] -> ${contentBlocksQuery},
               }`,
             {

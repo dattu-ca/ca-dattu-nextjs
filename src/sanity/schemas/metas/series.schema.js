@@ -1,6 +1,5 @@
 import {defineField, defineType} from 'sanity';
 import {BsCollection} from "react-icons/bs";
-// import {contentBlockSchema} from "../blocks/block.schema";
 import {bodyContentSchema} from "../bodyContent/bodyContent.schema";
 import {bodyMarkdownSchema} from "../bodyContent/bodyMarkdown.schema";
 import {bodyYouTubeSchema} from "../bodyContent/bodyYouTube.schema";
@@ -68,7 +67,6 @@ const seriesSchema = defineType({
                         {type: bodyFormSchema.name},
                         {type: bodyPostsListSchema.name},
                         {type: bodyCodeSchema.name},
-                        // { type: contentBlockSchema.name },
                     ]
                 }
             ]

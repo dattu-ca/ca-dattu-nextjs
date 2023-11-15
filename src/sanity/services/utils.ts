@@ -13,6 +13,8 @@ const bodyImages = `'': *[_type == 'bodyImages' && _id == ^._id][0]{
               "alt" : mobileImage.alt,
               "url": mobileImage.asset -> url
           },
+          linkUrl,
+          linkTarget,
         }`
 
 const bodyYouTube = `'': *[_type == 'bodyYouTube' && _id == ^._id][0]{

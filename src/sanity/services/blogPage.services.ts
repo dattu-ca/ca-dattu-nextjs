@@ -2,7 +2,7 @@
 import {groq} from "next-sanity";
 import {client} from './client';
 import {mapSanity as mapBlogPageSanity} from './blogPage.map';
-import {contentBlocksQuery} from "./utils";
+import {contentBlocksQuery, preHeadingContentBlocksQuery} from "./utils";
 import {revalidate} from "~/app/(website)/page/[slug]/page";
 
 export const fetchAllSlugs = async () => {
@@ -28,7 +28,7 @@ export const fetchBySlug = async (slug: string) => {
                     "sysId": _id,
                     "slug": slug.current,
                     heading,
-                    preHeadingContentBlocks[] -> ${contentBlocksQuery},
+                    preHeadingContentBlocks[] -> ${preHeadingContentBlocksQuery},
                     contentBlocks[] -> ${contentBlocksQuery}
                   }`,
             {

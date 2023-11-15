@@ -14,11 +14,15 @@ export const mapSanity = (raw: any) => {
         shape: raw.shape as string ?? '',
         desktopImage: {
             url: raw.desktopImage?.url as string,
-            alt: (raw.desktopImage?.alt || raw.desktopImage?.caption) as string,
+            alt: raw.desktopImage?.alt as string,
+            caption: raw.desktopImage?.caption as string,
         } as IImage,
         mobileImage: {
             url: raw.mobileImage?.url as string,
-            alt: (raw.mobileImage?.alt || raw.mobileImage?.caption || raw.desktopImage?.alt || raw.desktopImage?.caption) as string,
-        } as IImage
+            alt: (raw.mobileImage?.alt || raw.desktopImage?.alt) as string,
+            caption: (raw.mobileImage?.caption || raw.desktopImage?.caption) as string,
+        } as IImage,
+        linkUrl: raw.linkUrl,
+        linkTarget: raw.linkTarget ? '_blank' : '_self',
     } as BodyImage;
 }

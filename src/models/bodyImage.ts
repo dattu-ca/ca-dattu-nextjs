@@ -1,4 +1,5 @@
 import { BaseModel } from "./types";
+import {ILink} from "./bodyLinks";
 
 export interface IImage {
     contentType: 'Image';
@@ -19,4 +20,6 @@ export interface BodyImage extends BaseModel<'BodyImage'> {
     border?: boolean;
     shadow?: boolean;
     shape?: string;
+    linkTarget?: '_self' | '_blank' | undefined;
+    linkUrl: string;
 }
