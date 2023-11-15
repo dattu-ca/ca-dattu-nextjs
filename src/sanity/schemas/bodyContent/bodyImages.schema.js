@@ -101,7 +101,7 @@ const bodyImagesSchema = defineType({
                     type: 'string',
                     title: 'Alt text',
                     description:
-                        'Alternative text for screenreaders. Falls back on caption if not set',
+                        'Alternative text for screenreaders.',
                 }),
             ],
         }),
@@ -130,7 +130,7 @@ const bodyImagesSchema = defineType({
                     type: 'string',
                     title: 'Alt text',
                     description:
-                        'Alternative text for screenreaders. Falls back on caption if not set',
+                        'Alternative text for screenreaders.',
                 }),
             ],
         }),
