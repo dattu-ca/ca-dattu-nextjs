@@ -1,7 +1,6 @@
 import {SiteFooter} from "~/models";
 import clsx from "clsx";
 import {DefaultBlocksLayout} from "~/app.ui.components/blocksLayout/defaultBLocksLayout";
-import {DividerComponent} from "~/app.ui.components/dividerComponent";
 import Link from "next/link";
 
 interface IProps {
