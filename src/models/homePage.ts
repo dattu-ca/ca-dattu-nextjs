@@ -3,8 +3,11 @@ import {BlocksBodyContent} from "./blocksBodyContent";
 import {BodyPostsList} from "./bodyPostsList";
 
 
-export interface BlogHome extends BaseModel<'BlogHome'> {
+export interface HomePage extends BaseModel<'HomePage'> {
     slug: string;
+    preHeadingContentBlocks?: BlocksBodyContent[] | undefined;
+    heading?: string | undefined;
     contentBlocks?: BlocksBodyContent[] | undefined;
     
+    postsListData?: BodyPostsList | undefined;
 }

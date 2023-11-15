@@ -1,6 +1,5 @@
 import { defineField, defineType} from 'sanity';
 import {FaHashtag} from "react-icons/fa6";
-// import {contentBlockSchema} from "../blocks/block.schema";
 import {bodyContentSchema} from "../bodyContent/bodyContent.schema";
 import {bodyMarkdownSchema} from "../bodyContent/bodyMarkdown.schema";
 import {bodyYouTubeSchema} from "../bodyContent/bodyYouTube.schema";
@@ -67,7 +66,6 @@ const tagSchema = defineType({
                         {type: bodyFormSchema.name},
                         {type: bodyPostsListSchema.name},
                         {type: bodyCodeSchema.name},
-                        // { type: contentBlockSchema.name },
                     ]
                 }
             ]

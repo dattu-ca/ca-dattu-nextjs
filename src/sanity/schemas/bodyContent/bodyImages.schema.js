@@ -101,7 +101,7 @@ const bodyImagesSchema = defineType({
                     type: 'string',
                     title: 'Alt text',
                     description:
-                        'Alternative text for screenreaders. Falls back on caption if not set',
+                        'Alternative text for screenreaders.',
                 }),
             ],
         }),
@@ -130,11 +130,25 @@ const bodyImagesSchema = defineType({
                     type: 'string',
                     title: 'Alt text',
                     description:
-                        'Alternative text for screenreaders. Falls back on caption if not set',
+                        'Alternative text for screenreaders.',
                 }),
             ],
         }),
-
+        defineField({
+            name: 'linkUrl',
+            title: 'Link URL',
+            type: 'url',
+            validation: Rule => Rule.uri({
+                scheme: ['http', 'https', 'mailto', 'tel'],
+                allowRelative: true
+            })
+        }),
+        defineField({
+            name: 'linkTarget',
+            title: 'Open Link in New Tab?',
+            type: 'boolean',
+            initialValue: false,
+        }),
     ]
 });
 

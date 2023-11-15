@@ -1,6 +1,5 @@
 import { defineField, defineType} from 'sanity';
 import {FaUserEdit} from "react-icons/fa";
-// import {contentBlockSchema} from "../blocks/block.schema";
 import {bodyContentSchema} from "../bodyContent/bodyContent.schema";
 import {bodyMarkdownSchema} from "../bodyContent/bodyMarkdown.schema";
 import {bodyYouTubeSchema} from "../bodyContent/bodyYouTube.schema";
@@ -74,7 +73,7 @@ const authorSchema = defineType({
                     type: 'string',
                     title: 'Alt text',
                     description:
-                        'Alternative text for screenreaders. Falls back on caption if not set',
+                        'Alternative text for screenreaders.',
                 }),
             ],
         }),
@@ -108,7 +107,6 @@ const authorSchema = defineType({
                         {type: bodyFormSchema.name},
                         {type: bodyPostsListSchema.name},
                         {type: bodyCodeSchema.name},
-                        // {type: contentBlockSchema.name},
                     ]
                 }
             ]

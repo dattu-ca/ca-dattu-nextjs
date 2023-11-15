@@ -1,6 +1,6 @@
 import * as allPostsServices from './allPosts.services';
 import * as siteAuthConfigServices from './siteAuthConfig.services';
-// import * as blogHomeServices from './blogHome.services';
+import * as homePageServices from './homePage.services';
 import * as blogAuthorServices from './blogAuthor.services';
 import * as blogPageServices from './blogPage.services';
 import * as blogPostServices from './blogPost.services';
@@ -20,7 +20,7 @@ export {
     siteConfigServices,
     blogPageServices,
     sendMailServices,
-    // blogHomeServices,
+    homePageServices,
     siteNavbarServices,
     metaTagServices,
     metaSeriesServices,

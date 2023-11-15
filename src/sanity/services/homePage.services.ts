@@ -2,13 +2,13 @@
 import { groq } from "next-sanity";
 import { client } from './client';
 import {contentBlocksQuery, preHeadingContentBlocksQuery} from "./utils";
-import { mapSanity as mapAllPostsSanity } from './allPosts.map';
+import { mapSanity as mapHomePageSanity } from './homePage.map';
 
 
 export const fetch = async () => {
     try {
         const response = await client.fetch(
-            groq`*[_type=="allPosts"][0]{
+            groq`*[_type=="homePage"][0]{
                     "sysId": _id,
                     "slug": _type,
                     heading,
@@ -23,8 +23,8 @@ export const fetch = async () => {
                 }
             }
         )
-        return mapAllPostsSanity(response);
+        return mapHomePageSanity(response);
     } catch (e) {
-        console.error(`Cannot find [allPosts] content`, e);
+        console.error(`Cannot find [homePage] content`, e);
     }
 }
