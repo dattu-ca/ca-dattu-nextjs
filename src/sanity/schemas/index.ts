@@ -23,7 +23,7 @@ import{bodyMarkdownSchema} from './bodyContent/bodyMarkdown.schema';
 import {authPagesConfigSchema} from "./singletons/authPagesConfig.schema";
 import {siteConfigSchema} from "./singletons/siteConfig.schema";
 import {siteNavbarSchema} from './singletons/siteNavbar.schema';
-
+import {siteFooterSchema} from './singletons/siteFooter.schema';
 
 import {contentBlockSchema} from './blocks/block.schema';
 import {blockWidthSchema} from "./blocks/blockWidth.schema";
@@ -41,6 +41,7 @@ const schemaTypes: SchemaTypeDefinition[] = [
     authPagesConfigSchema,
     siteConfigSchema,
     siteNavbarSchema,
+    siteFooterSchema,
 
     // Content schemas
     bodyContentSchema,

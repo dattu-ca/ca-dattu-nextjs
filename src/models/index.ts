@@ -19,3 +19,4 @@ export * from './metaTag';
 export * from './paginationConfig';
 export * from './siteConfig';
 export * from './siteNavbar';
+export * from './siteFooter';

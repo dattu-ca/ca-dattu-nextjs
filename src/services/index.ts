@@ -6,6 +6,7 @@ import * as blogPageServices from './blogPage.services';
 import * as blogPostServices from './blogPost.services';
 import * as siteConfigServices from './siteConfig.services';
 import * as siteNavbarServices from './siteNavbar.services';
+import * as siteFooterServices from './siteFooter.services';
 import * as formsServices from './form.services';
 import * as sendMailServices from './sendMail.services';
 import * as metaCategoryServices from './metaCategory.services';
@@ -22,6 +23,7 @@ export {
     sendMailServices,
     homePageServices,
     siteNavbarServices,
+    siteFooterServices,
     metaTagServices,
     metaSeriesServices,
     metaCategoryServices,
