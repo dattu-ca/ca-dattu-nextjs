@@ -75,10 +75,10 @@ export const nextAuthOptions: NextAuthOptions = {
     //         return session;
     //     },
     // },
-    // pages: {
-    //     signIn: '/login',
-    //     error: '/error',
-    //     signOut: '/logout',
-    // }
+    pages: {
+        signIn: '/login',
+        error: '/error',
+        signOut: '/logout',
+    }
 }
 
