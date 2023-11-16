@@ -20,7 +20,7 @@ export const generateMetadata = async ({params}: IProps) => {
     }
     const {name} = blogAuthor;
     return {
-        title: name
+        title: `${name} | Author`
     }
 }
 

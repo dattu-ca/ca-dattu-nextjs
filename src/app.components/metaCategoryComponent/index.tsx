@@ -22,28 +22,24 @@ const MetaCategoryComponent = ({category}: IProps) => {
         <div className={clsx(
             'mt-8'
         )}>
-            {
-                category.parent && (
-                    <DefaultBlocksLayout allFormats='Default'>
-                        <div className="text-sm daisyui-breadcrumbs">
-                            <ul className={clsx('space-y-0')}>
-                                <li>
-                                    <Link href={`/categories`}
-                                          className={clsx('hover:!no-underline')}>
-                                        All Categories
-                                    </Link>
-                                </li>
-                                {
-                                    createParentBreadCrumbs(category).reverse().map(p => <li key={p.slug}>
-                                        <Link href={`/category/${p.slug}`}
-                                              className={clsx('hover:!no-underline')}>{p.name}</Link>
-                                    </li>)
-                                }
-                            </ul>
-                        </div>
-                    </DefaultBlocksLayout>
-                )
-            }
+            <DefaultBlocksLayout allFormats='Default'>
+                <div className="text-sm daisyui-breadcrumbs">
+                    <ul className={clsx('space-y-0')}>
+                        <li>
+                            <Link href={`/categories`}
+                                  className={clsx('hover:!no-underline')}>
+                                All Categories
+                            </Link>
+                        </li>
+                        {
+                            category.parent && createParentBreadCrumbs(category).reverse().map(p => <li key={p.slug}>
+                                <Link href={`/category/${p.slug}`}
+                                      className={clsx('hover:!no-underline')}>{p.name}</Link>
+                            </li>)
+                        }
+                    </ul>
+                </div>
+            </DefaultBlocksLayout>z
             <H1Heading>
                 <div className={clsx('flex items-start gap-1')}>
                     <div className={clsx('pt-2')}><MdFolderOpen/></div>

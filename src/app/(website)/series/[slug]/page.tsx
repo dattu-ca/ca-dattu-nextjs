@@ -28,7 +28,7 @@ export const generateMetadata = async (props: IProps) => {
     }
     const {name} = series;
     return {
-        title: name
+        title: `${name} | Series`
     }
 }
 

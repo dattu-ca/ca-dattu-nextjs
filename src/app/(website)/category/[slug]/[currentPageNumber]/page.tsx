@@ -30,7 +30,7 @@ export const generateMetadata = async (props: IProps) => {
         return {}
     }
     return {
-        title: category.name
+        title: `${category.name} | Category`
     }
 
 }
