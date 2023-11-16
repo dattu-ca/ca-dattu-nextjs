@@ -16,7 +16,7 @@ const BlocksBodyContentColumnComponent = ({blocks, layout, gaps}: IProps) => {
         return null;
     }
 
-    if (layout === 'Tabbed') {
+    if (layout === 'Tabbed' && blocks.length > 1) {
         return <ColumnTabbed blocks={blocks} gaps={gaps}/>
     }
 
@@ -24,7 +24,7 @@ const BlocksBodyContentColumnComponent = ({blocks, layout, gaps}: IProps) => {
         return <ColumnAdjacent blocks={blocks} gaps={gaps}/>
     }
 
-    if (layout === 'Slider') {
+    if (layout === 'Slider' && blocks.length > 1) {
         return <ColumnSlider blocks={blocks} gaps={gaps}/>
     }
     return <ColumnStacked blocks={blocks} gaps={gaps}/>
