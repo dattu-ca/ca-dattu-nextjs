@@ -1,17 +1,13 @@
 'use client';
-import {useState, useEffect} from 'react';
-
-function getWindowDimensions() {
-    const {innerWidth: width, innerHeight: height} = window;
-    return {width, height}
-}
+import {useState, useLayoutEffect} from 'react';
 
 export const useWindowDimensions = () =>{
-    const [windowDimensions, setWindowDimensions] = useState(getWindowDimensions())
+    const [windowDimensions, setWindowDimensions] = useState({width: 0, height: 0})
     
-    useEffect(() => {
+    useLayoutEffect(() => {
         function handleResize(){
-            setWindowDimensions(getWindowDimensions())
+            const {innerWidth: width, innerHeight: height} = window;
+            setWindowDimensions({width, height})
         }
         window.addEventListener('resize', handleResize);
         return () => window.removeEventListener('resize', handleResize)

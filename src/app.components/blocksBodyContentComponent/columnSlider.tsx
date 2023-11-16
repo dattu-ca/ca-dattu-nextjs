@@ -23,9 +23,9 @@ const ColumnSlider = ({blocks}: IProps) => {
     const {width} = useWindowDimensions();
 
     const translateX = useMemo(() => {
-        if (ref.current) {
-            const width = ref.current.offsetWidth;
-            return ((current * width) * -1) + deltaX;
+        if (ref.current && width >= 0) {
+            const offsetWidth = ref.current.offsetWidth;
+            return ((current * offsetWidth) * -1) + deltaX;
         }
         return 0;
     }, [current, ref, deltaX, width])
