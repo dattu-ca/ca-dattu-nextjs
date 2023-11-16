@@ -17,19 +17,19 @@ const FooterComponent = ({footer}: IProps) => {
                 'shadow-inner'
             )}>
             <DefaultBlocksLayout allFormats='Container Width'>
-                <div className={clsx('px-4')}>
-                    <div className={clsx(
-                        'flex justify-between items-start',
-                        'gap-8 md:gap-2',
-                        'flex-col md:flex-row'
+                <div className={clsx('px-8')}>
+                    <div className={clsx(                        
+                        'flex justify-between items-start flex-wrap',
+                        'gap-8',                        
                     )}>
-                        <div>
+                        <div className={clsx(
+                            'grow',
+                        )}>
                             <ul className={clsx(
                                 'p-0',
                                 'list-none',
                                 'space-y-0',
-                                'md:flex md:gap-4',
-                                
+                                'flex gap-4 flex-wrap',
                             )}>
                                 {
                                     footer?.links && footer?.links?.links && footer.links.links.map(link => (
@@ -40,7 +40,7 @@ const FooterComponent = ({footer}: IProps) => {
                                 }
                             </ul>
                         </div>
-                        <div>
+                        <div className={clsx('text-right grow')}>
                             <p>{footer?.copyright}</p>
                         </div>
                     </div>
