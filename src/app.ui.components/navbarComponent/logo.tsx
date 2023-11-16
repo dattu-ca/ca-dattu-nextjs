@@ -26,7 +26,6 @@ const Logo = () => {
     }, [logo])
 
     return <Image alt={logo?.desktopImage?.alt || 'logo'}
-                  loading="lazy"
                   width="40"
                   height="40"
                   decoding="async"
@@ -34,7 +33,9 @@ const Logo = () => {
                   className={clsx(classes.flip)}
                   sizes="40px"
                   // srcSet={srcSet.join(', ')}
-                  src={srcSet[srcSet.length - 1]}/>
+                  src={srcSet[srcSet.length - 1]}
+                  priority={true}
+    />
 }
 
 export {Logo};

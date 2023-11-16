@@ -1,10 +1,11 @@
 'use client';
-import {useMemo, useRef, useState} from 'react';
+import {useEffect, useMemo, useRef, useState} from 'react';
 import clsx from "clsx";
 import {FaRegCircle} from "react-icons/fa6";
 import {FaRegDotCircle} from "react-icons/fa";
 import {BlocksBodyContent_ContentType, BlocksBodyContent_Gap} from "~/models";
 import {BlocksBodyContentBlock} from "./block";
+import {useWindowDimensions} from "~/hooks/useWindowDimensions";
 
 
 interface IProps {
@@ -19,13 +20,15 @@ const ColumnSlider = ({blocks}: IProps) => {
     const [current, setCurrent] = useState(0);
     const [deltaX, setDeltaX] = useState(0);
 
+    const {width} = useWindowDimensions();
+
     const translateX = useMemo(() => {
-        if (ref.current) {
-            const width = ref.current.offsetWidth;
-            return ((current * width) * -1) + deltaX;
+        if (ref.current && width >= 0) {
+            const offsetWidth = ref.current.offsetWidth;
+            return ((current * offsetWidth) * -1) + deltaX;
         }
         return 0;
-    }, [current, ref, deltaX])
+    }, [current, ref, deltaX, width])
 
 
     return <div ref={ref}
@@ -67,13 +70,14 @@ const ColumnSlider = ({blocks}: IProps) => {
             {
                 blocks.map((block, index) => {
                     return <li key={block.sysId}>
-                        <button onClick={() => setCurrent(index)} className={clsx(
-                            'daisyui-swap',
-                            'text-xl md:text-2xl',
-                            {
-                                ['daisyui-swap-active']: current === index
-                            }
-                        )}>
+                        <button onClick={() => setCurrent(index)}
+                                className={clsx(
+                                    'daisyui-swap',
+                                    'text-xl md:text-2xl',
+                                    {
+                                        ['daisyui-swap-active']: current === index
+                                    }
+                                )}>
                             <FaRegCircle className={clsx('daisyui-swap-off')}/>
                             <FaRegDotCircle className={clsx('daisyui-swap-on')}/>
                         </button>
