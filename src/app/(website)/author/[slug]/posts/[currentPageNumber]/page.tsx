@@ -10,6 +10,7 @@ interface IProps {
 }
 
 export const revalidate = 86400;
+export const dynamic = 'force-dynamic';
 
 const Page = async (props: IProps) => {
     const {params} = props;

@@ -10,6 +10,7 @@ interface IProps {
 }
 
 export const revalidate = 86400;
+export const dynamic = 'force-dynamic';
 
 export async function generateStaticParams() {
     const slugs = await blogPageServices.fetchAllSlugs();
