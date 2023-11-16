@@ -62,7 +62,9 @@ const RootLayout = async ({children}: IProps) => {
             <RootLayoutComponent>
                 <header>
                     {
-                        navbar && <NavbarComponent navbar={navbar} session={session} data-superjson/>
+                        navbar && <NavbarComponent navbar={navbar}
+                                                   session={session}
+                                                   data-superjson/>
                     }
                 </header>
                 <main id="mainContent" className={clsx('h-full mb-8')}>

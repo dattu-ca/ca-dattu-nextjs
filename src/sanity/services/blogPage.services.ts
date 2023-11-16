@@ -3,7 +3,6 @@ import {groq} from "next-sanity";
 import {client} from './client';
 import {mapSanity as mapBlogPageSanity} from './blogPage.map';
 import {contentBlocksQuery, preHeadingContentBlocksQuery} from "./utils";
-import {revalidate} from "~/app/(website)/page/[slug]/page";
 
 export const fetchAllSlugs = async () => {
     const filter = `*[_type=="blogPage"]{ 

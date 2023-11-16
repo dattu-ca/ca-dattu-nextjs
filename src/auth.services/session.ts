@@ -1,7 +1,8 @@
+'use server'
 import {getServerSession, Session} from "next-auth";
 import {nextAuthOptions} from "./options";
 
-const getAuthSession = async ()  => {
+export const getAuthSession = async ()  => {
     try{
         return await getServerSession(nextAuthOptions as any) as Session;
     }
@@ -9,8 +10,4 @@ const getAuthSession = async ()  => {
         console.error('Error getting session', err);
         return null;
     }
-}
-
-export {
-    getAuthSession
 }
