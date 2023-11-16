@@ -4,6 +4,10 @@ import {MetaCategoriesListComponent} from "~/app.components/metaCategoriesListCo
 
 export const revalidate = 86400;
 
+export const metadata = {
+    title: 'All Categories'
+}
+
 const Page = async () => {
    const categories = await metaCategoryServices.fetchAllCategories();
     return <MetaCategoriesListComponent categories={categories}/>

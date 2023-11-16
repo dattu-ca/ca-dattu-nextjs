@@ -8,6 +8,9 @@ interface IProps {
 
 export const revalidate = 86400;
 
+export const metadata = {
+    title: 'All Tags'
+}
 
 const Page = async (props: IProps) => {
     const result = await metaTagServices.fetchAllActiveTags();
