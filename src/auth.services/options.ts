@@ -52,11 +52,9 @@ export const nextAuthOptions: NextAuthOptions = {
                     userProfile.givenName = p.given_name;
                     userProfile.familyName = p.family_name;
                     userProfile.email = p.email;
-                }
-                return true;
-                // const result = await authDbServices.signIn({ authProvider, userProfile });
-                // console.log("RESULT", result);
-                // return Boolean(result);
+                }                
+                const result = await authDbServices.signIn({ authProvider, userProfile });
+                return Boolean(result);
             } catch (err) {
                 console.error('Error in the signin callback', err);
             }
