@@ -65,11 +65,11 @@ export const nextAuthOptions: NextAuthOptions = {
         },
         jwt: async (params) => {
             const {token, account} = params;
-            if (account) {
-                const result = await authDbServices.fetchAuthProfileIdFromProviderData(account.provider, account.providerAccountId);
-                (token as IToken).authProfileId = result?.authProfileId;
-                (token as IToken).authProviderId = result?.authProviderId;
-            }
+            // if (account) {
+            //     const result = await authDbServices.fetchAuthProfileIdFromProviderData(account.provider, account.providerAccountId);
+            //     (token as IToken).authProfileId = result?.authProfileId;
+            //     (token as IToken).authProviderId = result?.authProviderId;
+            // }
             return token;
         },
         session: async ({session, token, user}) => {
