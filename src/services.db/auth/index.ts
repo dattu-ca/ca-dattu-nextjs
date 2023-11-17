@@ -1,4 +1,5 @@
 'use server';
+import dbConnect from "../dbConnect";
 import {insertInto as insertIntoUserProfile} from "~/services.db/user";
 import {AuthProfileModel, AuthProviderModel} from './schema';
 
@@ -20,6 +21,7 @@ interface IProps {
 }
 
 const fetchAuthProviderByProviderAndProviderAccountId = async (authProvider: IAuthProvider) => {
+    await dbConnect();
     try{
         console.log('authProvider', authProvider)
         const result = await AuthProviderModel.findOne({
@@ -37,6 +39,7 @@ const fetchAuthProviderByProviderAndProviderAccountId = async (authProvider: IAu
 
 
 const signIn = async ({authProvider, userProfile}: IProps) => {
+    await dbConnect();
     try {
         const found = await fetchAuthProviderByProviderAndProviderAccountId(authProvider);
         if (!found) {

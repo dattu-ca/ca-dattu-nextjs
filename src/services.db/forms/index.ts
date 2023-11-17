@@ -1,5 +1,6 @@
 'use server';
-import { FormSubmissionsModel } from './schema'
+import dbConnect from "../dbConnect";
+import {FormSubmissionsModel} from './schema'
 
 interface IFormModel {
     legend?: string | undefined;
@@ -14,6 +15,7 @@ interface IProps {
 
 
 const insertInto = async ({formId, formModel, formValues}: IProps) => {
+    await dbConnect();
     try {
         const formSubmission = new FormSubmissionsModel({
             formId: formId,
