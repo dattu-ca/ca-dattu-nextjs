@@ -21,7 +21,7 @@ const BlogPostComponent = ({blogPost}: IProps) => {
                        className={clsx('mt-8')}/>
         <SeriesComponent series={blogPost.series}
                          className={clsx('mt-8')}/>
-        <H1Heading className={clsx('mt-0')}>{blogPost.heading}</H1Heading>
+        <H1Heading className={clsx('mt-0')}>{blogPost.displayHeading}</H1Heading>
         {
             ((blogPost.authors || []).length > 0 || (blogPost.categories || []).length > 0)
             && <>

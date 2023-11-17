@@ -7,14 +7,14 @@ export const mapSanity = (raw: any) => {
         contentType: 'BlogAuthor',
         sysId: raw?.sysId as string,
         slug: raw?.slug as string,
-        name: raw?.name as string,
+        displayName: raw?.displayName as string,
         avatarInitials: raw?.avatarInitials as string,
         avatar: raw.avatarImage ? {
             cmsSource: 'Sanity',
             contentType: 'BodyImage',
             sysId: raw.avatarImage.sysId as string,
             align: 'left',
-            name: raw.avatarImage.name as string,
+            displayName: raw.avatarImage.name as string,
             desktopImage: {
                 alt: raw.avatarImage.alt as string,
                 caption: raw.avatarImage.caption as string,

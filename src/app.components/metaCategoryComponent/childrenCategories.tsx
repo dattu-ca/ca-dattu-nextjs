@@ -34,7 +34,7 @@ const MetaCategoryChildrenComponent = ({category}: IProps) => {
                                   )}>
                                 <div className={clsx('flex items-start gap-1')}>
                                     <MdFolder/>
-                                    <span>{category.name}</span>
+                                    <span>{category.displayName}</span>
                                 </div>
                             </Link>
                         </li>

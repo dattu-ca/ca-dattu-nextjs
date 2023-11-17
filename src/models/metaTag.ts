@@ -5,7 +5,7 @@ import {BodyPostsList} from "./bodyPostsList";
 export interface MetaTag extends BaseModel<'MetaTag'> {
     slug: string;
     preHeadingContentBlocks?: BlocksBodyContent[] | undefined;
-    name: string;
+    displayName: string;
     contentBlocks?: BlocksBodyContent[] | undefined;
 
     postsListData?: BodyPostsList | undefined;

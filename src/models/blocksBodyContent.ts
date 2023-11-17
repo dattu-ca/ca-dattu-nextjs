@@ -66,7 +66,7 @@ export type BlocksBodyContent_Column = {
 }
 
 export interface BlocksBodyContent extends BaseModel<'BlocksBodyContent'> {
-    name: string;
+    displayName: string;
     slug: string;
     blockLayout: BlocksBodyContent_BlocksLayout;
     numberOfColumns: number;

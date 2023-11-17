@@ -32,7 +32,7 @@ const ColumnTabbed = ({gaps, blocks}: IProps) => {
                                         ['daisyui-tab-active']: current === index
                                     }
                                 )}>
-                            {block.name}
+                            {block.displayName}
                         </button>
                     )
                 })

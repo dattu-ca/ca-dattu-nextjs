@@ -7,8 +7,8 @@ export const mapSanity = (raw: any) => {
         contentType: 'MetaCategory',
         sysId: raw?.sysId as string,
         slug: raw?.slug as string,
-        name: raw?.name as string,
-        parent: raw?.parentCategory,
+        displayName: raw?.displayName as string,
+        parent: raw?.parentCategory as (MetaCategory | undefined),
         preHeadingContentBlocks: mapBlocksBodyContentSanityList(raw.preHeadingContentBlocks, "PreHeadingContent"),
         contentBlocks: mapBlocksBodyContentSanityList(raw.contentBlocks, "Content"),
     }

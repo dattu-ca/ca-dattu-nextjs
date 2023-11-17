@@ -17,7 +17,7 @@ export const fetch = async (paginationConfig: PaginationConfig) => {
             isPaginated: true,
             layout: 'Excerpt',
             limitPerPage: paginationConfig.limit,
-            name: 'All Posts',
+            displayName: 'All Posts',
             paginationData: {
                 ...paginationConfig,
                 total: response.total,

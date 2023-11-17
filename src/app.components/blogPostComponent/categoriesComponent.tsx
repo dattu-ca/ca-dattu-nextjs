@@ -26,7 +26,7 @@ const CategoriesComponent = ({categories}: IProps) => {
                             'hover:after:w-0'
                         )}>
                             <MdFolder />
-                            {category.name}
+                            {category.displayName}
                         </Link>
                     </li>
                 ))

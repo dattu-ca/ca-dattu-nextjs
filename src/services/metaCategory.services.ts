@@ -88,7 +88,7 @@ export const fetchBySlug = async (slug: string, config: IConfig) => {
     let {paginationConfig} = config;
     const category = await fetchCategoryAndRelatives(slug, config);
     if (category) {
-        category.children = flattenChildren(category).sort((a, b) => a.name > b.name ? 1 : -1);
+        category.children = flattenChildren(category).sort((a, b) => a.displayName > b.displayName ? 1 : -1);
         const ids = [category.sysId, ...(category.children || []).map(child => child.sysId)];
         if (paginationConfig) {
             const response = await blogPostServices.fetchListPaginatedByReferences({
@@ -105,7 +105,7 @@ export const fetchBySlug = async (slug: string, config: IConfig) => {
                 isPaginated: true,
                 layout: 'Excerpt',
                 limitPerPage: paginationConfig.limit,
-                name: 'Articles',
+                displayName: 'Articles',
                 paginationData: {
                     ...paginationConfig,
                     total: response.total,

@@ -34,16 +34,16 @@ const MetaCategoryComponent = ({category}: IProps) => {
                         {
                             category.parent && createParentBreadCrumbs(category).reverse().map(p => <li key={p.slug}>
                                 <Link href={`/category/${p.slug}`}
-                                      className={clsx('hover:!no-underline')}>{p.name}</Link>
+                                      className={clsx('hover:!no-underline')}>{p.displayName}</Link>
                             </li>)
                         }
                     </ul>
                 </div>
-            </DefaultBlocksLayout>z
+            </DefaultBlocksLayout>
             <H1Heading>
                 <div className={clsx('flex items-start gap-1')}>
                     <div className={clsx('pt-2')}><MdFolderOpen/></div>
-                    <span>{category.name}</span>
+                    <span>{category.displayName}</span>
                 </div>
             </H1Heading>
             <MetaCategoryChildrenComponent category={category}/>

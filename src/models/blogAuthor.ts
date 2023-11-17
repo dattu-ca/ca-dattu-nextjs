@@ -7,12 +7,10 @@ import {BodyPostsList} from "./bodyPostsList";
 export interface BlogAuthor extends BaseModel<'BlogAuthor'> {
     slug: string;
     preHeadingContentBlocks?: BlocksBodyContent[] | undefined;
-    name: string;
+    displayName: string;
     avatar?: BodyImage | undefined;
     avatarInitials: string;
     contentBlocks?: BlocksBodyContent[] | undefined;
-    
     totalPosts?: number | undefined;
-
     postsListData?: BodyPostsList | undefined;
 }

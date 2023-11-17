@@ -1,5 +1,5 @@
 const bodyImages = `'': *[_type == 'bodyImages' && _id == ^._id][0]{
-          name,
+          displayName,
           maxWidth,
           maxHeight,
           align,
@@ -24,7 +24,7 @@ const bodyYouTube = `'': *[_type == 'bodyYouTube' && _id == ^._id][0]{
         }`
 
 export const preHeadingExcerptBlocksQuery = `{
-    name,
+    displayName,
     "type": _type,
     "slug": slug.current,
     "sysId": _id,
@@ -33,7 +33,7 @@ export const preHeadingExcerptBlocksQuery = `{
   }`
 
 export const preHeadingContentBlocksQuery = `{
-    name,
+    displayName,
     "type": _type,
     "slug": slug.current,
     "sysId": _id,
@@ -63,7 +63,7 @@ const bodyMarkdown = `'': *[_type == 'bodyMarkdown' && _id == ^._id][0]{
         }`
 
 export const excerptBlocksQuery = `{
-    name,
+    displayName,
     "type": _type,
     "slug": slug.current,
     "sysId": _id,
@@ -95,7 +95,7 @@ const bodyPostsList = `'': *[_type == 'bodyPostsList' && _id == ^._id][0]{
           layout,
           showName,
           postsList[] ->{
-            heading,
+            displayName,
             "type": _type,
             "slug": slug.current,
             "sysId": _id,
@@ -116,7 +116,7 @@ const contentBlock = `'': *[_type == 'contactBlock' && _id == ^._id][0]{
               contentCollection[] -> {
                 "type": _type,
                 "sysId": _id,
-                name,
+                displayName,
                 'slug': slug.current,
                 ${bodyImages},
                 ${bodyForm},
@@ -132,7 +132,7 @@ const contentBlock = `'': *[_type == 'contactBlock' && _id == ^._id][0]{
 
 
 export const contentBlocksQuery = `{
-    name,
+    displayName,
     "type": _type,
     "slug": slug.current,
     "sysId": _id,

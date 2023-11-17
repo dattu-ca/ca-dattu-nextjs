@@ -17,6 +17,8 @@ const contentBlockSchema = defineType({
             name: 'name',
             title: 'Name',
             type: 'string',
+            description: 'This is only used for slug creation and display in CMS',
+            validation: (rule) => rule.required(),
         }),
         defineField({
             name: 'slug',
@@ -26,6 +28,11 @@ const contentBlockSchema = defineType({
                 source: 'name',
             },
             validation: (rule) => rule.required(),
+        }),
+        defineField({
+            name: 'displayName',
+            title: 'Display Name',
+            type: 'string',
         }),
         defineField({
             name: 'numberOfColumns',

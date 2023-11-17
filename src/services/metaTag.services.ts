@@ -26,7 +26,7 @@ export const fetchAllActiveTags = async () => {
         }
     }
     return tags.sort((a,b) => {
-        if(a.name.toUpperCase() > b.name.toUpperCase()){
+        if(a.displayName.toUpperCase() > b.displayName.toUpperCase()){
             return 1;
         }
         return -1;
@@ -52,7 +52,7 @@ export const fetchBySlug = async (slug: string, paginationConfig?: PaginationCon
             isPaginated: true,
             layout: 'Excerpt',
             limitPerPage: paginationConfig.limit,
-            name: 'Articles',
+            displayName: 'Articles',
             paginationData: {
                 ...paginationConfig,
                 total: response.total,

@@ -6,7 +6,7 @@ import {BodyPostsList} from "~/models/bodyPostsList";
 export interface MetaCategory extends BaseModel<'MetaCategory'> {
     slug: string;
     preHeadingContentBlocks?: BlocksBodyContent[] | undefined;
-    name: string;
+    displayName: string;
     contentBlocks?: BlocksBodyContent[] | undefined;
 
     parent?: MetaCategory | undefined;

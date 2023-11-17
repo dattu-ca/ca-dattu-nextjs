@@ -31,8 +31,8 @@ const allPostsSchema = defineType({
             ]
         }),
         defineField({
-            name: 'heading',
-            title: 'Page Heading',
+            name: 'displayHeading',
+            title: 'Display Heading',
             type: 'string',
             validation: (rule) => rule.required(),
         }),

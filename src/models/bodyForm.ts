@@ -33,7 +33,7 @@ export interface BodyFormModel {
 }
 
 export interface BodyForm extends BaseModel<'BodyForm'> {
-    name?: string | undefined;
+    displayName?: string | undefined;
     formId: string;
     maxWidth?: number | undefined;
     formModel: BodyFormModel[];

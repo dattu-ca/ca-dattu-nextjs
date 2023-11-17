@@ -21,7 +21,7 @@ const HomePageComponent = ({homePage}: IProps) => {
                 'mt-8'
             )}>
             <Fragment>
-                {homePage.heading}
+                {homePage.displayHeading}
             </Fragment>
         </H1Heading>
         <BlocksBodyContentComponent blocks={homePage.contentBlocks} isExcerpts={false}/>

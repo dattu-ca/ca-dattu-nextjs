@@ -15,7 +15,7 @@ const BodyPostsListComponent = ({data}: IProps) => {
     
     return <div>
         {
-            data.showName && <p className={clsx('mb-2')}><strong><em>{data.name}:</em></strong></p>
+            data.showName && <p className={clsx('mb-2')}><strong><em>{data.displayName}:</em></strong></p>
         }
         {
             (data.layout === 'Excerpt') && <BodyPostsListExcerptsComponent data={data}/>

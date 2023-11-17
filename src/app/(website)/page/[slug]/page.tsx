@@ -27,9 +27,8 @@ export const generateMetadata = async (props: IProps) => {
     if(!data){
         return {};
     }
-    const {heading} = data;
     return {
-        title: `${heading} | Page`
+        title: `${data?.displayHeading} | Page`
     }
 }
 

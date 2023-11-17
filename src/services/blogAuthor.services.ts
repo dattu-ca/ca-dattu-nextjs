@@ -28,7 +28,7 @@ export const fetchPostsListBySlug = async (slug: string, paginationConfig: Pagin
                 isPaginated: true,
                 layout: 'Excerpt',
                 limitPerPage: paginationConfig.limit,
-                name: 'Articles',
+                displayName: 'Articles',
                 paginationData: {
                     ...paginationConfig,
                     total: response.total,

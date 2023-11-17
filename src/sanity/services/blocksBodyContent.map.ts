@@ -97,7 +97,7 @@ const mapSanity = (raw: any) => {
         sysId: raw?.sysId as string,
         contentType: 'BlocksBodyContent',
         slug: raw?.slug as string,
-        name: raw?.name as string,
+        displayName: raw?.displayName as string,
         numberOfColumns: raw?.numberOfColumns as number,
         columns: mapColumns(raw?.contentColumns, raw?.columnSizes, raw?.numberOfColumns),
         blockLayout: {
@@ -129,7 +129,7 @@ const mapDefaultBlocksBodyContent = (raw: any, type: ContentType) => {
         sysId: (Array.isArray(raw) ? raw.map(r => r.sysId).join('-') : raw?.sysId) as string,
         contentType: 'BlocksBodyContent',
         slug: raw?.slug as string,
-        name: raw?.name as string,
+        displayName: raw?.displayName as string,
         numberOfColumns: (raw?.numberOfColumns || 1) as number,
         columns: [
             {

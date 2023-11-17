@@ -7,7 +7,7 @@ import {BodyPostsList} from "~/models/bodyPostsList";
 export interface MetaSeries extends BaseModel<'MetaSeries'> {
     slug: string;
     preHeadingContentBlocks?: BlocksBodyContent[] | undefined;
-    name: string;
+    displayName: string;
     contentBlocks?: BlocksBodyContent[] | undefined;
     
     postsListData?: BodyPostsList | undefined;

@@ -7,7 +7,7 @@ export const mapSanity = (raw: any) => {
         contentType: 'MetaSeries',
         sysId: raw?.sysId as string,
         slug: raw?.slug as string,
-        name: raw?.name as string,
+        displayName: raw?.displayName as string,
         preHeadingContentBlocks: mapBlocksBodyContentSanityList(raw?.preHeadingContentBlocks, "PreHeadingContent"),
         contentBlocks: mapBlocksBodyContentSanityList(raw?.contentBlocks, "Content"),
     }

@@ -26,7 +26,7 @@ const TagsComponent = ({tags}: IProps) => {
                                   'hover:after:w-0'
                               )}>
                             <div className={clsx('flex items-start')}>
-                                <FaHashtag aria-label='#' /><span>{tag.name}</span>
+                                <FaHashtag aria-label='#' /><span>{tag.displayName}</span>
                             </div>
                              
                         </Link>

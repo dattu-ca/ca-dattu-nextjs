@@ -6,7 +6,7 @@ import {BodyPostsList} from "./bodyPostsList";
 export interface AllPosts extends BaseModel<'AllPosts'> {
     slug: string;
     preHeadingContentBlocks?: BlocksBodyContent[] | undefined;
-    heading?: string | undefined;
+    displayHeading?: string | undefined;
     contentBlocks?: BlocksBodyContent[] | undefined;
     
     postsListData?: BodyPostsList | undefined;

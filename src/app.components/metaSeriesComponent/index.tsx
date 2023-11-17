@@ -22,7 +22,7 @@ const MetaSeriesComponent = ({series}: IProps) => {
         <H1Heading className={clsx(
             'mt-8'
         )}>
-            <>{series.name}</>
+            <>{series.displayName}</>
         </H1Heading>
         <DividerComponent className={clsx(
             'mt-8'

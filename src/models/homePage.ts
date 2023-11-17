@@ -5,8 +5,8 @@ import {BodyPostsList} from "./bodyPostsList";
 
 export interface HomePage extends BaseModel<'HomePage'> {
     slug: string;
+    displayHeading?: string | undefined;
     preHeadingContentBlocks?: BlocksBodyContent[] | undefined;
-    heading?: string | undefined;
     contentBlocks?: BlocksBodyContent[] | undefined;
     
     postsListData?: BodyPostsList | undefined;

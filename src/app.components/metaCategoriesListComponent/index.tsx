@@ -20,7 +20,7 @@ const MetaCategoriesListComponent = ({categories}: IProps) => {
         return <li>
             <Link href={`/category/${category.slug}`}
                   className={clsx('inline-flex items-center gap-1')}>
-                <MdFolderOpen/> <span>{category.name} ({category.totalPosts})</span>
+                <MdFolderOpen/> <span>{category.displayName} ({category.totalPosts})</span>
             </Link>
             {
                 category.children && <ul>

@@ -25,7 +25,7 @@ const BlogAuthorHeader = ({author}: IProps) => {
                         }
                     </div>
                     <div>
-                        <h1>{author.name}</h1>
+                        <h1>{author.displayName}</h1>
                     </div>
                 </div>
             </div>

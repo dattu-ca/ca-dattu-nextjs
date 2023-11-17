@@ -20,7 +20,7 @@ export const fetchBySlug = async (slug: string) => {
             isPaginated: false,
             layout: 'Heading Only',
             limitPerPage: 0,
-            name: 'Articles',
+            displayName: 'Articles',
             posts: response.items,
             postsListIdentifier: 'Series',
             sysId: series.sysId
@@ -30,7 +30,7 @@ export const fetchBySlug = async (slug: string) => {
                 const previousAuthorSysIds = previousValue.map(author => author.sysId);
                 return [...previousValue, ...currentValue.authors.filter(author => !previousAuthorSysIds.includes(author.sysId))]
                     .sort((a, b) => {
-                        if (a.name > b.name) {
+                        if (a.displayName > b.displayName) {
                             return 1;
                         }
                         return -1;

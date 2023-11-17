@@ -8,7 +8,7 @@ export const mapSanity = (raw: any) => {
         contentType: 'BlogPage',
         sysId: raw.sysId as string,
         slug: raw.slug as string,
-        heading: raw.heading as string,
+        displayHeading: raw.displayHeading as string,
         preHeadingContentBlocks: mapBlocksBodyContentSanityList(raw.preHeadingContentBlocks, 'PreHeadingContent'),
         contentBlocks: mapBlocksBodyContentSanityList(raw.contentBlocks, "Content"),
         format: 'Standard',

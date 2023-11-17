@@ -1,14 +1,14 @@
 'use server';
-import { BodyContent } from "~/models";
-
+import {BodyContent} from "~/models";
 
 
 export const mapSanity = (raw: any) => {
-    return {
+    const target: BodyContent = {
         cmsSource: 'Sanity',
         contentType: 'BodyContent',
         sysId: raw.sysId as string,
-        name: raw.name as string,
+        displayName: raw.displayName as string,
         body: raw.description as object,
-    } as BodyContent;
+    }
+    return target;
 }
