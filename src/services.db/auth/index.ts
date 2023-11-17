@@ -1,4 +1,5 @@
 'use server';
+import dbConnect from "../dbConnect";
 import {insertInto as insertIntoUserProfile} from "~/services.db/user";
 import {AuthProfileModel, AuthProviderModel} from './schema';
 
@@ -20,14 +21,25 @@ interface IProps {
 }
 
 const fetchAuthProviderByProviderAndProviderAccountId = async (authProvider: IAuthProvider) => {
-    return AuthProviderModel.findOne({
-        provider: authProvider.provider,
-        providerAccountId: authProvider.providerAccountId
-    });
+    await dbConnect();
+    try{
+        console.log('authProvider', authProvider)
+        const result = await AuthProviderModel.findOne({
+            provider: authProvider.provider,
+            providerAccountId: authProvider.providerAccountId
+        });
+        console.log('result', result);
+        return result;
+    }
+    catch(e){
+        console.error(e);
+    }
+    return null;
 }
 
 
 const signIn = async ({authProvider, userProfile}: IProps) => {
+    await dbConnect();
     try {
         const found = await fetchAuthProviderByProviderAndProviderAccountId(authProvider);
         if (!found) {

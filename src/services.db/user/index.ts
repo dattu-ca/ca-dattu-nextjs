@@ -1,5 +1,6 @@
 'use server';
 import {UserProfileModel} from './schema'
+import dbConnect from "../dbConnect";
 
 
 interface IUserProfile {
@@ -15,6 +16,7 @@ interface IProps {
 }
 
 const insertInto = async ({userProfile, authProfileId}: IProps) => {
+    await dbConnect();
     try {
         const newUserProfile = new UserProfileModel({
             name: userProfile.name,
