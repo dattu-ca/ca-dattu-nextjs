@@ -17,18 +17,25 @@ const blogPageSchema = defineType({
     icon: BsBook,
     fields: [
         defineField({
-            name: 'entryTitle',
-            title: 'Entry Title',
-            description: 'This is only used for slug creation and display in CMS',
+            name: 'name',
+            title: 'Name',
             type: 'string',
+            description: 'This is only used for slug creation and display in CMS',
+            validation: (rule) => rule.required(),
         }),
         defineField({
             name: 'slug',
             title: 'Slug',
             type: 'slug',
             options: {
-                source: 'entryTitle',
+                source: 'name',
             },
+            validation: (rule) => rule.required(),
+        }),
+        defineField({
+            name: 'displayHeading',
+            title: 'Display Heading',
+            type: 'string',
             validation: (rule) => rule.required(),
         }),
         defineField({
@@ -44,12 +51,6 @@ const blogPageSchema = defineType({
                     ]
                 }
             ]
-        }),
-        defineField({
-            name: 'heading',
-            title: 'Page Heading',
-            type: 'string',
-            validation: (rule) => rule.required(),
         }),
         defineField({
             name: 'contentBlocks',

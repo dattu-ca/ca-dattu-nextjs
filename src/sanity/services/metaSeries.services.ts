@@ -25,7 +25,7 @@ export const fetchBySlug = async (slug: string) => {
             groq`*[_type=="series" && slug.current == $slug][0]{
                 "sysId": _id,
                 "slug": slug.current,
-                name,
+                displayName,
                 preHeadingContentBlocks[] -> ${preHeadingContentBlocksQuery},
                 contentBlocks[] -> ${contentBlocksQuery},
               }`,

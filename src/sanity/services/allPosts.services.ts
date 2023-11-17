@@ -11,7 +11,7 @@ export const fetch = async () => {
             groq`*[_type=="allPosts"][0]{
                     "sysId": _id,
                     "slug": _type,
-                    heading,
+                    displayHeading,
                     preHeadingContentBlocks[] -> ${preHeadingContentBlocksQuery},
                     contentBlocks[] -> ${contentBlocksQuery}
                 }`,

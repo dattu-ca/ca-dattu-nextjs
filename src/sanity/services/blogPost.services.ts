@@ -60,12 +60,12 @@ export const fetchActivePostsWithReference = async (reference: 'Tag' | 'Category
             ${reference === 'Tag' ? `tags[]->{
                 "sysId": _id,
                 "slug": slug.current,
-                name
+                displayName
             },` : ''}
             ${reference === 'Category' ? `categories[]->{
                 "sysId": _id,
                 "slug": slug.current,
-                name,
+                displayName,
             },` : ''}
         }`, {
             useCdn: false,
@@ -118,16 +118,16 @@ export const fetchListPaginatedByReferences = async ({
                    "sysId": _id,
                     "slug" : slug.current,
                     "datePublished": dateTime(datePublished + 'T00:00:00Z'),
-                    heading,
+                    displayHeading,
                     ${includeExcerpts ? `preHeadingExcerptBlocks[] -> ${preHeadingExcerptBlocksQuery},excerptBlocks[] -> ${excerptBlocksQuery}, ` : ''}
                     ${includeAuthors ? `authors[]->{
                                                         "sysId": _id,
                                                         "slug": slug.current,
-                                                        name,
+                                                        displayName,
                                                         avatarInitials,
                                                         "avatarImage":{
                                                           "sysId": _id,
-                                                          name,
+                                                          displayName,
                                                           "caption": avatarImage.caption,
                                                           "alt": avatarImage.alt,
                                                           "url": avatarImage.asset -> url
@@ -162,33 +162,33 @@ export const fetchBySlug = async (slug: string) => {
                 ][0]{
                 "sysId": _id,
                 "slug": slug.current,
-                heading,                
+                displayHeading,                
                 preHeadingContentBlocks[] -> ${preHeadingContentBlocksQuery},
                 contentBlocks[] -> ${contentBlocksQuery},
                 "datePublished": dateTime(datePublished + 'T00:00:00Z'),
                 series -> {
                     "sysId": _id,
                     "slug": slug.current,
-                    name
+                    displayName
                 },
                 categories[]->{
                     "sysId": _id,
                     "slug": slug.current,
-                    name
+                    displayName
                 },
                 tags[]->{
                     "sysId": _id,
                     "slug": slug.current,
-                    name
+                    displayName
                 },
                 authors[]->{
                     "sysId": _id,
                     "slug": slug.current,
-                    name,
+                    displayName,
                     avatarInitials,
                     "avatarImage":{
                       "sysId": _id,
-                      name,
+                      displayName,
                       "caption": avatarImage.caption,
                       "alt": avatarImage.alt,
                       "url": avatarImage.asset -> url

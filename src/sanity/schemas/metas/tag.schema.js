@@ -16,19 +16,25 @@ const tagSchema = defineType({
     icon: FaHashtag,
     fields: [
         defineField({
-            name: 'entryTitle',
-            title: 'Entry Title',
-            description: 'This is only used for slug creation and display in CMS',
+            name: 'name',
+            title: 'Name',
             type: 'string',
+            description: 'This is only used for slug creation and display in CMS',
+            validation: (rule) => rule.required(),
         }),
         defineField({
             name: 'slug',
             title: 'Slug',
             type: 'slug',
             options: {
-                source: 'entryTitle',
+                source: 'name',
             },
             validation: (rule) => rule.required(),
+        }),
+        defineField({
+            name: 'displayName',
+            title: 'Display Name',
+            type: 'string',
         }),
         defineField({
             name: 'preHeadingContentBlocks',
@@ -43,12 +49,6 @@ const tagSchema = defineType({
                     ]
                 }
             ]
-        }),
-        defineField({
-            name: 'name',
-            title: 'Name',
-            type: 'string',
-            validation: (rule) => rule.required(),
         }),
         defineField({
             name: 'contentBlocks',

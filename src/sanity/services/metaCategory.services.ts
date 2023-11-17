@@ -23,11 +23,11 @@ export const fetchAllCategories = async () => {
     const filter = `*[_type=="category"]{ 
         "sysId": _id,
         "slug": slug.current,
-        name,
+        displayName,
         parentCategory -> {
             "sysId": _id,
             "slug": slug.current,
-            name
+            displayName
         }
      }`
     const response = await client.fetch(
@@ -47,7 +47,7 @@ export const fetchListByReference = async (sysId: string) => {
             groq`*[_type=="category" && references($id)]{
                 "sysId": _id,
                 "slug": slug.current,
-                name,
+                displayName,
               }`,
             {
                 id: sysId,
@@ -70,11 +70,11 @@ export const fetchBySlug = async (slug: string, includeContent = false) => {
             groq`*[_type=="category" && slug.current == $slug][0]{
                 "sysId": _id,
                 "slug": slug.current,
-                name,
+                displayName,
                 parentCategory -> {
                     "sysId": _id,
                     "slug": slug.current,
-                    name
+                    displayName
                 },
                 ${includeContent
                 ? `preHeadingContentBlocks[] -> ${preHeadingContentBlocksQuery}, contentBlocks[] -> ${contentBlocksQuery},`

@@ -26,11 +26,11 @@ export const fetchBySlug = async (slug: string) => {
             groq`*[_type=="author" && slug.current == $slug][0]{
                 "sysId": _id,
                 "slug": slug.current,
-                name,
+                displayName,
                 avatarInitials,
                 "avatarImage":{
                   "sysId": _id,
-                  name,
+                  displayName,
                   "caption": avatarImage.caption,
                   "alt": avatarImage.alt,
                   "url": avatarImage.asset -> url

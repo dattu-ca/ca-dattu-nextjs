@@ -32,7 +32,7 @@ const MetaTagComponent = ({tag}: IProps) => {
             </DefaultBlocksLayout>
             <H1Heading>
                 <div className={clsx('flex items-center')}>
-                    <FaHashtag aria-label='#'/> {tag.name}
+                    <FaHashtag aria-label='#'/> {tag.displayName}
                 </div>
             </H1Heading>
         </div>

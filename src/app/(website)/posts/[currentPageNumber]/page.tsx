@@ -15,7 +15,7 @@ export const generateMetadata = async (props: IProps) => {
     const currentPage = getCurrentPageNumber(props.params);
     const allPosts = await fetchAllPosts(currentPage);
     return {
-        title: `${allPosts?.heading || 'Articles'}`
+        title: `${allPosts?.displayHeading || 'Articles'}`
     }
 
 }

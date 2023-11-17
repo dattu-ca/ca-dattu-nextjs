@@ -14,7 +14,7 @@ export const fetch = async () => {
                     logo ->{
                       "sysId": _id,
                       "slug": slug.current,
-                      name,
+                      displayName,
                       maxWidth,
                       maxHeight,
                       align,
@@ -32,7 +32,7 @@ export const fetch = async () => {
                     links -> {
                       "sysId": _id,
                       "slug": slug.current,
-                      name,
+                      displayName,
                       links
                     }
                 }`,

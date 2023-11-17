@@ -27,11 +27,11 @@ export const generateMetadata = async (props: IProps) => {
     const currentPage = getCurrentPageNumber(props.params);
     const category = await fetchBySlug(props.params.slug, currentPage)
 
-    if (!category || !category.name) {
+    if (!category || !category.displayName) {
         return {}
     }
     return {
-        title: `${category.name} | Category`
+        title: `${category.displayName} | Category`
     }
 
 }

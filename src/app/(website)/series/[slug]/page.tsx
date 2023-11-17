@@ -24,12 +24,12 @@ export const generateMetadata = async (props: IProps) => {
     const {params} = props;
     const {slug} = params;
     const series = await metaSeriesServices.fetchBySlug(props.params.slug);
-    if(!series || !series.name){
+    if(!series || !series.displayName){
         return {};
     }
-    const {name} = series;
+    const {displayName} = series;
     return {
-        title: `${name} | Series`
+        title: `${displayName} | Series`
     }
 }
 

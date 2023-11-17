@@ -18,7 +18,7 @@ const BlogPageComponent = ({blogPage}: IProps) => {
         )}>
             <H1Heading>
                 <Fragment>
-                    {blogPage.heading}
+                    {blogPage.displayHeading}
                 </Fragment>
             </H1Heading>
         </div>

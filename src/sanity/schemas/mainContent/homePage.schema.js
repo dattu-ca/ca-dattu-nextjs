@@ -17,6 +17,12 @@ const homePageSchema = defineType({
     icon: FaHome,
     fields: [
         defineField({
+            name: 'displayHeading',
+            title: 'Display Heading',
+            type: 'string',
+            validation: (rule) => rule.required(),
+        }),
+        defineField({
             name: 'preHeadingContentBlocks',
             title: 'Pre Heading Content Blocks',
             type: 'array',
@@ -29,12 +35,6 @@ const homePageSchema = defineType({
                     ]
                 }
             ]
-        }),
-        defineField({
-            name: 'heading',
-            title: 'Page Heading',
-            type: 'string',
-            validation: (rule) => rule.required(),
         }),
         defineField({
             name: 'contentBlocks',

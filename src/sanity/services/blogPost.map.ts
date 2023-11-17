@@ -1,5 +1,5 @@
 'use server';
-import {BlogPost} from "~/models";
+import {BlogPost, BlogPostFormat} from "~/models";
 import {mapSanityList as mapBlocksBodyContentSanityList} from './blocksBodyContent.map'
 import {mapSanityList as mapBlogAuthorsSanityList} from './blogAuthor.map';
 import {mapSanityList as mapMetaTagSanityList} from './metaTag.map';
@@ -12,13 +12,13 @@ export const mapSanity = (raw: any) => {
         contentType: 'BlogPost',
         sysId: raw.sysId as string,
         slug: raw.slug as string,
-        heading: raw.heading as string,
+        displayHeading: raw.displayHeading as string,
         datePublished: new Date(raw.datePublished),
         preHeadingContentBlocks: mapBlocksBodyContentSanityList(raw.preHeadingContentBlocks, "PreHeadingContent"),
-        preHeadingExcerptBlocks: mapBlocksBodyContentSanityList(raw.preHeadingExcerptBlocks, "PreHeadingExcerpt"),
         contentBlocks: mapBlocksBodyContentSanityList(raw.contentBlocks, "Content"),
+        preHeadingExcerptBlocks: mapBlocksBodyContentSanityList(raw.preHeadingExcerptBlocks, "PreHeadingExcerpt"),
         excerptBlocks: mapBlocksBodyContentSanityList(raw.excerptBlocks, "Excerpt"),
-        format: 'Standard',
+        format: raw.displayHeading as BlogPostFormat,
         authors: mapBlogAuthorsSanityList(raw.authors),
         series: mapMetaSeriesSanity(raw.series),
         categories: mapMetaCategorySanityList(raw.categories),

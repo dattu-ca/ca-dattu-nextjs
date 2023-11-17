@@ -21,24 +21,44 @@ const blogPostSchema = defineType({
     icon: FaScroll,
     fields: [
         defineField({
-            name: 'entryTitle',
-            title: 'Entry Title',
-            description: 'This is only used for slug creation and display in CMS',
+            name: 'name',
+            title: 'Name',
             type: 'string',
+            description: 'This is only used for slug creation and display in CMS',
+            validation: (rule) => rule.required(),
         }),
         defineField({
             name: 'slug',
             title: 'Slug',
             type: 'slug',
             options: {
-                source: 'entryTitle',
+                source: 'name',
             },
+            validation: (rule) => rule.required(),
+        }),
+        defineField({
+            name: 'displayHeading',
+            title: 'Display Heading',
+            type: 'string',
             validation: (rule) => rule.required(),
         }),
         defineField({
             name: 'datePublished',
             title: 'Date Published',
             type: 'date',
+        }),
+        defineField({
+            name: 'publishStatus',
+            title: 'Publish Status',
+            type: 'string',
+            initialValue: 'Draft',
+            options: {
+                list: [
+                    {title: 'Draft', value: 'Draft'},
+                    {title: 'Published', value: 'Published'},
+                ]
+            },
+            validation: (rule) => rule.required(),
         }),
         defineField({
             name: 'format',
@@ -58,19 +78,6 @@ const blogPostSchema = defineType({
             validation: (rule) => rule.required(),
         }),
         defineField({
-            name: 'publishStatus',
-            title: 'Publish Status',
-            type: 'string',
-            initialValue: 'Draft',
-            options: {
-                list: [
-                    {title: 'Draft', value: 'Draft'},
-                    {title: 'Published', value: 'Published'},
-                ]
-            },
-            validation: (rule) => rule.required(),
-        }),
-        defineField({
             name: 'preHeadingContentBlocks',
             title: 'Pre Heading Content Blocks',
             type: 'array',
@@ -83,26 +90,6 @@ const blogPostSchema = defineType({
                     ]
                 }
             ]
-        }),
-        defineField({
-            name: 'preHeadingExcerptBlocks',
-            title: 'Pre Heading Excerpt Blocks',
-            type: 'array',
-            of: [
-                {
-                    type: 'reference',
-                    to: [
-                        {type: bodyYouTubeSchema.name},
-                        {type: bodyImagesSchema.name},
-                    ]
-                }
-            ]
-        }),
-        defineField({
-            name: 'heading',
-            title: 'Heading',
-            type: 'string',
-            validation: (rule) => rule.required(),
         }),
         defineField({
             name: 'contentBlocks',
@@ -121,6 +108,20 @@ const blogPostSchema = defineType({
                         {type: bodyPostsListSchema.name},
                         {type: bodyCodeSchema.name},
                         {type: contentBlockSchema.name},
+                    ]
+                }
+            ]
+        }),
+        defineField({
+            name: 'preHeadingExcerptBlocks',
+            title: 'Pre Heading Excerpt Blocks',
+            type: 'array',
+            of: [
+                {
+                    type: 'reference',
+                    to: [
+                        {type: bodyYouTubeSchema.name},
+                        {type: bodyImagesSchema.name},
                     ]
                 }
             ]

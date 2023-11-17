@@ -26,7 +26,7 @@ const MetaTagsListComponent = ({tags}: IProps) => {
                     {
                         tags.map(tag => (
                             <li key={tag.slug}><Link href={`/tag/${tag.slug}`} className={clsx('inline-flex items-center gap-1')}>
-                                <FaHashtag aria-label='#'/> <span>{tag.name} ({tag.totalPosts})</span>
+                                <FaHashtag aria-label='#'/> <span>{tag.displayName} ({tag.totalPosts})</span>
                             </Link></li>))
                     }
                 </DefaultBlocksLayout>

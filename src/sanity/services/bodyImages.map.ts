@@ -1,14 +1,14 @@
 import {BodyImage, IImage} from "~/models";
 
 export const mapSanity = (raw: any) => {
-    return {
+    const target: BodyImage = {
         cmsSource: 'Sanity',
         contentType: 'BodyImage',
         sysId: raw.sysId as string,
         align: raw.align as "left" | "right" | "center",
         maxWidth: raw.maxWidth !== 'none' ? raw.maxWidth as number : undefined,
         maxHeight: raw.maxHeight !== 'none' ? raw.maxHeight as number : undefined,
-        name: raw.name as string,
+        displayName: raw.displayName as string,
         border: raw.border as boolean ?? false,
         shadow: raw.shadow as boolean ?? false,
         shape: raw.shape as string ?? '',
@@ -24,5 +24,6 @@ export const mapSanity = (raw: any) => {
         } as IImage,
         linkUrl: raw.linkUrl,
         linkTarget: raw.linkTarget ? '_blank' : '_self',
-    } as BodyImage;
+    }
+    return target;
 }

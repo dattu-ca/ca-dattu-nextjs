@@ -6,7 +6,7 @@ export type PostsListIdentifierType = "All" | "Post" | "Series" | "Category" | "
 export type PostsListLayoutType = 'Excerpt' | 'Full Post' | 'Heading Only';
 
 export interface BodyPostsList extends BaseModel<'BodyPostsList'> {
-    name?: string | undefined;
+    displayName?: string | undefined;
     showName?: boolean | undefined;
     postsListIdentifier: PostsListIdentifierType;
     limitPerPage: number;

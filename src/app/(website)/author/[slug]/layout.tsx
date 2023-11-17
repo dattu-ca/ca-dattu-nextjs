@@ -18,9 +18,8 @@ export const generateMetadata = async ({params}: IProps) => {
     if (!blogAuthor) {
         return {};
     }
-    const {name} = blogAuthor;
     return {
-        title: `${name} | Author`
+        title: `${blogAuthor?.displayName} | Author`
     }
 }
 

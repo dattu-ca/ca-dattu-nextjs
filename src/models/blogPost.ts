@@ -10,13 +10,13 @@ export type BlogPostFormat = 'Standard' | 'Aside' | 'Image' | 'Video' | 'Quote' 
 
 export interface BlogPost extends BaseModel<'BlogPost'> {
     slug: string;
+    displayHeading?: string | undefined;
     datePublished: Date;
-    format: BlogPostFormat;
     publishStatus?: string | undefined;
+    format: BlogPostFormat;
     preHeadingContentBlocks?: BlocksBodyContent[] | undefined;
-    preHeadingExcerptBlocks?: BlocksBodyContent[] | undefined;
-    heading?: string | undefined;
     excerptBlocks?: BlocksBodyContent[] | undefined;
+    preHeadingExcerptBlocks?: BlocksBodyContent[] | undefined;
     contentBlocks?: BlocksBodyContent[] | undefined;
     authors: BlogAuthor[];
     series: MetaSeries;

@@ -14,7 +14,7 @@ const BodyPostsListHeadingsOnlyComponent = ({data}: IProps) => {
                 {
                     (data.posts || []).map((post) => (
                         <li key={post.slug}>
-                            <Link href={`/post/${post.slug}`}>{post.heading}</Link>
+                            <Link href={`/post/${post.slug}`}>{post.displayHeading}</Link>
                         </li>
                     ))
                 }

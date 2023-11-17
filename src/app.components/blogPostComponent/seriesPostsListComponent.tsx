@@ -12,7 +12,7 @@ const SeriesPostsListComponent = ({series, currentPostSlug}: IProps) => {
         return null;
     }
     return <>
-        <h4>Series: <Link href={`/series/${series.slug}`}>{series.name}</Link></h4>
+        <h4>Series: <Link href={`/series/${series.slug}`}>{series.displayName}</Link></h4>
         <p>Other articles in this series are as follows:</p>
         <ol>
             {
@@ -20,8 +20,8 @@ const SeriesPostsListComponent = ({series, currentPostSlug}: IProps) => {
                     <li key={post.slug}>
                         {
                             currentPostSlug === post.slug
-                                ? <span>{post.heading}</span>
-                                : <Link href={`/post/${post.slug}`}>{post.heading}</Link>
+                                ? <span>{post.displayHeading}</span>
+                                : <Link href={`/post/${post.slug}`}>{post.displayHeading}</Link>
                         }
                     </li>
                 ))

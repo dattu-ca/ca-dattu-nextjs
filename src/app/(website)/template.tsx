@@ -5,14 +5,9 @@ import React from "react";
 export default function Template({ children }: { children: React.ReactNode }) {
     return (
         <motion.div
-            initial={{ x: 300, opacity: 0 }}
-            animate={{ x: 0, opacity: 1 }}
-            exit={{ x: 300, opacity: 0 }}
-            transition={{
-                type: "just",
-                stiffness: 260,
-                damping: 20,
-            }}
+            initial={{ opacity: 0, scale: 1 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{ duration: 0.5 }}
         >
             {children}
         </motion.div>

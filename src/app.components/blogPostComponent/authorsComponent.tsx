@@ -32,7 +32,7 @@ const AuthorsComponent = ({authors}: IProps) => {
                             }
                         </div>
                         <Link href={`/author/${author.slug}`}>
-                            <span>{author.name}</span>
+                            <span>{author.displayName}</span>
                         </Link>
                     </div>
 

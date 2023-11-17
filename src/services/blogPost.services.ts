@@ -19,7 +19,7 @@ export const fetchBySlug = async (slug: string) => {
             isPaginated: false,
             layout: 'Heading Only',
             limitPerPage: 0,
-            name: 'Series Articles',
+            displayName: 'Series Articles',
             posts: response.items,
             postsListIdentifier: "Post",
             sysId: post.sysId

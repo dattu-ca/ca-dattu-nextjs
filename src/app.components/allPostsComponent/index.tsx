@@ -22,7 +22,7 @@ const AllPostsComponent = ({allPosts}: IProps) => {
                 'mt-8'
             )}>
             <Fragment>
-                {allPosts.heading}
+                {allPosts.displayHeading}
             </Fragment>
         </H1Heading>
         <BlocksBodyContentComponent blocks={allPosts.contentBlocks} isExcerpts={false}/>

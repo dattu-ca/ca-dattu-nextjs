@@ -9,6 +9,6 @@ export interface ILink extends BaseModel<'Link'> {
 }
 
 export interface BodyLinks extends BaseModel<'BodyLinks'> {
-    name?: string | undefined;
+    displayName?: string | undefined;
     links: ILink[]
 }

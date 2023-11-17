@@ -4,11 +4,11 @@ import { mapSanityList as mapBlogPostsListSanity } from './blogPost.map';
 
 
 export const mapSanity = (raw: any) => {
-    const target: Partial<BodyPostsList> = {
+    const target: BodyPostsList = {
         cmsSource: 'Sanity',
         contentType: 'BodyPostsList',
         sysId: raw.sysId as string,
-        name: raw.name as string,
+        displayName: raw.displayName as string,
         showName: Boolean(raw.showName),
         limitPerPage: 0,
         isPaginated: false,
@@ -16,5 +16,5 @@ export const mapSanity = (raw: any) => {
         layout: raw.layout as PostsListLayoutType,
         posts: mapBlogPostsListSanity(raw.postsList)
     };
-    return target as BodyPostsList;
+    return target;
 }

@@ -16,7 +16,7 @@ const SeriesComponent = ({className, series}: IProps) => {
                     'flex items-center justify-start gap-1'
                 )}>
                     <strong><em>Series:</em></strong>
-                    <Link href={`/series/${series.slug}`}>{series.name}</Link>
+                    <Link href={`/series/${series.slug}`}>{series.displayName}</Link>
                 </div>
             </DefaultBlocksLayout>
         }
