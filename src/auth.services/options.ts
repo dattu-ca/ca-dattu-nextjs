@@ -55,7 +55,7 @@ export const nextAuthOptions: NextAuthOptions = {
                     userProfile.familyName = p.family_name;
                     userProfile.email = p.email;
                 }
-                authDbServices.signIn({authProvider, userProfile}).then(r => r);
+                // authDbServices.signIn({authProvider, userProfile}).then(r => r);
                 return true;
             } catch (err) {
                 console.error('Error in the signin callback', err);
