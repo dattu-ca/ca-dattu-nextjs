@@ -169,6 +169,14 @@ const NavbarContextProvider = ({children, navbar: rawNavbar, session}: INavbarCo
                 target: "_self"
             });
             items.push({
+                sysId: 'revalidate',
+                id: 'revalidate',
+                contentType: 'Link',
+                url: '/revalidate',
+                label: 'Revalidate',
+                target: "_self"
+            });
+            items.push({
                 sysId: 'cms',
                 id: 'cms',
                 contentType: 'Link',
