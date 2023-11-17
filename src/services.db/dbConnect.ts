@@ -5,7 +5,7 @@ declare global {
     var mongoose: any // This must be a `var` and not a `let / const`
 }
 
-const MONGODB_URI = String.raw`mongodb+srv://${SERVER_CONFIG.MONGO_DB.USERNAME}:${SERVER_CONFIG.MONGO_DB.PASSWORD}@${SERVER_CONFIG.MONGO_DB.DATABASE}.mongodb.net/${SERVER_CONFIG.SERVER_CONSTANTS.ENVIRONMENT}?retryWrites=true&w=majority`
+const MONGODB_URI =  SERVER_CONFIG.MONGO_DB.MONGODB_URI; //String.raw`mongodb+srv://${SERVER_CONFIG.MONGO_DB.USERNAME}:${SERVER_CONFIG.MONGO_DB.PASSWORD}@${SERVER_CONFIG.MONGO_DB.DATABASE}.mongodb.net/${SERVER_CONFIG.SERVER_CONSTANTS.ENVIRONMENT}?retryWrites=true&w=majority`
 
 if (!MONGODB_URI) {
     throw new Error(
