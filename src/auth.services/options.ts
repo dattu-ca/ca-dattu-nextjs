@@ -21,13 +21,13 @@ export const nextAuthOptions: NextAuthOptions = {
             clientId: SERVER_CONFIG.GOOGLE_AUTH.CLIENT_ID,
             clientSecret: SERVER_CONFIG.GOOGLE_AUTH.CLIENT_SECRET,
         }),
-        // GitHubProvider({
-        //     clientId: SERVER_CONFIG.GITHUB_AUTH.ID,
-        //     clientSecret: SERVER_CONFIG.GITHUB_AUTH.SECRET,
-        // })
+        GitHubProvider({
+            clientId: SERVER_CONFIG.GITHUB_AUTH.ID,
+            clientSecret: SERVER_CONFIG.GITHUB_AUTH.SECRET,
+        })
     ],
     callbacks: {
-        signIn: ({user, account, profile, email, credentials}) => {
+        signIn: async ({user, account, profile, email, credentials}) => {
             try {
                 if (!account?.provider || !account?.providerAccountId) {
                     return false;
@@ -55,8 +55,8 @@ export const nextAuthOptions: NextAuthOptions = {
                     userProfile.familyName = p.family_name;
                     userProfile.email = p.email;
                 }
-                // authDbServices.signIn({authProvider, userProfile}).then(r => r);
-                return true;
+                const result = await authDbServices.signIn({authProvider, userProfile}).then(r => r);
+                return Boolean(result);
             } catch (err) {
                 console.error('Error in the signin callback', err);
             }
@@ -65,11 +65,11 @@ export const nextAuthOptions: NextAuthOptions = {
         },
         jwt: async (params) => {
             const {token, account} = params;
-            // if (account) {
-            //     const result = await authDbServices.fetchAuthProfileIdFromProviderData(account.provider, account.providerAccountId);
-            //     (token as IToken).authProfileId = result?.authProfileId;
-            //     (token as IToken).authProviderId = result?.authProviderId;
-            // }
+            if (account) {
+                const result = await authDbServices.fetchAuthProfileIdFromProviderData(account.provider, account.providerAccountId);
+                (token as IToken).authProfileId = result?.authProfileId;
+                (token as IToken).authProviderId = result?.authProviderId;
+            }
             return token;
         },
         session: async ({session, token, user}) => {
