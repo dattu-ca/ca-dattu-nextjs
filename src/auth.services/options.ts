@@ -7,10 +7,12 @@ import {authDbServices} from "~/services.db";
 
 interface ISession extends Session {
     authProfileId: string;
+    authProviderId: string;
 }
 
 interface IToken extends JWT {
     authProfileId: string;
+    authProviderId: string;
 }
 
 export const nextAuthOptions: NextAuthOptions = {
@@ -25,7 +27,7 @@ export const nextAuthOptions: NextAuthOptions = {
         // })
     ],
     callbacks: {
-        signIn: async ({user, account, profile, email, credentials}) => {
+        signIn: ({user, account, profile, email, credentials}) => {
             try {
                 if (!account?.provider || !account?.providerAccountId) {
                     return false;
@@ -52,9 +54,9 @@ export const nextAuthOptions: NextAuthOptions = {
                     userProfile.givenName = p.given_name;
                     userProfile.familyName = p.family_name;
                     userProfile.email = p.email;
-                }                
-                const result = await authDbServices.signIn({ authProvider, userProfile });
-                return Boolean(result);
+                }
+                authDbServices.signIn({authProvider, userProfile}).then(r => r);
+                return true;
             } catch (err) {
                 console.error('Error in the signin callback', err);
             }
@@ -64,13 +66,16 @@ export const nextAuthOptions: NextAuthOptions = {
         jwt: async (params) => {
             const {token, account} = params;
             if (account) {
-                (token as IToken).authProfileId = await authDbServices.fetchAuthProfileIdFromProviderData(account.provider, account.providerAccountId);
+                const result = await authDbServices.fetchAuthProfileIdFromProviderData(account.provider, account.providerAccountId);
+                (token as IToken).authProfileId = result?.authProfileId;
+                (token as IToken).authProviderId = result?.authProviderId;
             }
             return token;
         },
         session: async ({session, token, user}) => {
             delete session.user;
             (session as ISession).authProfileId = (token as IToken).authProfileId;
+            (session as ISession).authProviderId = (token as IToken).authProviderId;
             return session;
         },
     },

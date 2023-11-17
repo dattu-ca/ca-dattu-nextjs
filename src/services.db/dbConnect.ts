@@ -8,8 +8,6 @@ declare global {
 // SERVER_CONFIG.MONGO_DB.MONGODB_URI;
 const MONGODB_URI =  String.raw`mongodb+srv://${SERVER_CONFIG.MONGO_DB.USERNAME}:${SERVER_CONFIG.MONGO_DB.PASSWORD}@${SERVER_CONFIG.MONGO_DB.DATABASE}.mongodb.net/${SERVER_CONFIG.SERVER_CONSTANTS.ENVIRONMENT}?retryWrites=true&w=majority`
 
-console.log(MONGODB_URI)
-
 if (!MONGODB_URI) {
     throw new Error(
         'Please define the MONGODB_URI environment variables inside .env.local'

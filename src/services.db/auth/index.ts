@@ -59,7 +59,10 @@ const fetchAuthProfileIdFromProviderData = async (provider: string, providerAcco
         providerAccountId: providerAccountId
     });
     if (found) {
-        return found.id;
+        return {
+            authProviderId: found.id,
+            authProfileId: found.authProfile
+        };
     }
     return null;
 }
