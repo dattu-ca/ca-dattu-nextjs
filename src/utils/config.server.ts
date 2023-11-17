@@ -17,7 +17,7 @@ const MONGO_DB = Object.freeze({
     USERNAME: process.env.MONGODB_USERNAME as string,
     PASSWORD: process.env.MONGODB_PASSWORD as string,
     DATABASE: process.env.MONGODB_DATABASE as string,
-    MONGODB_URI: process.env.MONGODB_URI as string,
+    // MONGODB_URI: process.env.MONGODB_URI as string,
 });
 
 const CONTENT_CONFIG = Object.freeze({

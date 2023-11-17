@@ -61,18 +61,18 @@ export const nextAuthOptions: NextAuthOptions = {
 
             return false;
         },
-        // jwt: async (params) => {
-        //     const {token, account} = params;
-        //     if (account) {
-        //         (token as IToken).authProfileId = await authDbServices.fetchAuthProfileIdFromProviderData(account.provider, account.providerAccountId);
-        //     }
-        //     return token;
-        // },
-        // session: async ({session, token, user}) => {
-        //     delete session.user;
-        //     (session as ISession).authProfileId = (token as IToken).authProfileId;
-        //     return session;
-        // },
+        jwt: async (params) => {
+            const {token, account} = params;
+            if (account) {
+                (token as IToken).authProfileId = await authDbServices.fetchAuthProfileIdFromProviderData(account.provider, account.providerAccountId);
+            }
+            return token;
+        },
+        session: async ({session, token, user}) => {
+            delete session.user;
+            (session as ISession).authProfileId = (token as IToken).authProfileId;
+            return session;
+        },
     },
     pages: {
         signIn: '/login',
