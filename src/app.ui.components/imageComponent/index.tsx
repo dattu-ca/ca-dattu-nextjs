@@ -43,8 +43,8 @@ const ImageComponent = ({image}: IProps) => {
                           }
                       )}
                       style={{
-                          maxWidth: image.maxWidth || 'auto',
-                          maxHeight: image.maxHeight || 'auto'
+                          maxWidth: image.maxWidth || 'unset',
+                          maxHeight: image.maxHeight || 'unset'
                       }}
                       sizes="100vw"
             // srcSet={srcSet.join(', ')}

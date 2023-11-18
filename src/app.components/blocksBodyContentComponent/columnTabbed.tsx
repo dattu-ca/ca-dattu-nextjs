@@ -2,15 +2,14 @@
 import {useState} from 'react';
 import clsx from "clsx";
 import {BlocksBodyContentBlock} from "./block";
-import {BlocksBodyContent_ContentType, BlocksBodyContent_Gap, BlocksBodyContent_LayoutType} from "~/models";
+import {BlocksBodyContent_ContentType} from "~/models";
 
 
 interface IProps {
     blocks: BlocksBodyContent_ContentType[];
-    gaps: BlocksBodyContent_Gap;
 }
 
-const ColumnTabbed = ({gaps, blocks}: IProps) => {
+const ColumnTabbed = ({ blocks}: IProps) => {
 
     const [current, setCurrent] = useState(0);
     return <div className={clsx(

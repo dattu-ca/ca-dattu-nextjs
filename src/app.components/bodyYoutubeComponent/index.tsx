@@ -7,7 +7,7 @@ interface IProps {
 }
 
 const BodyYoutubeComponent = ({data}: IProps) => {
-    return <div className={clsx()}>
+    return <div className={clsx('w-full h-full')}>
         <YoutubeIFrameComponent data={data}/>
     </div>
 }
