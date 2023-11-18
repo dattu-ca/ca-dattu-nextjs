@@ -11,7 +11,7 @@ const AuthorsComponent = ({authors}: IProps) => {
         <ul className={clsx(
             'space-y-0',
             'list-none',
-            'flex gap-4 items-center justify-start',
+            'flex gap-4 items-center justify-start flex-wrap',
         )}>{
             authors.map(author => (
                 <li key={author.slug}>
