@@ -19,14 +19,14 @@ const CategoriesComponent = ({categories}: IProps) => {
                     <li key={category.slug}>
                         <Link href={`/category/${category.slug}`}
                         className={clsx(
-                            'normal-case',
+                            'normal-case text-sm',
                             'daisyui-btn daisyui-btn-sm',
                             'text-zinc-600 dark:text-zinc-400',
                             'bg-zinc-50 dark:bg-black',
-                            'hover:after:w-0'
+                            'hover:after:w-0',
                         )}>
-                            <MdFolder />
-                            {category.displayName}
+                            <MdFolder className={clsx('translate-y-0')} />
+                            <span>{category.displayName}</span>
                         </Link>
                     </li>
                 ))

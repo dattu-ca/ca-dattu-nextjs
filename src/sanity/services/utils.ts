@@ -95,7 +95,7 @@ const bodyPostsList = `'': *[_type == 'bodyPostsList' && _id == ^._id][0]{
           layout,
           showName,
           postsList[] ->{
-            displayName,
+            displayHeading,
             "type": _type,
             "slug": slug.current,
             "sysId": _id,

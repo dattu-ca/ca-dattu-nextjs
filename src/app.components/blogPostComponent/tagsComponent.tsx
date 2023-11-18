@@ -13,7 +13,7 @@ const TagsComponent = ({tags}: IProps) => {
         <ul className={clsx(
             'space-y-0',
             'list-none',
-            'flex gap-4 items-center justify-start',
+            'flex gap-4 items-center justify-start flex-wrap',
         )}>
             {
                 tags.map(tag => (
@@ -25,8 +25,8 @@ const TagsComponent = ({tags}: IProps) => {
                                   'dark:border-white dark:text-white dark:hover:text-black',
                                   'hover:after:w-0'
                               )}>
-                            <div className={clsx('flex items-start')}>
-                                <FaHashtag aria-label='#' /><span>{tag.displayName}</span>
+                            <div className={clsx('flex gap-1 items-start text-left')}>
+                                <FaHashtag aria-label='#' className={clsx('translate-y-1')} /><span>{tag.displayName}</span>
                             </div>
                              
                         </Link>
