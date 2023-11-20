@@ -11,7 +11,7 @@ interface IProps {
 const DividerComponent = ({className, allFormats, children}: IProps) => {
     return <div className={className}>
         <DefaultBlocksLayout allFormats={allFormats || 'Default'}>
-            <div className="daisyui-divider"></div>
+            <div className="daisyui-divider" data-testid='daisyui-divider'></div>
         </DefaultBlocksLayout>
         {
             children && (
@@ -20,7 +20,7 @@ const DividerComponent = ({className, allFormats, children}: IProps) => {
                         {children}
                     </DefaultBlocksLayout>
                     <DefaultBlocksLayout allFormats={allFormats || 'Default'}>
-                        <div className="daisyui-divider"></div>
+                        <div className="daisyui-divider" data-testid='daisyui-divider'></div>
                     </DefaultBlocksLayout>
                 </>
             )
