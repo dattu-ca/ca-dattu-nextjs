@@ -6,7 +6,8 @@ interface IProps {
 }
 
 const YoutubeIFrameComponent = ({data}: IProps) => {
-    return <iframe src={`https://www.youtube.com/embed/${data.videoId}`}
+    return <iframe data-testid='YouYube-iframe-component'
+                   src={`https://www.youtube.com/embed/${data.videoId}`}
                    title={data.displayName}
                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
                    allowFullScreen

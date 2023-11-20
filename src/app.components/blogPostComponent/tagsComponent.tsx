@@ -21,7 +21,7 @@ const TagsComponent = ({tags}: IProps) => {
                         <Link href={`/tag/${tag.slug}`}
                               className={clsx(
                                   'normal-case text-sm',
-                                  'daisyui-btn daisyui-btn-outline daisyui-btn-sm',
+                                  'daisyui-btn daisyui-btn-outline daisyui-btn-sm ',
                                   'dark:border-white dark:text-white dark:hover:text-black',
                                   'hover:after:w-0'
                               )}>

@@ -8,7 +8,8 @@ interface IProps {
 const RootLayoutComponent = ({children}: IProps) => {
     return (
         <Fragment>
-            <div className={clsx(
+            <div data-testid='scaffolding-blueprint'
+                 className={clsx(
                 'fixed inset-0 flex justify-center sm:px-8'
             )}>
                 <div className={clsx(
@@ -22,7 +23,8 @@ const RootLayoutComponent = ({children}: IProps) => {
                     )}/>
                 </div>
             </div>
-            <div className={clsx(
+            <div data-testid='scaffolding-content'
+                 className={clsx(
                 'flex w-full items-stretch'
             )}>
                 <div className={clsx(

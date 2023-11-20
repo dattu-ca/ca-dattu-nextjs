@@ -6,7 +6,8 @@ interface IProps {
 
 const SkipLink = ({skipToId}: IProps) => {
     return <div>
-        <a href={`#${skipToId}`}
+        <a data-testid='link-skiplink'
+            href={`#${skipToId}`}
            className={clsx(
                'transition-all ',
                'fixed z-[999] ',

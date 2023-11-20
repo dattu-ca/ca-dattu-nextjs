@@ -79,16 +79,19 @@
         @apply space-y-2;
         @apply text-gray-500  dark:text-gray-400;
         @apply list-disc list-inside;
+        @apply mb-2;
     }
 
     ol, .ol {
         @apply space-y-2;
         @apply text-gray-500  dark:text-gray-400;
         @apply list-decimal list-inside;
+        @apply mb-2;
     }
     li {
         > ul, .ul, ol, .ol {
             @apply pl-8;
+            @apply mb-0;
         }
         > ul, .ul {
             list-style-type: circle;
