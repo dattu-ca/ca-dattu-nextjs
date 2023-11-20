@@ -45,9 +45,9 @@ interface IProps {
 
 const RootLayout = async ({children}: IProps) => {
     await dbConnect();
+    const session = await getAuthSession();
     const navbar = await siteNavbarServices.fetch();
     const footer = await siteFooterServices.fetch();
-    const session = await getAuthSession();
     return (
         <html lang="en" suppressHydrationWarning className='h-full antialiased'>
         <head>

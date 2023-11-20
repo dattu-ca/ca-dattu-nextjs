@@ -149,61 +149,11 @@ const NavbarContextProvider = ({children, navbar: rawNavbar, session}: INavbarCo
         setMobileSubMenuOpenIds([]);
     }, [])
 
-    const authLinks = useMemo(() => {
-        const items: ILink[] = []
-        if (session) {
-            items.push({
-                sysId: 'dashboard',
-                id: 'dashboard',
-                contentType: 'Link',
-                url: '/dashboard',
-                label: 'Dashboard',
-                target: "_self"
-            });
-            items.push({
-                sysId: 'profile',
-                id: 'profile',
-                contentType: 'Link',
-                url: '/profile',
-                label: 'Profile',
-                target: "_self"
-            });
-            items.push({
-                sysId: 'revalidate',
-                id: 'revalidate',
-                contentType: 'Link',
-                url: '/revalidate',
-                label: 'Revalidate',
-                target: "_self"
-            });
-            items.push({
-                sysId: 'cms',
-                id: 'cms',
-                contentType: 'Link',
-                url: '/cms',
-                label: 'CMS',
-                target: "_blank"
-            });
-            items.push({
-                sysId: 'logout',
-                id: 'logout',
-                contentType: 'Link',
-                url: '/logout',
-                label: 'Logout',
-                target: "_self"
-            });
-        } else {
-            items.push({
-                sysId: 'login',
-                id: 'login',
-                contentType: 'Link',
-                url: '/login',
-                label: 'Login',
-                target: "_self"
-            });
-        }
-        return items;
-    }, [session])
+    const authLinks: ILink[] = useMemo(() => {
+        return session
+            ? navbar.showLinksAdminAuthenticated ? navbar.linksAdminAuthenticated.links : []
+            : navbar.showLinksAdminUnauthenticated ? navbar.linksAdminUnauthenticated.links : [];
+    }, [session, navbar])
 
     const props = useMemo<INavbarContextProps>(() => ({
         ctxData: {

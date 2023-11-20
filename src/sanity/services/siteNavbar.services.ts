@@ -34,6 +34,20 @@ export const fetch = async () => {
                       "slug": slug.current,
                       displayName,
                       links
+                    },
+                    showLinksAdminUnauthenticated,
+                    linksAdminUnauthenticated -> {
+                      "sysId": _id,
+                      "slug": slug.current,
+                      displayName,
+                      links
+                    },
+                    showLinksAdminAuthenticated,
+                    linksAdminAuthenticated -> {
+                      "sysId": _id,
+                      "slug": slug.current,
+                      displayName,
+                      links
                     }
                 }`,
             {

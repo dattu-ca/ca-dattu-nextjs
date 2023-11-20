@@ -1,11 +1,11 @@
 'use client';
 import clsx from "clsx";
 import Link from "next/link";
-import { FaUserGear, FaCaretDown } from "react-icons/fa6";
-import { ILink } from "~/models";
-import { useNavbarContext } from "../context";
-import { MenuDesktopSubmenu } from "./subMenu";
-import { ClickAwayListener } from "@mui/base";
+import {FaUserGear, FaCaretDown} from "react-icons/fa6";
+import {ILink} from "~/models";
+import {useNavbarContext} from "../context";
+import {MenuDesktopSubmenu} from "./subMenu";
+import {ClickAwayListener} from "@mui/base";
 
 
 const MenuDesktop = () => {
@@ -24,8 +24,8 @@ const MenuDesktop = () => {
         }
     } = useNavbarContext();
     return <ClickAwayListener onClickAway={() => closeSubMenu(null)}
-        mouseEvent="onMouseDown"
-        touchEvent="onTouchStart">
+                              mouseEvent="onMouseDown"
+                              touchEvent="onTouchStart">
         <ul
             className={clsx(
                 'flex',
@@ -75,51 +75,56 @@ const MenuDesktop = () => {
                                 {
                                     Array.isArray(link?.links) && link.links.length > 0 &&
                                     <button onClick={() => toggleSubMenu(link.id)}
-                                        aria-label={subMenuOpenId === link.id ? `Close sub menu for ${link.label}` : `Open sub menu for ${link.label}`}
-                                        className={clsx(
-                                            'px-1'
-                                        )}>
+                                            aria-label={subMenuOpenId === link.id ? `Close sub menu for ${link.label}` : `Open sub menu for ${link.label}`}
+                                            className={clsx(
+                                                'px-1'
+                                            )}>
                                         <FaCaretDown className={clsx(
                                             'transition',
                                             {
                                                 ['rotate-180']: subMenuOpenId === link.id
                                             }
-                                        )} />
+                                        )}/>
                                     </button>
                                 }
                             </div>
                             {
                                 Array.isArray(link?.links) && link.links.length > 0
-                                && <MenuDesktopSubmenu id={link.id} links={link.links as ILink[]} />
+                                && <MenuDesktopSubmenu id={link.id} links={link.links as ILink[]}/>
                             }
                         </div>
                     </li>
                 ))
             }
-            <li className={clsx(
-                '!m-0'
-            )}
-                onMouseOver={() => openSubMenu('authMenu')}>
-                <div className={clsx(
-                    'relative',
-                )}>
-                    <button
-                        className={clsx(
-                            'relative block px-3 py-2 transition ',
-                            'hover:text-teal-500',
-                            'dark:hover:text-teal-400',
-                        )}
-                        onClick={() => toggleSubMenu('authMenu')}
-                        aria-label={subMenuOpenId === 'authMenu' ? `Close sub menu for User Management` : `Open sub menu for User Management`}>
-                        <FaUserGear className={clsx(
-                            'w-4 h-4'
-                        )} />
-                    </button>
-                    <MenuDesktopSubmenu id={'authMenu'} links={authLinks} />
-                </div>
-            </li>
+            {
+                authLinks.length > 0 && (
+                    <li className={clsx(
+                        '!m-0'
+                    )}
+                        onMouseOver={() => openSubMenu('authMenu')}>
+                        <div className={clsx(
+                            'relative',
+                        )}>
+                            <button
+                                className={clsx(
+                                    'relative block px-3 py-2 transition ',
+                                    'hover:text-teal-500',
+                                    'dark:hover:text-teal-400',
+                                )}
+                                onClick={() => toggleSubMenu('authMenu')}
+                                aria-label={subMenuOpenId === 'authMenu' ? `Close sub menu for User Management` : `Open sub menu for User Management`}>
+                                <FaUserGear className={clsx(
+                                    'w-4 h-4'
+                                )}/>
+                            </button>
+                            <MenuDesktopSubmenu id={'authMenu'} links={authLinks}/>
+                        </div>
+                    </li>
+                )
+            }
+
         </ul>
     </ClickAwayListener>
 }
 
-export { MenuDesktop };
+export {MenuDesktop};
