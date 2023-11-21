@@ -4,13 +4,14 @@ import {useNavbarContext} from "../context";
 import {MenuMobileSubmenu} from "./subMenu";
 import Link from "next/link";
 import {FaCaretDown} from "react-icons/fa6";
+import {GiSettingsKnobs} from "react-icons/gi";
 
 const Menu = () => {
     const {
         ctxData: {
             links,
             isMobileMenuOpen,
-            authLinks,
+            adminLinks,
             mobileSubMenuOpenIds,
         },
         ctxFunctions: {
@@ -83,37 +84,42 @@ const Menu = () => {
                 </li>
             ))
         }
-        <li className={clsx(
-            'w-full',
-            'border-b-[1px] last-of-type:border-b-0',
-            'border-zinc-900/5',
-            'dark:border-white/10',
-        )}>
-            <div>
-                <button
-                    onClick={() => toggleMobileSubMenu('authMenu')}
-                    className={clsx(
-                        'w-full',
-                        'flex gap-2 justify-space-between items-center',
-                        'relative block px-3 py-4 transition hover:text-teal-500 dark:hover:text-teal-400',
-                    )}
-                    aria-label={mobileSubMenuOpenIds.includes('authMenu') ? `Close sub menu for User Management` : `Open sub menu for User Management`}
-                    tabIndex={isMobileMenuOpen ? undefined : -1}
-                >
-                                    <span className={clsx(
-                                        'flex-1',
-                                        'text-left'
-                                    )}>Profile</span>
-                    <FaCaretDown className={clsx(
-                        'transition',
-                        {
-                            ['rotate-180']: mobileSubMenuOpenIds.includes('authMenu')
-                        }
-                    )}/>
-                </button>
-            </div>
-            <MenuMobileSubmenu links={authLinks} id={'authMenu'}/>
-        </li>
+        {
+            adminLinks.length > 0 && (
+                <li className={clsx(
+                    'w-full',
+                    'border-b-[1px] last-of-type:border-b-0',
+                    'border-zinc-900/5',
+                    'dark:border-white/10',
+                )}>
+                    <div>
+                        <button
+                            onClick={() => toggleMobileSubMenu('authMenu')}
+                            className={clsx(
+                                'w-full',
+                                'flex gap-2 justify-space-between items-center',
+                                'relative block px-3 py-4 transition hover:text-teal-500 dark:hover:text-teal-400',
+                            )}
+                            aria-label={mobileSubMenuOpenIds.includes('authMenu') ? `Close sub menu for Admin Links` : `Open sub menu for Admin Links`}
+                            tabIndex={isMobileMenuOpen ? undefined : -1}
+                        >
+                            <GiSettingsKnobs/>
+                            <span className={clsx(
+                                'flex-1',
+                                'text-left'
+                            )}>Admin</span>
+                            <FaCaretDown className={clsx(
+                                'transition',
+                                {
+                                    ['rotate-180']: mobileSubMenuOpenIds.includes('authMenu')
+                                }
+                            )}/>
+                        </button>
+                    </div>
+                    <MenuMobileSubmenu links={adminLinks} id={'authMenu'}/>
+                </li>
+            )
+        }
     </ul>
 }
 

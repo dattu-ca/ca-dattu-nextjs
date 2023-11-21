@@ -34,7 +34,33 @@ const siteNavbarSchema = defineType({
             to: [
                 {type: bodyLinksSchema.name}
             ]
-        })
+        }),
+        defineField({
+            name: 'showLinksAdminUnauthenticated',
+            title: 'Show Header Unauthenticated Links',
+            type: 'boolean'
+        }),
+        defineField({
+            name: 'linksAdminUnauthenticated',
+            title: 'Header Links - Admin Unauthenticated',
+            type: 'reference',
+            to: [
+                {type: bodyLinksSchema.name}
+            ]
+        }),
+        defineField({
+            name: 'showLinksAdminAuthenticated',
+            title: 'Show Header Unauthenticated Links',
+            type: 'boolean'
+        }),
+        defineField({
+            name: 'linksAdminAuthenticated',
+            title: 'Header Links - Admin Authenticated',
+            type: 'reference',
+            to: [
+                {type: bodyLinksSchema.name}
+            ]
+        }),
     ],
     preview: {
         prepare() {

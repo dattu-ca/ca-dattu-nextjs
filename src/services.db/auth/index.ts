@@ -23,7 +23,6 @@ interface IProps {
 const fetchAuthProviderByProviderAndProviderAccountId = async (authProvider: IAuthProvider) => {
     await dbConnect();
     try{
-        console.log('authProvider', authProvider)
         const result = await AuthProviderModel.findOne({
             provider: authProvider.provider,
             providerAccountId: authProvider.providerAccountId
