@@ -10,7 +10,7 @@ interface INavbarContextProps {
         openMenuText: string;
         closeMenuText: string;
         links: ILink[];
-        authLinks: ILink[];
+        adminLinks: ILink[];
         isMobileMenuOpen: boolean;
         session: Session | null;
         subMenuOpenId: string | null;
@@ -38,7 +38,7 @@ const NavbarContext = createContext<INavbarContextProps>({
         openMenuText: 'Open Menu',
         closeMenuText: 'CLose Menu',
         links: [],
-        authLinks: [],
+        adminLinks: [],
         isMobileMenuOpen: false,
         session: null,
         subMenuOpenId: null,
@@ -149,7 +149,7 @@ const NavbarContextProvider = ({children, navbar: rawNavbar, session}: INavbarCo
         setMobileSubMenuOpenIds([]);
     }, [])
 
-    const authLinks: ILink[] = useMemo(() => {
+    const adminLinks: ILink[] = useMemo(() => {
         return session
             ? navbar.showLinksAdminAuthenticated ? navbar.linksAdminAuthenticated.links : []
             : navbar.showLinksAdminUnauthenticated ? navbar.linksAdminUnauthenticated.links : [];
@@ -162,7 +162,7 @@ const NavbarContextProvider = ({children, navbar: rawNavbar, session}: INavbarCo
             openMenuText: navbar.openMenuText,
             closeMenuText: navbar.closeMenuText,
             links: navbar.links.links || [],
-            authLinks,
+            adminLinks,
             isMobileMenuOpen,
             subMenuOpenId,
             mobileSubMenuOpenIds,
@@ -184,7 +184,7 @@ const NavbarContextProvider = ({children, navbar: rawNavbar, session}: INavbarCo
     } as INavbarContextProps), [
         session,
         navbar,
-        authLinks,
+        adminLinks,
         isMobileMenuOpen,
         subMenuOpenId,
         mobileSubMenuOpenIds,

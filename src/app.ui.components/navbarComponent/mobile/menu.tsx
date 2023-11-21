@@ -11,7 +11,7 @@ const Menu = () => {
         ctxData: {
             links,
             isMobileMenuOpen,
-            authLinks,
+            adminLinks,
             mobileSubMenuOpenIds,
         },
         ctxFunctions: {
@@ -85,7 +85,7 @@ const Menu = () => {
             ))
         }
         {
-            authLinks.length > 0 && (
+            adminLinks.length > 0 && (
                 <li className={clsx(
                     'w-full',
                     'border-b-[1px] last-of-type:border-b-0',
@@ -116,7 +116,7 @@ const Menu = () => {
                             )}/>
                         </button>
                     </div>
-                    <MenuMobileSubmenu links={authLinks} id={'authMenu'}/>
+                    <MenuMobileSubmenu links={adminLinks} id={'authMenu'}/>
                 </li>
             )
         }

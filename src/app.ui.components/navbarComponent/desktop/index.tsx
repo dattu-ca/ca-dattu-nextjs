@@ -13,7 +13,7 @@ const MenuDesktop = () => {
     const {
         ctxData: {
             links,
-            authLinks,
+            adminLinks,
             subMenuOpenId
         },
         ctxFunctions: {
@@ -98,7 +98,7 @@ const MenuDesktop = () => {
                 ))
             }
             {
-                authLinks.length > 0 && (
+                adminLinks.length > 0 && (
                     <li className={clsx(
                         '!m-0'
                     )}
@@ -118,7 +118,7 @@ const MenuDesktop = () => {
                                     'w-4 h-4'
                                 )}/>
                             </button>
-                            <MenuDesktopSubmenu id={'authMenu'} links={authLinks}/>
+                            <MenuDesktopSubmenu id={'authMenu'} links={adminLinks}/>
                         </div>
                     </li>
                 )
