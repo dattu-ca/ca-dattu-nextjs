@@ -4,6 +4,7 @@ import {useNavbarContext} from "../context";
 import {MenuMobileSubmenu} from "./subMenu";
 import Link from "next/link";
 import {FaCaretDown} from "react-icons/fa6";
+import {GiSettingsKnobs} from "react-icons/gi";
 
 const Menu = () => {
     const {
@@ -99,13 +100,14 @@ const Menu = () => {
                                 'flex gap-2 justify-space-between items-center',
                                 'relative block px-3 py-4 transition hover:text-teal-500 dark:hover:text-teal-400',
                             )}
-                            aria-label={mobileSubMenuOpenIds.includes('authMenu') ? `Close sub menu for User Management` : `Open sub menu for User Management`}
+                            aria-label={mobileSubMenuOpenIds.includes('authMenu') ? `Close sub menu for Admin Links` : `Open sub menu for Admin Links`}
                             tabIndex={isMobileMenuOpen ? undefined : -1}
                         >
-                                    <span className={clsx(
-                                        'flex-1',
-                                        'text-left'
-                                    )}>Admin</span>
+                            <GiSettingsKnobs/>
+                            <span className={clsx(
+                                'flex-1',
+                                'text-left'
+                            )}>Admin</span>
                             <FaCaretDown className={clsx(
                                 'transition',
                                 {

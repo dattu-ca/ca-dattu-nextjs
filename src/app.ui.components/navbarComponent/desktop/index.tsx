@@ -1,7 +1,8 @@
 'use client';
 import clsx from "clsx";
 import Link from "next/link";
-import {FaUserGear, FaCaretDown} from "react-icons/fa6";
+import {FaCaretDown} from "react-icons/fa6";
+import {GiSettingsKnobs} from "react-icons/gi";
 import {ILink} from "~/models";
 import {useNavbarContext} from "../context";
 import {MenuDesktopSubmenu} from "./subMenu";
@@ -112,8 +113,8 @@ const MenuDesktop = () => {
                                     'dark:hover:text-teal-400',
                                 )}
                                 onClick={() => toggleSubMenu('authMenu')}
-                                aria-label={subMenuOpenId === 'authMenu' ? `Close sub menu for User Management` : `Open sub menu for User Management`}>
-                                <FaUserGear className={clsx(
+                                aria-label={subMenuOpenId === 'authMenu' ? `Close sub menu for Admin Links` : `Open sub menu for Admin Links`}>
+                                <GiSettingsKnobs className={clsx(
                                     'w-4 h-4'
                                 )}/>
                             </button>
