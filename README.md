@@ -1,5 +1,5 @@
 ## Ongoing development link
-[https://ca-dattu-nextjs.netlify.app](https://ca-dattu-nextjs.netlify.app/)
+[https://dattu.ca/](https://dattu.ca/)
 
 ## Getting Started
 First, run the development server:
